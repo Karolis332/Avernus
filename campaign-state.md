@@ -4,6 +4,7 @@
 - **Level:** 11
 - **Size:** 3 players (was 4 — Xebeche and Rebecca had earlier arcs)
 - **Current PCs:** Drenwal, Aurora, Asimov
+- **Companions:** Whiskerbright — Aurora's familiar, currently in imp form (Avernus adaptation)
 
 ## Current Location
 Fort Knucklebone — just completed Mad Maggie's Dream Sequence
