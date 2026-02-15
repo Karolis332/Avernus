@@ -50,6 +50,9 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 - Bloodbath's HP buffed to 350 for this encounter (289 HP remaining)
 - Asimov's genie **Rasheem** attempted to consume the unconscious Bloodbath
 - Bloodbath woke up at the last moment before being consumed
-**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath regained consciousness — 289 HP, all 3 Legendary Resistances intact, and now he's angry.
-**Items gained/lost:** —
+- Party managed to put Bloodbath back to sleep
+- Rasheem (Asimov's genie) successfully consumed/absorbed the unconscious Bloodbath
+- **Bloodbath defeated** — absorbed by Rasheem
+**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath eliminated — consumed by Rasheem. This likely counts as a significant kill (blood pay potential?). Rasheem has absorbed a CR 13 fiend — unclear what effect this has on the genie.
+**Items gained/lost:** Meatgrinder wreckage (repairable war machine?). Bloodbath's remains consumed by Rasheem.
 **NPC reactions:** —
