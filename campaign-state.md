@@ -45,8 +45,9 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 - Aurora shot and destroyed 2 more scarecrows — massive noise
 - The commotion attracted **Bloodbath the Drinker of Gore** and his forces
 - Bloodbath arrived on his bike (modified Devil's Ride / Meatgrinder)
-- Party dealt 191 damage — bike destroyed, Bloodbath crashed and landed unconscious
-- Bloodbath's HP buffed to 350 for this encounter
-**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath down but not dead — 159 HP remaining if he wakes.
+- Party dealt 191 total damage: 130 to the bike (destroyed), 61 to Bloodbath
+- Bike explosion knocked Bloodbath unconscious on impact
+- Bloodbath's HP buffed to 350 for this encounter (289 HP remaining)
+**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath down but not dead — 289 HP remaining if he wakes.
 **Items gained/lost:** —
 **NPC reactions:** —
