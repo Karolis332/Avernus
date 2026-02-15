@@ -48,6 +48,8 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 - Party dealt 191 total damage: 130 to the bike (destroyed), 61 to Bloodbath
 - Bike explosion knocked Bloodbath unconscious on impact
 - Bloodbath's HP buffed to 350 for this encounter (289 HP remaining)
-**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath down but not dead — 289 HP remaining if he wakes.
+- Asimov's genie **Rasheem** attempted to consume the unconscious Bloodbath
+- Bloodbath woke up at the last moment before being consumed
+**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath regained consciousness — 289 HP, all 3 Legendary Resistances intact, and now he's angry.
 **Items gained/lost:** —
 **NPC reactions:** —
