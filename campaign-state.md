@@ -42,6 +42,8 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 - Party encountered the arcane scarecrows (ward-markers in the charred forest)
 - Asimov threw bread at the scarecrows — they started screaming for a prolonged period
 - Aurora sent Whiskerbright forward — he triggered/exploded one of the scarecrows
-**Consequences:** TBD (noise may have attracted attention)
+- Aurora shot and destroyed 2 more scarecrows — massive noise
+- The commotion attracted **Bloodbath the Drinker of Gore** and his forces
+**Consequences:** Bloodbath encounter triggered by scarecrow noise
 **Items gained/lost:** —
 **NPC reactions:** —
