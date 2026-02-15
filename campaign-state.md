@@ -54,5 +54,5 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 - Rasheem (Asimov's genie) successfully consumed/absorbed the unconscious Bloodbath
 - **Bloodbath defeated** — absorbed by Rasheem
 **Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath eliminated — consumed by Rasheem. This likely counts as a significant kill (blood pay potential?). Rasheem has absorbed a CR 13 fiend — unclear what effect this has on the genie.
-**Items gained/lost:** Meatgrinder wreckage (repairable war machine?). Bloodbath's remains consumed by Rasheem.
+**Items gained/lost:** Meatgrinder wreckage (repairable war machine?). Bloodbath's remains consumed by Rasheem. **Moonkite Cage Key** hidden in the bike wreckage — opens the cage imprisoning the Moonkite (Aurora's arc).
 **NPC reactions:** —
