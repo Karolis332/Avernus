@@ -117,13 +117,16 @@ Roll d8 when the party departs Fort Knucklebone:
 | 7 | **Exploding geyser field:** DC 15 Dex save or 3d6 fire. Successful DC 15 Survival finds a shortcut (halve remaining travel) |
 | 8 | **Bhaalspawn sign** (Drenwal-specific): A burned campsite with Hellrider medals melted into a symbol of Bhaal. Dumal was here recently. |
 
-## Combat Scaling Reminders (Level 11, 3 Players)
+## Combat Scaling Reminders (Strong Lvl 11: Soulknife Rogue, Cleric, Warlock)
 
-- **Boss fights:** CR 13-16 with legendary/lair actions
-- **Standard encounters:** CR 8-11, add minions or hazards
+- **Boss fights:** CR 15-18+ with legendary/lair actions. Single-target bosses melt to Sneak Attack — always add minions.
+- **Standard encounters:** CR 12-14, add 4-6 minions or environmental hazards
 - **Environmental hazards** are your friend — lava, acid, scrap, war machine explosions
-- **Action economy:** Always add reactions, lair actions, or minions
-- **Moral dilemmas** are the real challenge at this tier — fights alone are too easy
+- **Action economy:** Only 3 PCs — every fight needs minions, legendary actions, or lair actions. Losing 1 PC to a moral dilemma cuts party damage by 33%.
+- **Anti-Rogue:** Flying enemies, grapples, truesight. Force adaptation.
+- **Anti-Caster:** Silence zones, Counterspell (arcanaloths), multi-hit attacks to break concentration on Spirit Guardians/Hex.
+- **Short rests matter:** Warlock recovers slots on short rest. Control pacing by limiting/allowing rests.
+- **See `encounter-tables.md`** for full scaling philosophy and templates.
 
 ## Session Checklist
 

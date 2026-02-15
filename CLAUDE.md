@@ -31,15 +31,19 @@ For deep dives into specific sourcebook content (spell descriptions, monster abi
 
 ## Campaign Overview
 
-**Party:** 3 players, level 11. Currently at Fort Knucklebone, post-Dream Sequence.
+**Party:** 3 players, level 11 (strong party). Currently at Fort Knucklebone, post-Dream Sequence.
 
 **Sandbox Structure:**
 Fort Knucklebone → Intermediaries (Mordenkainen / Red Ruth / Mephistopheles) → Blood Pay (Arkhan / Uldrak / Ubbalux / Shummrath) → Fallen Three (Olanthius / Bel / Haruman) → Arches of Ulloch → Bleeding Citadel
 
 **Player Characters:**
-- **Drenwal** — Hellrider, child of Bhaal. Gargauth tempts him via the Shield. Brother Dumal (Bhaalspawn) is hunting him in Avernus. Amulet connection severed.
-- **Aurora** — Linked to the Moonkite (imprisoned celestial-fey). Wand of Celestial Warding pulses near Moonkite essence. Drawn deeper into Avernus.
-- *(Third PC backstory not yet documented)*
+- **Drenwal** — Soulknife Rogue. Hellrider, child of Bhaal. Gargauth tempts him via the Shield. Brother Dumal (Bhaalspawn) hunting him. Amulet connection severed. Psychic Blades + Sneak Attack = high single-target burst. Psychic Whispers for telepathic coordination.
+- **Aurora** — Warlock. Linked to the Moonkite (imprisoned celestial-fey). Wand of Celestial Warding pulses near Moonkite essence. Eldritch Blast + invocations for consistent ranged damage. Limited spell slots but powerful when used.
+- **Cleric** — *(Subclass/backstory TBD)*. Primary healer and support. Access to Spirit Guardians, Spiritual Weapon, healing, and condition removal. Likely the party's frontline.
+
+**Party Strengths:** High burst damage (Soulknife), sustained ranged damage (Warlock), healing/support/AoE (Cleric). Good at stealth (Rogue expertise), social encounters (Warlock Cha), and sustain (Cleric healing). Weak to action economy pressure — only 3 PCs, so encounters need minions to threaten them.
+
+**Encounter Design Notes:** This is a strong, synergistic party. Scale encounters UP from standard 3-player guidelines. See `encounter-tables.md` for detailed scaling philosophy.
 
 ## Raw Source Data
 

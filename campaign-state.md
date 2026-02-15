@@ -1,9 +1,12 @@
 # Campaign State Tracker
 
 ## Party
-- **Level:** 11
+- **Level:** 11 (strong party)
 - **Size:** 3 players (was 4 — Xebeche and Rebecca had earlier arcs)
-- **Current PCs:** Drenwal, Aurora, and one more (backstory TBD)
+- **Current PCs:**
+  - **Drenwal** — Soulknife Rogue. Hellrider, child of Bhaal. Gargauth tempts him via the Shield.
+  - **Aurora** — Warlock. Linked to the Moonkite. Wand of Celestial Warding.
+  - *(Third PC — Cleric, backstory TBD)*
 
 ## Current Location
 Fort Knucklebone — just completed Mad Maggie's Dream Sequence

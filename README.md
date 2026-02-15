@@ -2,6 +2,8 @@
 
 A curated knowledge base for running **Baldur's Gate: Descent into Avernus** with Claude Code as your live session assistant.
 
+**Party:** 3 strong level 11 PCs — Soulknife Rogue (Drenwal), Warlock (Aurora), Cleric (TBD)
+
 ## How It Works
 
 1. **Clone this repo** to whatever device you're running sessions from
