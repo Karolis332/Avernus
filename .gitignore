@@ -1,0 +1,25 @@
+# Large binary files - PDFs, images, audio
+*.pdf
+*.PDF
+*.jpg
+*.jpeg
+*.png
+*.wav
+*.aup3
+*.rar
+*.zip
+
+# Node modules (used for PDF conversion only)
+node_modules/
+package.json
+package-lock.json
+
+# Extracted raw text dumps (too large, not curated)
+Extracted Text/
+
+# Eventyr maps and images
+Eventyr CDMB*/
+
+# OS files
+Thumbs.db
+.DS_Store
