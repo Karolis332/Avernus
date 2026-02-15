@@ -3,7 +3,7 @@
 ## Party
 - **Level:** 11
 - **Size:** 3 players (was 4 — Xebeche and Rebecca had earlier arcs)
-- **Current PCs:** Drenwal, Aurora, and one more (backstory TBD)
+- **Current PCs:** Drenwal, Aurora, Asimov
 
 ## Current Location
 Fort Knucklebone — just completed Mad Maggie's Dream Sequence
@@ -34,11 +34,12 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 5. **Time Pressure:** Elturel continues sinking into the River Styx
 
 ## Session Log
-*(Add session summaries here after each session)*
 
-### Session X — [Date]
-**Location:**
+### Session 1 — 2026-02-15
+**Location:** Fort Knucklebone area
 **Events:**
-**Consequences:**
-**Items gained/lost:**
-**NPC reactions:**
+- Party encountered the arcane scarecrows (ward-markers in the charred forest)
+- Asimov threw bread at the scarecrows — they started screaming for a prolonged period
+**Consequences:** TBD (noise may have attracted attention)
+**Items gained/lost:** —
+**NPC reactions:** —
