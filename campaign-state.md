@@ -53,6 +53,10 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 - Party managed to put Bloodbath back to sleep
 - Rasheem (Asimov's genie) successfully consumed/absorbed the unconscious Bloodbath
 - **Bloodbath defeated** — absorbed by Rasheem
-**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath eliminated — consumed by Rasheem. This likely counts as a significant kill (blood pay potential?). Rasheem has absorbed a CR 13 fiend — unclear what effect this has on the genie.
-**Items gained/lost:** Meatgrinder wreckage (repairable war machine?). Bloodbath's remains consumed by Rasheem. **Moonkite Cage Key** hidden in the bike wreckage — opens the cage imprisoning the Moonkite (Aurora's arc).
+- Party searched the Meatgrinder wreckage — found the **Moonkite Cage Key**
+- Aurora touched the key and received a **vision of the Palace of Gore** (Bloodbath's lair) — saw the Moonkite imprisoned there
+- Rasheem interrogated the consumed Bloodbath — he said: *"Follow the river of blood and the smell of rotting guts"* (directions to the Palace of Gore)
+- Party now attempting to **scry for the Moonkite**
+**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath eliminated — consumed by Rasheem. Aurora now has a clear objective: the Palace of Gore holds the Moonkite. Rasheem can interrogate Bloodbath from within — useful intel source.
+**Items gained/lost:** Meatgrinder wreckage (repairable war machine?). Bloodbath's remains consumed by Rasheem. **Moonkite Cage Key** — opens the Moonkite's cage at the Palace of Gore.
 **NPC reactions:** —
