@@ -40,6 +40,7 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 **Events:**
 - Party encountered the arcane scarecrows (ward-markers in the charred forest)
 - Asimov threw bread at the scarecrows — they started screaming for a prolonged period
+- Aurora sent Whiskerbright forward — he triggered/exploded one of the scarecrows
 **Consequences:** TBD (noise may have attracted attention)
 **Items gained/lost:** —
 **NPC reactions:** —
