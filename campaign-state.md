@@ -56,7 +56,12 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 - Party searched the Meatgrinder wreckage — found the **Moonkite Cage Key**
 - Aurora touched the key and received a **vision of the Palace of Gore** (Bloodbath's lair) — saw the Moonkite imprisoned there
 - Rasheem interrogated the consumed Bloodbath — he said: *"Follow the river of blood and the smell of rotting guts"* (directions to the Palace of Gore)
-- Party now attempting to **scry for the Moonkite**
-**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath eliminated — consumed by Rasheem. Aurora now has a clear objective: the Palace of Gore holds the Moonkite. Rasheem can interrogate Bloodbath from within — useful intel source.
+- Drenwal attempted to **scry for the Moonkite** via Divine Intervention
+- **Bhaal hijacked the vision** — showed Dumal the Flame Ascendant slaughtering Fort Knucklebone residents, then Dumal's location: mountains, red fog, a steady river of blood (Wrecked Flying Fortress area)
+- Drenwal shared the vision with the party
+- Drenwal rolled a **4 on Investigation** to locate the Moonkite from the vision — total failure, the Bhaal corruption obscured any useful info about the Moonkite's location
+- Party still relies on Aurora's key vision and Bloodbath's directions ("follow the river of blood") for the Palace of Gore
+- **Dumal is confirmed following the party** — but the party cannot pinpoint his exact location
+**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath eliminated — consumed by Rasheem. Aurora now has a clear objective: the Palace of Gore holds the Moonkite. Rasheem can interrogate Bloodbath from within — useful intel source. Bhaal hijacked Drenwal's Divine Intervention — asserting ownership over his divine channel. Dumal threat is now known to the full party, but his location is unclear.
 **Items gained/lost:** Meatgrinder wreckage (repairable war machine?). Bloodbath's remains consumed by Rasheem. **Moonkite Cage Key** — opens the Moonkite's cage at the Palace of Gore.
 **NPC reactions:** —

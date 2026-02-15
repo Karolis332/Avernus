@@ -72,6 +72,87 @@
 - **Reaping Roar (Recharge 6):** 6d8 psychic + stunned, DC 17 Wis
 - **Death Burst:** 6d6 fire in 15 ft, DC 17 Dex
 
+## Dumal the Flame Ascendant (Bhaalspawn Paladin Boss)
+
+**CR 19** (22,000 XP) | Medium Humanoid (Human, Bhaalspawn), Chaotic Evil
+
+> *A walking pyre in melted Hellrider plate. Necrotic fire bleeds from the cracks in his armor like molten veins. Where he steps, the ground blackens and smolders. He was Drenwal's brother. Now he is Bhaal's blade.*
+
+| STR | DEX | CON | INT | WIS | CHA |
+|-----|-----|-----|-----|-----|-----|
+| 22 (+6) | 14 (+2) | 22 (+6) | 10 (+0) | 16 (+3) | 22 (+6) |
+
+- **AC:** 20 (Molten Hellrider Plate — fused to his body, cannot be removed)
+- **HP:** 285 (22d10 + 154)
+- **Speed:** 30 ft.
+- **Saving Throws:** Wis +9, Cha +12, Con +12
+- **Skills:** Athletics +12, Intimidation +12, Religion +6
+- **Damage Resistances:** Fire, Necrotic
+- **Damage Immunities:** Poison
+- **Condition Immunities:** Frightened, Poisoned
+- **Senses:** Darkvision 120 ft., passive Perception 13
+- **Languages:** Common, Infernal, Abyssal
+
+### Traits
+
+**Legendary Resistance (3/day).** If Dumal fails a saving throw, he can choose to succeed instead.
+
+**Aura of Murder (30 ft.).** Creatures of Dumal's choice that start their turn in the aura take 10 (3d6) necrotic fire damage. Healing spells cast within the aura restore only half the normal hit points.
+
+**Radiance Defiler.** Any radiant damage dealt within 30 ft. of Dumal is converted to necrotic damage. Radiant-based features (Divine Smite, Sacred Flame, Holy Weapon, etc.) deal necrotic damage instead and Dumal has resistance to it.
+
+**Bhaalspawn Harvest.** When Dumal reduces a creature to 0 HP, he regains 30 HP and his next melee attack deals an extra 2d10 necrotic damage.
+
+**Innate Spellcasting (Cha, DC 20).** At will: *command, hellish rebuke* (5th level, 5d10). 3/day each: *banishing smite, destructive wave, hold person*. 1/day each: *fire storm, finger of death*.
+
+### Actions
+
+**Multiattack.** Dumal makes three attacks with Oathbreaker's Pyre.
+
+**Oathbreaker's Pyre (Greatsword).** *Melee Weapon Attack:* +12 to hit, reach 5 ft., one target. *Hit:* 13 (2d6 + 6) slashing damage plus 13 (3d8) necrotic fire damage.
+
+**Unholy Smite (3/day).** When Dumal hits with a melee weapon attack, he can add 27 (6d8) necrotic fire damage to the attack. If the target is a celestial, fey, or creature that worships a non-evil deity, it must succeed on a DC 20 Wisdom save or be frightened of Dumal until the end of its next turn.
+
+**Pyre Walk (Recharge 5-6).** Dumal teleports up to 60 ft. to an unoccupied space he can see, leaving a trail of necrotic flame. Each creature within 10 ft. of the path must make a DC 20 Dexterity save, taking 35 (10d6) necrotic fire damage on a failed save, or half on a success. The trail burns for 1 minute (3d6 fire damage to creatures entering/starting turn in it).
+
+### Bonus Actions
+
+**Compel Duel.** One creature within 30 ft. must make a DC 20 Wisdom save or be compelled to attack only Dumal for 1 minute (as *compelled duel*, no concentration). The target can repeat the save at the end of each turn.
+
+### Reactions
+
+**Rebuke the Faithful.** When a creature within 5 ft. hits Dumal with an attack, Dumal can deal 13 (3d8) necrotic fire damage to the attacker.
+
+### Legendary Actions (3/round)
+
+**Strike.** Dumal makes one Oathbreaker's Pyre attack.
+
+**Necrotic Flare (2 Actions).** Each creature within 20 ft. must make a DC 20 Constitution save. On a failure, the creature takes 22 (4d10) necrotic fire damage and is blinded until the end of its next turn. On a success, the creature takes half damage and is not blinded.
+
+**Advance.** Dumal moves up to half his speed without provoking opportunity attacks.
+
+### Dialogue
+
+> "You clung to Helm like a child clings to his toy shield. But you know what I've become."
+> "Father sees you, brother. He sees you *failing*."
+> "Every soul you refuse to take, I take two. Every prayer you whisper, I *burn*."
+
+### Tactics
+- Opens with Pyre Walk to close distance and split the party
+- Uses Compel Duel on Drenwal immediately — this is personal
+- Saves Unholy Smites for Drenwal or any healer
+- Legendary Strikes on fleeing targets; Necrotic Flare when 2+ PCs cluster
+- Radiance Defiler shuts down Aurora's celestial magic and any radiant-based builds
+- At low HP, uses Finger of Death on the weakest PC — if it kills, the zombie serves Bhaal
+- Will NOT flee. Dumal fights to the death or until Drenwal submits
+
+### Notes for the DM
+- **Bhaal Influence:** If Drenwal kills Dumal, Bhaal score ticks to 4/6 (or 5/6 if he delivers the killing blow with rage/hatred). Bhaal *wants* them to fight — the winner absorbs the loser's essence.
+- **If Drenwal spares him:** Dumal is confused, then enraged. May open a future redemption thread or a second encounter where Dumal returns stronger.
+- **Loot:** Oathbreaker's Pyre (greatsword, +2, 2d6 slashing + 2d8 necrotic fire, cursed — whispers of Bhaal). Molten Hellrider Plate cannot be salvaged. 3 soul coins. A charred letter from their mother Mara.
+
+---
+
 ## Upscaled Encounter Templates
 
 ### Standard Devil Patrol (CR ~11 total)
