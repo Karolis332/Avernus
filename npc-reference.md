@@ -95,11 +95,18 @@
 
 ## Warlords
 
-### Bloodbath the Drinker of Gore
-- **CR 15-16.** Brings 2 elite bodyguards + environmental hazards.
-- Tests physical strength. Respects worthy opponents.
-- At half HP: sacrifices a minion to heal, triggers fear aura.
-- **Rewards brave fighters** with infernal weapons, soul coins, evolving items.
+### Bloodbath the Drinker of Gore *(DEFEATED — absorbed by Rasheem)*
+- **CR 15-16.** Brought 2 elite bodyguards + environmental hazards.
+- Tested physical strength. Respected worthy opponents.
+- At half HP: sacrificed a minion to heal, triggered fear aura.
+- **Status:** Consumed by Rasheem. Can be interrogated from within the genie.
+
+### Bitter Breath *(Bloodbath's Little Brother — new warlord of the Palace of Gore)*
+- **CR 16-17.** Smaller than Bloodbath but stronger. Inherited the Palace of Gore and Bloodbath's remaining forces.
+- Commands hobgoblins. More disciplined than his brother's chaotic forces.
+- Guards the **Moonkite's prison** at the Palace of Gore (may not know the key exists).
+- Motivation: Avenge his brother or prove he was always the stronger one.
+- *"Follow the river of blood and the smell of rotting guts"* to find his lair.
 
 ### Smiler the Defiler
 - Recurring nuisance. Hit-and-run + psychological tricks.

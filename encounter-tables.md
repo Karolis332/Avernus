@@ -9,7 +9,7 @@
 | 6-7 | **Exploding geysers** | DC 15 Dex, 3d6 fire. DC 15 Survival for shortcut. |
 | 8-9 | **Hell hound pack** (4-6) | CR 3 each. Hunting something. May ignore party. |
 | 10 | **Blood War skirmish** | Demons vs devils, 200 ft away. 1d4 soul coins in aftermath. |
-| 11-12 | **Warlord patrol** (roll d4): 1=Bloodbath outriders, 2=Smiler scouts, 3=Kovic merregons, 4=Rust Queen scavengers |
+| 11-12 | **Warlord patrol** (roll d4): 1=Bitter Breath outriders, 2=Smiler scouts, 3=Kovic merregons, 4=Rust Queen scavengers |
 | 13 | **Wandering Emporium** | Mahadi appears. Shopping + rumors. |
 | 14-15 | **Infernal bounty hunters** | 2 barbed devils + 1 bone devil. Want a specific soul coin or prisoner. |
 | 16 | **Smiler the Defiler** | Drives past, insults, drops clue. Hit-and-run if engaged. |
@@ -20,12 +20,16 @@
 
 ## Warlord Encounter Profiles
 
-### Bloodbath the Drinker of Gore (CR 15-16)
-- **Forces:** 2 elite bodyguards + environmental hazards
-- **Behavior:** Tests strength. Respects worthy opponents.
-- **At half HP:** Sacrifices a minion to heal, triggers fear aura
-- **Dialogue:** Speaks of blood, strength, glory
-- **Reward if impressed:** Infernal weapons, soul coins, information
+### Bloodbath the Drinker of Gore *(DEFEATED)*
+- Absorbed by Rasheem. No longer a field threat. Can be interrogated.
+
+### Bitter Breath, Brother of Bloodbath (CR 16-17)
+- **Forces:** Hobgoblins + Bloodbath's remaining maw demons/merregons (uneasy mix)
+- **Behavior:** Smaller but stronger than Bloodbath. More cunning, less reckless.
+- **At half HP:** Fights harder — refuses to fall like his brother did
+- **Dialogue:** Cold, bitter. Resents living in Bloodbath's shadow. Wants to prove superiority.
+- **Lair:** The Palace of Gore — holds the **Moonkite's prison**
+- **Directions:** Follow the river of blood, follow the smell of rotting guts
 
 ### Smiler the Defiler (Recurring)
 - **Behavior:** Ambush, taunt, flee. Leaves traps.
