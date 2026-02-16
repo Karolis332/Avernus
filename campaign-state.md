@@ -6,7 +6,8 @@
 - **Current PCs:**
   - **Drenwal** — Soulknife Rogue. Hellrider, child of Bhaal. Gargauth tempts him via the Shield.
   - **Aurora** — Warlock. Linked to the Moonkite. Wand of Celestial Warding.
-  - *(Third PC — Cleric, backstory TBD)*
+  - **Asimov** — Cleric. Has genie companion Rasheem.
+- **Companions:** Whiskerbright — Aurora's familiar, currently in imp form (Avernus adaptation)
 
 ## Current Location
 Fort Knucklebone — just completed Mad Maggie's Dream Sequence
@@ -37,11 +38,33 @@ Fort Knucklebone — just completed Mad Maggie's Dream Sequence
 5. **Time Pressure:** Elturel continues sinking into the River Styx
 
 ## Session Log
-*(Add session summaries here after each session)*
 
-### Session X — [Date]
-**Location:**
+### Session 1 — 2026-02-15
+**Location:** Fort Knucklebone area
 **Events:**
-**Consequences:**
-**Items gained/lost:**
-**NPC reactions:**
+- Party encountered the arcane scarecrows (ward-markers in the charred forest)
+- Asimov threw bread at the scarecrows — they started screaming for a prolonged period
+- Aurora sent Whiskerbright forward — he triggered/exploded one of the scarecrows
+- Aurora shot and destroyed 2 more scarecrows — massive noise
+- The commotion attracted **Bloodbath the Drinker of Gore** and his forces
+- Bloodbath arrived on his bike (modified Devil's Ride / Meatgrinder)
+- Party dealt 191 total damage: 130 to the bike (destroyed), 61 to Bloodbath
+- Bike explosion knocked Bloodbath unconscious on impact
+- Bloodbath's HP buffed to 350 for this encounter (289 HP remaining)
+- Asimov's genie **Rasheem** attempted to consume the unconscious Bloodbath
+- Bloodbath woke up at the last moment before being consumed
+- Party managed to put Bloodbath back to sleep
+- Rasheem (Asimov's genie) successfully consumed/absorbed the unconscious Bloodbath
+- **Bloodbath defeated** — absorbed by Rasheem
+- Party searched the Meatgrinder wreckage — found the **Moonkite Cage Key**
+- Aurora touched the key and received a **vision of the Palace of Gore** (Bloodbath's lair) — saw the Moonkite imprisoned there
+- Rasheem interrogated the consumed Bloodbath — he said: *"Follow the river of blood and the smell of rotting guts"* (directions to the Palace of Gore)
+- Drenwal attempted to **scry for the Moonkite** via Divine Intervention
+- **Bhaal hijacked the vision** — showed Dumal the Flame Ascendant slaughtering Fort Knucklebone residents, then Dumal's location: mountains, red fog, a steady river of blood (Wrecked Flying Fortress area)
+- Drenwal shared the vision with the party
+- Drenwal rolled a **4 on Investigation** to locate the Moonkite from the vision — total failure, the Bhaal corruption obscured any useful info about the Moonkite's location
+- Party still relies on Aurora's key vision and Bloodbath's directions ("follow the river of blood") for the Palace of Gore
+- **Dumal is confirmed following the party** — but the party cannot pinpoint his exact location
+**Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath eliminated — consumed by Rasheem. Aurora now has a clear objective: the Palace of Gore holds the Moonkite. Rasheem can interrogate Bloodbath from within — useful intel source. Bhaal hijacked Drenwal's Divine Intervention — asserting ownership over his divine channel. Dumal threat is now known to the full party, but his location is unclear.
+**Items gained/lost:** Meatgrinder wreckage (repairable war machine?). Bloodbath's remains consumed by Rasheem. **Moonkite Cage Key** — opens the Moonkite's cage at the Palace of Gore.
+**NPC reactions:** —

@@ -39,7 +39,7 @@ This party punches above its weight. Three-player parties are normally weaker, b
 | 6-7 | **Exploding geysers** | DC 16 Dex, 4d6 fire. DC 16 Survival for shortcut. |
 | 8-9 | **Hell hound pack** (6-8) | CR 3 each. Hunting something. Pack tactics, surround isolated PCs. May ignore party. |
 | 10 | **Blood War skirmish** | Demons vs devils, 200 ft away. 1d4 soul coins in aftermath. Stray fireballs if party lingers. |
-| 11-12 | **Warlord patrol** (roll d4): 1=Bloodbath outriders, 2=Smiler scouts, 3=Kovic merregons, 4=Rust Queen scavengers |
+| 11-12 | **Warlord patrol** (roll d4): 1=Bitter Breath outriders, 2=Smiler scouts, 3=Kovic merregons, 4=Rust Queen scavengers |
 | 13 | **Wandering Emporium** | Mahadi appears. Shopping + rumors. |
 | 14-15 | **Infernal bounty hunters** | 1 bone devil + 2 barbed devils + 2 merregons. Want a specific soul coin or prisoner. |
 | 16 | **Smiler the Defiler** | Drives past, insults, drops clue. Hit-and-run if engaged. |
@@ -52,14 +52,17 @@ This party punches above its weight. Three-player parties are normally weaker, b
 
 ## Warlord Encounter Profiles
 
-### Bloodbath the Drinker of Gore (CR 15-16)
-- **Forces:** Bloodbath + 2 barbed devil bodyguards (CR 5, 110 HP each) + 1d4 bearded devil fodder
-- **Environmental hazard:** Blood pool (difficult terrain, DC 15 Con or blinded by gore spray)
-- **Behavior:** Tests strength. Respects worthy opponents. Focuses the Cleric first (wants to see if they fight or just heal).
-- **At half HP:** Sacrifices a bodyguard to heal 50 HP, triggers Aura of Gore (DC 17 Con or frightened, 30 ft)
-- **Anti-Rogue:** Truesight 30 ft. Can't be sneak attacked from hiding easily.
-- **Dialogue:** Speaks of blood, strength, glory
-- **Reward if impressed:** Infernal weapons, soul coins, information, passage through his territory
+### Bloodbath the Drinker of Gore *(DEFEATED)*
+- Absorbed by Rasheem. No longer a field threat. Can be interrogated via Rasheem.
+- **Original stats (for reference):** CR 15-16, 350 HP (buffed), Truesight 30 ft, Aura of Gore
+
+### Bitter Breath, Brother of Bloodbath (CR 16-17)
+- **Forces:** Hobgoblins + Bloodbath's remaining maw demons/merregons (uneasy mix)
+- **Behavior:** Smaller but stronger than Bloodbath. More cunning, less reckless.
+- **At half HP:** Fights harder — refuses to fall like his brother did
+- **Dialogue:** Cold, bitter. Resents living in Bloodbath's shadow. Wants to prove superiority.
+- **Lair:** The Palace of Gore — holds the **Moonkite's prison**
+- **Directions:** Follow the river of blood, follow the smell of rotting guts
 
 ### Smiler the Defiler (Recurring)
 - **Behavior:** Ambush, taunt, flee. Leaves traps (glyphs of warding, explosive barrels).
@@ -115,6 +118,87 @@ This party punches above its weight. Three-player parties are normally weaker, b
 - **Legendary Actions (2/round):**
   - **Gore (1 action):** One Gore attack
   - **Thunderous Stomp (2 actions):** DC 17 Str, 15-ft radius, 3d8 thunder + prone (breaks Spirit Guardians concentration)
+
+---
+
+## Dumal the Flame Ascendant (Bhaalspawn Paladin Boss)
+
+**CR 19** (22,000 XP) | Medium Humanoid (Human, Bhaalspawn), Chaotic Evil
+
+> *A walking pyre in melted Hellrider plate. Necrotic fire bleeds from the cracks in his armor like molten veins. Where he steps, the ground blackens and smolders. He was Drenwal's brother. Now he is Bhaal's blade.*
+
+| STR | DEX | CON | INT | WIS | CHA |
+|-----|-----|-----|-----|-----|-----|
+| 22 (+6) | 14 (+2) | 22 (+6) | 10 (+0) | 16 (+3) | 22 (+6) |
+
+- **AC:** 20 (Molten Hellrider Plate — fused to his body, cannot be removed)
+- **HP:** 285 (22d10 + 154)
+- **Speed:** 30 ft.
+- **Saving Throws:** Wis +9, Cha +12, Con +12
+- **Skills:** Athletics +12, Intimidation +12, Religion +6
+- **Damage Resistances:** Fire, Necrotic
+- **Damage Immunities:** Poison
+- **Condition Immunities:** Frightened, Poisoned
+- **Senses:** Darkvision 120 ft., passive Perception 13
+- **Languages:** Common, Infernal, Abyssal
+
+### Traits
+
+**Legendary Resistance (3/day).** If Dumal fails a saving throw, he can choose to succeed instead.
+
+**Aura of Murder (30 ft.).** Creatures of Dumal's choice that start their turn in the aura take 10 (3d6) necrotic fire damage. Healing spells cast within the aura restore only half the normal hit points.
+
+**Radiance Defiler.** Any radiant damage dealt within 30 ft. of Dumal is converted to necrotic damage. Radiant-based features (Divine Smite, Sacred Flame, Holy Weapon, etc.) deal necrotic damage instead and Dumal has resistance to it.
+
+**Bhaalspawn Harvest.** When Dumal reduces a creature to 0 HP, he regains 30 HP and his next melee attack deals an extra 2d10 necrotic damage.
+
+**Innate Spellcasting (Cha, DC 20).** At will: *command, hellish rebuke* (5th level, 5d10). 3/day each: *banishing smite, destructive wave, hold person*. 1/day each: *fire storm, finger of death*.
+
+### Actions
+
+**Multiattack.** Dumal makes three attacks with Oathbreaker's Pyre.
+
+**Oathbreaker's Pyre (Greatsword).** *Melee Weapon Attack:* +12 to hit, reach 5 ft., one target. *Hit:* 13 (2d6 + 6) slashing damage plus 13 (3d8) necrotic fire damage.
+
+**Unholy Smite (3/day).** When Dumal hits with a melee weapon attack, he can add 27 (6d8) necrotic fire damage to the attack. If the target is a celestial, fey, or creature that worships a non-evil deity, it must succeed on a DC 20 Wisdom save or be frightened of Dumal until the end of its next turn.
+
+**Pyre Walk (Recharge 5-6).** Dumal teleports up to 60 ft. to an unoccupied space he can see, leaving a trail of necrotic flame. Each creature within 10 ft. of the path must make a DC 20 Dexterity save, taking 35 (10d6) necrotic fire damage on a failed save, or half on a success. The trail burns for 1 minute (3d6 fire damage to creatures entering/starting turn in it).
+
+### Bonus Actions
+
+**Compel Duel.** One creature within 30 ft. must make a DC 20 Wisdom save or be compelled to attack only Dumal for 1 minute (as *compelled duel*, no concentration). The target can repeat the save at the end of each turn.
+
+### Reactions
+
+**Rebuke the Faithful.** When a creature within 5 ft. hits Dumal with an attack, Dumal can deal 13 (3d8) necrotic fire damage to the attacker.
+
+### Legendary Actions (3/round)
+
+**Strike.** Dumal makes one Oathbreaker's Pyre attack.
+
+**Necrotic Flare (2 Actions).** Each creature within 20 ft. must make a DC 20 Constitution save. On a failure, the creature takes 22 (4d10) necrotic fire damage and is blinded until the end of its next turn. On a success, the creature takes half damage and is not blinded.
+
+**Advance.** Dumal moves up to half his speed without provoking opportunity attacks.
+
+### Dialogue
+
+> "You clung to Helm like a child clings to his toy shield. But you know what I've become."
+> "Father sees you, brother. He sees you *failing*."
+> "Every soul you refuse to take, I take two. Every prayer you whisper, I *burn*."
+
+### Tactics
+- Opens with Pyre Walk to close distance and split the party
+- Uses Compel Duel on Drenwal immediately — this is personal
+- Saves Unholy Smites for Drenwal or any healer
+- Legendary Strikes on fleeing targets; Necrotic Flare when 2+ PCs cluster
+- Radiance Defiler shuts down Aurora's celestial magic and any radiant-based builds
+- At low HP, uses Finger of Death on the weakest PC — if it kills, the zombie serves Bhaal
+- Will NOT flee. Dumal fights to the death or until Drenwal submits
+
+### Notes for the DM
+- **Bhaal Influence:** If Drenwal kills Dumal, Bhaal score ticks to 4/6 (or 5/6 if he delivers the killing blow with rage/hatred). Bhaal *wants* them to fight — the winner absorbs the loser's essence.
+- **If Drenwal spares him:** Dumal is confused, then enraged. May open a future redemption thread or a second encounter where Dumal returns stronger.
+- **Loot:** Oathbreaker's Pyre (greatsword, +2, 2d6 slashing + 2d8 necrotic fire, cursed — whispers of Bhaal). Molten Hellrider Plate cannot be salvaged. 3 soul coins. A charred letter from their mother Mara.
 
 ---
 
