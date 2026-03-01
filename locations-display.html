@@ -1,0 +1,1055 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Avernus — Location Reference</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page {
+    width: 850px;
+    background: #fdf1dc;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(139, 90, 43, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(139, 90, 43, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255, 248, 231, 0.4) 0%, transparent 70%);
+    padding: 50px 55px;
+    box-shadow:
+      0 0 30px rgba(0,0,0,0.5),
+      inset 0 0 80px rgba(139, 90, 43, 0.1);
+    position: relative;
+    border: 1px solid #c9a96e;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 1px solid rgba(139, 90, 43, 0.2);
+    pointer-events: none;
+  }
+
+  /* Title */
+  .page-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 36px;
+    color: #58180d;
+    text-align: center;
+    margin-bottom: 2px;
+    letter-spacing: 3px;
+  }
+
+  .page-subtitle {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 15px;
+    color: #58180d;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Decorative dividers */
+  .divider {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%);
+    margin: 20px 0;
+    border: none;
+    position: relative;
+  }
+  .divider::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  }
+
+  .divider-thin {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #c9a96e 20%, #c9a96e 80%, transparent 100%);
+    margin: 16px 0;
+    border: none;
+  }
+
+  /* Body text */
+  .body-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    margin-bottom: 8px;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .body-text em { color: #58180d; }
+
+  /* Section headers */
+  .section-header {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 22px;
+    color: #58180d;
+    margin: 24px 0 10px;
+    border-bottom: 2px solid #c9a96e;
+    padding-bottom: 4px;
+  }
+
+  .sub-header {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #58180d;
+    margin: 12px 0 4px;
+  }
+
+  /* Property blocks */
+  .property {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    margin-bottom: 6px;
+    text-align: justify;
+  }
+  .property-name {
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+
+  /* Bullets */
+  ul.item-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 4px 0 8px;
+  }
+  ul.item-list li {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    line-height: 1.55;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  ul.item-list li::before {
+    content: '\2666';
+    position: absolute;
+    left: 0;
+    color: #58180d;
+    font-size: 8px;
+    top: 4px;
+  }
+
+  /* ===================== */
+  /* SANDBOX FLOWCHART     */
+  /* ===================== */
+  .flowchart {
+    margin: 10px 0 10px;
+    page-break-inside: avoid;
+  }
+
+  .flowchart-hub {
+    text-align: center;
+    margin-bottom: 16px;
+  }
+
+  .flowchart-hub-box {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(88, 24, 13, 0.12) 0%, rgba(201, 169, 110, 0.18) 100%);
+    border: 2px solid #58180d;
+    border-radius: 6px;
+    padding: 10px 32px;
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: #58180d;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 8px rgba(88, 24, 13, 0.15);
+  }
+
+  .flowchart-connector {
+    text-align: center;
+    font-size: 20px;
+    color: #c9a96e;
+    line-height: 1;
+    margin: 4px 0;
+  }
+
+  .flowchart-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin-bottom: 6px;
+    flex-wrap: wrap;
+  }
+
+  .flowchart-group {
+    border-radius: 6px;
+    padding: 10px 14px;
+    min-width: 160px;
+    flex: 1;
+    max-width: 200px;
+  }
+
+  .flowchart-group.intermediary {
+    background: rgba(44, 82, 130, 0.07);
+    border: 1px solid rgba(44, 82, 130, 0.35);
+  }
+  .flowchart-group.bloodpay {
+    background: rgba(139, 0, 0, 0.06);
+    border: 1px solid rgba(139, 0, 0, 0.3);
+  }
+  .flowchart-group.fallen {
+    background: rgba(180, 140, 20, 0.07);
+    border: 1px solid rgba(180, 140, 20, 0.35);
+  }
+  .flowchart-group.endgame {
+    background: rgba(75, 0, 130, 0.06);
+    border: 1px solid rgba(75, 0, 130, 0.25);
+  }
+
+  .flowchart-group-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+    text-align: center;
+  }
+  .flowchart-group.intermediary .flowchart-group-title { color: #2c5282; }
+  .flowchart-group.bloodpay .flowchart-group-title { color: #8b0000; }
+  .flowchart-group.fallen .flowchart-group-title { color: #8b7000; }
+  .flowchart-group.endgame .flowchart-group-title { color: #4b0082; }
+
+  .flowchart-item {
+    font-family: 'EB Garamond', serif;
+    font-size: 12px;
+    color: #1a1a1a;
+    line-height: 1.5;
+    padding-left: 10px;
+    position: relative;
+    margin-bottom: 2px;
+  }
+  .flowchart-item::before {
+    content: '\25B8';
+    position: absolute;
+    left: 0;
+    color: #58180d;
+    font-size: 10px;
+  }
+
+  .flowchart-arrow-row {
+    display: flex;
+    justify-content: center;
+    gap: 12px;
+    margin: 6px 0;
+  }
+  .flowchart-arrow-row span {
+    font-size: 16px;
+    color: #c9a96e;
+  }
+
+  .flowchart-final {
+    text-align: center;
+    margin-top: 6px;
+  }
+  .flowchart-final-box {
+    display: inline-block;
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.1) 0%, rgba(139, 0, 0, 0.06) 100%);
+    border: 2px solid #4b0082;
+    border-radius: 6px;
+    padding: 8px 24px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #4b0082;
+    letter-spacing: 2px;
+  }
+
+  /* ===================== */
+  /* TRAVEL NOTES BOX      */
+  /* ===================== */
+  .travel-notes {
+    background: rgba(88, 24, 13, 0.04);
+    border: 1px solid rgba(139, 90, 43, 0.25);
+    border-left: 3px solid #c9a96e;
+    padding: 12px 16px;
+    margin: 12px 0;
+    page-break-inside: avoid;
+  }
+  .travel-notes-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #58180d;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 6px;
+  }
+
+  /* ===================== */
+  /* LOCATION CARDS        */
+  /* ===================== */
+  .location-card {
+    border-radius: 4px;
+    padding: 16px 18px;
+    margin: 16px 0;
+    page-break-inside: avoid;
+    position: relative;
+  }
+
+  /* Hub */
+  .location-card.hub {
+    background: linear-gradient(135deg, rgba(88, 24, 13, 0.08) 0%, rgba(201, 169, 110, 0.12) 100%);
+    border: 2px solid #58180d;
+    border-left: 5px solid #58180d;
+    box-shadow: 0 2px 10px rgba(88, 24, 13, 0.1);
+  }
+
+  /* Intermediary — blue tint */
+  .location-card.intermediary {
+    background: rgba(44, 82, 130, 0.05);
+    border: 1px solid rgba(44, 82, 130, 0.3);
+    border-left: 4px solid #2c5282;
+  }
+
+  /* Blood Pay — red tint */
+  .location-card.bloodpay {
+    background: rgba(139, 0, 0, 0.04);
+    border: 1px solid rgba(139, 0, 0, 0.25);
+    border-left: 4px solid #8b0000;
+  }
+
+  /* Fallen Three — gold tint */
+  .location-card.fallen {
+    background: rgba(180, 140, 20, 0.05);
+    border: 1px solid rgba(180, 140, 20, 0.3);
+    border-left: 4px solid #b48c14;
+  }
+
+  /* Endgame — purple tint */
+  .location-card.endgame {
+    background: rgba(75, 0, 130, 0.04);
+    border: 1px solid rgba(75, 0, 130, 0.2);
+    border-left: 4px solid #4b0082;
+  }
+
+  .location-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 17px;
+    margin-bottom: 2px;
+  }
+  .location-card.hub .location-name { color: #58180d; font-size: 20px; }
+  .location-card.intermediary .location-name { color: #2c5282; }
+  .location-card.bloodpay .location-name { color: #8b0000; }
+  .location-card.fallen .location-name { color: #8b7000; }
+  .location-card.endgame .location-name { color: #4b0082; }
+
+  .location-meta {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #7e5835;
+    margin-bottom: 8px;
+  }
+
+  .location-label {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 8px 0 3px;
+  }
+  .label-travel { color: #5a4a2a; }
+  .label-hazard { color: #8b0000; }
+  .label-social { color: #2e4a1e; }
+  .label-loot { color: #4b0082; }
+  .label-goal { color: #58180d; }
+  .label-feature { color: #58180d; }
+  .label-approach { color: #5a4a2a; }
+  .label-complication { color: #8b4000; }
+  .label-reward { color: #2e4a1e; }
+  .label-encounter { color: #8b0000; }
+  .label-task { color: #58180d; }
+  .label-solution { color: #2e4a1e; }
+
+  .location-detail {
+    font-family: 'EB Garamond', serif;
+    font-size: 13.5px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    margin-bottom: 4px;
+  }
+  .location-detail strong {
+    color: #58180d;
+  }
+
+  .dc-tag {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    background: rgba(88, 24, 13, 0.08);
+    color: #58180d;
+    padding: 1px 6px;
+    border-radius: 3px;
+    white-space: nowrap;
+  }
+
+  .loot-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 4px;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+  }
+  .loot-table th {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #4b0082;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #c9a96e;
+    padding: 3px 6px;
+    text-align: left;
+  }
+  .loot-table td {
+    padding: 3px 6px;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.4);
+    vertical-align: top;
+  }
+  .loot-table td:first-child {
+    font-weight: 600;
+    color: #58180d;
+    width: 30px;
+    text-align: center;
+  }
+
+  /* Category badge */
+  .category-badge {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 9px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 2px 10px;
+    border-radius: 3px;
+    margin-bottom: 4px;
+  }
+  .badge-hub {
+    background: rgba(88, 24, 13, 0.12);
+    color: #58180d;
+    border: 1px solid rgba(88, 24, 13, 0.3);
+  }
+  .badge-intermediary {
+    background: rgba(44, 82, 130, 0.1);
+    color: #2c5282;
+    border: 1px solid rgba(44, 82, 130, 0.3);
+  }
+  .badge-bloodpay {
+    background: rgba(139, 0, 0, 0.08);
+    color: #8b0000;
+    border: 1px solid rgba(139, 0, 0, 0.25);
+  }
+  .badge-fallen {
+    background: rgba(180, 140, 20, 0.1);
+    color: #8b7000;
+    border: 1px solid rgba(180, 140, 20, 0.3);
+  }
+  .badge-endgame {
+    background: rgba(75, 0, 130, 0.08);
+    color: #4b0082;
+    border: 1px solid rgba(75, 0, 130, 0.25);
+  }
+
+  /* Print button */
+  .print-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 13px;
+    background: #58180d;
+    color: #fdf1dc;
+    border: 2px solid #c9a96e;
+    padding: 10px 24px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    z-index: 100;
+    transition: background 0.2s;
+  }
+  .print-btn:hover {
+    background: #7a2213;
+  }
+
+  /* Print / PDF styles */
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body {
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .print-btn { display: none !important; }
+    .page {
+      width: 100% !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: 20px 35px !important;
+      margin: 0 !important;
+      background: #fdf1dc !important;
+      print-color-adjust: exact !important;
+    }
+    .page::before {
+      display: none !important;
+    }
+    .location-card {
+      page-break-inside: avoid !important;
+    }
+    .location-card.hub {
+      background: linear-gradient(135deg, rgba(88, 24, 13, 0.08) 0%, rgba(201, 169, 110, 0.12) 100%) !important;
+      border: 2px solid #58180d !important;
+      border-left: 5px solid #58180d !important;
+    }
+    .location-card.intermediary {
+      background: rgba(44, 82, 130, 0.05) !important;
+      border: 1px solid rgba(44, 82, 130, 0.3) !important;
+      border-left: 4px solid #2c5282 !important;
+    }
+    .location-card.bloodpay {
+      background: rgba(139, 0, 0, 0.04) !important;
+      border: 1px solid rgba(139, 0, 0, 0.25) !important;
+      border-left: 4px solid #8b0000 !important;
+    }
+    .location-card.fallen {
+      background: rgba(180, 140, 20, 0.05) !important;
+      border: 1px solid rgba(180, 140, 20, 0.3) !important;
+      border-left: 4px solid #b48c14 !important;
+    }
+    .location-card.endgame {
+      background: rgba(75, 0, 130, 0.04) !important;
+      border: 1px solid rgba(75, 0, 130, 0.2) !important;
+      border-left: 4px solid #4b0082 !important;
+    }
+    .flowchart {
+      page-break-inside: avoid !important;
+    }
+    .flowchart-hub-box {
+      background: linear-gradient(135deg, rgba(88, 24, 13, 0.12) 0%, rgba(201, 169, 110, 0.18) 100%) !important;
+      border: 2px solid #58180d !important;
+    }
+    .flowchart-group.intermediary {
+      background: rgba(44, 82, 130, 0.07) !important;
+      border: 1px solid rgba(44, 82, 130, 0.35) !important;
+    }
+    .flowchart-group.bloodpay {
+      background: rgba(139, 0, 0, 0.06) !important;
+      border: 1px solid rgba(139, 0, 0, 0.3) !important;
+    }
+    .flowchart-group.fallen {
+      background: rgba(180, 140, 20, 0.07) !important;
+      border: 1px solid rgba(180, 140, 20, 0.35) !important;
+    }
+    .flowchart-group.endgame {
+      background: rgba(75, 0, 130, 0.06) !important;
+      border: 1px solid rgba(75, 0, 130, 0.25) !important;
+    }
+    .flowchart-final-box {
+      background: linear-gradient(135deg, rgba(75, 0, 130, 0.1) 0%, rgba(139, 0, 0, 0.06) 100%) !important;
+      border: 2px solid #4b0082 !important;
+    }
+    .travel-notes {
+      page-break-inside: avoid !important;
+      background: rgba(88, 24, 13, 0.04) !important;
+      border: 1px solid rgba(139, 90, 43, 0.25) !important;
+      border-left: 3px solid #c9a96e !important;
+    }
+    .divider {
+      background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%) !important;
+    }
+    .divider-thin {
+      background: linear-gradient(90deg, transparent 0%, #c9a96e 20%, #c9a96e 80%, transparent 100%) !important;
+    }
+    .section-header {
+      border-bottom: 2px solid #c9a96e !important;
+      page-break-after: avoid !important;
+    }
+    .loot-table {
+      page-break-inside: avoid !important;
+    }
+    .loot-table th {
+      border-bottom: 2px solid #c9a96e !important;
+    }
+    .loot-table td {
+      border-bottom: 1px solid rgba(201, 169, 110, 0.4) !important;
+    }
+    .category-badge {
+      -webkit-print-color-adjust: exact !important;
+    }
+    .dc-tag {
+      background: rgba(88, 24, 13, 0.08) !important;
+    }
+  }
+
+  @page {
+    size: A4;
+    margin: 8mm;
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Save as PDF</button>
+
+<div class="page">
+
+  <div class="page-title">Avernus</div>
+  <div class="page-subtitle">Location Reference &mdash; Descent into Avernus Sandbox</div>
+
+  <div class="divider"></div>
+
+  <!-- ================================ -->
+  <!-- SANDBOX FLOWCHART                -->
+  <!-- ================================ -->
+  <div class="flowchart">
+
+    <div class="flowchart-hub">
+      <div class="flowchart-hub-box">Fort Knucklebone</div>
+    </div>
+
+    <div class="flowchart-connector">&darr;</div>
+
+    <div class="flowchart-row">
+      <div class="flowchart-group intermediary">
+        <div class="flowchart-group-title">Intermediaries</div>
+        <div class="flowchart-item">Tower of Urm &mdash; 10-16h</div>
+        <div class="flowchart-item">Bone Brambles &mdash; 8-14h</div>
+        <div class="flowchart-item">Mirror of Mephistar &mdash; 10-18h</div>
+      </div>
+      <div class="flowchart-group bloodpay">
+        <div class="flowchart-group-title">Blood Pay</div>
+        <div class="flowchart-item">Arkhan's Tower &mdash; 12-20h</div>
+        <div class="flowchart-item">Uldrak's Grave &mdash; 12-20h</div>
+        <div class="flowchart-item">Obelisk &mdash; 14-22h</div>
+        <div class="flowchart-item">Shummrath's Pit &mdash; 14-24h</div>
+      </div>
+      <div class="flowchart-group fallen">
+        <div class="flowchart-group-title">Fallen Three</div>
+        <div class="flowchart-item">Crypt of Hellriders &mdash; 8-12h</div>
+        <div class="flowchart-item">Haruman's Hill &mdash; varies</div>
+        <div class="flowchart-item">Bel's Forge &mdash; varies</div>
+      </div>
+    </div>
+
+    <div class="flowchart-connector">&darr;</div>
+
+    <div class="flowchart-row" style="justify-content: center;">
+      <div class="flowchart-group endgame" style="max-width: 260px;">
+        <div class="flowchart-group-title">Endgame</div>
+        <div class="flowchart-item">Kostchtchie's Maw</div>
+        <div class="flowchart-item">Arches of Ulloch</div>
+        <div class="flowchart-item">Wrecked Flying Fortress</div>
+      </div>
+    </div>
+
+    <div class="flowchart-connector">&darr;</div>
+
+    <div class="flowchart-final">
+      <div class="flowchart-final-box">Bleeding Citadel</div>
+    </div>
+
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ================================ -->
+  <!-- TRAVEL NOTES                     -->
+  <!-- ================================ -->
+  <div class="travel-notes">
+    <div class="travel-notes-title">Travel Notes</div>
+    <ul class="item-list">
+      <li>All times by war machine. Double on foot.</li>
+      <li>Roll encounter table per travel segment.</li>
+      <li>Safe rest locations are <strong>RARE</strong>. Control pacing by limiting rests.</li>
+      <li>Fuel: soul coins (24h each).</li>
+      <li>Environmental: <span class="dc-tag">DC 15 Con</span> save on arduous stretches or gain exhaustion.</li>
+    </ul>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ================================ -->
+  <!-- FORT KNUCKLEBONE — HUB           -->
+  <!-- ================================ -->
+  <div class="section-header">Hub</div>
+
+  <div class="location-card hub">
+    <span class="category-badge badge-hub">Campaign Hub</span>
+    <div class="location-name">Fort Knucklebone</div>
+    <div class="location-meta">Neutral ground &bull; War machine repairs &bull; Trading post</div>
+
+    <div class="location-label label-feature">Features</div>
+    <p class="location-detail">Kenku tinkerers, the Well (potable water), soul coin economy.</p>
+
+    <div class="location-label label-social">Downtime Options</div>
+    <p class="location-detail">Fix war machine (1-2h) &bull; Trade with Maggie &bull; Visit the Well &bull; Gamble at the Arcade</p>
+
+    <div class="location-label label-loot">Loot Table (d6)</div>
+    <table class="loot-table">
+      <thead>
+        <tr><th>d6</th><th>Reward</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>2 soul coins</td></tr>
+        <tr><td>2</td><td>Infernal Repair Kit</td></tr>
+        <tr><td>3</td><td>Maggie's Talisman (<em>tongues</em> 1x)</td></tr>
+        <tr><td>4</td><td>Salve of Shadow (fire resist 1h)</td></tr>
+        <tr><td>5</td><td>Infernal Warhorn (summon 1d4 redcaps)</td></tr>
+        <tr><td>6</td><td>100 gp + a +1 weapon or shield</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ================================ -->
+  <!-- INTERMEDIARY LOCATIONS           -->
+  <!-- ================================ -->
+  <div class="section-header">Intermediary Locations</div>
+
+  <!-- Tower of Urm -->
+  <div class="location-card intermediary">
+    <span class="category-badge badge-intermediary">Intermediary</span>
+    <div class="location-name">Tower of Urm (Mordenkainen)</div>
+    <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+
+    <div class="location-label label-travel">Travel</div>
+    <p class="location-detail">10&ndash;16 hours by war machine.</p>
+
+    <div class="location-label label-hazard">Hazards</div>
+    <p class="location-detail">Spell-trapped halls. Glyphs of warding (lightning, confusion), animate objects, shield guardian. <span class="dc-tag">DC 17 Arcana</span> to disarm.</p>
+
+    <div class="location-label label-social">Social</div>
+    <p class="location-detail">Mordenkainen is a <strong>simulacrum</strong> &mdash; impatient, experimental. <span class="dc-tag">DC 16 Persuasion</span> for a minor favor.</p>
+
+    <div class="location-label label-loot">Loot (d4)</div>
+    <table class="loot-table">
+      <thead>
+        <tr><th>d4</th><th>Reward</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Amulet of Proof vs Detection</td></tr>
+        <tr><td>2</td><td>Scroll of Tasha's Otherworldly Guise</td></tr>
+        <tr><td>3</td><td>Arcane Battery (H, 3 charges, recover 3rd-level slot)</td></tr>
+        <tr><td>4</td><td>Soul Coin + a +1 Wand of War Mage</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Bone Brambles -->
+  <div class="location-card intermediary">
+    <span class="category-badge badge-intermediary">Intermediary</span>
+    <div class="location-name">Bone Brambles (Red Ruth)</div>
+    <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+
+    <div class="location-label label-travel">Travel</div>
+    <p class="location-detail">8&ndash;14 hours. <span class="dc-tag">DC 15 Nature/Survival</span> halves time.</p>
+
+    <div class="location-label label-hazard">Hazards</div>
+    <p class="location-detail">Animated skeletons (AC 13, 45 HP, multiattack), grapple traps (<span class="dc-tag">DC 16 Athletics</span>, 2d6 piercing/round). <em>Hunger of Hadar</em> / <em>Black Tentacles</em> in narrow passages.</p>
+
+    <div class="location-label label-social">Social</div>
+    <p class="location-detail">Red Ruth demands <strong>blood or memories</strong>. <span class="dc-tag">DC 18 Persuasion</span> for reduced price.</p>
+
+    <div class="location-label label-loot">Loot (d4)</div>
+    <table class="loot-table">
+      <thead>
+        <tr><th>d4</th><th>Reward</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Potion of Mind Reading + Superior Healing</td></tr>
+        <tr><td>2</td><td>Oracle Bone (H, advantage on Int/Wis 1/LR)</td></tr>
+        <tr><td>3</td><td>Hat of Disguise</td></tr>
+        <tr><td>4</td><td>Soul Coin + Cursed Eye Gem</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Mirror of Mephistar -->
+  <div class="location-card intermediary">
+    <span class="category-badge badge-intermediary">Intermediary</span>
+    <div class="location-name">Mirror of Mephistar (Mephistopheles)</div>
+    <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+
+    <div class="location-label label-travel">Travel</div>
+    <p class="location-detail">10&ndash;18 hours by war machine.</p>
+
+    <div class="location-label label-hazard">Hazards</div>
+    <p class="location-detail">4 ice devils + bone devil lieutenant. <span class="dc-tag">DC 15 Acrobatics</span> on slick surfaces.</p>
+
+    <div class="location-label label-social">Social</div>
+    <p class="location-detail">Deals through <strong>Rigorath</strong> (cambion). Demands blood or 5 soul coins. <span class="dc-tag">DC 20 Deception</span> for extra info.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ================================ -->
+  <!-- BLOOD PAY LOCATIONS              -->
+  <!-- ================================ -->
+  <div class="section-header">Blood Pay Locations</div>
+
+  <!-- Arkhan's Tower -->
+  <div class="location-card bloodpay">
+    <span class="category-badge badge-bloodpay">Blood Pay</span>
+    <div class="location-name">Arkhan's Tower / Monument to Tiamat</div>
+    <div class="location-meta">Choose 1+ blood pay &bull; Retrieve Tiamat's blood</div>
+
+    <div class="location-label label-travel">Travel</div>
+    <p class="location-detail">12&ndash;20 hours by war machine.</p>
+
+    <div class="location-label label-goal">Goal</div>
+    <p class="location-detail">Retrieve a <strong>Vial of Tiamat's blood</strong>.</p>
+
+    <div class="location-label label-approach">Approach</div>
+    <p class="location-detail">Young/wyrmling dragons attack on approach. <strong>Krull</strong> (tortle priest) arrives on adult white dragon <strong>Obatala</strong> to stop fighting.</p>
+
+    <div class="location-label label-social">Arkhan's Demand</div>
+    <p class="location-detail">Sacrifice of an innocent (Lulu? Unicorn from Demon Zapper? Krikendolt?).</p>
+
+    <div class="location-label label-hazard">Alternative — Combat</div>
+    <p class="location-detail">Fight Arkhan (<strong>CR 16, 221 HP</strong>) + Torogar + Krull + manticore. Remove abishai to even odds.</p>
+
+    <p class="location-detail"><span class="dc-tag">DC 18 Persuasion</span> for alternate sacrifice. <span class="dc-tag">DC 20 Stealth</span> to steal.</p>
+
+    <div class="location-label label-reward">Reward</div>
+    <p class="location-detail">Vial of Tiamat's blood.</p>
+  </div>
+
+  <!-- Uldrak's Grave -->
+  <div class="location-card bloodpay">
+    <span class="category-badge badge-bloodpay">Blood Pay</span>
+    <div class="location-name">Uldrak's Grave</div>
+    <div class="location-meta">Choose 1+ blood pay &bull; Empyrean blood</div>
+
+    <div class="location-label label-travel">Travel</div>
+    <p class="location-detail">12&ndash;20 hours by war machine.</p>
+
+    <div class="location-label label-goal">Goal</div>
+    <p class="location-detail">Obtain <strong>empyrean blood</strong>.</p>
+
+    <div class="location-label label-social">Encounter</div>
+    <p class="location-detail">Empyrean trapped as spined devil. <span class="dc-tag">DC 16 Persuasion</span>. Needs a dragon slain to restore form.</p>
+
+    <div class="location-label label-complication">Complication</div>
+    <p class="location-detail">Third party hunting the empyrean &mdash; warlords, glabrezu + tanarukks.</p>
+
+    <div class="location-label label-reward">Reward</div>
+    <p class="location-detail"><strong>Mote of Heavenly Light</strong> (H) &mdash; 2d6 radiant + advantage on Wis saves.</p>
+  </div>
+
+  <!-- Obelisk -->
+  <div class="location-card bloodpay">
+    <span class="category-badge badge-bloodpay">Blood Pay</span>
+    <div class="location-name">Obelisk (Ubbalux)</div>
+    <div class="location-meta">Choose 1+ blood pay &bull; Balor blood</div>
+
+    <div class="location-label label-travel">Travel</div>
+    <p class="location-detail">14&ndash;22 hours by war machine.</p>
+
+    <div class="location-label label-goal">Goal</div>
+    <p class="location-detail">Obtain <strong>balor blood</strong>. Balor imprisoned; someone must take its place.</p>
+
+    <div class="location-label label-solution">Solution</div>
+    <p class="location-detail">Convince <strong>Krikendolt</strong> (at Spawning Trees) to swap places. <span class="dc-tag">DC 14 Persuasion</span>.</p>
+
+    <div class="location-label label-complication">Complication</div>
+    <p class="location-detail">Freed Ubbalux (balor with 4 exhaustion levels) may attack instead of cooperating.</p>
+
+    <p class="location-detail"><span class="dc-tag">DC 18 Arcana</span> for ritual. <span class="dc-tag">DC 16 Deception</span> to trick Ubbalux.</p>
+  </div>
+
+  <!-- Shummrath's Pit -->
+  <div class="location-card bloodpay">
+    <span class="category-badge badge-bloodpay">Blood Pay</span>
+    <div class="location-name">Shummrath's Pit</div>
+    <div class="location-meta">Choose 1+ blood pay &bull; Pit fiend ichor</div>
+
+    <div class="location-label label-travel">Travel</div>
+    <p class="location-detail">14&ndash;24 hours by war machine.</p>
+
+    <div class="location-label label-goal">Goal</div>
+    <p class="location-detail">Obtain <strong>pit fiend ichor</strong>. Dam River Styx with shattersticks, wait 24h for Shummrath to reform.</p>
+
+    <div class="location-label label-approach">Requirements</div>
+    <p class="location-detail">Shattersticks from Wandering Emporium (salamander artificer).</p>
+
+    <p class="location-detail"><span class="dc-tag">DC 15 Strength</span> for shattersticks placement. <span class="dc-tag">DC 17 Con</span> vs fumes.</p>
+
+    <div class="location-label label-complication">Complication</div>
+    <p class="location-detail">Weakened pit fiend (4 exhaustion levels) may fight when sentient.</p>
+
+    <div class="location-label label-reward">Reward</div>
+    <p class="location-detail"><strong>Hellfire Flail</strong> (H) &mdash; +1, 2d6 fire, 1/day <em>fireball</em> (4th level) if evil.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ================================ -->
+  <!-- FALLEN THREE LOCATIONS           -->
+  <!-- ================================ -->
+  <div class="section-header">Fallen Three Locations</div>
+
+  <!-- Crypt of the Hellriders -->
+  <div class="location-card fallen">
+    <span class="category-badge badge-fallen">Fallen Three</span>
+    <div class="location-name">Crypt of the Hellriders (Olanthius)</div>
+    <div class="location-meta">Need info from 2+ sources &bull; Zariel's motives</div>
+
+    <div class="location-label label-travel">Travel</div>
+    <p class="location-detail">8&ndash;12 hours by war machine.</p>
+
+    <div class="location-label label-encounter">Encounters</div>
+    <p class="location-detail">Upscaled undead: 2 deathlock masterminds + 10 zombies each. Wights and ghosts.</p>
+
+    <div class="location-label label-social">Social</div>
+    <p class="location-detail"><strong>Olanthius</strong> can explain Zariel's motives. Directs party to <strong>Bel</strong>.</p>
+
+    <div class="location-label label-task">Task</div>
+    <p class="location-detail">Free <strong>Kostchtchie</strong> (at the Maw) to distract Zariel.</p>
+
+    <div class="location-label label-loot">Loot (d6)</div>
+    <table class="loot-table">
+      <thead>
+        <tr><th>d6</th><th>Reward</th></tr>
+      </thead>
+      <tbody>
+        <tr><td>1</td><td>Hellrider's Medal (advantage vs fear, 24h)</td></tr>
+        <tr><td>2</td><td>Scroll of <em>revivify</em> or <em>remove curse</em></td></tr>
+        <tr><td>3</td><td>Death Knight's Greaves (H, +2 AC, necrotic immune, &minus;10 HP max)</td></tr>
+        <tr><td>4-6</td><td>Soul Coin + 500 gp in gems</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <!-- Haruman's Hill -->
+  <div class="location-card fallen">
+    <span class="category-badge badge-fallen">Fallen Three</span>
+    <div class="location-name">Haruman's Hill</div>
+    <div class="location-meta">Need info from 2+ sources &bull; Haruman confrontation</div>
+
+    <div class="location-label label-encounter">Encounters</div>
+    <p class="location-detail">Hellwasp Nest nearby (optional). <strong>Haruman + narzugon forces</strong>.</p>
+
+    <div class="location-label label-hazard">Combat</div>
+    <p class="location-detail">Haruman <strong>fights to the death</strong>. Reverts to human paladin corpse. <strong>No soul remains</strong> &mdash; must find sibriex to extract memories.</p>
+
+    <div class="location-label label-social">Key NPCs</div>
+    <p class="location-detail"><strong>Jander Sunstar</strong> can hint at sibriex location.</p>
+
+    <div class="location-label label-feature">Iron Trees</div>
+    <p class="location-detail">Still hold screaming souls. <span class="dc-tag">DC 15 Religion</span> to commune.</p>
+  </div>
+
+  <!-- Bel's Forge -->
+  <div class="location-card fallen">
+    <span class="category-badge badge-fallen">Fallen Three</span>
+    <div class="location-name">Bel's Forge</div>
+    <div class="location-meta">Need info from 2+ sources &bull; Bel's alliance</div>
+
+    <div class="location-label label-encounter">Test</div>
+    <p class="location-detail"><strong>4 fire giants.</strong> Bel watches to judge worthiness.</p>
+
+    <div class="location-label label-task">Task</div>
+    <p class="location-detail">Retrieve <strong>adamantine rods</strong> from the Wrecked Flying Fortress.</p>
+
+    <div class="location-label label-social">Social</div>
+    <p class="location-detail"><strong>Bel hates Zariel</strong>, supports the party. Telepathic deal. Can also suggest seeking sibriex or Arches of Ulloch for rod location.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- ================================ -->
+  <!-- KEY ENDGAME LOCATIONS            -->
+  <!-- ================================ -->
+  <div class="section-header">Key Endgame Locations</div>
+
+  <!-- Kostchtchie's Maw -->
+  <div class="location-card endgame">
+    <span class="category-badge badge-endgame">Endgame</span>
+    <div class="location-name">Kostchtchie's Maw</div>
+    <div class="location-meta">Demon lord prison &bull; Strategic distraction</div>
+
+    <div class="location-label label-goal">Purpose</div>
+    <p class="location-detail">Party knows this exists. Freeing the demon lord <strong>distracts Zariel</strong>. Olanthius may require this before revealing info.</p>
+  </div>
+
+  <!-- Arches of Ulloch -->
+  <div class="location-card endgame">
+    <span class="category-badge badge-endgame">Endgame</span>
+    <div class="location-name">Arches of Ulloch</div>
+    <div class="location-meta">Gateway to the Bleeding Citadel &bull; Sphinx challenge</div>
+
+    <div class="location-label label-encounter">Guardian</div>
+    <p class="location-detail"><strong>Ulloch the Sphinx</strong> (androsphinx). Nine Hells quiz challenge.</p>
+
+    <div class="location-label label-hazard">Mechanics</div>
+    <p class="location-detail">Each wrong answer: Ulloch uses <strong>Roar</strong> ability. 3 wrong = fight the sphinx.</p>
+
+    <div class="location-label label-task">Nine Layers Challenge</div>
+    <p class="location-detail">Party teleported to each layer, must identify it while fighting/surviving hazards. <span class="dc-tag">DC 15 Int (Arcana/History/Religion)</span> per layer. Gargauth can help (at a price).</p>
+
+    <p class="location-detail" style="margin-top: 6px;"><strong>The only way to reach the Bleeding Citadel</strong> &mdash; Asmodeus hid it with powerful magic.</p>
+  </div>
+
+  <!-- Wrecked Flying Fortress -->
+  <div class="location-card endgame">
+    <span class="category-badge badge-endgame">Endgame</span>
+    <div class="location-name">Wrecked Flying Fortress</div>
+    <div class="location-meta">Mini dungeon crawl &bull; Bel's adamantine rods</div>
+
+    <div class="location-label label-hazard">Firestorm Approach</div>
+    <p class="location-detail">Group <span class="dc-tag">DC 20 Survival</span>. <em>Dispel magic</em> or fly to avoid.</p>
+
+    <div class="location-label label-encounter">Encounters</div>
+    <p class="location-detail"><strong>6 vrocks</strong> outside. Interior: bone whelks, <strong>necrotic remorhaz</strong> (CR 11, 195 HP).</p>
+
+    <div class="location-label label-task">Safe Puzzle</div>
+    <p class="location-detail">Combination: <strong>6-6-6</strong>. Riddle: &ldquo;Three numbers the same, but double in sum...&rdquo;</p>
+    <p class="location-detail">3 failed attempts awakens the remorhaz.</p>
+
+    <div class="location-label label-complication">Complication</div>
+    <p class="location-detail"><strong>Princeps Kovic</strong> (warlord) arrives after looting &mdash; wants the rods.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <p style="font-family: 'Crimson Text', serif; font-style: italic; font-size: 12px; color: #7e5835; text-align: center; margin-top: 8px;">
+    &ldquo;The geography of Avernus is a lie told by a plane that wants you lost.&rdquo;
+  </p>
+
+</div>
+
+</body>
+</html>

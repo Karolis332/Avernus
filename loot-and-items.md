@@ -13,6 +13,20 @@
 - **Evolves** as Aurora grows — protective barriers, force manipulation, eventually gravitational forces
 - **Connected to the Moonkite** — pulses near infernal artifacts made from its essence
 
+### Soul Capacitor (Asimov's)
+- Wondrous, Evolving, requires attunement by Soulknife Rogue
+- Brass genie lamp with crystalline psionic channels. Grows from completed bounties.
+- **Base:** Links to soul knife, +1 attack/damage. Captures soul fragments of slain creatures.
+- **Storage:** Half proficiency bonus (rounded down) souls. Currently 2 at level 11.
+- **Tiers unlock via bounty contracts from Rasheem (genie fence):**
+  - Minor Souls (CR 1-4) — base, always available
+  - Medium Souls (CR 5-10) — **UNLOCKED (Bloodbath bounty)**
+  - Major Souls (CR 11-16) — pending future bounty
+  - Legendary Souls (CR 17+) — pending "career-defining" bounty
+- **Can consume magic weapons** to increase the +1 bonus (partial absorption)
+- **Bounty Souls (permanent imprints):** Bloodbath — Bloodscent (passive, sense wounded 60ft), Drinker's Frenzy (1/LR, +1d8 necrotic on wounded + heal on kill, WIS save or frenzy), Bloodbath's Memories (1/LR, warlord intel)
+- Full details: `soul-capacitor.md`
+
 ### Eye of the Sun (Cleric item)
 - Amulet, spellcasting focus, Evolve, requires attunement by cleric
 - Glows faintly with divine light, crystal "blinks" encouraging belief

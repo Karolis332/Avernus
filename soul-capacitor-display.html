@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Soul Capacitor</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page {
+    width: 800px;
+    background: #fdf1dc;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(139, 90, 43, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(139, 90, 43, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255, 248, 231, 0.4) 0%, transparent 70%);
+    padding: 50px 55px;
+    box-shadow:
+      0 0 30px rgba(0,0,0,0.5),
+      inset 0 0 80px rgba(139, 90, 43, 0.1);
+    position: relative;
+    border: 1px solid #c9a96e;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 1px solid rgba(139, 90, 43, 0.2);
+    pointer-events: none;
+  }
+
+  /* Title */
+  .item-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 32px;
+    color: #58180d;
+    text-align: center;
+    margin-bottom: 2px;
+    letter-spacing: 2px;
+  }
+
+  .item-type {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #58180d;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  /* Decorative dividers */
+  .divider {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%);
+    margin: 16px 0;
+    border: none;
+    position: relative;
+  }
+  .divider::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  }
+
+  .divider-thin {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #c9a96e 20%, #c9a96e 80%, transparent 100%);
+    margin: 12px 0;
+    border: none;
+  }
+
+  /* Image */
+  .item-image-container {
+    text-align: center;
+    margin: 15px 0 10px;
+  }
+  .item-image-container img {
+    max-width: 280px;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(88, 24, 13, 0.3);
+  }
+
+  /* Quote */
+  .flavor-quote {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: #58180d;
+    text-align: center;
+    margin: 8px 40px 4px;
+    line-height: 1.5;
+  }
+  .flavor-quote .attribution {
+    display: block;
+    font-size: 11px;
+    color: #7e5835;
+    margin-top: 2px;
+    font-style: normal;
+  }
+
+  /* Body text */
+  .body-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    margin-bottom: 8px;
+    text-align: justify;
+    hyphens: auto;
+  }
+
+  .body-text em { color: #58180d; }
+
+  /* Section headers */
+  .section-header {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #58180d;
+    margin: 16px 0 6px;
+    border-bottom: 2px solid #c9a96e;
+    padding-bottom: 3px;
+  }
+
+  .sub-header {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #58180d;
+    margin: 12px 0 4px;
+  }
+
+  /* Section group — keeps header + content together across pages */
+  .section-group {
+    page-break-inside: avoid;
+  }
+
+  /* Property blocks */
+  .property {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    margin-bottom: 8px;
+    text-align: justify;
+  }
+  .property-name {
+    font-weight: 700;
+    color: #1a1a1a;
+  }
+  .property-name-italic {
+    font-weight: 700;
+    font-style: italic;
+    color: #1a1a1a;
+  }
+
+  /* Tier blocks */
+  .tier-block {
+    background: rgba(88, 24, 13, 0.04);
+    border-left: 3px solid #58180d;
+    padding: 10px 14px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+  .tier-block.locked {
+    background: rgba(0, 0, 0, 0.03);
+    border-left-color: #999;
+    filter: blur(4px);
+    user-select: none;
+    position: relative;
+  }
+  .tier-block.locked::after {
+    content: 'LOCKED — Complete a bounty contract to unlock';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #58180d;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    filter: blur(0);
+    background: rgba(253, 241, 220, 0.85);
+    padding: 8px 20px;
+    border: 1px solid #c9a96e;
+    white-space: nowrap;
+    z-index: 1;
+  }
+  .tier-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #58180d;
+    margin-bottom: 2px;
+  }
+  .tier-block.locked .tier-title { color: #666; }
+  .tier-req {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #7e5835;
+    margin-bottom: 6px;
+  }
+  .tier-block.locked .tier-req { color: #888; }
+
+  .combat-label, .roleplay-label {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 6px 0 3px;
+  }
+  .combat-label { color: #8b0000; }
+  .roleplay-label { color: #2e4a1e; }
+
+  /* Bounty soul block */
+  .bounty-block {
+    background: linear-gradient(135deg, rgba(75, 0, 130, 0.06) 0%, rgba(88, 24, 13, 0.04) 100%);
+    border: 1px solid rgba(75, 0, 130, 0.2);
+    border-left: 3px solid #4b0082;
+    padding: 12px 14px;
+    margin: 10px 0;
+    page-break-inside: avoid;
+  }
+  .bounty-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 15px;
+    color: #4b0082;
+    margin-bottom: 2px;
+  }
+  .bounty-flavor {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 12px;
+    color: #5c3d7a;
+    margin-bottom: 8px;
+  }
+
+  .corruption-block {
+    background: rgba(139, 0, 0, 0.06);
+    border: 1px solid rgba(139, 0, 0, 0.15);
+    padding: 8px 12px;
+    margin: 8px 0 4px;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    line-height: 1.5;
+    page-break-inside: avoid;
+  }
+  .corruption-label {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    color: #8b0000;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+  }
+
+  /* Progression table */
+  .progression-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    page-break-inside: avoid;
+  }
+  .progression-table th {
+    font-family: 'Cinzel', serif;
+    font-size: 11px;
+    font-weight: 700;
+    color: #58180d;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #58180d;
+    padding: 4px 8px;
+    text-align: left;
+  }
+  .progression-table td {
+    padding: 4px 8px;
+    border-bottom: 1px solid #c9a96e;
+    vertical-align: top;
+  }
+  .progression-table tr.complete td { background: rgba(88, 24, 13, 0.04); }
+  .progression-table tr.pending td { color: #888; font-style: italic; }
+  .status-complete { color: #2e4a1e; font-weight: 600; }
+  .status-pending { color: #888; }
+
+  /* Current state box */
+  .state-box {
+    background: rgba(75, 0, 130, 0.04);
+    border: 1px solid rgba(75, 0, 130, 0.15);
+    padding: 12px 16px;
+    margin: 12px 0;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    line-height: 1.6;
+    page-break-inside: avoid;
+  }
+  .state-box .state-label {
+    font-weight: 700;
+    color: #4b0082;
+  }
+
+  /* Bullets */
+  ul.item-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 4px 0 8px;
+  }
+  ul.item-list li {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    line-height: 1.55;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  ul.item-list li::before {
+    content: '\2666';
+    position: absolute;
+    left: 0;
+    color: #58180d;
+    font-size: 8px;
+    top: 4px;
+  }
+
+  /* Print button */
+  .print-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 13px;
+    background: #58180d;
+    color: #fdf1dc;
+    border: 2px solid #c9a96e;
+    padding: 10px 24px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    z-index: 100;
+    transition: background 0.2s;
+  }
+  .print-btn:hover {
+    background: #7a2213;
+  }
+
+  /* Print / PDF styles */
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body {
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .print-btn { display: none !important; }
+    .page {
+      width: 100% !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: 20px 35px !important;
+      margin: 0 !important;
+      background: #fdf1dc !important;
+      print-color-adjust: exact !important;
+    }
+    .page::before {
+      display: none !important;
+    }
+    .section-group {
+      page-break-inside: avoid !important;
+    }
+    .tier-block {
+      page-break-inside: avoid !important;
+      background: rgba(88, 24, 13, 0.04) !important;
+      border-left: 3px solid #58180d !important;
+    }
+    .tier-block.locked {
+      page-break-inside: avoid !important;
+      background: rgba(0, 0, 0, 0.03) !important;
+      border-left-color: #999 !important;
+      filter: blur(4px) !important;
+    }
+    .tier-block.locked::after {
+      filter: blur(0) !important;
+      background: rgba(253, 241, 220, 0.9) !important;
+    }
+    .bounty-block {
+      page-break-inside: avoid !important;
+      background: linear-gradient(135deg, rgba(75, 0, 130, 0.06) 0%, rgba(88, 24, 13, 0.04) 100%) !important;
+      border: 1px solid rgba(75, 0, 130, 0.2) !important;
+      border-left: 3px solid #4b0082 !important;
+    }
+    .corruption-block {
+      page-break-inside: avoid !important;
+      background: rgba(139, 0, 0, 0.06) !important;
+      border: 1px solid rgba(139, 0, 0, 0.15) !important;
+    }
+    .state-box {
+      page-break-inside: avoid !important;
+      background: rgba(75, 0, 130, 0.04) !important;
+      border: 1px solid rgba(75, 0, 130, 0.15) !important;
+    }
+    .progression-table {
+      page-break-inside: avoid !important;
+    }
+    .divider {
+      background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%) !important;
+    }
+    .divider-thin {
+      background: linear-gradient(90deg, transparent 0%, #c9a96e 20%, #c9a96e 80%, transparent 100%) !important;
+    }
+    .section-header {
+      border-bottom: 2px solid #c9a96e !important;
+      page-break-after: avoid !important;
+    }
+    .item-image-container img {
+      box-shadow: 0 4px 20px rgba(88, 24, 13, 0.3) !important;
+    }
+    .progression-table th {
+      border-bottom: 2px solid #58180d !important;
+    }
+    .progression-table td {
+      border-bottom: 1px solid #c9a96e !important;
+    }
+    .progression-table tr.complete td {
+      background: rgba(88, 24, 13, 0.04) !important;
+    }
+  }
+
+  @page {
+    size: A4;
+    margin: 8mm;
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Save as PDF</button>
+
+<div class="page">
+
+  <div class="item-title">Soul Capacitor</div>
+  <div class="item-type">Wondrous item (brass lamp), rare (evolving), requires attunement by a rogue with the Soulknife subclass</div>
+
+  <div class="divider"></div>
+
+  <div class="item-image-container">
+    <img src="Images/soul-capacitor.png" alt="Soul Capacitor — A brass genie lamp wreathed in violet psionic energy">
+  </div>
+
+  <p class="body-text">A brass genie lamp threaded with crystalline psionic channels that pulse with faint violet light. The lamp is warm to the touch and hums at a frequency only the attuned creature can feel. It was gifted by Rasheem, guildmaster of an interplanar bounty hunter syndicate, and serves as both a weapon augment and a soul-trapping instrument. The Soul Capacitor grows in power not from wealth, but from completed bounties and collected souls.</p>
+
+  <div class="flavor-quote">
+    "Remember — there are no friends in the guild, only situational acquaintances."
+    <span class="attribution">— Rasheem, Guildmaster and one Sexy Genie</span>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-group">
+    <div class="section-header">Properties</div>
+
+    <p class="property"><span class="property-name">Psionic Bond.</span> When you attune to the Soul Capacitor, it bonds to either your main hand or off-hand Psychic Blade. That blade gains a <strong>+1 bonus to attack and damage rolls.</strong> The bond consumes one attunement slot. You may bond a second attunement slot to empower your other hand's blade as well.</p>
+
+    <p class="property"><span class="property-name">Weapon Consumption.</span> As part of a short or long rest, you can feed a magic weapon into the Soul Capacitor. The weapon is destroyed and its essence is partially absorbed. Add the consumed weapon's enhancement bonus to the lamp's total, then divide by half (rounded down). The result replaces the lamp's base +1 bonus, split between both hands. If only one hand is bonded, the full bonus applies to that hand. The consumed weapon is teleported to Rasheem's sanctum.</p>
+
+    <p class="property"><span class="property-name">Contracts.</span> The genie Rasheem provides bounty contracts through the lamp. Completing bounties evolves the Soul Capacitor, unlocking new soul tiers and burning permanent bounty soul imprints into the lamp's crystalline channels.</p>
+  </div>
+
+  <div class="divider-thin"></div>
+
+  <div class="section-group">
+    <div class="section-header">Soul Bounty</div>
+
+    <p class="body-text">The lamp passively captures fragments of slain souls, storing their psionic residue for later use.</p>
+
+    <p class="property"><span class="property-name">Capture.</span> When a creature you can see dies within 30 feet of you, you can use your reaction to attempt to trap its soul. The soul makes a Dexterity saving throw (DC equals 10 + the creature's CR). On a failed save, the soul is stored in the lamp. On a success, the soul escapes.</p>
+
+    <p class="property"><span class="property-name">Storage.</span> You can hold a number of souls equal to half your proficiency bonus (rounded down). You cannot capture a soul if your storage is full.</p>
+
+    <p class="property"><span class="property-name">Consumption.</span> As a bonus action (combat effects) or over the course of 1 minute (roleplay effects), you can consume a stored soul to produce an effect determined by its tier. The soul is destroyed once consumed.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-header" style="page-break-after: avoid;">Field Soul Tiers</div>
+
+  <!-- MINOR -->
+  <div class="tier-block">
+    <div class="tier-title">Minor Souls</div>
+    <div class="tier-req">CR 1–4, Small or Medium creatures. Available at base.</div>
+
+    <div class="combat-label">Combat</div>
+    <p class="property">Gain advantage on your next attack roll with a Psychic Blade. This effect lasts until the end of your next turn.</p>
+
+    <div class="roleplay-label">Roleplay</div>
+    <p class="property">Choose one:</p>
+    <ul class="item-list">
+      <li>You can perfectly mimic the creature's voice or general appearance (as a faint illusionary aura) for 1 hour.</li>
+      <li>You unlock faint memories from the soul, granting advantage on one Intelligence (Investigation) or Charisma (Deception) check related to that creature or its associates.</li>
+    </ul>
+  </div>
+
+  <!-- MEDIUM -->
+  <div class="tier-block">
+    <div class="tier-title">Medium Souls</div>
+    <div class="tier-req">CR 5–10, any size. Unlocked by completing the Bloodbath bounty.</div>
+
+    <div class="combat-label">Combat — Choose One</div>
+    <p class="property"><span class="property-name-italic">Psionic Surge.</span> Your next Psychic Blade attack that hits deals an additional 2d8 psychic damage. If this attack deals Sneak Attack damage, you add one extra Sneak Attack die to the damage (this extra die doesn't count toward your normal Sneak Attack total).</p>
+    <p class="property"><span class="property-name-italic">Soul Shiv.</span> For the next minute, when a creature within 30 feet of you deals damage to you, you can use your reaction to launch a psychic shard at it. The creature must succeed on a Wisdom saving throw (DC = 8 + your proficiency bonus + your Dexterity modifier) or take 3d6 psychic damage and be frightened of you until the end of its next turn.</p>
+
+    <div class="roleplay-label">Roleplay — Choose One</div>
+    <p class="property"><span class="property-name-italic">Memory Siphon.</span> You experience a vivid sensory flashback of the creature's final 24 hours — what it saw, heard, and feared. This functions as <em>speak with dead</em>, limited to that timeframe. Takes 1 minute.</p>
+    <p class="property"><span class="property-name-italic">Soul Mask.</span> You replicate the creature's appearance, voice, and mannerisms for up to 4 hours. This is a physical transformation (tactile, passes casual inspection). For the duration, gain proficiency in one skill the creature possessed.</p>
+    <p class="property"><span class="property-name-italic">Psionic Echo.</span> For 1 hour, you sense creatures of the same type within 60 feet. You know their number and general direction but not exact location.</p>
+  </div>
+
+  <!-- MAJOR -->
+  <div class="tier-block locked">
+    <div class="tier-title">Major Souls</div>
+    <div class="tier-req">CR 11–16, any size. Locked — requires a future bounty contract.</div>
+
+    <p class="property" style="font-style:italic; color:#666;">If the creature had Legendary Resistance and used it before dying, the capture DC is reduced by 2 for each use.</p>
+
+    <div class="combat-label" style="color:#999;">Combat — Choose One</div>
+    <p class="property"><span class="property-name-italic">Psychic Detonation.</span> As an action, release the soul as a psychic explosion. Each creature of your choice within 20 feet must make a Wisdom saving throw (DC = 8 + Prof + DEX mod). On a failure: 6d8 psychic damage and stunned until end of its next turn. On a success: half damage, no stun. You can still use your bonus action for an off-hand Psychic Blade attack.</p>
+    <p class="property"><span class="property-name-italic">Soul Predator.</span> For 1 minute (concentration), your Psychic Blade attacks score a critical hit on 19–20, and crits deal an additional 3d8 psychic damage. You can see invisible creatures within 30 feet.</p>
+    <p class="property"><span class="property-name-italic">Vengeful Shade.</span> As a reaction when reduced to 0 HP, the soul erupts as a spectral copy of you. It uses your stat block, has temp HP equal to the soul's CR &times; 5, and acts on your initiative for 3 rounds. You continue making death saves.</p>
+
+    <div class="roleplay-label" style="color:#666;">Roleplay — Choose One</div>
+    <p class="property"><span class="property-name-italic">Deep Memory Extraction.</span> Over 10 minutes, experience key moments from the creature's entire existence. Learn alliances, enemies, secrets. Gain advantage on all Int and Cha checks related to that creature for 24 hours.</p>
+    <p class="property"><span class="property-name-italic">Soul Inhabit.</span> Assume the creature's full form for 8 hours. Gain one non-legendary ability. DC 18 Insight to notice.</p>
+    <p class="property"><span class="property-name-italic">Bounty Network Ping.</span> Rasheem traces the soul's connections. Learn names and locations of 1d3 creatures the soul had dealings with.</p>
+  </div>
+
+  <!-- LEGENDARY -->
+  <div class="tier-block locked">
+    <div class="tier-title">Legendary Souls</div>
+    <div class="tier-req">CR 17+, any size. Locked — requires an extraordinary "career-defining" bounty.</div>
+
+    <p class="property" style="font-style:italic; color:#666;">Legendary Souls occupy 2 storage slots. You can hold only one at a time. Mythic traits impose disadvantage on the capture save.</p>
+
+    <div class="combat-label" style="color:#999;">Combat — Choose One</div>
+    <p class="property"><span class="property-name-italic">Annihilation Pulse.</span> Single melee attack: normal damage + Sneak Attack + 10d10 psychic. Target makes CON save or paralyzed 1 minute (save each turn). On miss: half psychic, no paralysis. Capacitor goes dormant until long rest.</p>
+    <p class="property"><span class="property-name-italic">Gestalt Form.</span> 1 minute (concentration): +2d10 psychic per hit, resistance to all damage, +20 ft speed, truesight 60 ft. Gain 2 exhaustion levels when it ends.</p>
+    <p class="property"><span class="property-name-italic">Soulcatcher's Gambit.</span> Capture a soul within 60 ft when a creature dies (even without killing blow). Release as Phantom Ally for 1 hour — half original HP, basic attacks, your initiative. No legendary/lair actions, no spells above 3rd level.</p>
+
+    <div class="roleplay-label" style="color:#666;">Roleplay — Choose One</div>
+    <p class="property"><span class="property-name-italic">Soul Archive.</span> Permanent living library. Functions as <em>legend lore</em> for anything the creature knew. 3 consultations per long rest.</p>
+    <p class="property"><span class="property-name-italic">Legendary Guise.</span> Assume form 24 hours. Gain two non-legendary abilities. Disadvantage on Insight for those who knew the original.</p>
+    <p class="property"><span class="property-name-italic">Rasheem's Favor.</span> One-time syndicate boon (rare item, planar contact, safe house, or intelligence).</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <div class="section-group">
+    <div class="section-header">Bounty Souls</div>
+
+    <p class="body-text">When Rasheem processes a completed bounty, a residual imprint — a psychic scar — remains burned into the lamp's crystalline channels. These <strong>Bounty Soul imprints</strong> are permanent. They do not occupy storage slots. Their abilities recharge as noted. Each Bounty Soul carries a <strong>corruption risk</strong>.</p>
+  </div>
+
+  <div class="bounty-block">
+    <div class="bounty-title">Bounty Soul: Bloodbath, Drinker of Gore</div>
+    <div class="bounty-flavor">The capacitor occasionally weeps red when this imprint is active.</div>
+
+    <p class="property"><span class="property-name">Bloodscent (Passive).</span> You can smell fresh blood within 60 feet. You know when any creature within that range is below half its hit point maximum, perceived as a faint red pulse through the lamp's surface.</p>
+
+    <p class="property"><span class="property-name">Drinker's Frenzy (1/Long Rest).</span> As a bonus action, channel Bloodbath's predatory instinct. For 1 minute:</p>
+    <ul class="item-list">
+      <li>When you hit a creature below its hit point maximum with a Psychic Blade, deal an extra 1d8 necrotic damage.</li>
+      <li>When you reduce a creature to 0 hit points, regain hit points equal to your rogue level.</li>
+      <li>Your eyes glow crimson and your Psychic Blades take on a blood-red hue.</li>
+    </ul>
+
+    <div class="corruption-block">
+      <span class="corruption-label">Corruption — Blood Hunger</span><br>
+      When the effect ends, you must succeed on a Wisdom saving throw or be compelled to move toward and attack the nearest creature below its hit point maximum (ally or enemy) on your next turn. The DC starts at 13 and increases by 1 each time you use Drinker's Frenzy (cumulative across days). The DC resets to 13 after 3 consecutive days without use.
+    </div>
+
+    <p class="property"><span class="property-name">Bloodbath's Memories (1/Long Rest).</span> Spend 1 minute meditating to commune with Bloodbath's imprint. Learn warlord politics, Palace of Gore layout (advantage on Intelligence checks nearby), and names of Bloodbath's associates.</p>
+  </div>
+
+  <div class="divider-thin"></div>
+
+  <div class="section-group">
+    <div class="section-header">Bounty Progression</div>
+
+    <table class="progression-table">
+      <thead>
+        <tr>
+          <th>#</th>
+          <th>Target</th>
+          <th>Tier Unlocked</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr class="complete">
+          <td>1</td>
+          <td>Pre-campaign contracts</td>
+          <td>Minor Souls</td>
+          <td><span class="status-complete">Complete</span></td>
+        </tr>
+        <tr class="complete">
+          <td>2</td>
+          <td>Bloodbath, Drinker of Gore</td>
+          <td>Medium Souls</td>
+          <td><span class="status-complete">Complete</span></td>
+        </tr>
+        <tr class="pending">
+          <td>3</td>
+          <td>???</td>
+          <td>Major Souls</td>
+          <td><span class="status-pending">Pending</span></td>
+        </tr>
+        <tr class="pending">
+          <td>4</td>
+          <td>???</td>
+          <td>Legendary Souls</td>
+          <td><span class="status-pending">Pending</span></td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <div class="divider-thin"></div>
+
+  <div class="state-box">
+    <span class="state-label">Bonded Hand(s):</span> 1 (main hand)<br>
+    <span class="state-label">Enhancement Bonus:</span> +1<br>
+    <span class="state-label">Field Soul Storage:</span> 2<br>
+    <span class="state-label">Available Tiers:</span> Minor, Medium<br>
+    <span class="state-label">Active Bounty Souls:</span> Bloodbath<br>
+    <span class="state-label">Consumed Weapons:</span> None
+  </div>
+
+</div>
+
+</body>
+</html>

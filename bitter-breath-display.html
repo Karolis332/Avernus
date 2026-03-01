@@ -1,0 +1,510 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Bitter Breath — Stat Block</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    display: flex;
+    justify-content: center;
+    padding: 40px 20px;
+    min-height: 100vh;
+  }
+
+  .page {
+    width: 800px;
+    background: #fdf1dc;
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(139, 90, 43, 0.08) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(139, 90, 43, 0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 50% 50%, rgba(255, 248, 231, 0.4) 0%, transparent 70%);
+    padding: 50px 55px;
+    box-shadow:
+      0 0 30px rgba(0,0,0,0.5),
+      inset 0 0 80px rgba(139, 90, 43, 0.1);
+    position: relative;
+    border: 1px solid #c9a96e;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 8px; left: 8px; right: 8px; bottom: 8px;
+    border: 1px solid rgba(139, 90, 43, 0.2);
+    pointer-events: none;
+  }
+
+  /* Monster Name */
+  .monster-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 34px;
+    color: #58180d;
+    margin-bottom: 0;
+    letter-spacing: 1px;
+  }
+
+  .monster-subtitle {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #58180d;
+    margin-bottom: 14px;
+  }
+
+  /* Decorative dividers */
+  .divider {
+    width: 100%;
+    height: 6px;
+    background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%);
+    margin: 14px 0;
+    border: none;
+    position: relative;
+  }
+  .divider::after {
+    content: '';
+    position: absolute;
+    top: 2px; left: 0; right: 0; height: 2px;
+    background: linear-gradient(90deg, transparent 0%, rgba(255,255,255,0.3) 50%, transparent 100%);
+  }
+
+  .divider-thin {
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent 0%, #c9a96e 20%, #c9a96e 80%, transparent 100%);
+    margin: 10px 0;
+    border: none;
+  }
+
+  /* Stat block top info */
+  .stat-line {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.6;
+  }
+  .stat-label {
+    font-weight: 700;
+    color: #58180d;
+  }
+
+  /* Ability scores table */
+  .ability-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0;
+    text-align: center;
+    page-break-inside: avoid;
+  }
+  .ability-table th {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 13px;
+    color: #58180d;
+    padding: 4px 12px;
+    border-bottom: 2px solid #58180d;
+  }
+  .ability-table td {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    padding: 4px 12px;
+    color: #1a1a1a;
+  }
+
+  /* Section headers */
+  .section-header {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 18px;
+    color: #58180d;
+    margin: 14px 0 6px;
+    border-bottom: 2px solid #c9a96e;
+    padding-bottom: 3px;
+  }
+
+  /* Section group — keeps header + content together across pages */
+  .section-group {
+    page-break-inside: avoid;
+  }
+
+  /* Trait/Action blocks */
+  .trait {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    margin-bottom: 8px;
+    text-align: justify;
+  }
+  .trait-name {
+    font-weight: 700;
+    font-style: italic;
+    color: #1a1a1a;
+  }
+  .trait em {
+    color: #58180d;
+  }
+  .recharge {
+    font-weight: 400;
+    font-style: normal;
+  }
+
+  /* Challenge block */
+  .challenge-block {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    margin: 4px 0 8px;
+  }
+  .cr-value {
+    font-weight: 700;
+    font-size: 18px;
+    color: #58180d;
+  }
+
+  /* Tactics block */
+  .tactics-block {
+    background: rgba(88, 24, 13, 0.05);
+    border-left: 3px solid #58180d;
+    padding: 12px 14px;
+    margin: 12px 0;
+    page-break-inside: avoid;
+  }
+  .tactics-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #58180d;
+    margin-bottom: 6px;
+  }
+  .tactics-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 13.5px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    text-align: justify;
+  }
+
+  /* Personality/dialogue block */
+  .personality-block {
+    background: linear-gradient(135deg, rgba(100, 0, 0, 0.05) 0%, rgba(88, 24, 13, 0.03) 100%);
+    border: 1px solid rgba(88, 24, 13, 0.15);
+    border-left: 3px solid #8b0000;
+    padding: 12px 14px;
+    margin: 12px 0;
+    page-break-inside: avoid;
+  }
+  .personality-title {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 14px;
+    color: #8b0000;
+    margin-bottom: 6px;
+  }
+  .personality-text {
+    font-family: 'EB Garamond', serif;
+    font-size: 13.5px;
+    color: #1a1a1a;
+    line-height: 1.55;
+    margin-bottom: 6px;
+  }
+  .dialogue {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 13px;
+    color: #58180d;
+    margin: 4px 0 4px 16px;
+    line-height: 1.5;
+  }
+  .dialogue .stage-dir {
+    font-style: normal;
+    font-size: 11px;
+    color: #7e5835;
+  }
+
+  /* Flavor quote at top */
+  .flavor-text {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 14px;
+    color: #58180d;
+    line-height: 1.6;
+    margin: 10px 20px 14px;
+    text-align: center;
+  }
+
+  /* Image */
+  .monster-image-container {
+    text-align: center;
+    margin: 12px 0 8px;
+  }
+  .monster-image-container img {
+    max-width: 320px;
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(88, 24, 13, 0.35);
+  }
+  .image-placeholder {
+    display: inline-block;
+    width: 300px;
+    height: 300px;
+    background: linear-gradient(135deg, #2a0a0a 0%, #4a1515 50%, #2a0a0a 100%);
+    border-radius: 6px;
+    box-shadow: 0 4px 20px rgba(88, 24, 13, 0.35);
+    position: relative;
+    overflow: hidden;
+  }
+  .image-placeholder::before {
+    content: 'BITTER BREATH';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 22px;
+    color: rgba(201, 169, 110, 0.3);
+    letter-spacing: 3px;
+    text-align: center;
+    width: 100%;
+  }
+  .image-placeholder::after {
+    content: '';
+    position: absolute;
+    top: 0; left: 0; right: 0; bottom: 0;
+    background: radial-gradient(circle at 50% 40%, rgba(139, 0, 0, 0.15) 0%, transparent 60%);
+  }
+
+  /* Stat section group — keeps core stats together */
+  .stat-section {
+    page-break-inside: avoid;
+  }
+
+  /* Print button */
+  .print-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 13px;
+    background: #58180d;
+    color: #fdf1dc;
+    border: 2px solid #c9a96e;
+    padding: 10px 24px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    z-index: 100;
+    transition: background 0.2s;
+  }
+  .print-btn:hover { background: #7a2213; }
+
+  /* Print / PDF */
+  @media print {
+    * {
+      -webkit-print-color-adjust: exact !important;
+      print-color-adjust: exact !important;
+      color-adjust: exact !important;
+    }
+    body {
+      background: white !important;
+      padding: 0 !important;
+      margin: 0 !important;
+    }
+    .print-btn { display: none !important; }
+    .page {
+      width: 100% !important;
+      box-shadow: none !important;
+      border: none !important;
+      padding: 20px 35px !important;
+      margin: 0 !important;
+      background: #fdf1dc !important;
+      print-color-adjust: exact !important;
+    }
+    .page::before { display: none !important; }
+    .section-group {
+      page-break-inside: avoid !important;
+    }
+    .stat-section {
+      page-break-inside: avoid !important;
+    }
+    .ability-table {
+      page-break-inside: avoid !important;
+    }
+    .tactics-block {
+      page-break-inside: avoid !important;
+      background: rgba(88, 24, 13, 0.05) !important;
+      border-left: 3px solid #58180d !important;
+    }
+    .personality-block {
+      page-break-inside: avoid !important;
+      background: linear-gradient(135deg, rgba(100, 0, 0, 0.05) 0%, rgba(88, 24, 13, 0.03) 100%) !important;
+      border: 1px solid rgba(88, 24, 13, 0.15) !important;
+      border-left: 3px solid #8b0000 !important;
+    }
+    .section-header {
+      border-bottom: 2px solid #c9a96e !important;
+      page-break-after: avoid !important;
+    }
+    .divider {
+      background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%) !important;
+    }
+    .divider-thin {
+      background: linear-gradient(90deg, transparent 0%, #c9a96e 20%, #c9a96e 80%, transparent 100%) !important;
+    }
+    .ability-table th {
+      border-bottom: 2px solid #58180d !important;
+    }
+  }
+  @page {
+    size: A4;
+    margin: 8mm;
+  }
+</style>
+</head>
+<body>
+
+<button class="print-btn" onclick="window.print()">Save as PDF</button>
+
+<div class="page">
+
+  <div class="monster-name">Bitter Breath</div>
+  <div class="monster-subtitle">Brother of Bloodbath — Medium fiend (demon), chaotic evil</div>
+
+  <div class="divider"></div>
+
+  <div class="monster-image-container">
+    <img src="Images/bitter-breath.png" alt="Bitter Breath"
+         onerror="this.style.display='none'; this.nextElementSibling.style.display='inline-block';">
+    <div class="image-placeholder" style="display:none;"></div>
+  </div>
+
+  <div class="flavor-text">
+    "Smaller, they said. Always smaller. Let me show you what smaller means."
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Core Stats -->
+  <div class="stat-section">
+    <p class="stat-line"><span class="stat-label">Armor Class</span> 19 (natural armor)</p>
+    <p class="stat-line"><span class="stat-label">Hit Points</span> 280 <span style="font-size:12px; color:#7e5835;">(buffed for party of 3 at level 11)</span></p>
+    <p class="stat-line"><span class="stat-label">Speed</span> 50 ft.</p>
+  </div>
+
+  <div class="divider-thin"></div>
+
+  <!-- Ability Scores -->
+  <table class="ability-table">
+    <thead>
+      <tr>
+        <th>STR</th><th>DEX</th><th>CON</th><th>INT</th><th>WIS</th><th>CHA</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>24 (+7)</td><td>20 (+5)</td><td>18 (+4)</td><td>13 (+1)</td><td>16 (+3)</td><td>14 (+2)</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="divider-thin"></div>
+
+  <!-- Defenses & Senses -->
+  <div class="stat-section">
+    <p class="stat-line"><span class="stat-label">Saving Throws</span> Str +13, Dex +11, Wis +9</p>
+    <p class="stat-line"><span class="stat-label">Damage Resistances</span> cold, lightning, nonmagical weapons</p>
+    <p class="stat-line"><span class="stat-label">Damage Immunities</span> fire, poison</p>
+    <p class="stat-line"><span class="stat-label">Condition Immunities</span> charmed, frightened, poisoned</p>
+    <p class="stat-line"><span class="stat-label">Senses</span> darkvision 120 ft., passive Perception 16</p>
+    <p class="stat-line"><span class="stat-label">Languages</span> Abyssal, Infernal; telepathy 120 ft.</p>
+    <p class="stat-line" style="margin-top:4px;"><span class="stat-label">Challenge</span> <span class="cr-value">16</span> (15,000 XP)</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Traits -->
+  <div class="section-group">
+    <div class="section-header">Traits</div>
+
+    <p class="trait"><span class="trait-name">Blood Frenzy.</span> Bitter Breath has advantage on melee attack rolls against any creature that doesn't have all its hit points.</p>
+
+    <p class="trait"><span class="trait-name">Evasive Gore.</span> When Bitter Breath is hit by an attack, he can use his reaction to halve the damage if he can see the attacker. He then moves up to 15 feet without provoking opportunity attacks.</p>
+
+    <p class="trait"><span class="trait-name">Aura of Rot.</span> Any creature that starts its turn within 15 feet of Bitter Breath must succeed on a DC 17 Constitution saving throw or be poisoned until the end of its next turn. While poisoned in this way, the creature's speed is halved.</p>
+
+    <p class="trait"><span class="trait-name">Magic Resistance.</span> Bitter Breath has advantage on saving throws against spells and other magical effects.</p>
+
+    <p class="trait"><span class="trait-name">Legendary Resistance (3/Day).</span> If Bitter Breath fails a saving throw, he can choose to succeed instead.</p>
+
+    <p class="trait"><span class="trait-name">Relentless (1/Day).</span> If Bitter Breath is reduced to 0 hit points, he drops to 1 hit point instead.</p>
+  </div>
+
+  <!-- Actions -->
+  <div class="section-group">
+    <div class="section-header">Actions</div>
+
+    <p class="trait"><span class="trait-name">Multiattack.</span> Bitter Breath makes three Gutripper attacks, or two Gutripper attacks and one Gore Horns attack.</p>
+
+    <p class="trait"><span class="trait-name">Gore Horns.</span> <em>Melee Weapon Attack:</em> +13 to hit, reach 5 ft., one target. <em>Hit:</em> 18 (2d10 + 7) piercing damage plus 9 (2d8) necrotic damage. The target must succeed on a DC 17 Dexterity saving throw or Bitter Breath moves to the opposite side of the target (without provoking opportunity attacks) and makes one additional Gore Horns attack as part of the same action.</p>
+
+    <p class="trait"><span class="trait-name">Gutripper.</span> <em>Melee Weapon Attack:</em> +13 to hit, reach 5 ft., one target. <em>Hit:</em> 16 (2d8 + 7) slashing damage plus 7 (2d6) necrotic damage. On a critical hit, the target begins bleeding, taking 7 (2d6) necrotic damage at the start of each of its turns until it receives magical healing or a creature uses an action to stanch the wound with a successful DC 15 Wisdom (Medicine) check.</p>
+
+    <p class="trait"><span class="trait-name">Rotten Breath <span class="recharge">(Recharge 5–6)</span>.</span> Bitter Breath exhales a 40-foot cone of putrid, corrosive gas. Each creature in that area must make a DC 17 Constitution saving throw, taking 36 (8d8) poison damage and 14 (4d6) necrotic damage on a failed save, or half as much damage on a successful one. A creature that fails the save by 5 or more is also stunned until the end of its next turn.</p>
+  </div>
+
+  <div class="divider-thin"></div>
+
+  <div class="section-group">
+    <div class="section-header">Bonus Actions</div>
+
+    <p class="trait"><span class="trait-name">Skirmisher.</span> Bitter Breath takes the Dash or Disengage action.</p>
+  </div>
+
+  <div class="divider-thin"></div>
+
+  <!-- Legendary Actions -->
+  <div class="section-group">
+    <div class="section-header">Legendary Actions</div>
+
+    <p class="trait" style="margin-bottom:10px;">Bitter Breath can take 3 legendary actions, choosing from the options below. Only one legendary action option can be used at a time, and only at the end of another creature's turn. Bitter Breath regains spent legendary actions at the start of his turn.</p>
+
+    <p class="trait"><span class="trait-name">Reposition.</span> Bitter Breath moves up to half his speed without provoking opportunity attacks.</p>
+
+    <p class="trait"><span class="trait-name">Gutripper Strike.</span> Bitter Breath makes one Gutripper attack.</p>
+
+    <p class="trait"><span class="trait-name">Flaying Rush <span class="recharge">(Costs 2 Actions)</span>.</span> Bitter Breath moves up to his speed. Each creature he passes within 5 feet of during this movement must make a DC 17 Dexterity saving throw or take 14 (4d6) slashing damage. He can make one Gutripper attack at the end of this movement.</p>
+  </div>
+
+  <div class="divider"></div>
+
+  <!-- Tactics -->
+  <div class="tactics-block">
+    <div class="tactics-title">Tactics</div>
+    <p class="tactics-text">
+      Bitter Breath fights nothing like his brother. Where Bloodbath stood his ground and gorged, Bitter Breath <strong>never stops moving.</strong> He opens with <strong>Rotten Breath</strong> to stun and poison the cluster, then uses <strong>Skirmisher</strong> and his 50-ft. speed to dart between targets, focusing wounded PCs with Blood Frenzy advantage. His legendary <strong>Reposition</strong> and <strong>Flaying Rush</strong> ensure he is never where the party expects. He uses <strong>Evasive Gore</strong> to punish melee attackers and reposition on reaction. <strong>Relentless</strong> means the party thinks he's down — and then he's not.
+    </p>
+  </div>
+
+  <!-- Personality & Dialogue -->
+  <div class="personality-block">
+    <div class="personality-title">Personality &amp; Dialogue</div>
+    <p class="personality-text">
+      Cold and bitter. Speaks in short, venomous sentences. Resents his brother's fame. Doesn't roar — he hisses. Doesn't boast — he dismisses.
+    </p>
+    <div class="dialogue">"My brother was loud. I am precise."</div>
+    <div class="dialogue">"He drank blood like a fool. I let it drain slowly."</div>
+    <div class="dialogue">"You killed him? No. You killed a drunk animal. I am something worse."</div>
+    <div class="dialogue">"Smaller, they said. Always smaller. Let me show you what smaller means."</div>
+    <div class="dialogue"><span class="stage-dir">(after Relentless triggers)</span> "...No."</div>
+  </div>
+
+</div>
+
+</body>
+</html>

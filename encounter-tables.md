@@ -4,9 +4,12 @@
 
 | PC | Class | Role | Key Abilities |
 |----|-------|------|---------------|
-| Drenwal | Soulknife Rogue | Burst DPS, stealth, infiltration | Psychic Blades + Sneak Attack (6d6), Psychic Whispers, expertise skills, Uncanny Dodge, Evasion |
-| Aurora | Warlock | Sustained ranged DPS, utility | Eldritch Blast (3 beams), limited but potent spell slots (5th level), Wand of Celestial Warding |
-| Cleric | Cleric (TBD) | Healer, support, frontline | Spirit Guardians, Spiritual Weapon, healing, condition removal, 6th-level slots, Destroy Undead |
+| Drenwal | Light Cleric | Healer, support, frontline | Warding Flare (impose disadvantage on attacks), Radiance of the Dawn (AoE radiant), Spirit Guardians, Spiritual Weapon, healing, condition removal, 6th-level slots, Divine Intervention (hijacked by Bhaal) |
+| Aurora | Archfey Warlock | Sustained ranged DPS, utility, control | Eldritch Blast (3 beams), Fey Presence (charm/frighten AoE), Misty Escape (reaction teleport), limited but potent spell slots (5th level), Wand of Celestial Warding |
+| Asimov | Soulknife Rogue | Burst DPS, stealth, infiltration | Psychic Blades + Sneak Attack (4d6), Psychic Whispers, expertise skills, Uncanny Dodge, Evasion, Soul Capacitor (Bloodbath bounty soul active) |
+
+**Companions:** Lulu (Hollyphant — support/RP), Whiskerbright (imp familiar — scouting)
+**Transport:** Lady Vengeance (Hellship — AC 17, 350 HP, Arcane Cannons, Soul Coin Overdrive)
 
 ### Scaling Philosophy
 
@@ -44,7 +47,7 @@ This party punches above its weight. Three-player parties are normally weaker, b
 | 14-15 | **Infernal bounty hunters** | 1 bone devil + 2 barbed devils + 2 merregons. Want a specific soul coin or prisoner. |
 | 16 | **Smiler the Defiler** | Drives past, insults, drops clue. Hit-and-run if engaged. |
 | 17 | **Collapsed war machine** | DC 15 Investigation: 1d6 soul coins, spare parts, or a trapped survivor (maybe a trap). |
-| 18 | **Bhaalspawn sign** | Burned campsite, melted Hellrider medals, Bhaal symbol. Dumal was here. Drenwal's psychic blades hum. |
+| 18 | **Bhaalspawn sign** | Burned campsite, melted Hellrider medals, Bhaal symbol. Dumal was here. Drenwal's holy symbol burns hot. |
 | 19 | **Aurora's wand pulses** | Silver-blue flash. Points vaguely toward nearest infernal construct using Moonkite essence. |
 | 20 | **Zariel flyover** | Burning figure in the sky. All infernal creatures flee. DC 18 Wis or frightened 1 min. No combat — just presence. |
 
@@ -74,7 +77,7 @@ This party punches above its weight. Three-player parties are normally weaker, b
 ### Princeps Kovic (CR 13-15)
 - **Forces:** Kovic + 6 merregons (AC 17, 45 HP, phalanx formation) + 2 barbed devil snipers + 1 war machine with ballista
 - **Behavior:** Capture, not kill. Disciplined formation tactics. Shield wall forces melee engagement.
-- **Anti-Rogue:** Merregon phalanx denies flanking. Nets (DC 15 Str/Dex to escape) to pin Drenwal.
+- **Anti-Rogue:** Merregon phalanx denies flanking. Nets (DC 15 Str/Dex to escape) to pin Asimov.
 - **DC 17 Cha** to talk down. Can become uneasy ally.
 - **Wants:** Adamantine rods, prisoners, intelligence
 
@@ -215,7 +218,7 @@ This party punches above its weight. Three-player parties are normally weaker, b
 - 1 chain devil (CR 8, 85 HP) + 2 barbed devils (CR 5, 110 HP) + 4 spined devils (CR 2, 22 HP, flying ranged harassment)
 - Add barbed devil reinforcement at round 3 if party is cruising
 - **Environmental:** Lava cracks (2d10 fire if pushed/moved into), toxic fumes (DC 14 Con or poisoned)
-- **Anti-Rogue note:** Spined devils fly and shoot from 100 ft — hard for Drenwal to Sneak Attack without creative play
+- **Anti-Rogue note:** Spined devils fly and shoot from 100 ft — hard for Asimov to Sneak Attack without creative play
 
 ### Hard: Elite Combat (CR 15-18)
 *Goal: real danger, force resource expenditure, tactical challenge*
@@ -249,14 +252,14 @@ Use these sparingly — not every fight, but mix them in to keep players on thei
 
 | Tactic | Targets | Effect |
 |--------|---------|--------|
-| Grapple/restrain the Rogue | Drenwal | No Sneak Attack without advantage, can't disengage freely |
-| Silence spell/effect | Aurora + Cleric | Shuts down Eldritch Blast (verbal), most Cleric spells |
-| Forced movement (push/pull) | Cleric | Pull them out of Spirit Guardians range of allies, or push allies out |
-| Multi-hit attacks | Aurora/Cleric | Multiple Con saves to break concentration |
+| Grapple/restrain the Rogue | Asimov | No Sneak Attack without advantage, can't disengage freely |
+| Silence spell/effect | Aurora + Drenwal | Shuts down Eldritch Blast (verbal), most Cleric spells |
+| Forced movement (push/pull) | Drenwal | Pull them out of Spirit Guardians range of allies, or push allies out |
+| Multi-hit attacks | Aurora/Drenwal | Multiple Con saves to break concentration |
 | Darkness/fog | All | Negates Sneak Attack (can't see target), negates ranged |
-| Counterspell | Cleric | Block clutch heals or Spirit Guardians. Arcanaloths have this. |
+| Counterspell | Drenwal | Block clutch heals or Spirit Guardians. Arcanaloths have this. |
 | Swarm/surround | All | Spread damage, prevent Rogue from isolating targets |
-| Flying enemies | Drenwal | Soulknife is melee-focused, can't reach flyers easily (60-ft thrown range helps but no Sneak Attack without ally adjacent) |
+| Flying enemies | Asimov | Soulknife is melee-focused, can't reach flyers easily (60-ft thrown range helps but no Sneak Attack without ally adjacent) |
 
 ---
 
