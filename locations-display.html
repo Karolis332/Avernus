@@ -9,25 +9,193 @@
 
   * { margin: 0; padding: 0; box-sizing: border-box; }
 
+  html { scroll-behavior: smooth; }
+
   body {
     background: #1a1a1a;
     display: flex;
-    justify-content: center;
-    padding: 40px 20px;
     min-height: 100vh;
+    font-family: 'EB Garamond', serif;
   }
 
+  /* =============================== */
+  /* SIDEBAR                         */
+  /* =============================== */
+  .sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 240px;
+    height: 100vh;
+    background: #2c1810;
+    background-image:
+      linear-gradient(180deg, rgba(0,0,0,0.2) 0%, transparent 30%, transparent 70%, rgba(0,0,0,0.3) 100%),
+      repeating-linear-gradient(0deg, transparent, transparent 40px, rgba(0,0,0,0.05) 40px, rgba(0,0,0,0.05) 41px);
+    border-right: 3px solid #c9a96e;
+    overflow-y: auto;
+    z-index: 200;
+    transition: transform 0.3s ease;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .sidebar.collapsed {
+    transform: translateX(-240px);
+  }
+
+  .sidebar-header {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 16px;
+    color: #c9a96e;
+    text-align: center;
+    padding: 18px 12px 6px;
+    letter-spacing: 2px;
+    border-bottom: 1px solid rgba(201,169,110,0.3);
+  }
+
+  .sidebar-subtitle {
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 11px;
+    color: rgba(201,169,110,0.6);
+    text-align: center;
+    padding-bottom: 12px;
+  }
+
+  .sidebar-nav {
+    flex: 1;
+    padding: 8px 0;
+    overflow-y: auto;
+  }
+
+  .sidebar-nav::-webkit-scrollbar { width: 4px; }
+  .sidebar-nav::-webkit-scrollbar-track { background: transparent; }
+  .sidebar-nav::-webkit-scrollbar-thumb { background: rgba(201,169,110,0.3); border-radius: 2px; }
+
+  .nav-category {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 10px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    padding: 10px 16px 4px;
+    cursor: default;
+  }
+  .nav-category.cat-hub { color: #c9a96e; }
+  .nav-category.cat-intermediary { color: #6b9fd4; }
+  .nav-category.cat-bloodpay { color: #d46b6b; }
+  .nav-category.cat-fallen { color: #d4b86b; }
+  .nav-category.cat-endgame { color: #b08fd4; }
+
+  .nav-btn {
+    display: block;
+    width: 100%;
+    background: none;
+    border: none;
+    font-family: 'EB Garamond', serif;
+    font-size: 13px;
+    color: #e8dcc8;
+    text-align: left;
+    padding: 5px 16px 5px 28px;
+    cursor: pointer;
+    transition: all 0.15s ease;
+    position: relative;
+  }
+  .nav-btn::before {
+    content: '\25B8';
+    position: absolute;
+    left: 16px;
+    color: rgba(201,169,110,0.4);
+    font-size: 9px;
+    top: 7px;
+    transition: color 0.15s;
+  }
+  .nav-btn:hover {
+    background: rgba(201,169,110,0.1);
+    color: #c9a96e;
+  }
+  .nav-btn:hover::before { color: #c9a96e; }
+  .nav-btn.active {
+    background: rgba(201,169,110,0.15);
+    color: #c9a96e;
+    font-weight: 600;
+  }
+  .nav-btn.active::before { color: #c9a96e; content: '\25B6'; }
+
+  .nav-btn.nav-hub { border-left: 3px solid transparent; }
+  .nav-btn.nav-hub.active, .nav-btn.nav-hub:hover { border-left-color: #c9a96e; }
+  .nav-btn.nav-intermediary.active, .nav-btn.nav-intermediary:hover { border-left-color: #6b9fd4; }
+  .nav-btn.nav-bloodpay.active, .nav-btn.nav-bloodpay:hover { border-left-color: #d46b6b; }
+  .nav-btn.nav-fallen.active, .nav-btn.nav-fallen:hover { border-left-color: #d4b86b; }
+  .nav-btn.nav-endgame.active, .nav-btn.nav-endgame:hover { border-left-color: #b08fd4; }
+
+  .sidebar-toggle {
+    position: fixed;
+    top: 12px;
+    left: 244px;
+    width: 32px;
+    height: 32px;
+    background: #2c1810;
+    border: 2px solid #c9a96e;
+    border-radius: 4px;
+    color: #c9a96e;
+    font-size: 16px;
+    cursor: pointer;
+    z-index: 201;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: left 0.3s ease;
+    line-height: 1;
+  }
+  .sidebar.collapsed ~ .sidebar-toggle { left: 4px; }
+
+  .sidebar-bottom {
+    padding: 10px 16px;
+    border-top: 1px solid rgba(201,169,110,0.2);
+  }
+
+  .pdf-btn {
+    display: block;
+    width: 100%;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    background: rgba(201,169,110,0.15);
+    color: #c9a96e;
+    border: 1px solid rgba(201,169,110,0.4);
+    padding: 8px 12px;
+    cursor: pointer;
+    letter-spacing: 1px;
+    text-align: center;
+    transition: background 0.2s;
+  }
+  .pdf-btn:hover { background: rgba(201,169,110,0.25); }
+
+  /* =============================== */
+  /* MAIN CONTENT                    */
+  /* =============================== */
+  .main-content {
+    margin-left: 240px;
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    padding: 30px 30px 60px;
+    transition: margin-left 0.3s ease;
+  }
+  .sidebar.collapsed ~ .main-content { margin-left: 0; }
+
   .page {
-    width: 850px;
+    width: 880px;
+    max-width: 100%;
     background: #fdf1dc;
     background-image:
       radial-gradient(ellipse at 20% 10%, rgba(139, 90, 43, 0.08) 0%, transparent 50%),
       radial-gradient(ellipse at 80% 90%, rgba(139, 90, 43, 0.06) 0%, transparent 50%),
       radial-gradient(ellipse at 50% 50%, rgba(255, 248, 231, 0.4) 0%, transparent 70%);
-    padding: 50px 55px;
-    box-shadow:
-      0 0 30px rgba(0,0,0,0.5),
-      inset 0 0 80px rgba(139, 90, 43, 0.1);
+    padding: 45px 50px;
+    box-shadow: 0 0 30px rgba(0,0,0,0.5), inset 0 0 80px rgba(139, 90, 43, 0.1);
     position: relative;
     border: 1px solid #c9a96e;
   }
@@ -40,11 +208,13 @@
     pointer-events: none;
   }
 
-  /* Title */
+  /* =============================== */
+  /* TYPOGRAPHY                      */
+  /* =============================== */
   .page-title {
     font-family: 'Cinzel', serif;
     font-weight: 900;
-    font-size: 36px;
+    font-size: 38px;
     color: #58180d;
     text-align: center;
     margin-bottom: 2px;
@@ -60,12 +230,11 @@
     margin-bottom: 20px;
   }
 
-  /* Decorative dividers */
   .divider {
     width: 100%;
     height: 6px;
     background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%);
-    margin: 20px 0;
+    margin: 22px 0;
     border: none;
     position: relative;
   }
@@ -84,105 +253,81 @@
     border: none;
   }
 
-  /* Body text */
-  .body-text {
-    font-family: 'EB Garamond', serif;
-    font-size: 14px;
-    color: #1a1a1a;
-    line-height: 1.55;
-    margin-bottom: 8px;
-    text-align: justify;
-    hyphens: auto;
-  }
-
-  .body-text em { color: #58180d; }
-
-  /* Section headers */
   .section-header {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 22px;
+    font-size: 24px;
     color: #58180d;
-    margin: 24px 0 10px;
+    margin: 26px 0 12px;
     border-bottom: 2px solid #c9a96e;
     padding-bottom: 4px;
   }
 
-  .sub-header {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: 14px;
-    color: #58180d;
-    margin: 12px 0 4px;
-  }
-
-  /* Property blocks */
-  .property {
+  .body-text {
     font-family: 'EB Garamond', serif;
-    font-size: 14px;
+    font-size: 14.5px;
     color: #1a1a1a;
-    line-height: 1.55;
-    margin-bottom: 6px;
+    line-height: 1.6;
+    margin-bottom: 8px;
     text-align: justify;
+    hyphens: auto;
   }
-  .property-name {
-    font-weight: 700;
-    color: #1a1a1a;
-  }
+  .body-text em { color: #58180d; }
 
-  /* Bullets */
-  ul.item-list {
-    list-style: none;
-    padding-left: 0;
-    margin: 4px 0 8px;
-  }
-  ul.item-list li {
-    font-family: 'EB Garamond', serif;
+  /* =============================== */
+  /* READ-ALOUD / FLAVOR BOX         */
+  /* =============================== */
+  .read-aloud {
+    background: linear-gradient(135deg, #f5e6c8 0%, #ede0c8 100%);
+    border-left: 5px solid #58180d;
+    border-top: 1px solid rgba(139,90,43,0.2);
+    border-bottom: 1px solid rgba(139,90,43,0.2);
+    border-right: 1px solid rgba(139,90,43,0.15);
+    padding: 12px 18px;
+    margin: 10px 0 14px;
+    font-family: 'Crimson Text', serif;
+    font-style: italic;
     font-size: 14px;
-    line-height: 1.55;
-    padding-left: 16px;
-    position: relative;
-    margin-bottom: 3px;
-  }
-  ul.item-list li::before {
-    content: '\2666';
-    position: absolute;
-    left: 0;
-    color: #58180d;
-    font-size: 8px;
-    top: 4px;
+    color: #3b2612;
+    line-height: 1.6;
   }
 
-  /* ===================== */
-  /* SANDBOX FLOWCHART     */
-  /* ===================== */
+  /* =============================== */
+  /* SANDBOX FLOWCHART               */
+  /* =============================== */
   .flowchart {
-    margin: 10px 0 10px;
+    margin: 10px 0;
     page-break-inside: avoid;
   }
 
-  .flowchart-hub {
-    text-align: center;
-    margin-bottom: 16px;
+  .flowchart-hub { text-align: center; margin-bottom: 14px; }
+
+  .flowchart-hub-box, .flowchart-final-box {
+    display: inline-block;
+    border-radius: 6px;
+    padding: 10px 28px;
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    letter-spacing: 2px;
+    box-shadow: 0 2px 8px rgba(88, 24, 13, 0.15);
+    cursor: pointer;
+    transition: transform 0.15s, box-shadow 0.15s;
+  }
+  .flowchart-hub-box:hover, .flowchart-final-box:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 4px 12px rgba(88, 24, 13, 0.25);
   }
 
   .flowchart-hub-box {
-    display: inline-block;
     background: linear-gradient(135deg, rgba(88, 24, 13, 0.12) 0%, rgba(201, 169, 110, 0.18) 100%);
     border: 2px solid #58180d;
-    border-radius: 6px;
-    padding: 10px 32px;
-    font-family: 'Cinzel', serif;
-    font-weight: 900;
     font-size: 16px;
     color: #58180d;
-    letter-spacing: 2px;
-    box-shadow: 0 2px 8px rgba(88, 24, 13, 0.15);
   }
 
   .flowchart-connector {
     text-align: center;
-    font-size: 20px;
+    font-size: 22px;
     color: #c9a96e;
     line-height: 1;
     margin: 4px 0;
@@ -191,7 +336,7 @@
   .flowchart-row {
     display: flex;
     justify-content: center;
-    gap: 12px;
+    gap: 14px;
     margin-bottom: 6px;
     flex-wrap: wrap;
   }
@@ -199,27 +344,14 @@
   .flowchart-group {
     border-radius: 6px;
     padding: 10px 14px;
-    min-width: 160px;
+    min-width: 170px;
     flex: 1;
-    max-width: 200px;
+    max-width: 210px;
   }
-
-  .flowchart-group.intermediary {
-    background: rgba(44, 82, 130, 0.07);
-    border: 1px solid rgba(44, 82, 130, 0.35);
-  }
-  .flowchart-group.bloodpay {
-    background: rgba(139, 0, 0, 0.06);
-    border: 1px solid rgba(139, 0, 0, 0.3);
-  }
-  .flowchart-group.fallen {
-    background: rgba(180, 140, 20, 0.07);
-    border: 1px solid rgba(180, 140, 20, 0.35);
-  }
-  .flowchart-group.endgame {
-    background: rgba(75, 0, 130, 0.06);
-    border: 1px solid rgba(75, 0, 130, 0.25);
-  }
+  .flowchart-group.intermediary { background: rgba(44, 82, 130, 0.07); border: 1px solid rgba(44, 82, 130, 0.35); }
+  .flowchart-group.bloodpay { background: rgba(139, 0, 0, 0.06); border: 1px solid rgba(139, 0, 0, 0.3); }
+  .flowchart-group.fallen { background: rgba(180, 140, 20, 0.07); border: 1px solid rgba(180, 140, 20, 0.35); }
+  .flowchart-group.endgame { background: rgba(75, 0, 130, 0.06); border: 1px solid rgba(75, 0, 130, 0.25); }
 
   .flowchart-group-title {
     font-family: 'Cinzel', serif;
@@ -237,12 +369,15 @@
 
   .flowchart-item {
     font-family: 'EB Garamond', serif;
-    font-size: 12px;
+    font-size: 12.5px;
     color: #1a1a1a;
     line-height: 1.5;
-    padding-left: 10px;
+    padding: 2px 4px 2px 12px;
     position: relative;
     margin-bottom: 2px;
+    cursor: pointer;
+    border-radius: 3px;
+    transition: background 0.15s;
   }
   .flowchart-item::before {
     content: '\25B8';
@@ -251,6 +386,9 @@
     color: #58180d;
     font-size: 10px;
   }
+  .flowchart-item:hover {
+    background: rgba(88, 24, 13, 0.08);
+  }
 
   .flowchart-arrow-row {
     display: flex;
@@ -258,31 +396,19 @@
     gap: 12px;
     margin: 6px 0;
   }
-  .flowchart-arrow-row span {
-    font-size: 16px;
-    color: #c9a96e;
-  }
+  .flowchart-arrow-row span { font-size: 16px; color: #c9a96e; }
 
-  .flowchart-final {
-    text-align: center;
-    margin-top: 6px;
-  }
+  .flowchart-final { text-align: center; margin-top: 6px; }
   .flowchart-final-box {
-    display: inline-block;
     background: linear-gradient(135deg, rgba(75, 0, 130, 0.1) 0%, rgba(139, 0, 0, 0.06) 100%);
     border: 2px solid #4b0082;
-    border-radius: 6px;
-    padding: 8px 24px;
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
     font-size: 14px;
     color: #4b0082;
-    letter-spacing: 2px;
   }
 
-  /* ===================== */
-  /* TRAVEL NOTES BOX      */
-  /* ===================== */
+  /* =============================== */
+  /* TRAVEL NOTES BOX                */
+  /* =============================== */
   .travel-notes {
     background: rgba(88, 24, 13, 0.04);
     border: 1px solid rgba(139, 90, 43, 0.25);
@@ -301,47 +427,99 @@
     margin-bottom: 6px;
   }
 
-  /* ===================== */
-  /* LOCATION CARDS        */
-  /* ===================== */
+  /* =============================== */
+  /* ITEM LISTS                      */
+  /* =============================== */
+  ul.item-list {
+    list-style: none;
+    padding-left: 0;
+    margin: 4px 0 8px;
+  }
+  ul.item-list li {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    line-height: 1.6;
+    padding-left: 16px;
+    position: relative;
+    margin-bottom: 3px;
+  }
+  ul.item-list li::before {
+    content: '\2666';
+    position: absolute;
+    left: 0;
+    color: #58180d;
+    font-size: 8px;
+    top: 5px;
+  }
+
+  /* =============================== */
+  /* LOCATION CARDS                  */
+  /* =============================== */
   .location-card {
     border-radius: 4px;
-    padding: 16px 18px;
     margin: 16px 0;
     page-break-inside: avoid;
     position: relative;
+    overflow: hidden;
   }
 
-  /* Hub */
+  .card-header {
+    padding: 14px 18px;
+    cursor: pointer;
+    user-select: none;
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    transition: background 0.15s;
+  }
+  .card-header:hover { filter: brightness(0.97); }
+
+  .card-header-text { flex: 1; }
+
+  .card-toggle {
+    font-size: 18px;
+    color: #58180d;
+    transition: transform 0.25s ease;
+    margin-top: 4px;
+    flex-shrink: 0;
+    width: 20px;
+    text-align: center;
+  }
+  .location-card.expanded .card-toggle { transform: rotate(90deg); }
+
+  .card-body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.35s ease;
+    padding: 0 18px;
+  }
+  .location-card.expanded .card-body {
+    max-height: 2000px;
+    padding: 0 18px 16px;
+  }
+
+  /* Card type styles */
   .location-card.hub {
     background: linear-gradient(135deg, rgba(88, 24, 13, 0.08) 0%, rgba(201, 169, 110, 0.12) 100%);
     border: 2px solid #58180d;
     border-left: 5px solid #58180d;
     box-shadow: 0 2px 10px rgba(88, 24, 13, 0.1);
   }
-
-  /* Intermediary — blue tint */
   .location-card.intermediary {
     background: rgba(44, 82, 130, 0.05);
     border: 1px solid rgba(44, 82, 130, 0.3);
     border-left: 4px solid #2c5282;
   }
-
-  /* Blood Pay — red tint */
   .location-card.bloodpay {
     background: rgba(139, 0, 0, 0.04);
     border: 1px solid rgba(139, 0, 0, 0.25);
     border-left: 4px solid #8b0000;
   }
-
-  /* Fallen Three — gold tint */
   .location-card.fallen {
     background: rgba(180, 140, 20, 0.05);
     border: 1px solid rgba(180, 140, 20, 0.3);
     border-left: 4px solid #b48c14;
   }
-
-  /* Endgame — purple tint */
   .location-card.endgame {
     background: rgba(75, 0, 130, 0.04);
     border: 1px solid rgba(75, 0, 130, 0.2);
@@ -351,10 +529,10 @@
   .location-name {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 17px;
+    font-size: 18px;
     margin-bottom: 2px;
   }
-  .location-card.hub .location-name { color: #58180d; font-size: 20px; }
+  .location-card.hub .location-name { color: #58180d; font-size: 22px; }
   .location-card.intermediary .location-name { color: #2c5282; }
   .location-card.bloodpay .location-name { color: #8b0000; }
   .location-card.fallen .location-name { color: #8b7000; }
@@ -363,82 +541,62 @@
   .location-meta {
     font-family: 'Crimson Text', serif;
     font-style: italic;
-    font-size: 12px;
+    font-size: 12.5px;
     color: #7e5835;
-    margin-bottom: 8px;
-  }
-
-  .location-label {
-    font-family: 'Cinzel', serif;
-    font-weight: 700;
-    font-size: 11px;
-    text-transform: uppercase;
-    letter-spacing: 1.5px;
-    margin: 8px 0 3px;
-  }
-  .label-travel { color: #5a4a2a; }
-  .label-hazard { color: #8b0000; }
-  .label-social { color: #2e4a1e; }
-  .label-loot { color: #4b0082; }
-  .label-goal { color: #58180d; }
-  .label-feature { color: #58180d; }
-  .label-approach { color: #5a4a2a; }
-  .label-complication { color: #8b4000; }
-  .label-reward { color: #2e4a1e; }
-  .label-encounter { color: #8b0000; }
-  .label-task { color: #58180d; }
-  .label-solution { color: #2e4a1e; }
-
-  .location-detail {
-    font-family: 'EB Garamond', serif;
-    font-size: 13.5px;
-    color: #1a1a1a;
-    line-height: 1.55;
     margin-bottom: 4px;
   }
-  .location-detail strong {
-    color: #58180d;
-  }
 
-  .dc-tag {
+  .travel-badge {
+    display: inline-block;
     font-family: 'Cinzel', serif;
     font-weight: 700;
     font-size: 11px;
     background: rgba(88, 24, 13, 0.08);
     color: #58180d;
-    padding: 1px 6px;
+    padding: 2px 10px;
     border-radius: 3px;
-    white-space: nowrap;
+    border: 1px solid rgba(88,24,13,0.15);
+    margin: 2px 0;
   }
 
-  .loot-table {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 6px 0 4px;
-    font-family: 'EB Garamond', serif;
-    font-size: 13px;
+  /* What you can do here */
+  .what-you-can-do {
+    margin: 8px 0 4px;
   }
-  .loot-table th {
+  .what-you-can-do-title {
     font-family: 'Cinzel', serif;
-    font-size: 10px;
     font-weight: 700;
-    color: #4b0082;
-    text-transform: uppercase;
-    letter-spacing: 1px;
-    border-bottom: 2px solid #c9a96e;
-    padding: 3px 6px;
-    text-align: left;
-  }
-  .loot-table td {
-    padding: 3px 6px;
-    border-bottom: 1px solid rgba(201, 169, 110, 0.4);
-    vertical-align: top;
-  }
-  .loot-table td:first-child {
-    font-weight: 600;
+    font-size: 12px;
     color: #58180d;
-    width: 30px;
-    text-align: center;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin-bottom: 5px;
+  }
+  .action-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 8px;
+  }
+  .action-list li {
+    font-family: 'EB Garamond', serif;
+    font-size: 13.5px;
+    line-height: 1.5;
+    padding: 3px 10px 3px 22px;
+    position: relative;
+    background: rgba(88, 24, 13, 0.04);
+    border: 1px solid rgba(88, 24, 13, 0.1);
+    border-radius: 3px;
+  }
+  .action-list li::before {
+    content: '\27A4';
+    position: absolute;
+    left: 6px;
+    color: #58180d;
+    font-size: 11px;
+    top: 4px;
   }
 
   /* Category badge */
@@ -453,54 +611,115 @@
     border-radius: 3px;
     margin-bottom: 4px;
   }
-  .badge-hub {
-    background: rgba(88, 24, 13, 0.12);
-    color: #58180d;
-    border: 1px solid rgba(88, 24, 13, 0.3);
-  }
-  .badge-intermediary {
-    background: rgba(44, 82, 130, 0.1);
-    color: #2c5282;
-    border: 1px solid rgba(44, 82, 130, 0.3);
-  }
-  .badge-bloodpay {
-    background: rgba(139, 0, 0, 0.08);
-    color: #8b0000;
-    border: 1px solid rgba(139, 0, 0, 0.25);
-  }
-  .badge-fallen {
-    background: rgba(180, 140, 20, 0.1);
-    color: #8b7000;
-    border: 1px solid rgba(180, 140, 20, 0.3);
-  }
-  .badge-endgame {
-    background: rgba(75, 0, 130, 0.08);
-    color: #4b0082;
-    border: 1px solid rgba(75, 0, 130, 0.25);
-  }
+  .badge-hub { background: rgba(88, 24, 13, 0.12); color: #58180d; border: 1px solid rgba(88, 24, 13, 0.3); }
+  .badge-intermediary { background: rgba(44, 82, 130, 0.1); color: #2c5282; border: 1px solid rgba(44, 82, 130, 0.3); }
+  .badge-bloodpay { background: rgba(139, 0, 0, 0.08); color: #8b0000; border: 1px solid rgba(139, 0, 0, 0.25); }
+  .badge-fallen { background: rgba(180, 140, 20, 0.1); color: #8b7000; border: 1px solid rgba(180, 140, 20, 0.3); }
+  .badge-endgame { background: rgba(75, 0, 130, 0.08); color: #4b0082; border: 1px solid rgba(75, 0, 130, 0.25); }
 
-  /* Print button */
-  .print-btn {
-    position: fixed;
-    top: 20px;
-    right: 20px;
+  /* Location labels */
+  .location-label {
     font-family: 'Cinzel', serif;
     font-weight: 700;
-    font-size: 13px;
-    background: #58180d;
-    color: #fdf1dc;
-    border: 2px solid #c9a96e;
-    padding: 10px 24px;
-    cursor: pointer;
-    letter-spacing: 1px;
-    z-index: 100;
-    transition: background 0.2s;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 1.5px;
+    margin: 10px 0 3px;
   }
-  .print-btn:hover {
-    background: #7a2213;
+  .label-travel { color: #5a4a2a; }
+  .label-hazard { color: #8b0000; }
+  .label-social { color: #2e4a1e; }
+  .label-loot { color: #4b0082; }
+  .label-goal { color: #58180d; }
+  .label-feature { color: #58180d; }
+  .label-approach { color: #5a4a2a; }
+  .label-complication { color: #8b4000; }
+  .label-reward { color: #2e4a1e; }
+  .label-encounter { color: #8b0000; }
+  .label-task { color: #58180d; }
+  .label-solution { color: #2e4a1e; }
+  .label-npc { color: #2c5282; }
+
+  .location-detail {
+    font-family: 'EB Garamond', serif;
+    font-size: 14px;
+    color: #1a1a1a;
+    line-height: 1.6;
+    margin-bottom: 4px;
+  }
+  .location-detail strong { color: #58180d; }
+
+  /* DC Tags */
+  .dc-tag {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11px;
+    background: rgba(88, 24, 13, 0.1);
+    color: #58180d;
+    padding: 1px 7px;
+    border-radius: 3px;
+    border: 1px solid rgba(88,24,13,0.15);
+    white-space: nowrap;
   }
 
-  /* Print / PDF styles */
+  /* Hazard callout */
+  .hazard-callout {
+    background: rgba(139, 0, 0, 0.05);
+    border: 1px solid rgba(139, 0, 0, 0.2);
+    border-left: 4px solid #8b0000;
+    border-radius: 3px;
+    padding: 10px 14px;
+    margin: 8px 0;
+  }
+  .hazard-callout .location-label { margin-top: 0; }
+
+  /* NPC callout */
+  .npc-callout {
+    background: rgba(44, 82, 130, 0.04);
+    border: 1px solid rgba(44, 82, 130, 0.15);
+    border-left: 3px solid #2c5282;
+    border-radius: 3px;
+    padding: 8px 14px;
+    margin: 8px 0;
+  }
+
+  /* Loot tables */
+  .loot-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 6px 0 4px;
+    font-family: 'EB Garamond', serif;
+    font-size: 13.5px;
+    border: 1px solid rgba(201, 169, 110, 0.5);
+  }
+  .loot-table th {
+    font-family: 'Cinzel', serif;
+    font-size: 10px;
+    font-weight: 700;
+    color: #4b0082;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 2px solid #c9a96e;
+    padding: 4px 8px;
+    text-align: left;
+    background: rgba(75, 0, 130, 0.04);
+  }
+  .loot-table td {
+    padding: 4px 8px;
+    border-bottom: 1px solid rgba(201, 169, 110, 0.4);
+    vertical-align: top;
+  }
+  .loot-table td:first-child {
+    font-weight: 600;
+    color: #58180d;
+    width: 35px;
+    text-align: center;
+  }
+  .loot-table tr:last-child td { border-bottom: none; }
+
+  /* =============================== */
+  /* PRINT STYLES                    */
+  /* =============================== */
   @media print {
     * {
       -webkit-print-color-adjust: exact !important;
@@ -512,22 +731,35 @@
       padding: 0 !important;
       margin: 0 !important;
     }
-    .print-btn { display: none !important; }
+    .sidebar, .sidebar-toggle { display: none !important; }
+    .main-content {
+      margin-left: 0 !important;
+      padding: 0 !important;
+    }
     .page {
       width: 100% !important;
       box-shadow: none !important;
       border: none !important;
-      padding: 20px 35px !important;
+      padding: 15px 30px !important;
       margin: 0 !important;
-      background: #fdf1dc !important;
-      print-color-adjust: exact !important;
+      background: white !important;
     }
-    .page::before {
-      display: none !important;
+    .page::before { display: none !important; }
+
+    /* Expand all cards for print */
+    .card-body {
+      max-height: none !important;
+      overflow: visible !important;
+      padding: 0 18px 14px !important;
     }
-    .location-card {
-      page-break-inside: avoid !important;
-    }
+    .card-toggle { display: none !important; }
+    .card-header { cursor: default !important; }
+
+    .location-card { page-break-inside: avoid !important; }
+    .flowchart { page-break-inside: avoid !important; }
+    .section-header { page-break-after: avoid !important; }
+    .loot-table { page-break-inside: avoid !important; }
+
     .location-card.hub {
       background: linear-gradient(135deg, rgba(88, 24, 13, 0.08) 0%, rgba(201, 169, 110, 0.12) 100%) !important;
       border: 2px solid #58180d !important;
@@ -553,64 +785,38 @@
       border: 1px solid rgba(75, 0, 130, 0.2) !important;
       border-left: 4px solid #4b0082 !important;
     }
-    .flowchart {
-      page-break-inside: avoid !important;
-    }
     .flowchart-hub-box {
       background: linear-gradient(135deg, rgba(88, 24, 13, 0.12) 0%, rgba(201, 169, 110, 0.18) 100%) !important;
       border: 2px solid #58180d !important;
     }
-    .flowchart-group.intermediary {
-      background: rgba(44, 82, 130, 0.07) !important;
-      border: 1px solid rgba(44, 82, 130, 0.35) !important;
-    }
-    .flowchart-group.bloodpay {
-      background: rgba(139, 0, 0, 0.06) !important;
-      border: 1px solid rgba(139, 0, 0, 0.3) !important;
-    }
-    .flowchart-group.fallen {
-      background: rgba(180, 140, 20, 0.07) !important;
-      border: 1px solid rgba(180, 140, 20, 0.35) !important;
-    }
-    .flowchart-group.endgame {
-      background: rgba(75, 0, 130, 0.06) !important;
-      border: 1px solid rgba(75, 0, 130, 0.25) !important;
-    }
+    .flowchart-group.intermediary { background: rgba(44, 82, 130, 0.07) !important; border: 1px solid rgba(44, 82, 130, 0.35) !important; }
+    .flowchart-group.bloodpay { background: rgba(139, 0, 0, 0.06) !important; border: 1px solid rgba(139, 0, 0, 0.3) !important; }
+    .flowchart-group.fallen { background: rgba(180, 140, 20, 0.07) !important; border: 1px solid rgba(180, 140, 20, 0.35) !important; }
+    .flowchart-group.endgame { background: rgba(75, 0, 130, 0.06) !important; border: 1px solid rgba(75, 0, 130, 0.25) !important; }
     .flowchart-final-box {
       background: linear-gradient(135deg, rgba(75, 0, 130, 0.1) 0%, rgba(139, 0, 0, 0.06) 100%) !important;
       border: 2px solid #4b0082 !important;
     }
+    .read-aloud {
+      background: #f5e6c8 !important;
+      border-left: 5px solid #58180d !important;
+    }
+    .hazard-callout {
+      background: rgba(139, 0, 0, 0.05) !important;
+      border-left: 4px solid #8b0000 !important;
+    }
     .travel-notes {
       page-break-inside: avoid !important;
       background: rgba(88, 24, 13, 0.04) !important;
-      border: 1px solid rgba(139, 90, 43, 0.25) !important;
       border-left: 3px solid #c9a96e !important;
     }
-    .divider {
-      background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%) !important;
-    }
-    .divider-thin {
-      background: linear-gradient(90deg, transparent 0%, #c9a96e 20%, #c9a96e 80%, transparent 100%) !important;
-    }
-    .section-header {
-      border-bottom: 2px solid #c9a96e !important;
-      page-break-after: avoid !important;
-    }
-    .loot-table {
-      page-break-inside: avoid !important;
-    }
-    .loot-table th {
-      border-bottom: 2px solid #c9a96e !important;
-    }
-    .loot-table td {
-      border-bottom: 1px solid rgba(201, 169, 110, 0.4) !important;
-    }
-    .category-badge {
-      -webkit-print-color-adjust: exact !important;
-    }
-    .dc-tag {
-      background: rgba(88, 24, 13, 0.08) !important;
-    }
+    .divider { background: linear-gradient(90deg, transparent 0%, #c9a96e 15%, #58180d 50%, #c9a96e 85%, transparent 100%) !important; }
+    .divider-thin { background: linear-gradient(90deg, transparent 0%, #c9a96e 20%, #c9a96e 80%, transparent 100%) !important; }
+    .section-header { border-bottom: 2px solid #c9a96e !important; }
+    .loot-table th { border-bottom: 2px solid #c9a96e !important; }
+    .loot-table td { border-bottom: 1px solid rgba(201, 169, 110, 0.4) !important; }
+    .dc-tag { background: rgba(88, 24, 13, 0.08) !important; }
+    .action-list li { background: rgba(88, 24, 13, 0.04) !important; border: 1px solid rgba(88,24,13,0.1) !important; }
   }
 
   @page {
@@ -621,8 +827,54 @@
 </head>
 <body>
 
-<button class="print-btn" onclick="window.print()">Save as PDF</button>
+<!-- =============================== -->
+<!-- SIDEBAR NAVIGATION              -->
+<!-- =============================== -->
+<nav class="sidebar" id="sidebar">
+  <div class="sidebar-header">Avernus</div>
+  <div class="sidebar-subtitle">Location Navigator</div>
 
+  <div class="sidebar-nav">
+    <div class="nav-category cat-hub">Overview</div>
+    <button class="nav-btn nav-hub" onclick="scrollToSection('flowchart')">Sandbox Map</button>
+    <button class="nav-btn nav-hub" onclick="scrollToSection('travel-notes')">Travel Notes</button>
+
+    <div class="nav-category cat-hub">Hub</div>
+    <button class="nav-btn nav-hub" onclick="scrollToSection('fort-knucklebone')">Fort Knucklebone</button>
+
+    <div class="nav-category cat-intermediary">Intermediaries</div>
+    <button class="nav-btn nav-intermediary" onclick="scrollToSection('tower-of-urm')">Tower of Urm</button>
+    <button class="nav-btn nav-intermediary" onclick="scrollToSection('bone-brambles')">Bone Brambles</button>
+    <button class="nav-btn nav-intermediary" onclick="scrollToSection('mirror-of-mephistar')">Mirror of Mephistar</button>
+
+    <div class="nav-category cat-bloodpay">Blood Pay</div>
+    <button class="nav-btn nav-bloodpay" onclick="scrollToSection('arkhans-tower')">Arkhan's Tower</button>
+    <button class="nav-btn nav-bloodpay" onclick="scrollToSection('uldraks-grave')">Uldrak's Grave</button>
+    <button class="nav-btn nav-bloodpay" onclick="scrollToSection('obelisk')">Obelisk</button>
+    <button class="nav-btn nav-bloodpay" onclick="scrollToSection('shummraths-pit')">Shummrath's Pit</button>
+
+    <div class="nav-category cat-fallen">Fallen Three</div>
+    <button class="nav-btn nav-fallen" onclick="scrollToSection('crypt-of-hellriders')">Crypt of Hellriders</button>
+    <button class="nav-btn nav-fallen" onclick="scrollToSection('harumans-hill')">Haruman's Hill</button>
+    <button class="nav-btn nav-fallen" onclick="scrollToSection('bels-forge')">Bel's Forge</button>
+
+    <div class="nav-category cat-endgame">Endgame</div>
+    <button class="nav-btn nav-endgame" onclick="scrollToSection('kostchtchies-maw')">Kostchtchie's Maw</button>
+    <button class="nav-btn nav-endgame" onclick="scrollToSection('arches-of-ulloch')">Arches of Ulloch</button>
+    <button class="nav-btn nav-endgame" onclick="scrollToSection('wrecked-flying-fortress')">Wrecked Flying Fortress</button>
+  </div>
+
+  <div class="sidebar-bottom">
+    <button class="pdf-btn" onclick="window.print()">Save as PDF</button>
+  </div>
+</nav>
+
+<button class="sidebar-toggle" id="sidebarToggle" onclick="toggleSidebar()" title="Toggle sidebar">&#9776;</button>
+
+<!-- =============================== -->
+<!-- MAIN CONTENT                    -->
+<!-- =============================== -->
+<div class="main-content">
 <div class="page">
 
   <div class="page-title">Avernus</div>
@@ -633,10 +885,10 @@
   <!-- ================================ -->
   <!-- SANDBOX FLOWCHART                -->
   <!-- ================================ -->
-  <div class="flowchart">
+  <div class="flowchart" id="flowchart">
 
     <div class="flowchart-hub">
-      <div class="flowchart-hub-box">Fort Knucklebone</div>
+      <div class="flowchart-hub-box" onclick="scrollToSection('fort-knucklebone')">Fort Knucklebone</div>
     </div>
 
     <div class="flowchart-connector">&darr;</div>
@@ -644,33 +896,33 @@
     <div class="flowchart-row">
       <div class="flowchart-group intermediary">
         <div class="flowchart-group-title">Intermediaries</div>
-        <div class="flowchart-item">Tower of Urm &mdash; 10-16h</div>
-        <div class="flowchart-item">Bone Brambles &mdash; 8-14h</div>
-        <div class="flowchart-item">Mirror of Mephistar &mdash; 10-18h</div>
+        <div class="flowchart-item" onclick="scrollToSection('tower-of-urm')">Tower of Urm &mdash; 10-16h</div>
+        <div class="flowchart-item" onclick="scrollToSection('bone-brambles')">Bone Brambles &mdash; 8-14h</div>
+        <div class="flowchart-item" onclick="scrollToSection('mirror-of-mephistar')">Mirror of Mephistar &mdash; 10-18h</div>
       </div>
       <div class="flowchart-group bloodpay">
         <div class="flowchart-group-title">Blood Pay</div>
-        <div class="flowchart-item">Arkhan's Tower &mdash; 12-20h</div>
-        <div class="flowchart-item">Uldrak's Grave &mdash; 12-20h</div>
-        <div class="flowchart-item">Obelisk &mdash; 14-22h</div>
-        <div class="flowchart-item">Shummrath's Pit &mdash; 14-24h</div>
+        <div class="flowchart-item" onclick="scrollToSection('arkhans-tower')">Arkhan's Tower &mdash; 12-20h</div>
+        <div class="flowchart-item" onclick="scrollToSection('uldraks-grave')">Uldrak's Grave &mdash; 12-20h</div>
+        <div class="flowchart-item" onclick="scrollToSection('obelisk')">Obelisk &mdash; 14-22h</div>
+        <div class="flowchart-item" onclick="scrollToSection('shummraths-pit')">Shummrath's Pit &mdash; 14-24h</div>
       </div>
       <div class="flowchart-group fallen">
         <div class="flowchart-group-title">Fallen Three</div>
-        <div class="flowchart-item">Crypt of Hellriders &mdash; 8-12h</div>
-        <div class="flowchart-item">Haruman's Hill &mdash; varies</div>
-        <div class="flowchart-item">Bel's Forge &mdash; varies</div>
+        <div class="flowchart-item" onclick="scrollToSection('crypt-of-hellriders')">Crypt of Hellriders &mdash; 8-12h</div>
+        <div class="flowchart-item" onclick="scrollToSection('harumans-hill')">Haruman's Hill &mdash; varies</div>
+        <div class="flowchart-item" onclick="scrollToSection('bels-forge')">Bel's Forge &mdash; varies</div>
       </div>
     </div>
 
     <div class="flowchart-connector">&darr;</div>
 
     <div class="flowchart-row" style="justify-content: center;">
-      <div class="flowchart-group endgame" style="max-width: 260px;">
+      <div class="flowchart-group endgame" style="max-width: 280px;">
         <div class="flowchart-group-title">Endgame</div>
-        <div class="flowchart-item">Kostchtchie's Maw</div>
-        <div class="flowchart-item">Arches of Ulloch</div>
-        <div class="flowchart-item">Wrecked Flying Fortress</div>
+        <div class="flowchart-item" onclick="scrollToSection('kostchtchies-maw')">Kostchtchie's Maw</div>
+        <div class="flowchart-item" onclick="scrollToSection('arches-of-ulloch')">Arches of Ulloch</div>
+        <div class="flowchart-item" onclick="scrollToSection('wrecked-flying-fortress')">Wrecked Flying Fortress</div>
       </div>
     </div>
 
@@ -687,7 +939,7 @@
   <!-- ================================ -->
   <!-- TRAVEL NOTES                     -->
   <!-- ================================ -->
-  <div class="travel-notes">
+  <div class="travel-notes" id="travel-notes">
     <div class="travel-notes-title">Travel Notes</div>
     <ul class="item-list">
       <li>All times by war machine. Double on foot.</li>
@@ -701,35 +953,59 @@
   <div class="divider"></div>
 
   <!-- ================================ -->
-  <!-- FORT KNUCKLEBONE — HUB           -->
+  <!-- FORT KNUCKLEBONE                 -->
   <!-- ================================ -->
-  <div class="section-header">Hub</div>
+  <div class="section-header" id="section-hub">Hub</div>
 
-  <div class="location-card hub">
-    <span class="category-badge badge-hub">Campaign Hub</span>
-    <div class="location-name">Fort Knucklebone</div>
-    <div class="location-meta">Neutral ground &bull; War machine repairs &bull; Trading post</div>
+  <div class="location-card hub expanded" id="fort-knucklebone">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-hub">Campaign Hub</span>
+        <div class="location-name">Fort Knucklebone</div>
+        <div class="location-meta">Neutral ground &bull; War machine repairs &bull; Trading post</div>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Repair war machine (1-2h)</li>
+            <li>Trade with Mad Maggie</li>
+            <li>Visit the Well (potable water)</li>
+            <li>Gamble at the Arcade</li>
+            <li>Buy/sell with soul coins</li>
+            <li>Rest (relatively safe)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        A ramshackle fortress of bone and scrap metal rises from the blasted hellscape, its walls patched with infernal iron and dragon hide. Kenku tinkerers chatter and hammer at war machines in the yard, while the acrid smell of brimstone mingles with the improbable scent of cooking food.
+      </div>
 
-    <div class="location-label label-feature">Features</div>
-    <p class="location-detail">Kenku tinkerers, the Well (potable water), soul coin economy.</p>
+      <div class="location-label label-feature">Features</div>
+      <p class="location-detail">Kenku tinkerers, the Well (potable water &mdash; rare in Avernus), soul coin economy. Neutral ground enforced by Mad Maggie.</p>
 
-    <div class="location-label label-social">Downtime Options</div>
-    <p class="location-detail">Fix war machine (1-2h) &bull; Trade with Maggie &bull; Visit the Well &bull; Gamble at the Arcade</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Key NPCs</div>
+        <p class="location-detail"><strong>Mad Maggie</strong> &mdash; Night hag merchant. Trades in soul coins and favors. Knows the layout of Avernus. Shrewd but fair (by hag standards).</p>
+        <p class="location-detail"><strong>Kenku Tinkerers</strong> &mdash; Repair war machines. Communicate through mimicry.</p>
+      </div>
 
-    <div class="location-label label-loot">Loot Table (d6)</div>
-    <table class="loot-table">
-      <thead>
-        <tr><th>d6</th><th>Reward</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>2 soul coins</td></tr>
-        <tr><td>2</td><td>Infernal Repair Kit</td></tr>
-        <tr><td>3</td><td>Maggie's Talisman (<em>tongues</em> 1x)</td></tr>
-        <tr><td>4</td><td>Salve of Shadow (fire resist 1h)</td></tr>
-        <tr><td>5</td><td>Infernal Warhorn (summon 1d4 redcaps)</td></tr>
-        <tr><td>6</td><td>100 gp + a +1 weapon or shield</td></tr>
-      </tbody>
-    </table>
+      <div class="location-label label-loot">Loot Table (d6)</div>
+      <table class="loot-table">
+        <thead>
+          <tr><th>d6</th><th>Reward</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>2 soul coins</td></tr>
+          <tr><td>2</td><td>Infernal Repair Kit</td></tr>
+          <tr><td>3</td><td>Maggie's Talisman (<em>tongues</em> 1x)</td></tr>
+          <tr><td>4</td><td>Salve of Shadow (fire resist 1h)</td></tr>
+          <tr><td>5</td><td>Infernal Warhorn (summon 1d4 redcaps)</td></tr>
+          <tr><td>6</td><td>100 gp + a +1 weapon or shield</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <div class="divider"></div>
@@ -737,80 +1013,145 @@
   <!-- ================================ -->
   <!-- INTERMEDIARY LOCATIONS           -->
   <!-- ================================ -->
-  <div class="section-header">Intermediary Locations</div>
+  <div class="section-header" id="section-intermediaries">Intermediary Locations</div>
 
   <!-- Tower of Urm -->
-  <div class="location-card intermediary">
-    <span class="category-badge badge-intermediary">Intermediary</span>
-    <div class="location-name">Tower of Urm (Mordenkainen)</div>
-    <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+  <div class="location-card intermediary" id="tower-of-urm">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-intermediary">Intermediary</span>
+        <div class="location-name">Tower of Urm (Mordenkainen)</div>
+        <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+        <span class="travel-badge">10&ndash;16 hours</span>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Seek intel on Blood Pay locations</li>
+            <li>Request a minor magical favor <span class="dc-tag">DC 16</span></li>
+            <li>Loot arcane treasures from trapped halls</li>
+            <li>Disarm spell-trapped glyphs <span class="dc-tag">DC 17 Arcana</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        A slender tower of dark stone materializes from the swirling ash like a mirage given form. Its walls shimmer with barely-contained arcane energy, and the air crackles with the residue of a hundred wards. This is no permanent fixture of Avernus &mdash; it phases in and out of the plane at Mordenkainen's whim.
+      </div>
 
-    <div class="location-label label-travel">Travel</div>
-    <p class="location-detail">10&ndash;16 hours by war machine.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-hazard">Hazards &amp; Encounters</div>
+        <p class="location-detail">Spell-trapped halls: Glyphs of warding (lightning, confusion), animate objects, shield guardian. <span class="dc-tag">DC 17 Arcana</span> to disarm each.</p>
+      </div>
 
-    <div class="location-label label-hazard">Hazards</div>
-    <p class="location-detail">Spell-trapped halls. Glyphs of warding (lightning, confusion), animate objects, shield guardian. <span class="dc-tag">DC 17 Arcana</span> to disarm.</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Key NPC</div>
+        <p class="location-detail"><strong>Mordenkainen (Simulacrum)</strong> &mdash; Impatient, condescending, experimental. Not the real archmage &mdash; a simulacrum left to observe Avernus. Will share information if impressed or persuaded. <span class="dc-tag">DC 16 Persuasion</span> for a minor favor.</p>
+      </div>
 
-    <div class="location-label label-social">Social</div>
-    <p class="location-detail">Mordenkainen is a <strong>simulacrum</strong> &mdash; impatient, experimental. <span class="dc-tag">DC 16 Persuasion</span> for a minor favor.</p>
-
-    <div class="location-label label-loot">Loot (d4)</div>
-    <table class="loot-table">
-      <thead>
-        <tr><th>d4</th><th>Reward</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>Amulet of Proof vs Detection</td></tr>
-        <tr><td>2</td><td>Scroll of Tasha's Otherworldly Guise</td></tr>
-        <tr><td>3</td><td>Arcane Battery (H, 3 charges, recover 3rd-level slot)</td></tr>
-        <tr><td>4</td><td>Soul Coin + a +1 Wand of War Mage</td></tr>
-      </tbody>
-    </table>
+      <div class="location-label label-loot">Loot (d4)</div>
+      <table class="loot-table">
+        <thead>
+          <tr><th>d4</th><th>Reward</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Amulet of Proof vs Detection</td></tr>
+          <tr><td>2</td><td>Scroll of Tasha's Otherworldly Guise</td></tr>
+          <tr><td>3</td><td>Arcane Battery (H, 3 charges, recover 3rd-level slot)</td></tr>
+          <tr><td>4</td><td>Soul Coin + a +1 Wand of War Mage</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Bone Brambles -->
-  <div class="location-card intermediary">
-    <span class="category-badge badge-intermediary">Intermediary</span>
-    <div class="location-name">Bone Brambles (Red Ruth)</div>
-    <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+  <div class="location-card intermediary" id="bone-brambles">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-intermediary">Intermediary</span>
+        <div class="location-name">Bone Brambles (Red Ruth)</div>
+        <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+        <span class="travel-badge">8&ndash;14 hours</span>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Bargain with Red Ruth for information</li>
+            <li>Pay in blood or memories</li>
+            <li>Negotiate reduced price <span class="dc-tag">DC 18 Persuasion</span></li>
+            <li>Navigate skeleton traps &amp; grapple hazards</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        A forest of bone-white brambles stretches across the ashen waste, each thorn as long as a dagger and stained with old blood. Between the twisted branches, skeletal shapes stir and rattle. Somewhere deep within, a hag waits in her nest of ossified roots, bargaining in the only currencies that matter here: blood and memory.
+      </div>
 
-    <div class="location-label label-travel">Travel</div>
-    <p class="location-detail">8&ndash;14 hours. <span class="dc-tag">DC 15 Nature/Survival</span> halves time.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-hazard">Hazards &amp; Encounters</div>
+        <p class="location-detail">Animated skeletons (AC 13, 45 HP, multiattack). Grapple traps: <span class="dc-tag">DC 16 Athletics</span>, 2d6 piercing/round.</p>
+        <p class="location-detail"><em>Hunger of Hadar</em> / <em>Black Tentacles</em> in narrow passages.</p>
+        <p class="location-detail"><span class="dc-tag">DC 15 Nature/Survival</span> halves travel time through the brambles.</p>
+      </div>
 
-    <div class="location-label label-hazard">Hazards</div>
-    <p class="location-detail">Animated skeletons (AC 13, 45 HP, multiattack), grapple traps (<span class="dc-tag">DC 16 Athletics</span>, 2d6 piercing/round). <em>Hunger of Hadar</em> / <em>Black Tentacles</em> in narrow passages.</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Key NPC</div>
+        <p class="location-detail"><strong>Red Ruth</strong> &mdash; Night hag information broker. Demands blood or memories as payment. Ruthless negotiator but keeps her bargains. <span class="dc-tag">DC 18 Persuasion</span> for a reduced price.</p>
+      </div>
 
-    <div class="location-label label-social">Social</div>
-    <p class="location-detail">Red Ruth demands <strong>blood or memories</strong>. <span class="dc-tag">DC 18 Persuasion</span> for reduced price.</p>
-
-    <div class="location-label label-loot">Loot (d4)</div>
-    <table class="loot-table">
-      <thead>
-        <tr><th>d4</th><th>Reward</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>Potion of Mind Reading + Superior Healing</td></tr>
-        <tr><td>2</td><td>Oracle Bone (H, advantage on Int/Wis 1/LR)</td></tr>
-        <tr><td>3</td><td>Hat of Disguise</td></tr>
-        <tr><td>4</td><td>Soul Coin + Cursed Eye Gem</td></tr>
-      </tbody>
-    </table>
+      <div class="location-label label-loot">Loot (d4)</div>
+      <table class="loot-table">
+        <thead>
+          <tr><th>d4</th><th>Reward</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Potion of Mind Reading + Superior Healing</td></tr>
+          <tr><td>2</td><td>Oracle Bone (H, advantage on Int/Wis 1/LR)</td></tr>
+          <tr><td>3</td><td>Hat of Disguise</td></tr>
+          <tr><td>4</td><td>Soul Coin + Cursed Eye Gem</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Mirror of Mephistar -->
-  <div class="location-card intermediary">
-    <span class="category-badge badge-intermediary">Intermediary</span>
-    <div class="location-name">Mirror of Mephistar (Mephistopheles)</div>
-    <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+  <div class="location-card intermediary" id="mirror-of-mephistar">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-intermediary">Intermediary</span>
+        <div class="location-name">Mirror of Mephistar (Mephistopheles)</div>
+        <div class="location-meta">Choose 1+ intermediary &bull; Intel &amp; guidance</div>
+        <span class="travel-badge">10&ndash;18 hours</span>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Deal with Mephistopheles through Rigorath</li>
+            <li>Trade blood or 5 soul coins for info</li>
+            <li>Attempt deception for extra intel <span class="dc-tag">DC 20</span></li>
+            <li>Fight ice devil guardians (4 ice devils + bone devil)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        A vast mirror of black ice rises from a frozen crater, its surface rippling like dark water despite the infernal heat that surrounds it. The air here bites with supernatural cold, and frost patterns form words in Infernal that shift and change before they can be read. An archdevil's power lingers here, watching, waiting for a bargain to be struck.
+      </div>
 
-    <div class="location-label label-travel">Travel</div>
-    <p class="location-detail">10&ndash;18 hours by war machine.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-hazard">Hazards &amp; Encounters</div>
+        <p class="location-detail">4 ice devils + bone devil lieutenant guard the approach. <span class="dc-tag">DC 15 Acrobatics</span> on slick surfaces or fall prone.</p>
+      </div>
 
-    <div class="location-label label-hazard">Hazards</div>
-    <p class="location-detail">4 ice devils + bone devil lieutenant. <span class="dc-tag">DC 15 Acrobatics</span> on slick surfaces.</p>
-
-    <div class="location-label label-social">Social</div>
-    <p class="location-detail">Deals through <strong>Rigorath</strong> (cambion). Demands blood or 5 soul coins. <span class="dc-tag">DC 20 Deception</span> for extra info.</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Key NPC</div>
+        <p class="location-detail"><strong>Rigorath</strong> (cambion) &mdash; Mephistopheles' intermediary. Unctuous, precise, dangerous. Demands blood or 5 soul coins. <span class="dc-tag">DC 20 Deception</span> to extract extra information without additional payment.</p>
+      </div>
+    </div>
   </div>
 
   <div class="divider"></div>
@@ -818,100 +1159,179 @@
   <!-- ================================ -->
   <!-- BLOOD PAY LOCATIONS              -->
   <!-- ================================ -->
-  <div class="section-header">Blood Pay Locations</div>
+  <div class="section-header" id="section-bloodpay">Blood Pay Locations</div>
 
   <!-- Arkhan's Tower -->
-  <div class="location-card bloodpay">
-    <span class="category-badge badge-bloodpay">Blood Pay</span>
-    <div class="location-name">Arkhan's Tower / Monument to Tiamat</div>
-    <div class="location-meta">Choose 1+ blood pay &bull; Retrieve Tiamat's blood</div>
+  <div class="location-card bloodpay" id="arkhans-tower">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-bloodpay">Blood Pay</span>
+        <div class="location-name">Arkhan's Tower / Monument to Tiamat</div>
+        <div class="location-meta">Choose 1+ blood pay &bull; Retrieve Tiamat's blood</div>
+        <span class="travel-badge">12&ndash;20 hours</span>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Retrieve Vial of Tiamat's blood</li>
+            <li>Fight Arkhan (CR 16, 221 HP)</li>
+            <li>Negotiate alternate sacrifice <span class="dc-tag">DC 18 Persuasion</span></li>
+            <li>Stealth-steal the vial <span class="dc-tag">DC 20 Stealth</span></li>
+            <li>Sacrifice an innocent (Lulu? Krikendolt?)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        Five colossal dragon heads carved from volcanic glass crown the monument, each maw agape with frozen fury. At its base, a fortified tower bristles with draconic banners and the stench of reptilian musk. Dragons circle above like vultures, and the ground trembles with the restless power of the Dragon Queen's memorial.
+      </div>
 
-    <div class="location-label label-travel">Travel</div>
-    <p class="location-detail">12&ndash;20 hours by war machine.</p>
+      <div class="location-label label-goal">Goal</div>
+      <p class="location-detail">Retrieve a <strong>Vial of Tiamat's blood</strong> &mdash; one of the ingredients needed.</p>
 
-    <div class="location-label label-goal">Goal</div>
-    <p class="location-detail">Retrieve a <strong>Vial of Tiamat's blood</strong>.</p>
+      <div class="location-label label-approach">Approach</div>
+      <p class="location-detail">Young/wyrmling dragons attack on approach. <strong>Krull</strong> (tortle priest) arrives on adult white dragon <strong>Obatala</strong> to stop the fighting and parley.</p>
 
-    <div class="location-label label-approach">Approach</div>
-    <p class="location-detail">Young/wyrmling dragons attack on approach. <strong>Krull</strong> (tortle priest) arrives on adult white dragon <strong>Obatala</strong> to stop fighting.</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Key NPCs</div>
+        <p class="location-detail"><strong>Arkhan the Cruel</strong> &mdash; Dragonborn oathbreaker paladin of Tiamat. Wields the Hand of Vecna. Demands an innocent sacrifice. CR 16, 221 HP.</p>
+        <p class="location-detail"><strong>Krull</strong> &mdash; Tortle death cleric. Voice of reason. Rides Obatala (adult white dragon).</p>
+        <p class="location-detail"><strong>Torogar</strong> &mdash; Arkhan's loyal half-dragon champion.</p>
+      </div>
 
-    <div class="location-label label-social">Arkhan's Demand</div>
-    <p class="location-detail">Sacrifice of an innocent (Lulu? Unicorn from Demon Zapper? Krikendolt?).</p>
+      <div class="location-label label-social">Arkhan's Demand</div>
+      <p class="location-detail">Sacrifice of an innocent (Lulu? Unicorn from Demon Zapper? Krikendolt?). <span class="dc-tag">DC 18 Persuasion</span> for an alternate sacrifice.</p>
 
-    <div class="location-label label-hazard">Alternative — Combat</div>
-    <p class="location-detail">Fight Arkhan (<strong>CR 16, 221 HP</strong>) + Torogar + Krull + manticore. Remove abishai to even odds.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-hazard">Alternative &mdash; Combat</div>
+        <p class="location-detail">Fight Arkhan (<strong>CR 16, 221 HP</strong>) + Torogar + Krull + manticore. Remove abishai to even the odds. <span class="dc-tag">DC 20 Stealth</span> to steal the vial instead.</p>
+      </div>
 
-    <p class="location-detail"><span class="dc-tag">DC 18 Persuasion</span> for alternate sacrifice. <span class="dc-tag">DC 20 Stealth</span> to steal.</p>
-
-    <div class="location-label label-reward">Reward</div>
-    <p class="location-detail">Vial of Tiamat's blood.</p>
+      <div class="location-label label-reward">Reward</div>
+      <p class="location-detail"><strong>Vial of Tiamat's blood.</strong></p>
+    </div>
   </div>
 
   <!-- Uldrak's Grave -->
-  <div class="location-card bloodpay">
-    <span class="category-badge badge-bloodpay">Blood Pay</span>
-    <div class="location-name">Uldrak's Grave</div>
-    <div class="location-meta">Choose 1+ blood pay &bull; Empyrean blood</div>
+  <div class="location-card bloodpay" id="uldraks-grave">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-bloodpay">Blood Pay</span>
+        <div class="location-name">Uldrak's Grave</div>
+        <div class="location-meta">Choose 1+ blood pay &bull; Empyrean blood</div>
+        <span class="travel-badge">12&ndash;20 hours</span>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Obtain empyrean blood</li>
+            <li>Persuade the trapped empyrean <span class="dc-tag">DC 16</span></li>
+            <li>Slay a dragon to restore empyrean's form</li>
+            <li>Fend off warlords/glabrezu hunting party</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        A desolate grave mound rises from the scorched earth, marked by a single cracked obelisk that hums with celestial energy long since corrupted. Chained to the monument by invisible bonds, a wretched spined devil paces &mdash; but its eyes burn with a light far too noble for its twisted form.
+      </div>
 
-    <div class="location-label label-travel">Travel</div>
-    <p class="location-detail">12&ndash;20 hours by war machine.</p>
+      <div class="location-label label-goal">Goal</div>
+      <p class="location-detail">Obtain <strong>empyrean blood</strong>.</p>
 
-    <div class="location-label label-goal">Goal</div>
-    <p class="location-detail">Obtain <strong>empyrean blood</strong>.</p>
+      <div class="location-label label-social">Encounter</div>
+      <p class="location-detail">An empyrean, trapped in the form of a spined devil. <span class="dc-tag">DC 16 Persuasion</span> to negotiate. Needs a dragon slain to restore its true form and give blood freely.</p>
 
-    <div class="location-label label-social">Encounter</div>
-    <p class="location-detail">Empyrean trapped as spined devil. <span class="dc-tag">DC 16 Persuasion</span>. Needs a dragon slain to restore form.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-complication">Complication</div>
+        <p class="location-detail">Third party hunting the empyrean &mdash; warlords, glabrezu + tanarukks converge on the location.</p>
+      </div>
 
-    <div class="location-label label-complication">Complication</div>
-    <p class="location-detail">Third party hunting the empyrean &mdash; warlords, glabrezu + tanarukks.</p>
-
-    <div class="location-label label-reward">Reward</div>
-    <p class="location-detail"><strong>Mote of Heavenly Light</strong> (H) &mdash; 2d6 radiant + advantage on Wis saves.</p>
+      <div class="location-label label-reward">Reward</div>
+      <p class="location-detail"><strong>Mote of Heavenly Light</strong> (H) &mdash; 2d6 radiant + advantage on Wis saves.</p>
+    </div>
   </div>
 
   <!-- Obelisk -->
-  <div class="location-card bloodpay">
-    <span class="category-badge badge-bloodpay">Blood Pay</span>
-    <div class="location-name">Obelisk (Ubbalux)</div>
-    <div class="location-meta">Choose 1+ blood pay &bull; Balor blood</div>
+  <div class="location-card bloodpay" id="obelisk">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-bloodpay">Blood Pay</span>
+        <div class="location-name">Obelisk (Ubbalux)</div>
+        <div class="location-meta">Choose 1+ blood pay &bull; Balor blood</div>
+        <span class="travel-badge">14&ndash;22 hours</span>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Obtain balor blood from imprisoned Ubbalux</li>
+            <li>Convince Krikendolt to swap places <span class="dc-tag">DC 14</span></li>
+            <li>Perform the binding ritual <span class="dc-tag">DC 18 Arcana</span></li>
+            <li>Trick Ubbalux into cooperating <span class="dc-tag">DC 16 Deception</span></li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        A towering obelisk of jet-black stone pulses with veins of molten crimson. The air around it vibrates with contained fury, and the ground splits in hairline fractures that glow with infernal heat. Something ancient and terrible is imprisoned within, and it wants out.
+      </div>
 
-    <div class="location-label label-travel">Travel</div>
-    <p class="location-detail">14&ndash;22 hours by war machine.</p>
+      <div class="location-label label-goal">Goal</div>
+      <p class="location-detail">Obtain <strong>balor blood</strong>. A balor (Ubbalux) is imprisoned inside the obelisk; someone must take its place for the blood to be extracted.</p>
 
-    <div class="location-label label-goal">Goal</div>
-    <p class="location-detail">Obtain <strong>balor blood</strong>. Balor imprisoned; someone must take its place.</p>
+      <div class="location-label label-solution">Solution</div>
+      <p class="location-detail">Convince <strong>Krikendolt</strong> (at the Spawning Trees) to swap places. <span class="dc-tag">DC 14 Persuasion</span>.</p>
+      <p class="location-detail"><span class="dc-tag">DC 18 Arcana</span> for the binding ritual. <span class="dc-tag">DC 16 Deception</span> to trick Ubbalux into cooperating.</p>
 
-    <div class="location-label label-solution">Solution</div>
-    <p class="location-detail">Convince <strong>Krikendolt</strong> (at Spawning Trees) to swap places. <span class="dc-tag">DC 14 Persuasion</span>.</p>
-
-    <div class="location-label label-complication">Complication</div>
-    <p class="location-detail">Freed Ubbalux (balor with 4 exhaustion levels) may attack instead of cooperating.</p>
-
-    <p class="location-detail"><span class="dc-tag">DC 18 Arcana</span> for ritual. <span class="dc-tag">DC 16 Deception</span> to trick Ubbalux.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-complication">Complication</div>
+        <p class="location-detail">Freed Ubbalux (balor with <strong>4 exhaustion levels</strong>) may attack instead of cooperating. Weakened but still extremely dangerous.</p>
+      </div>
+    </div>
   </div>
 
   <!-- Shummrath's Pit -->
-  <div class="location-card bloodpay">
-    <span class="category-badge badge-bloodpay">Blood Pay</span>
-    <div class="location-name">Shummrath's Pit</div>
-    <div class="location-meta">Choose 1+ blood pay &bull; Pit fiend ichor</div>
+  <div class="location-card bloodpay" id="shummraths-pit">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-bloodpay">Blood Pay</span>
+        <div class="location-name">Shummrath's Pit</div>
+        <div class="location-meta">Choose 1+ blood pay &bull; Pit fiend ichor</div>
+        <span class="travel-badge">14&ndash;24 hours</span>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Obtain pit fiend ichor</li>
+            <li>Dam the River Styx with shattersticks</li>
+            <li>Wait 24h for Shummrath to reform</li>
+            <li>Fight weakened pit fiend (4 exhaustion)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        The River Styx flows sluggishly through a deep canyon here, its waters a nauseating swirl of soul-stuff and liquid misery. At the bottom of a blackened pit, something vast and barely-formed stirs in the muck &mdash; the dissolved remains of a pit fiend, endlessly reforming and dissolving in the cursed current.
+      </div>
 
-    <div class="location-label label-travel">Travel</div>
-    <p class="location-detail">14&ndash;24 hours by war machine.</p>
+      <div class="location-label label-goal">Goal</div>
+      <p class="location-detail">Obtain <strong>pit fiend ichor</strong>. Dam the River Styx with shattersticks, then wait 24h for Shummrath to reform enough to extract ichor.</p>
 
-    <div class="location-label label-goal">Goal</div>
-    <p class="location-detail">Obtain <strong>pit fiend ichor</strong>. Dam River Styx with shattersticks, wait 24h for Shummrath to reform.</p>
+      <div class="location-label label-approach">Requirements</div>
+      <p class="location-detail">Shattersticks from the Wandering Emporium (salamander artificer). <span class="dc-tag">DC 15 Strength</span> for placement. <span class="dc-tag">DC 17 Con</span> save vs toxic fumes.</p>
 
-    <div class="location-label label-approach">Requirements</div>
-    <p class="location-detail">Shattersticks from Wandering Emporium (salamander artificer).</p>
+      <div class="hazard-callout">
+        <div class="location-label label-complication">Complication</div>
+        <p class="location-detail">Weakened pit fiend (<strong>4 exhaustion levels</strong>) may fight when it becomes sentient enough during reformation.</p>
+      </div>
 
-    <p class="location-detail"><span class="dc-tag">DC 15 Strength</span> for shattersticks placement. <span class="dc-tag">DC 17 Con</span> vs fumes.</p>
-
-    <div class="location-label label-complication">Complication</div>
-    <p class="location-detail">Weakened pit fiend (4 exhaustion levels) may fight when sentient.</p>
-
-    <div class="location-label label-reward">Reward</div>
-    <p class="location-detail"><strong>Hellfire Flail</strong> (H) &mdash; +1, 2d6 fire, 1/day <em>fireball</em> (4th level) if evil.</p>
+      <div class="location-label label-reward">Reward</div>
+      <p class="location-detail"><strong>Hellfire Flail</strong> (H) &mdash; +1, 2d6 fire, 1/day <em>fireball</em> (4th level) if evil.</p>
+    </div>
   </div>
 
   <div class="divider"></div>
@@ -919,128 +1339,258 @@
   <!-- ================================ -->
   <!-- FALLEN THREE LOCATIONS           -->
   <!-- ================================ -->
-  <div class="section-header">Fallen Three Locations</div>
+  <div class="section-header" id="section-fallen">Fallen Three Locations</div>
 
   <!-- Crypt of the Hellriders -->
-  <div class="location-card fallen">
-    <span class="category-badge badge-fallen">Fallen Three</span>
-    <div class="location-name">Crypt of the Hellriders (Olanthius)</div>
-    <div class="location-meta">Need info from 2+ sources &bull; Zariel's motives</div>
+  <div class="location-card fallen" id="crypt-of-hellriders">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-fallen">Fallen Three</span>
+        <div class="location-name">Crypt of the Hellriders (Olanthius)</div>
+        <div class="location-meta">Need info from 2+ sources &bull; Zariel's motives</div>
+        <span class="travel-badge">8&ndash;12 hours</span>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Learn Zariel's motives from Olanthius</li>
+            <li>Get directed to Bel for alliance</li>
+            <li>Accept task: free Kostchtchie to distract Zariel</li>
+            <li>Fight upscaled undead (deathlock masterminds)</li>
+            <li>Loot Hellrider relics</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        Stone steps descend into darkness beneath a crumbling monument to fallen knights. The walls are carved with scenes of mounted warriors charging into Hell itself, their faces set with terrible determination. The air is cold &mdash; impossibly cold for Avernus &mdash; and the distant sound of armored footsteps echoes from nowhere and everywhere.
+      </div>
 
-    <div class="location-label label-travel">Travel</div>
-    <p class="location-detail">8&ndash;12 hours by war machine.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-encounter">Encounters</div>
+        <p class="location-detail">Upscaled undead: <strong>2 deathlock masterminds + 10 zombies each</strong>. Wights and ghosts haunt the deeper chambers.</p>
+      </div>
 
-    <div class="location-label label-encounter">Encounters</div>
-    <p class="location-detail">Upscaled undead: 2 deathlock masterminds + 10 zombies each. Wights and ghosts.</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Key NPC</div>
+        <p class="location-detail"><strong>Olanthius</strong> &mdash; Death knight, former Hellrider commander. Tormented by guilt. Can explain Zariel's true motives and her fall. Directs party to <strong>Bel</strong> for an alliance against Zariel.</p>
+      </div>
 
-    <div class="location-label label-social">Social</div>
-    <p class="location-detail"><strong>Olanthius</strong> can explain Zariel's motives. Directs party to <strong>Bel</strong>.</p>
+      <div class="location-label label-task">Task</div>
+      <p class="location-detail">Free <strong>Kostchtchie</strong> (at the Maw) to create a distraction that draws Zariel's forces away.</p>
 
-    <div class="location-label label-task">Task</div>
-    <p class="location-detail">Free <strong>Kostchtchie</strong> (at the Maw) to distract Zariel.</p>
-
-    <div class="location-label label-loot">Loot (d6)</div>
-    <table class="loot-table">
-      <thead>
-        <tr><th>d6</th><th>Reward</th></tr>
-      </thead>
-      <tbody>
-        <tr><td>1</td><td>Hellrider's Medal (advantage vs fear, 24h)</td></tr>
-        <tr><td>2</td><td>Scroll of <em>revivify</em> or <em>remove curse</em></td></tr>
-        <tr><td>3</td><td>Death Knight's Greaves (H, +2 AC, necrotic immune, &minus;10 HP max)</td></tr>
-        <tr><td>4-6</td><td>Soul Coin + 500 gp in gems</td></tr>
-      </tbody>
-    </table>
+      <div class="location-label label-loot">Loot (d6)</div>
+      <table class="loot-table">
+        <thead>
+          <tr><th>d6</th><th>Reward</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>1</td><td>Hellrider's Medal (advantage vs fear, 24h)</td></tr>
+          <tr><td>2</td><td>Scroll of <em>revivify</em> or <em>remove curse</em></td></tr>
+          <tr><td>3</td><td>Death Knight's Greaves (H, +2 AC, necrotic immune, &minus;10 HP max)</td></tr>
+          <tr><td>4-6</td><td>Soul Coin + 500 gp in gems</td></tr>
+        </tbody>
+      </table>
+    </div>
   </div>
 
   <!-- Haruman's Hill -->
-  <div class="location-card fallen">
-    <span class="category-badge badge-fallen">Fallen Three</span>
-    <div class="location-name">Haruman's Hill</div>
-    <div class="location-meta">Need info from 2+ sources &bull; Haruman confrontation</div>
+  <div class="location-card fallen" id="harumans-hill">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-fallen">Fallen Three</span>
+        <div class="location-name">Haruman's Hill</div>
+        <div class="location-meta">Need info from 2+ sources &bull; Haruman confrontation</div>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Confront Haruman (fights to the death)</li>
+            <li>Commune with souls in iron trees <span class="dc-tag">DC 15 Religion</span></li>
+            <li>Get sibriex location from Jander Sunstar</li>
+            <li>Clear optional Hellwasp Nest</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        Iron trees dot the hillside like a grotesque orchard, their metal branches hung with screaming souls twisted into agonized shapes. At the summit, a figure in tarnished plate armor stands watch over his domain of eternal punishment, a narzugon who once rode beside Zariel as a mortal paladin.
+      </div>
 
-    <div class="location-label label-encounter">Encounters</div>
-    <p class="location-detail">Hellwasp Nest nearby (optional). <strong>Haruman + narzugon forces</strong>.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-encounter">Encounters</div>
+        <p class="location-detail">Hellwasp Nest nearby (optional side encounter). <strong>Haruman + narzugon forces</strong> on the hill itself.</p>
+      </div>
 
-    <div class="location-label label-hazard">Combat</div>
-    <p class="location-detail">Haruman <strong>fights to the death</strong>. Reverts to human paladin corpse. <strong>No soul remains</strong> &mdash; must find sibriex to extract memories.</p>
+      <div class="location-label label-hazard">Combat</div>
+      <p class="location-detail">Haruman <strong>fights to the death</strong>. When slain, reverts to human paladin corpse. <strong>No soul remains</strong> &mdash; must find a sibriex to extract memories from the corpse.</p>
 
-    <div class="location-label label-social">Key NPCs</div>
-    <p class="location-detail"><strong>Jander Sunstar</strong> can hint at sibriex location.</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Key NPC</div>
+        <p class="location-detail"><strong>Jander Sunstar</strong> &mdash; Vampire, trapped among the iron trees. Can hint at the sibriex location needed to extract Haruman's memories.</p>
+      </div>
 
-    <div class="location-label label-feature">Iron Trees</div>
-    <p class="location-detail">Still hold screaming souls. <span class="dc-tag">DC 15 Religion</span> to commune.</p>
+      <div class="location-label label-feature">Iron Trees</div>
+      <p class="location-detail">Still hold screaming souls. <span class="dc-tag">DC 15 Religion</span> to commune with the trapped spirits for fragments of information.</p>
+    </div>
   </div>
 
   <!-- Bel's Forge -->
-  <div class="location-card fallen">
-    <span class="category-badge badge-fallen">Fallen Three</span>
-    <div class="location-name">Bel's Forge</div>
-    <div class="location-meta">Need info from 2+ sources &bull; Bel's alliance</div>
+  <div class="location-card fallen" id="bels-forge">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-fallen">Fallen Three</span>
+        <div class="location-name">Bel's Forge</div>
+        <div class="location-meta">Need info from 2+ sources &bull; Bel's alliance</div>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Prove worthiness by fighting 4 fire giants</li>
+            <li>Form telepathic alliance with Bel</li>
+            <li>Accept task: retrieve adamantine rods</li>
+            <li>Get intel on sibriex or Arches of Ulloch</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        The forge burns with an intensity that makes Avernus itself seem cool by comparison. Massive anvils ring with the blows of fire giant smiths, and rivers of molten adamantine flow through channels carved into the obsidian floor. Above it all, the presence of a fallen pit fiend watches &mdash; calculating, patient, seething with ambition.
+      </div>
 
-    <div class="location-label label-encounter">Test</div>
-    <p class="location-detail"><strong>4 fire giants.</strong> Bel watches to judge worthiness.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-encounter">Test of Worthiness</div>
+        <p class="location-detail"><strong>4 fire giants.</strong> Bel watches from the shadows to judge the party's combat prowess. Must be defeated to earn an audience.</p>
+      </div>
 
-    <div class="location-label label-task">Task</div>
-    <p class="location-detail">Retrieve <strong>adamantine rods</strong> from the Wrecked Flying Fortress.</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Key NPC</div>
+        <p class="location-detail"><strong>Bel</strong> &mdash; Former Archduke of Avernus, deposed by Zariel. Pit fiend schemer. <strong>Hates Zariel</strong> and will support the party through telepathic deal. Can suggest seeking a sibriex or the Arches of Ulloch for the rod location.</p>
+      </div>
 
-    <div class="location-label label-social">Social</div>
-    <p class="location-detail"><strong>Bel hates Zariel</strong>, supports the party. Telepathic deal. Can also suggest seeking sibriex or Arches of Ulloch for rod location.</p>
+      <div class="location-label label-task">Task</div>
+      <p class="location-detail">Retrieve <strong>adamantine rods</strong> from the Wrecked Flying Fortress for Bel's war effort.</p>
+    </div>
   </div>
 
   <div class="divider"></div>
 
   <!-- ================================ -->
-  <!-- KEY ENDGAME LOCATIONS            -->
+  <!-- ENDGAME LOCATIONS                -->
   <!-- ================================ -->
-  <div class="section-header">Key Endgame Locations</div>
+  <div class="section-header" id="section-endgame">Key Endgame Locations</div>
 
   <!-- Kostchtchie's Maw -->
-  <div class="location-card endgame">
-    <span class="category-badge badge-endgame">Endgame</span>
-    <div class="location-name">Kostchtchie's Maw</div>
-    <div class="location-meta">Demon lord prison &bull; Strategic distraction</div>
+  <div class="location-card endgame" id="kostchtchies-maw">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-endgame">Endgame</span>
+        <div class="location-name">Kostchtchie's Maw</div>
+        <div class="location-meta">Demon lord prison &bull; Strategic distraction</div>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Free Kostchtchie to distract Zariel's forces</li>
+            <li>Fulfill Olanthius' requirement</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        A wound in the earth opens into a lightless abyss, its edges scorched and frozen simultaneously. From the depths, an inhuman howling rises and falls like breathing &mdash; the rage of a demon lord imprisoned far from the Abyss, chained by Zariel's power and left to rot in impotent fury.
+      </div>
 
-    <div class="location-label label-goal">Purpose</div>
-    <p class="location-detail">Party knows this exists. Freeing the demon lord <strong>distracts Zariel</strong>. Olanthius may require this before revealing info.</p>
+      <div class="location-label label-goal">Purpose</div>
+      <p class="location-detail">Party knows this exists. Freeing the demon lord <strong>distracts Zariel</strong>, pulling her forces away from wherever the party needs to go. Olanthius may require this before revealing critical information.</p>
+    </div>
   </div>
 
   <!-- Arches of Ulloch -->
-  <div class="location-card endgame">
-    <span class="category-badge badge-endgame">Endgame</span>
-    <div class="location-name">Arches of Ulloch</div>
-    <div class="location-meta">Gateway to the Bleeding Citadel &bull; Sphinx challenge</div>
+  <div class="location-card endgame" id="arches-of-ulloch">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-endgame">Endgame</span>
+        <div class="location-name">Arches of Ulloch</div>
+        <div class="location-meta">Gateway to the Bleeding Citadel &bull; Sphinx challenge</div>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Pass the Nine Layers challenge <span class="dc-tag">DC 15 Int</span></li>
+            <li>Use Gargauth's knowledge (at a price)</li>
+            <li>Fight Ulloch the Sphinx if 3+ wrong answers</li>
+            <li>Reach the Bleeding Citadel (only path)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        Nine stone arches stand in a circle upon a plateau of polished obsidian, each carved with scenes depicting a different layer of the Nine Hells. Between them, space itself seems to fold and ripple. At the center, an androsphinx reclines with terrible patience, its leonine eyes fixed on the approaching mortals with the calm certainty of something that has never been wrong.
+      </div>
 
-    <div class="location-label label-encounter">Guardian</div>
-    <p class="location-detail"><strong>Ulloch the Sphinx</strong> (androsphinx). Nine Hells quiz challenge.</p>
+      <div class="npc-callout">
+        <div class="location-label label-npc">Guardian</div>
+        <p class="location-detail"><strong>Ulloch the Sphinx</strong> (androsphinx) &mdash; Administers the Nine Hells quiz challenge. Ancient, inscrutable, bound to this duty.</p>
+      </div>
 
-    <div class="location-label label-hazard">Mechanics</div>
-    <p class="location-detail">Each wrong answer: Ulloch uses <strong>Roar</strong> ability. 3 wrong = fight the sphinx.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-hazard">Mechanics</div>
+        <p class="location-detail">Each wrong answer: Ulloch uses <strong>Roar</strong> ability. 3 wrong answers = full combat against the sphinx.</p>
+      </div>
 
-    <div class="location-label label-task">Nine Layers Challenge</div>
-    <p class="location-detail">Party teleported to each layer, must identify it while fighting/surviving hazards. <span class="dc-tag">DC 15 Int (Arcana/History/Religion)</span> per layer. Gargauth can help (at a price).</p>
+      <div class="location-label label-task">Nine Layers Challenge</div>
+      <p class="location-detail">Party is teleported to each layer and must identify it while fighting/surviving layer-specific hazards. <span class="dc-tag">DC 15 Int (Arcana/History/Religion)</span> per layer. Gargauth can help (at a price &mdash; increased influence).</p>
 
-    <p class="location-detail" style="margin-top: 6px;"><strong>The only way to reach the Bleeding Citadel</strong> &mdash; Asmodeus hid it with powerful magic.</p>
+      <p class="location-detail" style="margin-top: 8px; font-weight: 600; color: #4b0082;"><strong>The only way to reach the Bleeding Citadel</strong> &mdash; Asmodeus hid it with powerful magic. There is no shortcut.</p>
+    </div>
   </div>
 
   <!-- Wrecked Flying Fortress -->
-  <div class="location-card endgame">
-    <span class="category-badge badge-endgame">Endgame</span>
-    <div class="location-name">Wrecked Flying Fortress</div>
-    <div class="location-meta">Mini dungeon crawl &bull; Bel's adamantine rods</div>
+  <div class="location-card endgame" id="wrecked-flying-fortress">
+    <div class="card-header" onclick="toggleCard(this)">
+      <div class="card-header-text">
+        <span class="category-badge badge-endgame">Endgame</span>
+        <div class="location-name">Wrecked Flying Fortress</div>
+        <div class="location-meta">Mini dungeon crawl &bull; Bel's adamantine rods</div>
+        <div class="what-you-can-do">
+          <div class="what-you-can-do-title">What You Can Do Here</div>
+          <ul class="action-list">
+            <li>Retrieve adamantine rods for Bel</li>
+            <li>Solve safe puzzle (combo: 6-6-6)</li>
+            <li>Fight 6 vrocks + necrotic remorhaz (CR 11)</li>
+            <li>Navigate firestorm approach <span class="dc-tag">DC 20 Survival</span></li>
+            <li>Confront Princeps Kovic (warlord)</li>
+          </ul>
+        </div>
+      </div>
+      <div class="card-toggle">&#9654;</div>
+    </div>
+    <div class="card-body">
+      <div class="read-aloud">
+        The shattered hulk of an infernal warship lies half-buried in the ash wastes, its once-proud wings of beaten iron now crumpled and scorched. Firestorms rage around the wreckage, and the screeching of vrocks echoes from the broken hull. Something valuable was locked away in the ship's vault before it fell, and the fortress has become its own tomb.
+      </div>
 
-    <div class="location-label label-hazard">Firestorm Approach</div>
-    <p class="location-detail">Group <span class="dc-tag">DC 20 Survival</span>. <em>Dispel magic</em> or fly to avoid.</p>
+      <div class="hazard-callout">
+        <div class="location-label label-hazard">Firestorm Approach</div>
+        <p class="location-detail">Group <span class="dc-tag">DC 20 Survival</span> to navigate. <em>Dispel magic</em> or flight to bypass.</p>
 
-    <div class="location-label label-encounter">Encounters</div>
-    <p class="location-detail"><strong>6 vrocks</strong> outside. Interior: bone whelks, <strong>necrotic remorhaz</strong> (CR 11, 195 HP).</p>
+        <div class="location-label label-encounter">Encounters</div>
+        <p class="location-detail"><strong>6 vrocks</strong> guard the exterior. Interior: bone whelks, <strong>necrotic remorhaz</strong> (CR 11, 195 HP).</p>
+      </div>
 
-    <div class="location-label label-task">Safe Puzzle</div>
-    <p class="location-detail">Combination: <strong>6-6-6</strong>. Riddle: &ldquo;Three numbers the same, but double in sum...&rdquo;</p>
-    <p class="location-detail">3 failed attempts awakens the remorhaz.</p>
+      <div class="location-label label-task">Safe Puzzle</div>
+      <p class="location-detail">Combination: <strong>6-6-6</strong>. Riddle: &ldquo;Three numbers the same, but double in sum...&rdquo;</p>
+      <p class="location-detail">3 failed attempts awakens the remorhaz from hibernation.</p>
 
-    <div class="location-label label-complication">Complication</div>
-    <p class="location-detail"><strong>Princeps Kovic</strong> (warlord) arrives after looting &mdash; wants the rods.</p>
+      <div class="location-label label-complication">Complication</div>
+      <p class="location-detail"><strong>Princeps Kovic</strong> (warlord) arrives after the party finishes looting &mdash; wants the adamantine rods for herself.</p>
+    </div>
   </div>
 
   <div class="divider"></div>
@@ -1050,6 +1600,63 @@
   </p>
 
 </div>
+</div>
+
+<!-- =============================== -->
+<!-- JAVASCRIPT                      -->
+<!-- =============================== -->
+<script>
+  // Toggle sidebar
+  function toggleSidebar() {
+    const sidebar = document.getElementById('sidebar');
+    sidebar.classList.toggle('collapsed');
+  }
+
+  // Smooth scroll to section
+  function scrollToSection(id) {
+    const el = document.getElementById(id);
+    if (el) {
+      // Expand the card if it's collapsed
+      if (el.classList.contains('location-card') && !el.classList.contains('expanded')) {
+        el.classList.add('expanded');
+      }
+      el.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+  }
+
+  // Toggle individual location card
+  function toggleCard(headerEl) {
+    const card = headerEl.closest('.location-card');
+    card.classList.toggle('expanded');
+  }
+
+  // Active section highlighting in sidebar
+  function updateActiveNav() {
+    const sections = document.querySelectorAll('.location-card, .flowchart, .travel-notes');
+    const navBtns = document.querySelectorAll('.nav-btn');
+    const scrollPos = window.scrollY + 150;
+
+    let currentId = '';
+
+    sections.forEach(section => {
+      if (section.offsetTop <= scrollPos) {
+        currentId = section.id;
+      }
+    });
+
+    navBtns.forEach(btn => {
+      btn.classList.remove('active');
+      const onclickStr = btn.getAttribute('onclick') || '';
+      const match = onclickStr.match(/scrollToSection\('(.+?)'\)/);
+      if (match && match[1] === currentId) {
+        btn.classList.add('active');
+      }
+    });
+  }
+
+  window.addEventListener('scroll', updateActiveNav);
+  window.addEventListener('load', updateActiveNav);
+</script>
 
 </body>
 </html>
