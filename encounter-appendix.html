@@ -1,0 +1,2021 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Encounter Appendix — Avernus Sandbox</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Spectral:ital,wght@0,400;0,500;0,600;0,700;1,400&display=swap');
+
+  :root {
+    --bg: #fdf1dc;
+    --text: #1a1a1a;
+    --accent: #58180d;
+    --accent2: #7a200d;
+    --border: #c9a96e;
+    --table-alt: #f5e6c8;
+    --box-bg: #f0e0c0;
+    --dm-bg: #fff8e7;
+    --green: #2d6a2e;
+    --yellow: #8a6d00;
+    --orange: #b44d00;
+    --red: #8b1a1a;
+    --purple: #5a2d6a;
+    --blue: #1a4a6e;
+    --stat-bg: #faf0d7;
+    --stat-header: #58180d;
+    --drop-bg: #f7ead0;
+    --drop-border: #9a7b3e;
+    --nav-bg: #2a1a0a;
+    --nav-text: #e8d5b5;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 0;
+    font-family: 'Spectral', 'Crimson Text', Georgia, serif;
+    font-size: 13.5pt;
+    line-height: 1.55;
+    color: var(--text);
+  }
+
+  /* Fixed Navigation Sidebar */
+  .nav-sidebar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 260px;
+    height: 100vh;
+    background: var(--nav-bg);
+    color: var(--nav-text);
+    overflow-y: auto;
+    padding: 15px 12px;
+    z-index: 1000;
+    border-right: 2px solid var(--border);
+    font-size: 10.5pt;
+    scrollbar-width: thin;
+    scrollbar-color: var(--border) var(--nav-bg);
+  }
+
+  .nav-sidebar h2 {
+    font-family: 'Cinzel', serif;
+    font-size: 12pt;
+    color: var(--border);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 4px;
+    margin-bottom: 8px;
+    letter-spacing: 1px;
+  }
+
+  .nav-section {
+    font-family: 'Cinzel', serif;
+    font-size: 9.5pt;
+    color: var(--orange);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    margin-top: 10px;
+    margin-bottom: 4px;
+    font-weight: 700;
+  }
+
+  .nav-sidebar a {
+    color: var(--nav-text);
+    text-decoration: none;
+    display: block;
+    padding: 4px 8px;
+    border-radius: 3px;
+    transition: background 0.15s;
+    font-family: 'Spectral', 'Crimson Text', serif;
+    line-height: 1.4;
+  }
+
+  .nav-sidebar a:hover {
+    background: rgba(201, 169, 110, 0.15);
+    color: #fff;
+  }
+
+  .nav-sidebar a.nav-indent {
+    padding-left: 20px;
+    font-size: 9.5pt;
+    color: #b8a080;
+  }
+
+  .nav-difficulty {
+    display: inline-block;
+    font-size: 7.5pt;
+    padding: 1px 4px;
+    border-radius: 2px;
+    font-weight: 700;
+    margin-left: 4px;
+    vertical-align: middle;
+  }
+  .nav-d-medium { background: #5a4800; color: #ffd900; }
+  .nav-d-hard { background: #6b2e00; color: #ffa040; }
+  .nav-d-deadly { background: #5a0a0a; color: #ff6060; }
+  .nav-d-social { background: #0a3050; color: #60b0ff; }
+
+  /* Main Content */
+  .content {
+    margin-left: 260px;
+    padding: 30px 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .page {
+    width: 860px;
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(139,90,43,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(139,90,43,0.04) 0%, transparent 50%);
+    padding: 50px 55px;
+    margin-bottom: 24px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+    position: relative;
+    page-break-after: always;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    border: 1px solid rgba(139,90,43,0.15);
+    pointer-events: none;
+  }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 30pt;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 6px;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 19pt;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 5px;
+    margin: 28px 0 14px 0;
+  }
+
+  h3 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 15pt;
+    color: var(--accent2);
+    margin: 18px 0 8px 0;
+  }
+
+  h4 {
+    font-family: 'Spectral', 'Crimson Text', serif;
+    font-weight: 700;
+    font-size: 13.5pt;
+    color: var(--accent);
+    margin: 14px 0 6px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 12pt;
+    color: var(--accent2);
+    text-align: center;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+  }
+
+  .divider {
+    border: none;
+    border-top: 2px solid var(--accent);
+    margin: 16px 0;
+    opacity: 0.4;
+  }
+
+  .thin-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 10px 0;
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0 16px 0;
+    font-size: 12.5pt;
+  }
+  th {
+    background: var(--accent);
+    color: #fdf1dc;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11pt;
+    letter-spacing: 0.5px;
+    padding: 8px 10px;
+    text-align: left;
+  }
+  td {
+    padding: 7px 10px;
+    border-bottom: 1px solid rgba(139,90,43,0.2);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--table-alt); }
+
+  /* Difficulty badges */
+  .badge {
+    display: inline-block;
+    padding: 3px 12px;
+    border-radius: 3px;
+    font-family: 'Cinzel', serif;
+    font-size: 10pt;
+    font-weight: 700;
+    letter-spacing: 0.5px;
+  }
+  .badge-medium { background: #f5e6a0; color: var(--yellow); border: 1px solid var(--yellow); }
+  .badge-hard { background: #f5d0a0; color: var(--orange); border: 1px solid var(--orange); }
+  .badge-deadly { background: #f0b0b0; color: var(--red); border: 1px solid var(--red); }
+  .badge-social { background: #b0d0f0; color: var(--blue); border: 1px solid var(--blue); }
+
+  /* Read-aloud box */
+  .read-aloud {
+    background: var(--box-bg);
+    border-left: 4px solid var(--accent);
+    padding: 12px 16px;
+    margin: 10px 0;
+    font-style: italic;
+    font-size: 13pt;
+    line-height: 1.6;
+  }
+
+  /* DM note */
+  .dm-note {
+    background: var(--dm-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--yellow);
+    padding: 10px 14px;
+    margin: 10px 0;
+    font-size: 12.5pt;
+  }
+  .dm-note strong { color: var(--yellow); }
+
+  /* Stat Block Card */
+  .stat-block {
+    background: var(--stat-bg);
+    border: 2px solid var(--accent);
+    border-radius: 0;
+    margin: 10px 0;
+    padding: 0;
+    box-shadow: 2px 2px 8px rgba(0,0,0,0.15);
+    position: relative;
+    overflow: hidden;
+  }
+
+  .stat-block::before,
+  .stat-block::after {
+    content: '';
+    display: block;
+    height: 5px;
+    background: linear-gradient(to right, var(--accent), var(--border), var(--accent));
+  }
+
+  .stat-header {
+    background: var(--stat-header);
+    color: #fdf1dc;
+    padding: 8px 14px 6px;
+  }
+
+  .stat-header .stat-name {
+    font-family: 'Cinzel', serif;
+    font-size: 16pt;
+    font-weight: 900;
+    letter-spacing: 1px;
+  }
+
+  .stat-header .stat-type {
+    font-family: 'Spectral', 'Crimson Text', serif;
+    font-style: italic;
+    font-size: 11pt;
+    color: #d4b896;
+  }
+
+  .stat-body {
+    padding: 12px 16px;
+    font-size: 12.5pt;
+    line-height: 1.5;
+  }
+
+  .stat-line {
+    margin: 3px 0;
+  }
+
+  .stat-line strong {
+    color: var(--accent);
+  }
+
+  .stat-abilities {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    text-align: center;
+    margin: 8px 0;
+    padding: 6px 0;
+    border-top: 1px solid var(--border);
+    border-bottom: 1px solid var(--border);
+  }
+
+  .stat-abilities .ability-name {
+    font-family: 'Cinzel', serif;
+    font-size: 9.5pt;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  .stat-abilities .ability-score {
+    font-size: 12pt;
+    font-weight: 600;
+  }
+
+  .stat-section-title {
+    font-family: 'Cinzel', serif;
+    font-size: 10.5pt;
+    color: var(--accent);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    border-bottom: 1px solid var(--accent);
+    margin: 8px 0 4px;
+    padding-bottom: 2px;
+  }
+
+  .stat-action {
+    margin: 5px 0;
+  }
+
+  .stat-action .action-name {
+    font-style: italic;
+    font-weight: 700;
+    color: var(--accent);
+  }
+
+  /* Drop/Loot Card */
+  .drop-card {
+    background: var(--drop-bg);
+    border: 1px solid var(--drop-border);
+    border-left: 4px solid var(--drop-border);
+    padding: 10px 16px;
+    margin: 8px 0;
+    font-size: 12.5pt;
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+  }
+
+  .drop-icon {
+    font-size: 18pt;
+    line-height: 1;
+    flex-shrink: 0;
+    width: 28px;
+    text-align: center;
+  }
+
+  .drop-details {
+    flex: 1;
+  }
+
+  .drop-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 12pt;
+    color: var(--accent);
+  }
+
+  .drop-rarity {
+    font-size: 10pt;
+    font-style: italic;
+    color: #888;
+  }
+
+  /* Terrain card */
+  .terrain-card {
+    background: #e8dcc0;
+    border: 1px solid var(--border);
+    border-left: 4px solid var(--green);
+    padding: 10px 16px;
+    margin: 10px 0;
+    font-size: 12.5pt;
+    line-height: 1.5;
+  }
+  .terrain-card strong { color: var(--green); }
+
+  /* Puzzle card */
+  .puzzle-card {
+    background: #e8dce8;
+    border: 1px solid #9a7baa;
+    border-left: 4px solid var(--purple);
+    padding: 10px 16px;
+    margin: 10px 0;
+    font-size: 12.5pt;
+    line-height: 1.5;
+  }
+  .puzzle-card strong { color: var(--purple); }
+
+  /* Tactics card */
+  .tactics-card {
+    background: #f5e0d0;
+    border: 1px solid #c48050;
+    border-left: 4px solid var(--orange);
+    padding: 10px 16px;
+    margin: 10px 0;
+    font-size: 12.5pt;
+    line-height: 1.5;
+  }
+  .tactics-card strong { color: var(--orange); }
+
+  /* Back to top button */
+  .back-to-nav {
+    display: inline-block;
+    font-family: 'Cinzel', serif;
+    font-size: 10pt;
+    color: var(--accent);
+    text-decoration: none;
+    border: 1px solid var(--border);
+    padding: 3px 10px;
+    border-radius: 3px;
+    margin-top: 10px;
+    background: var(--box-bg);
+    cursor: pointer;
+    transition: background 0.15s;
+  }
+  .back-to-nav:hover {
+    background: var(--accent);
+    color: #fdf1dc;
+  }
+
+  /* Encounter header bar */
+  .encounter-header {
+    background: var(--accent);
+    color: #fdf1dc;
+    padding: 10px 14px;
+    margin: 16px 0 0 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .encounter-header .enc-title {
+    font-family: 'Cinzel', serif;
+    font-size: 15pt;
+    font-weight: 700;
+    letter-spacing: 1px;
+  }
+
+  .encounter-header .enc-meta {
+    font-size: 11pt;
+    text-align: right;
+  }
+
+  /* Smog hazard */
+  .hazard-card {
+    background: #d8d0c0;
+    border: 2px solid #6a6050;
+    border-left: 6px solid #4a4030;
+    padding: 14px 18px;
+    margin: 10px 0;
+    font-size: 12.5pt;
+    line-height: 1.55;
+  }
+  .hazard-card strong { color: #4a4030; }
+  .hazard-card .phase-title {
+    font-family: 'Cinzel', serif;
+    font-size: 12pt;
+    color: #4a4030;
+    font-weight: 700;
+    margin-top: 6px;
+  }
+
+  /* Quick reference grid */
+  .qref-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 10px;
+    margin: 10px 0;
+  }
+
+  .qref-card {
+    background: var(--stat-bg);
+    border: 1px solid var(--border);
+    padding: 10px 14px;
+    font-size: 12pt;
+    line-height: 1.5;
+  }
+
+  .qref-card .qref-name {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 11.5pt;
+    color: var(--accent);
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 2px;
+    margin-bottom: 4px;
+  }
+
+  p { margin: 6px 0; }
+  ul, ol { margin: 6px 0 6px 24px; }
+  li { margin: 4px 0; }
+
+  /* Scroll-margin for anchor links */
+  [id] {
+    scroll-margin-top: 20px;
+  }
+
+  /* Print styles */
+  @media print {
+    .nav-sidebar { display: none; }
+    .content { margin-left: 0; }
+    .back-to-nav { display: none; }
+    body { background: white; }
+    .page { box-shadow: none; border: none; width: 100%; }
+  }
+
+  @media screen and (max-width: 1100px) {
+    .nav-sidebar { width: 200px; font-size: 8.5pt; }
+    .content { margin-left: 200px; }
+    .page { width: 100%; max-width: 800px; padding: 30px; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ============================================ -->
+<!-- NAVIGATION SIDEBAR                           -->
+<!-- ============================================ -->
+<nav class="nav-sidebar" id="nav-top">
+  <h2>Encounter Appendix</h2>
+
+  <a href="#xp-table">XP Progression (1.5x)</a>
+  <a href="#smog">Smog of the Damned</a>
+
+  <div class="nav-section">Random Encounters</div>
+  <a href="#toll-collectors">7-8: Toll Collectors <span class="nav-difficulty nav-d-hard">HARD</span></a>
+  <a href="#smiler-scouts">11-12v1: Smiler Scouts <span class="nav-difficulty nav-d-medium">MED</span></a>
+  <a href="#kovic-blockade">11-12v2: Kovic Blockade <span class="nav-difficulty nav-d-hard">HARD</span></a>
+  <a href="#rust-queen">11-12v3: Rust Queen <span class="nav-difficulty nav-d-hard">HARD</span></a>
+  <a href="#cartographer">11-12v4: Cartographer <span class="nav-difficulty nav-d-hard">HARD</span></a>
+  <a href="#bounty-hunters">15-16: Bounty Hunters <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#blood-war">19-20: Blood War <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#frost-commission">21-22: Frost Commission <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+
+  <div class="nav-section">Location Encounters</div>
+  <a href="#crypt">Crypt of the Hellriders</a>
+  <a href="#crypt-l1" class="nav-indent">L1: Fallen Hall <span class="nav-difficulty nav-d-hard">HARD</span></a>
+  <a href="#crypt-l2" class="nav-indent">L2: Bone Scriptorium <span class="nav-difficulty nav-d-hard">HARD</span></a>
+  <a href="#crypt-l3" class="nav-indent">L3: Olanthius <span class="nav-difficulty nav-d-social">SOC</span></a>
+  <a href="#haruman">Haruman's Hill</a>
+  <a href="#haruman-approach" class="nav-indent">Iron Forest <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#haruman-boss" class="nav-indent">Haruman Boss <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#bel-forge">Bel's Forge</a>
+  <a href="#bel-giants" class="nav-indent">Fire Giants <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#bel-fortress" class="nav-indent">Wrecked Fortress <span class="nav-difficulty nav-d-hard">HARD</span></a>
+  <a href="#arkhan">Arkhan's Tower <span class="nav-difficulty nav-d-social">SOC</span></a>
+  <a href="#uldrak">Uldrak's Grave <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#obelisk">Obelisk / Ubbalux <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#shummrath">Shummrath's Pit <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#mephistar">Mirror of Mephistar <span class="nav-difficulty nav-d-social">SOC</span></a>
+  <a href="#bone-brambles">Bone Brambles <span class="nav-difficulty nav-d-hard">HARD</span></a>
+  <a href="#arches">Arches of Ulloch <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+  <a href="#kostchtchie">Kostchtchie's Maw <span class="nav-difficulty nav-d-deadly">DEAD</span></a>
+
+  <div class="nav-section">Reference</div>
+  <a href="#quick-ref">Difficulty Quick Reference</a>
+</nav>
+
+<!-- ============================================ -->
+<!-- MAIN CONTENT                                 -->
+<!-- ============================================ -->
+<div class="content">
+
+<!-- ======= TITLE PAGE ======= -->
+<div class="page">
+  <h1>Encounter Appendix</h1>
+  <div class="subtitle">Avernus Sandbox — Descent into Avernus</div>
+  <p style="text-align:center; font-style:italic; color:#666; font-size:10.5pt;">Full tactical encounters, stat blocks, drops, and terrain for every fight in the campaign.</p>
+
+  <hr class="divider">
+
+  <!-- XP TABLE -->
+  <h2 id="xp-table">XP Progression Table (1.5x Standard)</h2>
+  <p>Standard 5e thresholds multiplied by 1.5. Slower leveling = harder-earned power.</p>
+
+  <table>
+    <tr><th>Level</th><th>Standard XP</th><th>1.5x XP Required</th><th>Cumulative (Std)</th><th>Cumulative (1.5x)</th></tr>
+    <tr><td>1</td><td>0</td><td>0</td><td>0</td><td>0</td></tr>
+    <tr><td>2</td><td>300</td><td>450</td><td>300</td><td>450</td></tr>
+    <tr><td>3</td><td>900</td><td>1,350</td><td>900</td><td>1,350</td></tr>
+    <tr><td>4</td><td>2,700</td><td>4,050</td><td>2,700</td><td>4,050</td></tr>
+    <tr><td>5</td><td>6,500</td><td>9,750</td><td>6,500</td><td>9,750</td></tr>
+    <tr><td>6</td><td>14,000</td><td>21,000</td><td>14,000</td><td>21,000</td></tr>
+    <tr><td>7</td><td>23,000</td><td>34,500</td><td>23,000</td><td>34,500</td></tr>
+    <tr><td>8</td><td>34,000</td><td>51,000</td><td>34,000</td><td>51,000</td></tr>
+    <tr><td>9</td><td>48,000</td><td>72,000</td><td>48,000</td><td>72,000</td></tr>
+    <tr><td>10</td><td>64,000</td><td>96,000</td><td>64,000</td><td>96,000</td></tr>
+    <tr><td>11</td><td>85,000</td><td>127,500</td><td>85,000</td><td>127,500</td></tr>
+    <tr><td>12</td><td>100,000</td><td>150,000</td><td>100,000</td><td>150,000</td></tr>
+    <tr><td>13</td><td>120,000</td><td>180,000</td><td>120,000</td><td>180,000</td></tr>
+    <tr><td>14</td><td>140,000</td><td>210,000</td><td>140,000</td><td>210,000</td></tr>
+    <tr><td>15</td><td>165,000</td><td>247,500</td><td>165,000</td><td>247,500</td></tr>
+    <tr><td>16</td><td>195,000</td><td>292,500</td><td>195,000</td><td>292,500</td></tr>
+    <tr><td>17</td><td>225,000</td><td>337,500</td><td>225,000</td><td>337,500</td></tr>
+    <tr><td>18</td><td>265,000</td><td>397,500</td><td>265,000</td><td>397,500</td></tr>
+    <tr><td>19</td><td>305,000</td><td>457,500</td><td>305,000</td><td>457,500</td></tr>
+    <tr><td>20</td><td>355,000</td><td>532,500</td><td>355,000</td><td>532,500</td></tr>
+  </table>
+
+  <div class="dm-note">
+    <strong>DM Note:</strong> Current party level: 11. They need <strong>150,000 XP (1.5x)</strong> to reach level 12. Delta from 127,500 to 150,000 = 22,500 XP total, ~7,500 per PC. Roughly 1-2 full sessions of hard combat per level.
+  </div>
+
+  <hr class="divider">
+
+  <!-- SMOG HAZARD -->
+  <h2 id="smog">The Smog of the Damned</h2>
+  <p>Environmental hazard active during the approach to the Palace of Gore. The gore river generates a choking miasma of sulphurous vapor, rotting blood fumes, and infernal ash. It gets worse the closer the party gets.</p>
+
+  <div class="hazard-card">
+    <div class="phase-title">Phase 1 — The Creeping Haze (first hour)</div>
+    <ul>
+      <li>Lightly obscured. Disadvantage on Perception beyond 60 ft.</li>
+      <li><strong>DC 12 CON save</strong> every 30 min or gain 1 level of exhaustion.</li>
+      <li>Ship crew makes same saves. Crew failure = -10 ft ship speed per failed member.</li>
+    </ul>
+
+    <div class="phase-title">Phase 2 — The Blood Fog (hours 2-3)</div>
+    <ul>
+      <li>Heavily obscured beyond 30 ft. Attack rolls beyond 30 ft have disadvantage.</li>
+      <li><strong>DC 14 CON save</strong> every 20 min or gain 1 exhaustion.</li>
+      <li><strong>-3 penalty</strong> to all Survival/Perception navigation and scouting checks.</li>
+      <li>Tracking the Palace: <strong>DC 17 Survival</strong> (normally DC 14).</li>
+      <li>Non-magical light sources dim to half radius. Magical light draws attention (DC 14 Stealth or patrols notice).</li>
+    </ul>
+
+    <div class="phase-title">Phase 3 — The Choking Pall (within 1 mile of Palace)</div>
+    <ul>
+      <li>Heavily obscured beyond 15 ft. The smog is thick enough to taste.</li>
+      <li><strong>DC 15 CON save</strong> every 10 min or gain 1 exhaustion AND take <strong>1d6 poison damage</strong>.</li>
+      <li>Crew refuses to continue at 2+ exhaustion. Party must proceed on foot.</li>
+      <li><strong>Moonbow dilemma:</strong> Aurora's Moonbow creates 10-ft clean air radius (no saves). But the silver light makes stealth <em>impossible</em>. Choose: breathe or hide.</li>
+    </ul>
+  </div>
+
+  <div class="dm-note">
+    <strong>Mitigation:</strong> <em>Protection from Poison</em> (1 creature, 1h). <em>Gust of Wind</em> (clears 60-ft line, 1 round). Wet cloth (advantage on CON saves). Salve of Shadow (immunity to poison damage, 1h). Smiler's drainage tunnel bypasses Phase 3.
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ============================================ -->
+<!-- RANDOM ENCOUNTERS                            -->
+<!-- ============================================ -->
+
+<!-- ======= TOLL COLLECTORS ======= -->
+<div class="page" id="toll-collectors">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Roll 7-8: The Toll Collectors</div>
+      <div style="font-size:9pt; margin-top:2px;">Horned Devil tax collector with hell hound enforcers</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-hard">HARD</span><br>
+      CR 13 | XP 10,000
+    </div>
+  </div>
+
+  <!-- Stat Block: Horned Devil -->
+  <div class="stat-block">
+    <div class="stat-header">
+      <div class="stat-name">Taxmaster Vorath</div>
+      <div class="stat-type">Large fiend (devil), lawful evil</div>
+    </div>
+    <div class="stat-body">
+      <div class="stat-line"><strong>AC</strong> 18 (natural armor) | <strong>HP</strong> 178 (17d10+85) | <strong>Speed</strong> 20 ft., fly 60 ft.</div>
+      <div class="stat-abilities">
+        <div><div class="ability-name">STR</div><div class="ability-score">22 (+6)</div></div>
+        <div><div class="ability-name">DEX</div><div class="ability-score">17 (+3)</div></div>
+        <div><div class="ability-name">CON</div><div class="ability-score">21 (+5)</div></div>
+        <div><div class="ability-name">INT</div><div class="ability-score">12 (+1)</div></div>
+        <div><div class="ability-name">WIS</div><div class="ability-score">16 (+3)</div></div>
+        <div><div class="ability-name">CHA</div><div class="ability-score">17 (+3)</div></div>
+      </div>
+      <div class="stat-line"><strong>Saves:</strong> Str +10, Dex +7, Wis +7, Cha +7</div>
+      <div class="stat-line"><strong>Resistances:</strong> cold; bludg/pierce/slash from nonmagical</div>
+      <div class="stat-line"><strong>Immunities:</strong> fire, poison; poisoned</div>
+      <div class="stat-line"><strong>Senses:</strong> darkvision 120 ft., PP 13</div>
+      <div class="stat-line"><strong>CR:</strong> 11 (7,200 XP)</div>
+
+      <div class="stat-section-title">Actions</div>
+      <div class="stat-action"><span class="action-name">Multiattack.</span> Fork + Tail.</div>
+      <div class="stat-action"><span class="action-name">Fork.</span> +10 to hit, 10 ft., 2d8+6 piercing.</div>
+      <div class="stat-action"><span class="action-name">Tail.</span> +10 to hit, 10 ft., 1d8+6 piercing + <strong>Infernal Wound</strong> (3d6 bleed/turn, DC 12 Medicine or magical healing to stop).</div>
+      <div class="stat-action"><span class="action-name">Hurl Flame.</span> +7 ranged, 150 ft., 4d6 fire. Can ignite flammable objects.</div>
+    </div>
+  </div>
+
+  <!-- Stat Block: Hell Hound (compact) -->
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Hell Hound x4</div>
+      <strong>AC</strong> 15 | <strong>HP</strong> 45 | <strong>CR</strong> 3<br>
+      <strong>Bite:</strong> +5, 1d8+3 piercing + 2d6 fire<br>
+      <strong>Fire Breath (Recharge 5-6):</strong> 15-ft cone, DC 12 Dex, 6d6 fire<br>
+      <strong>Pack Tactics.</strong> Advantage if ally within 5 ft.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Encounter Setup</div>
+      Canyon pass, 30 ft wide, 80 ft long.<br>
+      Walls 40 ft high (DC 18 Athletics to climb).<br>
+      Iron gate at midpoint.<br>
+      Hell hounds patrol both ends — party is boxed.
+    </div>
+  </div>
+
+  <h4>Social Option</h4>
+  <div class="read-aloud">"Toll. Two soul coins per head, or one memory of value. Zariel's road, Zariel's rules. No exceptions. No credit."</div>
+  <p><strong>DC 16 Persuasion:</strong> Reduce to 1 soul coin per head. | <strong>DC 18 Deception:</strong> Claim you work for Zariel (creates problems later). | <strong>DC 14 Intimidation:</strong> He laughs. +2 to his initiative if combat starts.</p>
+
+  <div class="tactics-card">
+    <strong>Tactics:</strong>
+    <ul>
+      <li><strong>Round 1:</strong> Vorath Hurl Flame at Aurora. Hell hounds rush Drenwal (Pack Tactics, Fire Breath if 2+ PCs adjacent).</li>
+      <li><strong>Round 2+:</strong> Vorath flies 60 ft above melee, continues Hurl Flame. Uses Fork only if reached.</li>
+      <li><strong>Infernal Wound (Tail):</strong> Save for Drenwal — bleed 3d6/turn forces self-healing instead of others.</li>
+    </ul>
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> Vorath FLIES. Asimov can't reach him. Aurora's Eldritch Blast is the primary damage source. If they don't ground him (grapple from above, dispel flight, Moonbow Banishment), this fight drags.
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1FA99;</div>
+    <div class="drop-details">
+      <div class="drop-name">3 Soul Coins</div>
+      From Vorath's toll lockbox.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F4DC;</div>
+    <div class="drop-details">
+      <div class="drop-name">Infernal Toll Ledger</div>
+      Lists recent travelers, including "3 Bhaalspawn" traveling south 2 days ago — <strong>Dumal intel</strong>.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2694;</div>
+    <div class="drop-details">
+      <div class="drop-name">Hellfire Fork</div>
+      <span class="drop-rarity">Uncommon, +1 pike</span><br>
+      2d8+1 piercing. 1/day: Hurl Flame as action (4d6 fire, 150 ft). Not cursed.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= SMILER SCOUTS ======= -->
+<div class="page" id="smiler-scouts">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Roll 11-12v1: Smiler's Bike Scouts</div>
+      <div style="font-size:9pt; margin-top:2px;">Hit-and-run hobgoblin bikers</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-medium">MEDIUM</span><br>
+      CR 8 | XP 1,600
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Hobgoblin Captain x1</div>
+      <strong>AC</strong> 17 | <strong>HP</strong> 39 | <strong>CR</strong> 3<br>
+      On Devil's Ride. Longsword +4 (1d8+2).<br>
+      <strong>Signal Horn:</strong> Summons 2d4 hobgoblins in 10 min.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Hobgoblin x3</div>
+      <strong>AC</strong> 18 | <strong>HP</strong> 11 | <strong>CR</strong> 1/2<br>
+      On Devil's Rides. Javelin +3 (1d6+1, 30/120).<br>
+      <strong>Bike:</strong> AC 19, 50 HP, speed 120 ft.
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> Open wasteland. Bikes orbit at 60 ft throwing javelins. They never engage in melee. If a bike is destroyed (AC 19, 50 HP), rider crashes: 4d6 bludgeoning, prone.
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> Catch them. Bikes are faster than the party on foot. Solutions: shoot out bikes (AC 19), Repelling Blast riders off bikes, lay traps, use the Lady Vengeance to chase.
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1FA99;</div>
+    <div class="drop-details"><div class="drop-name">1 Soul Coin per bike</div></div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F4EF;</div>
+    <div class="drop-details">
+      <div class="drop-name">Signal Horn</div>
+      <span class="drop-rarity">Uncommon</span><br>
+      1/day: summon 1d4 hobgoblin allies within 1 mile.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F4DC;</div>
+    <div class="drop-details">
+      <div class="drop-name">Coded Message</div>
+      "The Moonkite's light weakens. Move before it dies." — Smiler knows about the Moonkite.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= KOVIC BLOCKADE ======= -->
+<div class="page" id="kovic-blockade">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Roll 11-12v2: Kovic's Merregon Blockade</div>
+      <div style="font-size:9pt; margin-top:2px;">Shield wall with ballista support</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-hard">HARD</span><br>
+      CR 14 | XP 8,400
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Merregon x6</div>
+      <strong>AC</strong> 18 | <strong>HP</strong> 45 | <strong>CR</strong> 4<br>
+      Halberd +6 (1d10+4). <strong>Shield Wall:</strong> AC 20 when adjacent to another merregon.<br>
+      <strong>Loyal Bodyguard:</strong> When adj. ally hit, merregon takes the damage instead.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Barbed Devil (Sergeant) x1</div>
+      <strong>AC</strong> 15 | <strong>HP</strong> 110 | <strong>CR</strong> 5<br>
+      Claw +6 (2d6+3). <strong>Hurl Flame:</strong> 3d6 fire, 150 ft.<br>
+      <strong>Ballista:</strong> +6, 3d10 piercing, 120/480 ft, 1 action reload.
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> Road crossing with overturned war machines forming a barricade. Ballista has line of sight down the road. Barricade is climbable (DC 15 Athletics).
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> The shield wall. AC 20 in formation + Loyal Bodyguard protects the Barbed Devil. Solutions: forced movement to break formation (Thunderwave, Repelling Blast), target ballista crew first, outflank via barricade climb, use Lady Vengeance's Arcane Cannons.
+  </div>
+
+  <p><strong>DC 17 Persuasion:</strong> Kovic's troops respect strength. If Rep 2+, they let pass for 2 SC. If party killed Bloodbath, DC 14 instead.</p>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1FA99;</div>
+    <div class="drop-details"><div class="drop-name">2 Soul Coins</div></div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F527;</div>
+    <div class="drop-details">
+      <div class="drop-name">Infernal Repair Kit</div>
+      <span class="drop-rarity">Uncommon</span><br>
+      Advantage on war machine repair checks. 1/day: restore 10 HP to war machine.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F4DC;</div>
+    <div class="drop-details">
+      <div class="drop-name">Kovic's Orders</div>
+      Reveals Kovic is stockpiling adamantine — related to <strong>Bel's Forge quest</strong>.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= RUST QUEEN ======= -->
+<div class="page" id="rust-queen">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Roll 11-12v3: Rust Queen's Acid Ambush</div>
+      <div style="font-size:9pt; margin-top:2px;">Equipment-destroying ambush in corrosive fog</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-hard">HARD</span><br>
+      CR 13 | XP 4,200
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Barbed Devil x2</div>
+      <strong>AC</strong> 15 | <strong>HP</strong> 110 | <strong>CR</strong> 5<br>
+      Hurl Flame (3d6 fire, 150 ft). Stay in fog (immune via fire immunity). Barbed Hide: 1d10 piercing to grapplers.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Rust Monster x2</div>
+      <strong>AC</strong> 14 | <strong>HP</strong> 27 | <strong>CR</strong> 1/2<br>
+      <strong>Antennae:</strong> DC 14 Dex or metal armor/weapon gets <strong>-1 AC permanently</strong>. Targets Drenwal's plate.
+    </div>
+  </div>
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Meazel x2</div>
+      <strong>AC</strong> 13 | <strong>HP</strong> 35 | <strong>CR</strong> 1<br>
+      <strong>Shadow Teleport:</strong> Invisible, grab PCs into acid pools or fog. Garrote +3 (1d6+1 + grapple).
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Terrain Hazards</div>
+      <strong>Acid pools:</strong> 2d6 acid/round.<br>
+      <strong>Corrosive fog:</strong> 30-ft cloud, DC 16 Con or disadvantage on attacks for 1 min. Moves 10 ft/round random direction.
+    </div>
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> Rust monsters permanently degrade Drenwal's AC. Must kill them FIRST. But meazels teleport PCs into fog, and barbed devils punish fog entry. Solutions: dispel fog (DC 15 Arcana), ranged attacks on rust monsters, Asimov assassinates them first (low HP, perfect Sneak Attack targets).
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F6E1;</div>
+    <div class="drop-details">
+      <div class="drop-name">Corroded Infernal Plate</div>
+      <span class="drop-rarity">Uncommon (needs repair)</span><br>
+      Repair at Fort Knucklebone for 5 soul coins: +1 half-plate with acid resistance.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F4DC;</div>
+    <div class="drop-details">
+      <div class="drop-name">Rust Queen's Token</div>
+      Safe passage through Rust Queen territory. 1 use.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= CARTOGRAPHER ======= -->
+<div class="page" id="cartographer">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Roll 11-12v4: The Cartographer</div>
+      <div style="font-size:9pt; margin-top:2px;">Rogue bone devil information broker</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-hard">HARD</span><br>
+      CR 12 | XP 6,800
+    </div>
+  </div>
+
+  <div class="stat-block">
+    <div class="stat-header">
+      <div class="stat-name">The Cartographer</div>
+      <div class="stat-type">Large fiend (devil), lawful evil — Bone Devil</div>
+    </div>
+    <div class="stat-body">
+      <div class="stat-line"><strong>AC</strong> 19 (natural armor) | <strong>HP</strong> 142 (15d10+60) | <strong>Speed</strong> 40 ft., fly 40 ft.</div>
+      <div class="stat-abilities">
+        <div><div class="ability-name">STR</div><div class="ability-score">18 (+4)</div></div>
+        <div><div class="ability-name">DEX</div><div class="ability-score">16 (+3)</div></div>
+        <div><div class="ability-name">CON</div><div class="ability-score">18 (+4)</div></div>
+        <div><div class="ability-name">INT</div><div class="ability-score">13 (+1)</div></div>
+        <div><div class="ability-name">WIS</div><div class="ability-score">14 (+2)</div></div>
+        <div><div class="ability-name">CHA</div><div class="ability-score">16 (+3)</div></div>
+      </div>
+      <div class="stat-line"><strong>Saves:</strong> Int +5, Wis +6, Cha +7</div>
+      <div class="stat-line"><strong>Immunities:</strong> fire, poison; poisoned</div>
+      <div class="stat-line"><strong>Senses:</strong> darkvision 120 ft., PP 12</div>
+
+      <div class="stat-section-title">Actions</div>
+      <div class="stat-action"><span class="action-name">Multiattack.</span> Claw + Sting.</div>
+      <div class="stat-action"><span class="action-name">Claw.</span> +8, 1d8+4 slashing.</div>
+      <div class="stat-action"><span class="action-name">Sting.</span> +8, 2d8+4 piercing + <strong>5d6 poison</strong> (DC 14 Con). Targets Aurora/Asimov (low Con).</div>
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Spined Devil Scouts x4</div>
+      <strong>AC</strong> 13 | <strong>HP</strong> 22 | <strong>CR</strong> 2<br>
+      Flyby (no opportunity attacks). Tail spine +4 (1d4+2 + 1d6 fire). Circle at 100 ft above.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Terrain</div>
+      Rocky outcropping. Cartographer perches on 30-ft pillar. Everything is elevated or flying. Ground melee is useless.
+    </div>
+  </div>
+
+  <h4>Social Option</h4>
+  <p>Wants to know: <em>"Where is the Tower of Urm now?"</em> Will trade ONE of: exact Crypt location (skip nav check), warning about Haruman's Hill guards, name of devil holding Kostchtchie's chains.</p>
+  <p><strong>DC 18 Insight:</strong> He's also selling info to Zariel's agents.</p>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> Everything flies or is elevated. Ground melee is useless. Cartographer flees at half HP. If he escapes, he sells party's location to Zariel (guaranteed ice devil encounter next travel segment).
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F5FA;</div>
+    <div class="drop-details">
+      <div class="drop-name">Cartographer's Map</div>
+      <span class="drop-rarity">Uncommon, 7-day duration</span><br>
+      +2 to all navigation checks for 7 days. Then the map shifts and becomes useless.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2620;</div>
+    <div class="drop-details">
+      <div class="drop-name">Bone Devil Venom (3 doses)</div>
+      Coat weapon: +2d6 poison on next hit. DC 14 Con or poisoned 1 hour.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= BOUNTY HUNTERS ======= -->
+<div class="page" id="bounty-hunters">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Roll 15-16: The Chain of Asmodeus</div>
+      <div style="font-size:9pt; margin-top:2px;">Professional bounty squad — they know the party's tactics</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-deadly">DEADLY</span><br>
+      CR 18 | XP 12,500
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Vexiris (Bone Devil Commander)</div>
+      <strong>AC</strong> 19 | <strong>HP</strong> 142 | <strong>CR</strong> 9<br>
+      <strong>Sting:</strong> +8, 2d8+4 + 5d6 poison (DC 14 Con).<br>
+      <strong>Targets Drenwal.</strong> Keeps healer poisoned = wrecks Spirit Guardians + healing.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">The Binder (Chain Devil)</div>
+      <strong>AC</strong> 16 | <strong>HP</strong> 85 | <strong>CR</strong> 8<br>
+      4 pre-set Animated Chains (AC 20, 20 HP each). DC 14 Dex or grappled + restrained (2d6 piercing/round).<br>
+      <strong>Targets Asimov.</strong> Restrained = no Sneak Attack advantage.
+    </div>
+  </div>
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Barbed Devil Enforcers x2</div>
+      <strong>AC</strong> 15 | <strong>HP</strong> 110 | <strong>CR</strong> 5<br>
+      Hurl Flame every round at Aurora (3d6 fire, 150 ft). On 30-ft-high ledges — unreachable by melee without climbing.<br>
+      <strong>Two hits/round = two concentration checks.</strong>
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Terrain</div>
+      Narrow ravine. 4 animated chains web the passage. Any creature moving through: DC 14 Dex or grappled + restrained.
+    </div>
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle: TARGET-SWAP.</strong> Each devil counters a specific PC. Fighting your assigned opponent = losing. The KEY:
+    <ul>
+      <li><strong>Asimov</strong> should assassinate barbed devils (low AC, climbable ledges, Sneak Attack from stealth)</li>
+      <li><strong>Aurora</strong> should Eldritch Blast the chain devil (low HP 85, force damage ignores resistances)</li>
+      <li><strong>Drenwal</strong> should Radiance of the Dawn (AoE, no attack rolls) then focus Vexiris with Spiritual Weapon</li>
+    </ul>
+  </div>
+
+  <p><strong>Negotiation:</strong> Vexiris accepts a bribe. <strong>10 soul coins</strong> or the Shield of the Hidden Lord. DC 18 Persuasion to reduce to 5 SC + intel.</p>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1FA99;</div>
+    <div class="drop-details"><div class="drop-name">3 Soul Coins</div>Bounty fund.</div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F4DC;</div>
+    <div class="drop-details">
+      <div class="drop-name">Infernal Warrant</div>
+      Names the party. Can be burned: DC 16 Arcana to dispel tracking magic. Or used as blackmail with other devils.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x26D3;</div>
+    <div class="drop-details">
+      <div class="drop-name">Binding Chains</div>
+      <span class="drop-rarity">Rare, wondrous</span><br>
+      50 ft hellforged chain. Action: throw at creature within 15 ft, DC 16 Str or restrained. Fiends can't teleport while restrained. 1/LR.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2620;</div>
+    <div class="drop-details">
+      <div class="drop-name">Venom Gland (5 doses)</div>
+      Bone devil venom. Coat weapon: +2d6 poison, DC 14 Con or poisoned 1h.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= BLOOD WAR SPILLOVER ======= -->
+<div class="page" id="blood-war">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Roll 19-20: Blood War Spillover</div>
+      <div style="font-size:9pt; margin-top:2px;">Devils vs. demons — pick a side or loot the aftermath</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-deadly">DEADLY</span><br>
+      CR 16 | XP varies
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Devil Side</div>
+      <strong>Ice Devil (wounded):</strong> AC 18, HP 120/180, CR 14<br>
+      <strong>Merregon x3 (wounded):</strong> AC 18, HP 30/45, CR 4<br>
+      All at 2/3 HP from fighting each other.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Demon Side</div>
+      <strong>Vrock x2 (wounded):</strong> AC 15, HP 70/104, CR 6<br>
+      <strong>Dretch x6:</strong> AC 11, HP 18, CR 1/4<br>
+      All at 2/3 HP.
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> Crossroads of two Avernus highways. Wrecked war machines burn. 20-ft crater (difficult terrain, lightly obscured by smoke). 2d4 soul coins scattered in crater.
+  </div>
+
+  <h4>Party Options</h4>
+  <table>
+    <tr><th>Choice</th><th>Outcome</th><th>Reward</th></tr>
+    <tr><td><strong>Wait & Watch</strong> (DC 15 Stealth)</td><td>Ice devil wins in 3 rounds (~60 HP left). Demands soul coins.</td><td>2d4 soul coins from crater</td></tr>
+    <tr><td><strong>Help Devils</strong></td><td>Ice devil gives Seal of Passage (skip 1 checkpoint)</td><td>Seal + Vrock Feathers (2 SC each)</td></tr>
+    <tr><td><strong>Help Demons</strong></td><td>DC 18 Persuasion or vrocks attack too</td><td>Frozen Signet Ring (Sleet Storm 1/day)</td></tr>
+    <tr><td><strong>Attack Everyone</strong></td><td>Both sides unite vs party for 1 round, then resume infighting</td><td>All drops. High risk.</td></tr>
+  </table>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> DIPLOMACY and TIMING. Fighting both sides is suicide. Picking a side has lasting faction consequences. The ice devil recognizes the party if Rep 3+.
+  </div>
+
+  <h4>Key Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2744;</div>
+    <div class="drop-details">
+      <div class="drop-name">Frozen Signet Ring</div>
+      <span class="drop-rarity">Rare (kill ice devil)</span><br>
+      1/day: cast Sleet Storm (DC 17, no concentration, 1 min).
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F4A7;</div>
+    <div class="drop-details">
+      <div class="drop-name">Demonic Ichor (3 doses)</div>
+      Poison weapon: 1d8 poison + DC 12 Con or stunned 1 round.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= FROST COMMISSION ======= -->
+<div class="page" id="frost-commission">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Roll 21-22: The Frost Commission</div>
+      <div style="font-size:9pt; margin-top:2px;">Ice devil hunting party — sent AFTER the Moonkite liberation</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-deadly">DEADLY+</span><br>
+      CR 20 | XP 16,900
+    </div>
+  </div>
+
+  <div class="stat-block">
+    <div class="stat-header">
+      <div class="stat-name">Commissioner Haelthos</div>
+      <div class="stat-type">Large fiend (devil), lawful evil — Ice Devil</div>
+    </div>
+    <div class="stat-body">
+      <div class="stat-line"><strong>AC</strong> 18 (natural armor) | <strong>HP</strong> 180 (19d10+76) | <strong>Speed</strong> 40 ft.</div>
+      <div class="stat-abilities">
+        <div><div class="ability-name">STR</div><div class="ability-score">21 (+5)</div></div>
+        <div><div class="ability-name">DEX</div><div class="ability-score">14 (+2)</div></div>
+        <div><div class="ability-name">CON</div><div class="ability-score">18 (+4)</div></div>
+        <div><div class="ability-name">INT</div><div class="ability-score">18 (+4)</div></div>
+        <div><div class="ability-name">WIS</div><div class="ability-score">15 (+2)</div></div>
+        <div><div class="ability-name">CHA</div><div class="ability-score">18 (+4)</div></div>
+      </div>
+      <div class="stat-line"><strong>Saves:</strong> Dex +7, Con +9, Wis +7, Cha +9</div>
+      <div class="stat-line"><strong>Immunities:</strong> fire, cold, poison; poisoned</div>
+      <div class="stat-line"><strong>Senses:</strong> blindsight 60 ft., darkvision 120 ft., PP 12</div>
+      <div class="stat-line"><strong>CR:</strong> 14 (11,500 XP)</div>
+
+      <div class="stat-section-title">Key Abilities</div>
+      <div class="stat-action"><span class="action-name">Wall of Ice (1/day).</span> 10 panels, each 10x10x1 ft. Deals 10d6 cold (DC 17 Dex half) to creatures in its space. Each panel: AC 5, 30 HP, <strong>vulnerable to fire</strong>, immune to cold/acid/necrotic/poison/psychic.</div>
+      <div class="stat-action"><span class="action-name">Multiattack.</span> Bite (+10, 2d6+5 + 3d6 cold), Claw (+10, 2d4+5 + 3d6 cold), Tail (+10, 2d6+5 + 3d6 cold). ~55 damage/round.</div>
+      <div class="stat-action"><span class="action-name">Tail Reach.</span> 10 ft. Attacks OVER Wall of Ice without exposing himself to melee.</div>
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Barbed Devil Enforcers x2</div>
+      <strong>AC</strong> 15 | <strong>HP</strong> 110 | <strong>CR</strong> 5<br>
+      Hurl Flame (3d6 fire). Position on opposite sides of ice pillars. Focus isolated PCs.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Spined Devil Scouts x4</div>
+      <strong>AC</strong> 13 | <strong>HP</strong> 22 | <strong>CR</strong> 2<br>
+      Flyby. Tail spines from 100 ft up. 2 may break off to sabotage the Lady Vengeance (DC 15 Perception to notice).
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> Open wasteland with 40-ft frozen patch (difficult terrain for non-devils). DC 14 Con at start of turn on ice or speed halved. Three 15-ft ice pillars (pre-cast Wall of Ice) block sightlines and create chokepoints.
+  </div>
+
+  <div class="read-aloud">"By the authority of the Lord of the First, you are ordered to surrender all celestial artifacts and submit to interrogation. Compliance will be rewarded. Resistance will be... processed."</div>
+
+  <div class="tactics-card">
+    <strong>Key Tactic:</strong> Wall of Ice splits the party. Wall between Drenwal and the others. Tail has 10-ft reach — attacks OVER the wall. Barbed devils focus whoever is isolated. Spined devils chip damage from 100 ft up.
+    <br><strong>Reinforcements:</strong> After 6 rounds, a spined devil fetches reinforcements. 1d4 hours later, another ice devil arrives.
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle: WALL OF ICE.</strong> If they can't get past/through/around the walls, Haelthos picks them off one by one.
+    <ul>
+      <li><strong>Fire damage</strong> = vulnerability (double damage destroys panels fast)</li>
+      <li><strong>Eldritch Blast</strong> (force) can target walls</li>
+      <li><strong>Misty Escape</strong> (Aurora's reaction teleport) bypasses walls</li>
+      <li><strong>Moonbow Banishment</strong> = Haelthos to the Feywild for 1 min (walls stay, but the brains leave)</li>
+    </ul>
+  </div>
+
+  <p><strong>DC 20 Persuasion/Deception</strong> to avoid combat. DC 18 Deception with a plausible lie about the Moonkite being already dead — Haelthos leaves to verify.</p>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1FA99;</div>
+    <div class="drop-details"><div class="drop-name">4 Soul Coins</div></div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2744;</div>
+    <div class="drop-details">
+      <div class="drop-name">Ice Devil's Heart</div>
+      <span class="drop-rarity">Very Rare, requires attunement</span><br>
+      Cold resistance. 1/LR: Cone of Cold (DC 17, 8d8 cold). Skin develops blue tinge — advantage on Intimidation vs fiends, disadvantage on Persuasion vs fiends.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F3C7;</div>
+    <div class="drop-details">
+      <div class="drop-name">Infernal Tack Fragment (1/3)</div>
+      Part of a nightmare saddle. Collect 3 to summon a Nightmare mount.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ============================================ -->
+<!-- LOCATION ENCOUNTERS                          -->
+<!-- ============================================ -->
+
+<!-- ======= CRYPT OF THE HELLRIDERS ======= -->
+<div class="page" id="crypt">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Crypt of the Hellriders</div>
+      <div style="font-size:9pt; margin-top:2px;">3-level dungeon + Death Knight social encounter</div>
+    </div>
+    <div class="enc-meta">
+      Travel: 8-12h | Nav DC 12
+    </div>
+  </div>
+
+  <!-- Level 1 -->
+  <h3 id="crypt-l1">Level 1: The Fallen Hall</h3>
+  <span class="badge badge-hard">HARD</span> CR 14 | XP 4,000
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Wight (Corrupted Hellrider) x4</div>
+      <strong>AC</strong> 14 | <strong>HP</strong> 45 | <strong>CR</strong> 3<br>
+      <strong>Life Drain:</strong> +4, 1d6+2 necrotic, DC 13 Con or max HP reduced.<br>
+      Focus Drenwal — divine casters drain faster.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Specter x6</div>
+      <strong>AC</strong> 12 | <strong>HP</strong> 22 | <strong>CR</strong> 1<br>
+      <strong>Life Drain:</strong> +4, 3d6 necrotic, DC 10 Con or max HP reduced.<br>
+      Phase through walls. Never fully emerge — half cover from walls.
+    </div>
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> Specters can't be reached in the walls. <strong>Radiance of the Dawn ignores cover</strong> (emanation, not attack). Drenwal is the key — but that burns a Channel Divinity he'll need later.
+  </div>
+
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F3C5;</div>
+    <div class="drop-details"><div class="drop-name">Hellrider's Medal</div>Advantage vs fear for 24h, 1 use. + 2 soul coins + Scroll of Revivify.</div>
+  </div>
+
+  <hr class="thin-divider">
+
+  <!-- Level 2 -->
+  <h3 id="crypt-l2">Level 2: The Bone Scriptorium</h3>
+  <span class="badge badge-hard">HARD</span> CR 14 | XP 5,000
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Deathlock Mastermind x2</div>
+      <strong>AC</strong> 13 | <strong>HP</strong> 110 | <strong>CR</strong> 6<br>
+      <strong>Spells:</strong> Blight (8d8 necrotic), Counterspell (3rd), Darkness + Devil's Sight.<br>
+      <strong>They WILL counter Drenwal's heals.</strong>
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Zombie Shieldbearers x8</div>
+      <strong>AC</strong> 8 | <strong>HP</strong> 22 | <strong>CR</strong> 1/4<br>
+      Undead Fortitude. Stand in front of deathlocks.<br>
+      <strong>Summoning circle:</strong> Spawns 1d4 more/round if not broken (DC 16 Arcana, full action).
+    </div>
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> Summoning circle = infinite zombies. Deathlocks have Counterspell. Grinding through zombies = losing to attrition. Solutions: break circle FIRST (DC 16 Arcana), kill deathlocks directly (fragile but hidden in Darkness), Asimov's Psychic Blades ignore Darkness.
+  </div>
+
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F4DC;</div>
+    <div class="drop-details"><div class="drop-name">Olanthius's Journal Fragment</div>Reveals he regrets serving Zariel. Hints at where to find him on L3. + Scroll of Remove Curse.</div>
+  </div>
+
+  <hr class="thin-divider">
+
+  <!-- Level 3 -->
+  <h3 id="crypt-l3">Level 3: Olanthius's Chamber</h3>
+  <span class="badge badge-social">SOCIAL / DEADLY</span> CR 17
+
+  <div class="stat-block">
+    <div class="stat-header">
+      <div class="stat-name">Olanthius</div>
+      <div class="stat-type">Medium undead, lawful evil — Death Knight (CR 17)</div>
+    </div>
+    <div class="stat-body">
+      <div class="stat-line"><strong>AC</strong> 20 (plate + shield) | <strong>HP</strong> 180 | <strong>Speed</strong> 30 ft.</div>
+      <div class="stat-line"><strong>Immunities:</strong> necrotic, poison; charmed, frightened, poisoned</div>
+
+      <div class="stat-section-title">Key Abilities (IF combat)</div>
+      <div class="stat-action"><span class="action-name">Hellfire Orb (1/day).</span> 20-ft sphere, DC 18 Dex, <strong>10d6 fire + 10d6 necrotic</strong>.</div>
+      <div class="stat-action"><span class="action-name">Destructive Wave.</span> 5d6 thunder + 5d6 necrotic, 30-ft radius.</div>
+      <div class="stat-action"><span class="action-name">Multiattack.</span> 3 longsword attacks, +11, 2d6+5 + 4d8 necrotic each.</div>
+      <div class="dm-note"><strong>WARNING:</strong> This fight is NEARLY UNWINNABLE for 3 level-11 PCs. Do not let them fight unless warned.</div>
+    </div>
+  </div>
+
+  <div class="read-aloud">"More mortals. The crypt draws them like moths. Speak, or leave. I have waited centuries — a few more minutes changes nothing."</div>
+
+  <p><strong>Free information:</strong> Zariel's history, Bleeding Citadel's purpose, Bel's location.</p>
+  <p><strong>Olanthius's Task:</strong> Free Kostchtchie from the Maw to distract Zariel. Reward: <strong>Hellrider Shield</strong> (+2 shield, advantage on saves vs fiend magic).</p>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= HARUMAN'S HILL ======= -->
+<div class="page" id="haruman">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Haruman's Hill</div>
+      <div style="font-size:9pt; margin-top:2px;">Fallen Hellrider paladin — jousting death knight</div>
+    </div>
+    <div class="enc-meta">
+      Nav DC 15 | 2 fights
+    </div>
+  </div>
+
+  <h3 id="haruman-approach">Approach: The Iron Forest</h3>
+  <span class="badge badge-deadly">DEADLY</span> CR 19 | XP 14,600
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Narzugon (Haruman's Lieutenant)</div>
+      <strong>AC</strong> 20 | <strong>HP</strong> 112 | <strong>CR</strong> 13<br>
+      <strong>Hellfire Lance:</strong> +10, 1d12+5 + 3d10 fire.<br>
+      <strong>Terrifying Command:</strong> DC 17 Cha or frightened.<br>
+      Rides Nightmare (Ethereal Stride — phases in and out).
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Chain Devil (Hanging Warden)</div>
+      <strong>AC</strong> 16 | <strong>HP</strong> 85 | <strong>CR</strong> 8<br>
+      Animated Chains pre-set across 60-ft area. Locks down anyone chasing the Narzugon.
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> Iron trees with chained screaming souls. Ash/bone difficult terrain. Iron trees block LOS every 15 ft. DC 18 Athletics to break a soul free = 2d10 radiant to Haruman + weakens his Legendary Resistance by 1 use.
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> Narzugon phases in/out of Ethereal Plane via Nightmare. Can't be damaged while ethereal. Solutions: Force Cage/Banishment on Material Plane, Moonbow Banishment (nightmare can't follow), See Invisibility/Truesight to ready attacks, <strong>kill the Nightmare FIRST</strong> (no mount = no phasing).
+  </div>
+
+  <hr class="thin-divider">
+
+  <h3 id="haruman-boss">Haruman — The Fallen Hellrider</h3>
+  <span class="badge badge-deadly">DEADLY</span> CR 17
+
+  <div class="stat-block">
+    <div class="stat-header">
+      <div class="stat-name">Haruman</div>
+      <div class="stat-type">Medium undead, lawful evil — Death Knight variant (CR 17)</div>
+    </div>
+    <div class="stat-body">
+      <div class="stat-line"><strong>AC</strong> 20 (plate + shield) | <strong>HP</strong> 180 | <strong>Speed</strong> 30 ft (60 ft mounted)</div>
+      <div class="stat-line"><strong>Saves:</strong> Dex +6, Wis +9, Cha +10</div>
+      <div class="stat-line"><strong>Immunities:</strong> necrotic, poison; charmed, frightened, poisoned</div>
+      <div class="stat-line"><strong>Resistances:</strong> cold, fire</div>
+
+      <div class="stat-section-title">Actions</div>
+      <div class="stat-action"><span class="action-name">Multiattack.</span> 3 longsword attacks: +11, 2d6+5 + 4d8 necrotic each.</div>
+      <div class="stat-action"><span class="action-name">Hellfire Orb (1/day).</span> 20-ft sphere, DC 18 Dex, 10d6 fire + 10d6 necrotic.</div>
+      <div class="stat-action"><span class="action-name">Terrifying Command.</span> DC 17 Cha or frightened 1 min.</div>
+    </div>
+  </div>
+
+  <div class="dm-note">
+    <strong>Haruman's Code:</strong> He WILL accept a one-on-one duel if challenged (DC 14 Persuasion). During the duel, his forces stand down. If the party breaks duel rules, his Legendary Resistances refresh + free Hellfire Orb.
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2694;</div>
+    <div class="drop-details">
+      <div class="drop-name">Haruman's Blade</div>
+      <span class="drop-rarity">Rare, +2 longsword</span><br>
+      2d6+2 slash + 2d8 necrotic. On crit: target can't regain HP for 1 minute.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F9B6;</div>
+    <div class="drop-details">
+      <div class="drop-name">Death Knight's Greaves</div>
+      <span class="drop-rarity">Rare, requires attunement</span><br>
+      +2 AC, necrotic immunity. Max HP reduced by 10 while worn.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= BEL'S FORGE ======= -->
+<div class="page" id="bel-forge">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Bel's Forge</div>
+      <div style="font-size:9pt; margin-top:2px;">Fire giant gauntlet + wrecked flying fortress</div>
+    </div>
+    <div class="enc-meta">
+      Nav DC 15 | 2 encounters
+    </div>
+  </div>
+
+  <h3 id="bel-giants">The Test of Worthiness — 4 Fire Giants</h3>
+  <span class="badge badge-deadly">DEADLY+</span> CR 20+ | XP 20,000
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Fire Giant x4</div>
+      <strong>AC</strong> 18 | <strong>HP</strong> 162 | <strong>CR</strong> 9<br>
+      <strong>Rock:</strong> +11, 4d10+7, 60/240 ft.<br>
+      <strong>Greatsword:</strong> +11, 6d6+7 slashing.<br>
+      Fight in pairs. Kick prone PCs into lava.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Forge Environment</div>
+      <strong>Lava channels:</strong> 2d10 fire/round (DC 15 Dex to avoid when pushed).<br>
+      <strong>Bellows:</strong> 30-ft cone, 6d6 fire (DC 17 Dex half), 1/round.<br>
+      <strong>Chains:</strong> Climbable (DC 14), 15 ft up.
+    </div>
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> 4 fire giants = impossible head-on. <strong>Use the forge:</strong>
+    <ul>
+      <li>Push/pull giants into lava (Repelling Blast, Thunderwave)</li>
+      <li>Bellows: 6d6 fire cone, reusable, hit multiple giants</li>
+      <li>Chains: fighting from 15 ft up forces giants to throw rocks (less damage)</li>
+      <li><strong>Bel's approval:</strong> 2+ environmental tricks = Bel stops the fight. "Enough. You think. I can use thinkers."</li>
+    </ul>
+  </div>
+
+  <div class="dm-note"><strong>Safety net:</strong> If 2 PCs go down, Bel calls it off. "You're not ready. Come back when you are."</div>
+
+  <hr class="thin-divider">
+
+  <h3 id="bel-fortress">Wrecked Flying Fortress</h3>
+  <span class="badge badge-hard">HARD-DEADLY</span> XP 21,000
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Necrotic Remorhaz</div>
+      <strong>AC</strong> 17 | <strong>HP</strong> 195 | <strong>CR</strong> 11<br>
+      Activates if safe combination failed 3 times.<br>
+      <strong>Safe code:</strong> 6-6-6 ("Three numbers the same, double in sum" = 18/3 = 6)
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Vrock x6 (outside)</div>
+      <strong>AC</strong> 15 | <strong>HP</strong> 104 | <strong>CR</strong> 6<br>
+      Avoidable: DC 16 Stealth to bypass.
+    </div>
+  </div>
+
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F48D;</div>
+    <div class="drop-details">
+      <div class="drop-name">Bel's Signet</div>
+      <span class="drop-rarity">Rare</span><br>
+      Advantage on Persuasion with devils. Identifies you as Bel's agent — dangerous if Zariel finds out.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= ARKHAN'S TOWER ======= -->
+<div class="page" id="arkhan">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Arkhan's Tower / Monument to Tiamat</div>
+      <div style="font-size:9pt; margin-top:2px;">Dragon sentries + Oathbreaker Paladin social</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-social">SOCIAL / DEADLY</span><br>
+      Travel: 12-20h | Nav DC 15
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Young White Dragon x2 (approach)</div>
+      <strong>AC</strong> 17 | <strong>HP</strong> 133 | <strong>CR</strong> 6<br>
+      Cold Breath: 30-ft cone, DC 15 Con, 10d8 cold.<br>
+      After 2 rounds, Krull on adult dragon commands them to stop (if alive). Dead dragon = Krull hostile (DC 18 Persuasion).
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Arkhan the Cruel</div>
+      <strong>AC</strong> 19 | <strong>HP</strong> 221 | <strong>CR</strong> 16<br>
+      Oathbreaker Paladin. Hand of Vecna. Accompanied by Torogar (CR 9) + Krull (CR 8).<br>
+      <strong>Total CR 24+. TPK fight. SOCIAL ONLY.</strong>
+    </div>
+  </div>
+
+  <p><strong>Arkhan's Demand:</strong> Blood sacrifice. He suggests Lulu. Alternatives: unicorn, CR 10+ creature, or DC 18 Persuasion for a vial of party's combined blood (1d6 necrotic each, permanent scar).</p>
+
+  <h4>Drops (social)</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1FA78;</div>
+    <div class="drop-details"><div class="drop-name">Vial of Tiamat's Blood</div><span class="drop-rarity">Quest item (Blood Pay)</span></div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F525;</div>
+    <div class="drop-details"><div class="drop-name">Tiamat's Scale</div>Fire resistance 1 hour, 3 uses.</div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= ULDRAK'S GRAVE ======= -->
+<div class="page" id="uldrak">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Uldrak's Grave</div>
+      <div style="font-size:9pt; margin-top:2px;">Glabrezu + tanarukks hunting a trapped empyrean</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-deadly">DEADLY</span><br>
+      CR 17 | XP 10,400
+    </div>
+  </div>
+
+  <div class="stat-block">
+    <div class="stat-header">
+      <div class="stat-name">Glabrezu</div>
+      <div class="stat-type">Large fiend (demon), chaotic evil</div>
+    </div>
+    <div class="stat-body">
+      <div class="stat-line"><strong>AC</strong> 17 | <strong>HP</strong> 157 (15d10+75) | <strong>Speed</strong> 40 ft.</div>
+      <div class="stat-line"><strong>Immunities:</strong> poison; poisoned</div>
+      <div class="stat-line"><strong>Resistances:</strong> cold, fire, lightning; nonmagical bludg/pierce/slash</div>
+
+      <div class="stat-section-title">Key Abilities</div>
+      <div class="stat-action"><span class="action-name">Power Word Stun.</span> Auto-stun if target has <strong>&lt;150 HP</strong>. No save.</div>
+      <div class="stat-action"><span class="action-name">Counterspell.</span> Can counter the party's Counterspell of its Power Word Stun.</div>
+      <div class="stat-action"><span class="action-name">Pincer.</span> +9, 2d12+5 bludgeoning. Grapples + throws into fissures.</div>
+    </div>
+  </div>
+
+  <div class="qref-card" style="margin: 8px 0;">
+    <div class="qref-name">Tanarukk x3</div>
+    <strong>AC</strong> 14 | <strong>HP</strong> 95 | <strong>CR</strong> 5 | Greatsword +4 (2d6+4)<br>
+    <strong>Reckless Attack:</strong> advantage on attacks, attacks against them have advantage.<br>
+    <strong>Aggressive:</strong> bonus action move toward hostile creature.
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> Rocky badlands with deep fissures (30-ft drops, 3d6 bludgeoning). Uldrak (spined devil form) cowers behind a boulder.
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> Power Word Stun has NO SAVE if under 150 HP. The party must keep HP above 150 (proactive healing, not reactive). Or: Counterspell it — but the Glabrezu has Counterspell too (spell duel).
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2728;</div>
+    <div class="drop-details">
+      <div class="drop-name">Mote of Heavenly Light</div>
+      <span class="drop-rarity">Rare, requires attunement</span><br>
+      +2d6 radiant to weapon attacks. Advantage on Wis saves.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= OBELISK ======= -->
+<div class="page" id="obelisk">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">The Obelisk — Ubbalux the Balor</div>
+      <div style="font-size:9pt; margin-top:2px;">Free the balor correctly or TPK</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-deadly">DEADLY</span><br>
+      CR 17 | Nav DC 18
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Chain Devil Wardens x2</div>
+      <strong>AC</strong> 16 | <strong>HP</strong> 85 | <strong>CR</strong> 8<br>
+      Animated Chains restrain anyone approaching the Obelisk.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Bone Devil Overseer</div>
+      <strong>AC</strong> 19 | <strong>HP</strong> 142 | <strong>CR</strong> 9<br>
+      Sting poisons PCs who get close.
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> 60-ft black obelisk. Ubbalux (balor) chained inside. Area is scorching (DC 14 Con every 10 min or gain exhaustion). Ritual circle surrounds obelisk — stepping in triggers Glyph of Warding (5d8 thunder, DC 17 Dex half).
+  </div>
+
+  <div class="dm-note">
+    <strong>The Ritual:</strong> DC 18 Arcana to understand binding. Someone must take Ubbalux's place. Krikendolt (Spawning Trees, DC 14 Persuasion) will volunteer.<br>
+    <strong>Freed incorrectly (no replacement):</strong> Full-power Balor (CR 19, 262 HP). <strong>TPK. Run.</strong><br>
+    <strong>Freed correctly:</strong> Ubbalux has 4 exhaustion levels. Provides blood (quest item) + collapses.
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1FA78;</div>
+    <div class="drop-details"><div class="drop-name">Balor Blood</div><span class="drop-rarity">Quest item (Blood Pay)</span></div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x26D3;</div>
+    <div class="drop-details">
+      <div class="drop-name">Chain of Binding</div>
+      <span class="drop-rarity">Rare</span><br>
+      As Binding Chains but recharges on <strong>short rest</strong> instead of long rest.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= SHUMMRATH'S PIT ======= -->
+<div class="page" id="shummrath">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Shummrath's Pit</div>
+      <div style="font-size:9pt; margin-top:2px;">Dam the Styx, fight patrols, corner a weakened Pit Fiend</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-deadly">DEADLY</span><br>
+      Travel: 14-24h | Nav DC 18
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Styx Patrol (hour 12)</div>
+      <strong>Merregon x6:</strong> AC 18, HP 45, CR 4<br>
+      <strong>Bone Devil:</strong> AC 19, HP 142, CR 9<br>
+      XP: 11,600. Roll random encounters twice during 24h wait.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Shummrath (Exhausted Pit Fiend)</div>
+      <strong>AC</strong> 19 | <strong>HP</strong> 150 (halved) | <strong>CR</strong> 20<br>
+      4 exhaustion levels. Disadvantage on attacks.<br>
+      <strong>Still has:</strong> Fear Aura (DC 21), Fireball (8d6), Wall of Fire (5d8) — no attack rolls needed.
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> River Styx banks. <strong>Touching Styx:</strong> DC 16 Int save or lose all memories (feeblemind, permanent without Greater Restoration). Styx fumes = lightly obscured within 10 ft.
+  </div>
+
+  <div class="dm-note">
+    <strong>Damming:</strong> DC 15 Str per shatterstick. Failure = 5d6 thunder, 15-ft radius, DC 15 Dex half. Need 3 successes. Then 24h wait.<br>
+    <strong>Social:</strong> DC 20 Persuasion or DC 18 Intimidation. Shummrath trades ichor for freedom. Fights until 50 HP then negotiates.
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1FA78;</div>
+    <div class="drop-details"><div class="drop-name">Pit Fiend Ichor</div><span class="drop-rarity">Quest item (Blood Pay)</span></div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2694;</div>
+    <div class="drop-details">
+      <div class="drop-name">Hellfire Flail</div>
+      <span class="drop-rarity">Rare, +1 weapon</span><br>
+      +2d6 fire. 1/day: Fireball (4th level) — only if evil. Otherwise just +1 and 2d6 fire.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= MIRROR OF MEPHISTAR ======= -->
+<div class="page" id="mephistar">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Mirror of Mephistar</div>
+      <div style="font-size:9pt; margin-top:2px;">SOCIAL ONLY — 4 ice devils guard the mirror. DO NOT FIGHT.</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-social">SOCIAL</span><br>
+      CR 50+ | Travel: 10-18h
+    </div>
+  </div>
+
+  <div class="dm-note" style="border-left-color: var(--red);">
+    <strong style="color: var(--red);">COMBAT = TPK.</strong> 4 ice devils (720 HP combined). Each uses Wall of Ice to isolate PCs. This is a SOCIAL encounter.
+  </div>
+
+  <div class="qref-card" style="margin: 8px 0;">
+    <div class="qref-name">Rigorath (Mephistopheles's Mouthpiece)</div>
+    Cambion stats (CR 5). Conducts all negotiations. The 4 ice devils stand silently.
+  </div>
+
+  <p><strong>Payment:</strong> 5 soul coins OR a blood sample from each PC (1d6 necrotic, no save, Mephistopheles keeps blood for scrying).</p>
+  <p><strong>DC 20 Deception:</strong> Reduce to 1 PC's blood only. <strong>DC 18 Persuasion with leverage:</strong> Trade intel for intel (e.g., Moonkite liberation info) — no cost.</p>
+
+  <h4>Information Available</h4>
+  <ul>
+    <li>Fallen Three locations and weaknesses (redundant if Mordenkainen gave this)</li>
+    <li>Identity of the sphinx at Arches of Ulloch + trick to passing the test</li>
+    <li>Zariel's patrol schedules (avoid combat on the road)</li>
+  </ul>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= BONE BRAMBLES ======= -->
+<div class="page" id="bone-brambles">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Bone Brambles — Red Ruth</div>
+      <div style="font-size:9pt; margin-top:2px;">Bramble maze + Night Hag information broker</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-hard">HARD</span><br>
+      CR 13 | Travel: 8-14h
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Enhanced Skeleton x6</div>
+      <strong>AC</strong> 13 | <strong>HP</strong> 45 | <strong>CR</strong> 2<br>
+      Multiattack: 2 claws (+4, 1d6+2). Use brambles as three-quarters cover (+5 AC effective).
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Bone Devil (Bramble Guardian)</div>
+      <strong>AC</strong> 19 | <strong>HP</strong> 142 | <strong>CR</strong> 9<br>
+      Hides deeper in maze. Stings PCs who wander into dead ends.
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> Thorny bone brambles. Half speed in brambles. DC 14 Dex each round or 2d6 piercing. DC 15 Survival to navigate clear paths. Wrong path = dead end with grapple trap (DC 16 Athletics escape, 2d6 piercing/round).
+  </div>
+
+  <h4>Red Ruth (Social)</h4>
+  <p>Night hag (CR 5 but NOT for combat). Demands a <strong>painful MEMORY</strong> as payment from each PC. The PC describes it; if genuine (roleplay, no check), Red Ruth extracts it — the PC forgets permanently.</p>
+  <p><strong>Alternative:</strong> DC 18 Persuasion with 3 soul coins. She prefers memories.</p>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F9B4;</div>
+    <div class="drop-details">
+      <div class="drop-name">Oracle Bone</div>
+      <span class="drop-rarity">Uncommon</span><br>
+      1/LR: advantage on 1 Int or Wis check.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F9B7;</div>
+    <div class="drop-details">
+      <div class="drop-name">Red Ruth's Hag Tooth</div>
+      <span class="drop-rarity">Rare, 1 use</span><br>
+      Summon Red Ruth. She answers one question truthfully. Tooth crumbles.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= ARCHES OF ULLOCH ======= -->
+<div class="page" id="arches">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Arches of Ulloch (Endgame)</div>
+      <div style="font-size:9pt; margin-top:2px;">Androsphinx quiz — passage to the Bleeding Citadel</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-deadly">QUIZ / DEADLY</span><br>
+      CR 17 | Nav DC 22
+    </div>
+  </div>
+
+  <div class="stat-block">
+    <div class="stat-header">
+      <div class="stat-name">Ulloch the Sphinx</div>
+      <div class="stat-type">Large monstrosity, lawful neutral — Androsphinx (CR 17)</div>
+    </div>
+    <div class="stat-body">
+      <div class="stat-line"><strong>AC</strong> 17 | <strong>HP</strong> 199 | <strong>Speed</strong> 40 ft., fly 60 ft.</div>
+      <div class="stat-line"><strong>Legendary Actions:</strong> 3/round. Teleport. 6th-level spells (Flame Strike, Greater Restoration).</div>
+      <div class="stat-line"><strong>Claw:</strong> +12, 2d10+9 slashing.</div>
+
+      <div class="stat-section-title">Roar (wrong answer consequences)</div>
+      <div class="stat-action"><span class="action-name">1st wrong:</span> 500 ft, DC 18 Wis or frightened 1 min.</div>
+      <div class="stat-action"><span class="action-name">2nd wrong:</span> DC 18 Wis or frightened + deafened 1 min + 2d6 thunder.</div>
+      <div class="stat-action"><span class="action-name">3rd wrong:</span> DC 18 Wis or paralyzed + frightened + deafened 1 min + <strong>8d6 thunder. Combat begins.</strong></div>
+    </div>
+  </div>
+
+  <p><strong>The Nine Hells Quiz:</strong> 9 questions — one about each layer. DC 15 Int (Arcana/History/Religion) per question. <strong>Gargauth can answer any automatically</strong> — but each answer costs +1 Gargauth influence.</p>
+
+  <h4>Drops (quiz success)</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F510;</div>
+    <div class="drop-details">
+      <div class="drop-name">Passage to the Bleeding Citadel</div>
+      <span class="drop-rarity">Quest progression</span>
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x2753;</div>
+    <div class="drop-details">
+      <div class="drop-name">Sphinx's Riddle</div>
+      <span class="drop-rarity">Rare, wondrous</span><br>
+      1/LR: ask one yes/no question about a creature, location, or object — answered truthfully.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= KOSTCHTCHIE'S MAW ======= -->
+<div class="page" id="kostchtchie">
+  <div class="encounter-header">
+    <div>
+      <div class="enc-title">Kostchtchie's Maw</div>
+      <div style="font-size:9pt; margin-top:2px;">Free the demon lord — level 12+ recommended</div>
+    </div>
+    <div class="enc-meta">
+      <span class="badge badge-deadly">DEADLY+</span><br>
+      CR 24 | XP 25,800
+    </div>
+  </div>
+
+  <div class="qref-grid">
+    <div class="qref-card">
+      <div class="qref-name">Narzugon x2</div>
+      <strong>AC</strong> 20 | <strong>HP</strong> 112 | <strong>CR</strong> 13<br>
+      <strong>Terrifying Command:</strong> DC 17 Cha or frightened (can't approach Maw).<br>
+      <strong>Hellfire Lance:</strong> +10, 1d12+5 + 3d10 fire.<br>
+      Ride Nightmares. Phase in/out.
+    </div>
+    <div class="qref-card">
+      <div class="qref-name">Merregon x4 + Nightmares x2</div>
+      <strong>Merregon:</strong> AC 18, HP 45, CR 4. Shield wall at staircase. Loyal Bodyguard.<br>
+      <strong>Nightmare:</strong> AC 13, HP 68, CR 3. Ethereal Stride.
+    </div>
+  </div>
+
+  <div class="terrain-card">
+    <strong>Terrain:</strong> 100-ft pit. Kostchtchie (CR 26 demon lord) chained at the bottom. Narzugons patrol the rim. Merregons guard the only staircase down.
+  </div>
+
+  <div class="puzzle-card">
+    <strong>Puzzle:</strong> DON'T fight — BREAK THE CHAINS. DC 20 Athletics or DC 18 Arcana (3 successes). Each attempt provokes — guardians focus chain-breakers. <strong>The play:</strong> 2 PCs distract, 1 PC breaks chains.
+    <br><br>
+    <strong>Kostchtchie freed:</strong> He attacks the GUARDIANS first (hates devils more than mortals). The party should RUN. Kostchtchie (CR 26) rampages across Avernus for 1d4 days, drawing Zariel's attention.
+  </div>
+
+  <h4>Drops</h4>
+  <div class="drop-card">
+    <div class="drop-icon">&#x1F3C7;</div>
+    <div class="drop-details">
+      <div class="drop-name">Infernal Tack Fragment (3/3 — COMPLETE SET)</div>
+      <span class="drop-rarity">Very Rare</span><br>
+      Summon a Nightmare mount 1/day.
+    </div>
+  </div>
+  <div class="drop-card">
+    <div class="drop-icon">&#x26D3;</div>
+    <div class="drop-details">
+      <div class="drop-name">Chains of Kostchtchie</div>
+      <span class="drop-rarity">Rare</span><br>
+      10 ft hellforged chain. +3 grapple checks. Restrained creature can't teleport. 50 lbs.
+    </div>
+  </div>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+<!-- ======= QUICK REFERENCE ======= -->
+<div class="page" id="quick-ref">
+  <h2>Encounter Difficulty Quick Reference</h2>
+
+  <table>
+    <tr><th>Encounter</th><th>CR Budget</th><th>Difficulty</th><th>XP (total)</th></tr>
+    <tr><td>7-8 Toll Collectors</td><td>13</td><td class="hard">Hard</td><td>10,000</td></tr>
+    <tr><td>11-12v1 Smiler Scouts</td><td>8</td><td class="medium">Medium</td><td>1,600</td></tr>
+    <tr><td>11-12v2 Kovic Blockade</td><td>14</td><td class="hard">Hard</td><td>8,400</td></tr>
+    <tr><td>11-12v3 Rust Queen Ambush</td><td>13</td><td class="hard">Hard</td><td>4,200</td></tr>
+    <tr><td>11-12v4 The Cartographer</td><td>12</td><td class="hard">Hard</td><td>6,800</td></tr>
+    <tr><td>15-16 Bounty Hunters</td><td>18</td><td class="deadly">Deadly</td><td>12,500</td></tr>
+    <tr><td>19-20 Blood War Spillover</td><td>16</td><td class="deadly">Deadly</td><td>varies</td></tr>
+    <tr><td>21-22 Frost Commission</td><td>20</td><td class="deadly">Deadly+</td><td>16,900</td></tr>
+  </table>
+
+  <table>
+    <tr><th>Location</th><th>CR Budget</th><th>Difficulty</th><th>XP (total)</th></tr>
+    <tr><td>Crypt L1 (Fallen Hall)</td><td>14</td><td class="hard">Hard</td><td>4,000</td></tr>
+    <tr><td>Crypt L2 (Scriptorium)</td><td>14</td><td class="hard">Hard</td><td>5,000</td></tr>
+    <tr><td>Crypt L3 (Olanthius)</td><td>17</td><td class="social">Social/Deadly</td><td>--</td></tr>
+    <tr><td>Haruman Approach</td><td>19</td><td class="deadly">Deadly</td><td>14,600</td></tr>
+    <tr><td>Haruman Boss</td><td>17</td><td class="deadly">Deadly</td><td>25,000</td></tr>
+    <tr><td>Bel's Forge (Giants)</td><td>20+</td><td class="deadly">Deadly+ (env)</td><td>20,000</td></tr>
+    <tr><td>Wrecked Fortress</td><td>11-17</td><td class="hard">Hard-Deadly</td><td>21,000</td></tr>
+    <tr><td>Arkhan's Tower</td><td>16-24</td><td class="social">Social/Deadly</td><td>varies</td></tr>
+    <tr><td>Uldrak's Grave</td><td>17</td><td class="deadly">Deadly</td><td>10,400</td></tr>
+    <tr><td>Obelisk (Ubbalux)</td><td>17</td><td class="deadly">Hard (soc.)</td><td>12,800</td></tr>
+    <tr><td>Shummrath's Pit</td><td>15-20</td><td class="deadly">Hard + Boss</td><td>11,600+</td></tr>
+    <tr><td>Mirror of Mephistar</td><td>50+</td><td class="social">SOCIAL ONLY</td><td>--</td></tr>
+    <tr><td>Bone Brambles</td><td>13</td><td class="hard">Hard</td><td>7,700</td></tr>
+    <tr><td>Arches of Ulloch</td><td>17</td><td class="deadly">Quiz/Deadly</td><td>--</td></tr>
+    <tr><td>Kostchtchie's Maw</td><td>24</td><td class="deadly">Deadly+ (12+)</td><td>25,800</td></tr>
+  </table>
+
+  <a href="#nav-top" class="back-to-nav">Back to Navigation</a>
+</div>
+
+</div><!-- /content -->
+
+</body>
+</html>

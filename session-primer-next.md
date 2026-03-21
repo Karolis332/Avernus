@@ -141,9 +141,40 @@ The "river of blood" is not metaphorical. It's a literal tributary of gore that 
 
 **Environmental hazard:** Anyone touching the river must make a **DC 14 CON save** or be **poisoned for 1 hour** (vomiting, weakness). Falling in: DC 14 CON save or take **3d6 necrotic damage** per round and gain 1 level of exhaustion on exit.
 
+### The Smog of the Damned (Environmental Hazard — Entire Act 2 & 3)
+
+As the party follows the river south toward the Palace of Gore, the air thickens. This is not fog — it's the exhalation of Avernus itself. The gore river generates a choking miasma of sulphurous vapor, rotting blood fumes, and infernal ash. It gets worse the closer they get to the Palace.
+
+**Phase 1 — The Creeping Haze (first hour, Landmark 1)**
+- Lightly obscured. Disadvantage on Perception checks beyond 60 ft.
+- DC 12 CON save every 30 minutes or gain 1 level of **exhaustion** (retching, stinging eyes, labored breathing).
+- The Lady Vengeance's crew (if aboard) must make the same saves. Crew failure means reduced ship performance: -10 ft speed per failed crew member.
+
+**Phase 2 — The Blood Fog (hours 2-3, Landmarks 2-3)**
+- Heavily obscured beyond 30 ft. Attack rolls against targets beyond 30 ft have disadvantage.
+- DC 14 CON save every 20 minutes or gain 1 level of exhaustion.
+- **Navigation penalty:** All Survival/Perception checks to navigate, track, or scout take a **-3 penalty**.
+- Tracking checks to find the Palace: **DC 17 Survival** (normally DC 14 — the smog obscures landmarks and distorts distances).
+- Fire-based light sources (torches, campfires) gutter and dim — reduced to half radius. Magical light works normally but draws attention (DC 14 Stealth or patrols notice the light through the fog).
+
+**Phase 3 — The Choking Pall (final approach, within 1 mile of Palace)**
+- Heavily obscured beyond 15 ft. The smog is thick enough to taste — copper, rot, brimstone.
+- DC 15 CON save every 10 minutes or gain 1 level of exhaustion AND take **1d6 poison damage**.
+- **Crew collapse:** If the Lady Vengeance crew has 2+ exhaustion levels, they refuse to go further. The party must continue on foot.
+- **The Moonbow reacts:** Aurora's Moonbow cuts through the smog in a 10-ft radius of silver light — providing a pocket of clean air (no CON saves within the radius). But the light is a beacon. Any Phase 3 stealth check automatically fails while the Moonbow is active. Aurora must choose: breathe or hide.
+
+**Smog Mitigation:**
+- *Protection from Poison* negates CON saves for 1 hour (1 creature).
+- *Gust of Wind* clears a 60-ft line for 1 round, then the smog refills.
+- Wet cloth over mouth/nose: advantage on CON saves (costs nothing, someone must suggest it).
+- Salve of Shadow (if they have it): grants immunity to the smog's poison damage for 1 hour.
+- The drainage tunnel entrance (from Smiler's intel) bypasses the worst of Phase 3 — the tunnel is below the smog layer.
+
+**DM Note:** The smog is designed to drain resources BEFORE the boss fight. Exhaustion stacks are the real threat — at 3 levels, the party has disadvantage on attacks AND saves. They need to manage it or arrive at Bitter Breath's door half-dead. The Moonbow dilemma (clean air vs. stealth) is a genuine tactical choice with no right answer.
+
 ### Following the River (Exploration)
 
-The party follows the river for 2-3 hours. Along the way:
+The party follows the river for 2-3 hours. The smog thickens as they go (see phases above). Along the way:
 
 **Landmark 1 — The Bone Dam (0:30 in)**
 A crude dam made of bones and war machine wreckage partially blocks the river. Bodies of demons and hobgoblins are tangled in it. **DC 14 Investigation:** These are Bloodbath's old forces — killed by Bitter Breath during his takeover. Some were executed (clean cuts), some were drowned in the river. Bitter Breath purged anyone still loyal to his brother.
