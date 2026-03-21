@@ -14,6 +14,12 @@
 **Tone:** Tense journey, building dread, personal stakes, then a brutal boss fight with an emotional payoff
 **Target length:** 5-6 hours
 
+**Companion documents:**
+- `encounter-appendix.md` / `encounter-appendix.html` — Full stat blocks, tactics, terrain, puzzles, and drops for ALL random encounters and sandbox locations. Open the HTML version for sidebar navigation and stat block cards.
+- `bitter-breath-statblock.md` — Boss stat block
+- `loot-and-items.md` — Magic items, evolving items, currency
+- `encounter-tables.md` — Random encounter tables, scaling philosophy
+
 ---
 
 ## Pacing Guide (5-6 Hours)
@@ -96,6 +102,10 @@ Drenwal hasn't killed anyone meaningful recently. **The Hunger** mechanic:
 - Dreams become worse — flash of Dumal burning a village, Bhaal's laughter
 - The Shield resists his grip slightly (disadvantage on Shield-related checks until he feeds the Hunger)
 
+### Random Travel Encounter (Roll d20 — see `encounter-appendix.md`)
+
+If the party travels for 4+ hours before reaching the Smiler encounter, roll on the random encounter table. Full stat blocks, tactics, terrain, puzzles, and drops for every result are in `encounter-appendix.md` (or open `encounter-appendix.html` for the navigable version with stat block cards).
+
 ### Travel Encounter: The Smiler Proposition (Medium difficulty — RP + possible combat)
 
 **Setup:** 4 hours into the journey, the party spots a war machine parked sideways across a narrow canyon pass. Painted on the side in blood: a grinning face. **Smiler the Defiler** is waiting for them.
@@ -142,6 +152,8 @@ The "river of blood" is not metaphorical. It's a literal tributary of gore that 
 **Environmental hazard:** Anyone touching the river must make a **DC 14 CON save** or be **poisoned for 1 hour** (vomiting, weakness). Falling in: DC 14 CON save or take **3d6 necrotic damage** per round and gain 1 level of exhaustion on exit.
 
 ### The Smog of the Damned (Environmental Hazard — Entire Act 2 & 3)
+
+> **Quick reference:** Full smog mechanics with phase cards are also in `encounter-appendix.html` under "Smog of the Damned" (click in sidebar nav).
 
 As the party follows the river south toward the Palace of Gore, the air thickens. This is not fog — it's the exhalation of Avernus itself. The gore river generates a choking miasma of sulphurous vapor, rotting blood fumes, and infernal ash. It gets worse the closer they get to the Palace.
 
@@ -275,6 +287,8 @@ If the party took fights in the infiltration, they'll want a short rest before t
 ---
 
 ## ACT 4: BITTER BREATH BOSS FIGHT (1.5 hours)
+
+> **Stat blocks & XP:** All creature stat blocks, anti-party tactics, and XP values are in `encounter-appendix.md`. The boss fight here uses the Bitter Breath stat block from `bitter-breath-statblock.md`. For any random encounters rolled during travel, see the encounter appendix.
 
 ### Setup
 
