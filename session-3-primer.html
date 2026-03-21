@@ -1,0 +1,1196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 3 Primer — The River of Blood</title>
+<style>
+  @import url('https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700;900&family=Crimson+Text:ital,wght@0,400;0,600;0,700;1,400;1,600&family=EB+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&display=swap');
+
+  :root {
+    --bg: #fdf1dc;
+    --text: #1a1a1a;
+    --accent: #58180d;
+    --accent2: #7a200d;
+    --border: #c9a96e;
+    --table-alt: #f5e6c8;
+    --box-bg: #f0e0c0;
+    --dm-bg: #fff8e7;
+    --green: #2d6a2e;
+    --yellow: #8a6d00;
+    --orange: #b44d00;
+    --red: #8b1a1a;
+    --purple: #5a2d6a;
+    --blue: #1a4a6e;
+  }
+
+  * { margin: 0; padding: 0; box-sizing: border-box; }
+
+  body {
+    background: #1a1a1a;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px 20px;
+    font-family: 'Crimson Text', Georgia, serif;
+    font-size: 11.5pt;
+    line-height: 1.45;
+    color: var(--text);
+  }
+
+  .page {
+    width: 800px;
+    background: var(--bg);
+    background-image:
+      radial-gradient(ellipse at 20% 10%, rgba(139,90,43,0.06) 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, rgba(139,90,43,0.04) 0%, transparent 50%);
+    padding: 45px 50px;
+    margin-bottom: 20px;
+    box-shadow: 0 0 25px rgba(0,0,0,0.5);
+    border: 1px solid var(--border);
+    position: relative;
+    page-break-after: always;
+  }
+
+  .page::before {
+    content: '';
+    position: absolute;
+    top: 6px; left: 6px; right: 6px; bottom: 6px;
+    border: 1px solid rgba(139,90,43,0.15);
+    pointer-events: none;
+  }
+
+  .page:last-child { page-break-after: avoid; }
+
+  h1 {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 28pt;
+    color: var(--accent);
+    text-align: center;
+    margin-bottom: 4px;
+    letter-spacing: 2px;
+  }
+
+  h2 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 17pt;
+    color: var(--accent);
+    border-bottom: 2px solid var(--accent);
+    padding-bottom: 4px;
+    margin: 22px 0 10px 0;
+  }
+
+  h3 {
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 13pt;
+    color: var(--accent2);
+    margin: 14px 0 6px 0;
+  }
+
+  h4 {
+    font-family: 'Crimson Text', serif;
+    font-weight: 700;
+    font-size: 11.5pt;
+    color: var(--accent);
+    margin: 10px 0 4px 0;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+  }
+
+  .subtitle {
+    font-family: 'Cinzel', serif;
+    font-size: 12pt;
+    color: var(--accent2);
+    text-align: center;
+    margin-bottom: 2px;
+    letter-spacing: 1px;
+  }
+
+  .session-info {
+    text-align: center;
+    font-style: italic;
+    color: #666;
+    margin-bottom: 18px;
+    font-size: 10.5pt;
+  }
+
+  .divider {
+    border: none;
+    border-top: 2px solid var(--accent);
+    margin: 16px 0;
+    opacity: 0.4;
+  }
+
+  .thin-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 10px 0;
+  }
+
+  /* Table of Contents */
+  .toc {
+    columns: 2;
+    column-gap: 30px;
+    margin: 10px 0;
+  }
+  .toc a {
+    color: var(--accent);
+    text-decoration: none;
+    font-size: 11pt;
+    display: block;
+    padding: 2px 0;
+  }
+  .toc a:hover { text-decoration: underline; }
+  .toc-section {
+    font-weight: 700;
+    font-family: 'Cinzel', serif;
+    font-size: 10pt;
+    margin-top: 8px;
+    color: var(--accent2);
+  }
+
+  /* Tables */
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 8px 0 12px 0;
+    font-size: 10.5pt;
+  }
+  th {
+    background: var(--accent);
+    color: #fdf1dc;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 9.5pt;
+    letter-spacing: 0.5px;
+    padding: 6px 8px;
+    text-align: left;
+  }
+  td {
+    padding: 5px 8px;
+    border-bottom: 1px solid rgba(139,90,43,0.2);
+    vertical-align: top;
+  }
+  tr:nth-child(even) td { background: var(--table-alt); }
+
+  /* Difficulty colors */
+  .safe { color: var(--green); font-weight: 700; }
+  .medium { color: var(--yellow); font-weight: 700; }
+  .hard { color: var(--orange); font-weight: 700; }
+  .deadly { color: var(--red); font-weight: 700; }
+  .social { color: var(--blue); font-weight: 700; }
+  .personal { color: var(--purple); font-weight: 700; }
+
+  /* Boxed read-aloud text */
+  .read-aloud {
+    background: var(--box-bg);
+    border-left: 4px solid var(--accent);
+    padding: 10px 14px;
+    margin: 8px 0;
+    font-style: italic;
+    font-size: 11pt;
+  }
+
+  /* DM note */
+  .dm-note {
+    background: var(--dm-bg);
+    border: 1px solid var(--border);
+    border-left: 4px solid #c5942a;
+    padding: 8px 12px;
+    margin: 8px 0;
+    font-size: 10.5pt;
+  }
+  .dm-note strong { color: #8a6d00; }
+
+  /* Stat line */
+  .stat-line {
+    font-family: 'EB Garamond', serif;
+    font-size: 10.5pt;
+    line-height: 1.35;
+  }
+  .stat-line strong { color: var(--accent); }
+
+  /* Phase box */
+  .phase {
+    border: 2px solid var(--accent);
+    padding: 10px 14px;
+    margin: 8px 0;
+    position: relative;
+  }
+  .phase-label {
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 10pt;
+    color: white;
+    background: var(--accent);
+    padding: 2px 10px;
+    position: absolute;
+    top: -12px;
+    left: 10px;
+    letter-spacing: 1px;
+  }
+
+  /* Checklist */
+  .checklist { list-style: none; padding-left: 4px; }
+  .checklist li::before { content: "\2610\00a0"; font-size: 13pt; }
+
+  /* Image */
+  .art {
+    max-width: 280px;
+    float: right;
+    margin: 0 0 12px 16px;
+    border: 1px solid var(--border);
+    box-shadow: 0 2px 8px rgba(0,0,0,0.15);
+  }
+  .art-small {
+    max-width: 180px;
+    float: right;
+    margin: 0 0 10px 14px;
+    border: 1px solid var(--border);
+  }
+
+  /* Tracker boxes */
+  .tracker {
+    display: flex;
+    gap: 6px;
+    margin: 6px 0;
+    flex-wrap: wrap;
+  }
+  .tracker-box {
+    width: 48px;
+    height: 36px;
+    border: 2px solid var(--accent);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 10pt;
+    color: var(--accent);
+  }
+  .tracker-box.used { background: var(--accent); color: white; }
+
+  /* Loot rarity */
+  .rarity-r { color: #1a6a1a; font-weight: 700; font-size: 9pt; text-transform: uppercase; }
+  .rarity-vr { color: #6a1a6a; font-weight: 700; font-size: 9pt; text-transform: uppercase; }
+  .rarity-source { color: #888; font-size: 9pt; font-style: italic; }
+
+  ul, ol { margin-left: 20px; margin-bottom: 6px; }
+  li { margin-bottom: 2px; }
+  p { margin-bottom: 6px; }
+  strong { color: #333; }
+
+  .clearfix::after { content: ''; display: table; clear: both; }
+
+  /* ── Floating Back-to-Contents Button ── */
+  .back-btn {
+    position: fixed;
+    bottom: 28px;
+    right: 28px;
+    z-index: 1000;
+    background: var(--accent);
+    color: #fdf1dc;
+    font-family: 'Cinzel', serif;
+    font-weight: 700;
+    font-size: 10pt;
+    letter-spacing: 0.5px;
+    padding: 10px 18px;
+    border: 2px solid var(--border);
+    text-decoration: none;
+    box-shadow: 0 4px 16px rgba(0,0,0,0.5);
+    transition: background 0.2s, transform 0.15s;
+    cursor: pointer;
+  }
+  .back-btn:hover {
+    background: var(--accent2);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0,0,0,0.6);
+  }
+  .back-btn::before {
+    content: "\25B2\00a0";
+    font-size: 9pt;
+  }
+
+  /* ── Section Badge (top-left corner of each page) ── */
+  .section-badge {
+    position: absolute;
+    top: -1px;
+    left: -1px;
+    font-family: 'Cinzel', serif;
+    font-weight: 900;
+    font-size: 9pt;
+    letter-spacing: 1px;
+    color: white;
+    padding: 5px 14px 5px 10px;
+    z-index: 10;
+    text-transform: uppercase;
+    clip-path: polygon(0 0, 100% 0, 85% 100%, 0 100%);
+  }
+
+  /* ── Color-Coded Page Borders ── */
+  .page-cover  { border-left: 5px solid var(--accent); }
+  .page-nav    { border-left: 5px solid var(--blue); }
+  .page-enc    { border-left: 5px solid var(--orange); }
+  .page-flow   { border-left: 5px solid var(--yellow); }
+  .page-fight  { border-left: 5px solid var(--red); }
+  .page-moon   { border-left: 5px solid var(--purple); }
+  .page-loot   { border-left: 5px solid var(--green); }
+  .page-ref    { border-left: 5px solid #555; }
+
+  .page-cover  .section-badge { background: var(--accent); }
+  .page-nav    .section-badge { background: var(--blue); }
+  .page-enc    .section-badge { background: var(--orange); }
+  .page-flow   .section-badge { background: var(--yellow); }
+  .page-fight  .section-badge { background: var(--red); }
+  .page-moon   .section-badge { background: var(--purple); }
+  .page-loot   .section-badge { background: var(--green); }
+  .page-ref    .section-badge { background: #555; }
+
+  /* ── Section Return Link (bottom of each page) ── */
+  .section-return {
+    display: block;
+    text-align: right;
+    margin-top: 16px;
+    padding-top: 8px;
+    border-top: 1px solid rgba(139,90,43,0.2);
+  }
+  .section-return a {
+    color: var(--accent);
+    font-family: 'Cinzel', serif;
+    font-size: 9pt;
+    text-decoration: none;
+    letter-spacing: 0.5px;
+    opacity: 0.7;
+    transition: opacity 0.2s;
+  }
+  .section-return a:hover { opacity: 1; text-decoration: underline; }
+  .section-return a::before { content: "\25B2\00a0"; font-size: 8pt; }
+
+  /* ── Current Section Indicator (sticky top bar) ── */
+  .page-indicator {
+    position: sticky;
+    top: 0;
+    z-index: 5;
+    font-family: 'Cinzel', serif;
+    font-size: 8.5pt;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+    color: rgba(88,24,13,0.5);
+    text-align: right;
+    padding: 0 0 4px 0;
+    margin: 0 0 6px 0;
+  }
+
+  /* Print styles */
+  @media print {
+    body { background: white; padding: 0; }
+    .page {
+      width: 100%;
+      box-shadow: none;
+      border: none !important;
+      border-left: none !important;
+      padding: 0;
+      margin: 0;
+      background: white;
+    }
+    .page::before { display: none; }
+    .art { max-width: 220px; }
+    h2 { page-break-after: avoid; }
+    table { page-break-inside: avoid; }
+    .phase { page-break-inside: avoid; }
+    .back-btn { display: none !important; }
+    .section-return { display: none !important; }
+    .section-badge { print-color-adjust: exact; -webkit-print-color-adjust: exact; }
+    .page-indicator { display: none; }
+  }
+
+  @page {
+    size: A4;
+    margin: 1.8cm;
+  }
+</style>
+</head>
+<body>
+
+<!-- ═══════════════════════ PAGE 1: COVER & TOC ═══════════════════════ -->
+<div class="page page-cover" id="toc">
+  <span class="section-badge">Cover</span>
+  <div style="text-align:center; margin-bottom: 12px;">
+    <img src="Images/Bitter Breath.png" alt="Bitter Breath" style="max-width:320px; border:1px solid var(--border); box-shadow: 0 4px 15px rgba(0,0,0,0.3);">
+  </div>
+
+  <h1>SESSION 3</h1>
+  <div class="subtitle">THE RIVER OF BLOOD</div>
+  <div class="session-info">Baldur's Gate: Descent into Avernus &mdash; Level 11, 3 Players &mdash; Target: 5-6 Hours</div>
+
+  <hr class="divider">
+
+  <h3>Session Arc</h3>
+  <p><strong>Tower of Urm departure &rarr; Avernus travel &rarr; Palace of Gore &rarr; Kill Bitter Breath &rarr; Free the Moonkite</strong></p>
+  <p>Tone: Tense journey, building dread, personal stakes, brutal boss fight, emotional payoff.</p>
+
+  <h3>What the Party Knows</h3>
+  <ul>
+    <li><strong>Fallen Three locations</strong> &mdash; from the real Mordenkainen (main quest)</li>
+    <li><strong>Drenwal's cure</strong> &mdash; must die and be reborn in the eyes of another god</li>
+    <li><strong>Moonkite location</strong> &mdash; Palace of Gore, follow the river of blood (Aurora's arc)</li>
+    <li><strong>Moonkite Cage Key</strong> &mdash; from Bloodbath's Meatgrinder wreckage</li>
+    <li><strong>Dumal is tracking them</strong> &mdash; somewhere in Avernus, Bhaalspawn proximity sense</li>
+  </ul>
+
+  <hr class="divider">
+
+  <h2 id="contents" style="border:none; text-align:center; margin-bottom:6px;">TABLE OF CONTENTS</h2>
+  <div class="toc">
+    <div class="toc-section">Navigation</div>
+    <a href="#navigation">Avernus Navigation System</a>
+    <a href="#encounters">Exploration Encounters (d20)</a>
+    <a href="#reputation">Reputation Tracker</a>
+
+    <div class="toc-section">Session Flow</div>
+    <a href="#pacing">Pacing Guide</a>
+    <a href="#act1">Act 1: Departure</a>
+    <a href="#act2">Act 2: River of Blood</a>
+    <a href="#act3">Act 3: Palace Infiltration</a>
+    <a href="#fight">Act 4: Bitter Breath Fight</a>
+    <a href="#moonkite">Act 5: The Moonkite</a>
+
+    <div class="toc-section">Reference</div>
+    <a href="#loot">Loot Guide</a>
+    <a href="#stats">Quick Stat Reference</a>
+    <a href="#checklist">Session Checklist</a>
+  </div>
+</div>
+
+<!-- ═══════════════════════ PAGE 2: NAVIGATION SYSTEM ═══════════════════════ -->
+<div class="page page-nav" id="navigation">
+  <span class="section-badge">1 &middot; Navigation</span>
+  <div class="page-indicator">Navigation System</div>
+  <h2>Avernus Navigation System</h2>
+
+  <p>Avernus shifts. Landmarks move. Rivers reroute. The sky gives no sun. Navigation is a <strong>group skill challenge</strong>, not a single die roll.</p>
+
+  <h3>Step 1: Assign Travel Roles</h3>
+  <p>Each PC picks one role per travel segment. Each role matters.</p>
+  <table>
+    <tr><th>Role</th><th>Who</th><th>Check</th><th>Effect</th></tr>
+    <tr>
+      <td><strong>Navigator</strong></td>
+      <td>Reads the map</td>
+      <td>WIS (Survival), INT (Arcana), or INT (Investigation)</td>
+      <td>Main check. Determines travel time + encounter quality.</td>
+    </tr>
+    <tr>
+      <td><strong>Spotter</strong></td>
+      <td>Watches for landmarks</td>
+      <td>DC 13 WIS (Perception)</td>
+      <td><strong>Success:</strong> Navigator gets +2. <strong>Fail:</strong> No bonus.</td>
+    </tr>
+    <tr>
+      <td><strong>Scout</strong></td>
+      <td>Watches for threats</td>
+      <td>DC 14 WIS (Perception)</td>
+      <td><strong>Success:</strong> 1 round warning before encounters. <strong>Fail by 5+:</strong> Party surprised.</td>
+    </tr>
+  </table>
+
+  <h3>Step 2: Navigation Check</h3>
+  <table>
+    <tr><th>Distance</th><th>DC</th><th>Examples</th></tr>
+    <tr><td><strong>Near</strong> (8-12h)</td><td>12</td><td>Crypt of the Hellriders, Bone Brambles, Palace of Gore</td></tr>
+    <tr><td><strong>Mid</strong> (12-20h)</td><td>15</td><td>Arkhan's Tower, Uldrak's Grave, Bel's Forge</td></tr>
+    <tr><td><strong>Far</strong> (20+h)</td><td>18</td><td>Shummrath's Pit, Arches of Ulloch</td></tr>
+    <tr><td><strong>Hidden</strong></td><td>22</td><td>Bleeding Citadel (requires guide), Kostchtchie's Maw</td></tr>
+  </table>
+
+  <h4>Bonuses</h4>
+  <ul>
+    <li><strong>+2</strong> &mdash; Party has a map of the area</li>
+    <li><strong>+2</strong> &mdash; Lulu recognizes the route (roll d6: 4+ she remembers; 1 = flashback, 30-min delay)</li>
+    <li><strong>+2</strong> &mdash; Party has been to the destination before</li>
+    <li><strong>+5</strong> &mdash; Gargauth guides them (cost: Gargauth influence +1)</li>
+  </ul>
+
+  <h3>Step 3: Navigation Results</h3>
+  <table>
+    <tr><th>Result</th><th>Travel Time</th><th>Encounter Modifier</th></tr>
+    <tr><td class="safe">Beat DC by 5+</td><td>-2 hours</td><td><strong>-3</strong> to encounter roll (safer)</td></tr>
+    <tr><td>Beat DC</td><td>Base time</td><td><strong>+0</strong></td></tr>
+    <tr><td class="medium">Miss by 1-4</td><td>+2 hours</td><td><strong>+3</strong> (harder encounters)</td></tr>
+    <tr><td class="hard">Miss by 5-9</td><td>+4 hours</td><td><strong>+5</strong> + automatic hazard</td></tr>
+    <tr><td class="deadly">Miss by 10+ / Nat 1</td><td>+6 hours</td><td><strong>+7</strong> + hazard + unwanted attention</td></tr>
+  </table>
+
+  <div class="dm-note">
+    <strong>DM Note &mdash; Gargauth's Guidance:</strong> If Drenwal asks the Shield for help, Gargauth knows Avernus intimately. Automatic +5 to navigation. But he'll steer them past "interesting" locations &mdash; places where deals can be made, souls can be tempted, and Drenwal's faith can be tested. Gargauth influence ticks up by 1 each time.
+  </div>
+
+  <hr class="divider">
+
+  <h2 id="reputation">Reputation Tracker</h2>
+  <p>As the party's deeds spread, Avernus reacts. Reputation adds to encounter rolls &mdash; more danger, but also more opportunity.</p>
+
+  <table>
+    <tr><th>Deed</th><th>Rep</th><th>Effect</th></tr>
+    <tr><td>Killed Bloodbath</td><td>+1</td><td>Warlords know them by name</td></tr>
+    <tr><td>Freed the Moonkite</td><td>+2</td><td>Celestial pulse detected across Avernus</td></tr>
+    <tr><td>Each Fallen Three dealt with</td><td>+1</td><td>Zariel's network notices</td></tr>
+    <tr><td>Made a deal with Smiler</td><td>+1</td><td>Word spreads among warlords</td></tr>
+    <tr><td>Used Soul Coin Overdrive visibly</td><td>+1</td><td>Flashy &mdash; marks the ship</td></tr>
+  </table>
+
+  <p><strong>Current Rep: +1</strong> (Bloodbath killed). <strong>After Session 3: +3</strong> (+ Moonkite freed).</p>
+  <p>At <strong>Rep 5+</strong>: Zariel's forces actively hunt the party. At <strong>Rep 7+</strong>: Zariel herself may take notice.</p>
+  <div class="section-return"><a href="#contents">Back to Contents</a></div>
+</div>
+
+<!-- ═══════════════════════ PAGE 3: ENCOUNTER TABLE ═══════════════════════ -->
+<div class="page page-enc" id="encounters">
+  <span class="section-badge">2 &middot; Encounters</span>
+  <div class="page-indicator">Exploration Encounters</div>
+  <h2>Avernus Exploration Encounters</h2>
+  <p>Roll <strong>d20 + Navigation Modifier + Reputation</strong> per travel segment. Higher = more dangerous.</p>
+
+  <table>
+    <tr><th style="width:50px">Roll</th><th style="width:90px">Type</th><th>Encounter</th></tr>
+    <tr>
+      <td>1-2</td>
+      <td><span class="safe">Safe</span></td>
+      <td><strong>Dead Silence.</strong> Nothing. Describe the desolation. The party feels watched but isn't. Good RP moment &mdash; let them discuss plans, process revelations.</td>
+    </tr>
+    <tr>
+      <td>3-4</td>
+      <td><span class="safe">Discovery</span></td>
+      <td><strong>Helpful Landmark.</strong> Ancient waystone, Hellrider trail marker, or recognizable terrain feature. +2 to the next navigation check. 50% chance: Potion of Superior Healing hidden in the rubble.</td>
+    </tr>
+    <tr>
+      <td>5-6</td>
+      <td><span class="medium">Hazard</span></td>
+      <td><strong>Environmental Hazard.</strong> Roll d4: 1&ndash;Acid rain (DC 15 Con, 3d6 acid, corrodes war machine 2d10). 2&ndash;Fire geysers (DC 16 Dex, 4d6 fire). 3&ndash;Ash storm (DC 14 Con or blinded 1h). 4&ndash;Styx tributary crossing (DC 14 Con or lose 1 memory).</td>
+    </tr>
+    <tr>
+      <td>7-8</td>
+      <td><span class="safe">Combat (Easy)</span></td>
+      <td><strong>Hell Hound Pack.</strong> 6-8 hell hounds (CR 3, 45 HP). Hunting something else. 50% ignore party. If engaged: pack tactics, surround isolated PCs. End in 2-3 rounds.</td>
+    </tr>
+    <tr>
+      <td>9-10</td>
+      <td><span class="social">Exploration</span></td>
+      <td><strong>Blood War Debris Field.</strong> Wrecked war machines, dead soldiers. DC 15 Investigation: 1d4 soul coins + spare parts. DC 18: <strong>hidden cache</strong> &mdash; roll on <a href="#road-loot">Road Treasure Table</a>.</td>
+    </tr>
+    <tr>
+      <td>11-12</td>
+      <td><span class="medium">Combat (Med)</span></td>
+      <td><strong>Warlord Scout Patrol.</strong> Roll d4: 1&ndash;Smiler scouts (3 hobgoblins on bikes, flee if losing). 2&ndash;Kovic merregons (4 merregons, demand toll: 2 soul coins or fight). 3&ndash;Rust Queen scavengers (2 meazels + rust monster). 4&ndash;Unknown warlord (3 barbed devils, territorial).</td>
+    </tr>
+    <tr>
+      <td>13-14</td>
+      <td><span class="social">Social/Moral</span></td>
+      <td><strong>Stranded Souls.</strong> 1d4 mortal souls trapped in Avernus. Unarmed, confused, terrified. Devils hunting them (arrive in 1d4 rounds). Help, ignore, or sell them. Helping costs time + possible combat; ignoring triggers Lulu's distress.</td>
+    </tr>
+    <tr>
+      <td>15-16</td>
+      <td><span class="hard">Combat (Hard)</span></td>
+      <td><strong>Infernal Bounty Hunters.</strong> 1 bone devil (CR 9) + 2 barbed devils (CR 5) + 2 merregons. Want a specific soul coin, prisoner, or the party themselves. DC 17 Persuasion to negotiate. They know the party killed Bloodbath.</td>
+    </tr>
+    <tr>
+      <td>17</td>
+      <td><span class="social">Trade</span></td>
+      <td><strong>Wandering Emporium.</strong> Mahadi appears. Full shopping (<a href="#emporium">see stock list</a>) + rumors. Mahadi gossips for entertainment &mdash; knows about Bitter Breath, Smiler, and recent events.</td>
+    </tr>
+    <tr>
+      <td>18</td>
+      <td><span class="personal">Personal</span></td>
+      <td><strong>Character Event.</strong> Pick the most relevant PC:<br>
+        <em>Drenwal:</em> Bhaal vision &mdash; flash of Dumal closer, The Hunger triggers (DC 15 Wis or 1 exhaustion).<br>
+        <em>Aurora:</em> Wand pulse &mdash; Moonkite echo reveals a hidden path or celestial cache.<br>
+        <em>Asimov:</em> Soul Capacitor hums &mdash; Rasheem has intel on a nearby bounty target.</td>
+    </tr>
+    <tr>
+      <td>19-20</td>
+      <td><span class="hard">Combat (Hard)</span></td>
+      <td><strong>Blood War Spillover.</strong> 2 vrocks + 4 dretches vs 1 ice devil + 3 lemures. DC 15 Stealth to avoid. 2d4 soul coins in the aftermath. If party intervenes, surviving side is grateful (or hostile).</td>
+    </tr>
+    <tr>
+      <td>21-22</td>
+      <td><span class="deadly">Deadly</span></td>
+      <td><strong>Zariel's Ice Devil Patrol.</strong> 1 ice devil (CR 14) + 4 spined devils. On orders, hunting "celestial energy" (post-Moonkite) or "the Bloodbath-killers." DC 18 Stealth to avoid. If engaged, reinforcements in 1d4 hours.</td>
+    </tr>
+    <tr>
+      <td>23+</td>
+      <td><span class="deadly">Spectacle</span></td>
+      <td><strong>Zariel Flyover.</strong> Burning figure in the sky. All infernal creatures flee. DC 18 Wis or frightened 1 min. No combat. If party has high reputation, she looks <em>down</em>.</td>
+    </tr>
+  </table>
+
+  <h3>Avernus Landmark Sub-Table (d6)</h3>
+  <p>Roll when a Discovery or Exploration result calls for a landmark.</p>
+  <table>
+    <tr><th>d6</th><th>Landmark</th></tr>
+    <tr><td>1</td><td><strong>Spawning Trees.</strong> Fiendish grove. DC 15 Nature: harvest 2d4 wild magic apples (see loot-and-items.md).</td></tr>
+    <tr><td>2</td><td><strong>Demon Zapper.</strong> Trapped unicorn. Save it (DC 16 Arcana to disable, combat with 2 barbed devil guards) or leave it.</td></tr>
+    <tr><td>3</td><td><strong>Collapsed War Machine.</strong> DC 15 Investigation: 1d6 soul coins, spare parts, or trapped survivor (50% trap).</td></tr>
+    <tr><td>4</td><td><strong>Path of the Fallen.</strong> Ancient Hellrider trail, marked with faded holy symbols. +2 to next navigation. Drenwal feels a pang.</td></tr>
+    <tr><td>5</td><td><strong>Bhaalspawn Sign.</strong> Burned campsite, melted Hellrider medals, fresh Bhaal symbol. DC 15 Survival: Dumal was here within 12h.</td></tr>
+    <tr><td>6</td><td><strong>Sibriex Overhead.</strong> Floating aberration. DC 18 Con or Warp Creature. If approached: can trade information for "interesting" biological samples.</td></tr>
+  </table>
+  <div class="section-return"><a href="#contents">Back to Contents</a></div>
+</div>
+
+<!-- ═══════════════════════ PAGE 4: PACING + ACTS 1-3 ═══════════════════════ -->
+<div class="page page-flow" id="pacing">
+  <span class="section-badge">3 &middot; Session Flow</span>
+  <div class="page-indicator">Acts 1-3: Departure &rarr; River &rarr; Palace</div>
+  <h2>Pacing Guide</h2>
+  <table>
+    <tr><th>Block</th><th>Time</th><th>Content</th></tr>
+    <tr><td><strong>Act 1:</strong> Departure</td><td>1h</td><td>Soul Capacitor upgrade, party discussion, Gargauth, Smiler encounter</td></tr>
+    <tr><td><strong>Act 2:</strong> River of Blood</td><td>45m</td><td>Following the river, landmarks, scouting the Palace</td></tr>
+    <tr><td><strong>Act 3:</strong> Palace Infiltration</td><td>1.5h</td><td>3 entry options, Captain Grozz dilemma, minion fights</td></tr>
+    <tr><td colspan="3" style="text-align:center; font-style:italic;">&mdash; Short Rest (10 min real time) &mdash;</td></tr>
+    <tr><td><strong>Act 4:</strong> Boss Fight</td><td>1.5h</td><td>Bitter Breath + minions + lair actions (<a href="#fight">cheat sheet</a>)</td></tr>
+    <tr><td><strong>Act 5:</strong> The Moonkite</td><td>45-60m</td><td>Skill challenge, bow+wand fusion, mount persuasion, cliffhanger</td></tr>
+  </table>
+
+  <hr class="divider">
+
+  <h2 id="act1">Act 1: Departure from the Tower (1 hour)</h2>
+
+  <img src="Images/soul-capacitor.png" alt="Soul Capacitor" class="art-small">
+
+  <h3>Opening</h3>
+  <p>The real Mordenkainen watches from the balcony of the second Tower of Urm. He does not wave. The tower shimmers and shifts position, as if it was never there.</p>
+
+  <h3>Rasheem's Reward &mdash; Soul Capacitor Upgrade</h3>
+  <div class="read-aloud">"Well, well, well. Look who's been <em>busy</em>. Bloodbath the Drinker of Gore. CR fifteen-and-change. Consumed, not killed &mdash; I have to say, that's <em>style</em>, Asimov. The syndicate appreciates style."</div>
+  <p><strong>Mechanical:</strong> Medium Souls tier unlocked (CR 5-10). Psionic Surge (+2d8 psychic + 1 bonus SA die), Soul Shiv (reaction, 3d6 psychic + frightened), Memory Siphon, Soul Mask, Psionic Echo. Rasheem hints at future Major Soul contract.</p>
+
+  <h3>Party Discussion (Let This Breathe)</h3>
+  <p>Two revelations to process. Don't rush this.</p>
+  <ol>
+    <li><strong>Drenwal's cure</strong> &mdash; "Die and be reborn in the eyes of another god." Let players theorize. Don't answer.</li>
+    <li><strong>Moonkite vs Fallen Three</strong> &mdash; Main quest (Fallen Three) vs personal quest (Moonkite). If they hesitate, Aurora's wand pulls south.</li>
+  </ol>
+
+  <h3>Gargauth Speaks (While Traveling)</h3>
+  <div class="read-aloud">"Die and be reborn? How poetic. How... convenient for whatever god catches you on the way down."<br><br>"Think carefully, Drenwal. When you die &mdash; and you <em>will</em> die &mdash; your soul will be untethered for a heartbeat. And in that heartbeat, every god and devil who's ever tasted your blood will reach for you."</div>
+  <p>If asked for help: <em>"I could catch you. When you fall. But that's a conversation for later. First, survive today."</em></p>
+
+  <h3>Travel Encounter: Smiler the Defiler</h3>
+  <p>4 hours in. War machine parked across a canyon pass. Blood-painted grin on the side.</p>
+  <p><strong>Smiler's Offer:</strong> Map to Palace of Gore with guard rotations + secret entrance (collapsed drainage tunnel, east side). <strong>Price:</strong> When Bitter Breath dies, Smiler gets the Palace and its forces.</p>
+  <p><strong>DC 16 Insight:</strong> Genuine about wanting BB dead, but hiding that he knows the Moonkite's value.</p>
+  <ul>
+    <li><strong>Accept:</strong> Advantage on scouting the Palace. Smiler drives off cackling.</li>
+    <li><strong>Refuse:</strong> No map, no secret entrance. Must scout themselves.</li>
+    <li><strong>Attack:</strong> Smiler has Counterspell. War machine speed 100 ft. Flees. Warns Bitter Breath.</li>
+  </ul>
+
+  <hr class="divider">
+
+  <h2 id="act2">Act 2: The River of Blood (45 min)</h2>
+  <p>Literal tributary of gore. 20 ft wide, slow, thick as syrup. <strong>Touch:</strong> DC 14 Con or poisoned 1h. <strong>Fall in:</strong> 3d6 necrotic/round + 1 exhaustion on exit.</p>
+
+  <h4>Landmarks (mark on the journey)</h4>
+  <ul>
+    <li><strong>0:30 &mdash; Bone Dam.</strong> Bodies of Bloodbath's forces, killed by Bitter Breath during his takeover. DC 14 Investigation reveals the purge.</li>
+    <li><strong>1:00 &mdash; Warning Totems.</strong> Severed heads on poles, still alive. Soul-bound sentinels that scream if passed without permission. <strong>DC 15 Religion:</strong> identify them. <strong>Solutions:</strong> Destroy quietly (AC 10, 15 HP, DC 14 Stealth per totem) OR <em>Silence</em> spell.</li>
+    <li><strong>1:30 &mdash; War Camp.</strong> 20+ hobgoblins, 4 maw demons. NOT the target. <strong>DC 16 group Stealth</strong> to bypass. DC 15 Perception spots patrol gaps (advantage on Stealth).</li>
+  </ul>
+
+  <h4>Aurora's Wand Escalation</h4>
+  <p>1h: faint pulse &rarr; 3h: steady heartbeat, warmth &rarr; 5h: <strong>VIBRATING</strong>, silver-blue light, faint agonized song. DC 12 Arcana: "The Moonkite is close. It's being drained."</p>
+
+  <hr class="divider">
+
+  <h2 id="act3">Act 3: Palace Infiltration (1.5 hours)</h2>
+  <p>Squat fortress built into a cliff. Blackite stone and fused bone. Gore is structural.</p>
+
+  <h4>Three Entry Options</h4>
+  <table>
+    <tr><th>Option</th><th>How</th><th>Risk</th></tr>
+    <tr><td><strong>A: Stealth</strong> (drainage tunnel)</td><td>DC 15 Athletics to clear rubble (only if Smiler told them). DC 16 Stealth in blood-terrain.</td><td>If detected: BB arrives in 2 rounds with reinforcements.</td></tr>
+    <tr><td><strong>B: Deception</strong></td><td>DC 18 Deception (gate guards). DC 20 to fool BB himself (+2 if they mention Bloodbath).</td><td>BB is paranoid. Failure = immediate hostility.</td></tr>
+    <tr><td><strong>C: Assault</strong></td><td>Charge front gate. Fight through all levels.</td><td>Multiple fights, no rest between. Only if fully resourced.</td></tr>
+  </table>
+
+  <h4>Palace Layout</h4>
+  <ul>
+    <li><strong>Lower Level (Drainage):</strong> Knee-deep blood (difficult terrain). 2 maw demons (CR 5, 137 HP). Bone spear traps (DC 15 Perception, DC 14 Dex, 3d8 piercing).</li>
+    <li><strong>Main Level (Throne Room):</strong> Where BB holds court. 6 hobgoblin veterans + 2 barbed devils + BB.</li>
+    <li><strong>Prison Level:</strong> Spiraling descent. Air gets colder and cleaner. 1 chain devil (CR 8, 85 HP) guards the Moonkite's cage.</li>
+  </ul>
+
+  <h3>Moral Dilemma: Captain Grozz</h3>
+  <div class="read-aloud">"Please &mdash; I don't want to die for this place. Bloodbath was cruel but predictable. His brother is... worse. He kills his own for sport."</div>
+  <p><strong>Offer:</strong> Full intel on BB's position + guard counts + unlocks drainage gate. <strong>Price:</strong> Let him leave with 5 soldiers.</p>
+  <ul>
+    <li><strong>DC 12 Insight:</strong> Genuinely terrified.</li>
+    <li><strong>Let him go:</strong> -6 hobgoblins from the boss fight. Future ally potential.</li>
+    <li><strong>Kill him:</strong> Quick. But Gargauth whispers: <em>"See? Sometimes mercy is just weakness with a prettier name."</em></li>
+  </ul>
+  <div class="section-return"><a href="#contents">Back to Contents</a></div>
+</div>
+
+<!-- ═══════════════════════ PAGE 5: FIGHT CHEAT SHEET ═══════════════════════ -->
+<div class="page page-fight" id="fight">
+  <span class="section-badge">4 &middot; Boss Fight</span>
+  <div class="page-indicator">Bitter Breath &mdash; Fight Cheat Sheet</div>
+  <h2>Bitter Breath &mdash; Fight Cheat Sheet</h2>
+  <p style="font-style:italic; color:#666; margin-bottom:12px;">This is your at-the-table reference. Everything you need, nothing you don't.</p>
+
+  <h3>Setup</h3>
+  <table>
+    <tr><th>Creature</th><th>Count</th><th>HP</th><th>AC</th><th>Init</th><th>Role</th></tr>
+    <tr><td><strong>Bitter Breath</strong></td><td>1</td><td>280</td><td>19</td><td>+5</td><td>Boss &mdash; mobile skirmisher, never stands still</td></tr>
+    <tr><td><strong>Hobgoblin Phalanx</strong></td><td>4 (or 2)*</td><td>55 ea</td><td>18</td><td>+1</td><td>Shield wall, one initiative, group actions</td></tr>
+    <tr><td><strong>Barbed Devil</strong></td><td>1</td><td>110</td><td>15</td><td>+2</td><td>Concentration sniper. One job: Hurl Flame.</td></tr>
+    <tr><td><strong>Lair Actions</strong></td><td>&mdash;</td><td>&mdash;</td><td>&mdash;</td><td>20</td><td>Pick one per round. Two options.</td></tr>
+  </table>
+  <p style="font-size:10pt; color:#666;">*2 hobgoblins if party freed Captain Grozz.</p>
+
+  <h3>Bitter Breath &mdash; Turn Template</h3>
+  <p>Every single round, this is his turn:</p>
+  <ol>
+    <li><strong>MOVE</strong> (50 ft). Always reposition. Never stay where he was.</li>
+    <li><strong>ACTION:</strong> Multiattack (3 Gutripper OR 2 Gutripper + 1 Gore) &mdash; OR Rotten Breath if recharged.</li>
+    <li><strong>BONUS:</strong> Skirmisher (Dash 50 more ft or Disengage). Get away from the party.</li>
+  </ol>
+  <p class="stat-line"><strong>Gutripper:</strong> +13, 2d8+7 slash + 2d6 necrotic. On crit: +2d6 necrotic burst (no tracking).</p>
+  <p class="stat-line"><strong>Gore Horns:</strong> +13, 2d10+7 pierce + 2d8 necrotic. DC 17 Dex or BB moves through target + attacks again.</p>
+  <p class="stat-line"><strong>Rotten Breath:</strong> 40ft cone, DC 17 Con, 8d8 poison + 4d6 necrotic. Stun on fail by 5+. <strong>Recharge 5-6.</strong></p>
+  <p class="stat-line"><strong>Aura of Rot:</strong> Start turn within 15 ft &rarr; DC 17 Con or poisoned + half speed until end of next turn.</p>
+
+  <h3>Legendary Actions (3/round, after each PC turn)</h3>
+  <table>
+    <tr><th>Action</th><th>Cost</th><th>Effect</th></tr>
+    <tr><td><strong>Reposition</strong></td><td>1</td><td>Move 25 ft, no OA. <em>Use this after every PC turn.</em></td></tr>
+    <tr><td><strong>Gutripper Strike</strong></td><td>1</td><td>One Gutripper attack. +13, 2d8+7+2d6 necrotic.</td></tr>
+    <tr><td><strong>Flaying Rush</strong></td><td>2</td><td>Move full speed. DC 17 Dex 4d6 slash to each adjacent creature on the path. One Gutripper at end.</td></tr>
+  </table>
+  <p class="stat-line"><strong>Evasive Gore (Reaction):</strong> When hit, halve damage + move 15 ft (no OA). Use vs Asimov's big Sneak Attacks.</p>
+
+  <hr class="thin-divider">
+
+  <h3>Phase Transitions</h3>
+
+  <div class="phase">
+    <div class="phase-label">PHASE 1: 280-141 HP</div>
+    <div style="padding-top: 4px;">
+      <strong>Behavior:</strong> Opens with Rotten Breath on the cluster. Uses hobgoblin wall as cover. Skirmishes &mdash; darts in, attacks wounded PCs (Blood Frenzy advantage), darts out. Tactical, cold.<br>
+      <strong>Dialogue:</strong> <em>"My brother was loud. I am precise."</em><br>
+      <strong>Legendaries:</strong> Reposition after every PC turn. Occasional Gutripper Strike.
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">PHASE 2: 140-1 HP</div>
+    <div style="padding-top: 4px;">
+      <strong>Behavior:</strong> Gets MORE aggressive. Flaying Rush every round. Charges through the party, slashing everyone. Drops tactical play &mdash; pure rage.<br>
+      <strong>Dialogue:</strong> <em>"My brother fell to you. MY BROTHER. I am NOT him. I am BETTER."</em><br>
+      <strong>Legendaries:</strong> Flaying Rush (2 actions) + Gutripper Strike (1 action). Maximum damage output.
+    </div>
+  </div>
+
+  <div class="phase">
+    <div class="phase-label">PHASE 3: RELENTLESS (0 HP &rarr; 1 HP)</div>
+    <div style="padding-top: 4px;">
+      <strong>Drops. Silence. Stands back up.</strong><br>
+      <strong>Dialogue:</strong> <em>"...No."</em><br>
+      <strong>One final turn:</strong> Rotten Breath if recharged, OR full Multiattack with reckless abandon. Then dies for real.
+    </div>
+  </div>
+
+  <hr class="thin-divider">
+
+  <h3>Lair Actions (Initiative 20 &mdash; pick one)</h3>
+  <table>
+    <tr><th>Option</th><th>Effect</th></tr>
+    <tr><td><strong>A: Gore Geyser</strong></td><td>Blood erupts under one creature. DC 16 Dex or <strong>3d8 necrotic + prone</strong>. 10-ft difficult terrain until next init 20.</td></tr>
+    <tr><td><strong>B: Bone Cage</strong></td><td>Bones erupt around one creature. DC 16 Str or <strong>restrained</strong> until end of next turn. Cage: AC 12, 25 HP. Allies can break it.</td></tr>
+  </table>
+
+  <h3>Hobgoblin Phalanx (One Initiative)</h3>
+  <p>They act as a <strong>unit</strong>. Move as a group. Shield wall blocks movement through them.</p>
+  <ul>
+    <li><strong>Group Attack:</strong> +5, 1d8+3 slash + <strong>1d6 per adjacent hobgoblin</strong> (Martial Advantage stacking).</li>
+    <li><strong>When one dies:</strong> Wall weakens. At 2 remaining: they <strong>break and flee</strong>.</li>
+    <li><strong>Job:</strong> Block Asimov from flanking BB. Body-block Drenwal from reaching the prison level.</li>
+  </ul>
+
+  <h3>Barbed Devil (One Job)</h3>
+  <p><strong>Hurl Flame</strong> at whoever is concentrating. 4d6 fire, 150 ft. Every turn. That's it. If no concentration targets: lowest HP PC. Teleports away if BB dies.</p>
+
+  <h3>Environmental Escalation</h3>
+  <table>
+    <tr><th>Round</th><th>Event</th></tr>
+    <tr><td>2</td><td>Ceiling cracks. Rubble in random 10-ft square. DC 14 Dex, 2d10 bludgeoning. Difficult terrain.</td></tr>
+    <tr><td>4</td><td>Wall collapses. New path opens (flanking angle or prison access). Fight geometry changes.</td></tr>
+    <tr><td>6</td><td>Floor gives way near throne. 15-ft fall into drainage (3d6 blud). Fight on two levels.</td></tr>
+  </table>
+
+  <h3>Breath Recharge Tracker</h3>
+  <p>Pre-roll a d6 for each round. Circle rounds that recharge (5 or 6).</p>
+  <div class="tracker">
+    <div class="tracker-box used">R1</div>
+    <div class="tracker-box">R2</div>
+    <div class="tracker-box">R3</div>
+    <div class="tracker-box">R4</div>
+    <div class="tracker-box">R5</div>
+    <div class="tracker-box">R6</div>
+    <div class="tracker-box">R7</div>
+    <div class="tracker-box">R8</div>
+  </div>
+  <p style="font-size:10pt; color:#666;">R1 is pre-used (opening breath). Roll before session: write "Y" or "N" in each box.</p>
+
+  <h3>Anti-Party Quick Ref</h3>
+  <table>
+    <tr><th>vs Asimov</th><td>Phalanx blocks flanking. BB Repositions away. Evasive Gore halves big Sneak Attacks. Bone Cage lair action to restrain him.</td></tr>
+    <tr><th>vs Aurora</th><td>Barbed devil Hurl Flame every turn (concentration). BB Flaying Rush through her position.</td></tr>
+    <tr><th>vs Drenwal</th><td>Aura of Rot (DC 17 Con, poisoned + half speed). Gutripper Strike legendary to break Spirit Guardians. Bone Cage to lock him down.</td></tr>
+  </table>
+  <div class="section-return"><a href="#contents">Back to Contents</a></div>
+</div>
+
+<!-- ═══════════════════════ PAGE 6: MOONKITE + CONSEQUENCES ═══════════════════════ -->
+<div class="page page-moon" id="moonkite">
+  <span class="section-badge">5 &middot; Moonkite</span>
+  <div class="page-indicator">Act 5: The Moonkite Liberation</div>
+  <h2>Act 5: The Moonkite (30-45 min)</h2>
+
+  <h3>Short Rest Before (During Play)</h3>
+  <p>Near the cage. Silver light is soothing. <strong>Bonus:</strong> +1 hit die regained (Moonkite's restorative aura).</p>
+
+  <div class="dm-note">
+    <strong>During rest &mdash; Drenwal:</strong> Flash vision: Dumal at the edge of the river of blood, looking south toward the Palace. He felt it when the party arrived. He's coming. Not today. But soon. <strong>Bhaal influence &rarr; 4/6.</strong>
+  </div>
+
+  <h3>Skill Challenge: Breaking the Chains (3 successes before 2 failures)</h3>
+  <table>
+    <tr><th>Check</th><th>DC</th><th>Who</th></tr>
+    <tr><td>Athletics / Str &mdash; tear chain from wall</td><td>18</td><td>Any</td></tr>
+    <tr><td>Arcana &mdash; disrupt siphoning enchantment</td><td>16</td><td>Aurora</td></tr>
+    <tr><td>Religion &mdash; channel divine energy to purify</td><td>15</td><td>Drenwal</td></tr>
+    <tr><td>Thieves' Tools &mdash; pick chain anchors</td><td>17</td><td>Asimov</td></tr>
+    <tr><td>Wand of Celestial Warding &mdash; resonate with Moonkite</td><td>14</td><td>Aurora</td></tr>
+  </table>
+  <p><strong>3 successes:</strong> Chains shatter. Silver light floods the room.</p>
+  <p><strong>2 failures:</strong> Chains tighten. Moonkite screams (DC 14 Wis or stunned 1 round). DCs increase by 2. Palace shakes.</p>
+
+  <h3>The Moonkite Freed</h3>
+  <div class="read-aloud">The chains shatter like glass. Silver light &mdash; real light, not Avernus fire &mdash; floods the chamber, then erupts from the Palace roof like a beacon. For one moment, the sky shows <em>stars</em>. Real stars.<br><br>The Moonkite unfolds. Wings spanning 20 feet, a body of living starlight, antlers that branch like frozen lightning. It touches down before Aurora. Its eyes &mdash; vast, ancient, gentle &mdash; meet hers.</div>
+  <p>Aurora <em>knows</em>: Gratitude (deep, a bond deeper than patronage). Weakness (drained for decades, cannot fight or fly far). Warning (the chains were connected to Zariel's network &mdash; freeing it sent a signal).</p>
+
+  <h3>The Fusion: Moonbow of Celestial Warding</h3>
+  <div class="read-aloud">The Moonkite lowers its antlers. One touches the Wand of Celestial Warding. The other touches Aurora's bow. Silver light flares &mdash; blinding, warm, absolute. When it fades, Aurora is holding a single weapon.<br><br>The bow reshapes in her hands. Silver-white veins thread through the wood. The wand's runes dissolve and re-etch along the limbs and string. The bowstring is no longer gut &mdash; it's a thread of pure starlight, humming with the Moonkite's song. When Aurora draws, an arrow of silver-white light materializes. The weapon is warm. It knows her.</div>
+
+  <div class="dm-note">
+    <strong>DM Note:</strong> This is Aurora's big moment &mdash; equivalent to Asimov's Soul Capacitor evolution. The Moonkite recognizes its own essence in the wand AND Aurora's fighting soul in the bow. Let the player hold this moment.
+  </div>
+
+  <h4>Moonbow of Celestial Warding <span class="rarity-r">Rare, Evolving</span></h4>
+  <p class="stat-line"><em>Weapon (shortbow), requires attunement by Aurora. Replaces +2 bow + Wand of Celestial Warding (both consumed).</em></p>
+  <ul>
+    <li><strong>+2 shortbow</strong> &mdash; arrows manifest as silver-white starlight bolts</li>
+    <li><strong>Damage:</strong> 1d6+2 piercing + 1d4 radiant</li>
+    <li><strong>Arcane focus</strong> &mdash; can be used as Aurora's spellcasting focus</li>
+    <li><strong>Charges:</strong> 7 (regains 1d4+3 at dawn)
+      <ul>
+        <li>Magic Missile (1 charge per missile, up to 5)</li>
+        <li>Shield (1 charge, reaction)</li>
+        <li>Counterspell at 3rd level (3 charges)</li>
+      </ul>
+    </li>
+    <li><strong>Moonkite's Blessing:</strong> 1/LR, Banishment (no concentration, 1 min). Target sent to the Feywild.</li>
+    <li><strong>Moonkite Bond:</strong> Communicate with the Moonkite 1/LR (visions, feelings, direction-sense).</li>
+    <li><strong>Evolving</strong> &mdash; further tiers unlock as the Moonkite recovers.</li>
+  </ul>
+
+  <hr class="thin-divider">
+
+  <h3>The Mount: Persuading the Moonkite</h3>
+  <p>After the fusion, the Moonkite lingers. It does not leave. It watches Aurora &mdash; not with expectation, but with <em>openness</em>. It is waiting to see what she will do.</p>
+
+  <p><strong>If Aurora asks the Moonkite to stay / be her mount:</strong></p>
+  <p><strong>DC 15 Persuasion</strong> (Aurora has <strong>advantage</strong> &mdash; the Moonkite already trusts her). Natural 20: immediate, unconditional &mdash; the Moonkite nuzzles its antlers against her shoulder.</p>
+
+  <div class="read-aloud"><strong>On success:</strong> Not words. A single, overwhelming <em>knowing</em>:<br><br><em>"Together. Until we leave this place. Then &mdash; free."</em></div>
+
+  <p>The Moonkite is too weak to carry Aurora NOW. It follows the party through the Feywild echo &mdash; invisible to Avernus. Aurora feels its presence like a second heartbeat. It needs <strong>2-3 long rests</strong> to recover.</p>
+
+  <h4>When the Moonkite Recovers (2-3 sessions)</h4>
+  <ul>
+    <li><strong>Mount stats:</strong> Large celestial-fey. AC 15, HP 90. Speed 60 ft ground, <strong>90 ft flying</strong> &mdash; but flying suppressed to 60 ft ground in Avernus (plane resists celestial flight). Full flying speed only near planar weak points or outside Avernus.</li>
+    <li><strong>Escape drive:</strong> The Moonkite WANTS to leave Avernus. It senses planar weak points and guides the party toward exits. May try to bolt for a rift prematurely &mdash; Aurora must convince it to stay.</li>
+    <li><strong>Deterioration:</strong> While in Avernus, the Moonkite loses <strong>1 max HP per day</strong>. Ticking clock. Leaving Avernus fully restores it.</li>
+  </ul>
+
+  <p><strong>On failure:</strong> The Moonkite pulls back &mdash; not rejection, but hesitation. Too long in a cage. Fears being bound again. Aurora can retry after the next long rest (DC 13, no advantage).</p>
+
+  <div class="dm-note">
+    <strong>DM Note:</strong> The mount should feel EARNED. If Aurora roleplays the bond well &mdash; references the wand, speaks as an equal, promises to help it escape &mdash; give advantage or lower the DC. If she tries to command it as a beast, DC goes UP. The Moonkite partners. It does not serve.
+  </div>
+
+  <hr class="thin-divider">
+
+  <h3>Consequences & Cliffhangers</h3>
+  <ul>
+    <li><strong>Palace crumbles</strong> &mdash; 10 minutes to loot and leave.</li>
+    <li><strong>Celestial pulse detected by:</strong> Zariel's forces (ice devil dispatched), Dumal (12-18h away, knows exactly where they are), Smiler (racing to claim the Palace).</li>
+    <li><strong>Moonkite refuge:</strong> If mount succeeded &mdash; follows in Feywild echo, Aurora feels its presence constantly. If failed &mdash; retreats alone, communication via Moonbow 1/LR. Mount opportunity returns later.</li>
+    <li><strong>Escape motivation:</strong> Each long rest, Aurora sees a flash of the Moonkite's deterioration &mdash; reminder that time in Avernus costs.</li>
+  </ul>
+
+  <h3>Cliffhanger: Dumal's Message</h3>
+  <div class="read-aloud">As they leave the collapsing Palace, Drenwal sees it. Carved into the stone above the exit, fresh &mdash; the stone is still warm:<br><br><strong>A symbol of Bhaal. And below it, in Infernal: "I SEE YOU, BROTHER."</strong><br><br>Dumal was here. While they were inside. He watched them enter, and chose not to attack. He's <em>waiting</em>.</div>
+
+  <p><strong>End of Session.</strong></p>
+  <div class="section-return"><a href="#contents">Back to Contents</a></div>
+</div>
+
+<!-- ═══════════════════════ PAGE 7: LOOT GUIDE ═══════════════════════ -->
+<div class="page page-loot" id="loot">
+  <span class="section-badge">6 &middot; Loot</span>
+  <div class="page-indicator">Loot Guide</div>
+  <h2>Loot Guide</h2>
+
+  <h3>Session 3 Guaranteed Drops</h3>
+  <table>
+    <tr><th>Item</th><th>Source</th><th>Where</th></tr>
+    <tr><td><strong>Bitter Breath's Gutripper</strong> &mdash; +1 shortsword, 2d6 slash + 1d6 necrotic, crit: target bleeds 1d6/round</td><td>Homebrew</td><td>BB's body</td></tr>
+    <tr><td><strong>3 soul coins</strong></td><td>&mdash;</td><td>BB's quarters</td></tr>
+    <tr><td><strong>Crude Avernus map</strong> &mdash; shows Blood Pay sites (Xs) + warlord territories</td><td>&mdash;</td><td>BB's quarters</td></tr>
+    <tr><td><strong>Moonbow of Celestial Warding</strong> &mdash; +2 shortbow, 1d6+2 piercing + 1d4 radiant, arcane focus, 7 charges (Magic Missile, Shield, Counterspell), Moonkite's Blessing (Banishment 1/LR). Replaces +2 bow + Wand.</td><td>Homebrew</td><td>Moonkite fusion</td></tr>
+    <tr><td><strong>Soul Capacitor &rarr; Medium tier</strong></td><td>Homebrew</td><td>Rasheem (Act 1)</td></tr>
+  </table>
+
+  <h3>Palace of Gore Hidden Cache (DC 18 Investigation in BB's quarters)</h3>
+  <table>
+    <tr><th>Item</th><th>Details</th></tr>
+    <tr>
+      <td><strong>Kyshaarth's Fang</strong><br><span class="rarity-r">Rare</span> <span class="rarity-source">Vault of Magic</span></td>
+      <td>Dagger, +2d6 necrotic on every hit. In dim light/darkness: <strong>regain HP equal to half necrotic dealt.</strong> Avernus is perpetually dim &mdash; this heals on every attack. Perfect for Asimov.</td>
+    </tr>
+    <tr>
+      <td><strong>Fiendish Charter</strong><br><span class="rarity-r">Rare</span> <span class="rarity-source">Vault of Magic</span></td>
+      <td>Scroll. Present to a fiend (CR &le; your level) &mdash; it's compelled to parley and negotiate. If a deal is struck, both sign in blood. Breaking the bargain: <strong>10d6 necrotic</strong>. One-use. Avernus is about deals.</td>
+    </tr>
+  </table>
+
+  <hr class="thin-divider">
+
+  <h3 id="road-loot">Avernus Road Treasure (d10)</h3>
+  <p>Roll when exploration or debris field yields a hidden cache. All items are Rare unless noted.</p>
+  <table>
+    <tr><th>d10</th><th>Item</th><th>Best For</th></tr>
+    <tr>
+      <td>1</td>
+      <td><strong>Mourningsteel Stiletto</strong> <span class="rarity-source">Griffon's Saddlebag</span><br>Dagger. First hit/turn: +1d4 necrotic, target takes -[necrotic dealt] penalty to first save before your next turn.</td>
+      <td>Asimov</td>
+    </tr>
+    <tr>
+      <td>2</td>
+      <td><strong>Voidskin Cloak</strong> <span class="rarity-source">Vault of Magic</span><br>Necrotic resistance. Hood up (action): bonus action to fear-gaze one creature within 60 ft (DC 15 Wis).</td>
+      <td>Any</td>
+    </tr>
+    <tr>
+      <td>3</td>
+      <td><strong>Midnight Smoke</strong> <span class="rarity-source">Griffon's Saddlebag</span><br>+1 dagger hidden in a pipe. Action: exhale 10-ft blind cone (DC 15 Con). Recharges on kill. Blind = advantage = Sneak Attack.</td>
+      <td>Asimov</td>
+    </tr>
+    <tr>
+      <td>4</td>
+      <td><strong>Bloodthirsty Weapon</strong> (dagger) <span class="rarity-source">Vault of Magic</span><br>+2d6 blood loss on hit. If you <em>miss</em> a creature you already wounded: target still loses 2d6 HP. Damage on misses.</td>
+      <td>Asimov</td>
+    </tr>
+    <tr>
+      <td>5</td>
+      <td><strong>Spectral Blade</strong> <span class="rarity-source">Vault of Magic</span><br>+1 shortsword. Attacks deal <strong>force damage</strong> (bypasses all resistance). Action or reaction: turn <strong>incorporeal</strong> until start of next turn.</td>
+      <td>Asimov</td>
+    </tr>
+    <tr>
+      <td>6</td>
+      <td><strong>Lifeburst Mace</strong> <span class="rarity-source">Griffon's Saddlebag</span><br>+1 mace. On hit, expend a spell slot: heal up to 4 creatures within 5 ft for 1d6/slot level (max 3rd). Offensive healing.</td>
+      <td>Drenwal</td>
+    </tr>
+    <tr>
+      <td>7</td>
+      <td><strong>Primal Doom of Rage</strong> <span class="rarity-source">Vault of Magic</span><br>Grenade (consumable, very rare). Throw 30 ft. DC 15 Wis: 6d6 psychic. On fail: summons a <strong>bone devil</strong> to fight for you for 1 min.</td>
+      <td>Any</td>
+    </tr>
+    <tr>
+      <td>8</td>
+      <td><strong>Devil's Pact Scroll</strong> <span class="rarity-source">Vault of Magic</span><br>Summon a bearded devil. It serves you, but each command requires <strong>WIS (Insight) vs its CHA (Deception)</strong>. Lose 3 contests: <strong>your soul is sold.</strong></td>
+      <td>Any (risk)</td>
+    </tr>
+    <tr>
+      <td>9</td>
+      <td><strong>Dimensional Net</strong> <span class="rarity-source">Vault of Magic</span><br>+1 net. Fiends/celestials caught in it can't teleport. <strong>DC 30</strong> to break free. Immune to the bound creature's damage. Made for Avernus.</td>
+      <td>Party</td>
+    </tr>
+    <tr>
+      <td>10</td>
+      <td><strong>Cloak of Smoke and Cinder</strong> <span class="rarity-source">Griffon's Saddlebag</span><br><span class="rarity-vr">Very Rare</span>. Fire resistance. Functions as Cape of the Mountebank (Dimension Door 1/day). Ignore smoke obscurement.</td>
+      <td>Aurora</td>
+    </tr>
+  </table>
+
+  <hr class="thin-divider">
+
+  <h3 id="emporium">Wandering Emporium Stock (if encountered)</h3>
+  <p>Mahadi prices in soul coins. Negotiable with DC 18 Persuasion (&ndash;20%).</p>
+  <table>
+    <tr><th>Item</th><th>Price</th><th>Best For</th></tr>
+    <tr>
+      <td><strong>Rod of the Infernal Realms</strong> <span class="rarity-vr">VR</span> <span class="rarity-source">Vault of Magic</span><br>+2 spell attack/DC. Bonus action: infernal fear aura 10 ft (DC = spell DC) for 1 min. 1/dawn.</td>
+      <td>50 SC</td>
+      <td>Aurora</td>
+    </tr>
+    <tr>
+      <td><strong>Amulet of Divine Protection</strong> <span class="rarity-r">R</span> <span class="rarity-source">Griffon's Saddlebag</span><br>Permanent +2 AC (Shield of Faith effect). No concentration. Con save on damage to maintain.</td>
+      <td>30 SC</td>
+      <td>Drenwal</td>
+    </tr>
+    <tr>
+      <td><strong>Ring of Planar Affinity</strong> <span class="rarity-vr">VR</span> <span class="rarity-source">Vault of Magic</span><br>You count as native to whatever plane you're on. No environmental penalties in Avernus.</td>
+      <td>40 SC</td>
+      <td>Any</td>
+    </tr>
+    <tr>
+      <td><strong>Bone Whip</strong> <span class="rarity-vr">VR</span> <span class="rarity-source">Vault of Magic</span><br>+1 whip. Activate: 5 temp HP on first hit/turn + DC 17 Con or target's <strong>HP max reduced</strong> by damage dealt. 1/dawn.</td>
+      <td>35 SC</td>
+      <td>Any</td>
+    </tr>
+  </table>
+
+  <h3>Cursed Temptations (Plant at Dramatic Moments)</h3>
+  <p>Items with power and a price. Save for RP-heavy moments.</p>
+  <table>
+    <tr><th>Item</th><th>Power</th><th>Curse</th></tr>
+    <tr>
+      <td><strong>Death Locket</strong> <span class="rarity-vr">VR</span><br><span class="rarity-source">Griffon's Saddlebag</span></td>
+      <td>Necrotic resist + daily Death Ward + Speak with Dead (costs hit dice).</td>
+      <td>If you die wearing it: <strong>soul permanently trapped</strong>. Only <em>Wish</em> can free you. Avernus. Souls. Currency.</td>
+    </tr>
+    <tr>
+      <td><strong>Wretched Ring</strong> <span class="rarity-vr">VR</span><br><span class="rarity-source">Griffon's Saddlebag</span></td>
+      <td>Necrotic resist + bonus action Misty Step + summon 8 skeletons 1/LR (solves action economy).</td>
+      <td>Each Misty Step use: Wis save at long rest (DC = 4 &times; uses). Fail: 1 exhaustion + no rest benefit. Nightmares.</td>
+    </tr>
+    <tr>
+      <td><strong>Blazeblood Rapier</strong> <span class="rarity-vr">VR</span><br><span class="rarity-source">Griffon's Saddlebag</span></td>
+      <td>Fire resist + retaliatory 1d6 fire. Blood Conversion: spend hit dice for 3d6 fire AoE per die (4d6 if bloodied). Kill = regain hit dice.</td>
+      <td>If you die: <strong>reduced to ashes</strong>. Only True Resurrection or Wish. No Revivify, no Raise Dead.</td>
+    </tr>
+  </table>
+
+  <h3>Future Session Drops (Plant Seeds Now)</h3>
+  <table>
+    <tr><th>Item</th><th>Location</th><th>PC</th></tr>
+    <tr><td><strong>Helm of the Lichfiend</strong> <span class="rarity-vr">VR</span> <span class="rarity-source">Griffon's Saddlebag</span> &mdash; Fire + necrotic resist. Kill a fiend &rarr; it explodes in hellfire &rarr; animated burning skeleton rises to serve you. Up to 3.</td><td>Blood Pay location or Fallen Three</td><td>Aurora</td></tr>
+    <tr><td><strong>Vile Razor</strong> <span class="rarity-r">R</span> <span class="rarity-source">Vault of Magic</span> &mdash; +1 dagger. 1/dusk: take <strong>two bonus actions</strong> in one turn. Unclean Cut: AoE frighten on hit.</td><td>Bounty target / warlord loot</td><td>Asimov</td></tr>
+    <tr><td><strong>Cathedral Armor</strong> <span class="rarity-vr">VR</span> <span class="rarity-source">Griffon's Saddlebag</span> &mdash; +2 breastplate. 1/dawn: Prismatic Spray (fire ray) paired with Channel Divinity.</td><td>Crypt of the Hellriders</td><td>Drenwal</td></tr>
+    <tr><td><strong>Ring of Sealing</strong> <span class="rarity-vr">VR</span> <span class="rarity-source">Vault of Magic</span> &mdash; 3 charges. Melee hit + BA: DC 17 Wis or restrained. 3 consecutive fails: <strong>permanently bound.</strong></td><td>Bel's Forge reward</td><td>Asimov</td></tr>
+  </table>
+  <div class="section-return"><a href="#contents">Back to Contents</a></div>
+</div>
+
+<!-- ═══════════════════════ PAGE 8: QUICK REFERENCE ═══════════════════════ -->
+<div class="page page-ref" id="stats">
+  <span class="section-badge">7 &middot; Reference</span>
+  <div class="page-indicator">Quick Stat Reference &amp; Checklist</div>
+  <h2>Quick Stat Reference</h2>
+
+  <h3>Boss: Bitter Breath</h3>
+  <p class="stat-line"><strong>AC 19</strong> | <strong>HP 280</strong> | <strong>Speed 50 ft</strong> | <strong>Saves:</strong> Str +13, Dex +11, Wis +9<br>
+  <strong>Immune:</strong> fire, poison, charmed, frightened, poisoned | <strong>Resist:</strong> cold, lightning, nonmagical weapons<br>
+  <strong>Magic Resistance</strong> | <strong>Legendary Resistance 3/day</strong> | <strong>Relentless 1/day</strong> (0 HP &rarr; 1 HP)</p>
+
+  <h3>Minions</h3>
+  <table>
+    <tr><th>Creature</th><th>AC</th><th>HP</th><th>Attack</th><th>Special</th></tr>
+    <tr><td>Hobgoblin Veteran</td><td>18</td><td>55</td><td>+5, 1d8+3</td><td>Martial Advantage (+2d6 if ally adjacent)</td></tr>
+    <tr><td>Barbed Devil</td><td>15</td><td>110</td><td>+6 claw, 2d6+3</td><td>Hurl Flame: 4d6 fire, 150 ft</td></tr>
+    <tr><td>Maw Demon</td><td>13</td><td>137</td><td>+6 bite, 4d8+4</td><td>Drainage tunnels only</td></tr>
+    <tr><td>Chain Devil</td><td>16</td><td>85</td><td>+8 chain, 2d6+4</td><td>Animate Chains: DC 14, restrained. Prison guard.</td></tr>
+  </table>
+
+  <h3>Key DCs &mdash; All Session</h3>
+  <table>
+    <tr><th>DC</th><th>Check</th><th>Context</th></tr>
+    <tr><td>12</td><td>Arcana</td><td>Aurora senses Moonkite's pain (easy, want her to succeed)</td></tr>
+    <tr><td>12</td><td>Insight</td><td>Captain Grozz is genuinely terrified</td></tr>
+    <tr><td>14</td><td>Con save</td><td>River of blood: poisoned 1h (touch) / 3d6 necrotic/round (fall in)</td></tr>
+    <tr><td>14</td><td>Dex save</td><td>Bone spear traps in drainage tunnels (3d8 piercing)</td></tr>
+    <tr><td>14</td><td>Wis save</td><td>Moonkite skill challenge failure: psychic scream, stunned 1 round</td></tr>
+    <tr><td>15</td><td>Athletics</td><td>Clear rubble for drainage tunnel entrance</td></tr>
+    <tr><td>15</td><td>Perception</td><td>Spot drainage tunnel traps / spot war camp patrol gaps</td></tr>
+    <tr><td>15</td><td>Religion</td><td>Identify warning totems as soul-bound sentinels</td></tr>
+    <tr><td>15</td><td>Wis save</td><td>Drenwal: The Hunger (3+ days since kill: or gain 1 exhaustion)</td></tr>
+    <tr><td>16</td><td>Insight</td><td>Smiler is hiding info about the Moonkite's value</td></tr>
+    <tr><td>16</td><td>Group Stealth</td><td>Bypass the war camp outside the Palace</td></tr>
+    <tr><td>16</td><td>Stealth</td><td>Drainage tunnel infiltration (disadvantage from blood terrain)</td></tr>
+    <tr><td>17</td><td>Con save</td><td>Bitter Breath: Rotten Breath (8d8 poison + 4d6 necrotic; stun on fail by 5+)</td></tr>
+    <tr><td>17</td><td>Con save</td><td>Bitter Breath: Aura of Rot (poisoned + half speed)</td></tr>
+    <tr><td>17</td><td>Dex save</td><td>Bitter Breath: Flaying Rush (4d6 slashing) / Gore Horns follow-through</td></tr>
+    <tr><td>18</td><td>Deception</td><td>Fool hobgoblin gate guards (main gate approach)</td></tr>
+    <tr><td>18</td><td>Investigation</td><td>Find hidden cache in BB's quarters</td></tr>
+    <tr><td>20</td><td>Deception</td><td>Fool Bitter Breath himself</td></tr>
+  </table>
+
+  <hr class="divider">
+
+  <h2 id="checklist">Session Checklist</h2>
+
+  <h4>Before Play</h4>
+  <ul class="checklist">
+    <li>Pre-roll breath recharge (d6 per round, mark 5-6)</li>
+    <li>Review fight cheat sheet &mdash; practice BB's turn template once</li>
+    <li>Prep Smiler dialogue (Act 1) and Gargauth's cure lines</li>
+    <li>Print/have chain devil (AC 16, 85 HP) and maw demon (AC 13, 137 HP) stats ready</li>
+    <li>Decide: if party attacked Smiler, did he warn Bitter Breath?</li>
+    <li>Have Palace layout in mind (3 levels: drainage, throne, prison)</li>
+  </ul>
+
+  <h4>During Play</h4>
+  <ul class="checklist">
+    <li>Let party discuss the cure reveal (don't rush Act 1)</li>
+    <li>Gargauth whispers during travel &mdash; plant the "I could catch you" seed</li>
+    <li>Aurora's wand escalation: faint &rarr; steady &rarr; vibrating &rarr; singing</li>
+    <li>Smiler encounter &mdash; get their choice on record</li>
+    <li>Captain Grozz moral dilemma &mdash; affects boss fight minion count</li>
+    <li>Short rest before boss fight (Warlock needs slots)</li>
+    <li>Run Bitter Breath with MOVEMENT &mdash; never let him stand still</li>
+    <li>Environmental escalation: R2 rubble, R4 wall collapse, R6 floor gives way</li>
+    <li>Moonkite reveal &mdash; take your time, make it emotional</li>
+    <li>Bow + Wand fusion scene &mdash; Aurora's spotlight, let it breathe</li>
+    <li>Mount persuasion &mdash; let Aurora RP the bond, adjust DC based on approach</li>
+    <li>End with Dumal's message carved in stone &mdash; cliffhanger</li>
+  </ul>
+
+  <h4>After Play &mdash; Update campaign-state.md</h4>
+  <ul class="checklist">
+    <li>Bitter Breath defeated / status</li>
+    <li>Moonkite freed</li>
+    <li>Moonbow of Celestial Warding created (replaces +2 bow + wand)</li>
+    <li>Mount persuasion outcome</li>
+    <li>Bhaal score &rarr; 4/6</li>
+    <li>Dumal confirmed nearby (12-18h)</li>
+    <li>Smiler deal outcome</li>
+    <li>Captain Grozz outcome</li>
+    <li>Loot gained (list all items)</li>
+    <li>Reputation &rarr; +3 (Bloodbath + Moonkite)</li>
+    <li>Celestial pulse alerted Zariel's forces + Dumal</li>
+    <li>Next session seeds: Dumal confrontation, Fallen Three quest, ice devil patrol</li>
+  </ul>
+  <div class="section-return"><a href="#contents">Back to Contents</a></div>
+</div>
+
+<!-- Floating Back-to-Contents Button -->
+<a href="#contents" class="back-btn">Contents</a>
+
+</body>
+</html>

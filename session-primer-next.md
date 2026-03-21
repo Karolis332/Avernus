@@ -360,18 +360,55 @@ Aurora uses the **Moonkite Cage Key**. The cage clicks, hisses, and the adamanti
 > The Moonkite unfolds. It's larger than the cage should have allowed — wings spanning 20 feet, a body of living starlight, antlers that branch like frozen lightning. It touches down before Aurora. Its eyes — vast, ancient, gentle — meet hers.
 
 > No words. But Aurora *knows*:
-> - **Gratitude.** Deep, endless.
+> - **Gratitude.** Deep, endless. A bond deeper than patronage — the Moonkite recognizes Aurora as the one it has been reaching toward since before her birth.
 > - **Weakness.** It was drained for decades. It cannot fight. It cannot fly far. It needs time.
 > - **Warning.** The chains were connected to something larger. Zariel's war machine network. Freeing the Moonkite has sent a signal. *They will come.*
-> - **Gift.** The Moonkite touches the Wand of Celestial Warding with one antler. The wand evolves.
+> - **Gift.** The Moonkite lowers its antlers. One touches the Wand of Celestial Warding. The other touches Aurora's +2 bow. Silver light flares — blinding, warm, absolute. When it fades, Aurora is holding a single weapon. The bow and wand have fused.
 
-### Wand of Celestial Warding — Evolution
+### The Fusion: Moonbow of Celestial Warding
 
-**Level 2 abilities (immediate):**
-- Charges increase to 7 (regains 1d4+3 at dawn)
-- New spell: **Shield** (1 charge)
-- New spell: **Counterspell** at 3rd level (3 charges)
-- **Moonkite's Blessing:** Once per long rest, Aurora can cast **Banishment** (no concentration, 1 minute duration) using the wand. The banished creature is sent to the Feywild rather than its home plane.
+> The bow reshapes in Aurora's hands. The wood grain flows like water, silver-white veins threading through it — the wand's runes dissolving and re-etching themselves along the limbs and string. The bowstring is no longer gut or sinew — it's a thread of pure starlight, humming with the Moonkite's song. When Aurora draws, an arrow of silver-white light materializes on the string. The weapon is warm. It knows her.
+
+**DM Note:** This is Aurora's big moment — equivalent to Asimov's Soul Capacitor evolution. The Moonkite recognizes its own essence in the wand AND Aurora's fighting soul in the bow. It fuses them because they belong together — two halves of Aurora's identity as both protector and warrior. Let the player hold this moment. The other PCs should feel the weight of it.
+
+**Moonbow of Celestial Warding** <span style="color:green;font-weight:700;">RARE, EVOLVING</span>
+*Weapon (shortbow), requires attunement by Aurora*
+
+- **+2 shortbow** — arrows manifest as bolts of silver-white starlight
+- **Damage:** 1d6+2 piercing + 1d4 radiant (starlight arrows)
+- **Spellcasting focus** — can be used as Aurora's arcane focus
+- **Charges:** 7 (regains 1d4+3 at dawn)
+  - **Magic Missile** (1 charge per missile, up to 5)
+  - **Shield** (1 charge, reaction)
+  - **Counterspell** at 3rd level (3 charges)
+- **Moonkite's Blessing:** 1/LR, cast **Banishment** (no concentration, 1 minute). Target is sent to the Feywild, not its home plane.
+- **Moonkite Bond:** Aurora can communicate with the Moonkite once per long rest (brief visions, feelings, direction-sense). Replaces the vague wand pulses with actual guidance.
+- **Evolving** — further tiers unlock as the Moonkite recovers
+
+**Replaces:** Wand of Celestial Warding + Aurora's +2 bow (both consumed in the fusion)
+
+### The Mount: Persuading the Moonkite
+
+After the fusion, the Moonkite lingers. It does not leave. It watches Aurora — not with expectation, but with *openness*. It is waiting to see what Aurora will do.
+
+**If Aurora asks the Moonkite to stay with her / be her mount:**
+
+> **DC 15 Persuasion** (Aurora has **advantage** — the Moonkite already trusts her deeply). On a natural 20, the Moonkite nuzzles its antlers against Aurora's shoulder — immediate, unconditional.
+
+**On success:** The Moonkite agrees — not as a beast to be ridden, but as a companion choosing to run beside her. It communicates a single, overwhelming *knowing*:
+
+> *Together. Until we leave this place. Then — free.*
+
+The Moonkite is too weak to carry Aurora NOW. It will follow the party through the Feywild echo — invisible to Avernus, but Aurora can feel its presence like a second heartbeat. It needs **2-3 long rests** to recover enough strength to serve as a mount.
+
+**When the Moonkite recovers (DM pacing — 2-3 sessions):**
+- **Mount stats:** Large celestial-fey. AC 15, HP 90. Speed 60 ft (ground), **90 ft (flying)** — but flying is suppressed to 60 ft ground in Avernus (the plane resists celestial flight). Full flying speed only available near planar weak points or outside Avernus.
+- **Moonkite's Desperation:** The Moonkite WANTS to leave Avernus. It will actively sense planar weak points and guide the party toward exits. This creates tension — it may try to bolt for a rift prematurely. Aurora must convince it to stay long enough to finish the mission.
+- **Vulnerability:** While in Avernus, the Moonkite slowly deteriorates (1 max HP lost per day). This is a ticking clock — the longer they stay, the weaker it gets. Leaving Avernus fully restores it.
+
+**On failure:** The Moonkite pulls back — not rejection, but hesitation. It has been caged too long. It fears being bound again. Aurora can try again after the next long rest (DC 13, no advantage — the Moonkite is warming up but needs time).
+
+**DM Note:** The mount should feel EARNED, not given. If Aurora roleplays the bond well — references the wand's history, speaks to the Moonkite as an equal, promises to help it escape Avernus — give advantage or lower the DC. If she tries to command it or treat it as a beast, the DC goes UP. The Moonkite is a proud, ancient being. It partners, it does not serve.
 
 ### Consequences & Cliffhangers
 
@@ -386,8 +423,9 @@ Aurora uses the **Moonkite Cage Key**. The cage clicks, hisses, and the adamanti
   - **Smiler** (if they dealt with him) — racing to claim the Palace before it collapses
 
 **The Moonkite's Refuge:**
-- The Moonkite cannot travel fast. It will follow the party in the Feywild echo — invisible to most, but Aurora can feel its presence. It will rest and recover, eventually becoming a powerful ally.
-- For now: **Aurora can communicate with the Moonkite once per long rest** (brief visions, feelings, direction-sense). This replaces the vague wand pulses with actual guidance.
+- If mount persuasion succeeded: The Moonkite follows the party through the Feywild echo, recovering. Aurora feels its presence constantly — a warm pulse behind her sternum. It will manifest physically when strong enough (2-3 sessions).
+- If mount persuasion failed or not attempted: The Moonkite retreats into the Feywild echo alone. Aurora can still communicate once per long rest via the Moonbow. The mount opportunity returns later.
+- **Escape motivation:** The Moonkite will actively push the party toward finishing the quest faster. Every long rest, Aurora receives a flash of the Moonkite's deterioration — a reminder that time in Avernus costs.
 
 **Drenwal's Cliffhanger:**
 As they leave the collapsing Palace, Drenwal sees it. Carved into the stone above the exit, fresh — the stone is still warm:
@@ -423,13 +461,16 @@ Dumal was here. While they were inside. He watched them enter, and chose not to 
 - [ ] Short rest before boss fight
 - [ ] Run Bitter Breath with MOVEMENT — never let him stand still
 - [ ] Moonkite reveal — take your time, make it emotional
+- [ ] Bow + Wand fusion scene — Aurora's spotlight, let it breathe
+- [ ] Mount persuasion — let Aurora RP the bond, adjust DC based on approach
 - [ ] End with Dumal's message — cliffhanger
 
 ### After Play
 - [ ] Update `campaign-state.md`:
   - Bitter Breath defeated/status
   - Moonkite freed
-  - Wand evolved to Level 2
+  - Moonbow of Celestial Warding created (replaces +2 bow + wand)
+  - Mount persuasion outcome
   - Bhaal score → 4/6
   - Dumal confirmed nearby (12-18h)
   - Smiler deal outcome

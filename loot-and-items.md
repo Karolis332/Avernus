@@ -6,12 +6,20 @@
 
 ## Evolving Items (From DM Prep)
 
-### Wand of Celestial Warding (Aurora's)
-- Rare, Evolve, requires attunement by spellcaster
-- Glows faintly with starlight. Etched runes hum with power.
-- **Base (Level 1):** Magic Missile, 5 charges, regains 1d4+1 at dawn
-- **Evolves** as Aurora grows — protective barriers, force manipulation, eventually gravitational forces
-- **Connected to the Moonkite** — pulses near infernal artifacts made from its essence
+### Moonbow of Celestial Warding (Aurora's) — FUSED FROM +2 BOW + WAND
+- Rare, Evolving, requires attunement by Aurora
+- The Moonkite fused Aurora's +2 bow and Wand of Celestial Warding into a single weapon upon being freed from the Palace of Gore.
+- **+2 shortbow** — arrows manifest as silver-white starlight bolts
+- **Damage:** 1d6+2 piercing + 1d4 radiant
+- **Arcane focus** — can be used as Aurora's spellcasting focus
+- **Charges:** 7 (regains 1d4+3 at dawn)
+  - Magic Missile (1 charge per missile, up to 5)
+  - Shield (1 charge, reaction)
+  - Counterspell at 3rd level (3 charges)
+- **Moonkite's Blessing:** 1/LR, Banishment (no concentration, 1 min, target sent to Feywild)
+- **Moonkite Bond:** Communicate with Moonkite 1/LR (visions, feelings, direction-sense)
+- **Evolves** further as the Moonkite recovers — protective barriers, force manipulation, eventually gravitational forces
+- **Previous forms:** Wand of Celestial Warding (Level 1: Magic Missile, 5 charges) + Aurora's +2 shortbow
 
 ### Soul Capacitor (Asimov's)
 - Wondrous, Evolving, requires attunement by Soulknife Rogue
