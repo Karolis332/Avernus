@@ -97,3 +97,22 @@ Outside the Tower of Urm — departing after encountering the real Mordenkainen
 **Items gained/lost:** Information (Fallen Three locations, cure revelation).
 **Influence scores:** Bhaal 3/6, Gargauth 2/6 (unchanged this session)
 **Soul Capacitor:** Bloodbath bounty processed by Rasheem → Medium Soul tier unlocked, Bloodbath Bounty Soul imprinted (Bloodscent passive, Drinker's Frenzy 1/LR, Bloodbath's Memories 1/LR)
+
+## Session 3 Prep Notes
+
+**Session primer:** `session-primer-next.md`
+**Boss encounter:** `bitter-breath-boss-encounter.md` — 3-phase fight (Throne of Gore → The Siphon → Stolen Starlight) with mythic phase, Moonkite Vitality tracker, per-phase lair actions, secondary objectives, spotlight mechanics, loot table, DM tips.
+
+**Key decisions to track after Session 3:**
+- Smiler deal outcome (accepted / refused / attacked)
+- Captain Grozz outcome (freed / killed / captured) — affects hobgoblin count in boss fight
+- Bitter Breath defeated? How?
+- Moonkite freed? Chain skill challenge result
+- Moonbow of Celestial Warding created (replaces +2 bow + Wand of Celestial Warding)
+- Mount persuasion outcome (success / fail / not attempted)
+- Bhaal influence → tick to 4/6
+- Dumal confirmed nearby (12-18h away, carved Bhaal symbol at Palace exit)
+- Celestial pulse alerted Zariel's forces + Dumal
+- Loot: 3 soul coins, Bitter Breath's Gutripper, crude Avernus map with Blood Pay sites
+
+**Next session seeds:** Dumal confrontation, Fallen Three quest begins, ice devil patrol, Moonkite recovery (2-3 rests to mount), Palace collapse aftermath

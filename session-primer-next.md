@@ -15,8 +15,9 @@
 **Target length:** 5-6 hours
 
 **Companion documents:**
+- `bitter-breath-boss-encounter.md` — **3-phase boss fight design** (Throne of Gore → The Siphon → Stolen Starlight). Includes per-phase lair actions, secondary objectives, Moonkite Vitality tracker, mythic phase with HP reset, spotlight mechanics for all 3 PCs, loot table, quick reference card, and DM tips. **Use this for the boss fight instead of the Act 4 section below** — it supersedes the simpler encounter written here.
 - `encounter-appendix.md` / `encounter-appendix.html` — Full stat blocks, tactics, terrain, puzzles, and drops for ALL random encounters and sandbox locations. Open the HTML version for sidebar navigation and stat block cards.
-- `bitter-breath-statblock.md` — Boss stat block
+- `bitter-breath-statblock.md` — Original boss stat block (base for all phases in the boss encounter doc)
 - `loot-and-items.md` — Magic items, evolving items, currency
 - `encounter-tables.md` — Random encounter tables, scaling philosophy
 
@@ -288,7 +289,9 @@ If the party took fights in the infiltration, they'll want a short rest before t
 
 ## ACT 4: BITTER BREATH BOSS FIGHT (1.5 hours)
 
-> **Stat blocks & XP:** All creature stat blocks, anti-party tactics, and XP values are in `encounter-appendix.md`. The boss fight here uses the Bitter Breath stat block from `bitter-breath-statblock.md`. For any random encounters rolled during travel, see the encounter appendix.
+> **USE `bitter-breath-boss-encounter.md` FOR THIS FIGHT.** It contains a full 3-phase encounter design that supersedes the simpler version below. The doc below is retained as a fallback/quick reference, but the boss encounter doc has per-phase lair actions, secondary objectives, a Moonkite Vitality tracker, a mythic phase with HP reset, and spotlight mechanics for all 3 PCs.
+>
+> **Stat blocks & XP:** All creature stat blocks, anti-party tactics, and XP values are in `encounter-appendix.md`. The base stat block is in `bitter-breath-statblock.md`. For any random encounters rolled during travel, see the encounter appendix.
 
 ### Setup
 
