@@ -1,0 +1,2185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 4 — Bitter Breath: Boss Encounter</title>
+<style>
+  :root{
+    --bg:#0d0a0a; --surface:#181311; --surface2:#221a18; --border:#3a2c28;
+    --ink:#e8d8c8; --muted:#9a8a7a; --accent:#c8a464; --silver:#b8c8d8;
+    --blood:#8b1a1a; --rot:#5a4818; --bone:#cdbb9a; --hell:#d04a1a;
+    --good:#5fa860; --warn:#e0a040; --crit:#d24040; --celest:#c0c8e0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter','Segoe UI',system-ui,sans-serif;line-height:1.55;font-size:15px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  /* Layout */
+  .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+  nav.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border);padding:20px 16px}
+  nav h1{font-family:'Cinzel','Georgia',serif;font-size:18px;color:var(--accent);margin:0 0 6px;letter-spacing:1px}
+  nav .sub{color:var(--muted);font-size:12px;margin-bottom:18px;font-style:italic}
+  nav ol{list-style:none;padding:0;margin:0;counter-reset:nav}
+  nav ol li{counter-increment:nav;margin-bottom:2px}
+  nav ol li a{display:block;padding:6px 8px;border-radius:4px;color:var(--ink);font-size:13px;border-left:2px solid transparent}
+  nav ol li a:before{content:counter(nav,decimal-leading-zero) " · ";color:var(--muted);font-family:monospace;font-size:11px}
+  nav ol li a:hover{background:var(--surface2);border-left-color:var(--accent);text-decoration:none}
+  nav .navgroup{margin-top:18px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:0 8px 4px}
+
+  main{padding:24px 36px 80px;max-width:980px}
+  header.title{margin-bottom:32px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+  header.title h1{font-family:'Cinzel','Georgia',serif;font-size:36px;color:var(--accent);margin:0 0 4px;letter-spacing:2px}
+  header.title .meta{color:var(--muted);font-size:14px;font-style:italic}
+
+  /* Trackers */
+  .trackers{position:sticky;top:0;z-index:50;background:var(--bg);padding:12px 0;margin-bottom:24px;border-bottom:1px solid var(--border)}
+  .tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:14px}
+  .tracker{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 12px}
+  .tracker .label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+  .tracker .label button{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:10px;padding:1px 5px;border-radius:3px;cursor:pointer}
+  .tracker .label button:hover{color:var(--accent);border-color:var(--accent)}
+  .tokens{display:flex;flex-wrap:wrap;gap:4px}
+  .token{width:22px;height:22px;border-radius:50%;background:var(--silver);border:2px solid var(--border);cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--bg);font-weight:bold}
+  .token.spent{background:var(--surface2);border-color:var(--border);color:var(--border)}
+  .token.lr{background:var(--accent)}
+  .token.cage{background:var(--bone);width:18px;height:18px;font-size:9px}
+  .token.cage.cut{background:var(--blood);color:var(--bg)}
+  .token.cage.saved{background:var(--good);color:var(--bg)}
+  .round-counter{display:flex;align-items:center;gap:6px}
+  .round-counter button{background:var(--surface2);border:1px solid var(--border);color:var(--ink);width:28px;height:28px;border-radius:4px;cursor:pointer;font-size:14px}
+  .round-counter button:hover{background:var(--accent);color:var(--bg)}
+  .round-counter .num{font-size:20px;font-family:'Cinzel',serif;color:var(--accent);min-width:36px;text-align:center}
+  .hp-bar{width:100%;height:18px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;position:relative;overflow:hidden;cursor:pointer}
+  .hp-bar .fill{height:100%;background:linear-gradient(90deg,var(--blood),var(--hell));transition:width 0.3s}
+  .hp-bar .text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;color:var(--ink);text-shadow:0 0 3px black}
+
+  /* Sections */
+  section{margin-bottom:40px;scroll-margin-top:160px}
+  section > h2{font-family:'Cinzel',serif;font-size:24px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:32px 0 16px;letter-spacing:1px}
+  section > h3{font-family:'Cinzel',serif;font-size:18px;color:var(--bone);margin:24px 0 10px}
+  section h4{font-size:14px;color:var(--accent);margin:18px 0 6px;text-transform:uppercase;letter-spacing:1px}
+
+  blockquote.read{background:var(--surface);border-left:4px solid var(--accent);padding:14px 18px;margin:14px 0;font-style:italic;color:var(--bone);border-radius:0 4px 4px 0}
+  blockquote.read em{color:var(--accent);font-style:normal;font-weight:600}
+
+  blockquote.dialogue{background:var(--surface2);border-left:4px solid var(--blood);padding:10px 16px;margin:10px 0 10px 20px;font-style:italic;color:var(--ink);border-radius:0 4px 4px 0}
+
+  .callout{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--warn);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0}
+  .callout.danger{border-left-color:var(--crit)}
+  .callout.good{border-left-color:var(--good)}
+  .callout.info{border-left-color:var(--celest)}
+  .callout strong:first-child{color:var(--accent);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;font-size:13px}
+  th{background:var(--surface2);color:var(--accent);font-family:'Cinzel',serif;text-align:left;padding:8px 10px;font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+  td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--surface2)}
+
+  /* Stat blocks */
+  .statblock{background:#f4ecdc;color:#1a1410;border:2px solid var(--bone);border-radius:6px;padding:18px 22px;margin:18px 0;font-family:'Bookman','Garamond',serif;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+  .statblock h3{font-family:'Cinzel',serif;color:var(--blood);margin:0 0 4px;font-size:22px;letter-spacing:1px}
+  .statblock .subtitle{font-style:italic;color:#3a2018;margin-bottom:8px;font-size:13px}
+  .statblock hr{border:none;border-top:2px solid var(--blood);margin:8px 0}
+  .statblock .ability{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;text-align:center;padding:8px 0;font-size:12px}
+  .statblock .ability div span{display:block;font-weight:bold;color:var(--blood)}
+  .statblock p{margin:6px 0;font-size:13px}
+  .statblock .trait,.statblock .action{margin:6px 0}
+  .statblock .trait strong,.statblock .action strong{color:var(--blood);font-style:italic}
+  .statblock .lr-track{background:var(--accent);color:var(--bg);padding:2px 8px;border-radius:3px;font-size:11px;font-weight:bold;display:inline-block}
+
+  /* Phase containers */
+  .phase{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:18px 0;border-top:4px solid var(--accent)}
+  .phase.phase-1{border-top-color:var(--blood)}
+  .phase.phase-2{border-top-color:var(--rot)}
+  .phase.phase-3{border-top-color:var(--celest)}
+  .phase h2{margin-top:0}
+  .phase .phase-meta{color:var(--muted);font-size:12px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1.5px}
+
+  /* ASCII map */
+  pre.map{background:var(--surface2);color:var(--bone);padding:14px;border-radius:4px;border:1px solid var(--border);overflow-x:auto;font-size:12px;line-height:1.4}
+
+  /* Collapsibles */
+  details{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin:10px 0;padding:0}
+  details summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--accent);user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary:before{content:"▶";font-size:10px;margin-right:8px;transition:transform 0.2s}
+  details[open] summary:before{transform:rotate(90deg)}
+  details summary::-webkit-details-marker{display:none}
+  details > *:not(summary){padding:0 16px 14px}
+
+  details.private{border-left:4px solid var(--celest)}
+  details.private summary{color:var(--celest)}
+
+  details.spoiler{border-left:4px solid var(--crit)}
+  details.spoiler summary{color:var(--crit)}
+
+  /* Lists */
+  ul.tight,ol.tight{margin:6px 0;padding-left:22px}
+  ul.tight li,ol.tight li{margin:3px 0}
+
+  .pill{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1px 8px;font-size:11px;color:var(--muted);margin-right:4px}
+  .pill.crit{background:var(--blood);color:white;border-color:var(--blood)}
+  .pill.good{background:var(--good);color:var(--bg);border-color:var(--good)}
+  .pill.warn{background:var(--warn);color:var(--bg);border-color:var(--warn)}
+
+  /* Choice cards */
+  .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:14px 0}
+  .choice{background:var(--surface2);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:4px;padding:14px}
+  .choice h4{margin-top:0;color:var(--accent)}
+
+  /* Hostage cards */
+  .hostage{display:flex;gap:14px;background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:12px;margin:8px 0;align-items:center}
+  .hostage .num{font-family:'Cinzel',serif;font-size:32px;color:var(--accent);min-width:48px;text-align:center}
+  .hostage .body{flex:1}
+  .hostage .body strong{color:var(--bone)}
+  .hostage .status{font-size:12px;padding:4px 10px;border-radius:3px;border:1px solid var(--border);background:var(--surface)}
+  .hostage .status.alive{color:var(--good);border-color:var(--good)}
+  .hostage .status.cut{color:var(--blood);border-color:var(--blood)}
+  .hostage .status.saved{color:var(--celest);border-color:var(--celest)}
+
+  /* Cure table */
+  .cure-table tr{cursor:pointer}
+  .cure-table tr.revealed td{background:var(--surface2)}
+
+  /* Editable trackers */
+  .num-edit{background:var(--bg);border:1px solid var(--border);color:var(--accent);font-family:'Cinzel',serif;font-size:14px;font-weight:bold;text-align:center;border-radius:3px;padding:2px 4px;width:54px;margin-left:6px}
+  .num-edit:focus{outline:none;border-color:var(--accent);background:var(--surface2)}
+  .num-edit-small{width:38px;font-size:13px}
+  .tracker .row{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+  .tracker .row label{font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1px}
+
+  /* Battle Maps */
+  .maps-section{margin:20px 0}
+  .maps-row{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:12px 0}
+  .map-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;cursor:zoom-in;transition:transform 0.2s,box-shadow 0.2s}
+  .map-card:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.5);border-color:var(--accent)}
+  .map-card img{width:100%;display:block;background:#000}
+  .map-card .map-cap{padding:8px 12px;background:var(--surface2);border-top:1px solid var(--border);font-size:12px;color:var(--bone);font-style:italic}
+  .map-card .map-cap strong{color:var(--accent);font-style:normal;font-weight:600;display:block;font-size:13px;margin-bottom:2px}
+
+  /* Inline SVG Tactical Maps */
+  .tactical-map{background:#1a0f08;border:1px solid var(--border);border-radius:6px;padding:14px;margin:14px 0}
+  .tactical-map svg{display:block;width:100%;max-width:600px;margin:0 auto;height:auto}
+  .tactical-map .legend{display:flex;flex-wrap:wrap;gap:10px;margin-top:12px;font-size:11px;color:var(--muted);justify-content:center}
+  .tactical-map .legend span{display:flex;align-items:center;gap:5px}
+  .tactical-map .legend .dot{width:12px;height:12px;border-radius:50%;border:1px solid #fff}
+
+  /* Lightbox */
+  .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:200;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+  .lightbox.active{display:flex}
+  .lightbox img{max-width:96vw;max-height:92vh;border:2px solid var(--accent);box-shadow:0 0 40px rgba(200,164,100,0.3)}
+  .lightbox .lb-close{position:absolute;top:20px;right:24px;color:var(--ink);font-size:32px;cursor:pointer;background:none;border:none;font-family:inherit;line-height:1;padding:4px 12px;background:rgba(0,0,0,0.6);border-radius:4px}
+
+  /* Phase Change Cards */
+  .phase-change{background:linear-gradient(180deg,rgba(208,74,26,0.12),var(--surface));border:2px solid var(--blood);border-radius:8px;padding:20px 24px;margin:24px 0;position:relative}
+  .phase-change.mythic{background:linear-gradient(180deg,rgba(192,200,224,0.12),var(--surface));border-color:var(--celest)}
+  .phase-change.death{background:linear-gradient(180deg,rgba(95,168,96,0.10),var(--surface));border-color:var(--good)}
+  .phase-change h3{font-family:'Cinzel',serif;color:var(--blood);margin:0 0 4px;font-size:20px;letter-spacing:2px;text-transform:uppercase}
+  .phase-change.mythic h3{color:var(--celest)}
+  .phase-change.death h3{color:var(--good)}
+  .phase-change .pc-meta{color:var(--muted);font-size:11px;text-transform:uppercase;letter-spacing:2px;margin-bottom:14px;font-weight:600}
+  .phase-change h4{font-family:'Cinzel',serif;color:var(--accent);font-size:14px;margin:16px 0 6px;text-transform:uppercase;letter-spacing:1.5px;border-bottom:1px solid var(--border);padding-bottom:3px}
+
+  .pc-effects{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:10px;margin:10px 0}
+  .pc-effect{background:var(--surface2);border:1px solid var(--border);border-left:3px solid var(--accent);padding:10px 12px;border-radius:0 4px 4px 0;font-size:13px}
+  .pc-effect strong{color:var(--accent);display:block;font-size:11px;text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+
+  .dm-cue{background:rgba(208,74,26,0.08);border-left:3px solid var(--hell);padding:10px 14px;margin:10px 0;font-size:13px;border-radius:0 4px 4px 0}
+  .dm-cue strong{color:var(--hell);text-transform:uppercase;font-size:11px;letter-spacing:1.5px;display:block;margin-bottom:4px}
+
+  /* NPC Cast Cards */
+  .cast-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:16px;margin:16px 0}
+  .cast-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;overflow:hidden;display:flex;flex-direction:column}
+  .cast-card .portrait{position:relative;aspect-ratio:3/4;background:#000;cursor:zoom-in;overflow:hidden}
+  .cast-card .portrait img{width:100%;height:100%;object-fit:cover;display:block}
+  .cast-card .portrait .placeholder{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;background:linear-gradient(135deg,var(--surface2),var(--bg));color:var(--muted);font-size:13px;text-align:center;padding:20px}
+  .cast-card .portrait .placeholder .icon{font-size:48px;color:var(--accent);margin-bottom:8px;opacity:0.6}
+  .cast-card .portrait .placeholder .filename{font-family:monospace;font-size:11px;background:var(--bg);border:1px solid var(--border);padding:4px 8px;border-radius:3px;margin-top:8px;color:var(--accent)}
+  .cast-card .portrait:hover img{opacity:0.85}
+  .cast-card .info{padding:12px 14px;flex:1;display:flex;flex-direction:column;gap:4px}
+  .cast-card .info h4{margin:0;font-family:'Cinzel',serif;color:var(--accent);font-size:15px;letter-spacing:1px;border:none;text-transform:none;padding:0}
+  .cast-card .info .role{color:var(--celest);font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600}
+  .cast-card .info .desc{color:var(--ink);font-size:12px;line-height:1.4;margin-top:4px}
+  .cast-card .info .stats{display:flex;gap:6px;margin-top:6px;font-size:11px;flex-wrap:wrap}
+  .cast-card .info .stats span{background:var(--surface2);border:1px solid var(--border);padding:2px 6px;border-radius:3px;color:var(--muted)}
+
+  .art-sources{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:12px 16px;margin-top:14px;font-size:12px;color:var(--ink)}
+  .art-sources strong{color:var(--accent);display:block;margin-bottom:6px;font-size:11px;text-transform:uppercase;letter-spacing:1px}
+  .art-sources ul{margin:4px 0 0;padding-left:18px}
+
+  /* Initiative Tracker */
+  .init-tracker{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:24px;border-left:4px solid var(--accent)}
+  .init-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+  .init-header h3{margin:0;font-family:'Cinzel',serif;color:var(--accent);font-size:16px;letter-spacing:1.5px}
+  .init-controls{display:flex;gap:5px;flex-wrap:wrap}
+  .init-btn{background:var(--surface2);border:1px solid var(--border);color:var(--ink);padding:4px 10px;border-radius:3px;cursor:pointer;font-size:12px;font-family:inherit}
+  .init-btn:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+  .init-btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:600}
+  .init-btn.primary:hover{background:var(--bone)}
+  .init-btn.danger{border-color:var(--crit);color:var(--crit)}
+  .init-btn.danger:hover{background:var(--crit);color:var(--ink)}
+  .init-btn.pc{border-color:var(--celest);color:var(--celest)}
+  .init-btn.pc:hover{background:var(--celest);color:var(--bg)}
+
+  .combatant-list{display:flex;flex-direction:column;gap:4px;max-height:380px;overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:6px}
+  .combatant{display:grid;grid-template-columns:44px 1fr 130px 56px 96px;gap:8px;padding:6px 10px;background:var(--surface2);border:1px solid var(--border);border-left:4px solid transparent;border-radius:3px;align-items:center;font-size:13px}
+  .combatant.current{border-left-color:var(--accent);background:linear-gradient(90deg,rgba(200,164,100,0.22),var(--surface2));box-shadow:0 0 0 1px var(--accent)}
+  .combatant.dead{opacity:0.45}
+  .combatant.dead .c-name{text-decoration:line-through}
+  .combatant.pc{border-left-color:var(--celest)}
+  .combatant.pc.current{border-left-color:var(--accent)}
+  .combatant .init-num{font-family:'Cinzel',serif;font-size:18px;color:var(--accent);text-align:center;font-weight:bold}
+  .combatant .init-num input{width:38px;background:transparent;border:1px solid transparent;color:var(--accent);font-family:'Cinzel',serif;font-size:18px;font-weight:bold;text-align:center;padding:0;margin:0;border-radius:3px}
+  .combatant .init-num input:hover{border-color:var(--border);background:var(--bg)}
+  .combatant .init-num input:focus{border-color:var(--accent);background:var(--bg);outline:none}
+  .combatant .c-name{color:var(--ink);font-weight:600;cursor:pointer;line-height:1.2}
+  .combatant .c-name:hover{color:var(--accent)}
+  .combatant .c-name .conds{display:block;margin-top:2px;font-size:10px;color:var(--warn);font-weight:normal;font-style:italic}
+  .combatant .c-hp{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);justify-content:flex-end}
+  .combatant .c-hp input{width:46px;background:var(--bg);border:1px solid var(--border);color:var(--ink);text-align:center;border-radius:2px;padding:2px;font-size:12px;font-family:inherit}
+  .combatant .c-ac{font-size:11px;color:var(--muted);text-align:center;background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:2px 4px}
+  .combatant .c-actions{display:flex;gap:3px;justify-content:flex-end}
+  .combatant .c-actions button{background:var(--bg);border:1px solid var(--border);color:var(--ink);width:26px;height:24px;border-radius:2px;cursor:pointer;font-size:13px;padding:0;line-height:1;font-family:inherit}
+  .combatant .c-actions button:hover{background:var(--surface2);border-color:var(--accent)}
+  .combatant .c-actions .dmg:hover{border-color:var(--crit);color:var(--crit)}
+  .combatant .c-actions .heal:hover{border-color:var(--good);color:var(--good)}
+  .combatant .c-actions .rm:hover{border-color:var(--crit);color:var(--crit)}
+
+  .init-empty{padding:20px;text-align:center;color:var(--muted);font-style:italic;font-size:13px}
+  .init-status{display:flex;justify-content:space-between;align-items:center;margin-top:8px;font-size:11px;color:var(--muted);flex-wrap:wrap;gap:6px}
+  .init-status kbd{background:var(--surface2);border:1px solid var(--border);border-radius:3px;padding:1px 6px;font-family:monospace;font-size:10px;color:var(--accent)}
+
+  /* Print */
+  @media print {
+    nav.sidebar,.trackers{display:none}
+    .layout{grid-template-columns:1fr}
+    main{max-width:100%;padding:10px}
+    section{break-inside:avoid}
+    .statblock{break-inside:avoid;background:white;color:black}
+    body{background:white;color:black}
+  }
+
+  /* Mobile */
+  @media (max-width: 900px){
+    .layout{grid-template-columns:1fr}
+    nav.sidebar{position:relative;height:auto}
+    main{padding:16px}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <h1>BITTER BREATH</h1>
+  <div class="sub">Session 4 — Palace of Gore</div>
+  <div class="navgroup">Trackers</div>
+  <ol>
+    <li><a href="#trackers">Live Trackers</a></li>
+    <li><a href="#initiative">Initiative</a></li>
+  </ol>
+  <div class="navgroup">Setup</div>
+  <ol>
+    <li><a href="#thesis">Design Thesis</a></li>
+    <li><a href="#recap">Recap</a></li>
+    <li><a href="#cast">Cast Gallery</a></li>
+    <li><a href="#tunnels">Tunnel Approach</a></li>
+    <li><a href="#approach">Throne Room Reveal</a></li>
+    <li><a href="#hostages">The Hostages</a></li>
+  </ol>
+  <div class="navgroup">Combat</div>
+  <ol>
+    <li><a href="#phase1">Phase 1: Throne</a></li>
+    <li><a href="#change-1-2">★ Bloodied Break</a></li>
+    <li><a href="#intermission">Intermission</a></li>
+    <li><a href="#phase2">Phase 2: Siphon</a></li>
+    <li><a href="#change-2-3">★ Mythic Change</a></li>
+    <li><a href="#phase3">Phase 3: Stolen Starlight</a></li>
+    <li><a href="#change-3-end">★ Death Throes</a></li>
+  </ol>
+  <div class="navgroup">Stat Blocks</div>
+  <ol>
+    <li><a href="#sb-amnizu">Bitter Breath (Amnizu)</a></li>
+    <li><a href="#sb-narzugon">Thakk (Narzugon)</a></li>
+    <li><a href="#sb-bonedevil">Consort (Bone Devil)</a></li>
+    <li><a href="#sb-mooks">Hobgoblin Mooks</a></li>
+    <li><a href="#sb-smiler">Smiler the Defiler (ALLY)</a></li>
+  </ol>
+  <div class="navgroup">After</div>
+  <ol>
+    <li><a href="#aftermath">Aftermath</a></li>
+    <li><a href="#loot">Loot</a></li>
+    <li><a href="#cliffhanger">Cliffhanger</a></li>
+  </ol>
+  <div class="navgroup">Reference</div>
+  <ol>
+    <li><a href="#cheat">Cheat Sheets</a></li>
+    <li><a href="#dmtips">DM Tips</a></li>
+    <li><a href="#checklist">Checklist</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<header class="title">
+  <h1>Bitter Breath of the Palace of Gore</h1>
+  <div class="meta">Session 4 · 3 PCs Level 11 (Drenwal · Aurora · Asimov) · Target ≈4 hours · Cunning + Choices + Moonkite Vitality</div>
+</header>
+
+<!-- =================== TRACKERS =================== -->
+<section id="trackers" class="trackers">
+  <div class="tracker-grid">
+    <div class="tracker">
+      <div class="label">
+        <span>Moonkite Vitality
+          <input type="number" id="vitality-input" class="num-edit num-edit-small" min="0" max="20" onchange="setVitality(this.value)" />
+          / <input type="number" id="vitality-max-input" class="num-edit num-edit-small" min="1" max="20" onchange="setVitalityMax(this.value)" />
+        </span>
+        <button onclick="resetTracker('vitality',8)">reset</button>
+      </div>
+      <div class="tokens" id="vitality-tokens"></div>
+    </div>
+    <div class="tracker">
+      <div class="label">
+        <span>Legendary Resistance
+          <input type="number" id="lr-input" class="num-edit num-edit-small" min="0" max="9" onchange="setLR(this.value)" />
+          / <input type="number" id="lr-max-input" class="num-edit num-edit-small" min="1" max="9" onchange="setLRMax(this.value)" />
+        </span>
+        <button onclick="resetTracker('lr',3)">reset</button>
+      </div>
+      <div class="tokens" id="lr-tokens"></div>
+    </div>
+    <div class="tracker">
+      <div class="label"><span>Round <span style="color:var(--muted);font-size:10px">cage cut on even</span></span></div>
+      <div class="round-counter">
+        <button onclick="changeRound(-1)">−</button>
+        <input type="number" id="round-input" class="num-edit" min="1" max="99" onchange="setRound(this.value)" />
+        <button onclick="changeRound(1)">+</button>
+        <span id="cage-warn" style="margin-left:auto;color:var(--crit);font-size:11px;font-weight:bold;"></span>
+      </div>
+    </div>
+    <div class="tracker">
+      <div class="label"><span>Hostages</span><button onclick="resetCages()">reset</button></div>
+      <div class="tokens" id="cage-tokens"></div>
+    </div>
+    <div class="tracker" style="grid-column:span 2">
+      <div class="label">
+        <span>Bitter Breath HP
+          <input type="number" id="bb-hp-input" class="num-edit" min="0" onchange="setBBHP(this.value)" />
+          / <input type="number" id="bb-max-input" class="num-edit" min="1" onchange="setBBMax(this.value)" />
+        </span>
+      </div>
+      <div class="hp-bar" id="bb-hp-bar"><div class="fill" id="bb-hp-fill" style="width:100%"></div><div class="text" id="bb-hp-display">450 / 450</div></div>
+      <div style="display:flex;gap:6px;margin-top:6px;font-size:11px">
+        <button onclick="dmgBB(10)" style="flex:1;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px;border-radius:3px;cursor:pointer">−10</button>
+        <button onclick="dmgBB(25)" style="flex:1;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px;border-radius:3px;cursor:pointer">−25</button>
+        <button onclick="dmgBB(50)" style="flex:1;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px;border-radius:3px;cursor:pointer">−50</button>
+        <button onclick="healBB(20)" style="flex:1;background:var(--surface2);color:var(--good);border:1px solid var(--good);padding:3px;border-radius:3px;cursor:pointer">+20 (Siphon)</button>
+        <button onclick="phase3Reset()" style="flex:1;background:var(--celest);color:var(--bg);border:1px solid var(--celest);padding:3px;border-radius:3px;cursor:pointer">P3 reset 200</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== TRACKER LEGEND =================== -->
+<section id="tracker-legend">
+  <div class="callout info"><strong>How to Read the Trackers Above</strong>
+    <ul class="tight">
+      <li><strong>Moonkite Vitality (8 silver tokens):</strong> The Moonkite is alive but being drained. Tokens drop as time passes (-1 every 3rd round in Phase 1, every 2nd round in Phase 2, every round in Phase 3) AND as Bitter Breath uses certain abilities (Hostage Strike, Starlight Breath, violent chain breaks). <strong>At 0, the Moonkite dies</strong> — Aurora's wand shatters, the Moonbow fusion fails, her patron bond breaks, she gains the permanent <em>Hollowed</em> condition. <strong>This is the second HP bar of the encounter</strong> — keeping the Moonkite alive is half the win condition. Show the tokens to the players from minute one.</li>
+      <li><strong>Legendary Resistance (3 amber tokens):</strong> Each is a free auto-success on a failed save. Track visibly — when a player lands a big spell (Banishment, Hold Monster, Hypnotic Pattern), narrate BB burning a token. When the third one drops, the next save sticks.</li>
+      <li><strong>Round (number):</strong> Even rounds = a cage chain gets cut. Type to set; +/- buttons or arrow keys also work.</li>
+      <li><strong>Hostages (4 cage tokens):</strong> Click each to toggle <span class="pill" style="background:var(--blood);color:white">CUT</span> / <span class="pill" style="background:var(--good);color:var(--bg)">SAVED</span> / alive (default).</li>
+      <li><strong>Bitter Breath HP:</strong> Type to set, or use −10/−25/−50 buttons. <strong>+20 (Siphon)</strong> is for Phase 2 chain regen. <strong>P3 reset 200</strong> button clicks at the Mythic transition.</li>
+    </ul>
+    <p style="margin-top:8px;font-size:12px;color:var(--muted)"><em>Why a Vitality clock?</em> Bloodbath died to a single lucky genie eat. This encounter has a second axis of failure — the Moonkite — so the players cannot win by HP alone. They have to balance damage, rescue, and stabilization. The Vitality clock <em>is</em> the puzzle.</p>
+  </div>
+</section>
+
+<!-- =================== INITIATIVE TRACKER =================== -->
+<section id="initiative">
+  <div class="init-tracker">
+    <div class="init-header">
+      <h3>⚔ Initiative Tracker</h3>
+      <div class="init-controls">
+        <button class="init-btn pc" onclick="addPreset('drenwal')">+ Drenwal</button>
+        <button class="init-btn pc" onclick="addPreset('aurora')">+ Aurora</button>
+        <button class="init-btn pc" onclick="addPreset('asimov')">+ Asimov</button>
+        <button class="init-btn" onclick="addPreset('bb')">+ BB</button>
+        <button class="init-btn" onclick="addPreset('thakk')">+ Thakk</button>
+        <button class="init-btn" onclick="addPreset('consort')">+ Consort</button>
+        <button class="init-btn" onclick="addPreset('mook')">+ Mook</button>
+        <button class="init-btn" onclick="addCustom()">+ Custom</button>
+        <button class="init-btn primary" onclick="rollAll()">🎲 Roll All</button>
+        <button class="init-btn primary" onclick="nextTurn()">▶ Next Turn</button>
+        <button class="init-btn danger" onclick="clearInit()">Clear</button>
+      </div>
+    </div>
+    <div class="combatant-list" id="combatant-list"></div>
+    <div class="init-status">
+      <span>Click name to edit · type HP to set · <kbd>n</kbd> next turn · <kbd>R</kbd> reroll all</span>
+      <span id="turn-status">No combatants</span>
+    </div>
+  </div>
+</section>
+
+<!-- =================== THESIS =================== -->
+<section id="thesis">
+  <h2>Design Thesis</h2>
+  <blockquote class="read">Bloodbath was a wall to break. Bitter Breath is <em>a riddle to solve under fire.</em></blockquote>
+  <p>This fight is <strong>not</strong> harder because numbers go up. It's harder because:</p>
+  <ol class="tight">
+    <li><strong>The Moonkite is on a clock that started before initiative was rolled.</strong> Damage to Bitter Breath does not stop the clock. Only specific, costly actions do.</li>
+    <li><strong>Every "obvious correct play" has a hidden cost.</strong> Sealing the door also seals their retreat. Destroying chains fast hurts the Moonkite. Killing the tank first frees the harasser to nuke. The optimal route exists but it is not visible — they have to <em>read</em> the room.</li>
+    <li><strong>Bitter Breath learns.</strong> Repeated tactics stop working. He banks Legendary Resistance for the spells that matter. He targets concentration on whoever just saved a prisoner.</li>
+    <li><strong>Three forced ethical choices</strong> before the killing blow: the hostages, the prisoners, and — at the end — what each PC is willing to lose.</li>
+  </ol>
+  <div class="callout"><strong>Win condition</strong>Bitter Breath dead <em>AND</em> Moonkite alive <em>AND</em> the party can live with what they did. Communicate this the moment they enter the throne room. Show them the Vitality tokens.</div>
+</section>
+
+<!-- =================== RECAP =================== -->
+<section id="recap">
+  <h2>Recap — Where We Left Off</h2>
+  <ul class="tight">
+    <li>Party rode the <strong>Lady Vengeance</strong> down the river of blood, casting <em>Air Bubble</em> to seal the crew against the Choking Pall.</li>
+    <li>Fought through <strong>5 chain devils</strong> in the lower drainage tunnels (Bitter Breath's new infernal allies — replacing his brother's maw demons).</li>
+    <li>Fired the ship's arcane cannons to <strong>collapse a section of tunnel</strong>, blasting the route forward open.</li>
+    <li>The <strong>Lady Vengeance is now wedged behind the collapse</strong> — too large to follow, the crew sealed off behind tons of fused bone and blackite. <span class="pill crit">No ship-borne extract.</span> They walk out, or they don't walk out.</li>
+    <li>Standing in the cooling silence of the Palace's lower passages, bone dust still drifting in the air, the Throne Room entrance ahead.</li>
+  </ul>
+</section>
+
+<!-- =================== CAST GALLERY =================== -->
+<section id="cast">
+  <h2>Cast Gallery</h2>
+  <p style="color:var(--muted);font-size:13px">Reference portraits for table display. Click any portrait to enlarge. <strong>Empty slots show the expected filename</strong> — drop a PNG into <code>Images/</code> with that name and refresh.</p>
+
+  <div class="cast-grid">
+
+    <div class="cast-card">
+      <div class="portrait" onclick="openLightbox('Images/Bitter Breath.png')">
+        <img src="Images/Bitter Breath.png" alt="Bitter Breath" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none"><div class="icon">⚔</div>Drop art at:<div class="filename">Images/Bitter Breath.png</div></div>
+      </div>
+      <div class="info">
+        <h4>Bitter Breath</h4>
+        <div class="role">Boss · Amnizu (CR 18)</div>
+        <div class="desc">Lean, coiled, horns swept like blades. Yellow eyes that turn silver in Phase 2, pure starlight in Phase 3. Cunning. Cold. Diagnostic banter, never bluster.</div>
+        <div class="stats"><span>AC 17</span><span>HP 450</span><span>DC 17</span></div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="portrait" onclick="openLightbox('Images/thakk.png')">
+        <img src="Images/thakk.png" alt="Gorewarden Thakk" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none"><div class="icon">🛡</div>Drop art at:<div class="filename">Images/thakk.png</div></div>
+      </div>
+      <div class="info">
+        <h4>Gorewarden Thakk</h4>
+        <div class="role">Tank Lieutenant · Narzugon (CR 13)</div>
+        <div class="desc">A wall of scarred muscle in spiked black plate. Tower shield bolted to his arm — it can't be disarmed because it IS the arm. Never speaks. Grunts. Positions like a barricade.</div>
+        <div class="stats"><span>AC 18</span><span>HP 112</span><span>Reach 10</span></div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="portrait" onclick="openLightbox('Images/consort.png')">
+        <img src="Images/consort.png" alt="Barbed Consort" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none"><div class="icon">🔥</div>Drop art at:<div class="filename">Images/consort.png</div></div>
+      </div>
+      <div class="info">
+        <h4>The Barbed Consort</h4>
+        <div class="role">Harasser · Bone Devil / Osyluth (CR 9)</div>
+        <div class="desc">Hangs from the ceiling by its own spines, swaying. Voice like tearing metal. Holds Counterspell for the spell that will hurt most. Never engages until the right moment.</div>
+        <div class="stats"><span>AC 19 (24 ceiling)</span><span>HP 142</span><span>Counterspell 1/day</span></div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="portrait" onclick="openLightbox('Images/veska.png')">
+        <img src="Images/veska.png" alt="Hellrider Veska" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none"><div class="icon">🩸</div>Drop art at:<div class="filename">Images/veska.png</div></div>
+      </div>
+      <div class="info">
+        <h4>Hellrider Sgt. Veska</h4>
+        <div class="role">Hostage 1 · Future ally if rescued</div>
+        <div class="desc">Tattered Hellrider red. Recognizes Drenwal's colors. <em>"…you wear the colors. Brother. Don't let me die here."</em> Survival = future "die-and-be-reborn" ritual host under Tyr or Helm.</div>
+        <div class="stats"><span>AC 14</span><span>HP 22</span><span>Veteran (broken)</span></div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="portrait" onclick="openLightbox('Images/yssel.png')">
+        <img src="Images/yssel.png" alt="Yssel" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none"><div class="icon">🃏</div>Drop art at:<div class="filename">Images/yssel.png</div></div>
+      </div>
+      <div class="info">
+        <h4>Yssel</h4>
+        <div class="role">Hostage 2 · Smiler's lieutenant</div>
+        <div class="desc">Young tiefling smuggler, captured during a raid. Knows Smiler's whereabouts and codes. If saved: free intel + a future favor.</div>
+        <div class="stats"><span>AC 13</span><span>HP 18</span><span>Cunning</span></div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="portrait" onclick="openLightbox('Images/monk.png')">
+        <img src="Images/monk.png" alt="The Mute Monk" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none"><div class="icon">🌀</div>Drop art at:<div class="filename">Images/monk.png</div></div>
+      </div>
+      <div class="info">
+        <h4>The Mute Monk</h4>
+        <div class="role">Hostage 3 · Planar refugee</div>
+        <div class="desc">Half-mad githzerai, fell through a planar tear. Mutters about a "river of mirrors." Future plot hook — alternate path home.</div>
+        <div class="stats"><span>AC 15</span><span>HP 30</span><span>Untrustworthy</span></div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="portrait" onclick="openLightbox('Images/infant.png')">
+        <img src="Images/infant.png" alt="The Infant" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none"><div class="icon">🕯</div>Drop art at:<div class="filename">Images/infant.png</div></div>
+      </div>
+      <div class="info">
+        <h4>The Infant</h4>
+        <div class="role">Hostage 4 · Pure moral weight</div>
+        <div class="desc">Mortal, swaddled, asleep, unaware. No explanation. Bitter Breath's pet horror. No mechanical reward for saving — only the kind of people the party will be afterwards.</div>
+        <div class="stats"><span>AC 8</span><span>HP 1</span><span>Unconscious</span></div>
+      </div>
+    </div>
+
+    <div class="cast-card">
+      <div class="portrait" onclick="openLightbox('Images/aurora.png')">
+        <img src="Images/aurora.png" alt="Aurora" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'">
+        <div class="placeholder" style="display:none"><div class="icon">🌙</div>Drop art at:<div class="filename">Images/aurora.png</div></div>
+      </div>
+      <div class="info">
+        <h4>Aurora <span style="color:var(--celest);font-size:11px;font-weight:normal">[PC]</span></h4>
+        <div class="role">Archfey Warlock · Moonkite-bound</div>
+        <div class="desc">Spotlight PC of this session. The Moonkite is her patron. The fusion of Wand + Bow into the Moonbow is her arc payoff. Carries the Vitality clock emotionally.</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="art-sources">
+    <strong>Where to source the missing portraits</strong>
+    <p style="margin:6px 0 4px"><em>I can't generate art. Here's where to find high-quality references for the empty slots:</em></p>
+    <ul>
+      <li><strong>Bitter Breath ✔ already populated.</strong> The existing 8.5MB PNG in <code>Images/Bitter Breath.png</code> is what loads.</li>
+      <li><strong>Thakk (Narzugon)</strong> → official art in <em>Mordenkainen's Tome of Foes</em> p. 165. Also: <a href="https://5e.tools/bestiary.html#narzugon_mtf" target="_blank">5e.tools narzugon page</a> has the WotC illustration. Save as <code>Images/thakk.png</code>.</li>
+      <li><strong>Barbed Consort (Bone Devil)</strong> → official art in <em>Monster Manual</em> p. 71. <a href="https://5e.tools/bestiary.html#bone%20devil_mm" target="_blank">5e.tools bone devil page</a>. Save as <code>Images/consort.png</code>.</li>
+      <li><strong>Hellrider Veska</strong> → search "Hellrider of Elturel" art (Descent into Avernus splash pages). r/ImaginaryDnD has good fan art. Save as <code>Images/veska.png</code>.</li>
+      <li><strong>Yssel (tiefling)</strong> → search "tiefling rogue female" on Artbreeder, ArtStation. Save as <code>Images/yssel.png</code>.</li>
+      <li><strong>The Mute Monk (githzerai)</strong> → official githzerai art in the MM, or the WotC blog Avernus articles. Save as <code>Images/monk.png</code>.</li>
+      <li><strong>The Infant</strong> → consider not showing art. The mental image is more powerful than any picture. If you want art: a swaddled basket, no face. Save as <code>Images/infant.png</code>.</li>
+    </ul>
+    <p style="margin-top:8px;color:var(--muted);font-size:11px"><em>If you want commissioned art at table-quality: r/HungryArtists, Fiverr, or ArtStation pros run ~$30–100 per character portrait. For AI generation, Midjourney v6+ with prompts like "dark fantasy character portrait, oil painting, dramatic chiaroscuro, by Wayne Reynolds and Tyler Jacobson" gets close to D&D book quality. Avoid free Stable Diffusion with default settings — that's the "AI slop" look.</em></p>
+  </div>
+</section>
+
+<!-- =================== TUNNEL APPROACH =================== -->
+<section id="tunnels">
+  <h2>The Veins of the Palace — Tunnel Approach (15–20 min)</h2>
+
+  <p>The party emerges from the cannon-collapsed drainage shaft into the lowest level of the Palace's <strong>circulatory system</strong> — the Veins. A capillary network of bone-vaulted blood-channels carved into the cliff. The Palace was built on top of these. They are the only way up to the throne room. <em>Bitter Breath uses them too — but tonight he's already above, on his throne, waiting.</em></p>
+
+  <h3>Battle Map — Junction Hub</h3>
+  <div class="maps-row">
+    <div class="map-card" onclick="openLightbox('Images/map-tunnel-junction.png')">
+      <img src="Images/map-tunnel-junction.png" alt="Tunnel Junction">
+      <div class="map-cap"><strong>The Junction</strong>4-tunnel hub. Silver-pulse north (to throne room), red east, grey-white west, black south. Cannon-collapsed entry point southwest. Click to enlarge.</div>
+    </div>
+  </div>
+
+  <div class="callout"><strong>Position in the Session</strong>This is the <em>approach</em> to the Throne Room — it happens BEFORE Bitter Breath is encountered. Run this immediately after the Recap and before reading the Throne Room reveal. The Veins lead UPWARD; they end at the Throne Room threshold. The Vitality clock has not started yet.</div>
+
+  <h3>Pacing &amp; Stakes</h3>
+  <ul class="tight">
+    <li><strong>Time pressure:</strong> Every <strong>10 in-game minutes</strong> spent in the Veins, Bitter Breath gains a <strong>preparation tick</strong> — pick one before Phase 1 starts: +1 LR (max 5), +1 mook on the field, or one extra layer to his Mirage Arcana (Stage 2 disbelieve DC +2).</li>
+    <li><strong>Navigation baseline:</strong> Direct path through 2 mandatory nodes = 25 in-game minutes (2 prep ticks). Optional side routes add more.</li>
+    <li><strong>The silver pulse:</strong> Aurora's Wand of Celestial Warding senses the Moonkite somewhere far above. The wand is a compass — it points UP, toward the throne room and beyond.</li>
+    <li><strong>Vitality is NOT yet ticking</strong> — that clock starts when initiative is rolled in Phase 1.</li>
+  </ul>
+
+  <h3>The Junction (Entry Node)</h3>
+  <blockquote class="read">You climb out of the cannon-collapsed shaft into a vaulted chamber — the lowest of the Veins. Cold blood splashes ankle-deep around your boots. Four tunnels branch out from the hub like the chambers of a heart, each one breathing slow and deep, as if the Palace is asleep around you.<br><br>One tunnel pulses faintly silver. Aurora's wand twitches toward it. Up. <em>The Moonkite is far above.</em><br><br>The other three: one warm and red (sideways, toward heat), one cold and clean (sideways, toward fresh air), one black and silent (further down, toward something that doesn't move).</blockquote>
+
+  <table>
+    <tr><th>Tunnel</th><th>Leads To</th><th>Cost</th></tr>
+    <tr><td><strong>Silver pulse</strong> (up)</td><td>Direct route to the Throne Room via the Memory Pool + Whispering Grate</td><td>Standard. 25 min through 2 nodes. 2 prep ticks for BB.</td></tr>
+    <tr><td><strong>Warm red</strong> (sideways)</td><td>The Chain Bridge — the 6th kyton on patrol, soul coin cache</td><td>+10 min (3 prep ticks total), 1 kyton fight, gain 5 soul coins.</td></tr>
+    <tr><td><strong>Cold clean</strong> (sideways)</td><td>The Forgotten Cell — Ealoreth, the True Name of the Moonkite</td><td>+15 min (4 prep ticks), unlocks Aurora's "True Name" boon (advantage on Stabilize checks in Phase 3).</td></tr>
+    <tr><td><strong>Black silent</strong> (down)</td><td>Dead end. Bone-spike pit trap (DC 15 Dex, 4d8 piercing). Wasted time.</td><td>+10 min (3 prep ticks), possible damage, nothing gained.</td></tr>
+  </table>
+
+  <div class="callout"><strong>DC 13 Survival</strong>Identify which tunnel goes where. Success: DM tells them all four. Failure: only the silver pulse is known — they have to gamble on the others.</div>
+
+  <h3>Node 1 — The Memory Pool (on silver path)</h3>
+  <p>A small chamber. The floor is a shallow basin filled with crystallized blood — old, glassy, faintly luminescent. Floating in it: <strong>memory-shards</strong> from the chain devils' centuries of victims. Each shard is a moment of someone's death.</p>
+
+  <div class="pc-effects">
+    <div class="pc-effect"><strong>Touching a Shard (action)</strong>Roll d6 (or DM picks):<br><br>
+      <strong>1.</strong> A Hellrider's last stand outside the Palace 30 years ago. <em>+1 inspiration to Drenwal next session.</em><br>
+      <strong>2.</strong> Bloodbath drinking a paladin's blood. Drenwal feels his stomach turn. <em>Bhaal influence +1.</em><br>
+      <strong>3.</strong> A merchant's daughter, last alive in her caravan. <em>Asimov gains 1 charge of "Soul Echo" — once per LR, ask the lamp a yes/no question about a target.</em><br>
+      <strong>4.</strong> The Moonkite, fully strong, in flight over a celestial sea. <em>Aurora gains 1 inspiration die usable tonight.</em><br>
+      <strong>5.</strong> Dumal's face — close. Closer than expected. <em>Dumal arrival clock advances from 12h to 8h.</em><br>
+      <strong>6.</strong> Bitter Breath, a child, watching his brother win their father's love. <em>Party gains advantage on Insight against him for the rest of the night.</em>
+    </div>
+    <div class="pc-effect"><strong>Risk</strong>Each PC who touches a shard makes a <strong>DC 13 WIS save</strong> or gains 1 level of exhaustion (the death-memory bleeds into them). Aurora has advantage.</div>
+  </div>
+
+  <h3>Node 2 — The Whispering Grate (on silver path)</h3>
+  <p>An iron grate set into the ceiling of a narrow corridor. Through it, <em>upward</em>, the party can hear voices echoing down from the Throne Room. Bitter Breath, on his throne, in conference with Thakk and the Consort. They're discussing <em>the party</em>.</p>
+
+  <blockquote class="dialogue">BB's voice, calm: <em>"Three of them. Cleric, Warlock, Rogue. Same makeup as the bounty bulletin."</em><br>Thakk grunts.<br>Consort, hissing: <em>"They will scout us first. They always do."</em><br>BB: <em>"Let them. Show them what I want them to see. The veil holds. The lieutenants stay in concealment until I snap. No one moves until then. Do you understand?"</em><br>Both lieutenants confirm.<br>BB: <em>"And the cages — top them up. The infant is too quiet. Wake it. They need to hear it cry when they walk in."</em></blockquote>
+
+  <div class="pc-effects">
+    <div class="pc-effect"><strong>Information Gained</strong>The party now <em>knows</em> the Throne Room is under illusion (Veil). When the Stage 1 reveal happens, they get one round of warning — they can act first if they tied initiative. Disbelieve DC drops from 22 to <strong>15</strong>.</div>
+    <div class="pc-effect"><strong>The Risk</strong>If anyone speaks above a whisper, BB hears them through the grate. Reveals the party is in the Veins. <em>Phase 1 starts with him already aware</em> — he gets a surprise round on initiative round 1 AND keeps the full DC 22 disbelieve.</div>
+    <div class="pc-effect"><strong>DC 16 Stealth (group)</strong>If party fails the group Stealth, BB hears them automatically. Drenwal's heavy armor disadvantages him.</div>
+  </div>
+
+  <h3>Optional Node — The Chain Bridge (on warm-red path)</h3>
+  <p>A narrow stone bridge, no railings, spanning a 60-foot ravine. Below: a slow river of blood draining downward. Patrolling the bridge: <strong>1 chain devil (kyton)</strong> — the 6th of Bloodbath's old guard, missed in last session's sweep.</p>
+
+  <table>
+    <tr><th>Approach</th><th>Result</th></tr>
+    <tr><td><strong>Combat</strong></td><td>Standard kyton fight. AC 16, HP 85, Animate Chains DC 14 restrain. ~3 rounds. Drops <strong>5 soul coins</strong> + a Chain Trophy.</td></tr>
+    <tr><td><strong>Sneak past</strong></td><td>DC 17 Stealth (group, disadvantage on the bridge — no cover). Failure = combat + disadvantage round 1.</td></tr>
+    <tr><td><strong>Bargain</strong></td><td>DC 16 Persuasion / Deception. Convince it BB sent you. On success: it stands aside, gives a path-shortcut (-5 min, -1 prep tick).</td></tr>
+    <tr><td><strong>Cut the bridge</strong></td><td>DC 14 Dex to leap clear. Kyton falls into the blood river — gone for good. Anyone who fails the leap also falls (3d6 fall + drowning saves).</td></tr>
+  </table>
+
+  <h3>Optional Node — The Forgotten Cell (on cold-clean path)</h3>
+  <p>A long-abandoned solitary cell, predating Bloodbath's reign. Inside: a starved, mostly-mad <strong>celestial scholar</strong>, a former planetar named <strong>Ealoreth</strong>, captured during the Blood War's earliest battles. He has been here for centuries. He no longer remembers his own face. But he remembers the Moonkite — and he knows her <strong>true name</strong>.</p>
+
+  <blockquote class="dialogue"><em>"You smell like the moon. Like... her. She's still alive? After all this time?"</em><br><em>"Listen. Listen carefully. I will say it once. I will only have the strength to say it once. Her name is —"</em></blockquote>
+
+  <div class="pc-effects">
+    <div class="pc-effect"><strong>Aurora's Boon — Moonkite's True Name</strong>Aurora alone hears it (DM whispers a celestial syllable in her ear). For the rest of the night, when Aurora Stabilizes the Moonkite, she has <strong>advantage</strong> on the Arcana check AND a successful stabilize <strong>restores 1 Vitality</strong> (instead of just pausing the loss). Game-changing for Phase 3 survival.</div>
+    <div class="pc-effect"><strong>The Cost</strong>Speaking the name kills Ealoreth. He smiles as he dies — <em>"Free at last. Tell her I held the line."</em> No combat. An old soldier finally allowed to rest. Drenwal can roll DC 12 Religion to recognize him as a Solar's lieutenant from a forgotten campaign — a Hellrider hero gifting his last act.</div>
+    <div class="pc-effect"><strong>Mercy Option</strong>The party can offer Ealoreth a quick death rather than make him strain to speak. He'd thank them. They lose the True Name boon but gain: <em>Drenwal sees a vision of Ealoreth's god (Lathander or Helm) acknowledging the mercy.</em> +5 to the Cure Table d100 roll in Phase 3.</div>
+  </div>
+
+  <h3>Exit — The Threshold of the Throne Room</h3>
+  <blockquote class="read">The silver pulse fades — not because the Moonkite has weakened, but because it's <em>directly above you now.</em> The wand stops twitching and just glows steady, warm in Aurora's hand.<br><br>The corridor opens onto a final stone landing. Ahead, an arched doorway in carved blackite — the threshold of the Throne Room. Warm orange light spills through. You can hear the slow, deliberate breathing of someone waiting.<br><br>You step toward it. The Throne Room reveal begins.</blockquote>
+
+  <div class="callout danger"><strong>DM Note · Pacing the Veins</strong>
+    Don't drag this out. The Veins are <em>connective tissue between sessions</em>, not a second dungeon. Run them in 15–20 real-world minutes total:
+    <ul class="tight">
+      <li>Junction choice: 2 minutes.</li>
+      <li>Memory Pool: 5 minutes (let one PC touch a shard, narrate the vision).</li>
+      <li>Whispering Grate: 5 minutes (Aurora's whisper attempt + group Stealth roll).</li>
+      <li>Optional side route: 5–10 minutes if they take it.</li>
+    </ul>
+    If the party rushes (silver path only, no exploration), they reach the Throne Room with BB at 2 prep ticks of advantage but no resource costs. <em>Reward decisive play with narrative weight.</em>
+  </div>
+</section>
+
+<!-- =================== APPROACH =================== -->
+<section id="approach">
+  <h2>The Approach (20 min)</h2>
+
+  <h3>Cold Open — Read Aloud</h3>
+  <blockquote class="read">The dust settles. Behind you, the tunnel is choked with rubble — the Lady Vengeance's last cannonade did its work. Ahead, the passage opens into a vaulted chamber of fused bone and blackite stone. The ceiling is thirty feet high, ribbed with what look like the spines of enormous creatures. Gore drips from the joints. Not leaking. <em>Pulsing.</em> Like the building has a heartbeat.<br><br>And somewhere deep below, threaded through the silence — <em>a sound.</em> Not wind. Not water. A song made of grief, almost too quiet to hear. Aurora — your wand is <em>humming</em> in tune with it. The Moonkite is alive. Barely.</blockquote>
+
+  <h3>The Voice (Aurora — Pass a Note)</h3>
+  <details class="private" open>
+    <summary>📜 Private to Aurora</summary>
+    <blockquote class="dialogue"><em>"You are close. He has been cutting me. Quickly.<br><br>I can feel three of you. The cleric burns with a god he does not love. The hunter carries a lamp that could eat me too. And you. You I have known since before you had a name.<br><br>Do not be a hero. Be a sister."</em></blockquote>
+    <p style="font-size:12px;color:var(--muted)">The Moonkite is not asking to be saved. It is asking Aurora to make a <em>specific</em> hard choice later. Plant the seed.</p>
+  </details>
+
+  <h3>The Throne Room Reveal — Two Stages</h3>
+
+  <div class="callout danger"><strong>Important · Resolving the Scouting Discrepancy</strong>
+    The party scouted the Palace before entering. <em>They did not see lieutenants, hostages, cages, or six mooks.</em> They saw a smaller, simpler throne room with Bitter Breath alone (or with one or two guards). That intel was real — and it was a <strong>deception</strong>.<br><br>
+    Bitter Breath is an Amnizu. Amnizus have <em>innate Alter Self at will, Detect Thoughts at will, and Suggestion at will.</em> He sensed the scouts. He let them see exactly what he wanted them to see. The room they're walking into has been <strong>under a sustained illusion network</strong> — Hell-granted Mirage Arcana woven into the Palace stones themselves, anchored to Bitter Breath's soul-sigil.<br><br>
+    He learned from his brother's death. <em>Bloodbath sat openly on a throne and got killed for it.</em> Bitter Breath's lesson: never show your hand. Let them walk in confident. Then drop the curtain when it hurts most.
+  </div>
+
+  <h4>Stage 1 — Read Aloud (What They Expected, From Their Scouting)</h4>
+  <blockquote class="read">The passage opens into the throne room. It's <em>quieter</em> than you expected — emptier, even. The vaulted ceiling is there. The bone-and-blackite walls are there. The throne is there.<br><br>And on it: a single figure. Lean. Coiled. Horns swept back like blades. Yellow eyes. He looks up as you enter, almost bored, turning a curved blade slowly in one hand. Two hobgoblin guards flank him — exactly as your scout reported.<br><br>This is what you came for. This is the fight you prepared for.<br><br><em>"You came."</em> His voice is quiet. Almost amused. <em>"I wasn't sure you would."</em><br><br>He stands. He sets the blade down on the armrest. He looks at each of you in turn — and smiles for the first time.<br><br><em>"You smell like my brother's blood."</em><br><br><em>"Let me show you what I learned from his death."</em><br><br>He raises one hand and <em>snaps his fingers.</em></blockquote>
+
+  <h4>Stage 2 — Read Aloud (The Veil Drops)</h4>
+  <blockquote class="read">The air <em>shudders.</em><br><br>It's not a sound. It's a <em>pressure</em> — the feeling of something massive exhaling. The walls ripple like the surface of a pond struck by a stone. For a single breath, you see the room <em>through</em> itself: layered transparencies, a stage set being torn down by a hand you can't see.<br><br>And then the truth resolves.<br><br>The hobgoblin guards are still there — but now there are <strong>six</strong>, in formation, in proper Hellrider-broken plate. Behind them rises a wall of muscle in spiked black armor, tower shield bolted to his arm, breath fogging in the cold air — <em>Gorewarden Thakk</em>, who was standing in plain sight the whole time, hidden by a Veil.<br><br>From the ceiling, something drops. Spines first. It catches itself on the rib-vault and hangs upside down, flames pooling in its palms. <em>The Barbed Consort.</em> It tilts its head. <em>"The master doesn't wish to be disturbed."</em><br><br>And behind the throne — four iron cages slide out of nowhere, suspended by chains that <em>weren't there a moment ago</em>. Each cage holds a prisoner. One of them is a child.<br><br>The throne itself transforms — from a simple iron seat into the <em>real</em> Gore Throne: fused weapons, shattered shields, dripping blood that pulses like a vein. The ceiling lifts ten feet higher than it was. The pillars grow ribs. The room becomes what it always was.<br><br>Bitter Breath has not moved. He is still standing. Still smiling.<br><br><em>"You scouted my house. Of course you did. I let you."</em><br><br><em>"Now sit down. I want to hear how he screamed."</em></blockquote>
+
+  <div class="callout info"><strong>Mechanical Notes on the Veil</strong>
+    <ul class="tight">
+      <li><strong>Disbelieving on first sight:</strong> If a player anticipated this and asks for an Investigation/Insight check the moment they entered, allow it: <strong>DC 22</strong> (Amnizu's spell save DC 17 + 5 for the Hell-empowered illusion network). On success, give them <em>"You sense layered enchantment — something is being hidden, but you can't tell what."</em> They get one round of advantage on their first action when the Veil drops.</li>
+      <li><strong>If a PC explicitly cast Detect Magic earlier (during scouting):</strong> they sensed strong illusion magic but couldn't pierce it. Give them a free <em>"I knew it"</em> moment — they're not surprised when the Veil drops, and they get to act first in initiative if they tied.</li>
+      <li><strong>The reveal is BB's free action.</strong> It does NOT cost him initiative or actions in the upcoming combat. It happens before initiative is rolled.</li>
+      <li><strong>Why he reveals it:</strong> Tactical mind games. He could have ambushed them with the lieutenants, but the <em>psychological</em> weapon of "you've already lost the planning game" is more valuable. He wants them off-balance.</li>
+    </ul>
+  </div>
+
+  <div class="callout"><strong>What Their Scouting WAS Worth</strong>
+    Don't punish good play. Their scouting still gave them:
+    <ul class="tight">
+      <li>Layout: corridors, entrance points, the drainage route they used.</li>
+      <li>Confirmation that Bitter Breath was here (not somewhere else).</li>
+      <li>The general size and shape of the throne room — they know the dimensions.</li>
+      <li>Time-on-target: they got to set their buffs (long-rest spells, Aid, etc.) at full strength.</li>
+    </ul>
+    What they missed was <em>only the personnel and the hostages.</em> The illusion was specific to creatures and concealable objects. Architecture stayed honest.
+  </div>
+
+  <div class="callout info"><strong>Lore Note · Why Bitter Breath Got This Power</strong>Bitter Breath is mechanically an <em>Amnizu</em> (devil commander, MToF p. 156). After Bloodbath died, Bitter Breath cut a deal with Hell's hierarchy — specifically with Bel's faction — for real power. He surrendered some of his demonic chaos in exchange for devilish magic and command authority. He is now demon-blooded but devil-bound. His horns show small infernal sigils. He moved up. He <em>played the long game.</em><br><br>The illusion network is part of the deal: a sustained Mirage Arcana / Veil enchantment woven into the Palace's stones, anchored to his soul-sigil. It only drops at his command (or on his death — which is why future scouts of the wreckage will see the truth).</div>
+</section>
+
+<!-- =================== HOSTAGES =================== -->
+<section id="hostages">
+  <h2>The Hostages — Setup Stakes Before Initiative</h2>
+
+  <p>Behind the throne, <strong>four iron cages</strong> hang from chains. Inside each: a prisoner. Bitter Breath has been collecting leverage since he took the Palace.</p>
+
+  <div class="hostage"><div class="num">1</div><div class="body"><strong>Hellrider Sergeant Veska</strong> — tattered red colors. Looks at Drenwal with recognition. <em>"…you wear the colors. Brother. Don't let me die here."</em><br><span style="font-size:12px;color:var(--muted)">If saved &amp; survives: future contact for Drenwal's "die and be reborn" ritual under Tyr or Helm. Major arc seed.</span></div><div class="status alive" id="cage-status-1">ALIVE</div></div>
+
+  <div class="hostage"><div class="num">2</div><div class="body"><strong>Yssel</strong>, young tiefling smuggler — Smiler's lieutenant, captured during a raid. Knows Smiler's whereabouts and codes.<br><span style="font-size:12px;color:var(--muted)">If saved: free intel about Smiler's network + a future favor.</span></div><div class="status alive" id="cage-status-2">ALIVE</div></div>
+
+  <div class="hostage"><div class="num">3</div><div class="body"><strong>The Mute Monk</strong> — half-mad githzerai, fell through a planar tear. Mutters about a "river of mirrors."<br><span style="font-size:12px;color:var(--muted)">Future plot hook — alternate path home / planar shortcut.</span></div><div class="status alive" id="cage-status-3">ALIVE</div></div>
+
+  <div class="hostage"><div class="num">4</div><div class="body"><strong>The Infant</strong> — mortal, swaddled, asleep, unaware. No explanation. Bitter Breath's pet horror.<br><span style="font-size:12px;color:var(--muted)">Pure moral weight. No mechanical reward. Test of who they are.</span></div><div class="status alive" id="cage-status-4">ALIVE</div></div>
+
+  <h3>House Rules — Read Aloud</h3>
+  <blockquote class="read"><em>"You came to my house. So we will play house rules.<br><br>Every two rounds you do not bring a weapon to my throat — I cut a cage's chain. The cage drops. The floor here is forty feet down, into the blood pool. They won't survive.<br><br>You can save them. I encourage it. Saving them is not killing me. The clock keeps ticking either way."</em></blockquote>
+
+  <div class="callout"><strong>Cage Cut Mechanic — How It Works</strong>
+    <ul class="tight">
+      <li><strong>Each cage hangs from ONE chain.</strong> 1 chain cut = that cage falls 40 ft into the blood pool = that prisoner dies (unless rescued mid-fall).</li>
+      <li><strong>Cuts happen at the end of EVEN rounds:</strong> round 2, round 4, round 6, round 8. Bitter Breath spends 1 of his 3 legendary actions that round to cut.</li>
+      <li><strong>4 cages = up to 4 cuts total.</strong> If the fight runs longer than 8 rounds with no rescues and no kill, all hostages die. (BB picks the order — usually Veska first, infant last to twist the knife.)</li>
+      <li><strong>Click cage tokens in the tracker</strong> above to mark <span class="pill" style="background:var(--blood);color:white">CUT</span> (dropped) or <span class="pill" style="background:var(--good);color:var(--bg)">SAVED</span> (rescued mid-fall). Default state = ALIVE in cage.</li>
+    </ul>
+  </div>
+
+  <h4>Saving a Prisoner</h4>
+  <ul class="tight">
+    <li><strong>Action:</strong> DC 14 Athletics (running grab) or DC 13 Acrobatics (catching the chain).</li>
+    <li><strong>Spell:</strong> Misty Step / Levitate / Feather Fall / Mage Hand (with strength).</li>
+    <li><strong>Cost:</strong> Bitter Breath punishes the rescue with a <em>free Forgetful Touch legendary attack</em> on the rescuer (+9 melee, 1d6+4 + 4d6 fire, DC 17 Wis or memory wipe last 5 min — <em>this can include forgetting the encounter so far</em>). He explains: <em>"That was charity. This is the bill."</em></li>
+  </ul>
+
+  <div class="callout danger"><strong>Optional Escalation</strong>If party ignores hostages entirely (zerg-rushes BB): each dropped prisoner gives BB <strong>+1 to all saves for one round</strong> (he drinks the death). Three drops = nearly untouchable for that round. Show the cost.</div>
+</section>
+
+<!-- =================== PHASE 1 =================== -->
+<section id="phase1">
+  <h2>Phase 1 — The Throne of Gore</h2>
+  <div class="phase phase-1">
+  <div class="phase-meta">75 min · Bitter Breath HP 450 → 225 (Bloodied) · Vitality tick: -1 every 3rd round</div>
+
+  <h3>Battle Map — Throne Room</h3>
+  <div class="maps-row">
+    <div class="map-card" onclick="openLightbox('Images/map-throne-room.png')">
+      <img src="Images/map-throne-room.png" alt="Throne Room Battle Map">
+      <div class="map-cap"><strong>Phase 1 Throne Room</strong>60×100 ft hall. Throne at top, 4 cages above blood pools, 4 pillars, barracks door top-left, entrance bottom. Click to enlarge.</div>
+    </div>
+  </div>
+
+  <h3>The Map (ASCII Tactical Reference)</h3>
+  <pre class="map">                    [ BARRACKS DOOR ]
+                           |
+                    [ MOOK SPAWN ]
+                           |
+   [PILLAR]                                 [PILLAR]
+
+   [BARBED CONSORT                     [GOREWARDEN
+    on ceiling]                          THAKK]
+
+   [BLOOD POOL]      [ THRONE ]      [BLOOD POOL]
+   (difficult         raised          (difficult
+    terrain)          5 ft up          terrain)
+
+                  [ CAGE 1 ] [ CAGE 2 ]
+                  [ CAGE 3 ] [ CAGE 4 ]
+                  (suspended above
+                   the blood pools)
+
+   [PILLAR]                                 [PILLAR]
+
+         [MOOK] [MOOK] [MOOK]
+         [MOOK] [MOOK] [MOOK]
+
+                  [ ENTRANCE ]</pre>
+
+  <h3>Secondary Objectives — The Traps</h3>
+  <p>These look like good ideas. <strong>Each has a hidden cost.</strong> Players don't get to know in advance.</p>
+  <table>
+    <tr><th>Objective</th><th>Effect</th><th>Hidden Cost</th></tr>
+    <tr><td><strong>Destroy the Gore Throne</strong> (AC 15, HP 40, immune poison/necrotic)</td><td>Aura of Hellfire shrinks 30 → 15 ft</td><td><strong>Bloodbath's Echo</strong> becomes passive — every round, ghostly silhouette flickers over the wreckage. PCs within 30 ft: DC 13 WIS or 1d8 psychic.</td></tr>
+    <tr><td><strong>Seal the Barracks Door</strong> (DC 17 Athletics / DC 16 Thieves' / 30 dmg)</td><td>No more mook reinforcements</td><td>Their <strong>retreat is sealed</strong>. Plus: a 6th chain devil reinforcement is behind that door. Sealed = it claws through after Phase 1, joining Phase 2 fresh.</td></tr>
+    <tr><td><strong>Kill Thakk first</strong></td><td>Shield Wall ends, mooks scatter</td><td>Consort now focuses 100% on casters. Hellfire every round on Aurora.</td></tr>
+    <tr><td><strong>Kill Consort first</strong></td><td>No Counterspell threat</td><td>BB stops getting clipped by stray Hellfire. +1 to all attacks. Thakk's Shield Wall stays up longer.</td></tr>
+    <tr><td><strong>Save all 4 hostages</strong></td><td>Moral high, future allies</td><td>Burned ~4 actions and 100+ HP. Phase 2 starts with party near-broken.</td></tr>
+  </table>
+  <p style="color:var(--muted);font-size:13px">Communicate consequences <em>after</em> they happen, not before. Let them learn the cost. <em>"You realize, as the throne crumbles, that something stays — a presence, watching. Bloodbath's echo, denied a tomb."</em></p>
+
+  <h3>Lair Actions — Phase 1 (init 20, no repeat)</h3>
+  <ol class="tight">
+    <li><strong>Hellfire Geyser.</strong> Pillar of red-orange fire erupts under one creature BB can see. DC 16 Dex or 3d8 fire + prone. Leaves 10-ft radius difficult terrain (smoldering blood) until init 20 next round.</li>
+    <li><strong>Bone Cage.</strong> Bones erupt and cage one creature. DC 16 Str or restrained until end of next turn. Cage AC 12, HP 25.</li>
+    <li><strong>Bloodbath's Echo.</strong> Throne pulses. All within 30 ft (15 if throne destroyed): DC 15 WIS or frightened of throne for 1 round. BB immune.</li>
+    <li><strong>Cage Cut</strong> <span class="pill crit">MANDATORY EVERY 2nd ROUND</span> Replaces one chosen lair action that round.</li>
+  </ol>
+
+  <h3>Bitter Breath's Cunning — He Reads The Party</h3>
+  <p>Run him as a <strong>chess player who hates losing</strong>. Apply these rules:</p>
+
+  <details open>
+    <summary>Rule of Repetition</summary>
+    <p>Second time the party uses the same tactic (Aurora casts EB twice, Asimov flanks via the same pillar) — BB responds. <em>"You did that already."</em> He Repositions to break flanking. He uses Bone Cage on Asimov. He has the Consort save Counterspell for the spell Aurora <em>just</em> used successfully — he learned it matters.</p>
+  </details>
+
+  <details open>
+    <summary>Concentration Hunter</summary>
+    <p>Whenever a PC saves a prisoner OR makes a Religion/Arcana check, BB uses a legendary <em>Forgetful Touch</em> on them next opportunity. <em>"You looked away. Big mistake."</em> Memory wipe is psychologically devastating — and it can erase the encounter knowledge so far.</p>
+  </details>
+
+  <details open>
+    <summary>Legendary Resistance Banking</summary>
+    <p>Track 3 LR tokens visibly (above). Burn ONLY for: <strong>Banishment, Hold Monster, Hypnotic Pattern, Banishing Smite.</strong> When the third token comes off, narrate: <em>"Something cracks behind his eyes. He shakes off your spell — but barely. You saw the fear."</em> Now they know the next save lands.</p>
+  </details>
+
+  <details open>
+    <summary>Backline Targeting</summary>
+    <p>If Asimov sneak-attacks turn 1, BB uses his bonus action to <em>Wall of Fire</em> between melee and casters next round, then engages Aurora directly. Don't always go for the easy melee target.</p>
+  </details>
+
+  <details open>
+    <summary>The Banter — He Diagnoses, He Doesn't Bluster</summary>
+    <blockquote class="dialogue">To Drenwal: <em>"Your god isn't in this room. Did you notice? He let you walk in here alone."</em></blockquote>
+    <blockquote class="dialogue">To Aurora: <em>"That song you hear? I taught it to scream."</em></blockquote>
+    <blockquote class="dialogue">To Asimov: <em>"You smell like soul-rot. The lamp on your hip is louder than you are."</em></blockquote>
+    <blockquote class="dialogue">When Asimov reaches for Rasheem: <em>"I know about the genie. I know what happened to my brother. Try it. I dare you."</em></blockquote>
+  </details>
+
+  <h3>Tactical Script</h3>
+  <table>
+    <tr><th>Round</th><th>Bitter Breath</th><th>Lieutenants &amp; Lair</th></tr>
+    <tr><td><strong>1</strong></td><td>Opens with <em>Devilish Visage</em> (60-ft cone, DC 17 Wis, 6d6 psychic + frightened/restrained 1 min). Deletes the party's opening tempo.</td><td>Thakk shoves nearest melee toward blood pool. Consort opens with Sting on Aurora (concentration breaker). Mooks form screen. Lair: Hellfire Geyser.</td></tr>
+    <tr><td><strong>2</strong></td><td><span class="pill crit">CAGE CUT 1</span> Cuts the Hellrider's chain. <em>"Tick."</em> Then Multiattack on whoever's wounded.</td><td>Consort holds Counterspell for first big spell. Mooks reinforce (1d4) from barracks door. Lair: Bone Cage on the most-progress PC.</td></tr>
+    <tr><td><strong>3</strong></td><td>Wall of Fire across the room — cuts Asimov off from casters OR seals BB in a defensible pocket.</td><td>Thakk uses Infernal Tactics (gives ally advantage). Consort drops to floor if needed. Lair: Bloodbath's Echo.</td></tr>
+    <tr><td><strong>4</strong></td><td><span class="pill crit">CAGE CUT 2</span> Cuts the <strong>infant's</strong> cage. No editorializing. Just describes the chain parting and the basket falling. Let the table go silent.</td><td>Consort goes all-in on the rescuer next round. Mooks try to bodyblock the rescue path.</td></tr>
+    <tr><td><strong>5+</strong></td><td>Adapt. If party rolling well: escalate (Devilish Visage recharge, Fireball). If hurting: ease back, give Thakk a critical death.</td><td>Use lair actions to keep pressure. Reveal LR token #1 here for a Banishment save.</td></tr>
+  </table>
+
+  </div>
+</section>
+
+<!-- =================== PHASE CHANGE 1 → 2 =================== -->
+<section id="change-1-2">
+  <div class="phase-change">
+    <h3>★ Phase Change · Bloodied Break ★</h3>
+    <div class="pc-meta">Trigger: Bitter Breath drops to 225 HP (50%) · Reset BB max → 225 for Phase 2</div>
+
+    <h4>Read Aloud — Cinematic Sequence</h4>
+    <blockquote class="read">Bitter Breath staggers. Blood — his own — drips from a wound on his flank. He touches it. Looks at his fingers. The Hellfire on his staff <em>sputters</em> for the first time tonight.<br><br>His expression doesn't shift to fear. It shifts to something worse.<br><br><em>"You want to take everything from me. My brother. My throne. My fortress."</em><br><br>He grips the armrest of the gore throne and <em>RIPS it free</em> — a jagged slab of fused weapons and bone, six feet long, dripping. He raises it overhead and swings it into the nearest pillar.<br><br>The pillar <em>CRACKS.</em> Dust rains from the ceiling. A second pillar groans in sympathy. The room is no longer stable.<br><br><em>"Then come TAKE it."</em><br><br>He turns and <em>BOLTS</em> — not through a door — through the FLOOR. His horns punch through the stone behind the throne, opening a ragged hole the size of a man. You hear him crashing down. Toward the prison. Toward the Moonkite.<br><br>The room shudders. From below — a pulse of silver light, painfully bright through the cracks in the floor. Then a sound that isn't sound. It's inside your heads. <em>Grief, weaponized.</em><br><br>The Moonkite knows what's coming.</blockquote>
+
+    <h4>Mechanical Effects — During Transition (Free Round, no initiative)</h4>
+    <div class="pc-effects">
+      <div class="pc-effect"><strong>Bitter Breath</strong>Drops to Cage Chamber. New HP pool (Phase 2 starts at full Phase 2 HP — see Phase 2 meta). Recharges <em>Devilish Visage</em>. <strong>Refreshes 1 Legendary Resistance</strong> if any have been spent (he ate a soul on the way down). Tick LR back up by 1 (max 3).</div>
+      <div class="pc-effect"><strong>The Throne Room</strong>The pillar he struck is now <em>1 hit from collapse</em>. If anyone deals 10+ damage to it: 15-ft radius, DC 14 Dex or 4d6 bludgeoning + restrained.<br><br>Bloodbath's Echo (if throne destroyed earlier) becomes hostile — attacks one PC per round for 2d8 psychic until they leave the room.</div>
+      <div class="pc-effect"><strong>The Cages</strong>Any unsaved hostages: chains snap from the structural shock. <strong>One additional cage drops automatically</strong> as part of the transition (DM picks). PCs in the room get one chance to save it (reaction, DC 14 Athletics, no AoO punishment because BB is gone).</div>
+      <div class="pc-effect"><strong>The Lieutenants</strong>Surviving Thakk: makes a final stand. Goes berserk — multiattack 4 instead of 3 for 1 round. Then drops to 1 HP if not yet killed.<br><br>Surviving Consort: <em>flees</em> via teleport. Becomes a future enemy.<br><br>Surviving mooks: surrender (kneel, drop weapons). Drenwal must decide.</div>
+    </div>
+
+    <h4>Descent Options — Player Choice</h4>
+    <table>
+      <tr><th>Route</th><th>Cost</th><th>Time</th></tr>
+      <tr><td><strong>Drop through the hole</strong></td><td>DC 12 Acrobatics or 1d6 bludgeoning + prone on landing</td><td>Immediate. Surprise Bitter Breath round 1 of Phase 2 if all roll DC 14 Stealth.</td></tr>
+      <tr><td><strong>Spiral stairs (intact)</strong></td><td>None</td><td>5 min. Bitter Breath fully siphons (Phase 2 starts at +90 HP and full chain regen).</td></tr>
+      <tr><td><strong>Misty Step / fly / dim. door</strong></td><td>Spell slot</td><td>Immediate. Choose entry point.</td></tr>
+      <tr><td><strong>Carry hostages down</strong></td><td>+1 round per hostage. Slows whichever route.</td><td>Hellrider Veska helps with Stealth (+2 to group check).</td></tr>
+    </table>
+
+    <div class="dm-cue"><strong>DM Cue · Music + Lighting</strong>
+      Lower the music. Fade the throne room lights. Pause for a beat after BB crashes through the floor. Look at each player. Then — quietly — <em>"What do you do?"</em><br><br>This is the moment they decide who they are. Don't fill the silence. Let them.
+    </div>
+
+    <h4>Public Trackers</h4>
+    <ul class="tight">
+      <li>Tally Vitality losses publicly. Show the table.</li>
+      <li>Click "P3 reset" button is for Phase 3 (200 HP) — NOT this transition. For Phase 2, just edit BB max HP to 225.</li>
+      <li>If LR refresh triggered, click LR token back on.</li>
+    </ul>
+  </div>
+</section>
+
+<!-- =================== INTERMISSION =================== -->
+<section id="intermission">
+  <h2>Intermission — The Descent (25 min)</h2>
+  <p>This is where the choices crystallize. The party is bruised. They have decisions. <strong>Do not rush.</strong></p>
+
+  <div class="choice-grid">
+    <div class="choice">
+      <h4>CHOICE 1 — Rest or Push</h4>
+      <p><strong>Rest (10–60 min):</strong> Warlock slots back. Hit dice. Spell management.</p>
+      <ul class="tight">
+        <li><span class="pill warn">Cost</span> 1 Vitality per 10 min. BB connects fully to chains (Phase 2 Siphon Regen at full 10 HP/chain/round).</li>
+        <li><span class="pill good">Benefit</span> Moonkite's residual aura grants +1 hit die per PC. Only nice thing in Avernus.</li>
+      </ul>
+      <p><strong>Push (immediate):</strong></p>
+      <ul class="tight">
+        <li><span class="pill warn">Cost</span> Nothing recovered. PCs go in wounded.</li>
+        <li><span class="pill good">Benefit</span> BB's Siphon Regen reduced to 5 HP/chain/round. Vitality clock paused during transition.</li>
+      </ul>
+    </div>
+
+    <div class="choice">
+      <h4>CHOICE 2 — The Prisoners</h4>
+      <p><strong>Bring them down to Phase 2:</strong> They're present in cage chamber. BB will target them with Hostage Strikes (see Phase 2). Soft targets.</p>
+      <p style="color:var(--good)">If Hellrider Veska survives Phase 2/3 → recurring ally → Drenwal gains a Hellrider contact who can host the rebirth ritual. <strong>Significant arc payoff.</strong></p>
+      <p><strong>Leave them in upper passage:</strong> Survive Palace collapse only if party returns within 10 min. Otherwise dead. Drenwal's god notices abandonment. -1 Religion 1 session.</p>
+    </div>
+  </div>
+
+  <details class="private">
+    <summary>📜 CHOICE 3 — Asimov's Bounty Offer (Pass to Asimov ONLY)</summary>
+    <blockquote class="dialogue"><em>"That's a medium-grade soul down there, Asimov. Maybe leaning heavy. Kill it clean and the lamp drinks deep.<br><br>But here's the thing. The lamp's also picking up something <em>else</em> down there. Something celestial. The Capacitor wants it. Bad. If you let it drink the celestial light first — the moonkite-thing — you'll get a payday like nothing the syndicate's ever seen. We're talking <strong>retire-young</strong> money.<br><br>Of course. The bird-deer dies. But who's it really to you?"</em></blockquote>
+    <p style="font-size:12px;color:var(--muted)">Don't telegraph this to the table. Asimov knows. He can act on it in Phase 3 if he wants. The Soul Capacitor has a <em>betrayal option</em>.</p>
+  </details>
+
+  <details class="private">
+    <summary>📜 CHOICE 4 — Drenwal's Vision (Pass to Drenwal ONLY)</summary>
+    <p>A jolt behind your eyes. Dumal — not far. Standing on a ridge, looking south. He felt the Moonkite's pulse. He's coming. Twelve, maybe fifteen hours.</p>
+    <p>Then Gargauth, oily and intimate:</p>
+    <blockquote class="dialogue"><em>"The cure, Drenwal. 'Die and be reborn in the eyes of another god.' What you don't realize is — you can choose. Right here. Right now. The Moonkite is a celestial. If you offer yourself to it as it dies — give it your divinity, your blood, your name — it might catch you. You might be reborn under a kinder god than mine.<br><br>Or you might not. The Moonkite might be too weak to catch a falling soul. Then I catch you. And we both know what happens then.<br><br>But it's a chance. Isn't it?"</em></blockquote>
+    <p><strong>Bhaal Influence: tick to 4/6.</strong></p>
+    <p style="font-size:12px;color:var(--muted)">Drenwal's option in Phase 3: spend his action AND his Channel Divinity AND drop to 0 HP voluntarily to attempt the cure. Roll d100 on the Cure Table (see Phase 3).</p>
+  </details>
+</section>
+
+<!-- =================== PHASE 2 =================== -->
+<section id="phase2">
+  <h2>Phase 2 — The Siphon</h2>
+  <div class="phase phase-2">
+  <div class="phase-meta">60 min · Bitter Breath HP 225 → 0 (or +90 if rested) · Vitality tick: -1 every 2nd round</div>
+
+  <h3>Battle Map — Cage Chamber (USED FOR PHASE 2 + 3)</h3>
+  <div class="maps-row">
+    <div class="map-card" onclick="openLightbox('Images/map-cage-chamber.png')">
+      <img src="Images/map-cage-chamber.png" alt="Cage Chamber Battle Map">
+      <div class="map-cap"><strong>Cage Chamber — Phase 2 &amp; 3</strong>Central cage with 4 chains anchored to walls/floor/ceiling. Spiral staircase entry south. Iconic encounter map. Click to enlarge.</div>
+    </div>
+  </div>
+
+  <h3>The Map (ASCII Tactical Reference)</h3>
+  <pre class="map">         [ COLLAPSED CEILING ]
+          (rubble, half cover)
+
+  [CHAIN 1]                    [CHAIN 2]
+   west wall                    east wall
+       \                          /
+        \      [ CAGE ]          /
+         \   10 ft sphere       /
+          \  suspended         /
+   [CHAIN 3]                  [CHAIN 4]
+    floor anchor               ceiling anchor
+                  |
+            [BITTER BREATH]
+            wrapped around
+            chains 2 &amp; 3
+                  |
+           [ SPIRAL ENTRANCE ]
+           (party arrives here)
+
+   [DRY BLOOD     [BLOOD       [DRY BLOOD
+    TROUGH]       FONT]         TROUGH]
+    (empty —      (still         (empty)
+    chain devils  active —
+    drained it)   ankle deep)</pre>
+
+  <div class="callout info"><strong>Note</strong>The maw demons are NOT here — the party fought 5 chain devils on the way in. Cage chamber is eerily quiet. No reinforcements remain. Just Bitter Breath, the chains, and the cage. <em>The silence makes the choices louder.</em></div>
+
+  <h3>The Scene — Read Aloud</h3>
+  <blockquote class="read">You drop into the chamber and the temperature plummets. The air is cleaner here — cold, almost sharp — but threaded with something electric. Wrong.<br><br>The cage hangs in the center. A 10-foot sphere of black metal, suspended by four chains that run into the walls, floor, and ceiling. Each chain pulses with sick orange light. Inside the cage: silver-white, folded, fading. The Moonkite. Smaller than it should be.<br><br>Bitter Breath is wrapped around two of the chains. His claws dig into the metal. Orange light crawls up his arms and into his horns, which are now faintly glowing. His wounds from above are closing. Slowly. Visibly.<br><br>He's feeding on the Moonkite.<br><br>He turns his head. One eye is still yellow. The other has a ring of silver in it, stolen starlight leaking into his iris.<br><br><em>"You're too slow."</em><br><br>He releases one chain and drops to the floor. His aura pulses. The air around him shimmers, but the haze is tinged silver.<br><br><em>"Every second you wasted up there, I was down here. Drinking. Do you know what celestial light tastes like?"</em><br><br><em>"It tastes like winning."</em></blockquote>
+
+  <h3>Bitter Breath: Siphon Modifications</h3>
+  <p>Use the Amnizu stat block as published, with these encounter-specific add-ons:</p>
+  <ul class="tight">
+    <li><strong>Siphon Regeneration.</strong> Start of his turn, regains <strong>HP equal to 10 × intact chains</strong> (max 40). Make it visible — <em>"He regains 30 hit points. The chains pulse."</em></li>
+    <li><strong>Chain Leash (bonus).</strong> Grabs a chain, swings to any point within 20 ft of an intact chain. Insane mobility. Bodyblocks chain attackers. Crosses room to interrupt Aurora.</li>
+    <li><strong>Hostage Strike (3/Phase 2 — replaces 1 multiattack).</strong> Rips a thread of stolen Moonkite essence from a chain and hurls it. Ranged spell attack +9, 30 ft, <strong>4d8 radiant</strong>. <span class="pill crit">Costs 1 Moonkite Vitality.</span> He grins: <em>"It hurts more when it comes from her."</em></li>
+    <li><strong>Aura modification.</strong> His Hellfire-on-hit damage adds 1d6 cold (Moonkite essence corruption).</li>
+  </ul>
+
+  <h3>The Chain Puzzle — The Real Phase 2 Challenge</h3>
+  <p>Each chain: <strong>AC 14, HP 25, immune poison/necrotic, vulnerable to radiant.</strong> Three ways to remove a chain — each with consequences:</p>
+
+  <table>
+    <tr><th>Method</th><th>Action Cost</th><th>Vitality Cost</th><th>Bonus / Risk</th></tr>
+    <tr><td><strong>Damage (fast)</strong></td><td>Standard attacks/spells until 0 HP</td><td><span class="pill crit">-1 per chain</span></td><td>Fast. Anyone can do it. Chain backlashes into Moonkite when destroyed violently.</td></tr>
+    <tr><td><strong>Religion purify</strong> (Drenwal)</td><td>Action while touching. DC 15 Religion.</td><td><span class="pill good">0 (safe)</span></td><td>On success: shatters in pure light. All allies within 30 ft regain 1d8 HP. <strong>Nat 1–5 (Bhaal interferes):</strong> chain breaks but Moonkite -2 Vitality, Drenwal takes 2d6 necrotic.</td></tr>
+    <tr><td><strong>Arcana resonance</strong> (Aurora, via wand)</td><td>Action. DC 14 Arcana.</td><td><span class="pill good">0 (safe)</span></td><td>On success: dissolves into starlight. Aurora regains 1 spell slot of 1st level. <strong>Nat 1:</strong> wand backfires; 2d8 force, wand goes dim 1 round (no focus).</td></tr>
+    <tr><td><strong>Thieves' Tools</strong> (Asimov)</td><td>Action while adjacent to anchor. DC 17 Thieves' Tools.</td><td><span class="pill good">0 (safe)</span></td><td>On success: surgical disconnect. No HP, no light. <strong>Failure by 5+:</strong> tools snag — chain whips, 2d6 bludgeoning + restrained until end of next turn.</td></tr>
+  </table>
+
+  <div class="callout danger"><strong>The Trap</strong>Players will instinctively damage the chains (most familiar tool). They lose 4 Vitality if they do all four that way. <em>Let them learn this on chain 1</em> — describe the Moonkite cry out when the chain shatters violently. Then they'll know. Then they have to choose between fast-but-painful and slow-but-safe.</div>
+
+  <h3>Lair Actions — Phase 2 (init 20, no repeat)</h3>
+  <ol class="tight">
+    <li><strong>Chain Lash.</strong> Intact chain whips at target within 15 ft. +10, 3d6 bludgeoning + 2d6 necrotic. Pulls 10 ft toward cage.</li>
+    <li><strong>Silver Scream.</strong> All within 30 ft: DC 14 WIS or 2d8 psychic + dazed. Aurora has advantage.</li>
+    <li><strong>Gore Eruption.</strong> Active blood font overflows. 15-ft radius: DC 14 Str or prone + difficult terrain 1 round.</li>
+    <li><strong>Cage Pulse</strong> (only at 2+ chains broken). All within 20 ft: DC 15 Con or 3d6 radiant. <strong>BB takes this damage too</strong> — energy is becoming unstable.</li>
+  </ol>
+
+  <h3>BB's Cunning — Phase 2 Behavior</h3>
+  <ul class="tight">
+    <li><strong>Protects chains.</strong> If a PC engages a chain, he Chain-Leashes adjacent and Multiattacks them. Will NOT use Wall of Fire if it would clip a chain.</li>
+    <li><strong>Hostage Strike timing.</strong> Saves it for when 2 chains are down — make the Vitality clock catastrophic.</li>
+    <li><strong>Targets purifiers.</strong> If Drenwal touches a chain, BB uses legendary Forgetful Touch on him to interrupt the check.</li>
+    <li><strong>Chain dialogue:</strong>
+      <ul class="tight">
+        <li>1 chain down: <em>"That changes nothing."</em></li>
+        <li>2 chains down: <em>"You don't understand what you're doing. This power was WASTED on that thing. I'm USING it."</em></li>
+        <li>3 chains down: <em>"ENOUGH. If I can't keep it, neither can you."</em> (Stops protecting last chain. Goes full offense.)</li>
+        <li>4 chains down: <em>"...fine."</em> (Triggers Mythic phase early.)</li>
+      </ul>
+    </li>
+  </ul>
+
+  </div>
+</section>
+
+<!-- =================== PHASE CHANGE 2 → 3 (MYTHIC) =================== -->
+<section id="change-2-3">
+  <div class="phase-change mythic">
+    <h3>★ Mythic Phase Change · Stolen Starlight ★</h3>
+    <div class="pc-meta">Trigger: BB hits 0 HP OR all 4 chains destroyed · Reset BB → 200 HP fresh pool · Phase 3 begins next round</div>
+
+    <h4>Read Aloud — Cinematic Sequence (Stand Up. Lower Your Voice.)</h4>
+    <blockquote class="read">Bitter Breath crumples. One knee hits the floor. His gutting blade clatters from his hand. For a moment — <em>one moment</em> — it's over. Aurora's wand flares hopeful silver. Asimov's lamp goes still. Drenwal exhales.<br><br>Then his hand shoots out and grabs the nearest intact chain. Or, if all chains are gone — the cage itself. His fingers <em>punch through</em> the adamantine like it's wet paper.<br><br>Orange light flares. Then silver. Then BOTH — swirling together, crawling up his arm like fire under the skin, like worms made of light.<br><br>He screams. Not in pain. In <em>hunger.</em><br><br>His body convulses. The Moonkite, inside the cage, <em>screams back</em> — and Aurora feels it inside her bones. The bond is being torn open from both ends.<br><br>His horns crack and regrow — longer, branching like winter trees, threaded with silver veins. His wounds seal shut, but the new skin is wrong — pale, luminous, shot through with light that doesn't belong in him.<br><br>The hellfire in his eyes goes out. In its place: <em>stolen stars.</em> Both eyes. Pupils gone. Just light.<br><br>He stands. Taller now — six and a half feet of compressed wrongness. His aura isn't hellfire anymore. It's <em>cold.</em> Clean. Corrupted purity. The blood pools around him crystallize into red ice.<br><br>From his back: spectral wings. Made of light, not feather. They cast no shadow.<br><br>He doesn't speak. He just looks at you. And for the first time tonight, you see something in his expression that wasn't there before.<br><br><em>Contempt.</em><br><br>Then, quietly:<br><br><em>"I spent my entire life in his shadow. Smaller. Weaker. The runt."</em><br><em>"Not anymore."</em></blockquote>
+
+    <h4>Mechanical Effects — Apply NOW (before next initiative)</h4>
+    <div class="pc-effects">
+      <div class="pc-effect"><strong>Bitter Breath</strong>HP fully resets to <strong>200</strong>. Click "P3 reset 200" button.<br><br>Gains: <em>fly 30 ft (hover)</em>, immunity to radiant + cold (replaces resistances), Aura of Corrupted Starlight (15 ft, DC 17 Con or 2d6 cold + speed halved).<br><br>Loses: <em>Relentless</em> (already triggered). Track remaining LR — DO NOT refresh.<br><br>Staff damage type: fire → <strong>radiant</strong>. Devilish Visage is replaced by Starlight Breath.</div>
+      <div class="pc-effect"><strong>Moonkite Vitality</strong><span class="pill crit">-2 Vitality</span> from the violent grab. Tick the tokens publicly. If Vitality drops to 0 here, the Moonkite dies during the transition — the fight continues but Aurora's bond is gone (Hollowed condition begins).</div>
+      <div class="pc-effect"><strong>Aurora — Forced Save</strong>The bond is being torn. Aurora makes a <strong>DC 16 CHA save</strong> (her patron link) or takes <strong>3d6 psychic damage</strong> + drops a held concentration spell.<br><br>On success: she resists the rip — gains a single <em>inspiration die</em> from the Moonkite's gratitude (use anytime tonight, advantage on one roll).</div>
+      <div class="pc-effect"><strong>The Cage Chamber</strong>The cage <em>cracks open</em> — one panel torn loose by the grab. The Moonkite is now visible (no longer concealed). All ranged attacks at the cage have a clear target (relevant for Death Throes restoration later).<br><br>Floor: blood pools crystallize into red ice. Difficult terrain becomes <em>slippery</em> instead — DC 12 Acrobatics to dash; failure = prone.<br><br>Ceiling: low ceiling (15 ft) is now BB's playground via fly. PCs lose their melee height advantage.</div>
+      <div class="pc-effect"><strong>Drenwal — Bhaal Pulse</strong>Bhaal sees the celestial corruption and <em>laughs</em>. Drenwal feels it in his teeth. <span class="pill crit">Bhaal Influence ticks to 5/6.</span><br><br>If Drenwal is going to attempt The Cure, the window is now: he can offer himself <em>during</em> Phase 3.</div>
+      <div class="pc-effect"><strong>Asimov — Soul Capacitor Hum</strong>Lamp goes from warm to <em>hot</em>. Rasheem (private to Asimov): <em>"Whatever you're going to do — now's the time. The price just doubled. The bird's almost gone. Pick a side, kid."</em></div>
+    </div>
+
+    <h4>Initiative Reset Option</h4>
+    <p>The transition is dramatic enough that you can <strong>re-roll initiative</strong> for everyone here. Use the 🎲 Roll All button. This breaks any "I always go before X" assumptions and signals: <em>this is a new fight</em>.</p>
+
+    <div class="dm-cue"><strong>DM Cue · The Loudest Moment of the Session</strong>
+      <ol class="tight">
+        <li><strong>Stand up</strong> if you're sitting.</li>
+        <li><strong>Lower your voice.</strong> Read the transition slowly. Pause after "Contempt."</li>
+        <li>Look at the table. <em>"He resets. This is the final phase."</em></li>
+        <li>Click the P3 reset button on the BB HP tracker. Show the bar refill. Make it visual.</li>
+        <li>If you have a music cue ready (something with strings + dread), drop it now.</li>
+        <li>Don't ask "what do you do" yet. Let the silence sit for 5 full seconds.</li>
+      </ol>
+      Video games show the boss bar refill. <em>You should too.</em>
+    </div>
+  </div>
+</section>
+
+<!-- =================== PHASE 3 =================== -->
+<section id="phase3">
+  <h2>Phase 3 — Stolen Starlight</h2>
+  <div class="phase phase-3">
+  <div class="phase-meta">45 min · Bitter Breath Ascendant HP 200 (reset) · Vitality tick: -1 every round + per Starlight Breath</div>
+
+  <div class="callout info"><strong>Battle Map — Phase 3 (Same Cage Chamber, Transformed)</strong>
+    Reuses the Cage Chamber battle map (above in Phase 2). Visual changes to describe at the table: cage <em>cracked open</em>, silver-white light flooding the room, blood pools crystallized into <em>red ice</em> (slippery difficult terrain - DC 12 Acrobatics to dash), BB hovers via spectral starlight wings (no melee height advantage). If your players are visual: have the Phase 2 map open and just narrate the transformation.
+  </div>
+
+  <h3>Bitter Breath Ascendant — Modifications</h3>
+  <p>Same Amnizu base. Apply these ascendant overlays:</p>
+  <ul class="tight">
+    <li><strong>HP:</strong> 140 (fresh pool)</li>
+    <li><strong>Speed:</strong> 50 ft, <strong>fly 30 ft (hover)</strong> — spectral starlight wings</li>
+    <li><strong>Damage Immunities (added):</strong> radiant, cold (was resistance)</li>
+    <li><strong>Relentless equivalent:</strong> SPENT in transition. No safety net.</li>
+    <li><strong>Legendary Resistance:</strong> Carry over remaining from Phases 1–2. <em>Tell the players.</em> Changes everything for casters.</li>
+  </ul>
+
+  <h4>Modified Actions</h4>
+  <ul class="tight">
+    <li><strong>Multiattack.</strong> 1 staff (now Starlight Staff) + Forgetful Touch.</li>
+    <li><strong>Starlight Staff.</strong> +9 melee, 1d6+4 bludgeoning + <strong>4d6 radiant</strong> (replaces fire).</li>
+    <li><strong>Forgetful Touch (unchanged).</strong> +9 melee. DC 17 Wis or forget last 5 min + incapacitated 1 round.</li>
+    <li><strong>Starlight Breath (Recharge 5–6, replaces Devilish Visage).</strong> 40-ft cone, DC 17 Con, <strong>6d8 radiant + 4d6 cold</strong>, dazed on fail-by-5. <span class="pill crit">Costs 1 Vitality each use.</span></li>
+    <li><strong>Innate spells:</strong> retains Counterspell, Wall of Fire (now Wall of Light — radiant). Fireball replaced by <strong>Sunburst at 8th level (1/Phase 3 only)</strong> — DC 17 Con, 12d6 radiant + blinded.</li>
+  </ul>
+
+  <h4>Mythic Legendary Actions (every round, 3 actions)</h4>
+  <ul class="tight">
+    <li><strong>Reposition.</strong> Half speed (including fly), no AoO.</li>
+    <li><strong>Starlight Strike.</strong> One staff attack.</li>
+    <li><strong>Nova Rush (2 actions).</strong> Fly full speed. Each creature within 10 ft of path: DC 17 Dex or 3d6 radiant + 2d6 cold. One staff attack at end.</li>
+  </ul>
+
+  <p><strong>Aura of Corrupted Starlight</strong> (replaces Hellfire aura): 15 ft. DC 17 Con or 2d6 cold + speed halved 1 round.</p>
+  <p><strong>Unstable Radiance:</strong> Start of his turn, all within 5 ft + BB take 1d6 radiant. <em>He kills himself in ~23 rounds. The Moonkite dies in 5–8.</em> The clock favors aggression.</p>
+
+  <h3>THE THREE FINAL CHOICES</h3>
+  <p>This is the heart of the encounter. Each PC has an option that is not "attack." Make sure they each know their option.</p>
+
+  <details open class="private">
+    <summary>🌙 AURORA — Stabilize vs. Attack</summary>
+    <ul class="tight">
+      <li><strong>Action:</strong> Stabilize Moonkite (DC 12 Arcana — easy). Pauses Vitality loss for 1 round. Costs her Hex/EB turn.</li>
+      <li><strong>Asimov assist:</strong> If Asimov uses Psychic Whispers to link, she can stabilize as <strong>bonus action</strong>. Reward team play with rich narration.</li>
+      <li><strong>HIDDEN OPTION (don't tell her — let her describe trying):</strong> <em>Call the Moonkite OUT of the cage.</em> DC 18 Persuasion + spend Wand of Celestial Warding's last 3 charges. On success: Moonkite manifests partially OUTSIDE, gets own initiative, takes ONE action — <strong>Healing Light</strong> (heal 4d8 to one ally) OR <strong>Banishing Beam</strong> (6d6 radiant + Banishment 1 round on BB). On failure: -2 Vitality from strain.</li>
+    </ul>
+  </details>
+
+  <details open class="private">
+    <summary>🗡️ ASIMOV — Bounty vs. Betrayal</summary>
+    <p>Soul Capacitor whispers (Phase 3 round 1, private):</p>
+    <blockquote class="dialogue"><em>"He's wide open right now. The lamp can drink him mid-fight if you can land the strike. But — Rasheem's earlier offer stands. The bird is dying anyway. If you angle the lamp at IT instead, point-blank, you take the celestial soul. Retirement money. Easy."</em></blockquote>
+    <p><strong>BOUNTY (good):</strong> If Asimov delivers killing blow on BB, Soul Capacitor consumes him. Medium Soul: <strong>Brother's Spite</strong> (passive, +1d6 cold below half HP), <strong>Stolen Breath</strong> (1/LR cone), <strong>Chain Leash</strong> (1/LR pull).</p>
+    <p><strong>BETRAYAL (dark):</strong> Asimov uses action to point lamp at cage, DC 18 Arcana. On success: drains Moonkite. -2 Vitality per round Asimov channels. After 3 rounds: lamp consumes Moonkite, Asimov gains permanent <strong>Greater Soul</strong> (massive power). <strong>BUT:</strong> Aurora's bond shatters. Moonbow never forms. Permanent party rift.</p>
+    <p style="color:var(--muted);font-size:12px"><em>This option exists. Asimov's player decides. The DM does not editorialize. Simply ask: "What do you do?"</em></p>
+  </details>
+
+  <details open class="private">
+    <summary>⚔️ DRENWAL — Fight or Fall</summary>
+    <p>Drenwal can attempt the cure HERE, prematurely, by deliberately taking lethal damage and channeling himself to the Moonkite as it dies (or to its energy field while alive). Triggered by:</p>
+    <ol class="tight">
+      <li>Drenwal voluntarily drops to 0 HP (refuses healing, tanks a hit, wounds himself).</li>
+      <li>He spends his Channel Divinity to "offer."</li>
+      <li>Roll d100 on the Cure Table (DM keeps secret — click below to reveal):</li>
+    </ol>
+    <details class="spoiler">
+      <summary>🎲 The Cure Table (DM ONLY)</summary>
+      <table class="cure-table">
+        <tr><th>d100</th><th>Result</th></tr>
+        <tr><td><strong>01–15</strong></td><td><strong>The Moonkite catches him.</strong> Reborn celestial. Bhaal severed. Permanent loss of Hellrider connection. Light Cleric of the Moonkite (DM design new features).</td></tr>
+        <tr><td><strong>16–50</strong></td><td><strong>A third god catches him.</strong> Roll d6: 1=Selûne, 2=Helm, 3=Tyr, 4=Lathander, 5=Mystra, 6=Ilmater. New patron, deity-flavored powers, Bhaal severed but new god demands service.</td></tr>
+        <tr><td><strong>51–80</strong></td><td><strong>No one catches him.</strong> He dies. Standard death saves. If revived later by normal means, Bhaal remains. <em>No retry.</em></td></tr>
+        <tr><td><strong>81–100</strong></td><td><strong>Bhaal catches him.</strong> Survives at 1 HP — Bhaal influence locks at 6/6. Drenwal becomes a Bhaalspawn fully. NPC arc.</td></tr>
+      </table>
+    </details>
+  </details>
+
+  <h3>Lair Actions — Phase 3 (init 20)</h3>
+  <ol class="tight">
+    <li><strong>Starlight Detonation.</strong> Chain anchor explodes. Within 20 ft of cage: DC 16 Dex or 4d6 radiant + pushed 15 ft.</li>
+    <li><strong>Structural Collapse.</strong> 10-ft radius (BB chooses): DC 15 Dex or 3d10 bludgeoning + restrained under rubble (DC 15 Athletics to free). Permanent difficult terrain.</li>
+    <li><strong>Moonkite's Agony.</strong> All in room: DC 15 WIS or incapacitated (move only) until end of next turn. <strong>Aurora auto-succeeds. BB auto-fails</strong> (loses next bonus action).</li>
+    <li><strong>The Palace Shudders.</strong> All on ground: DC 13 Dex or prone. All ground difficult terrain 1 round. BB (flying) unaffected.</li>
+  </ol>
+
+  <h3>Tactics</h3>
+  <p>Bitter Breath fights like an animal with a god's power. <strong>No tactics. Pure aggression.</strong></p>
+  <ul class="tight">
+    <li><strong>Round 1:</strong> Starlight Breath if recharged → Nova Rush across the room.</li>
+    <li><strong>Subsequent:</strong> Multiattack closest. Focus Aurora if she stabilizes — <em>he understands what she's doing.</em></li>
+    <li><strong>Below 70 HP:</strong> Erratic. Crashes into walls. Silver-streaked impact craters. Wild swings (narrative).</li>
+    <li><strong>Below 35 HP:</strong> <strong>Stops talking entirely.</strong> No banter. Just silence and motion. The stolen light eats him alive — skin cracks, silver bleeds from fissures.</li>
+  </ul>
+
+  </div>
+</section>
+
+<!-- =================== PHASE CHANGE 3 → DEATH =================== -->
+<section id="change-3-end">
+  <div class="phase-change death">
+    <h3>★ Final Phase Change · Death Throes ★</h3>
+    <div class="pc-meta">Trigger: Bitter Breath Ascendant drops to 0 HP · The Moonkite reclaims its essence</div>
+
+    <h4>Read Aloud — The Killing Blow</h4>
+    <blockquote class="read">Bitter Breath's knees buckle. The stolen starlight flares one final time — his whole body outlined in silver-white, a saint's halo cast in the wrong colors — and then it tears free.<br><br>The light <em>rips</em> out of him. Through his horns, his eyes, his wounds, the cracks in his skin. It's not an explosion. It's an <em>exorcism.</em> The Moonkite's power was never his. And now it's leaving.<br><br>Every creature within 15 feet of him is caught in the wash of escaping light: <strong>DC 15 CON save or 4d6 radiant + 2d6 cold</strong> (half on save). PCs adjacent to him: this is the price of being close enough to land the killing blow. Pay it gladly.<br><br>The stream of light arcs upward — a silver river in reverse — and pours into the cracked cage. The panels glow. The chains, even the broken ones, vibrate in a single note. The Moonkite, inside, <em>inhales.</em><br><br>Bitter Breath collapses. The horns go dark. The silver leaves his eyes. The spectral wings dissolve like fog in sun. He looks... <em>smaller</em> than you remember. Just a demon. Just a brother who wanted to be more.<br><br>His last breath is quiet. No final words. No curse. Just air leaving a body.<br><br>Silence.<br><br>Then the cage <em>hums.</em> A single, pure note — not grief anymore. Held for three seconds. Then a second note above it. Then a third.<br><br>A <em>chord.</em> Hope, in three voices.</blockquote>
+
+    <h4>Mechanical Effects — Apply Immediately</h4>
+    <div class="pc-effects">
+      <div class="pc-effect"><strong>The Moonkite</strong><span class="pill good">+2 Vitality restored</span> from the returning essence. If Vitality was at 1, it's now at 3. If it was at 3, it's now at 5. <em>The party's victory directly heals what they came to save.</em></div>
+      <div class="pc-effect"><strong>Killing Blow Bonus</strong>If <em>Asimov</em> dealt the killing blow with a Soul Capacitor channel (and didn't choose the betrayal): the lamp consumes BB's soul. Medium Soul tier — gains <strong>Brother's Spite + Stolen Breath + Chain Leash</strong> permanent abilities (see Loot section).<br><br>If anyone else: BB's Gutripper drops, plus Corrupted Starlight Shard, plus 3 soul coins.</div>
+      <div class="pc-effect"><strong>Aurora — Bond Reforging</strong>The Moonkite reaches for her. <em>Pass her this note:</em><br><em>"Sister. Come closer. We have something to do together. The bow. The wand. They were never two things."</em><br><br>Skill challenge from primer Act 5 begins. DCs reduced by 2 if any chains were destroyed in Phase 2 (cage already weakened). All 4 chains broken = <strong>skip the skill challenge entirely</strong>, the cage opens on its own when Aurora touches it with the key.</div>
+      <div class="pc-effect"><strong>Drenwal — If He Attempted The Cure</strong>Resolve the d100 Cure Table NOW (private to Drenwal). The Moonkite's death-throes wave was the catalyst. Outcome reshapes his character permanently. Don't rush this — let him absorb whatever you rolled.</div>
+      <div class="pc-effect"><strong>The Palace</strong>Begins to collapse in <strong>10 minutes</strong>. The Moonkite's energy was holding the structure together. Stone groans. Dust falls. <em>Ticking clock for loot run.</em></div>
+      <div class="pc-effect"><strong>Far Away</strong>Across Avernus, things stir:<br>• <em>Zariel's ice devil patrol</em> — dispatched (next-session encounter, ~6 hours out).<br>• <em>Dumal</em> — felt the celestial pulse like a brand on his skin. He's now exactly 12 hours away and accelerating.<br>• <em>Smiler</em> (if dealt with) — racing to claim the Palace before collapse.</div>
+    </div>
+
+    <h4>The Moonbow Fusion (if Vitality &gt; 0)</h4>
+    <p>The Moonkite touches its antlers to Aurora's bow and to the Wand of Celestial Warding. Silver light flares — blinding, warm, absolute. When it fades, Aurora is holding a single weapon. (See Aftermath for the full Moonbow stat block.)</p>
+
+    <div class="dm-cue"><strong>DM Cue · Don't Cheapen It</strong>
+      <ol class="tight">
+        <li>After the killing blow, <strong>do not narrate any other action</strong> for ~30 seconds. Let the silence sit.</li>
+        <li>Don't immediately roll for the explosion damage. Read the passage. THEN ask for saves.</li>
+        <li>Bitter Breath is not a villain who deserves a triumphant cheer. He's a brother who wanted to be more and wasn't. Let the death feel <em>sad.</em></li>
+        <li>Then, when the chord starts — let one player describe what they hear. Hand them the moment.</li>
+        <li>The chord is the bow's birth-cry. The fight ends with hope, not victory.</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<!-- =================== STAT BLOCKS =================== -->
+<section id="statblocks">
+  <h2>Stat Blocks (Published, Cunning Devils)</h2>
+
+  <div class="statblock" id="sb-amnizu">
+    <h3>BITTER BREATH — Amnizu</h3>
+    <div class="subtitle">Medium fiend (devil), lawful evil · Mordenkainen's Tome of Foes p. 156 · CR 18 (20,000 XP)</div>
+    <hr>
+    <p><strong>Armor Class</strong> 17 (natural armor)<br>
+    <strong>Hit Points</strong> 450 <em style="font-size:11px">(encounter-scaled — Amnizu base 234 + boss buff for 3-PC solo encounter; 60d8+180 expressed)</em><br>
+    <strong>Speed</strong> 30 ft.</p>
+    <hr>
+    <div class="ability">
+      <div>STR<span>19 (+4)</span></div>
+      <div>DEX<span>19 (+4)</span></div>
+      <div>CON<span>17 (+3)</span></div>
+      <div>INT<span>21 (+5)</span></div>
+      <div>WIS<span>19 (+4)</span></div>
+      <div>CHA<span>16 (+3)</span></div>
+    </div>
+    <hr>
+    <p><strong>Saving Throws</strong> Con +9, Int +11, Wis +10, Cha +9<br>
+    <strong>Damage Resistances</strong> cold; bludgeoning, piercing, slashing from nonmagical attacks not made with silvered weapons<br>
+    <strong>Damage Immunities</strong> fire, poison<br>
+    <strong>Condition Immunities</strong> charmed, exhaustion, frightened, poisoned<br>
+    <strong>Senses</strong> truesight 120 ft., passive Perception 14<br>
+    <strong>Languages</strong> Infernal, telepathy 120 ft.<br>
+    <strong>Challenge</strong> 18 (20,000 XP)</p>
+    <hr>
+    <div class="trait"><strong>Devil's Sight.</strong> Magical darkness doesn't impede the amnizu's darkvision.</div>
+    <div class="trait"><strong>Innate Spellcasting.</strong> Spellcasting ability is Charisma (spell save DC 17). It can innately cast the following spells, requiring no material components:<br>
+    At will: <em>alter self, charm person, command, detect thoughts, dispel magic, mage hand, suggestion</em><br>
+    5/day each: <em>counterspell, fireball, wall of fire</em></div>
+    <div class="trait"><strong>Magic Resistance.</strong> The amnizu has advantage on saving throws against spells and other magical effects.</div>
+    <div class="trait"><strong>Magic Weapons.</strong> The amnizu's weapon attacks are magical.</div>
+    <hr>
+    <p><strong>ACTIONS</strong></p>
+    <div class="action"><strong>Multiattack.</strong> The amnizu makes two attacks: one with its staff and one with its Forgetful Touch.</div>
+    <div class="action"><strong>Staff.</strong> <em>Melee Weapon Attack:</em> +9 to hit, reach 5 ft., one target. <em>Hit:</em> 8 (1d6 + 5) bludgeoning damage plus 14 (4d6) fire damage.</div>
+    <div class="action"><strong>Forgetful Touch.</strong> <em>Melee Spell Attack:</em> +9 to hit, reach 5 ft., one creature. <em>Hit:</em> The target must succeed on a DC 17 Wisdom saving throw or have its memory of the past 5 minutes erased and become incapacitated for 1 minute. The incapacitated target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. The lost memory can be restored only by a <em>greater restoration</em> spell or comparable magic.</div>
+    <div class="action"><strong>Devilish Visage (Recharge 6).</strong> The amnizu's visage warps into a horrid mien. Each creature within 60 feet of the amnizu that can see its face must succeed on a DC 17 Wisdom saving throw or take 21 (6d6) psychic damage and become frightened of it for 1 minute. While frightened in this way, the creature is also restrained. The frightened target can repeat the saving throw at the end of each of its turns, ending the effect on itself on a success. If the saving throw is successful, the creature takes only half damage and isn't frightened.</div>
+    <hr>
+    <p><strong>ENCOUNTER ADD-ONS (BITTER BREATH ONLY)</strong></p>
+    <div class="action"><strong>Legendary Resistance (3/Day).</strong> If Bitter Breath fails a save, he can choose to succeed instead. <span class="lr-track">TRACK 3 → 0 visibly</span></div>
+    <div class="action"><strong>Phase 2 — Siphon Regeneration.</strong> Start of turn, regains HP equal to 10 × intact siphon chains (max 40).</div>
+    <div class="action"><strong>Phase 2 — Chain Leash (Bonus).</strong> Swing to any point within 20 ft of an intact chain.</div>
+    <div class="action"><strong>Phase 2 — Hostage Strike (3/Phase).</strong> Replaces 1 multiattack. Ranged spell +9, 30 ft, 4d8 radiant. <strong>Costs 1 Moonkite Vitality.</strong></div>
+    <div class="action"><strong>Phase 3 — Ascendant.</strong> HP reset 140. Fly 30 ft (hover). Immune radiant + cold. Staff dmg type → radiant. Devilish Visage → Starlight Breath (40-ft cone, DC 17 Con, 6d8 radiant + 4d6 cold, dazed on fail-by-5, costs 1 Vitality). Aura of Corrupted Starlight (15 ft, DC 17 Con or 2d6 cold + speed halved). Unstable Radiance (start of turn: all within 5 ft + BB take 1d6 radiant).</div>
+    <div class="action"><strong>Mythic Legendary Actions (3/round in Phase 3).</strong> Reposition (half speed) · Starlight Strike (one staff) · Nova Rush (2 actions: full fly, 10-ft path, DC 17 Dex or 3d6 radiant + 2d6 cold, staff at end).</div>
+  </div>
+
+  <div class="statblock" id="sb-narzugon">
+    <h3>GOREWARDEN THAKK — Narzugon</h3>
+    <div class="subtitle">Medium fiend (devil), lawful evil · Mordenkainen's Tome of Foes p. 165 · CR 13 (10,000 XP)</div>
+    <hr>
+    <p><strong>Armor Class</strong> 18 (plate)<br>
+    <strong>Hit Points</strong> 112 (15d8 + 45)<br>
+    <strong>Speed</strong> 30 ft.</p>
+    <div class="ability">
+      <div>STR<span>20 (+5)</span></div>
+      <div>DEX<span>16 (+3)</span></div>
+      <div>CON<span>17 (+3)</span></div>
+      <div>INT<span>15 (+2)</span></div>
+      <div>WIS<span>14 (+2)</span></div>
+      <div>CHA<span>18 (+4)</span></div>
+    </div>
+    <hr>
+    <p><strong>Saving Throws</strong> Con +7, Wis +6, Cha +8<br>
+    <strong>Damage Resistances</strong> cold; bludgeoning, piercing, slashing from nonmagical attacks not made with silvered weapons<br>
+    <strong>Damage Immunities</strong> fire, poison<br>
+    <strong>Condition Immunities</strong> charmed, exhaustion, frightened, poisoned<br>
+    <strong>Senses</strong> darkvision 120 ft., passive Perception 12<br>
+    <strong>Languages</strong> Infernal, telepathy 120 ft.</p>
+    <hr>
+    <div class="trait"><strong>Magic Resistance.</strong> Advantage on saves vs spells and magical effects.</div>
+    <div class="trait"><strong>Magic Weapons.</strong> Weapon attacks are magical.</div>
+    <hr>
+    <p><strong>ACTIONS</strong></p>
+    <div class="action"><strong>Multiattack.</strong> Three Hellfire Lance attacks (or two if used in conjunction with Infernal Tactics).</div>
+    <div class="action"><strong>Hellfire Lance.</strong> <em>Melee Weapon Attack:</em> +9 to hit, reach 10 ft., one target. <em>Hit:</em> 12 (2d6 + 5) piercing damage plus 18 (4d8) fire damage.</div>
+    <div class="action"><strong>Infernal Command.</strong> Each ally within 60 ft that can hear Thakk has advantage on attack rolls until the start of his next turn. (Use round 2 — telegraph it.)</div>
+    <hr>
+    <p><strong>RE-FLAVOR FOR THAKK</strong></p>
+    <div class="trait"><strong>Shield Wall (replaces nightmare/cavalry traits).</strong> While Thakk is within 5 ft of Bitter Breath, attacks against BB have disadvantage. Thakk can use his reaction to redirect one hit to himself.</div>
+    <div class="trait"><strong>Tactical Shove (Bonus).</strong> Target within 5 ft makes DC 14 Str save or pushed 10 ft + prone.</div>
+    <div class="trait"><strong>Death Trigger.</strong> Mooks within 30 ft make DC 12 Wis save or frightened of BB 1 round (scatter, break formation).</div>
+  </div>
+
+  <div class="statblock" id="sb-bonedevil">
+    <h3>THE BARBED CONSORT — Bone Devil (Osyluth)</h3>
+    <div class="subtitle">Large fiend (devil), lawful evil · Monster Manual p. 71 · CR 9 (5,000 XP)</div>
+    <hr>
+    <p><strong>Armor Class</strong> 19 (natural armor)<br>
+    <strong>Hit Points</strong> 142 (15d10 + 60)<br>
+    <strong>Speed</strong> 40 ft., fly 40 ft.</p>
+    <div class="ability">
+      <div>STR<span>18 (+4)</span></div>
+      <div>DEX<span>16 (+3)</span></div>
+      <div>CON<span>18 (+4)</span></div>
+      <div>INT<span>13 (+1)</span></div>
+      <div>WIS<span>14 (+2)</span></div>
+      <div>CHA<span>16 (+3)</span></div>
+    </div>
+    <hr>
+    <p><strong>Saving Throws</strong> Int +5, Wis +6, Cha +7<br>
+    <strong>Skills</strong> Deception +7, Insight +6<br>
+    <strong>Damage Resistances</strong> cold; bludgeoning, piercing, slashing from nonmagical attacks not made with silvered weapons<br>
+    <strong>Damage Immunities</strong> fire, poison<br>
+    <strong>Condition Immunities</strong> poisoned<br>
+    <strong>Senses</strong> darkvision 120 ft., passive Perception 12<br>
+    <strong>Languages</strong> Infernal, telepathy 120 ft.</p>
+    <hr>
+    <div class="trait"><strong>Devil's Sight.</strong> Magical darkness doesn't impede darkvision.</div>
+    <div class="trait"><strong>Magic Resistance.</strong> Advantage on saves vs spells and magical effects.</div>
+    <hr>
+    <p><strong>ACTIONS</strong></p>
+    <div class="action"><strong>Multiattack.</strong> Three attacks: two with claws and one with sting.</div>
+    <div class="action"><strong>Claw.</strong> <em>Melee Weapon Attack:</em> +8 to hit, reach 10 ft., one target. <em>Hit:</em> 8 (1d8 + 4) slashing damage.</div>
+    <div class="action"><strong>Sting.</strong> <em>Melee Weapon Attack:</em> +8 to hit, reach 10 ft., one target. <em>Hit:</em> 13 (2d8 + 4) piercing damage. The target must succeed on a DC 14 Constitution saving throw or take 17 (5d6) poison damage and become poisoned for 1 minute. The target can repeat the save at the end of each of its turns.</div>
+    <hr>
+    <p><strong>RE-FLAVOR FOR THE CONSORT</strong></p>
+    <div class="trait"><strong>Counterspell (1/day, innate).</strong> The Consort whispers a denial. Reaction. <em>Saved for first big spell — Banishment, Spirit Guardians, Hold Monster.</em> Telegraph: eyes flash silver-orange first time someone casts.</div>
+    <div class="trait"><strong>Ceiling Sniper.</strong> While clinging to ceiling, the Consort has 3/4 cover (effective AC 24 vs ranged). Pulling down: DC 16 Athletics or telekinesis. Anchor AC 12 / HP 20.</div>
+    <div class="trait"><strong>Death Trigger.</strong> Crashes into nearest blood pool. 10-ft radius: DC 13 Dex or 2d6 acid.</div>
+  </div>
+
+  <div class="statblock" id="sb-smiler" style="border-color:var(--celest);box-shadow:0 4px 12px rgba(192,200,224,0.3)">
+    <h3 style="color:#1a3a6a">SMILER THE DEFILER <span style="font-size:13px;background:#1a3a6a;color:#f4ecdc;padding:2px 8px;border-radius:3px;margin-left:6px">ALLY</span></h3>
+    <div class="subtitle">Medium humanoid (devil-touched human warlord), chaotic neutral · Custom NPC · CR 10 (5,900 XP)</div>
+    <hr>
+    <p><strong>Armor Class</strong> 17 (studded leather + Mage Armor + war machine cover)<br>
+    <strong>Hit Points</strong> 130 (war machine adds +30 over base 100)<br>
+    <strong>Speed</strong> 30 ft. on foot, <strong>80 ft. mounted</strong> on the Tormentor war machine</p>
+    <hr>
+    <div class="ability">
+      <div>STR<span>14 (+2)</span></div>
+      <div>DEX<span>18 (+4)</span></div>
+      <div>CON<span>16 (+3)</span></div>
+      <div>INT<span>18 (+4)</span></div>
+      <div>WIS<span>12 (+1)</span></div>
+      <div>CHA<span>18 (+4)</span></div>
+    </div>
+    <hr>
+    <p><strong>Saving Throws</strong> Int +8, Cha +8<br>
+    <strong>Skills</strong> Deception +8, Insight +5, Persuasion +8, Intimidation +8<br>
+    <strong>Damage Resistances</strong> fire (Hell-touched)<br>
+    <strong>Senses</strong> darkvision 60 ft., passive Perception 11<br>
+    <strong>Languages</strong> Common, Infernal, Goblin<br>
+    <strong>Challenge</strong> 10 (5,900 XP)</p>
+    <hr>
+    <div class="trait"><strong>Devil-Touched.</strong> Smiler made a minor pact for power. Resistance to fire, treats infernal contracts as binding.</div>
+    <div class="trait"><strong>Spellcasting (9th-level wizard).</strong> Spell save DC 16, +8 spell attack. Spells:<br>
+      <em>Cantrips:</em> fire bolt, mage hand, minor illusion, prestidigitation<br>
+      <em>1st (4 slots):</em> shield, mage armor, detect magic, magic missile<br>
+      <em>2nd (3):</em> misty step, mirror image, suggestion<br>
+      <em>3rd (3):</em> <strong>counterspell</strong>, fireball, <strong>haste</strong><br>
+      <em>4th (3):</em> greater invisibility, polymorph<br>
+      <em>5th (1):</em> hold monster
+    </div>
+    <hr>
+    <p><strong>ACTIONS</strong></p>
+    <div class="action"><strong>Multiattack.</strong> Smiler makes two attacks with his Hellfire Pistol or Defiler's Blade.</div>
+    <div class="action"><strong>Hellfire Pistol.</strong> <em>Ranged Weapon Attack:</em> +8 to hit, range 60/240 ft., one target. <em>Hit:</em> 8 (1d8 + 4) piercing damage plus 3 (1d6) fire damage.</div>
+    <div class="action"><strong>Defiler's Blade.</strong> <em>Melee Weapon Attack:</em> +6 to hit, reach 5 ft., one target. <em>Hit:</em> 6 (1d8 + 2) slashing damage plus 3 (1d6) necrotic damage.</div>
+    <hr>
+    <p><strong>REACTIONS</strong></p>
+    <div class="action"><strong>Counterspell (1/round, costs spell slot).</strong> When a creature within 60 ft casts a spell, Smiler can counter it.</div>
+    <div class="action"><strong>Shield (1/round, costs 1st-level slot).</strong> When hit, +5 AC until start of next turn.</div>
+    <hr>
+    <p><strong>WAR MACHINE — THE TORMENTOR</strong></p>
+    <div class="trait"><strong>Vehicle stats:</strong> AC 17, HP 80, immune poison/psychic, vulnerable to thunder. Speed 80 ft on stable ground.</div>
+    <div class="trait"><strong>Ram (action while mounted).</strong> Move up to speed in straight line. Each creature in path: DC 14 Str save or 4d6 bludgeoning + prone. Smiler can make one Hellfire Pistol attack at the end.</div>
+    <hr>
+    <p><strong>TACTICAL ROLE — HOW SMILER FIGHTS WITH THE PARTY</strong></p>
+    <div class="action"><strong>His own initiative.</strong> Roll for him separately. He acts on his own turn, not the party's.</div>
+    <div class="action"><strong>Round 1:</strong> Casts <em>Haste</em> on the party's biggest damage dealer (likely Asimov). Maintains concentration.</div>
+    <div class="action"><strong>Round 2:</strong> Casts <em>Mirror Image</em> on himself (3 duplicates) for survivability.</div>
+    <div class="action"><strong>Round 3:</strong> Holds <em>Counterspell</em> for the first big spell BB or the Consort throws. After spending it, drops <em>Fireball</em> on a mook cluster (carefully avoiding allies).</div>
+    <div class="action"><strong>Round 4–5:</strong> Saves his 5th-level slot. <em>Hold Monster</em> on Bitter Breath at a critical moment — likely Phase 2 when chains are dropping. BB has +4 Wis save, so factor in his Magic Resistance (advantage).</div>
+    <div class="action"><strong>Self-preservation.</strong> If Smiler drops below 30 HP, he uses <em>Misty Step</em> + <em>Greater Invisibility</em> to retreat to the back of the room. He won't die for the party.</div>
+    <div class="action"><strong>Limits.</strong> He <em>will NOT</em> directly attack Bitter Breath — too risky. He plays support, control, and disruption only. He leaves the killing blow to the party (and protects their right to it — see Loot for why this matters).</div>
+    <hr>
+    <p style="color:#3a2018;font-size:13px;font-style:italic"><strong>Personality:</strong> Theatrical, sarcastic, opportunistic. Refers to himself in the third person occasionally. Wears a war-painted grinning face on his armor. Treats this fight as both a payback (BB has been raiding his supply lines) AND a resume builder (he wants the Palace).</p>
+    <p style="color:#3a2018;font-size:13px"><strong>Sample lines (during fight):</strong><br>
+      <em>"Hold the line, paladin! Smiler's got the back row!"</em> (when casting Haste)<br>
+      <em>"Did the warlock just... did she just COUNTER my counterspell? Magnificent."</em> (after a spell trade)<br>
+      <em>"He's looking at me. He's definitely looking at me. Going invisible NOW."</em> (when targeted)<br>
+      <em>(after Hold Monster lands on BB)</em> <em>"Window's open, kids! Make me proud!"</em>
+    </p>
+    <hr>
+    <p style="color:#8b1a1a;font-weight:bold;background:#f0d8c8;padding:8px;border-radius:4px;font-size:13px">⚠ THE BETRAYAL CLOCK — Read This Carefully</p>
+    <p style="color:#3a2018;font-size:13px">Smiler is an <strong>opportunist</strong>, not a hero. He helps because BB has been raiding his territory and because he wants the Palace.<br><br>
+      <strong>Ally phase:</strong> Throughout the boss fight, Smiler genuinely helps. <em>DC 14 Insight</em> at any point reveals he's planning <em>something</em> for after the kill — not malicious, but transactional.<br><br>
+      <strong>The moment of victory:</strong> The instant Bitter Breath dies, Smiler walks to the throne, sits down, and says: <em>"Right then. The Palace is mine. As agreed."</em><br><br>
+      <strong>If the party tries to claim the Palace or its loot:</strong> Smiler doesn't fight — he <em>negotiates hard.</em> He'll let the party take everything from BB's body + the cage chamber, but the Palace structure, the throne, the soul-coin reserves, and any future captives are his. Push him too far on this and he leaves angry — becomes a future enemy. Roll with it: <em>he's earned a fair share for the assist.</em><br><br>
+      <strong>The "I see you" moment:</strong> If Drenwal sees Dumal's carved message at the exit, Smiler also sees it. He pales. He didn't know Dumal was nearby. <em>"…that changes things. I owe you one. Get clear. I'll make sure the path back to your ship is clean."</em> This converts him from neutral opportunist to a genuine future ally — owe-a-favor relationship.
+    </p>
+  </div>
+
+  <div class="statblock" id="sb-mooks">
+    <h3>HOBGOBLIN MOOKS (1-HP Minions)</h3>
+    <div class="subtitle">Medium humanoid (goblinoid), lawful evil · Custom minion rules · CR — (10 XP each)</div>
+    <hr>
+    <p><strong>Armor Class</strong> 18 (chain mail + shield)<br>
+    <strong>Hit Points</strong> 1 (any damage kills)<br>
+    <strong>Speed</strong> 30 ft.</p>
+    <hr>
+    <p><strong>ACTIONS</strong></p>
+    <div class="action"><strong>Longsword.</strong> +5 to hit, reach 5 ft. <em>Hit:</em> <strong>flat 8 damage</strong> (no roll).</div>
+    <div class="action"><strong>Martial Advantage.</strong> +7 flat damage if ally within 5 ft of target.</div>
+    <hr>
+    <p><strong>SPAWN RULES</strong></p>
+    <p>1d4 spawn from the barracks door at initiative 20 every 2 rounds. Cap 8 on field. Sealing the door stops the spawn.</p>
+    <p style="font-style:italic;color:#3a2018;font-size:12px">Mooks are action-economy tax, not threats. They body-block Asimov from reaching BB. They absorb opportunity attacks. They're the veggies.</p>
+  </div>
+</section>
+
+<!-- =================== AFTERMATH =================== -->
+<section id="aftermath">
+  <h2>Aftermath</h2>
+
+  <h3>Moonkite Vitality Outcomes</h3>
+  <table>
+    <tr><th>Final Vitality</th><th>Outcome</th></tr>
+    <tr><td><strong>6+</strong></td><td>Full recovery in 2 sessions. Mount available DC 15 Persuasion (advantage). Best outcome.</td></tr>
+    <tr><td><strong>3–5</strong></td><td>Wounded but alive. Mount DC 17 (advantage). Recovers in 4 sessions. Wand fuses normally.</td></tr>
+    <tr><td><strong>1–2</strong></td><td>Critical. Manifests once, exhausted, to fuse the bow then retreats fully into Feywild echo. Mount unavailable 6+ sessions. Aurora hears it only in dreams.</td></tr>
+    <tr><td><strong>0</strong></td><td><strong>Dead.</strong> No fusion. Aurora gains <strong>Hollowed</strong> — disadvantage on all Cha checks until she finds a new patron. Major arc seed.</td></tr>
+  </table>
+
+  <h3>The Moonbow of Celestial Warding (if Vitality &gt; 0)</h3>
+  <blockquote class="read">The Moonkite touches its antlers to Aurora's bow and to the Wand of Celestial Warding. Silver light flares — blinding, warm, absolute. When it fades, Aurora is holding a single weapon. The bow and wand have fused.</blockquote>
+
+  <div class="callout"><strong>Moonbow of Celestial Warding · RARE, EVOLVING · shortbow, Aurora attunement</strong>
+    <ul class="tight">
+      <li>+2 shortbow. Arrows manifest as silver-white starlight. 1d6+2 piercing + 1d4 radiant.</li>
+      <li>Spellcasting focus.</li>
+      <li>7 charges (1d4+3 dawn). Magic Missile (1/missile, max 5), Shield (1, reaction), Counterspell at 3rd (3).</li>
+      <li><strong>Moonkite's Blessing (1/LR):</strong> Banishment, no concentration, 1 minute. Target sent to Feywild.</li>
+      <li><strong>Moonkite Bond:</strong> 1/LR communicate (visions, feelings, direction-sense).</li>
+      <li>Evolving — further tiers unlock as Moonkite recovers.</li>
+    </ul>
+  </div>
+
+  <h3>Mount Persuasion (only if Vitality ≥ 3)</h3>
+  <p>DC 15 Persuasion (Aurora has advantage). Adjust based on RP — if she addresses the Moonkite as an equal, lower DC. If she commands or treats it as a beast, raise DC. <em>Earned, not given.</em></p>
+  <blockquote class="dialogue">On success: <em>"Together. Until we leave this place. Then — free."</em> Moonkite follows in Feywild echo, manifests physically when strong enough (2–3 sessions).</blockquote>
+</section>
+
+<!-- =================== LOOT (UPGRADED) =================== -->
+<section id="loot">
+  <h2>Loot — Upgraded for a Tier-3 Boss Encounter</h2>
+
+  <p style="color:var(--muted);font-size:13px"><em>This loot table is built for 3 PCs at level 11 finishing a 4-hour cunning boss fight. It contains: 1 evolving signature weapon, 2 wearable magic items, 1 plot-critical Blood Pay reagent, 1 forge-grade crafting material, the Soul Capacitor bounty branch, hostage-rescue rewards, and the standard soul coin haul.</em></p>
+
+  <h3>From Bitter Breath's Body</h3>
+
+  <div class="callout" style="border-left-color:var(--accent)"><strong>★ BITTER BREATH'S GUTRIPPER · RARE, EVOLVING (sentient)</strong>
+    <p>Curved gutting blade, weapon (shortsword), requires attunement.</p>
+    <ul class="tight">
+      <li><strong>+2 shortsword</strong> · 1d6+2 slashing + <strong>1d6 necrotic</strong> · finesse, light, thrown 20/60</li>
+      <li><strong>Bleeder.</strong> On a critical hit, the target takes 2d6 necrotic at the start of each of its turns until it receives magical healing or DC 15 Medicine action.</li>
+      <li><strong>Brother's Memory (sentient).</strong> The blade carries fragments of Bitter Breath's mind. CG alignment, INT 12 / WIS 14 / CHA 16. Communicates via empathy. Hates demons, distrusts devils. Bonded user can ask it 1 question per long rest about a creature it has tasted blood from — gets a yes/no answer or short impression.</li>
+      <li><strong>Evolving (Tier 1).</strong> Unlocks new abilities at narrative beats: kill a major devil = damage upgrades to 2d6+2 + 1d8 necrotic. Defeat one of the Fallen Three = unlocks Soul Cleave (1/LR, deal max damage + ignore resistance to slashing).</li>
+    </ul>
+  </div>
+
+  <div class="callout" style="border-left-color:var(--accent)"><strong>★ CROWN OF THE BONE THRONE · UNCOMMON</strong>
+    <p>Headpiece, requires attunement. Bone tiara threaded with infernal sigils — taken from Bitter Breath's brow.</p>
+    <ul class="tight">
+      <li>+1 to all Charisma checks.</li>
+      <li>1/long rest, cast <em>Command</em> (DC 13) without a spell slot.</li>
+      <li>Wearer is treated as a minor noble in any infernal court — gains advantage on Persuasion against devils CR 5 or lower.</li>
+      <li><em>Cosmetic:</em> wearing it in a Hellrider settlement = -2 to social checks (it looks evil).</li>
+    </ul>
+  </div>
+
+  <div class="callout" style="border-left-color:var(--blood)"><strong>★ VIAL OF BITTER HEART-BLOOD · BLOOD PAY REAGENT (3 doses)</strong>
+    <p>A small obsidian vial holding three doses of Bitter Breath's still-warm cardiac blood. <strong>This is the most valuable thing in the room.</strong></p>
+    <p>When presented as <strong>Blood Pay</strong> to any Intermediary (Mordenkainen, Red Ruth, or Mephistopheles via Rigorath), one dose unlocks a <em>specific</em> revelation:</p>
+    <div class="callout danger" style="margin:8px 0"><strong>★ THE COMPACT OF BONE — Knowledge Revealed</strong>
+      <p>Bitter Breath signed a binding contract with <strong>Bel</strong> in the Forge of Bel for power. His blood remembers it. Each dose presented reveals one of these three secrets. Choose which to ask for, OR roll/let the player choose:</p>
+      <ol class="tight">
+        <li><strong>The Bleeding Citadel's exact location.</strong> The Citadel is hidden — even Mordenkainen knew only "somewhere in Bel's territory." This dose reveals the precise coordinates: anchored to <em>the Forge of Bel itself</em>. The Citadel rises from the Forge's bedrock when Bel commands it. Without Bel's permission, the Citadel sleeps below the Forge floor — invisible, intangible, untouchable.</li>
+        <li><strong>The Doorkeeper's name and price.</strong> The entrance to the Citadel is guarded by <strong>Vassa, the Mouthless Sentinel</strong> — a unique solar-touched fiend, half-fallen. She does not speak. She demands one offering: a <em>self-binding oath</em>, sworn aloud, that the speaker will return Zariel's Sword to its rightful purpose. Lying to Vassa = instant disintegration (DC 22 Cha save or die). Speaking truth = passage. Drenwal can do this safely. The others probably can't.</li>
+        <li><strong>Zariel's Sword's hidden binding.</strong> The Sword recognizes oaths sworn in Bel's forge as kin-bonds. <em>Anyone who swears a binding oath at Bel's forge before approaching the Sword</em> can grasp it without being instantly destroyed by its will-save effect. The catch: the Sword will demand its own price for the grasper's oath. <em>Bel knows this. He's been waiting for someone to figure it out — he wants the Sword for himself, and he wants someone else to pay the price.</em></li>
+      </ol>
+      <p style="margin-top:8px;font-size:12px"><strong>Strategic implications:</strong> The party can present a single dose for a specific revelation, OR present all 3 to one Intermediary for a discount on future Blood Pay. Smart play: spread the doses across all three Intermediaries to <em>verify</em> the revelations (Bel's contract is real; the Doorkeeper exists; the Sword binding is genuine). Each Intermediary may add their own context.</p>
+    </div>
+    <p style="font-size:12px;color:var(--muted)"><em>Game design note:</em> This is the bridge between the Avernus arc and the endgame. The party has been collecting Fallen Three locations. This reveal unlocks <em>how to actually use them</em> — the Citadel is at Bel's forge, the door requires an oath, the Sword requires Bel's pact. Three doses = three steps.</p>
+  </div>
+
+  <div class="callout" style="border-left-color:var(--accent)"><strong>★ CORRUPTED STARLIGHT SHARD · UNCOMMON</strong>
+    <p>Horn fragment with fading silver veins. Worth 3 soul coins to the right buyer.</p>
+    <ul class="tight">
+      <li>If consumed by Asimov's Soul Capacitor: counts as a <strong>Medium Soul (Bitter Breath's)</strong> — only if Asimov delivered the killing blow.</li>
+      <li>If touched by Aurora: she has a 1-round vision of the moment Bitter Breath stole the Moonkite's first thread of starlight. <em>+1 inspiration to Aurora next session.</em></li>
+      <li>If kept whole: it slowly dims over a week, then crumbles to silver dust. The dust is a powerful spell focus for Banishment (free 1/long rest casting if used as material).</li>
+    </ul>
+  </div>
+
+  <div class="callout"><strong>BEL'S SIGIL TOKEN · LEVERAGE ITEM (no mechanical bonus, narrative-only)</strong>
+    <p>A small ring of black iron, worn thin from centuries of use. The Forge of Bel's sigil is etched on the inside. Bitter Breath wore it as proof of his pact.</p>
+    <p>Showing this ring to Bel during a future encounter: Bel <em>recognizes it</em>. He can't deny the pact. The ring is leverage — it can be used to demand a meeting on neutral ground, request information, OR the party can return it as a sign of severing BB's faction (giving Bel back the contract).</p>
+  </div>
+
+  <h3>Throne Room (if revisited before 10-min collapse window)</h3>
+  <ul class="tight">
+    <li><strong>Crude map of Avernus</strong> — Blood Pay sites marked with X. 4 unmarked locations (DM seeds for future encounters).</li>
+    <li><strong>Bloodbath's Fang</strong> — broken tusk from the original throne. Crafting component for an evolving belt or amulet (DM design when used).</li>
+    <li><strong>200 gp in mixed coin</strong> — the Palace's treasury, not much because BB had been fortifying.</li>
+    <li><strong>Hellfire Brazier (large, 50 lbs)</strong> — if salvaged: portable infinite source of magical fire (cantrip-equivalent), useful for cooking/heating/lighting. Bel can refit it as a forge component.</li>
+  </ul>
+
+  <h3>Cage Chamber</h3>
+  <ul class="tight">
+    <li><strong>Siphon Chain Links</strong> — 1 soul coin per link. <strong>Up to 12 soul coins</strong> if all 4 chains were destroyed.</li>
+    <li><strong>Cage Fragment (hellforged adamantine panel)</strong> — Reforgeable into:
+      <ul class="tight">
+        <li><em>Moonsteel Plate</em> (heavy armor, +2, resistance to radiant) — if reforged at Bel's Forge. The irony: Bel's forge purifying his own captured cage. Bel will charge a steep price.</li>
+        <li><em>Adamantine Buckler</em> (+1 shield, +1 to all saves vs spells) — if reforged at Uldrak's Forge in Mahadi's Wandering Emporium.</li>
+        <li><em>Aurora's Quiver</em> — if Aurora attunes to it AND has the Moonbow, the cage fragment becomes a quiver that grants 1 free Moonbow charge per long rest. Custom forge — DM design.</li>
+      </ul>
+    </li>
+  </ul>
+
+  <h3>Soul Capacitor — Bitter Breath Bounty Soul (if Asimov killed him)</h3>
+  <p>Per Rasheem: <em>"That's a CR 18 Amnizu commander. Top-shelf Medium Soul. The syndicate is going to be very happy."</em></p>
+  <ul class="tight">
+    <li><strong>Brother's Spite (passive):</strong> Below half HP, Psychic Blades deal +1d6 cold.</li>
+    <li><strong>Stolen Breath (1/LR, action):</strong> 15-ft cone, DC 15 Con, 3d6 necrotic + 2d6 cold. Half on save. Fail = dazed until end of next turn.</li>
+    <li><strong>Chain Leash (1/LR, bonus):</strong> Psychic chain at creature within 30 ft. DC 14 Str or pulled 15 ft toward Asimov.</li>
+    <li><strong>Forgetful Touch (1/LR, action — NEW Tier 2 unlock):</strong> Melee +9, DC 17 Wis or target loses memory of last 5 minutes + incapacitated 1 round. Useful for non-lethal interrogation, escape, or undoing a damning witness.</li>
+  </ul>
+
+  <h3>Hostage Rescue Rewards (Per Survivor)</h3>
+  <table>
+    <tr><th>Hostage</th><th>If Saved</th><th>If Lost</th></tr>
+    <tr><td><strong>Sgt. Veska (Hellrider)</strong></td><td>Future contact in surviving Hellriders. <strong>Hosts Drenwal's "die and be reborn" ritual</strong> in 2-3 sessions under Tyr or Helm. Ritual succeeds at lower DC if she officiates.</td><td>Drenwal's god (whichever) notices the abandonment. -1 Religion checks for 1 session. Cure Table d100 roll has -10 penalty.</td></tr>
+    <tr><td><strong>Yssel (tiefling smuggler)</strong></td><td>Reveals Smiler's hidden cache (300 gp + a vial of Quaal's Feather). Network favor: any Smiler-faction NPC will give the party 1 free favor.</td><td>Smiler doesn't know Yssel was here. No mechanical loss, but a potential ally arc closes.</td></tr>
+    <tr><td><strong>The Mute Monk (githzerai)</strong></td><td>Once recovered, gives the party a <strong>Planar Compass</strong> — points toward the nearest planar boundary (1/long rest, 24h duration). Critical for finding the way out of Avernus eventually.</td><td>Plot hook closes. Future planar travel is harder (no shortcut).</td></tr>
+    <tr><td><strong>The Infant</strong></td><td>No mechanical reward. The party becomes the kind of people who saved the infant. Drenwal gains a permanent <em>+1 to all death saves</em> (his god — whichever — recognizes the act of mercy).</td><td>The party becomes the kind of people who didn't save the infant. Bhaal influence on Drenwal +1 (the violence pleased him). Aurora has nightmares for 1 session — disadvantage on her first roll.</td></tr>
+  </table>
+
+  <h3>Smiler's Negotiation (if he was the ally)</h3>
+  <p>After the kill, Smiler claims the Palace structure and the throne. The party keeps:</p>
+  <ul class="tight">
+    <li>Everything from BB's body (Gutripper, Crown, Heart-Blood, Shard, Sigil)</li>
+    <li>Everything in the Cage Chamber (chain links, fragment, Moonkite)</li>
+    <li>Map of Avernus + Bloodbath's Fang from the throne dais</li>
+    <li>200 gp from the treasury</li>
+  </ul>
+  <p>Smiler keeps:</p>
+  <ul class="tight">
+    <li>The Palace itself (his new fortress — useful future ally HQ)</li>
+    <li>The Hellfire Brazier (he likes it)</li>
+    <li>Any captured devils/mooks who survive (he'll convert them)</li>
+    <li>50% of the soul coins from chain links if all 4 were destroyed (so 6 of 12)</li>
+  </ul>
+  <p style="color:var(--muted);font-size:12px"><em>If the party fights for more, see the Betrayal Clock in Smiler's stat block.</em></p>
+</section>
+
+<!-- =================== CLIFFHANGER =================== -->
+<section id="cliffhanger">
+  <h2>Palace Collapse + Cliffhanger</h2>
+  <p>10 minutes after BB dies, the Palace begins to collapse. Loot window. Out the breach the Lady Vengeance made — climb back through the cannon-collapsed tunnel (DC 12 Athletics) since the ship is the other side. Crew alive. Lulu happy to see them.</p>
+
+  <h3>Dumal's Message</h3>
+  <p>As they exit, <strong>Drenwal sees it</strong> — carved into the stone above the breach, fresh, the stone still warm:</p>
+  <blockquote class="read"><strong>A symbol of Bhaal. Below it, in Infernal: "I SEE YOU, BROTHER."</strong></blockquote>
+  <p>Dumal was here. Watched them enter. Chose not to attack. He's <em>waiting.</em></p>
+  <p style="text-align:center;font-family:'Cinzel',serif;color:var(--accent);margin-top:24px;letter-spacing:3px;font-size:18px">END OF SESSION</p>
+  <p style="text-align:center;color:var(--muted);font-size:13px">Bhaal influence: 4/6 (+1 from proximity to violence)</p>
+</section>
+
+<!-- =================== CHEAT SHEETS =================== -->
+<section id="cheat">
+  <h2>Cheat Sheets</h2>
+
+  <details open>
+    <summary>Phase 1 Cheat Sheet</summary>
+    <ul class="tight">
+      <li><strong>BB (Amnizu):</strong> AC 17, HP <strong>450</strong> total (Phase 1+2 share pool, 225 = bloodied/transition). Staff +9 (1d6+5 + 4d6 fire). Forgetful Touch +9 (DC 17 Wis or memory wipe + incap). Devilish Visage R6 (60 ft cone, DC 17 Wis, 6d6 psychic + frightened/restrained). Innate: 5/day fireball, wall of fire, counterspell. <span class="lr-track">3 LR</span></li>
+      <li><strong>Thakk (Narzugon):</strong> AC 18, HP 112. Hellfire Lance +9 (2d6+5 + 4d8 fire), reach 10. Shield Wall (BB attacks at disadvantage). Reaction redirect. Tactical Shove DC 14 Str.</li>
+      <li><strong>Consort (Bone Devil):</strong> AC 19 (24 on ceiling). HP 142. Multiattack 2 claw + sting. Sting DC 14 Con or +5d6 poison + poisoned. Counterspell 1/day (banks for big spell).</li>
+      <li><strong>Mooks:</strong> AC 18, 1 HP, flat 8 dmg (+7 with ally). 1d4 spawn at init 20 every 2 rounds. Cap 8.</li>
+      <li><strong>Lair:</strong> Hellfire Geyser / Bone Cage / Bloodbath's Echo / Cage Cut (mandatory every 2nd round).</li>
+      <li><strong>Hostages:</strong> Cut at end of rounds 2, 4, 6, 8. Save = action + free Forgetful Touch on rescuer.</li>
+      <li><strong>Vitality tick:</strong> -1 every 3rd round.</li>
+    </ul>
+  </details>
+
+  <details open>
+    <summary>Phase 2 Cheat Sheet</summary>
+    <ul class="tight">
+      <li><strong>BB:</strong> HP 225 (+up to 90 if rested). Chain Leash bonus (swing 20 ft). Siphon Regen (10 × intact chains).</li>
+      <li><strong>Hostage Strike (3/Phase 2):</strong> Replaces 1 multiattack. Ranged spell +9, 30 ft, 4d8 radiant. <strong>-1 Vitality.</strong></li>
+      <li><strong>Chains:</strong> AC 14, HP 25 each. Vulnerable radiant. <strong>Damage = -1 Vitality. Religion/Arcana/Thieves = safe.</strong></li>
+      <li><strong>Lair:</strong> Chain Lash / Silver Scream / Gore Eruption / Cage Pulse (2+ chains broken).</li>
+      <li><strong>Vitality tick:</strong> -1 every 2nd round.</li>
+      <li><strong>Transition:</strong> BB 0 HP OR all 4 chains down = Mythic. -2 Vitality from grab.</li>
+    </ul>
+  </details>
+
+  <details open>
+    <summary>Phase 3 Cheat Sheet</summary>
+    <ul class="tight">
+      <li><strong>BB Ascendant:</strong> AC 17, HP 200 (reset). Fly 30. Radiant + cold immune. Staff +9 (1d6+5 + 4d6 radiant).</li>
+      <li><strong>Starlight Breath (R5–6):</strong> 40 ft cone, DC 17 Con, 6d8 radiant + 4d6 cold, dazed on fail-by-5. <strong>-1 Vitality per use.</strong></li>
+      <li><strong>Sunburst (1/Phase 3):</strong> 60 ft sphere, DC 17 Con, 12d6 radiant + blinded.</li>
+      <li><strong>Mythic LA:</strong> Reposition / Starlight Strike / Nova Rush (2 actions, 10-ft path, DC 17 Dex or 3d6 radiant + 2d6 cold + staff).</li>
+      <li><strong>Aura:</strong> 15 ft, DC 17 Con or 2d6 cold + speed halved.</li>
+      <li><strong>Unstable Radiance:</strong> Start of turn, all within 5 ft + BB take 1d6 radiant.</li>
+      <li><strong>Lair:</strong> Starlight Detonation / Structural Collapse / Moonkite's Agony / Palace Shudders.</li>
+      <li><strong>Vitality tick:</strong> -1 every round + per Starlight Breath.</li>
+      <li><strong>Stabilize:</strong> Aurora action DC 12 Arcana = pause 1 round. With Asimov whispers = bonus action.</li>
+      <li><strong>Death Throes:</strong> 15 ft, DC 15 Con, 4d6 radiant + 2d6 cold. <strong>+2 Vitality.</strong></li>
+    </ul>
+  </details>
+
+  <details open>
+    <summary>Adaptive AI Reminders</summary>
+    <ul class="tight">
+      <li>Repeat tactic? BB counters it.</li>
+      <li>Save a prisoner? BB punishes the rescuer next round.</li>
+      <li>Big spell? Consort Counterspells first time, then BB banks LR for the second.</li>
+      <li>Track LR tokens visibly. Burn for Banishment / Hold Monster / Hypnotic Pattern / Banishing Smite.</li>
+      <li>Phase 3 below 35 HP = silent. No more dialogue. Just motion.</li>
+    </ul>
+  </details>
+</section>
+
+<!-- =================== DM TIPS =================== -->
+<section id="dmtips">
+  <h2>DM Tips — Running This Well</h2>
+  <ol class="tight">
+    <li><strong>Show the Vitality clock from minute one.</strong> Eight tokens at the table. Players need to feel the math.</li>
+    <li><strong>Roll BB's saves in the open.</strong> Let them see him fail. Let them see him burn LR. Track tokens.</li>
+    <li><strong>Don't editorialize the trolley problems.</strong> When BB cuts the infant cage, don't apologize. Describe it. Let the table go quiet. Let them choose.</li>
+    <li><strong>Reward team play with narration.</strong> Asimov + Aurora's psychic link bonus action — <em>"For a moment they're one system, rogue and warlock, lamp and wand, feeding power into the cage together."</em></li>
+    <li><strong>The mythic phase transition is your loudest moment.</strong> Stand. Lower voice. <em>"He resets. This is the final phase."</em> Then describe slowly.</li>
+    <li><strong>The Moonkite is a character, not a MacGuffin.</strong> Aurora hears it. Drenwal feels it judge him. Asimov's lamp covets it. Treat its death as a real loss if it happens — don't soften it.</li>
+    <li><strong>The hostage Hellrider</strong> — if she survives, she's the seed for Drenwal's "die and be reborn" ritual. A Hellrider can perform a death-and-rebirth rite under Tyr or Helm. Plant it now, pay it off in 3 sessions.</li>
+    <li><strong>Bitter Breath is not a mustache-twirler.</strong> He's a brother who wanted to be more and wasn't. The death should feel sad, not triumphant. Then let the Moonkite's hope fill the silence.</li>
+    <li><strong>If the fight is too easy:</strong> Add Hostage Strikes more aggressively. Drop Vitality faster (every round in Phase 1).</li>
+    <li><strong>If the fight is too hard:</strong> Thakk surrenders at half HP. Reduce Siphon Regen to 5/chain. Extend Vitality to 10. The Moonkite reaches out from the cage at Vitality 2 to deal 3d6 radiant to BB on its own initiative — once.</li>
+  </ol>
+
+  <div class="callout danger"><strong>Last Reminder Before You Run This</strong>Bloodbath was killed by being knocked unconscious and eaten by a genie. That was a fun, weird, lucky win. <strong>Bitter Breath should not be killable that way.</strong> He is <em>paying attention.</em> He has <em>studied his brother's death.</em> When Asimov pulls out anything Rasheem-coded, BB looks at the lamp and says quietly:<br><br><em>"I know about the genie. I know what happened to my brother. Try it. I dare you."</em><br><br>Then he uses Counterspell on Rasheem's manifest and Bone-Cages Asimov as a lair action. He has <strong>learned.</strong><br><br>Bloodbath was a beast. Bitter Breath is a man who watched his brother die and decided not to be him.</div>
+</section>
+
+<!-- =================== CHECKLIST =================== -->
+<section id="checklist">
+  <h2>Pre-Session + Live Checklist</h2>
+
+  <h3>Pre-Session Setup</h3>
+  <ul class="tight">
+    <li>☐ Print Vitality tracker (8 physical tokens or use this page)</li>
+    <li>☐ Print 3 LR tokens for BB</li>
+    <li>☐ Pre-write notes for Aurora, Drenwal, Asimov</li>
+    <li>☐ Have stat blocks ready: Amnizu (3 versions), Narzugon, Bone Devil, mooks</li>
+    <li>☐ Maps ready: <code>map2-throne-room.png</code> (P1), <code>map2-phase2.png</code> (P2), <code>map2-phase3.png</code> (P3)</li>
+    <li>☐ Track from Session 3: rest amount, chain devils killed (5), Lady Vengeance status (sealed behind collapse)</li>
+    <li>☐ Cure Table d100 ready (kept secret)</li>
+  </ul>
+
+  <h3>During Play</h3>
+  <ul class="tight">
+    <li>☐ Open with the Moonkite voice to Aurora (note)</li>
+    <li>☐ Lock in the hostage rules clearly before initiative</li>
+    <li>☐ Cage Cut at end of rounds 2, 4, 6, 8</li>
+    <li>☐ Track Vitality publicly every round</li>
+    <li>☐ Track LR publicly every save</li>
+    <li>☐ Bloodied transition (BB 117 HP) — slow it down, the floor breaks dramatically</li>
+    <li>☐ Intermission — do NOT rush. Pass private notes to all 3 PCs.</li>
+    <li>☐ Phase 2 — first chain destroyed by damage = Moonkite cries out. Make it clear.</li>
+    <li>☐ Phase 3 transition — stand up, lower voice. <em>"He resets."</em></li>
+    <li>☐ Each PC's final choice presented (don't push, just enable)</li>
+    <li>☐ Death Throes — let it land</li>
+    <li>☐ Moonbow fusion — Aurora's spotlight</li>
+    <li>☐ Mount persuasion — let her RP it</li>
+    <li>☐ Dumal cliffhanger — last line of the session</li>
+  </ul>
+
+  <h3>Post-Session — Update <code>campaign-state.md</code></h3>
+  <ul class="tight">
+    <li>☐ Final Moonkite Vitality (determines Moonbow tier)</li>
+    <li>☐ Hostages saved/lost (Hellrider Veska alive = future cure ritual seed)</li>
+    <li>☐ Asimov: bounty or betrayal? Soul Capacitor state.</li>
+    <li>☐ Drenwal: did he attempt the cure? Cure Table result.</li>
+    <li>☐ Bitter Breath's killing blow — who?</li>
+    <li>☐ Loot: gutripper, soul coins, chain links, cage fragment, map of Avernus</li>
+    <li>☐ Bhaal influence → 4/6 (or 6/6 if cure attempted and Bhaal caught him)</li>
+    <li>☐ Mount: persuaded? Tier?</li>
+    <li>☐ Dumal sighting confirmed at Palace exit</li>
+    <li>☐ Celestial pulse alerted Zariel + Dumal (next-session seeds: ice devil patrol, Dumal confrontation 12–18h out)</li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<script>
+// ====== Tracker State ======
+const STATE = {
+  vitality: 8,
+  vitalityMax: 8,
+  lr: 3,
+  lrMax: 3,
+  round: 1,
+  bbHP: 450,
+  bbMaxHP: 450,
+  cages: [true, true, true, true] // true = alive
+};
+
+// ====== Render Helpers ======
+function renderTokens(id, count, max, cls) {
+  const el = document.getElementById(id);
+  el.innerHTML = '';
+  for (let i = 0; i < max; i++) {
+    const t = document.createElement('div');
+    t.className = 'token ' + (cls || '');
+    if (i >= count) t.classList.add('spent');
+    t.textContent = i < count ? (i + 1) : '×';
+    t.onclick = () => {
+      if (i < count) STATE[id === 'vitality-tokens' ? 'vitality' : 'lr']--;
+      else STATE[id === 'vitality-tokens' ? 'vitality' : 'lr']++;
+      renderAll();
+    };
+    el.appendChild(t);
+  }
+}
+
+function renderCages() {
+  const el = document.getElementById('cage-tokens');
+  el.innerHTML = '';
+  const labels = ['1','2','3','4'];
+  STATE.cages.forEach((alive, i) => {
+    const t = document.createElement('div');
+    t.className = 'token cage';
+    t.textContent = labels[i];
+    if (!alive) t.classList.add('cut');
+    t.onclick = () => {
+      STATE.cages[i] = !STATE.cages[i];
+      renderAll();
+    };
+    el.appendChild(t);
+  });
+  // Sync hostage status cards
+  STATE.cages.forEach((alive, i) => {
+    const status = document.getElementById('cage-status-' + (i+1));
+    if (status) {
+      status.className = 'status ' + (alive ? 'alive' : 'cut');
+      status.textContent = alive ? 'ALIVE' : 'LOST';
+    }
+  });
+}
+
+function renderRound() {
+  const ipt = document.getElementById('round-input');
+  if (ipt) ipt.value = STATE.round;
+  const warn = document.getElementById('cage-warn');
+  if (STATE.round % 2 === 0) {
+    warn.textContent = '⚠ CAGE CUT THIS ROUND';
+  } else {
+    warn.textContent = '';
+  }
+}
+
+function renderHP() {
+  const pct = Math.max(0, (STATE.bbHP / STATE.bbMaxHP) * 100);
+  document.getElementById('bb-hp-fill').style.width = pct + '%';
+  document.getElementById('bb-hp-display').textContent = STATE.bbHP + ' / ' + STATE.bbMaxHP;
+  const i1 = document.getElementById('bb-hp-input'); if (i1) i1.value = STATE.bbHP;
+  const i2 = document.getElementById('bb-max-input'); if (i2) i2.value = STATE.bbMaxHP;
+  // Color shift
+  const fill = document.getElementById('bb-hp-fill');
+  if (pct > 50) fill.style.background = 'linear-gradient(90deg,var(--blood),var(--hell))';
+  else if (pct > 25) fill.style.background = 'linear-gradient(90deg,var(--warn),var(--hell))';
+  else fill.style.background = 'linear-gradient(90deg,var(--crit),var(--blood))';
+}
+
+function renderInputs() {
+  const v = document.getElementById('vitality-input'); if (v) v.value = STATE.vitality;
+  const vm = document.getElementById('vitality-max-input'); if (vm) vm.value = STATE.vitalityMax;
+  const l = document.getElementById('lr-input'); if (l) l.value = STATE.lr;
+  const lm = document.getElementById('lr-max-input'); if (lm) lm.value = STATE.lrMax;
+}
+
+function renderAll() {
+  renderTokens('vitality-tokens', STATE.vitality, STATE.vitalityMax, '');
+  renderTokens('lr-tokens', STATE.lr, STATE.lrMax, 'lr');
+  renderCages();
+  renderRound();
+  renderHP();
+  renderInputs();
+  saveState();
+}
+
+// ====== Actions ======
+function changeRound(delta) {
+  STATE.round = Math.max(1, STATE.round + delta);
+  renderAll();
+}
+
+function dmgBB(amount) {
+  STATE.bbHP = Math.max(0, STATE.bbHP - amount);
+  renderAll();
+}
+
+function healBB(amount) {
+  STATE.bbHP = Math.min(STATE.bbMaxHP, STATE.bbHP + amount);
+  renderAll();
+}
+
+function setBBHP(v) {
+  const n = parseInt(v);
+  if (!isNaN(n)) STATE.bbHP = Math.max(0, n);
+  renderAll();
+}
+
+function setBBMax(v) {
+  const n = parseInt(v);
+  if (!isNaN(n) && n > 0) {
+    STATE.bbMaxHP = n;
+    if (STATE.bbHP > n) STATE.bbHP = n;
+  }
+  renderAll();
+}
+
+function setVitality(v) {
+  const n = parseInt(v);
+  if (!isNaN(n)) STATE.vitality = Math.max(0, Math.min(STATE.vitalityMax, n));
+  renderAll();
+}
+
+function setVitalityMax(v) {
+  const n = parseInt(v);
+  if (!isNaN(n) && n > 0) {
+    STATE.vitalityMax = n;
+    if (STATE.vitality > n) STATE.vitality = n;
+  }
+  renderAll();
+}
+
+function setLR(v) {
+  const n = parseInt(v);
+  if (!isNaN(n)) STATE.lr = Math.max(0, Math.min(STATE.lrMax, n));
+  renderAll();
+}
+
+function setLRMax(v) {
+  const n = parseInt(v);
+  if (!isNaN(n) && n > 0) {
+    STATE.lrMax = n;
+    if (STATE.lr > n) STATE.lr = n;
+  }
+  renderAll();
+}
+
+function setRound(v) {
+  const n = parseInt(v);
+  if (!isNaN(n) && n >= 1) STATE.round = n;
+  renderAll();
+}
+
+function phase3Reset() {
+  STATE.bbHP = 200;
+  STATE.bbMaxHP = 200;
+  renderAll();
+}
+
+function resetTracker(which, max) {
+  if (which === 'vitality') { STATE.vitality = max; STATE.vitalityMax = max; }
+  if (which === 'lr') { STATE.lr = max; STATE.lrMax = max; }
+  renderAll();
+}
+
+// ====== Lightbox ======
+function openLightbox(src) {
+  let lb = document.getElementById('lightbox');
+  if (!lb) {
+    lb = document.createElement('div');
+    lb.id = 'lightbox';
+    lb.className = 'lightbox';
+    lb.innerHTML = '<button class="lb-close" onclick="closeLightbox()">×</button><img id="lb-img" src="" alt="">';
+    lb.addEventListener('click', (e) => { if (e.target === lb || e.target.id === 'lb-img') closeLightbox(); });
+    document.body.appendChild(lb);
+  }
+  document.getElementById('lb-img').src = src;
+  lb.classList.add('active');
+}
+
+function closeLightbox() {
+  const lb = document.getElementById('lightbox');
+  if (lb) lb.classList.remove('active');
+}
+
+function resetCages() {
+  STATE.cages = [true, true, true, true];
+  renderAll();
+}
+
+function fullReset() {
+  STATE.vitality = 8; STATE.vitalityMax = 8;
+  STATE.lr = 3; STATE.lrMax = 3;
+  STATE.round = 1;
+  STATE.bbHP = 234; STATE.bbMaxHP = 234;
+  STATE.cages = [true, true, true, true];
+  renderAll();
+}
+
+// ====== Persistence ======
+function saveState() {
+  try { localStorage.setItem('bb-encounter-state', JSON.stringify(STATE)); } catch(e) {}
+}
+
+function loadState() {
+  try {
+    const s = localStorage.getItem('bb-encounter-state');
+    if (s) Object.assign(STATE, JSON.parse(s));
+  } catch(e) {}
+}
+
+// ====== Cure Table reveal toggle ======
+document.querySelectorAll('.cure-table tr').forEach(tr => {
+  tr.addEventListener('click', () => tr.classList.toggle('revealed'));
+});
+
+// ====== Initiative Tracker ======
+const PRESETS = {
+  drenwal: {name:'Drenwal', initBonus:1, hp:90, maxHP:90, ac:18, type:'pc'},
+  aurora:  {name:'Aurora',  initBonus:3, hp:75, maxHP:75, ac:15, type:'pc'},
+  asimov:  {name:'Asimov',  initBonus:4, hp:88, maxHP:88, ac:16, type:'pc'},
+  bb:      {name:'Bitter Breath', initBonus:4, hp:450, maxHP:450, ac:17, type:'enemy'},
+  thakk:   {name:'Gorewarden Thakk', initBonus:3, hp:112, maxHP:112, ac:18, type:'enemy'},
+  consort: {name:'Barbed Consort', initBonus:3, hp:142, maxHP:142, ac:19, type:'enemy'},
+  mook:    {name:'Hobgoblin Mook', initBonus:2, hp:1, maxHP:1, ac:18, type:'enemy'}
+};
+
+let COMBATANTS = [];
+let CURRENT_TURN = 0;
+
+function rollD20() { return Math.floor(Math.random() * 20) + 1; }
+
+function addPreset(key) {
+  const p = PRESETS[key];
+  let name = p.name;
+  if (key === 'mook') {
+    const count = COMBATANTS.filter(c => c.name.startsWith('Hobgoblin Mook')).length;
+    name = `Hobgoblin Mook ${count + 1}`;
+  } else if (COMBATANTS.some(c => c.name === name)) {
+    const count = COMBATANTS.filter(c => c.name.startsWith(name)).length;
+    name = `${name} ${count + 1}`;
+  }
+  COMBATANTS.push({
+    id: Date.now() + Math.random(),
+    name, initBonus: p.initBonus,
+    init: rollD20() + p.initBonus,
+    hp: p.hp, maxHP: p.maxHP, ac: p.ac,
+    type: p.type, conditions: '', dead: false
+  });
+  sortCombatants();
+  renderInit();
+}
+
+function addCustom() {
+  const name = prompt('Name:');
+  if (!name) return;
+  const initBonus = parseInt(prompt('Initiative bonus (e.g. 3):', '0')) || 0;
+  const hp = parseInt(prompt('HP:', '50')) || 50;
+  const ac = parseInt(prompt('AC:', '15')) || 15;
+  const type = confirm('OK = PC, Cancel = Enemy') ? 'pc' : 'enemy';
+  COMBATANTS.push({
+    id: Date.now() + Math.random(),
+    name, initBonus, init: rollD20() + initBonus,
+    hp, maxHP: hp, ac, type, conditions: '', dead: false
+  });
+  sortCombatants();
+  renderInit();
+}
+
+function rollAll() {
+  COMBATANTS.forEach(c => { c.init = rollD20() + c.initBonus; });
+  CURRENT_TURN = 0;
+  sortCombatants();
+  renderInit();
+}
+
+function sortCombatants() {
+  COMBATANTS.sort((a, b) => b.init - a.init || b.initBonus - a.initBonus);
+}
+
+function nextTurn() {
+  if (COMBATANTS.length === 0) return;
+  let attempts = 0;
+  do {
+    CURRENT_TURN = (CURRENT_TURN + 1) % COMBATANTS.length;
+    if (CURRENT_TURN === 0) {
+      STATE.round++;
+      renderRound();
+      saveState();
+    }
+    attempts++;
+  } while (COMBATANTS[CURRENT_TURN].dead && attempts <= COMBATANTS.length);
+  renderInit();
+}
+
+function clearInit() {
+  if (!confirm('Clear all combatants?')) return;
+  COMBATANTS = [];
+  CURRENT_TURN = 0;
+  renderInit();
+}
+
+function damageCombatant(id, amount) {
+  const c = COMBATANTS.find(x => x.id === id);
+  if (!c) return;
+  c.hp = Math.max(0, c.hp - amount);
+  c.dead = c.hp === 0;
+  renderInit();
+}
+
+function healCombatant(id, amount) {
+  const c = COMBATANTS.find(x => x.id === id);
+  if (!c) return;
+  c.hp = Math.min(c.maxHP, c.hp + amount);
+  if (c.hp > 0) c.dead = false;
+  renderInit();
+}
+
+function setHP(id, value) {
+  const c = COMBATANTS.find(x => x.id === id);
+  if (!c) return;
+  c.hp = Math.max(0, Math.min(c.maxHP, parseInt(value) || 0));
+  c.dead = c.hp === 0;
+  renderInit();
+}
+
+function setInit(id, value) {
+  const c = COMBATANTS.find(x => x.id === id);
+  if (!c) return;
+  const n = parseInt(value);
+  if (isNaN(n)) return;
+  // Preserve current actor through re-sort
+  const currentId = COMBATANTS[CURRENT_TURN] ? COMBATANTS[CURRENT_TURN].id : null;
+  c.init = n;
+  sortCombatants();
+  if (currentId !== null) {
+    const newIdx = COMBATANTS.findIndex(x => x.id === currentId);
+    if (newIdx >= 0) CURRENT_TURN = newIdx;
+  }
+  renderInit();
+}
+
+function editCombatant(id) {
+  const c = COMBATANTS.find(x => x.id === id);
+  if (!c) return;
+  const newName = prompt('Name:', c.name);
+  if (newName === null) return;
+  if (newName) c.name = newName;
+  const newInit = prompt('Initiative roll (current ' + c.init + '):', c.init);
+  if (newInit !== null && newInit !== '' && !isNaN(parseInt(newInit))) c.init = parseInt(newInit);
+  const newMax = prompt('Max HP (current ' + c.maxHP + '):', c.maxHP);
+  if (newMax !== null && newMax !== '' && !isNaN(parseInt(newMax))) {
+    c.maxHP = parseInt(newMax);
+    if (c.hp > c.maxHP) c.hp = c.maxHP;
+  }
+  const newAC = prompt('AC (current ' + c.ac + '):', c.ac);
+  if (newAC !== null && newAC !== '' && !isNaN(parseInt(newAC))) c.ac = parseInt(newAC);
+  const newConds = prompt('Conditions/notes (e.g. "frightened, prone"):', c.conditions || '');
+  if (newConds !== null) c.conditions = newConds;
+  sortCombatants();
+  renderInit();
+}
+
+function removeCombatant(id) {
+  const idx = COMBATANTS.findIndex(x => x.id === id);
+  if (idx < 0) return;
+  COMBATANTS.splice(idx, 1);
+  if (CURRENT_TURN >= COMBATANTS.length) CURRENT_TURN = 0;
+  renderInit();
+}
+
+function quickDamage(id) {
+  const amt = parseInt(prompt('Damage amount:', '10'));
+  if (!isNaN(amt)) damageCombatant(id, amt);
+}
+
+function quickHeal(id) {
+  const amt = parseInt(prompt('Heal amount:', '10'));
+  if (!isNaN(amt)) healCombatant(id, amt);
+}
+
+function escapeHTML(s) {
+  return String(s).replace(/[&<>"']/g, ch => ({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[ch]));
+}
+
+function renderInit() {
+  const list = document.getElementById('combatant-list');
+  if (!list) return;
+  if (COMBATANTS.length === 0) {
+    list.innerHTML = '<div class="init-empty">No combatants yet. Add presets above or click + Custom.</div>';
+    document.getElementById('turn-status').textContent = 'No combatants';
+    saveInitState();
+    return;
+  }
+  list.innerHTML = COMBATANTS.map((c, i) => {
+    const cls = ['combatant'];
+    if (i === CURRENT_TURN) cls.push('current');
+    if (c.dead) cls.push('dead');
+    if (c.type === 'pc') cls.push('pc');
+    const conds = c.conditions ? `<span class="conds">${escapeHTML(c.conditions)}</span>` : '';
+    return `
+      <div class="${cls.join(' ')}">
+        <div class="init-num"><input type="number" value="${c.init}" onchange="setInit(${c.id}, this.value)" title="Click to edit initiative" /></div>
+        <div class="c-name" onclick="editCombatant(${c.id})" title="Click to edit name/HP/AC/conditions">${escapeHTML(c.name)}${conds}</div>
+        <div class="c-hp">HP <input type="number" value="${c.hp}" onchange="setHP(${c.id}, this.value)" />/ ${c.maxHP}</div>
+        <div class="c-ac">AC ${c.ac}</div>
+        <div class="c-actions">
+          <button class="dmg" onclick="quickDamage(${c.id})" title="Damage">−</button>
+          <button class="heal" onclick="quickHeal(${c.id})" title="Heal">+</button>
+          <button class="rm" onclick="removeCombatant(${c.id})" title="Remove">×</button>
+        </div>
+      </div>`;
+  }).join('');
+  const cur = COMBATANTS[CURRENT_TURN];
+  document.getElementById('turn-status').innerHTML = `<strong style="color:var(--accent)">▶ ${escapeHTML(cur.name)}</strong> (init ${cur.init}) · Round <strong>${STATE.round}</strong>`;
+  saveInitState();
+}
+
+function saveInitState() {
+  try { localStorage.setItem('bb-init-state', JSON.stringify({COMBATANTS, CURRENT_TURN})); } catch(e) {}
+}
+
+function loadInitState() {
+  try {
+    const s = localStorage.getItem('bb-init-state');
+    if (s) {
+      const obj = JSON.parse(s);
+      COMBATANTS = obj.COMBATANTS || [];
+      CURRENT_TURN = obj.CURRENT_TURN || 0;
+    }
+  } catch(e) {}
+}
+
+// ====== Init ======
+loadState();
+loadInitState();
+renderAll();
+renderInit();
+
+// Keyboard shortcuts
+document.addEventListener('keydown', (e) => {
+  if (e.target.tagName === 'INPUT' || e.target.tagName === 'TEXTAREA') return;
+  if (e.key === 'ArrowRight') { changeRound(1); }
+  if (e.key === 'ArrowLeft') { changeRound(-1); }
+  if (e.key === 'v') { STATE.vitality = Math.max(0, STATE.vitality - 1); renderAll(); }
+  if (e.key === 'V') { STATE.vitality = Math.min(STATE.vitalityMax, STATE.vitality + 1); renderAll(); }
+  if (e.key === 'l') { STATE.lr = Math.max(0, STATE.lr - 1); renderAll(); }
+  if (e.key === 'L') { STATE.lr = Math.min(STATE.lrMax, STATE.lr + 1); renderAll(); }
+  if (e.key === 'n') { nextTurn(); }
+  if (e.key === 'R') { rollAll(); }
+  if (e.key === 'Escape') { closeLightbox(); }
+});
+</script>
+
+</body>
+</html>
