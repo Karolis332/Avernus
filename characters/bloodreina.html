@@ -1,0 +1,2308 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>The Saga of Bloodreina — A Player's Booklet</title>
+<style>
+  :root {
+    --bg:        #0c0606;
+    --bg-2:      #1a0a0a;
+    --bg-card:   #170808;
+    --ink:       #efe2c8;
+    --ink-dim:   #b8a890;
+    --crimson:   #c92020;
+    --crimson-2: #8b0000;
+    --bone:      #e8dcc0;
+    --gold:      #c89b3c;
+    --rust:      #6e1b15;
+    --line:      #3a1a1a;
+    --line-gold: #5a4520;
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'EB Garamond', Georgia, 'Times New Roman', serif;
+    line-height: 1.6;
+    font-size: 17px;
+  }
+  body {
+    background:
+      radial-gradient(ellipse at 20% 5%, #3a1010 0%, transparent 40%),
+      radial-gradient(ellipse at 80% 95%, #1f0606 0%, transparent 40%),
+      var(--bg);
+    background-attachment: fixed;
+    padding-bottom: 60px;
+  }
+
+  .page {
+    max-width: 820px;
+    margin: 0 auto 50px;
+    padding: 70px 70px 60px;
+    background:
+      linear-gradient(180deg, rgba(20,8,8,0.92) 0%, rgba(12,6,6,0.96) 100%);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    box-shadow:
+      0 0 60px rgba(201, 32, 32, 0.1),
+      0 20px 50px rgba(0,0,0,0.5);
+    position: relative;
+  }
+  .page::before, .page::after {
+    content: '';
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 50%;
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--line-gold), transparent);
+  }
+  .page::before { top: 28px; }
+  .page::after  { bottom: 28px; }
+
+  .page-num {
+    position: absolute;
+    bottom: 12px;
+    right: 30px;
+    color: var(--ink-dim);
+    font-size: 0.78rem;
+    letter-spacing: 0.3em;
+  }
+  .page-motif {
+    position: absolute;
+    top: 12px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: var(--crimson);
+    font-size: 0.9rem;
+    letter-spacing: 0.5em;
+    opacity: 0.7;
+  }
+
+  .cover {
+    text-align: center;
+    padding: 120px 70px;
+    background:
+      radial-gradient(ellipse at 50% 30%, #4a1414 0%, transparent 55%),
+      radial-gradient(ellipse at 50% 80%, #2a0a0a 0%, transparent 60%),
+      #0a0303;
+  }
+  .cover .crest {
+    font-size: 5rem;
+    background: linear-gradient(180deg, var(--bone) 0%, var(--crimson) 50%, var(--rust) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(201,32,32,0.6));
+    margin-bottom: 30px;
+  }
+  .cover h1 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-weight: 400;
+    font-size: 5rem;
+    margin: 0 0 12px;
+    letter-spacing: 0.08em;
+    background: linear-gradient(180deg, var(--bone) 0%, var(--crimson) 55%, var(--crimson-2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 80px rgba(201,32,32,0.5);
+  }
+  .cover .subtitle {
+    color: var(--gold);
+    font-style: italic;
+    letter-spacing: 0.15em;
+    font-size: 1.1rem;
+    margin: 8px 0 60px;
+  }
+  .cover .arc {
+    font-family: Georgia, serif;
+    color: var(--bone);
+    font-style: italic;
+    font-size: 1.4rem;
+    line-height: 2.2;
+    margin: 60px auto 30px;
+    max-width: 550px;
+  }
+  .cover .arc span {
+    display: block;
+    color: var(--crimson);
+  }
+  .cover .booklet-tag {
+    margin-top: 80px;
+    color: var(--ink-dim);
+    letter-spacing: 0.4em;
+    font-size: 0.85rem;
+    text-transform: uppercase;
+  }
+  .cover .titles {
+    display: flex;
+    justify-content: center;
+    gap: 30px;
+    margin-top: 16px;
+    color: var(--crimson);
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    flex-wrap: wrap;
+  }
+  .cover .player-name {
+    margin-top: 50px;
+    color: var(--ink-dim);
+    font-style: italic;
+    font-size: 1rem;
+  }
+  .cover .player-name strong {
+    color: var(--gold);
+    font-style: normal;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    font-size: 1.1rem;
+  }
+
+  h1, h2, h3, h4 {
+    font-family: 'Cinzel', Georgia, serif;
+    font-weight: 400;
+    color: var(--bone);
+  }
+  .page > h1.page-title {
+    font-size: 2.4rem;
+    text-align: center;
+    margin: 30px 0 6px;
+    color: var(--crimson);
+    letter-spacing: 0.08em;
+    text-shadow: 0 0 30px rgba(201,32,32,0.3);
+  }
+  .page > h2.page-sub {
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-weight: 400;
+    font-size: 1.15rem;
+    color: var(--gold);
+    text-align: center;
+    margin: 0 0 40px;
+    letter-spacing: 0.05em;
+  }
+  h3 { color: var(--crimson); margin: 30px 0 10px; font-size: 1.25rem; letter-spacing: 0.05em; }
+  h4 { color: var(--gold); margin: 18px 0 6px; font-size: 1rem; letter-spacing: 0.08em; text-transform: uppercase; }
+
+  .lvl-banner {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 24px;
+    margin: 30px 0 8px;
+  }
+  .lvl-number {
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 4rem;
+    line-height: 1;
+    color: var(--crimson);
+    text-shadow: 0 0 40px rgba(201,32,32,0.4);
+    border: 2px solid var(--crimson);
+    border-radius: 50%;
+    width: 110px;
+    height: 110px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: radial-gradient(circle, #1a0606 0%, #0a0303 100%);
+    flex-shrink: 0;
+  }
+  .lvl-headline { text-align: left; }
+  .lvl-headline h1 {
+    margin: 0;
+    font-size: 2rem;
+    color: var(--bone);
+    letter-spacing: 0.04em;
+  }
+  .lvl-headline h2 {
+    margin: 4px 0 0;
+    font-family: Georgia, serif;
+    font-style: italic;
+    color: var(--gold);
+    font-size: 1rem;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+  }
+
+  .story {
+    font-style: italic;
+    color: var(--ink);
+    margin: 30px 0 20px;
+    padding: 0 20px;
+    font-size: 1.04rem;
+    line-height: 1.8;
+  }
+  .story strong { color: var(--crimson); font-style: normal; }
+
+  .quote-box {
+    margin: 30px -10px;
+    padding: 28px 50px;
+    background:
+      linear-gradient(90deg, rgba(201,32,32,0.05) 0%, rgba(201,32,32,0.12) 50%, rgba(201,32,32,0.05) 100%);
+    border-top: 1px solid var(--line-gold);
+    border-bottom: 1px solid var(--line-gold);
+    text-align: center;
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 1.3rem;
+    color: var(--bone);
+    line-height: 1.5;
+    letter-spacing: 0.03em;
+    text-shadow: 0 0 30px rgba(201,32,32,0.2);
+    position: relative;
+  }
+  .quote-box::before, .quote-box::after {
+    content: '∞';
+    color: var(--crimson);
+    font-size: 1.2rem;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+  }
+  .quote-box::before { left: 14px; }
+  .quote-box::after  { right: 14px; }
+  .quote-attr {
+    display: block;
+    margin-top: 10px;
+    color: var(--ink-dim);
+    font-family: Georgia, serif;
+    font-style: italic;
+    font-size: 0.85rem;
+    letter-spacing: 0.05em;
+  }
+
+  .feature {
+    background: linear-gradient(135deg, rgba(201,32,32,0.06), transparent);
+    border-left: 3px solid var(--crimson);
+    padding: 14px 20px;
+    margin: 14px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .feature-name {
+    font-family: 'Cinzel', Georgia, serif;
+    color: var(--gold);
+    font-size: 1.05rem;
+    margin-bottom: 6px;
+    letter-spacing: 0.03em;
+  }
+  .feature-body { color: var(--ink); font-size: 0.96rem; }
+
+  .can-do {
+    margin: 30px 0;
+    padding: 18px 24px;
+    background: rgba(110, 27, 21, 0.18);
+    border: 1px solid var(--line-gold);
+    border-radius: 4px;
+  }
+  .can-do .label {
+    color: var(--gold);
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  .can-do p { margin: 0; color: var(--ink); font-style: italic; }
+
+  .table-moment {
+    margin: 24px 0;
+    padding: 16px 22px;
+    background: rgba(200, 155, 60, 0.06);
+    border: 1px dashed rgba(200, 155, 60, 0.35);
+    border-radius: 4px;
+  }
+  .table-moment .label {
+    color: var(--gold);
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 0.78rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-bottom: 6px;
+    display: block;
+  }
+  .table-moment p { margin: 0; font-size: 0.94rem; color: var(--ink); }
+
+  /* CHARACTER SHEET */
+  .sheet-banner {
+    border: 2px solid var(--crimson);
+    border-radius: 4px;
+    padding: 18px 24px;
+    margin-bottom: 24px;
+    background: linear-gradient(90deg, rgba(201,32,32,0.1), transparent 50%, rgba(201,32,32,0.1));
+    display: grid;
+    grid-template-columns: 2fr 1fr 1fr;
+    gap: 16px;
+    align-items: end;
+  }
+  .sheet-banner .field-name {
+    font-family: 'Cinzel', Georgia, serif;
+    color: var(--crimson);
+    font-size: 2rem;
+    border-bottom: 1px solid var(--line-gold);
+    padding-bottom: 2px;
+    letter-spacing: 0.05em;
+  }
+  .field {
+    border-bottom: 1px solid var(--line-gold);
+    padding-bottom: 2px;
+    min-height: 28px;
+    color: var(--bone);
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 0.95rem;
+  }
+  .field.blank { color: var(--ink-dim); font-style: italic; opacity: 0.5; }
+  .field-label {
+    display: block;
+    font-size: 0.7rem;
+    color: var(--ink-dim);
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    margin-top: 4px;
+  }
+  .field-row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 14px;
+    margin-bottom: 20px;
+  }
+  .sheet-body {
+    display: grid;
+    grid-template-columns: 1fr 1.4fr 1fr;
+    gap: 18px;
+  }
+  .stat-hex {
+    background: linear-gradient(180deg, var(--bg-card), #060202);
+    border: 2px solid var(--crimson);
+    border-radius: 6px;
+    padding: 10px 6px;
+    text-align: center;
+    margin-bottom: 12px;
+  }
+  .stat-hex .name {
+    color: var(--crimson);
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 0.85rem;
+    letter-spacing: 0.18em;
+  }
+  .stat-hex .score-box {
+    background: var(--bg);
+    border: 1px solid var(--line-gold);
+    border-radius: 4px;
+    height: 56px;
+    margin: 6px auto 4px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 1.8rem;
+    color: var(--bone);
+    font-family: 'Cinzel', Georgia, serif;
+  }
+  .stat-hex .mod-box {
+    display: inline-block;
+    background: var(--bg);
+    border: 1px solid var(--line-gold);
+    border-radius: 50%;
+    width: 36px;
+    height: 36px;
+    line-height: 32px;
+    color: var(--bone);
+    font-family: 'Cinzel', Georgia, serif;
+    margin-top: 2px;
+  }
+  .save-list, .skill-list {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 12px 14px;
+    margin-bottom: 14px;
+  }
+  .save-list h4, .skill-list h4 { margin-top: 0; }
+  .save-row, .skill-row {
+    display: grid;
+    grid-template-columns: 20px 30px 1fr;
+    gap: 6px;
+    align-items: center;
+    font-size: 0.88rem;
+    padding: 3px 0;
+    border-bottom: 1px dotted var(--line);
+  }
+  .save-row:last-child, .skill-row:last-child { border: none; }
+  .prof-dot {
+    width: 11px; height: 11px;
+    border: 1px solid var(--crimson);
+    border-radius: 50%;
+    display: inline-block;
+  }
+  .prof-dot.filled { background: var(--crimson); box-shadow: 0 0 6px rgba(201,32,32,0.5); }
+  .num-blank {
+    background: var(--bg);
+    border: 1px solid var(--line-gold);
+    border-radius: 3px;
+    height: 22px;
+    min-width: 28px;
+  }
+  .skill-row .label { color: var(--ink); }
+  .skill-row .ability {
+    color: var(--ink-dim);
+    font-size: 0.72rem;
+    font-style: italic;
+  }
+  .combat-box {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+  .combat-cell {
+    background: var(--bg-card);
+    border: 1px solid var(--crimson);
+    border-radius: 4px;
+    padding: 10px;
+    text-align: center;
+  }
+  .combat-cell .label {
+    color: var(--crimson);
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 0.72rem;
+    letter-spacing: 0.18em;
+    text-transform: uppercase;
+  }
+  .combat-cell .num-blank {
+    margin: 6px auto 0;
+    min-height: 30px;
+    width: 60%;
+  }
+  .attack-table {
+    width: 100%;
+    border-collapse: collapse;
+    background: rgba(0,0,0,0.2);
+    border: 1px solid var(--line);
+  }
+  .attack-table th, .attack-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    font-size: 0.82rem;
+  }
+  .attack-table th { color: var(--crimson); font-family: 'Cinzel', Georgia, serif; letter-spacing: 0.1em; font-size: 0.72rem; }
+  .attack-table .blank-cell {
+    background: rgba(0,0,0,0.4);
+    color: transparent;
+    min-width: 30px;
+  }
+  .traits-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 12px;
+    margin-top: 14px;
+  }
+  .trait-box {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 10px 14px;
+  }
+  .trait-box h4 { margin: 0 0 4px; }
+  .trait-box p { margin: 0; font-size: 0.88rem; font-style: italic; color: var(--ink); }
+  .features-text {
+    background: rgba(0,0,0,0.25);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 12px 16px;
+    margin-top: 14px;
+    font-size: 0.88rem;
+    line-height: 1.55;
+  }
+  .features-text ul { margin: 4px 0; padding-left: 18px; }
+  .features-text li { margin: 2px 0; }
+
+  .card {
+    background: rgba(0,0,0,0.3);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 20px 24px;
+    margin: 16px 0;
+  }
+  ul, ol { padding-left: 22px; }
+  li { margin: 4px 0; }
+  li strong { color: var(--crimson); }
+  table.data { width: 100%; border-collapse: collapse; margin: 12px 0; }
+  table.data th, table.data td {
+    padding: 8px 12px;
+    border-bottom: 1px solid var(--line);
+    text-align: left;
+    font-size: 0.92rem;
+  }
+  table.data th {
+    color: var(--crimson);
+    font-family: 'Cinzel', Georgia, serif;
+    font-size: 0.75rem;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+  }
+  pre {
+    background: var(--bg-card);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 18px 22px;
+    color: var(--ink-dim);
+    font-family: 'Cascadia Code', Consolas, monospace;
+    font-size: 0.78rem;
+    line-height: 1.7;
+    overflow-x: auto;
+    white-space: pre-wrap;
+  }
+  .pill {
+    display: inline-block;
+    background: rgba(201,32,32,0.15);
+    color: var(--crimson);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.74rem;
+    margin: 0 3px;
+    border: 1px solid rgba(201,32,32,0.3);
+    letter-spacing: 0.05em;
+  }
+  .pill.gold {
+    background: rgba(200,155,60,0.12);
+    color: var(--gold);
+    border-color: rgba(200,155,60,0.3);
+  }
+  .phrase-row {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    padding: 10px 0;
+    border-bottom: 1px dotted var(--line);
+  }
+  .phrase-row:last-child { border: none; }
+  .phrase-row .trig {
+    color: var(--crimson);
+    font-family: 'Cinzel', Georgia, serif;
+    font-style: italic;
+    letter-spacing: 0.04em;
+  }
+  .phrase-row .eng {
+    color: var(--ink-dim);
+    font-style: italic;
+  }
+
+  @media print {
+    @page { size: A4 portrait; margin: 0; }
+    html, body {
+      background: #0c0606 !important;
+      color: var(--ink) !important;
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+      padding: 0 !important;
+      margin: 0 !important;
+      font-size: 9pt !important;
+      line-height: 1.35 !important;
+    }
+    .page {
+      width: 210mm !important;
+      height: 297mm !important;
+      max-width: 210mm !important;
+      max-height: 297mm !important;
+      page-break-after: always !important;
+      page-break-inside: avoid !important;
+      break-after: page !important;
+      break-inside: avoid !important;
+      box-shadow: none !important;
+      border: none !important;
+      margin: 0 !important;
+      padding: 10mm 11mm 12mm !important;
+      overflow: hidden !important;
+      position: relative !important;
+      box-sizing: border-box !important;
+      background: linear-gradient(180deg, rgba(20,8,8,0.92) 0%, rgba(12,6,6,0.96) 100%) !important;
+    }
+    .page:last-child { page-break-after: auto !important; }
+    .page-num { position: absolute !important; bottom: 4mm !important; right: 12mm !important; font-size: 7pt !important; }
+    .page-motif { position: absolute !important; top: 4mm !important; left: 50% !important; transform: translateX(-50%) !important; font-size: 8pt !important; }
+    .page-title { font-size: 1.4rem !important; margin: 0 0 4px !important; padding-top: 6mm !important; }
+    .page-sub { font-size: 0.85rem !important; margin: 0 0 8px !important; }
+    /* Compact stat boxes */
+    .stat-hex { padding: 4px !important; margin: 3px 0 !important; }
+    .stat-hex .name { font-size: 0.7rem !important; }
+    .stat-hex .score-box { height: 22px !important; min-height: 22px !important; }
+    .stat-hex .mod-box { height: 22px !important; min-height: 22px !important; font-size: 0.9rem !important; }
+    .combat-box { gap: 4px !important; margin-bottom: 4px !important; }
+    .combat-cell { padding: 4px !important; }
+    .combat-cell .label { font-size: 0.62rem !important; }
+    .combat-cell .num-blank { min-height: 16px !important; }
+    .save-row, .skill-row { padding: 1px 0 !important; font-size: 0.75rem !important; }
+    .num-blank { height: 14px !important; min-width: 22px !important; }
+    .features-text { padding: 6px 8px !important; margin: 4px 0 !important; font-size: 0.8rem !important; }
+    .features-text h4 { font-size: 0.85rem !important; margin: 0 0 2px !important; }
+    .features-text ul { margin: 2px 0 !important; padding-left: 14px !important; }
+    .features-text li { margin: 1px 0 !important; }
+    .traits-grid { gap: 5px !important; margin-top: 6px !important; }
+    .trait-box { padding: 5px 8px !important; }
+    .trait-box h4 { font-size: 0.78rem !important; margin: 0 0 2px !important; }
+    .trait-box p { margin: 0 !important; font-size: 0.78rem !important; }
+    .attack-table th, .attack-table td { padding: 2px 4px !important; font-size: 0.75rem !important; }
+    pre { white-space: pre-wrap !important; word-wrap: break-word !important; font-size: 0.7rem !important; line-height: 1.25 !important; }
+    /* Level banners */
+    .lvl-banner { padding: 6px !important; margin-bottom: 6px !important; }
+    .lvl-banner h1, .lvl-headline h1 { font-size: 1.5rem !important; margin: 0 !important; }
+    .lvl-banner h2, .lvl-headline h2 { font-size: 0.85rem !important; margin: 2px 0 0 !important; }
+    /* Cover */
+    .cover { padding: 30mm 12mm !important; }
+    .cover h1 { font-size: 2.5rem !important; }
+    .crest { font-size: 3rem !important; }
+    /* Phrase rows */
+    .phrase-row { padding: 2px 0 !important; font-size: 0.78rem !important; }
+    /* Images */
+    img { max-width: 100% !important; max-height: 240mm !important; height: auto !important; }
+    /* Inner tables don't break, but allow overflow content to be clipped */
+    table { font-size: 0.8rem !important; }
+    table tr { page-break-inside: avoid !important; }
+    /* Character sheet specific */
+    .cs-sheet { font-size: 7.5pt !important; line-height: 1.2 !important; }
+    .cs-sheet h4 { font-size: 7.5pt !important; margin: 3px 0 1px !important; }
+  }
+  }
+  @media (max-width: 880px) {
+    .page { padding: 50px 30px 50px; }
+    .cover { padding: 80px 30px; }
+    .cover h1 { font-size: 3rem; }
+    .sheet-body { grid-template-columns: 1fr; }
+    .sheet-banner { grid-template-columns: 1fr; }
+    .field-row { grid-template-columns: 1fr 1fr; }
+    .lvl-banner { flex-direction: column; text-align: center; }
+    .lvl-headline { text-align: center; }
+    .phrase-row { grid-template-columns: 1fr; }
+  }
+</style>
+</head>
+<body>
+
+<!-- ====================  COVER  ==================== -->
+<div class="page cover">
+  <div class="crest">⚔</div>
+  <h1>BLOODREINA</h1>
+  <div class="subtitle">∞ The Saga of the Red Queen ∞</div>
+  <div class="arc">
+    The girl beneath the floor<br>
+    becomes the blade in the forest<br>
+    becomes the queen of the bunker<br>
+    becomes <span>the one who ate first.</span>
+  </div>
+  <div class="titles">
+    <span>Skairipa</span>
+    <span>Heda kom Wonkru</span>
+    <span>The Red Queen</span>
+  </div>
+  <div class="booklet-tag">A 20-Level Player Booklet · Zealot Barbarian</div>
+  <div class="player-name">
+    A gift for <br><strong>Akvilė</strong><br>
+    <em style="font-size:0.9rem;">— your first D&amp;D character is also the most dangerous one in the room.</em>
+  </div>
+</div>
+
+<!-- ====================  WELCOME / FIRST-TIME PLAYER  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <h1 class="page-title">YOU ARE BLOODREINA</h1>
+  <h2 class="page-sub">A welcome for a first-time player. Read this once. Then forget the rules and remember the woman.</h2>
+
+  <div class="story">
+    This booklet is twenty pages of <em>her</em>. Every page is a level. Every level is a moment in her story — the girl hidden beneath the floor, the wild thing in the forest, the warrior in the pit, the queen in the bunker, and what she becomes when survival costs everything. You don't need to memorize numbers to play her. You need to know <strong>who she is</strong>. The dice will follow.
+  </div>
+
+  <div class="card">
+    <h3>The Three Things That Matter</h3>
+    <ol style="font-size:1.04rem; line-height:1.9;">
+      <li><strong>Speak as her.</strong> Not "my character says" — just <em>say it</em>. Quiet. Slow. Certain. People who shout are afraid. She is not afraid.</li>
+      <li><strong>When she's angry, you Rage.</strong> Mechanically: bonus action, free, lasts a minute. Narratively: stand up at the table. Lean forward. The room belongs to you now.</li>
+      <li><strong>She does not fall.</strong> The whole class is built around refusing to die. Lean into it. Charge the dragon. Stand in front of the wizard. The mechanics will catch you.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>If You Only Remember Four Words</h3>
+    <p style="font-family:'Cinzel',Georgia,serif; font-size:1.6rem; text-align:center; color:var(--crimson); margin:20px 0; letter-spacing:0.05em; text-shadow:0 0 20px rgba(201,32,32,0.3);">
+      Rage. Reckless. Swing. Survive.
+    </p>
+    <ul>
+      <li><strong>Rage</strong> = your bonus action almost every fight. Just say "I rage."</li>
+      <li><strong>Reckless</strong> = "I attack recklessly." You get advantage. They get advantage back. You don't care.</li>
+      <li><strong>Swing</strong> = "I attack with my greatsword." Two attacks at L5.</li>
+      <li><strong>Survive</strong> = if you go down, ask the DM: "Do I get to use Relentless Endurance?" The answer is usually yes.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>When in Doubt, Ask Yourself</h3>
+    <p style="text-align:center; font-style:italic; color:var(--bone); font-size:1.15rem; padding:14px;">
+      "What would <span style="color:var(--crimson)">scare her enemies</span> most?"
+    </p>
+    <p>Then do that. Walking forward when others retreat. Speaking softer when others shout. Pulling the spear out herself. <strong>Theatre is half the build.</strong></p>
+  </div>
+
+  <div class="page-num">WELCOME</div>
+</div>
+
+<!-- ====================  THE VOICE  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <h1 class="page-title">THE VOICE</h1>
+  <h2 class="page-sub">How she speaks. How she moves. What to say at the table.</h2>
+
+  <div class="card">
+    <h3>Vocal Pattern</h3>
+    <ul>
+      <li><strong>Low register.</strong> Drop your voice half an octave below your normal speaking pitch.</li>
+      <li><strong>Slow tempo.</strong> Half-speed. Make people wait. Make them lean in.</li>
+      <li><strong>No filler.</strong> No <em>"um, like, sort of."</em> If you don't have a word, say nothing.</li>
+      <li><strong>Direct eye contact.</strong> Hold it one beat longer than feels natural.</li>
+      <li><strong>End sentences flat.</strong> No upward inflection. Statements, not questions.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Body at the Table</h3>
+    <ul>
+      <li>When she rages: <strong>stand up</strong>. Put both hands flat on the table.</li>
+      <li>When she's listening: don't fidget. Don't nod. Just watch.</li>
+      <li>When she's threatened: lean <em>toward</em> the threat, not away.</li>
+      <li>When she gives an order: don't repeat it. They heard.</li>
+      <li>Touch the hilt of your imaginary sword when you think.</li>
+    </ul>
+  </div>
+
+  <div class="card">
+    <h3>Lines to Steal — English</h3>
+    <table class="data">
+      <tr><td>"My name is Octavia. And I am not afraid."</td><td><em>introducing yourself once, never again</em></td></tr>
+      <tr><td>"Choose."</td><td><em>after offering exactly two options</em></td></tr>
+      <tr><td>"You are Wonkru, or you are the enemy of Wonkru."</td><td><em>before anyone is allowed to leave the room</em></td></tr>
+      <tr><td>"Strong hearts."</td><td><em>greeting between allies — quiet, gripping their forearm</em></td></tr>
+      <tr><td>"The body is the gift."</td><td><em>before a kill she does not want to make</em></td></tr>
+      <tr><td>"We do what we must."</td><td><em>after a kill she did not want to make</em></td></tr>
+      <tr><td>"Get knocked down. Get back up."</td><td><em>to a friend bleeding on the ground</em></td></tr>
+      <tr><td>"I am Bloodreina."</td><td><em>only ever to enemies — never allies</em></td></tr>
+    </table>
+  </div>
+
+  <div class="card">
+    <h3>Lines in Trigedasleng (the Grounder tongue)</h3>
+    <p style="color:var(--ink-dim); font-size:0.88rem;">Pronounce it. Don't translate at the table — let people figure it out. Mystery is the queen's friend.</p>
+    <div class="phrase-row"><div class="trig">Ai laik Skairipa.</div><div class="eng">I am the killer of sky people.</div></div>
+    <div class="phrase-row"><div class="trig">Yu gonplei nou ste odon.</div><div class="eng">Your fight is not over.</div></div>
+    <div class="phrase-row"><div class="trig">Jus drein jus daun.</div><div class="eng">Blood must have blood.</div></div>
+    <div class="phrase-row"><div class="trig">Omon gon oson.</div><div class="eng">All for one.</div></div>
+    <div class="phrase-row"><div class="trig">Heda kom Wonkru.</div><div class="eng">Commander of one people.</div></div>
+    <div class="phrase-row"><div class="trig">Bloodreina nou stedaun.</div><div class="eng">Bloodreina does not fall.</div></div>
+    <div class="phrase-row"><div class="trig">Oso na throu daun ogeda.</div><div class="eng">We will fight together.</div></div>
+  </div>
+
+  <div class="card">
+    <h3>The Rituals That Are Hers</h3>
+    <ul>
+      <li>Before every battle: she paints the red horizontal band across both eyes with two fingers. Slow. In silence.</li>
+      <li>Before every meal she eats first. Always. It is law.</li>
+      <li>When someone dies under her command, she says — quietly, only to them — <em>"Yu gonplei ste odon."</em> (Your fight is over.)</li>
+      <li>She never sits when her people stand. She never stands when her people kneel.</li>
+    </ul>
+  </div>
+
+  <div class="page-num">VOICE</div>
+</div>
+
+<!-- ====================  CHARACTER SHEET (ONE PAGE)  ==================== -->
+<div class="page cs-sheet">
+  <div class="page-motif">&infin; &infin; &infin;</div>
+
+  <!-- Header strip -->
+  <table style="width:100%; border-collapse:collapse; margin-bottom:5px;">
+    <tr>
+      <td style="border:1.5px solid var(--line-gold); padding:5px 8px; width:32%;">
+        <div style="color:var(--crimson); font-size:18pt; font-weight:bold; letter-spacing:4px; line-height:1;">BLOODREINA</div>
+        <div style="color:var(--ink-dim); font-size:7.5pt; letter-spacing:1.5px; margin-top:2px;">CHARACTER NAME &middot; "Octavia of the Sky People"</div>
+      </td>
+      <td style="border:1.5px solid var(--line-gold); padding:5px 8px;">
+        <div style="font-size:11pt; line-height:1.1;">Barbarian<br>(Zealot) / __</div>
+        <div style="color:var(--ink-dim); font-size:7pt; letter-spacing:1.5px; margin-top:3px;">CLASS &amp; LEVEL</div>
+      </td>
+      <td style="border:1.5px solid var(--line-gold); padding:5px 8px;">
+        <div style="font-size:11pt; line-height:1.1;">Human<br>(variant)</div>
+        <div style="color:var(--ink-dim); font-size:7pt; letter-spacing:1.5px; margin-top:3px;">RACE</div>
+      </td>
+      <td style="border:1.5px solid var(--line-gold); padding:5px 8px;">
+        <div style="font-size:11pt; line-height:1.1;">Outlander<br>(Gladiator)</div>
+        <div style="color:var(--ink-dim); font-size:7pt; letter-spacing:1.5px; margin-top:3px;">BACKGROUND</div>
+      </td>
+      <td style="border:1.5px solid var(--line-gold); padding:5px 8px;">
+        <div style="font-size:11pt; line-height:1.1;">__________</div>
+        <div style="color:var(--ink-dim); font-size:7pt; letter-spacing:1.5px; margin-top:3px;">ALIGN / XP</div>
+      </td>
+      <td style="border:1.5px solid var(--line-gold); padding:5px 8px;">
+        <div style="font-size:11pt; line-height:1.1;">Akvil&#279;</div>
+        <div style="color:var(--ink-dim); font-size:7pt; letter-spacing:1.5px; margin-top:3px;">PLAYER</div>
+      </td>
+    </tr>
+  </table>
+
+  <!-- Main body -->
+  <table style="width:100%; border-collapse:separate; border-spacing:5px 0;">
+    <tr style="vertical-align:top;">
+
+      <!-- LEFT: stats (full height) + saves + skills -->
+      <td style="width:22%;">
+        <table style="width:100%; border-collapse:collapse;">
+        <tr><td style="border:2px solid var(--line-gold); padding:6px 4px; text-align:center; height:11mm;">
+            <div style="font-size:10pt; letter-spacing:3px; color:var(--crimson); font-weight:bold;">STR</div>
+            <div style="font-size:24pt; font-weight:bold; line-height:1; color:var(--ink); margin:2px 0;">&nbsp;</div>
+            <div style="display:inline-block; border:1.5px solid var(--line-gold); border-radius:50%; width:32px; height:32px; line-height:30px; font-size:11pt; background:var(--bg); margin-top:2px;">&nbsp;</div>
+        </td></tr>
+        <tr><td style="border:2px solid var(--line-gold); padding:6px 4px; text-align:center; height:11mm;">
+            <div style="font-size:10pt; letter-spacing:3px; color:var(--crimson); font-weight:bold;">DEX</div>
+            <div style="font-size:24pt; font-weight:bold; line-height:1; color:var(--ink); margin:2px 0;">&nbsp;</div>
+            <div style="display:inline-block; border:1.5px solid var(--line-gold); border-radius:50%; width:32px; height:32px; line-height:30px; font-size:11pt; background:var(--bg); margin-top:2px;">&nbsp;</div>
+        </td></tr>
+        <tr><td style="border:2px solid var(--line-gold); padding:6px 4px; text-align:center; height:11mm;">
+            <div style="font-size:10pt; letter-spacing:3px; color:var(--crimson); font-weight:bold;">CON</div>
+            <div style="font-size:24pt; font-weight:bold; line-height:1; color:var(--ink); margin:2px 0;">&nbsp;</div>
+            <div style="display:inline-block; border:1.5px solid var(--line-gold); border-radius:50%; width:32px; height:32px; line-height:30px; font-size:11pt; background:var(--bg); margin-top:2px;">&nbsp;</div>
+        </td></tr>
+        <tr><td style="border:2px solid var(--line-gold); padding:6px 4px; text-align:center; height:11mm;">
+            <div style="font-size:10pt; letter-spacing:3px; color:var(--crimson); font-weight:bold;">INT</div>
+            <div style="font-size:24pt; font-weight:bold; line-height:1; color:var(--ink); margin:2px 0;">&nbsp;</div>
+            <div style="display:inline-block; border:1.5px solid var(--line-gold); border-radius:50%; width:32px; height:32px; line-height:30px; font-size:11pt; background:var(--bg); margin-top:2px;">&nbsp;</div>
+        </td></tr>
+        <tr><td style="border:2px solid var(--line-gold); padding:6px 4px; text-align:center; height:11mm;">
+            <div style="font-size:10pt; letter-spacing:3px; color:var(--crimson); font-weight:bold;">WIS</div>
+            <div style="font-size:24pt; font-weight:bold; line-height:1; color:var(--ink); margin:2px 0;">&nbsp;</div>
+            <div style="display:inline-block; border:1.5px solid var(--line-gold); border-radius:50%; width:32px; height:32px; line-height:30px; font-size:11pt; background:var(--bg); margin-top:2px;">&nbsp;</div>
+        </td></tr>
+        <tr><td style="border:2px solid var(--line-gold); padding:6px 4px; text-align:center; height:11mm;">
+            <div style="font-size:10pt; letter-spacing:3px; color:var(--crimson); font-weight:bold;">CHA</div>
+            <div style="font-size:24pt; font-weight:bold; line-height:1; color:var(--ink); margin:2px 0;">&nbsp;</div>
+            <div style="display:inline-block; border:1.5px solid var(--line-gold); border-radius:50%; width:32px; height:32px; line-height:30px; font-size:11pt; background:var(--bg); margin-top:2px;">&nbsp;</div>
+        </td></tr>
+        </table>
+
+        <div style="border:1.5px solid var(--line-gold); margin-top:6px; padding:6px 8px;">
+          <h4 style="margin:0 0 4px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">SAVING THROWS</h4>
+        <div style="color:var(--ink); font-weight:bold; padding:2px 0; display:flex; align-items:center; gap:6px;"><span style="font-size:10pt;">&#9679;</span><span style="display:inline-block; min-width:26px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9.5pt;">&nbsp;</span><span style="font-size:9.5pt;">Strength</span></div>
+        <div style="color:var(--ink); padding:2px 0; display:flex; align-items:center; gap:6px;"><span style="font-size:10pt;">&#9675;</span><span style="display:inline-block; min-width:26px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9.5pt;">&nbsp;</span><span style="font-size:9.5pt;">Dexterity</span></div>
+        <div style="color:var(--ink); font-weight:bold; padding:2px 0; display:flex; align-items:center; gap:6px;"><span style="font-size:10pt;">&#9679;</span><span style="display:inline-block; min-width:26px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9.5pt;">&nbsp;</span><span style="font-size:9.5pt;">Constitution</span></div>
+        <div style="color:var(--ink); padding:2px 0; display:flex; align-items:center; gap:6px;"><span style="font-size:10pt;">&#9675;</span><span style="display:inline-block; min-width:26px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9.5pt;">&nbsp;</span><span style="font-size:9.5pt;">Intelligence</span></div>
+        <div style="color:var(--ink); padding:2px 0; display:flex; align-items:center; gap:6px;"><span style="font-size:10pt;">&#9675;</span><span style="display:inline-block; min-width:26px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9.5pt;">&nbsp;</span><span style="font-size:9.5pt;">Wisdom</span></div>
+        <div style="color:var(--ink); padding:2px 0; display:flex; align-items:center; gap:6px;"><span style="font-size:10pt;">&#9675;</span><span style="display:inline-block; min-width:26px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9.5pt;">&nbsp;</span><span style="font-size:9.5pt;">Charisma</span></div>
+        </div>
+
+        <div style="border:1.5px solid var(--line-gold); margin-top:5px; padding:6px;">
+          <h4 style="margin:0 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">PASSIVE STATS</h4>
+          <div style="display:flex; justify-content:space-between; gap:4px; align-items:end;">
+            <div style="flex:1; text-align:center;"><div style="font-size:14pt; font-weight:bold; border-bottom:1px solid var(--line-gold);">&nbsp;</div><div style="font-size:6.5pt; color:var(--ink-dim); letter-spacing:1px; margin-top:2px;">PERCEPTION</div></div>
+            <div style="flex:1; text-align:center;"><div style="font-size:14pt; font-weight:bold; border-bottom:1px solid var(--line-gold);">&nbsp;</div><div style="font-size:6.5pt; color:var(--ink-dim); letter-spacing:1px; margin-top:2px;">INSIGHT</div></div>
+            <div style="flex:1; text-align:center;"><div style="font-size:14pt; font-weight:bold; border-bottom:1px solid var(--line-gold);">&nbsp;</div><div style="font-size:6.5pt; color:var(--ink-dim); letter-spacing:1px; margin-top:2px;">INVEST.</div></div>
+          </div>
+        </div>
+      </td>
+
+      <!-- MIDDLE-LEFT: Skills (full column) -->
+      <td style="width:22%;">
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px;">
+          <h4 style="margin:0 0 4px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">SKILLS</h4>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Acrobatics <span style="color:var(--ink-dim); font-size:7pt;">(Dex)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Animal Handling <span style="color:var(--ink-dim); font-size:7pt;">(Wis)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Arcana <span style="color:var(--ink-dim); font-size:7pt;">(Int)</span></span></div>
+        <div style="color:var(--ink); font-weight:bold; padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9679;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Athletics <span style="color:var(--ink-dim); font-size:7pt;">(Str)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Deception <span style="color:var(--ink-dim); font-size:7pt;">(Cha)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">History <span style="color:var(--ink-dim); font-size:7pt;">(Int)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Insight <span style="color:var(--ink-dim); font-size:7pt;">(Wis)</span></span></div>
+        <div style="color:var(--ink); font-weight:bold; padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9679;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Intimidation <span style="color:var(--ink-dim); font-size:7pt;">(Cha)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Investigation <span style="color:var(--ink-dim); font-size:7pt;">(Int)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Medicine <span style="color:var(--ink-dim); font-size:7pt;">(Wis)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Nature <span style="color:var(--ink-dim); font-size:7pt;">(Int)</span></span></div>
+        <div style="color:var(--ink); font-weight:bold; padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9679;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Perception <span style="color:var(--ink-dim); font-size:7pt;">(Wis)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Performance <span style="color:var(--ink-dim); font-size:7pt;">(Cha)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Persuasion <span style="color:var(--ink-dim); font-size:7pt;">(Cha)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Religion <span style="color:var(--ink-dim); font-size:7pt;">(Int)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Sleight of Hand <span style="color:var(--ink-dim); font-size:7pt;">(Dex)</span></span></div>
+        <div style="color:var(--ink); padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9675;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Stealth <span style="color:var(--ink-dim); font-size:7pt;">(Dex)</span></span></div>
+        <div style="color:var(--ink); font-weight:bold; padding:1.5px 0; display:flex; align-items:center; gap:4px;"><span style="font-size:9pt;">&#9679;</span><span style="display:inline-block; min-width:24px; border-bottom:1px solid var(--line-gold); text-align:center; font-size:9pt;">&nbsp;</span><span style="flex:1; font-size:8.5pt;">Survival <span style="color:var(--ink-dim); font-size:7pt;">(Wis)</span></span></div>
+        </div>
+
+        <h4 style="margin:8px 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">PROFICIENCIES &amp; LANGUAGES</h4>
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px; font-size:8pt; line-height:1.4;">
+          <strong>Armor:</strong> light, medium, shields.<br>
+          <strong>Weapons:</strong> all simple &amp; martial.<br>
+          <strong>Tools:</strong> one gaming set, war-drum.<br>
+          <strong>Languages:</strong> Common + Trigedasleng.
+        </div>
+      </td>
+
+      <!-- MIDDLE-RIGHT: Combat -->
+      <td style="width:28%;">
+        <table style="width:100%; border-collapse:collapse;">
+          <tr>
+            <td style="border:2px solid var(--line-gold); padding:6px; text-align:center; width:33%; height:13mm;">
+              <div style="font-size:20pt; font-weight:bold; line-height:1;">&nbsp;</div>
+              <div style="font-size:7pt; letter-spacing:1.5px; color:var(--ink-dim); margin-top:3px;">ARMOR CLASS</div>
+            </td>
+            <td style="border:2px solid var(--line-gold); padding:6px; text-align:center; width:33%;">
+              <div style="font-size:20pt; font-weight:bold; line-height:1;">&nbsp;</div>
+              <div style="font-size:7pt; letter-spacing:1.5px; color:var(--ink-dim); margin-top:3px;">INITIATIVE</div>
+            </td>
+            <td style="border:2px solid var(--line-gold); padding:6px; text-align:center;">
+              <div style="font-size:20pt; font-weight:bold; line-height:1;">&nbsp;</div>
+              <div style="font-size:7pt; letter-spacing:1.5px; color:var(--ink-dim); margin-top:3px;">SPEED</div>
+            </td>
+          </tr>
+        </table>
+
+        <table style="width:100%; border-collapse:collapse; margin-top:4px;">
+          <tr>
+            <td style="border:2px solid var(--line-gold); padding:5px; text-align:center; width:50%;">
+              <div style="font-size:7pt; letter-spacing:1.5px; color:var(--ink-dim);">HIT POINT MAX</div>
+              <div style="font-size:16pt; font-weight:bold; margin-top:3px;">&nbsp;</div>
+            </td>
+            <td style="border:2px solid var(--line-gold); padding:5px; text-align:center;">
+              <div style="font-size:7pt; letter-spacing:1.5px; color:var(--ink-dim);">CURRENT HP</div>
+              <div style="font-size:16pt; font-weight:bold; margin-top:3px;">&nbsp;</div>
+            </td>
+          </tr>
+        </table>
+
+        <table style="width:100%; border-collapse:collapse; margin-top:4px;">
+          <tr>
+            <td style="border:2px solid var(--line-gold); padding:5px; text-align:center; width:33%;">
+              <div style="font-size:7pt; letter-spacing:1.5px; color:var(--ink-dim);">TEMP HP</div>
+              <div style="font-size:14pt; font-weight:bold; margin-top:2px;">&nbsp;</div>
+            </td>
+            <td style="border:2px solid var(--line-gold); padding:5px; text-align:center; width:33%;">
+              <div style="font-size:7pt; letter-spacing:1.5px; color:var(--ink-dim);">HIT DICE</div>
+              <div style="font-size:11pt; margin-top:2px;">__ / d12</div>
+            </td>
+            <td style="border:2px solid var(--line-gold); padding:5px; text-align:center;">
+              <div style="font-size:7pt; letter-spacing:1.5px; color:var(--ink-dim);">PROF BONUS</div>
+              <div style="font-size:14pt; font-weight:bold; margin-top:2px;">&nbsp;</div>
+            </td>
+          </tr>
+        </table>
+
+        <div style="border:2px solid var(--line-gold); margin-top:4px; padding:6px 8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:8.5pt;">
+            <strong>DEATH SAVES</strong>
+            <span>Successes &nbsp; <span style="font-size:14pt;">&#9675; &#9675; &#9675;</span></span>
+            <span>Failures &nbsp; <span style="font-size:14pt;">&#9675; &#9675; &#9675;</span></span>
+          </div>
+        </div>
+
+        <h4 style="margin:8px 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">ATTACKS &amp; WEAPONS</h4>
+        <table style="width:100%; border-collapse:collapse; font-size:8.5pt;">
+          <thead>
+            <tr style="background:rgba(201,32,32,0.12); border-bottom:1.5px solid var(--line-gold);">
+              <th style="padding:4px; text-align:left;">Name</th>
+              <th style="padding:4px; text-align:center; width:14%;">Atk</th>
+              <th style="padding:4px; text-align:left; width:36%;">Damage / Type</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px 4px;"><strong>Greatsword</strong> (2-h)</td><td style="text-align:center;">__</td><td>2d6 + __ slash</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px 4px;">Handaxe (20/60)</td><td style="text-align:center;">__</td><td>1d6 + __ slash</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px 4px;">Dagger (hidden)</td><td style="text-align:center;">__</td><td>1d4 + __ pierce</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr><td style="padding:6px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          </tbody>
+        </table>
+
+        <h4 style="margin:8px 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">RAGE TRACKER</h4>
+        <div style="border:1.5px solid var(--line-gold); padding:5px 8px;">
+          <div style="display:flex; justify-content:space-between; align-items:center; font-size:8.5pt; margin-bottom:3px;">
+            <strong>Uses / long rest:</strong>
+            <span style="font-size:13pt;">&#9675; &#9675; &#9675; &#9675; &#9675; &#9675;</span>
+          </div>
+          <div style="font-size:8pt; color:var(--ink-dim); line-height:1.3;">
+            <strong style="color:var(--crimson);">Bonus action.</strong> Resistance to slash/pierce/bludgeon. <strong>+2 dmg</strong> on STR melee. Adv on STR checks/saves. 1 minute. Ends if no attack or damage taken in a round, or if you wear heavy armor.
+          </div>
+        </div>
+
+        <h4 style="margin:8px 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">EXHAUSTION</h4>
+        <div style="border:1.5px solid var(--line-gold); padding:5px 8px; font-size:8pt;">
+          <div style="display:flex; justify-content:space-between; margin-bottom:3px;">
+            <strong>Level:</strong>
+            <span style="font-size:12pt;">&#9633; &#9633; &#9633; &#9633; &#9633; &#9633;</span>
+          </div>
+          <div style="color:var(--ink-dim); font-size:7.5pt; line-height:1.3;">
+            1: dis on checks &middot; 2: half speed &middot; 3: dis on attacks &amp; saves &middot; 4: HP halved &middot; 5: speed 0 &middot; 6: death
+          </div>
+        </div>
+      </td>
+
+      <!-- RIGHT: Personality + Features + Equipment + Coin -->
+      <td style="width:28%;">
+
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px;">
+          <h4 style="margin:0 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px;">PERSONALITY TRAIT</h4>
+          <div style="font-size:8.5pt; line-height:1.4; font-style:italic;">I do not flinch. I do not blink. When I speak, people stop talking.</div>
+        </div>
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px; margin-top:4px;">
+          <h4 style="margin:0 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px;">IDEAL</h4>
+          <div style="font-size:8.5pt; line-height:1.4; font-style:italic;">Unity through strength. One people. One law. One blade between us and extinction.</div>
+        </div>
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px; margin-top:4px;">
+          <h4 style="margin:0 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px;">BOND</h4>
+          <div style="font-size:8.5pt; line-height:1.4; font-style:italic;">My brother is the last piece of the girl I was. I would tear down the world to keep him alive.</div>
+        </div>
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px; margin-top:4px;">
+          <h4 style="margin:0 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px;">FLAW</h4>
+          <div style="font-size:8.5pt; line-height:1.4; font-style:italic;">I cannot tell where the queen ends and the woman begins. I am not sure I want to.</div>
+        </div>
+
+        <h4 style="margin:8px 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">FEATURES &amp; TRAITS</h4>
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px; font-size:8pt; line-height:1.4;">
+          <strong style="color:var(--crimson);">Reckless Attack</strong> &mdash; advantage on STR attacks this turn; enemies hit you with advantage until next turn.<br>
+          <strong style="color:var(--crimson);">Danger Sense</strong> &mdash; advantage on DEX saves vs effects you can see.<br>
+          <strong style="color:var(--crimson);">Unarmored Defense</strong> &mdash; AC = 10 + DEX + CON (no armor).<br>
+          <strong style="color:var(--crimson);">Path of the Zealot</strong> features unlock L3+ (Divine Fury, Warrior of the Gods).
+        </div>
+
+        <h4 style="margin:8px 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">EQUIPMENT</h4>
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px; font-size:8.5pt; line-height:1.45;">
+          <strong>Skairipa</strong> &mdash; heirloom greatsword<br>
+          Chain shirt + medium shield<br>
+          4 handaxes &middot; 1 hidden dagger<br>
+          Explorer's pack &middot; 50 ft rope<br>
+          Hunting trap &middot; war-paint kit<br>
+          Vial of blood &middot; bone bead (trophy)
+        </div>
+
+        <h4 style="margin:8px 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">COIN PURSE</h4>
+        <table style="width:100%; border-collapse:collapse; font-size:9pt; text-align:center;">
+          <tr style="background:rgba(201,32,32,0.12);">
+            <th style="padding:3px;">CP</th><th>SP</th><th>EP</th><th>GP</th><th>PP</th>
+          </tr>
+          <tr>
+            <td style="border:1.5px solid var(--line-gold); padding:8px;">&nbsp;</td>
+            <td style="border:1.5px solid var(--line-gold);">&nbsp;</td>
+            <td style="border:1.5px solid var(--line-gold);">&nbsp;</td>
+            <td style="border:1.5px solid var(--line-gold);"><strong>10</strong></td>
+            <td style="border:1.5px solid var(--line-gold);">&nbsp;</td>
+          </tr>
+        </table>
+
+        <h4 style="margin:8px 0 3px; color:var(--crimson); font-size:9pt; letter-spacing:2px; text-align:center;">ROLL THE STATS</h4>
+        <div style="border:1.5px solid var(--line-gold); padding:6px 8px; font-size:8pt; line-height:1.4; color:var(--ink-dim);">
+          Roll <strong style="color:var(--ink);">4d6, drop lowest</strong>, six times. Assign in order:<br>
+          <strong style="color:var(--crimson);">STR &ge; CON &ge; DEX &ge; WIS &ge; CHA &ge; INT</strong><br>
+          Then add Variant Human <strong style="color:var(--crimson);">+1 STR, +1 CON</strong>.
+        </div>
+      </td>
+    </tr>
+  </table>
+
+  <div class="page-num">CHARACTER SHEET</div>
+</div>
+
+<!-- ====================  LEVEL 1  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">I</div>
+    <div class="lvl-headline">
+      <h1>The Girl Under the Floor</h1>
+      <h2>Sixteen years hidden. One night to learn she is dangerous.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    You were born somewhere you were never supposed to exist. For sixteen years the world above the floorboards was a rumor — boots, voices, mealtimes you could not have. They find you. They cage you. They drop you, with ninety-nine other prisoners, into a forest of green and rot and freedom. You kill your first man with a sharpened rock. Your hands do not shake. <strong>You learn something about yourself that night you do not yet have a word for.</strong>
+  </div>
+
+  <div class="quote-box">
+    "My name is Octavia.<br>And I am not afraid."
+    <span class="quote-attr">— your first words in daylight</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Rage  <span class="pill">2 per long rest</span></div>
+    <div class="feature-body">Bonus action. For 1 minute: <strong>+2 damage</strong> with strength-based weapons, <strong>resistance</strong> to most weapon damage (you take half!), advantage on strength checks and saves. Ends if you don't attack or take damage on your turn.</div>
+  </div>
+  <div class="feature">
+    <div class="feature-name">Unarmored Defense</div>
+    <div class="feature-body">When you wear no armor: <strong>AC = 10 + DEX mod + CON mod</strong>. You may still use a shield. <em>(For now, wear the chain shirt — it's a bigger number.)</em></div>
+  </div>
+  <div class="feature">
+    <div class="feature-name">Tough  <span class="pill gold">Variant Human feat</span></div>
+    <div class="feature-body"><strong>+2 HP per level</strong>. Right now: +2 HP. At Level 20: +40 HP. This is the simplest, most powerful survivability feat in the game. <em>Bloodreina does not die because she has more HP than the math says is possible.</em></div>
+  </div>
+
+  <div class="table-moment">
+    <span class="label">At the Table</span>
+    <p>When the DM asks who goes first into the unknown, you say: <em>"I go first."</em> No qualifications. No "I think I should." Just the statement.</p>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Walk into a fight outnumbered and walk out alive. Resistance halves most weapon damage. You aren't a soldier yet — you're a wild thing the world has not learned to fear.</p>
+  </div>
+
+  <div class="page-num">PAGE I</div>
+</div>
+
+<!-- ====================  LEVEL 2  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">II</div>
+    <div class="lvl-headline">
+      <h1>We're Back, Bitches</h1>
+      <h2>First blood. First love. First lesson: the forest takes.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    The hundred run wild. You run wildest. A grounder pulls you from a river and for the first time in your life — you <em>choose</em> not to stab him. He teaches you three words: <em>kom Trikru. Yu gonplei.</em> The forest teaches you to swing a blade if you are willing to bleed for the lesson. <strong>You are.</strong>
+  </div>
+
+  <div class="quote-box">
+    "Whatever the hell we want."
+    <span class="quote-attr">— motto of the wild year</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Reckless Attack</div>
+    <div class="feature-body">Once per turn, declare an attack reckless: <strong>advantage on every melee strength attack this turn</strong>, but enemies have advantage against you until your next turn. <em>This becomes the engine of every fight you take.</em></div>
+  </div>
+  <div class="feature">
+    <div class="feature-name">Danger Sense</div>
+    <div class="feature-body">Advantage on <strong>DEX saves</strong> against effects you can see — fire breath, fireballs, traps. (No advantage if blinded, deafened, or incapacitated.)</div>
+  </div>
+
+  <div class="table-moment">
+    <span class="label">At the Table</span>
+    <p>Almost every attack from now on: declare it <em>reckless</em>. The defensive trade is fake — you have resistance, Tough, and (soon) revival features. Always swing first, swing hardest, never blink.</p>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Throw yourself into a fight knowing you'll come out the other side. Charge through fire. Trade defense for damage, every turn, on purpose.</p>
+  </div>
+
+  <div class="page-num">PAGE II</div>
+</div>
+
+<!-- ====================  LEVEL 3  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">III</div>
+    <div class="lvl-headline">
+      <h1>I Am Trikru</h1>
+      <h2>The forest claims you. The blood gods notice.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    Indra watches you train and does not laugh anymore. The clan paints a stripe of mud across your cheek and gives you a real blade. Your rage finds a god to listen — not a kind one. Your sword starts to <em>hum</em> on the first strike of every fight. The grounders call it Divine Fury. <strong>You call it justice.</strong>
+  </div>
+
+  <div class="quote-box">
+    "Ai laik Trikru nau.<br>I am not a Sky person anymore."
+    <span class="quote-attr">— your oath to the second clan</span>
+  </div>
+
+  <h3>Path of the Zealot  <span class="pill gold">subclass chosen</span></h3>
+  <div class="feature">
+    <div class="feature-name">Divine Fury</div>
+    <div class="feature-body">While raging, the first creature you hit with a weapon attack each turn takes <strong>+1d6 + ½ Barbarian level</strong> radiant <em>or</em> necrotic damage (your choice — pick <strong>necrotic</strong>, it fits her).</div>
+  </div>
+  <div class="feature">
+    <div class="feature-name">Warrior of the Gods</div>
+    <div class="feature-body">A spell that restores you to life (e.g., <em>raise dead, revivify</em>) needs <strong>no costly material components</strong>. Your gods want you back on the field.</div>
+  </div>
+
+  <div class="table-moment">
+    <span class="label">At the Table</span>
+    <p>Every fight, your <em>first strike</em> deals bonus dark energy. Describe it aloud: <em>"The blade hums. Where it lands, the wound smokes."</em></p>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Open every combat with a sword strike that drips holy fire or rot. Die in a cause that won't let you stay dead.</p>
+  </div>
+
+  <div class="page-num">PAGE III</div>
+</div>
+
+<!-- ====================  LEVEL 4  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">IV</div>
+    <div class="lvl-headline">
+      <h1>The Indra Years</h1>
+      <h2>Get knocked down. Get back up. Knock harder.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    A year of beatings from a woman who refuses to call you by your name. You come out of it lean as a wolf and twice as patient. You still cannot beat Indra. <strong>You are no longer trying to.</strong>
+  </div>
+
+  <div class="quote-box">
+    "Get knocked down. Get back up."
+    <span class="quote-attr">— Lincoln's voice, in your head, every morning</span>
+  </div>
+
+  <h3>Ability Score Improvement <span class="pill">#1</span></h3>
+  <div class="feature">
+    <div class="feature-name">Choose one</div>
+    <div class="feature-body">
+      <ul style="margin-top:6px;">
+        <li><strong>+2 STR</strong> — raise STR by 2. Hit harder. Hit more often.</li>
+        <li><strong>Sentinel feat</strong> — enemies attacking your allies provoke an opportunity attack from you; your OAs reduce target speed to 0 on hit. <em>Turn yourself into a wall.</em></li>
+        <li><strong>+1 STR / +1 CON</strong> — balanced; both saves and HP rise slightly.</li>
+      </ul>
+      <p style="margin-top:8px; font-style:italic; color:var(--ink-dim);">Recommended for Bloodreina flavor: <strong style="color:var(--crimson)">Sentinel</strong>. The queen never lets anyone past her.</p>
+    </div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Either raw damage, or absolute control of your ten-foot circle. Either way, your enemies are working harder than you are.</p>
+  </div>
+
+  <div class="page-num">PAGE IV</div>
+</div>
+
+<!-- ====================  LEVEL 5  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">V</div>
+    <div class="lvl-headline">
+      <h1>Skairipa</h1>
+      <h2>The Conclave. Twelve champions. One survivor.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    The bombs are coming. The bunker holds three hundred. Each clan sends one champion to the arena and only the last alive earns the door. You win by the eleventh body. They paint a red infinity across your eyes and call you <strong style="color:var(--crimson)">Skairipa</strong> — Killer of Sky People. <strong>You do not let them see you cry.</strong>
+  </div>
+
+  <div class="quote-box">
+    "Ai laik Skairipa.<br>Kom Skaikru."
+    <span class="quote-attr">— declared as the last sword falls</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Extra Attack</div>
+    <div class="feature-body">When you take the Attack action, you make <strong>two attacks</strong> instead of one. Damage per turn nearly doubles.</div>
+  </div>
+  <div class="feature">
+    <div class="feature-name">Fast Movement</div>
+    <div class="feature-body">While in no armor, light, or medium: <strong>speed +10 ft</strong> (now 40 ft). You close distance before your enemies can think.</div>
+  </div>
+
+  <div class="table-moment">
+    <span class="label">At the Table</span>
+    <p>This is the level you stop being "promising" and start being <em>scary</em>. After this fight, paint the infinity on. Earn the name in front of the party. Make it a moment.</p>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Two reckless attacks per turn with advantage, plus Divine Fury on the first hit. You are now, statistically, more dangerous than anything CR-equivalent in the Monster Manual.</p>
+  </div>
+
+  <div class="page-num">PAGE V</div>
+</div>
+
+<!-- ====================  LEVEL 6  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">VI</div>
+    <div class="lvl-headline">
+      <h1>The Will of Iron</h1>
+      <h2>The bunker closes. The years begin.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    Twelve clans, one shelter, five years of dark. You walk the corridors at night to remind people you exist. Someone tries to charm you into stepping aside. <strong>They die first. They do not die last.</strong>
+  </div>
+
+  <div class="quote-box">
+    "We will live."
+    <span class="quote-attr">— spoken once. Believed by all.</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Fanatical Focus</div>
+    <div class="feature-body">If you fail a saving throw while raging, you may <strong>reroll it once</strong>. Once per rage. Your gods, or your stubbornness, will not allow defeat.</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Shrug off mind-control, sleep magic, fear, paralysis — once per rage, the dice get a do-over. Bosses fear your saves now.</p>
+  </div>
+
+  <div class="page-num">PAGE VI</div>
+</div>
+
+<!-- ====================  LEVEL 7  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">VII</div>
+    <div class="lvl-headline">
+      <h1>One People</h1>
+      <h2>Twelve banners. One sigil. One word.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    You gather the clans in the great hall and burn their separate flags. From the ashes you paint a single red infinity on the wall and name them all <strong style="color:var(--crimson)">Wonkru</strong>. Some weep. Some kneel. <strong>Some are quietly removed.</strong>
+  </div>
+
+  <div class="quote-box">
+    "One people.<br>One law.<br>One queen."
+    <span class="quote-attr">— the founding decree</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Feral Instinct</div>
+    <div class="feature-body"><strong>Advantage on initiative.</strong> If you are surprised at the start of combat, you may immediately enter rage and act normally on your first turn. Nothing catches you sleeping anymore.</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Almost always strike first. Ambushes become your ambushes. You are the first sword to swing in any fight you are in.</p>
+  </div>
+
+  <div class="page-num">PAGE VII</div>
+</div>
+
+<!-- ====================  LEVEL 8  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">VIII</div>
+    <div class="lvl-headline">
+      <h1>Strong Hearts</h1>
+      <h2>Year two underground. Discipline forged in stone.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    You train them. Every morning. Every evening. The children watch you swing the great sword in the corridor and the corridor smells of sweat and oil and a kind of love you will not name. <strong>You kiss no one. You drink alone. You are becoming something you cannot return from.</strong>
+  </div>
+
+  <div class="quote-box">
+    "Strong hearts."
+    <span class="quote-attr">— greeting between Wonkru</span>
+  </div>
+
+  <h3>Ability Score Improvement <span class="pill">#2</span></h3>
+  <div class="feature">
+    <div class="feature-name">Recommended: Great Weapon Master  <span class="pill gold">feat</span></div>
+    <div class="feature-body">
+      <ul>
+        <li>When you score a critical hit OR reduce a creature to 0 HP with a melee attack, <strong>bonus action: one extra melee attack</strong>.</li>
+        <li>Before any melee attack with a heavy weapon, you may <strong>take −5 to the attack roll for +10 damage</strong>.</li>
+      </ul>
+      <p style="margin-top:8px; font-style:italic; color:var(--ink-dim);">Combined with Reckless Attack (advantage cancels the −5 penalty), your average damage per round leaps from ~22 to ~36.</p>
+    </div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Cleave through groups. Drop one enemy, swing immediately at the next. Become the answer to every encounter with more than three weak enemies.</p>
+  </div>
+
+  <div class="page-num">PAGE VIII</div>
+</div>
+
+<!-- ====================  LEVEL 9  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">IX</div>
+    <div class="lvl-headline">
+      <h1>The Pit Remembers</h1>
+      <h2>Dissent rises. The pit is reopened.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    A man speaks against you in the great hall. The corridor goes quiet. You do not have him hanged. You walk him to the pit. He fights well. <strong>You fight better.</strong> The next dissenter waits four months to speak — and speaks softer.
+  </div>
+
+  <div class="quote-box">
+    "The strong rule.<br>The weak feed them."
+    <span class="quote-attr">— law of the pit</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Brutal Critical (1 die)</div>
+    <div class="feature-body">On a critical hit with a melee weapon, you roll <strong>one extra weapon damage die</strong>.</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>A critical greatsword hit now rolls <strong>3d6 + STR + rage</strong>, then GWM grants a bonus action attack. Single crit, dead boss.</p>
+  </div>
+
+  <div class="page-num">PAGE IX</div>
+</div>
+
+<!-- ====================  LEVEL 10  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">X</div>
+    <div class="lvl-headline">
+      <h1>The Red Queen Speaks</h1>
+      <h2>Wonkru rallies. The world bends.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    The bunker is yours in name and in fact. When you shout an order, men who outweigh you by sixty pounds run faster. When you pause, the corridor holds its breath. <strong>This is not love. This is gravity.</strong>
+  </div>
+
+  <div class="quote-box">
+    "Omon gon oson.<br>All for one."
+    <span class="quote-attr">— battle cry of Wonkru</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Zealous Presence  <span class="pill">8 / long rest</span></div>
+    <div class="feature-body">Bonus action. Up to <strong>10 allies within 60 ft</strong> that can hear you gain <strong>advantage on all attack rolls and saving throws until the start of your next turn</strong>. A round of party-wide superiority. This is your commander aura.</div>
+  </div>
+
+  <div class="table-moment">
+    <span class="label">At the Table</span>
+    <p>When you use this, <em>shout the command aloud</em>: <em>"OMON GON OSON!"</em> The whole table responds. The encounter changes shape.</p>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Turn one round of any fight into a slaughter. Pair with the wizard's <em>Hypnotic Pattern</em> or the cleric's <em>Spirit Guardians</em> to break encounters open.</p>
+  </div>
+
+  <div class="page-num">PAGE X</div>
+</div>
+
+<!-- ====================  LEVEL 11  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XI</div>
+    <div class="lvl-headline">
+      <h1>The Dark Year Begins</h1>
+      <h2>The hydrofarm fails. Three hundred mouths. No food.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    Soy reaches a height of one inch and yellows. Calculations are run. Re-run. Whispered. There is not enough. There will not be enough. The doctor brings you the math at midnight and you do not look surprised. <strong>You have been waiting.</strong>
+  </div>
+
+  <div class="quote-box">
+    "We do what we must.<br>Or we die."
+    <span class="quote-attr">— spoken to no one, to yourself</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Relentless Rage</div>
+    <div class="feature-body">When reduced to 0 HP while raging and not killed outright, make a <strong>CON save (DC 10)</strong>. On success, you drop to <strong>1 HP</strong> instead. DC increases by 5 each time you use this until a short or long rest.</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>You can now take a second near-fatal hit in a single combat and remain standing. The math says you should be dead. You aren't.</p>
+  </div>
+
+  <div class="page-num">PAGE XI</div>
+</div>
+
+<!-- ====================  LEVEL 12  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XII</div>
+    <div class="lvl-headline">
+      <h1>The Body Is the Gift</h1>
+      <h2>The Dark Year ends. Wonkru survives. Something else dies.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    You sit at the long table with the rest of them and lift the first portion to your mouth. The hall is quiet enough to hear the swallow. Nobody refuses after that. Nobody speaks of it again. There is no word for what they did, so they invent one: <em>the body is the gift.</em> <strong>The girl beneath the floor would not recognize you.</strong>
+  </div>
+
+  <div class="quote-box">
+    "The body is the gift.<br>And I eat first."
+    <span class="quote-attr">— year three of the bunker, day forty of the famine</span>
+  </div>
+
+  <h3>Ability Score Improvement <span class="pill">#3</span></h3>
+  <div class="feature">
+    <div class="feature-name">Recommended: +2 STR → cap at 20</div>
+    <div class="feature-body">Maximum mortal strength. Attack bonus and damage rise by +1. You hit on a 6 against most armored enemies.</div>
+  </div>
+
+  <div class="table-moment">
+    <span class="label">At the Table</span>
+    <p>This is the level where you should ask the DM if you may roleplay <em>a moment</em>. The first meal of the dark year. The cost. It is the pivot of the saga. Don't skip it.</p>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Damage per round at L12 with rage + GWM + Divine Fury reaches <strong>~45 average</strong>. Bosses cannot ignore you now.</p>
+  </div>
+
+  <div class="page-num">PAGE XII</div>
+</div>
+
+<!-- ====================  LEVEL 13  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XIII</div>
+    <div class="lvl-headline">
+      <h1>You Are Wonkru</h1>
+      <h2>Or you are the enemy of Wonkru. Choose.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    The bunker opens. The world above is bone and ash and a sliver of green. You ride out at the head of an army that has forgotten softness. <strong>They will not negotiate. You do not know how anymore.</strong>
+  </div>
+
+  <div class="quote-box">
+    "You are Wonkru,<br>or you are the enemy of Wonkru.<br><strong style="color:var(--crimson)">Choose.</strong>"
+    <span class="quote-attr">— the only sentence you speak for a week</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Brutal Critical (2 dice)</div>
+    <div class="feature-body">Critical melee hits roll <strong>two extra weapon damage dice</strong>. A greatsword crit now rolls <strong>4d6</strong> dice before mods.</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>A critical hit can drop a CR 8 enemy outright. With Reckless Attack your crit rate is ~9.75% per swing — once every two-three rounds, statistically. Crits become events.</p>
+  </div>
+
+  <div class="page-num">PAGE XIII</div>
+</div>
+
+<!-- ====================  LEVEL 14  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XIV</div>
+    <div class="lvl-headline">
+      <h1>Bloodreina Does Not Fall</h1>
+      <h2>The legend hardens into law.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    You take a spear through the side at the edge of the bone valley and walk back to camp with it still in you. The healer pulls it out. <strong>You do not sit down for the operation.</strong> The story is told by morning. By evening it is law.
+  </div>
+
+  <div class="quote-box">
+    "Bloodreina nou stedaun."<br>
+    <em>(Bloodreina does not fall.)</em>
+    <span class="quote-attr">— Wonkru proverb, year four</span>
+  </div>
+
+  <h3>Path of the Zealot Capstone</h3>
+  <div class="feature">
+    <div class="feature-name">Rage Beyond Death</div>
+    <div class="feature-body">While raging, having <strong>0 HP does not knock you unconscious</strong>. You still make death saves and suffer their effects, but you do not fall. You die only if rage ends while you're below 0 HP.</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Functionally cannot be killed mid-rage by ordinary means. Walk through the dragon's breath. Take the spell. Keep swinging. <strong>This is the most terrifying martial feature in 5e.</strong></p>
+  </div>
+
+  <div class="page-num">PAGE XIV</div>
+</div>
+
+<!-- ====================  LEVEL 15  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XV</div>
+    <div class="lvl-headline">
+      <h1>Persistent Rage</h1>
+      <h2>The fury never lets you go.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    Sleep comes harder now. Even at rest your hand sits on the sword. You rage and the rage does not loosen its grip — it stays even if you walk away from the kill, even if you sit beside the fire and pretend to listen. <strong>There is no quiet in you anymore.</strong>
+  </div>
+
+  <div class="quote-box">
+    "I am always angry.<br>I have been since I was twelve."
+    <span class="quote-attr">— told to Indra, once, late</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Persistent Rage</div>
+    <div class="feature-body">Your rage <strong>never ends early</strong> from not attacking or not being hit. It lasts the full minute (or until you fall unconscious or choose to end it).</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Use Rage as a movement / scouting / non-combat resource. Walk into the king's hall raging. Sit through the ambassador's speech raging. You are never not ready.</p>
+  </div>
+
+  <div class="page-num">PAGE XV</div>
+</div>
+
+<!-- ====================  LEVEL 16  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XVI</div>
+    <div class="lvl-headline">
+      <h1>Reckoning</h1>
+      <h2>You see, for the first time, what you have done.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    The mirror catches you in the war-tent at dusk and you do not recognize the woman in it. The paint is dry on your cheekbones. Your brother left a season ago and has not come back. Somewhere in the bone valley a child is calling your name in their sleep — the wrong way, the queen way. <strong>You close your eyes.</strong>
+  </div>
+
+  <div class="quote-box">
+    "I am the monster you made."
+    <span class="quote-attr">— spoken to your brother, in a dream</span>
+  </div>
+
+  <h3>Ability Score Improvement <span class="pill">#4</span></h3>
+  <div class="feature">
+    <div class="feature-name">Recommended: Resilient (WIS)  <span class="pill gold">feat</span></div>
+    <div class="feature-body">
+      <ul>
+        <li><strong>+1 WIS</strong>.</li>
+        <li><strong>Proficiency in WIS saves.</strong> Adds prof bonus (+5 at this tier) to every wisdom save.</li>
+      </ul>
+      <p style="margin-top:8px; font-style:italic; color:var(--ink-dim);">Plugs your one save weakness — charms, fears, dominations. The queen does not get told what to do.</p>
+    </div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Resist mind-control magic that would otherwise turn a barbarian into a problem. Fanatical Focus still rerolls one save per rage on top — you become nearly immune to mental attacks.</p>
+  </div>
+
+  <div class="page-num">PAGE XVI</div>
+</div>
+
+<!-- ====================  LEVEL 17  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XVII</div>
+    <div class="lvl-headline">
+      <h1>The Apex</h1>
+      <h2>Nothing alive matches you in the dance of blades.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    Champions are sent. None return. A general from across the sea offers a duel of honor and you accept and the duel lasts nine seconds and the general's belt buckle is on your armor by week's end. <strong>The world begins to send messengers instead of warriors.</strong>
+  </div>
+
+  <div class="quote-box">
+    "Yu gonplei nou ste odon."<br>
+    <em>(Your fight is not over.)</em>
+    <span class="quote-attr">— spoken to the fallen, never to yourself</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Brutal Critical (3 dice)</div>
+    <div class="feature-body">Critical hits roll <strong>three extra weapon damage dice</strong>. A greatsword crit: <strong>5d6 + STR + rage + GWM + Divine Fury</strong>. Average ~<strong>54 damage on a single attack</strong>. Twice per turn possible.</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>End encounters in one turn. A critical hit on the boss is no longer "lucky" — it's <em>scheduled</em>.</p>
+  </div>
+
+  <div class="page-num">PAGE XVII</div>
+</div>
+
+<!-- ====================  LEVEL 18  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XVIII</div>
+    <div class="lvl-headline">
+      <h1>Indomitable Might</h1>
+      <h2>You lift what cannot be lifted. You break what cannot be broken.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    The gate of the dead city is twenty feet of riveted iron. You put your shoulder to it. It does not budge. You put your shoulder to it <em>again.</em> The hinge weeps. The second hinge weeps. The third hinge gives. <strong>Inside, the bone king is already on his knees.</strong>
+  </div>
+
+  <div class="quote-box">
+    "Nothing holds me."
+    <span class="quote-attr">— first words spoken inside the dead city</span>
+  </div>
+
+  <h3>What You Gain</h3>
+  <div class="feature">
+    <div class="feature-name">Indomitable Might</div>
+    <div class="feature-body">If your total for a <strong>STR check</strong> is less than your STR score, you may use your STR score (20) <strong>as the result</strong> instead. You never roll a STR check below 20.</div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Auto-succeed every STR check under DC 20. Grapple anything humanoid. Lift the portcullis. Pull a friend up the cliff. Bend the iron bars. Mythic feats become routine.</p>
+  </div>
+
+  <div class="page-num">PAGE XVIII</div>
+</div>
+
+<!-- ====================  LEVEL 19  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XIX</div>
+    <div class="lvl-headline">
+      <h1>The Bridge</h1>
+      <h2>One last choice: the queen, or the woman.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    Your brother is at the gate, alive after all. There is a child with him. The child is afraid of you. <strong>The child should not be afraid of you.</strong> You kneel in the dust of the road and the child does not run. You are, for a heartbeat, the girl beneath the floor again. Then you stand.
+  </div>
+
+  <div class="quote-box">
+    "I am Octavia.<br>Of the Trikru.<br>Of Wonkru.<br>Of the Sky People."
+    <span class="quote-attr">— last public speech as Heda</span>
+  </div>
+
+  <h3>Ability Score Improvement <span class="pill">#5</span></h3>
+  <div class="feature">
+    <div class="feature-name">Choose one</div>
+    <div class="feature-body">
+      <ul>
+        <li><strong>+2 CON → cap at 20</strong> — more HP, better unarmored AC, concentration if anyone ever forces it. <em>Recommended.</em></li>
+        <li><strong>Polearm Master feat</strong> — only if you've swapped to a glaive/halberd.</li>
+        <li><strong>Mobile feat</strong> — speed +10 (now 50 ft) and no OAs from creatures you've attacked.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="page-num">PAGE XIX</div>
+</div>
+
+<!-- ====================  LEVEL 20  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <div class="lvl-banner">
+    <div class="lvl-number">XX</div>
+    <div class="lvl-headline">
+      <h1>Primal Champion</h1>
+      <h2>The apex. The end. The beginning of the next thing.</h2>
+    </div>
+  </div>
+
+  <div class="story">
+    You are the strongest mortal in the bone valley. The strongest mortal in the bunker. The strongest mortal your gods have ever bothered to look at. Whether you keep the crown, set it down, or hand it to the child at the gate — <strong>the world will turn around your decision.</strong> You know this. You are, for the first time in many years, not in a hurry.
+  </div>
+
+  <div class="quote-box">
+    "I am the bridge.<br>Cross, or do not cross."
+    <span class="quote-attr">— final line of the saga</span>
+  </div>
+
+  <h3>Capstone</h3>
+  <div class="feature">
+    <div class="feature-name">Primal Champion</div>
+    <div class="feature-body"><strong>STR increases by 4, to a maximum of 24. CON increases by 4, to a maximum of 24.</strong>
+      <ul style="margin-top:8px;">
+        <li>STR 24 → +7 mod. Attack &amp; damage: +7.</li>
+        <li>CON 24 → +7 mod. <strong>+80 HP from CON alone</strong> (4 × 20 levels). Unarmored AC base: 17.</li>
+        <li>Rage bonus damage: +4. Brutal Critical: +3 dice. Divine Fury at L20: +1d6 + 10.</li>
+      </ul>
+    </div>
+  </div>
+
+  <div class="can-do">
+    <div class="label">What You Can Do</div>
+    <p>Single-target damage on a crit: <strong>~62 average</strong>. Two attacks plus GWM bonus action = potential <strong>~110 damage in one turn</strong>. HP pool with Tough: <strong>~280</strong>. You are, in mechanical fact, a small god.</p>
+  </div>
+
+  <div class="page-num">PAGE XX</div>
+</div>
+
+<!-- ====================  QUICK REFERENCE  ==================== -->
+<div class="page">
+  <div class="page-motif">∞ ∞ ∞</div>
+  <h1 class="page-title">EVERY TURN</h1>
+  <h2 class="page-sub">When the dice come out, do this. In this order.</h2>
+
+  <div class="card">
+    <ol style="font-size:1.02rem; line-height:1.9;">
+      <li><strong>Not raging?</strong> Bonus action → "I rage."</li>
+      <li><strong>Move</strong> up to your speed toward the most dangerous enemy.</li>
+      <li><strong>Action:</strong> "I attack — recklessly. Greatsword. With GWM."</li>
+      <li>Roll to hit (twice — advantage). Take the higher.</li>
+      <li>If it hits: roll <strong>2d6</strong> + STR mod + rage bonus (+ 10 from GWM). First hit each turn: also roll <strong>Divine Fury</strong> (1d6 + half level).</li>
+      <li>Second attack: same routine.</li>
+      <li><strong>If anything died or you crit:</strong> bonus action → one more attack.</li>
+      <li><strong>Reaction:</strong> opportunity attack on enemies leaving your reach. Sentinel: also when they hit allies.</li>
+      <li><strong>At 0 HP:</strong> at L11+, CON save for Relentless Rage. At L14+, just keep going — Rage Beyond Death.</li>
+    </ol>
+  </div>
+
+  <div class="card">
+    <h3>Damage Cheat Sheet (with GWM and rage)</h3>
+    <table class="data">
+      <tr><th>Level</th><th>STR</th><th>Per Hit</th><th>Per Round (×2)</th><th>Crit (avg)</th></tr>
+      <tr><td>3</td><td>17</td><td>~13</td><td>~26</td><td>~22</td></tr>
+      <tr><td>5</td><td>18</td><td>~14</td><td>~28</td><td>~24</td></tr>
+      <tr><td>8</td><td>18</td><td>~25</td><td>~50</td><td>~42</td></tr>
+      <tr><td>11</td><td>18</td><td>~26</td><td>~52</td><td>~45</td></tr>
+      <tr><td>14</td><td>20</td><td>~27</td><td>~54</td><td>~50</td></tr>
+      <tr><td>17</td><td>20</td><td>~28</td><td>~56</td><td>~55</td></tr>
+      <tr><td>20</td><td>24</td><td>~31</td><td>~62</td><td>~62</td></tr>
+    </table>
+  </div>
+
+  <div class="page-num">QUICK REFERENCE</div>
+</div>
+
+<!-- ====================  ITEM MANAGEMENT  ==================== -->
+<div class="page">
+  <div class="page-motif">&#8734; &#8734; &#8734;</div>
+  <h1 class="page-title">THE ARSENAL</h1>
+  <h2 class="page-sub">Item Management &mdash; equipped &middot; pack &middot; consumables &middot; attunement</h2>
+
+  <p style="color:var(--ink-dim); font-style:italic; text-align:center; margin-bottom:18px;">
+    Track every weapon you carry, every potion you swallow, every cursed thing the DM hands you with a smile. Capacity STR &times; 15 lb. Magic items requiring attunement: max 3.
+  </p>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:18px;">EQUIPPED &mdash; On Body, Drawn or Worn</h3>
+  <table style="width:100%; border-collapse:collapse; color:var(--ink); font-size:0.95rem;">
+    <thead>
+      <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+        <th style="text-align:left; padding:6px; width:10%;">Slot</th>
+        <th style="text-align:left; padding:6px; width:32%;">Item</th>
+        <th style="text-align:left; padding:6px; width:14%;">Atk / AC</th>
+        <th style="text-align:left; padding:6px; width:24%;">Dmg / Effect</th>
+        <th style="text-align:left; padding:6px; width:20%;">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Main</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Off</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Ranged</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Armor</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Shield</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Cloak</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Belt</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Boots</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Hand L</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Hand R</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><em>Neck</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td style="padding:8px 6px;"><em>Other</em></td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:20px;">ATTUNEMENT SLOTS &mdash; max 3</h3>
+  <table style="width:100%; border-collapse:collapse; color:var(--ink); font-size:0.95rem;">
+    <thead>
+      <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+        <th style="text-align:left; padding:6px; width:8%;">#</th>
+        <th style="text-align:left; padding:6px; width:32%;">Magic Item</th>
+        <th style="text-align:left; padding:6px; width:30%;">Effect / Charges</th>
+        <th style="text-align:left; padding:6px; width:30%;">Recharge</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">1</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">2</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr><td style="padding:10px 6px;">3</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-num">ARSENAL</div>
+</div>
+
+<!-- ====================  PACK & CONSUMABLES  ==================== -->
+<div class="page">
+  <div class="page-motif">&#8734; &#8734; &#8734;</div>
+  <h1 class="page-title">THE PACK</h1>
+  <h2 class="page-sub">Backpack &mdash; consumables &mdash; coin &mdash; encumbrance</h2>
+
+  <table style="width:100%; border-spacing:14px 0; margin-top:12px;">
+    <tr style="vertical-align:top;">
+      <td style="width:50%;">
+        <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px;">PACK CONTENTS</h3>
+        <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+          <thead>
+            <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+              <th style="text-align:left; padding:4px;">Item</th>
+              <th style="text-align:right; padding:4px; width:18%;">Qty</th>
+              <th style="text-align:right; padding:4px; width:18%;">Wt (lb)</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          </tbody>
+        </table>
+      </td>
+      <td style="width:50%;">
+        <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px;">CONSUMABLES</h3>
+        <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+          <thead>
+            <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+              <th style="text-align:left; padding:4px;">Potion / Scroll / Ammo</th>
+              <th style="text-align:right; padding:4px; width:18%;">Qty</th>
+              <th style="text-align:left; padding:4px; width:30%;">Effect</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+            <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 4px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+          </tbody>
+        </table>
+
+        <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:16px;">COIN PURSE</h3>
+        <table style="width:100%; border-collapse:collapse; font-size:1rem; text-align:center;">
+          <tr style="background:rgba(201,32,32,0.08);">
+            <th style="padding:6px; width:20%;">CP</th><th style="padding:6px; width:20%;">SP</th><th style="padding:6px; width:20%;">EP</th><th style="padding:6px; width:20%;">GP</th><th style="padding:6px; width:20%;">PP</th>
+          </tr>
+          <tr style="border-bottom:1px dashed var(--line);">
+            <td style="padding:14px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td>
+          </tr>
+        </table>
+
+        <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:16px;">ENCUMBRANCE</h3>
+        <table style="width:100%; font-size:0.9rem; border-collapse:collapse;">
+          <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;">Carrying capacity (STR &times; 15)</td><td style="text-align:right; padding:6px; width:30%;">&nbsp; / lb</td></tr>
+          <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;">Current load</td><td style="text-align:right; padding:6px;">&nbsp; / lb</td></tr>
+          <tr><td style="padding:6px;">Push / drag / lift (&times;2 cap)</td><td style="text-align:right; padding:6px;">&nbsp; / lb</td></tr>
+        </table>
+      </td>
+    </tr>
+  </table>
+
+  <div class="page-num">PACK</div>
+</div>
+
+<!-- ====================  SESSION NOTES  ==================== -->
+<div class="page">
+  <div class="page-motif">&#8734; &#8734; &#8734;</div>
+  <h1 class="page-title">THE LEDGER</h1>
+  <h2 class="page-sub">Session notes &mdash; what happened &mdash; what we owe &mdash; what we are owed</h2>
+
+  <table style="width:100%;">
+    <tr><td style="width:20%; padding:8px 4px;"><strong>Date / Session #</strong></td><td style="border-bottom:1px solid var(--line-gold); padding:8px 4px;">&nbsp;</td></tr>
+    <tr><td style="padding:8px 4px;"><strong>Location</strong></td><td style="border-bottom:1px solid var(--line-gold); padding:8px 4px;">&nbsp;</td></tr>
+    <tr><td style="padding:8px 4px;"><strong>Party present</strong></td><td style="border-bottom:1px solid var(--line-gold); padding:8px 4px;">&nbsp;</td></tr>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:16px;">WHAT HAPPENED</h3>
+  <div style="min-height:240px; background-image:repeating-linear-gradient(transparent 0, transparent 23px, rgba(184,168,144,0.25) 23px, rgba(184,168,144,0.25) 24px); border:1px solid var(--line); padding:10px;">&nbsp;</div>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:16px;">KEY DECISIONS / CONSEQUENCES</h3>
+  <div style="min-height:160px; background-image:repeating-linear-gradient(transparent 0, transparent 23px, rgba(184,168,144,0.25) 23px, rgba(184,168,144,0.25) 24px); border:1px solid var(--line); padding:10px;">&nbsp;</div>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:16px;">LOOT / XP / REWARDS</h3>
+  <div style="min-height:100px; background-image:repeating-linear-gradient(transparent 0, transparent 23px, rgba(184,168,144,0.25) 23px, rgba(184,168,144,0.25) 24px); border:1px solid var(--line); padding:10px;">&nbsp;</div>
+
+  <div class="page-num">SESSION LOG</div>
+</div>
+
+<!-- ====================  NPC + QUEST TRACKER  ==================== -->
+<div class="page">
+  <div class="page-motif">&#8734; &#8734; &#8734;</div>
+  <h1 class="page-title">THE WEB</h1>
+  <h2 class="page-sub">NPC tracker &mdash; quest log &mdash; clues &mdash; debts and grudges</h2>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px;">NPCs MET</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+    <thead>
+      <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+        <th style="text-align:left; padding:6px; width:20%;">Name</th>
+        <th style="text-align:left; padding:6px; width:18%;">Location</th>
+        <th style="text-align:left; padding:6px; width:18%;">Role / Tie</th>
+        <th style="text-align:left; padding:6px; width:14%;">Attitude</th>
+        <th style="text-align:left; padding:6px;">Notes</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:18px;">QUEST LOG</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.9rem;">
+    <thead>
+      <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+        <th style="text-align:left; padding:6px; width:8%;">Status</th>
+        <th style="text-align:left; padding:6px; width:30%;">Quest / Objective</th>
+        <th style="text-align:left; padding:6px; width:18%;">Giver</th>
+        <th style="text-align:left; padding:6px; width:14%;">Reward</th>
+        <th style="text-align:left; padding:6px;">Next step</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&#9744;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&#9744;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&#9744;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&#9744;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&#9744;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&#9744;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&#9744;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:10px 6px;">&#9744;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:18px;">CLUES &amp; THEORIES</h3>
+  <div style="min-height:140px; background-image:repeating-linear-gradient(transparent 0, transparent 23px, rgba(184,168,144,0.25) 23px, rgba(184,168,144,0.25) 24px); border:1px solid var(--line); padding:10px;">&nbsp;</div>
+
+  <div class="page-num">THE WEB</div>
+</div>
+
+<!-- ====================  FREE NOTES  ==================== -->
+<div class="page">
+  <div class="page-motif">&#8734; &#8734; &#8734;</div>
+  <h1 class="page-title">THE MARGIN</h1>
+  <h2 class="page-sub">Free notes &mdash; drawings &mdash; names you want to remember &mdash; anything</h2>
+
+  <div style="min-height:880px; background-image:repeating-linear-gradient(transparent 0, transparent 23px, rgba(184,168,144,0.25) 23px, rgba(184,168,144,0.25) 24px); border:1px solid var(--line); padding:12px;">&nbsp;</div>
+
+  <div class="page-num">NOTES</div>
+</div>
+
+
+
+<!-- ====================  BARBARIAN COMBAT TACTICS  ==================== -->
+<div class="page">
+  <div class="page-motif">&#8734; &#8734; &#8734;</div>
+  <h1 class="page-title">THE FIGHT</h1>
+  <h2 class="page-sub">Barbarian combat &mdash; what to do, what to roll, every turn</h2>
+
+  <p style="color:var(--ink-dim); font-style:italic; text-align:center; margin-bottom:14px;">
+    You are big. You are angry. You hit things. Read top to bottom &mdash; it works on round one and round ten.
+  </p>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px;">STEP 1 &mdash; START OF YOUR TURN</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+    <thead>
+      <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+        <th style="text-align:left; padding:6px; width:22%;">Ask yourself</th>
+        <th style="text-align:left; padding:6px; width:18%;">If YES</th>
+        <th style="text-align:left; padding:6px;">Do this</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Am I raging?</strong></td><td>No, but I want to</td><td><strong>Bonus action: RAGE.</strong> Resistance to slashing/piercing/bludgeoning. +2 damage on STR melee. Advantage on STR checks/saves. Lasts 1 minute.</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Below half HP?</strong></td><td>Yes</td><td>Rage if not already. Use Relentless Endurance (lvl 1 racial if Half-Orc) or your big hit-back move.</td></tr>
+      <tr><td style="padding:8px 6px;"><strong>Did I take damage and survive?</strong></td><td>Yes</td><td><em>Rage keeps you up:</em> resistance means halve incoming damage. Trust it.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:16px;">STEP 2 &mdash; MOVE</h3>
+  <p style="margin:6px 0;">Walk up to <strong>30 ft</strong> toward the meanest thing. Use cover if archers shoot you. Difficult terrain &rarr; half speed. You can break it into chunks: <em>15 ft &rarr; attack &rarr; 15 ft.</em></p>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:12px;">STEP 3 &mdash; ATTACK (Action)</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+    <thead>
+      <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+        <th style="text-align:left; padding:6px; width:30%;">Roll</th>
+        <th style="text-align:left; padding:6px; width:18%;">Dice</th>
+        <th style="text-align:left; padding:6px;">Add</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>To Hit</strong> (greatsword/greataxe)</td><td><strong>d20</strong></td><td>+ STR mod + Proficiency</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Damage</strong> &mdash; greatsword</td><td><strong>2d6</strong></td><td>+ STR mod + <em>2 (Rage)</em></td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Damage</strong> &mdash; greataxe</td><td><strong>1d12</strong></td><td>+ STR mod + <em>2 (Rage)</em></td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Crit (nat 20)</strong></td><td><strong>Double the dice</strong></td><td>2d6 &rarr; <strong>4d6</strong> + mods</td></tr>
+      <tr><td style="padding:8px 6px;"><strong>Reckless Attack</strong> (free)</td><td colspan="2"><strong>Advantage</strong> on STR attacks this turn. Enemies hit YOU with advantage until your next turn. Use when you NEED the hit.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:16px;">STEP 4 &mdash; EXTRA ATTACK (level 5+)</h3>
+  <p style="margin:6px 0;">Same action, swing again. <strong>Two attacks per Attack action</strong>. Level 5 onward.</p>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:12px;">STEP 5 &mdash; BONUS ACTION OPTIONS</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px; width:30%;"><strong>Rage</strong></td><td>Enter rage (if not raging).</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Frenzy attack</strong> <em>(Berserker, while raging)</em></td><td>One extra melee weapon attack. Costs exhaustion at end of rage.</td></tr>
+      <tr><td style="padding:8px 6px;"><strong>Dash / Disengage / Hide</strong></td><td>Only if you can&apos;t make a useful attack. Disengage = no opportunity attack.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:16px;">REACTIONS &mdash; (Not your turn)</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px; width:30%;"><strong>Opportunity Attack</strong></td><td>Enemy leaves your reach without Disengaging? Free melee swing.</td></tr>
+      <tr><td style="padding:8px 6px;"><strong>Rage Trigger</strong></td><td>If you take damage on someone else&apos;s turn, that counts for staying raged.</td></tr>
+    </tbody>
+  </table>
+
+  <div class="page-num">COMBAT FLOW</div>
+</div>
+
+<!-- ====================  DICE CHEAT SHEET  ==================== -->
+<div class="page">
+  <div class="page-motif">&#8734; &#8734; &#8734;</div>
+  <h1 class="page-title">THE DICE</h1>
+  <h2 class="page-sub">Every roll you&apos;ll ever make, in one page</h2>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px;">THE D20 &mdash; All checks, saves, attacks</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+    <thead>
+      <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+        <th style="text-align:left; padding:6px; width:28%;">Type</th>
+        <th style="text-align:left; padding:6px; width:36%;">Formula</th>
+        <th style="text-align:left; padding:6px;">Beats</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Attack Roll</strong></td><td><strong>d20</strong> + STR (melee) or DEX (ranged) + Prof</td><td>Target&apos;s AC</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Saving Throw</strong></td><td><strong>d20</strong> + ability mod + Prof (if proficient)</td><td>Spell DC / effect DC</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Ability Check</strong></td><td><strong>d20</strong> + ability mod + Prof (if skill proficient)</td><td>DM&apos;s DC (usually 10/15/20)</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px;"><strong>Initiative</strong></td><td><strong>d20</strong> + DEX mod</td><td>Roll once at fight start</td></tr>
+      <tr><td style="padding:8px 6px;"><strong>Death Save</strong></td><td><strong>d20</strong>, no mods</td><td>10+ = success &middot; 1 = 2 fails &middot; 20 = revive</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:14px;">ADVANTAGE / DISADVANTAGE</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px; width:30%;"><strong>Advantage</strong></td><td>Roll 2d20, <strong>take the higher</strong>. Reckless Attack gives this on STR attacks.</td></tr>
+      <tr><td style="padding:8px 6px;"><strong>Disadvantage</strong></td><td>Roll 2d20, <strong>take the lower</strong>. Cancels with advantage (don&apos;t stack).</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:14px;">CRITICAL HIT / MISS</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem;">
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:8px 6px; width:30%;"><strong>Natural 20</strong> on attack</td><td><strong>Double the damage dice.</strong> Greatsword: 2d6 becomes <strong>4d6</strong> + mods. Always hits.</td></tr>
+      <tr><td style="padding:8px 6px;"><strong>Natural 1</strong> on attack</td><td>Automatic miss, no matter the bonus.</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:14px;">DAMAGE DICE QUICK LOOKUP</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem; text-align:center;">
+    <thead>
+      <tr style="background:rgba(201,32,32,0.08); border-bottom:1px solid var(--line-gold);">
+        <th style="padding:6px;">Weapon</th><th>Damage</th><th>Range</th><th>Properties</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;">Greatsword</td><td><strong>2d6</strong> slash</td><td>5 ft</td><td>Heavy, two-handed</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;">Greataxe</td><td><strong>1d12</strong> slash</td><td>5 ft</td><td>Heavy, two-handed</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;">Maul</td><td><strong>2d6</strong> bludgeon</td><td>5 ft</td><td>Heavy, two-handed</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;">Handaxe (thrown)</td><td><strong>1d6</strong> slash</td><td>20/60 ft</td><td>Light, thrown</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;">Javelin (thrown)</td><td><strong>1d6</strong> pierce</td><td>30/120 ft</td><td>Thrown</td></tr>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;">Unarmed</td><td><strong>1 + STR</strong> bludgeon</td><td>5 ft</td><td>For when you lose your axe</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:14px;">DIFFICULTY CLASS (DC) &mdash; what the DM is asking for</h3>
+  <table style="width:100%; border-collapse:collapse; font-size:0.95rem; text-align:center;">
+    <tbody>
+      <tr style="border-bottom:1px dashed var(--line);"><td style="padding:6px;"><strong>5</strong></td><td>Very easy</td><td><strong>10</strong></td><td>Easy</td><td><strong>15</strong></td><td>Medium</td></tr>
+      <tr><td style="padding:6px;"><strong>20</strong></td><td>Hard</td><td><strong>25</strong></td><td>Very hard</td><td><strong>30</strong></td><td>Nearly impossible</td></tr>
+    </tbody>
+  </table>
+
+  <h3 style="color:var(--crimson); letter-spacing:0.25em; border-bottom:1px solid var(--line-gold); padding-bottom:4px; margin-top:14px;">RAGE CHECKLIST &mdash; before you swing</h3>
+  <ul style="margin:8px 0 0 24px; padding:0; font-size:0.95rem; line-height:1.7;">
+    <li>&#9744; I am raging (bonus action used or already up)</li>
+    <li>&#9744; I am using a melee STR weapon (the +2 only works in melee, no ranged)</li>
+    <li>&#9744; I am NOT wearing heavy armor (rage turns off if I am)</li>
+    <li>&#9744; I attacked OR took damage this turn (rage drops after one round of nothing happening)</li>
+    <li>&#9744; Reckless? Decide BEFORE you roll the d20</li>
+  </ul>
+
+  <div class="page-num">DICE GUIDE</div>
+</div>
+
+<!-- ====================  CLOSING  ==================== -->
+<div class="page cover" style="padding:140px 70px;">
+  <div class="crest">∞</div>
+  <h1 style="font-size:3.5rem;">Strong Hearts</h1>
+  <div class="subtitle">∞ Yu gonplei nou ste odon ∞</div>
+  <div class="arc" style="font-size:1.2rem;">
+    May you find <span style="color:var(--bone)">the girl beneath the floor</span><br>
+    inside <span style="color:var(--crimson)">the queen</span><br>
+    when she needs you most.
+  </div>
+  <div class="player-name" style="margin-top:80px;">
+    <em>Built for Akvilė.<br>By someone who hopes you have a very good first session.</em>
+  </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>D&D 5e Universal Character Sheet — Print &amp; Fill</title>
+<style>
+  @page { size: A4 portrait; margin: 10mm 8mm; }
+  * { box-sizing: border-box; }
+  html, body { margin: 0; padding: 0; font-family: 'Georgia', 'Times New Roman', serif; color: #111; background: #fff; font-size: 10pt; line-height: 1.25; }
+  .sheet { width: 100%; }
+  .page-break { page-break-after: always; }
+
+  h1.title { text-align: center; font-size: 20pt; letter-spacing: 4px; margin: 0 0 4px; border-bottom: 2px solid #111; padding-bottom: 4px; }
+  h1.title .sub { display: block; font-size: 9pt; letter-spacing: 2px; margin-top: 2px; color: #555; font-weight: normal; }
+
+  h2 { font-size: 11pt; margin: 6px 0 3px; letter-spacing: 2px; border-bottom: 1px solid #111; padding-bottom: 1px; text-transform: uppercase; }
+
+  table { width: 100%; border-collapse: collapse; margin: 0; }
+  td, th { vertical-align: top; padding: 2px 4px; }
+
+  .row { display: flex; gap: 6px; margin-bottom: 4px; }
+  .col { flex: 1; }
+  .field { border: 1px solid #111; padding: 8px 6px 4px; position: relative; min-height: 28px; }
+  .field .lbl { position: absolute; bottom: -7px; left: 6px; background: #fff; padding: 0 4px; font-size: 7.5pt; letter-spacing: 1.5px; text-transform: uppercase; color: #444; }
+  .field.big { min-height: 50px; }
+  .field.tall { min-height: 80px; }
+  .field.xtall { min-height: 120px; }
+  .field.xxtall { min-height: 180px; }
+
+  /* Stat boxes */
+  .stats { display: flex; gap: 6px; margin-bottom: 6px; }
+  .stat { border: 2px solid #111; border-radius: 6px; flex: 1; text-align: center; padding: 4px 2px 2px; position: relative; min-height: 70px; }
+  .stat .name { font-size: 8pt; letter-spacing: 2px; text-transform: uppercase; }
+  .stat .mod { font-size: 18pt; font-weight: bold; line-height: 1.1; height: 28px; border-bottom: 1px solid #888; }
+  .stat .score { font-size: 9pt; height: 18px; border: 1px solid #aaa; border-radius: 50%; width: 28px; line-height: 18px; margin: 4px auto -8px; background: #fff; position: relative; bottom: -4px; }
+
+  /* Lines for handwriting */
+  .lines { background-image: repeating-linear-gradient(transparent 0, transparent 19px, #bbb 19px, #bbb 20px); }
+  .lines-tight { background-image: repeating-linear-gradient(transparent 0, transparent 15px, #bbb 15px, #bbb 16px); }
+
+  .saves, .skills { font-size: 8.5pt; line-height: 1.5; }
+  .saves .item, .skills .item { display: flex; align-items: center; gap: 4px; }
+  .circle { display: inline-block; width: 8px; height: 8px; border: 1.2px solid #111; border-radius: 50%; flex: 0 0 8px; }
+  .modbox { display: inline-block; min-width: 22px; border-bottom: 1px solid #888; text-align: center; }
+  .skillname { flex: 1; }
+  .stattag { font-size: 7pt; color: #555; }
+
+  .checkbox { display: inline-block; width: 9px; height: 9px; border: 1.2px solid #111; margin: 0 2px 0 0; vertical-align: middle; }
+
+  /* HP block */
+  .hp-row { display: flex; gap: 6px; margin-bottom: 4px; }
+  .hp-box { flex: 1; border: 1px solid #111; padding: 4px; position: relative; min-height: 50px; }
+  .hp-box .lbl { font-size: 7.5pt; letter-spacing: 1.5px; text-transform: uppercase; color: #444; }
+  .hp-current { flex: 1.5; min-height: 70px; }
+  .hp-temp { flex: 1; min-height: 70px; }
+
+  /* Death saves */
+  .death { display: flex; align-items: center; gap: 6px; font-size: 8.5pt; }
+  .death .pips { display: inline-flex; gap: 3px; }
+  .death .pip { width: 10px; height: 10px; border: 1.2px solid #111; border-radius: 50%; }
+  .death .fail .pip { border-color: #800; }
+
+  /* Attack table */
+  .attacks { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .attacks th, .attacks td { border: 1px solid #111; padding: 3px; text-align: left; }
+  .attacks th { background: #eee; letter-spacing: 1px; text-transform: uppercase; font-size: 7.5pt; }
+  .attacks td { height: 16px; }
+
+  /* Currency */
+  .currency { display: flex; gap: 4px; }
+  .currency .coin { flex: 1; border: 1px solid #111; padding: 4px 6px 12px; position: relative; text-align: center; }
+  .currency .coin .denom { font-size: 9pt; font-weight: bold; }
+  .currency .coin .amt { border-bottom: 1px solid #888; min-height: 16px; }
+
+  /* Two-column layouts */
+  .grid-2 { display: grid; grid-template-columns: 1fr 1fr; gap: 6px; }
+  .grid-3 { display: grid; grid-template-columns: 1fr 1fr 1fr; gap: 6px; }
+
+  /* Spell page table */
+  .spells { width: 100%; border-collapse: collapse; font-size: 8.5pt; }
+  .spells td { border-bottom: 1px solid #bbb; padding: 3px 4px; height: 14px; }
+  .spells .slvl { background: #eee; font-weight: bold; letter-spacing: 1.5px; text-transform: uppercase; padding: 3px 6px; font-size: 8.5pt; border-bottom: 1px solid #111; }
+  .slot-row { display: flex; align-items: center; gap: 8px; font-size: 8.5pt; padding: 2px 0; }
+  .slot-row .slots { display: inline-flex; gap: 3px; }
+  .slot-row .slot { width: 10px; height: 10px; border: 1.2px solid #111; }
+
+  .small-note { font-size: 7.5pt; color: #555; font-style: italic; }
+</style>
+</head>
+<body>
+
+<!-- ============ PAGE 1 — CORE STATS ============ -->
+<div class="sheet">
+
+<h1 class="title">DUNGEONS &amp; DRAGONS 5E <span class="sub">Universal Character Sheet · Class-Agnostic · Print &amp; Fill</span></h1>
+
+<div class="row">
+  <div class="col field big"><div class="lbl">Character Name</div></div>
+</div>
+<div class="row">
+  <div class="col field"><div class="lbl">Class &amp; Level</div></div>
+  <div class="col field"><div class="lbl">Race / Lineage</div></div>
+  <div class="col field"><div class="lbl">Background</div></div>
+  <div class="col field"><div class="lbl">Alignment</div></div>
+</div>
+<div class="row">
+  <div class="col field"><div class="lbl">Player Name</div></div>
+  <div class="col field"><div class="lbl">Experience Points</div></div>
+  <div class="col field"><div class="lbl">Inspiration</div></div>
+  <div class="col field"><div class="lbl">Proficiency Bonus</div></div>
+</div>
+
+<table style="margin-top:8px;"><tr>
+  <!-- LEFT: Stats + Saves + Skills -->
+  <td style="width: 30%; vertical-align: top;">
+    <div class="stats">
+      <div class="stat"><div class="name">STR</div><div class="mod">&nbsp;</div><div class="score">&nbsp;</div></div>
+      <div class="stat"><div class="name">DEX</div><div class="mod">&nbsp;</div><div class="score">&nbsp;</div></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="name">CON</div><div class="mod">&nbsp;</div><div class="score">&nbsp;</div></div>
+      <div class="stat"><div class="name">INT</div><div class="mod">&nbsp;</div><div class="score">&nbsp;</div></div>
+    </div>
+    <div class="stats">
+      <div class="stat"><div class="name">WIS</div><div class="mod">&nbsp;</div><div class="score">&nbsp;</div></div>
+      <div class="stat"><div class="name">CHA</div><div class="mod">&nbsp;</div><div class="score">&nbsp;</div></div>
+    </div>
+
+    <h2>Saving Throws</h2>
+    <div class="saves">
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Strength</span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Dexterity</span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Constitution</span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Intelligence</span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Wisdom</span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Charisma</span></div>
+    </div>
+
+    <h2>Skills</h2>
+    <div class="skills">
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Acrobatics <span class="stattag">(Dex)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Animal Handling <span class="stattag">(Wis)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Arcana <span class="stattag">(Int)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Athletics <span class="stattag">(Str)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Deception <span class="stattag">(Cha)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">History <span class="stattag">(Int)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Insight <span class="stattag">(Wis)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Intimidation <span class="stattag">(Cha)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Investigation <span class="stattag">(Int)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Medicine <span class="stattag">(Wis)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Nature <span class="stattag">(Int)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Perception <span class="stattag">(Wis)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Performance <span class="stattag">(Cha)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Persuasion <span class="stattag">(Cha)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Religion <span class="stattag">(Int)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Sleight of Hand <span class="stattag">(Dex)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Stealth <span class="stattag">(Dex)</span></span></div>
+      <div class="item"><span class="circle"></span><span class="modbox">&nbsp;</span><span class="skillname">Survival <span class="stattag">(Wis)</span></span></div>
+    </div>
+    <p class="small-note">○ = Proficient · Fill the circle to mark prof.</p>
+
+    <h2>Passive Senses</h2>
+    <div class="field" style="min-height:22px;"><div class="lbl">Passive Perception</div></div>
+    <div class="field" style="min-height:22px; margin-top:6px;"><div class="lbl">Passive Insight</div></div>
+    <div class="field" style="min-height:22px; margin-top:6px;"><div class="lbl">Passive Investigation</div></div>
+  </td>
+
+  <!-- MIDDLE: Combat / HP / Attacks -->
+  <td style="width: 38%; vertical-align: top; padding-left: 8px;">
+    <div class="row">
+      <div class="col field big"><div class="lbl">Armor Class</div></div>
+      <div class="col field big"><div class="lbl">Initiative</div></div>
+      <div class="col field big"><div class="lbl">Speed</div></div>
+    </div>
+
+    <div class="hp-row">
+      <div class="hp-box hp-current"><div class="lbl">Hit Point Maximum</div></div>
+      <div class="hp-box hp-temp"><div class="lbl">Hit Dice (Total / Used)</div></div>
+    </div>
+    <div class="hp-box hp-current"><div class="lbl">Current Hit Points</div></div>
+    <div class="hp-box" style="min-height:40px; margin-top:4px;"><div class="lbl">Temporary Hit Points</div></div>
+
+    <div style="margin-top:6px; border: 1px solid #111; padding: 4px;">
+      <div style="font-size:8pt; letter-spacing:1.5px; text-transform:uppercase; color:#444;">Death Saves</div>
+      <div class="death" style="margin-top:4px;">
+        <span>Successes</span>
+        <span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span>
+      </div>
+      <div class="death fail" style="margin-top:4px;">
+        <span>Failures &nbsp;&nbsp;&nbsp;</span>
+        <span class="pips"><span class="pip"></span><span class="pip"></span><span class="pip"></span></span>
+      </div>
+    </div>
+
+    <h2 style="margin-top:8px;">Attacks &amp; Spellcasting</h2>
+    <table class="attacks">
+      <tr><th style="width:34%;">Name</th><th style="width:22%;">Atk Bonus</th><th>Damage / Type</th></tr>
+      <tr><td>&nbsp;</td><td></td><td></td></tr>
+      <tr><td>&nbsp;</td><td></td><td></td></tr>
+      <tr><td>&nbsp;</td><td></td><td></td></tr>
+      <tr><td>&nbsp;</td><td></td><td></td></tr>
+      <tr><td>&nbsp;</td><td></td><td></td></tr>
+      <tr><td>&nbsp;</td><td></td><td></td></tr>
+      <tr><td>&nbsp;</td><td></td><td></td></tr>
+    </table>
+
+    <h2 style="margin-top:8px;">Attack Notes / Ammo / Special</h2>
+    <div class="field tall lines"></div>
+
+    <h2 style="margin-top:6px;">Equipment</h2>
+    <div class="field xxtall lines"></div>
+
+    <h2 style="margin-top:6px;">Currency</h2>
+    <div class="currency">
+      <div class="coin"><div class="denom">CP</div><div class="amt">&nbsp;</div></div>
+      <div class="coin"><div class="denom">SP</div><div class="amt">&nbsp;</div></div>
+      <div class="coin"><div class="denom">EP</div><div class="amt">&nbsp;</div></div>
+      <div class="coin"><div class="denom">GP</div><div class="amt">&nbsp;</div></div>
+      <div class="coin"><div class="denom">PP</div><div class="amt">&nbsp;</div></div>
+    </div>
+  </td>
+
+  <!-- RIGHT: Personality + Features -->
+  <td style="width: 32%; vertical-align: top; padding-left: 8px;">
+    <h2>Personality Traits</h2>
+    <div class="field tall lines"></div>
+    <h2>Ideals</h2>
+    <div class="field tall lines"></div>
+    <h2>Bonds</h2>
+    <div class="field tall lines"></div>
+    <h2>Flaws</h2>
+    <div class="field tall lines"></div>
+
+    <h2>Features &amp; Traits</h2>
+    <div class="field xxtall lines"></div>
+
+    <h2>Proficiencies &amp; Languages</h2>
+    <div class="field xtall lines"></div>
+  </td>
+</tr></table>
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============ PAGE 2 — BACKSTORY, ALLIES, ENEMIES, NOTES ============ -->
+<div class="sheet">
+
+<h1 class="title">CHARACTER BIOGRAPHY <span class="sub">Page 2 · Story · Connections · Treasure</span></h1>
+
+<table style="margin-top:6px;"><tr>
+  <td style="width:50%; vertical-align:top;">
+    <div class="row">
+      <div class="col field"><div class="lbl">Age</div></div>
+      <div class="col field"><div class="lbl">Height</div></div>
+      <div class="col field"><div class="lbl">Weight</div></div>
+    </div>
+    <div class="row">
+      <div class="col field"><div class="lbl">Eyes</div></div>
+      <div class="col field"><div class="lbl">Skin</div></div>
+      <div class="col field"><div class="lbl">Hair</div></div>
+    </div>
+
+    <h2>Character Appearance (details, scars, distinguishing marks)</h2>
+    <div class="field xtall lines"></div>
+
+    <h2>Character Backstory</h2>
+    <div class="field xxtall lines"></div>
+    <div class="field xxtall lines"></div>
+  </td>
+
+  <td style="width:50%; vertical-align:top; padding-left:10px;">
+    <div class="field xxtall" style="min-height:240px;">
+      <div class="lbl">Character Portrait / Symbol</div>
+    </div>
+
+    <h2>Allies &amp; Organizations</h2>
+    <div class="field xxtall lines"></div>
+
+    <h2>Additional Features &amp; Traits</h2>
+    <div class="field xtall lines"></div>
+  </td>
+</tr></table>
+
+<h2>Treasure / Magic Items</h2>
+<div class="field xxtall lines"></div>
+
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============ PAGE 3 — SPELLS ============ -->
+<div class="sheet">
+
+<h1 class="title">SPELLCASTING <span class="sub">Page 3 · Optional · For Spell-using Classes</span></h1>
+
+<div class="row">
+  <div class="col field"><div class="lbl">Spellcasting Class</div></div>
+  <div class="col field"><div class="lbl">Spellcasting Ability</div></div>
+  <div class="col field"><div class="lbl">Spell Save DC</div></div>
+  <div class="col field"><div class="lbl">Spell Attack Bonus</div></div>
+</div>
+
+<h2>Cantrips (At Will)</h2>
+<table class="spells">
+  <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+  <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+  <tr><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td><td>&nbsp;</td></tr>
+</table>
+
+<table style="margin-top:6px;"><tr>
+<td style="width:50%; vertical-align:top;">
+
+<div class="slot-row"><strong>1st</strong> Slots: <span class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+<div class="slot-row" style="margin-top:6px;"><strong>2nd</strong> Slots: <span class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+<div class="slot-row" style="margin-top:6px;"><strong>3rd</strong> Slots: <span class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+<div class="slot-row" style="margin-top:6px;"><strong>4th</strong> Slots: <span class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+<div class="slot-row" style="margin-top:6px;"><strong>5th</strong> Slots: <span class="slots"><span class="slot"></span><span class="slot"></span><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+</td>
+<td style="width:50%; vertical-align:top; padding-left:10px;">
+
+<div class="slot-row"><strong>6th</strong> Slots: <span class="slots"><span class="slot"></span><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+<div class="slot-row" style="margin-top:6px;"><strong>7th</strong> Slots: <span class="slots"><span class="slot"></span><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+<div class="slot-row" style="margin-top:6px;"><strong>8th</strong> Slots: <span class="slots"><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+<div class="slot-row" style="margin-top:6px;"><strong>9th</strong> Slots: <span class="slots"><span class="slot"></span></span></div>
+<table class="spells">
+  <tr><td style="width:18px;">○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+  <tr><td>○</td><td>&nbsp;</td></tr>
+</table>
+
+<h2 style="margin-top:8px;">Spell Notes / Components / Material Costs</h2>
+<div class="field xxtall lines"></div>
+<div class="field xtall lines" style="margin-top:6px;"></div>
+
+</td></tr></table>
+
+</div>
+
+<div class="page-break"></div>
+
+<!-- ============ PAGE 4 — EXPANDED NOTES ============ -->
+<div class="sheet">
+
+<h1 class="title">CAMPAIGN NOTES <span class="sub">Page 4 · Lore · Quests · Session Journal · Free Space</span></h1>
+
+<table style="margin-top:6px;"><tr>
+<td style="width:50%; vertical-align:top;">
+
+<h2>Active Quests / Objectives</h2>
+<div class="field xxtall lines" style="min-height:180px;"></div>
+
+<h2>Completed Quests</h2>
+<div class="field xtall lines"></div>
+
+<h2>NPCs Met (name · location · attitude)</h2>
+<div class="field xxtall lines" style="min-height:200px;"></div>
+
+</td>
+<td style="width:50%; vertical-align:top; padding-left:10px;">
+
+<h2>Important Places</h2>
+<div class="field xxtall lines" style="min-height:180px;"></div>
+
+<h2>Faction Reputation</h2>
+<div class="field xtall lines"></div>
+
+<h2>Clues / Mysteries / Theories</h2>
+<div class="field xxtall lines" style="min-height:200px;"></div>
+
+</td></tr></table>
+
+<h2>Session Journal (date · session # · key events)</h2>
+<div class="field xxtall lines" style="min-height:220px;"></div>
+
+</div>
+
+</body>
+</html>

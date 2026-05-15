@@ -1,69 +1,188 @@
-# CLAUDE.md
+# Claude Code Configuration - RuFlo V3
 
-This file provides guidance to Claude Code (claude.ai/code) when working with code in this repository.
+## Behavioral Rules (Always Enforced)
 
-## Purpose
+- Do what has been asked; nothing more, nothing less
+- NEVER create files unless they're absolutely necessary for achieving your goal
+- ALWAYS prefer editing an existing file to creating a new one
+- NEVER proactively create documentation files (*.md) or README files unless explicitly requested
+- NEVER save working files, text/mds, or tests to the root folder
+- Never continuously check status after spawning a swarm — wait for results
+- ALWAYS read a file before editing it
+- NEVER commit secrets, credentials, or .env files
 
-This is a **D&D 5e campaign knowledge base** for running *Baldur's Gate: Descent into Avernus*. The DM uses Claude Code during sessions as a quick-reference assistant. When the DM asks a question, search the curated files below first, then fall back to `Extracted Text/` for raw sourcebook data.
+## File Organization
 
-## How to Help During Sessions
+- NEVER save to root folder — use the directories below
+- Use `/src` for source code files
+- Use `/tests` for test files
+- Use `/docs` for documentation and markdown files
+- Use `/config` for configuration files
+- Use `/scripts` for utility scripts
+- Use `/examples` for example code
 
-The DM will ask questions like:
-- "What does Red Ruth say when they arrive?"  → Check `npc-reference.md`
-- "What's at the Tower of Urm?" → Check `locations-reference.md`
-- "Roll on the travel encounter table" → Check `encounter-tables.md`
-- "What loot should I give?" → Check `loot-and-items.md`
-- "What happened last session?" → Check `campaign-state.md`
-- "What's the stat block for a narzugon?" → Check `encounter-tables.md`, then `Extracted Text/Chapter 3...Stat Blocks.txt`
+## Project Architecture
 
-For deep dives into specific sourcebook content (spell descriptions, monster abilities, magic item details), search `Extracted Text/*.txt`.
+- Follow Domain-Driven Design with bounded contexts
+- Keep files under 500 lines
+- Use typed interfaces for all public APIs
+- Prefer TDD London School (mock-first) for new code
+- Use event sourcing for state changes
+- Ensure input validation at system boundaries
 
-## Curated Reference Files (Start Here)
+### Project Config
 
-| File | Contents |
-|------|----------|
-| `campaign-state.md` | Current party status, what they know, active plot threads, session log |
-| `npc-reference.md` | Every NPC with personality, dialogue, DCs, and mechanics |
-| `locations-reference.md` | All sandbox locations with travel times, hazards, encounters, loot |
-| `encounter-tables.md` | Random tables, warlord profiles, monster quick stats, combat templates |
-| `loot-and-items.md` | Magic items, evolving items, loot tables, currency, homebrew items |
-| `session-primer-next.md` | Detailed prep for the upcoming session |
+- **Topology**: hierarchical-mesh
+- **Max Agents**: 15
+- **Memory**: hybrid
+- **HNSW**: Enabled
+- **Neural**: Enabled
 
-## Campaign Overview
+## Build & Test
 
-**Party:** 3 players, level 11 (strong party). Currently at Fort Knucklebone, post-Dream Sequence.
+```bash
+# Build
+npm run build
 
-**Sandbox Structure:**
-Fort Knucklebone → Intermediaries (Mordenkainen / Red Ruth / Mephistopheles) → Blood Pay (Arkhan / Uldrak / Ubbalux / Shummrath) → Fallen Three (Olanthius / Bel / Haruman) → Arches of Ulloch → Bleeding Citadel
+# Test
+npm test
 
-**Player Characters:**
-- **Drenwal** — Light Cleric. Hellrider, child of Bhaal. Gargauth tempts him via the Shield. Brother Dumal (Bhaalspawn) hunting him. Amulet connection severed. Primary healer/support/frontline. Light domain features (Warding Flare, Radiance of the Dawn, Corona of Light), Spirit Guardians, Spiritual Weapon, Divine Intervention (hijacked by Bhaal). Cure: must die and be reborn in the eyes of another god.
-- **Aurora** — Archfey Warlock. Linked to the Moonkite (imprisoned celestial-fey patron). Wand of Celestial Warding (evolving item) pulses near Moonkite essence. Eldritch Blast + invocations for consistent ranged damage. Fey Presence, Misty Escape, Beguiling Defenses. Limited spell slots but powerful when used.
-- **Asimov** — Soulknife Rogue. Interdimensional bounty hunter. Genie companion Rasheem (fence/guildmaster). Soul Capacitor (evolving item). Psychic Blades + Sneak Attack = high single-target burst. Psychic Whispers for telepathic coordination.
+# Lint
+npm run lint
+```
 
-**Companions:**
-- **Lulu** — Hollyphant. Zariel's former companion. Recovered fragmented memories via Mad Maggie's Dream Sequence. Emotional, loyal, tied to the main quest.
-- **Whiskerbright** — Aurora's familiar, currently in imp form (Avernus adaptation).
+- ALWAYS run tests after making code changes
+- ALWAYS verify build succeeds before committing
 
-**Transport:** The **Lady Vengeance** — Gondian-Portyr Hellship. AC 17, 350 HP, 2 Arcane Cannons, Aether Harpoon, Soul Coin Overdrive. See `loot-and-items.md` for full stats.
+## Security Rules
 
-**Party Strengths:** High burst damage (Soulknife Asimov), sustained ranged damage (Archfey Warlock Aurora), healing/support/AoE (Light Cleric Drenwal). Good at stealth (Rogue expertise), social encounters (Warlock Cha + Fey Presence), and sustain (Cleric healing). Radiance of the Dawn is strong AoE but Dumal's Radiance Defiler converts it to necrotic. Weak to action economy pressure — only 3 PCs, so encounters need minions to threaten them.
+- NEVER hardcode API keys, secrets, or credentials in source files
+- NEVER commit .env files or any file containing secrets
+- Always validate user input at system boundaries
+- Always sanitize file paths to prevent directory traversal
+- Run `npx @claude-flow/cli@latest security scan` after security-related changes
 
-**Encounter Design Notes:** This is a strong, synergistic party. Scale encounters UP from standard 3-player guidelines. See `encounter-tables.md` for detailed scaling philosophy.
+## Concurrency: 1 MESSAGE = ALL RELATED OPERATIONS
 
-## Raw Source Data
+- All operations MUST be concurrent/parallel in a single message
+- Use Claude Code's Task tool for spawning agents, not just MCP
+- ALWAYS batch ALL todos in ONE TodoWrite call (5-10+ minimum)
+- ALWAYS spawn ALL agents in ONE message with full instructions via Task tool
+- ALWAYS batch ALL file reads/writes/edits in ONE message
+- ALWAYS batch ALL Bash commands in ONE message
 
-`Extracted Text/` contains text dumps of all PDFs (48 files, ~4000 pages). Key files:
-- `DM Prep Notes.md` — 9MB master prep document (sandbox rewrites, all NPC dialogue, stat blocks, character arcs)
-- `Campaign Summary - ChatGPT Project.txt` / `Chat Summary - ChatGPT Project.txt` — Planning summaries
-- Eventyr chapter resources (DM cheatsheets, encounter advice, stat blocks per chapter)
-- Core rulebooks: PHB 2024, DMG 2024, Monster Manuals, Tome of Beasts, Vault of Magic, Griffon's Saddlebag
+## Swarm Orchestration
 
-## Session Workflow
+- MUST initialize the swarm using CLI tools when starting complex tasks
+- MUST spawn concurrent agents using Claude Code's Task tool
+- Never use CLI tools alone for execution — Task tool agents do the actual work
+- MUST call CLI tools AND Task tool in ONE message for complex work
 
-After each session, the DM updates `campaign-state.md` with:
-- Session summary (what happened)
-- Consequences (who was helped/angered/bargained with)
-- Faction agenda updates
-- Evolving item progress
-- Bhaal/Gargauth influence scores
+### 3-Tier Model Routing (ADR-026)
+
+| Tier | Handler | Latency | Cost | Use Cases |
+|------|---------|---------|------|-----------|
+| **1** | Agent Booster (WASM) | <1ms | $0 | Simple transforms (var→const, add types) — Skip LLM |
+| **2** | Haiku | ~500ms | $0.0002 | Simple tasks, low complexity (<30%) |
+| **3** | Sonnet/Opus | 2-5s | $0.003-0.015 | Complex reasoning, architecture, security (>30%) |
+
+- Always check for `[AGENT_BOOSTER_AVAILABLE]` or `[TASK_MODEL_RECOMMENDATION]` before spawning agents
+- Use Edit tool directly when `[AGENT_BOOSTER_AVAILABLE]`
+
+## Swarm Configuration & Anti-Drift
+
+- ALWAYS use hierarchical topology for coding swarms
+- Keep maxAgents at 6-8 for tight coordination
+- Use specialized strategy for clear role boundaries
+- Use `raft` consensus for hive-mind (leader maintains authoritative state)
+- Run frequent checkpoints via `post-task` hooks
+- Keep shared memory namespace for all agents
+
+```bash
+npx @claude-flow/cli@latest swarm init --topology hierarchical --max-agents 8 --strategy specialized
+```
+
+## Swarm Execution Rules
+
+- ALWAYS use `run_in_background: true` for all agent Task calls
+- ALWAYS put ALL agent Task calls in ONE message for parallel execution
+- After spawning, STOP — do NOT add more tool calls or check status
+- Never poll TaskOutput or check swarm status — trust agents to return
+- When agent results arrive, review ALL results before proceeding
+
+## V3 CLI Commands
+
+### Core Commands
+
+| Command | Subcommands | Description |
+|---------|-------------|-------------|
+| `init` | 4 | Project initialization |
+| `agent` | 8 | Agent lifecycle management |
+| `swarm` | 6 | Multi-agent swarm coordination |
+| `memory` | 11 | AgentDB memory with HNSW search |
+| `task` | 6 | Task creation and lifecycle |
+| `session` | 7 | Session state management |
+| `hooks` | 17 | Self-learning hooks + 12 workers |
+| `hive-mind` | 6 | Byzantine fault-tolerant consensus |
+
+### Quick CLI Examples
+
+```bash
+npx @claude-flow/cli@latest init --wizard
+npx @claude-flow/cli@latest agent spawn -t coder --name my-coder
+npx @claude-flow/cli@latest swarm init --v3-mode
+npx @claude-flow/cli@latest memory search --query "authentication patterns"
+npx @claude-flow/cli@latest doctor --fix
+```
+
+## Available Agents (60+ Types)
+
+### Core Development
+`coder`, `reviewer`, `tester`, `planner`, `researcher`
+
+### Specialized
+`security-architect`, `security-auditor`, `memory-specialist`, `performance-engineer`
+
+### Swarm Coordination
+`hierarchical-coordinator`, `mesh-coordinator`, `adaptive-coordinator`
+
+### GitHub & Repository
+`pr-manager`, `code-review-swarm`, `issue-tracker`, `release-manager`
+
+### SPARC Methodology
+`sparc-coord`, `sparc-coder`, `specification`, `pseudocode`, `architecture`
+
+## Memory Commands Reference
+
+```bash
+# Store (REQUIRED: --key, --value; OPTIONAL: --namespace, --ttl, --tags)
+npx @claude-flow/cli@latest memory store --key "pattern-auth" --value "JWT with refresh" --namespace patterns
+
+# Search (REQUIRED: --query; OPTIONAL: --namespace, --limit, --threshold)
+npx @claude-flow/cli@latest memory search --query "authentication patterns"
+
+# List (OPTIONAL: --namespace, --limit)
+npx @claude-flow/cli@latest memory list --namespace patterns --limit 10
+
+# Retrieve (REQUIRED: --key; OPTIONAL: --namespace)
+npx @claude-flow/cli@latest memory retrieve --key "pattern-auth" --namespace patterns
+```
+
+## Quick Setup
+
+```bash
+claude mcp add claude-flow -- npx -y @claude-flow/cli@latest
+npx @claude-flow/cli@latest daemon start
+npx @claude-flow/cli@latest doctor --fix
+```
+
+## Claude Code vs CLI Tools
+
+- Claude Code's Task tool handles ALL execution: agents, file ops, code generation, git
+- CLI tools handle coordination via Bash: swarm init, memory, hooks, routing
+- NEVER use CLI tools as a substitute for Task tool agents
+
+## Support
+
+- Documentation: https://github.com/ruvnet/claude-flow
+- Issues: https://github.com/ruvnet/claude-flow/issues

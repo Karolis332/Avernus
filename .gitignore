@@ -23,3 +23,38 @@ Eventyr CDMB*/
 # OS files
 Thumbs.db
 .DS_Store
+nul
+
+# Stray empty / accidental files
+/Generating
+/This
+/Untitled.md
+/Untitled.canvas
+.playwright-mcp/
+
+# Ruflo / Claude-Flow tooling
+.claude-flow/
+.claude/agents/
+.claude/commands/
+.claude/helpers/
+.claude/skills/
+.mcp.json
+
+# Obsidian vault config
+.obsidian/
+
+# Secrets - NEVER commit
+.env
+.env.*
+!.env.example
+video-production/.env
+video-production/.env.*
+video-production/pipeline/.env
+video-production/pipeline/.env.*
+
+# Pipeline generated assets (too large, regenerate as needed)
+video-production/generated/
+video-production/renders/
+video-production/cache/
+video-production/pipeline/__pycache__/
+video-production/pipeline/venv/

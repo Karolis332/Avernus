@@ -1,0 +1,533 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<title>Vaeris Dawnshadow — Fallen Aasimar Shadow Sorcerer</title>
+<style>
+  :root {
+    --bg:        #0a0712;
+    --bg-panel:  #14102091;
+    --bg-card:   #1a1530;
+    --ink:       #e8e0ff;
+    --ink-dim:   #a89ec8;
+    --violet:    #b08cff;
+    --violet-2:  #7e4fff;
+    --silver:    #d4d0e0;
+    --accent:    #ff5c8a;
+    --gold:      #d4af37;
+    --line:      #2a2245;
+    --shadow:    0 0 40px rgba(126, 79, 255, 0.25);
+  }
+  * { box-sizing: border-box; }
+  html, body {
+    margin: 0;
+    background:
+      radial-gradient(ellipse at 20% 10%, #2a1845 0%, transparent 50%),
+      radial-gradient(ellipse at 80% 90%, #1a0a30 0%, transparent 50%),
+      var(--bg);
+    color: var(--ink);
+    font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
+    line-height: 1.55;
+    min-height: 100vh;
+  }
+  body::before {
+    content: '';
+    position: fixed; inset: 0;
+    background-image:
+      radial-gradient(circle at 10% 20%, rgba(176,140,255,0.06) 0%, transparent 2%),
+      radial-gradient(circle at 70% 60%, rgba(176,140,255,0.08) 0%, transparent 1.5%),
+      radial-gradient(circle at 35% 80%, rgba(255,92,138,0.04) 0%, transparent 2%);
+    background-size: 600px 600px, 800px 800px, 500px 500px;
+    pointer-events: none;
+    z-index: 0;
+  }
+  .wrap { max-width: 1200px; margin: 0 auto; padding: 60px 40px; position: relative; z-index: 1; }
+
+  header {
+    text-align: center;
+    padding-bottom: 40px;
+    border-bottom: 1px solid var(--line);
+    margin-bottom: 40px;
+  }
+  .eyebrow {
+    color: var(--violet);
+    letter-spacing: 0.4em;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    margin-bottom: 12px;
+    opacity: 0.85;
+  }
+  h1 {
+    font-family: Georgia, 'Times New Roman', serif;
+    font-weight: 400;
+    font-size: 3.5rem;
+    margin: 0 0 6px;
+    background: linear-gradient(180deg, #fff 0%, var(--violet) 60%, var(--violet-2) 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    text-shadow: 0 0 60px rgba(176, 140, 255, 0.4);
+  }
+  h1 + p { color: var(--ink-dim); font-style: italic; margin: 0; }
+
+  h2 {
+    font-family: Georgia, serif;
+    font-weight: 400;
+    font-size: 1.7rem;
+    color: var(--violet);
+    margin: 50px 0 18px;
+    padding-bottom: 8px;
+    border-bottom: 1px solid var(--line);
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+  h2::before {
+    content: '✦';
+    color: var(--violet-2);
+    font-size: 0.9em;
+    text-shadow: 0 0 12px var(--violet);
+  }
+  h3 {
+    color: var(--silver);
+    font-family: Georgia, serif;
+    font-weight: 400;
+    margin: 28px 0 10px;
+    font-size: 1.2rem;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 28px;
+  }
+  .grid-3 { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+
+  .card {
+    background: var(--bg-panel);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 22px 26px;
+    backdrop-filter: blur(2px);
+  }
+  .card.hero {
+    box-shadow: var(--shadow);
+    border-color: rgba(126, 79, 255, 0.4);
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 12px 0;
+  }
+  th, td {
+    text-align: left;
+    padding: 10px 14px;
+    border-bottom: 1px solid var(--line);
+    font-size: 0.93rem;
+  }
+  th {
+    color: var(--violet);
+    font-weight: 600;
+    font-size: 0.78rem;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    border-bottom: 1px solid rgba(176, 140, 255, 0.3);
+  }
+  tr:last-child td { border-bottom: none; }
+  tr:hover td { background: rgba(176, 140, 255, 0.04); }
+
+  .stat-block {
+    display: grid;
+    grid-template-columns: repeat(6, 1fr);
+    gap: 14px;
+    margin: 20px 0;
+  }
+  .stat {
+    background: linear-gradient(180deg, var(--bg-card) 0%, #0d0a1a 100%);
+    border: 1px solid var(--line);
+    border-radius: 6px;
+    padding: 14px 8px;
+    text-align: center;
+    position: relative;
+  }
+  .stat::after {
+    content: '';
+    position: absolute;
+    top: -1px; left: 50%; transform: translateX(-50%);
+    width: 30px; height: 2px;
+    background: linear-gradient(90deg, transparent, var(--violet), transparent);
+  }
+  .stat-name {
+    color: var(--ink-dim);
+    font-size: 0.7rem;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+  }
+  .stat-value {
+    font-size: 2.2rem;
+    color: var(--ink);
+    font-family: Georgia, serif;
+    line-height: 1;
+    margin: 4px 0;
+  }
+  .stat-mod {
+    color: var(--violet);
+    font-size: 0.85rem;
+  }
+
+  ul, ol { padding-left: 22px; }
+  li { margin: 4px 0; }
+  li strong { color: var(--violet); }
+
+  code, pre {
+    font-family: 'Cascadia Code', Consolas, monospace;
+    background: #0d0a1a;
+    border: 1px solid var(--line);
+    border-radius: 4px;
+  }
+  code { padding: 2px 6px; color: var(--accent); font-size: 0.88em; }
+  pre {
+    padding: 18px 20px;
+    overflow-x: auto;
+    color: var(--ink-dim);
+    font-size: 0.85rem;
+    line-height: 1.7;
+  }
+  pre code { background: none; border: none; color: var(--ink-dim); padding: 0; }
+
+  .quote {
+    border-left: 3px solid var(--violet);
+    padding: 4px 18px;
+    color: var(--ink-dim);
+    font-style: italic;
+    margin: 18px 0;
+  }
+
+  .combo {
+    background: linear-gradient(135deg, rgba(126, 79, 255, 0.08), transparent);
+    border-left: 3px solid var(--violet-2);
+    padding: 14px 18px;
+    margin: 12px 0;
+    border-radius: 0 4px 4px 0;
+  }
+  .combo-title { color: var(--accent); font-weight: 600; margin-bottom: 4px; }
+
+  .pill {
+    display: inline-block;
+    background: rgba(176, 140, 255, 0.15);
+    color: var(--violet);
+    padding: 2px 10px;
+    border-radius: 12px;
+    font-size: 0.78rem;
+    margin-right: 6px;
+    border: 1px solid rgba(176, 140, 255, 0.3);
+  }
+
+  .art-frame {
+    background:
+      radial-gradient(ellipse at center, #1a0d35 0%, #050309 100%);
+    border: 1px solid rgba(176, 140, 255, 0.25);
+    border-radius: 6px;
+    padding: 40px 24px;
+    text-align: center;
+    margin: 20px 0;
+    box-shadow: inset 0 0 60px rgba(126, 79, 255, 0.15);
+  }
+  .silhouette {
+    font-size: 6rem;
+    line-height: 1;
+    background: linear-gradient(180deg, #e8e0ff 0%, #7e4fff 50%, #1a0d35 100%);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    filter: drop-shadow(0 0 30px rgba(126, 79, 255, 0.6));
+    margin-bottom: 16px;
+  }
+  .art-caption { color: var(--ink-dim); font-style: italic; font-size: 0.9rem; }
+
+  footer {
+    margin-top: 60px;
+    padding-top: 24px;
+    border-top: 1px solid var(--line);
+    color: var(--ink-dim);
+    font-size: 0.85rem;
+    text-align: center;
+  }
+
+  @media (max-width: 800px) {
+    .wrap { padding: 30px 18px; }
+    h1 { font-size: 2.4rem; }
+    .grid, .grid-3 { grid-template-columns: 1fr; }
+    .stat-block { grid-template-columns: repeat(3, 1fr); }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<header>
+  <div class="eyebrow">Tier 3–4 Controller / Burst Caster</div>
+  <h1>Vaeris Dawnshadow</h1>
+  <p>Fallen Aasimar · Shadow Magic Sorcerer · Haunted One</p>
+</header>
+
+<div class="art-frame">
+  <div class="silhouette">⚜</div>
+  <div class="art-caption">
+    Pale ashen skin · silver-white hair · violet-black void eyes · tattered shadow wings · obsidian robes laced with violet runic light
+  </div>
+</div>
+
+<section>
+  <h2>Identity</h2>
+  <div class="card">
+  <table>
+    <tr><th>Race</th><td>Fallen Aasimar <span class="pill">Volo's / MMotM</span></td></tr>
+    <tr><th>Class</th><td>Sorcerer — Shadow Magic <span class="pill">XGtE</span></td></tr>
+    <tr><th>Background</th><td>Haunted One <span class="pill">CoS</span></td></tr>
+    <tr><th>Alignment</th><td>Chaotic Neutral</td></tr>
+    <tr><th>Appearance</th><td>22 years; 6'1"; 145 lb; silver-white hair; violet-void eyes; ash-grey skin</td></tr>
+  </table>
+  <div class="quote">Fell from celestial grace after channeling necrotic power to save a doomed village. The Radiant Soul became a Necrotic Shroud; an angelic guide now whispers from the shadow he casts.</div>
+  </div>
+</section>
+
+<section>
+  <h2>Ability Scores</h2>
+  <div class="stat-block">
+    <div class="stat"><div class="stat-name">STR</div><div class="stat-value">9</div><div class="stat-mod">−1</div></div>
+    <div class="stat"><div class="stat-name">DEX</div><div class="stat-value">14</div><div class="stat-mod">+2</div></div>
+    <div class="stat"><div class="stat-name">CON</div><div class="stat-value">14</div><div class="stat-mod">+2</div></div>
+    <div class="stat"><div class="stat-name">INT</div><div class="stat-value">10</div><div class="stat-mod">+0</div></div>
+    <div class="stat"><div class="stat-name">WIS</div><div class="stat-value">12</div><div class="stat-mod">+1</div></div>
+    <div class="stat"><div class="stat-name">CHA</div><div class="stat-value">20</div><div class="stat-mod">+5</div></div>
+  </div>
+  <p style="text-align:center; color:var(--ink-dim); font-size:0.9rem;">
+    Starting array 15/14/13/12/10/8 · Fallen Aasimar +2 CHA +1 STR · Feat path raises CHA to 20 by L8, CON to 16 by L12.
+  </p>
+  <div class="card">
+    <h3>Saves & DCs</h3>
+    <table>
+      <tr><th>Stat</th><th>Save</th><th>Notes</th></tr>
+      <tr><td>CON</td><td>+2 → +5 (L12)</td><td>Class prof + Resilient feat at 12 for concentration</td></tr>
+      <tr><td>CHA</td><td>+8 (L17)</td><td>Class prof + 20 CHA</td></tr>
+      <tr><td>Spell save DC</td><td><strong>16</strong> @ L8, <strong>17</strong> @ L13, <strong>19</strong> @ L17</td><td>8 + prof + CHA mod</td></tr>
+      <tr><td>Spell attack</td><td>+8 / +9 / +11</td><td>Same scaling</td></tr>
+    </table>
+  </div>
+</section>
+
+<section>
+  <h2>ASI &amp; Feat Progression</h2>
+  <div class="card">
+  <table>
+    <tr><th>Level</th><th>Choice</th><th>Reason</th></tr>
+    <tr><td><strong>4</strong></td><td>Fey Touched (+1 CHA, learn <em>Misty Step</em> + <em>Hex/Bless</em>)</td><td>CHA bump from odd score; free repeatable Misty Step</td></tr>
+    <tr><td><strong>8</strong></td><td>+2 CHA → 20</td><td>Cap primary stat; DC 17 at L9</td></tr>
+    <tr><td><strong>12</strong></td><td>Resilient (CON)</td><td>Concentration save +5 — non-negotiable in tier 3</td></tr>
+    <tr><td><strong>16</strong></td><td>Eldritch Adept — Devil's Sight</td><td>See through magical darkness → win-condition combo</td></tr>
+    <tr><td><strong>19</strong></td><td>Metamagic Adept (Heightened)</td><td>Force-fail saves on Hold Monster / Polymorph</td></tr>
+  </table>
+  <p style="color:var(--ink-dim); font-size:0.88rem; margin-top:10px;">
+    <strong>Alt path (no Eldritch Adept):</strong> Take Telekinetic at 16, or dip Hexblade at L5 (CHA SAD melee + Devil's Sight invocation, medium armor, shield).
+  </p>
+  </div>
+</section>
+
+<section>
+  <h2>Subclass Timeline — Shadow Magic</h2>
+  <div class="card">
+  <table>
+    <tr><th>Lvl</th><th>Feature</th><th>Combat Use</th></tr>
+    <tr><td>1</td><td><strong>Eyes of the Dark</strong></td><td>Darkvision 120 ft; cast <em>Darkness</em> for 2 SP, see through your own</td></tr>
+    <tr><td>1</td><td><strong>Strength of the Grave</strong></td><td>CHA save DC 5+dmg to drop to 1 HP instead of 0 — 1×/long rest</td></tr>
+    <tr><td>3</td><td>Metamagic: <strong>Subtle</strong> + <strong>Quickened</strong></td><td>Counterspell-proof + nova rounds</td></tr>
+    <tr><td>6</td><td><strong>Hound of Ill Omen</strong> (3 SP)</td><td>Shadow wolf → target has <strong>disadvantage on saves</strong> vs your spells</td></tr>
+    <tr><td>10</td><td>Metamagic: <strong>Twinned</strong></td><td>Double Polymorph / Haste / Hold Person</td></tr>
+    <tr><td>14</td><td><strong>Shadow Walk</strong></td><td>Bonus-action 120 ft teleport in dim/dark light</td></tr>
+    <tr><td>17</td><td>Metamagic: <strong>Heightened</strong></td><td>Force-fail one save per spell</td></tr>
+    <tr><td>18</td><td><strong>Soul of Shadow</strong></td><td>Necrotic resistance + CHA cap raised by 2</td></tr>
+  </table>
+  </div>
+</section>
+
+<section>
+  <h2>Fallen Aasimar Racial Toolkit</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Darkvision 60 ft</strong> — combines with Eyes of the Dark for 120 ft total</li>
+      <li><strong>Celestial Resistance</strong> — radiant + necrotic damage resistance</li>
+      <li><strong>Healing Hands</strong> — touch heals 1d4 per level, 1×/long rest</li>
+      <li><strong>Light</strong> cantrip (free, doesn't count against known)</li>
+      <li><strong>Necrotic Shroud</strong> (L3+) — bonus action, 1 min: ghostly wings + CHA-mod creatures within 10 ft must succeed CHA save or be <em>frightened</em> until end of next turn; once per turn, +CHA mod necrotic damage on one spell or attack. 1×/long rest.</li>
+    </ul>
+  </div>
+</section>
+
+<section>
+  <h2>Spell List</h2>
+
+  <h3>Cantrips (6 known at L10)</h3>
+  <div class="card">
+  <table>
+    <tr><th>Cantrip</th><th>Purpose</th></tr>
+    <tr><td><strong>Mind Sliver</strong></td><td>INT save → target rolls −1d4 on next save. Setup for Hold / Synaptic Static.</td></tr>
+    <tr><td><strong>Toll the Dead</strong></td><td>d12 necrotic if already damaged. Thematic + math.</td></tr>
+    <tr><td><strong>Booming Blade</strong></td><td>For Telekinetic shove combos / melee desperation.</td></tr>
+    <tr><td>Mage Hand · Prestidigitation · Message</td><td>Utility.</td></tr>
+    <tr><td>Light <span class="pill">free</span></td><td>From racial; casts as violet-white.</td></tr>
+  </table>
+  </div>
+
+  <h3>Spells Known (15 by L17)</h3>
+  <div class="card">
+  <table>
+    <tr><th>Lvl</th><th>Locked picks</th><th>Role</th></tr>
+    <tr><td>1</td><td>Shield · Absorb Elements · Magic Missile</td><td>Defense + Subtle/Quickened nova</td></tr>
+    <tr><td>2</td><td>Misty Step (Fey Touched) · Mirror Image · Web</td><td>Mobility + control</td></tr>
+    <tr><td>3</td><td>Counterspell · Hypnotic Pattern · Fear</td><td>Tier-2 backbone</td></tr>
+    <tr><td>4</td><td><strong>Sickening Radiance</strong> · Greater Invisibility</td><td>SR inside Darkness is the signature combo</td></tr>
+    <tr><td>5</td><td>Synaptic Static · Wall of Force</td><td>Save-or-suck + denial</td></tr>
+    <tr><td>6</td><td>Disintegrate <em>or</em> Sunbeam</td><td>Nuke</td></tr>
+    <tr><td>7</td><td>Forcecage</td><td>Solo a boss</td></tr>
+    <tr><td>8</td><td><strong>Maddening Darkness</strong></td><td>Necrotic AoE + obscured area</td></tr>
+    <tr><td>9</td><td>Wish</td><td>Always Wish</td></tr>
+  </table>
+  <p style="color:var(--ink-dim); font-size:0.88rem; margin-top:10px;">
+    <strong>Replacement plan:</strong> drop Magic Missile at L9 → Polymorph; drop Fear at L13 → Hold Monster. Keep Shield / Counterspell / Absorb Elements permanently.
+  </p>
+  </div>
+</section>
+
+<section>
+  <h2>Signature Combos</h2>
+
+  <div class="combo">
+    <div class="combo-title">1. Darkness Bubble (the build's win-condition)</div>
+    Cast <em>Darkness</em> on a coin (or via Eyes of the Dark for 2 SP). Drop coin inside <em>Sickening Radiance</em>. Enemies inside: 4d6 radiant per round + exhaustion stack + disadvantage on attacks. You see through Darkness. They don't.
+  </div>
+
+  <div class="combo">
+    <div class="combo-title">2. Hound + Twinned Polymorph (L10+)</div>
+    Bonus action Hound of Ill Omen imposes disadvantage on the boss's WIS save → Twinned <em>Polymorph</em> lands on two bosses → both are turtles. Action economy ruined for the encounter.
+  </div>
+
+  <div class="combo">
+    <div class="combo-title">3. Subtle Counterspell</div>
+    No verbal, no somatic, no source. Enemy caster doesn't know who's blocking them. Pair with Greater Invisibility for total anonymity.
+  </div>
+
+  <div class="combo">
+    <div class="combo-title">4. Quickened Pattern + Misty Step</div>
+    Drop Hypnotic Pattern on the enemy line, reposition 30 ft out of melee, all in one turn.
+  </div>
+
+  <div class="combo">
+    <div class="combo-title">5. Necrotic Nova (L11+)</div>
+    Necrotic Shroud (bonus) → Hound (next turn bonus, 3 SP) → Disintegrate at the marked target. Hound debuff + CHA-mod necrotic from Shroud trigger = ~75 average damage.
+  </div>
+</section>
+
+<section>
+  <h2>Quick-Reference Combat Card (Tier 2 — L7)</h2>
+  <div class="grid">
+    <div class="card hero">
+      <h3>Vital Stats</h3>
+      <table>
+        <tr><td>HP</td><td><strong>~46</strong></td></tr>
+        <tr><td>AC</td><td>13 base (cast Shield reactively → 18)</td></tr>
+        <tr><td>Spell save DC</td><td><strong>16</strong></td></tr>
+        <tr><td>Spell attack</td><td>+8</td></tr>
+        <tr><td>Speed</td><td>30 ft</td></tr>
+        <tr><td>Sorcery points</td><td>7</td></tr>
+      </table>
+    </div>
+    <div class="card hero">
+      <h3>Opening Turn Template</h3>
+      <ol>
+        <li><strong>Bonus action:</strong> Necrotic Shroud (frighten aura + bonus necrotic damage)</li>
+        <li><strong>Action:</strong> Hypnotic Pattern on enemy cluster</li>
+        <li><strong>Reaction:</strong> Shield or Counterspell</li>
+      </ol>
+      <h3 style="margin-top:18px;">Round 2</h3>
+      <ol>
+        <li><strong>Bonus:</strong> Hound of Ill Omen on boss (3 SP)</li>
+        <li><strong>Action:</strong> Synaptic Static or upcast Fireball avoiding the hypnotized</li>
+      </ol>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Equipment</h2>
+  <div class="card">
+    <ul>
+      <li><strong>Crystal-tipped obsidian staff</strong> — arcane focus</li>
+      <li>Component pouch (backup)</li>
+      <li>2 daggers, light crossbow + 20 bolts</li>
+      <li>Dungeoneer's pack</li>
+      <li>Black silk shroud · vial of ash from the fallen village <span class="pill">Haunted One trinket</span></li>
+      <li>50 gp</li>
+    </ul>
+    <h3>Magic Item Wishlist</h3>
+    <p>Cloak of Protection → Bracers of Defense → Rod of the Pact Keeper (if Hexblade dip) → Robe of the Archmagi.</p>
+  </div>
+</section>
+
+<section>
+  <h2>Skills · Languages · Roleplay</h2>
+  <div class="grid">
+    <div class="card">
+      <h3>Proficiencies</h3>
+      <ul>
+        <li><strong>Skills:</strong> Arcana, Deception, Intimidation, Religion</li>
+        <li><strong>Saves:</strong> CON, CHA</li>
+        <li><strong>Languages:</strong> Common, Celestial, Infernal</li>
+      </ul>
+    </div>
+    <div class="card">
+      <h3>Roleplay Hooks</h3>
+      <ul>
+        <li>Prays in Celestial during combat — words come out in Infernal.</li>
+        <li>Refuses consecrated ground without permission.</li>
+        <li><em>Light</em> cantrip casts as violet-white, never gold.</li>
+        <li>Heals strangers compulsively. Never accepts thanks.</li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<section>
+  <h2>Art Generation Prompt</h2>
+  <div class="card">
+  <p style="color:var(--ink-dim); font-size:0.9rem;">Paste into Midjourney v6, SDXL, DALL·E 3, or Stable Diffusion.</p>
+<pre><code>Full-body fantasy character portrait, fallen aasimar shadow sorcerer,
+late 20s appearance, tall and slim, pale ashen skin with faint translucent
+sheen, long flowing silver-white hair, eyes glowing with deep violet inner
+light haloed in black smoke, vestigial angelic wings reformed as tattered
+shadow-feathers and curling dark mist, wearing layered obsidian-black
+high-collared sorcerer robes embroidered with pulsing arcane runes in
+violet and silver, holding a crystal-tipped onyx staff with floating dark
+runes around the tip, levitating motes of black starlight and dim purple
+flame around hands, standing inside a sphere of magical darkness with
+distant cathedral ruins visible behind, cinematic dramatic backlight, face
+half in shadow, atmospheric purple-black haze, intricate detail, painterly,
+concept art, by Greg Rutkowski and Charlie Bowater and Wlop, ArtStation
+trending, fantasy illustration, ultra detailed, 8k
+
+--ar 2:3 --style raw --v 6</code></pre>
+  <p style="color:var(--ink-dim); font-size:0.85rem; margin-top:10px;">
+    <strong>Negative prompt (SDXL):</strong> blurry, lowres, deformed hands, extra fingers, watermark, text, signature, white halo, bright lighting, cheerful.
+  </p>
+  </div>
+</section>
+
+<footer>
+  Vaeris Dawnshadow · Fallen Aasimar · Shadow Magic Sorcerer<br>
+  Build target: Tier 3–4 controller with darkness-based denial &amp; nova bursts
+</footer>
+
+</div>
+</body>
+</html>
