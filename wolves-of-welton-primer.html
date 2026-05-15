@@ -1,0 +1,1390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Wolves of Welton — Oneshot Primer</title>
+<style>
+  :root{
+    --bg:#0e0c0a; --surface:#1a1612; --surface2:#241c16; --border:#3a2e22;
+    --ink:#e8dcc8; --muted:#9a8a74; --accent:#c9a868; --silver:#b8c4d0;
+    --blood:#8a1818; --hell:#d04a1a; --fire:#e87820; --bolt:#5a8ec8;
+    --bone:#cdbb98; --good:#5fa860; --warn:#e0a040; --crit:#d24040;
+    --peace:#7ab06c; --war:#b04848; --forest:#3a5a32; --moon:#c0c8e0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter','Segoe UI',system-ui,sans-serif;line-height:1.55;font-size:15px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+  nav.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border);padding:20px 16px}
+  nav h1{font-family:'Cinzel','Georgia',serif;font-size:18px;color:var(--accent);margin:0 0 6px;letter-spacing:1px}
+  nav .sub{color:var(--muted);font-size:12px;margin-bottom:18px;font-style:italic}
+  nav ol{list-style:none;padding:0;margin:0;counter-reset:nav}
+  nav ol li{counter-increment:nav;margin-bottom:2px}
+  nav ol li a{display:block;padding:6px 8px;border-radius:4px;color:var(--ink);font-size:13px;border-left:2px solid transparent}
+  nav ol li a:before{content:counter(nav,decimal-leading-zero) " · ";color:var(--muted);font-family:monospace;font-size:11px}
+  nav ol li a:hover{background:var(--surface2);border-left-color:var(--accent);text-decoration:none}
+  nav .navgroup{margin-top:18px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:0 8px 4px}
+
+  main{padding:24px 36px 80px;max-width:1020px}
+  header.title{margin-bottom:24px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+  header.title h1{font-family:'Cinzel','Georgia',serif;font-size:34px;color:var(--accent);margin:0 0 4px;letter-spacing:2px}
+  header.title .meta{color:var(--muted);font-size:14px;font-style:italic}
+
+  .trackers{position:sticky;top:0;z-index:50;background:var(--bg);padding:12px 0;margin-bottom:24px;border-bottom:1px solid var(--border)}
+  .tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:12px}
+  .tracker{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 12px}
+  .tracker .label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center;gap:4px}
+  .tracker .label button{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:10px;padding:1px 5px;border-radius:3px;cursor:pointer;font-family:inherit}
+  .tracker .label button:hover{color:var(--accent);border-color:var(--accent)}
+  .tokens{display:flex;flex-wrap:wrap;gap:4px}
+  .token{width:22px;height:22px;border-radius:50%;background:var(--silver);border:2px solid var(--border);cursor:pointer;transition:all 0.18s;display:flex;align-items:center;justify-content:center;font-size:10px;color:var(--bg);font-weight:bold;font-family:inherit}
+  .token.spent{background:var(--surface2);border-color:var(--border);color:var(--border)}
+  .token.wolf{background:var(--bone);font-size:12px}
+  .token.wolf.dead{background:var(--surface2);color:var(--blood);text-decoration:line-through}
+  .token.peace{background:var(--surface2);color:var(--muted);width:auto;height:auto;border-radius:3px;padding:4px 8px;font-size:11px;text-align:left;line-height:1.2}
+  .token.peace.triggered{background:var(--peace);color:var(--bg);border-color:var(--peace)}
+  .round-counter{display:flex;align-items:center;gap:6px}
+  .round-counter button{background:var(--surface2);border:1px solid var(--border);color:var(--ink);width:28px;height:28px;border-radius:4px;cursor:pointer;font-size:14px;font-family:inherit}
+  .round-counter button:hover{background:var(--accent);color:var(--bg)}
+  .round-counter input{font-size:20px;font-family:'Cinzel',serif;color:var(--accent);min-width:36px;text-align:center;background:transparent;border:1px solid transparent;width:50px}
+  .round-counter input:focus{outline:none;border-color:var(--accent);background:var(--bg)}
+  .hp-bar{width:100%;height:22px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;position:relative;overflow:hidden;cursor:pointer}
+  .hp-bar .fill{height:100%;transition:width 0.3s}
+  .hp-bar.flame .fill{background:linear-gradient(90deg,var(--fire),var(--blood))}
+  .hp-bar.bolt .fill{background:linear-gradient(90deg,var(--bolt),var(--moon))}
+  .hp-bar .text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:12px;font-weight:bold;color:var(--ink);text-shadow:0 0 3px black}
+  .hp-actions{display:flex;gap:4px;margin-top:6px}
+  .hp-actions button{flex:1;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px 0;border-radius:3px;cursor:pointer;font-size:11px;font-family:inherit}
+  .hp-actions button.dmg:hover{border-color:var(--crit);color:var(--crit)}
+  .hp-actions button.heal:hover{border-color:var(--good);color:var(--good)}
+  .hp-actions button.full:hover{border-color:var(--accent);color:var(--accent)}
+
+  section{margin-bottom:36px;scroll-margin-top:280px}
+  section > h2{font-family:'Cinzel',serif;font-size:24px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:30px 0 14px;letter-spacing:1px}
+  section > h3{font-family:'Cinzel',serif;font-size:18px;color:var(--bone);margin:22px 0 10px}
+  section h4{font-size:14px;color:var(--accent);margin:16px 0 6px;text-transform:uppercase;letter-spacing:1px}
+
+  blockquote.read{background:var(--surface);border-left:4px solid var(--accent);padding:14px 18px;margin:14px 0;font-style:italic;color:var(--bone);border-radius:0 4px 4px 0;white-space:pre-wrap}
+  blockquote.read em{color:var(--accent);font-style:normal;font-weight:600}
+  blockquote.dialogue{background:var(--surface2);border-left:4px solid var(--blood);padding:10px 16px;margin:10px 0 10px 20px;font-style:italic;color:var(--ink);border-radius:0 4px 4px 0}
+  blockquote.dialogue.fire{border-left-color:var(--fire)}
+  blockquote.dialogue.bolt{border-left-color:var(--bolt)}
+  blockquote.dialogue strong{font-style:normal;color:var(--accent)}
+
+  .callout{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--warn);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0}
+  .callout.danger{border-left-color:var(--crit)}
+  .callout.good{border-left-color:var(--good)}
+  .callout.info{border-left-color:var(--moon)}
+  .callout.peace{border-left-color:var(--peace)}
+  .callout strong:first-child{color:var(--accent);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+  .callout.danger strong:first-child{color:var(--crit)}
+  .callout.peace strong:first-child{color:var(--peace)}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;font-size:13px}
+  th{background:var(--surface2);color:var(--accent);font-family:'Cinzel',serif;text-align:left;padding:8px 10px;font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+  td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--surface2)}
+
+  .statblock{background:#f4ecdc;color:#1a1410;border:2px solid var(--bone);border-radius:6px;padding:18px 22px;margin:18px 0;font-family:'Bookman','Garamond',serif;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+  .statblock h3{font-family:'Cinzel',serif;color:var(--blood);margin:0 0 4px;font-size:22px;letter-spacing:1px}
+  .statblock .subtitle{font-style:italic;color:#3a2018;margin-bottom:8px;font-size:13px}
+  .statblock hr{border:none;border-top:2px solid var(--blood);margin:8px 0}
+  .statblock .ability{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;text-align:center;padding:8px 0;font-size:12px}
+  .statblock .ability div span{display:block;font-weight:bold;color:var(--blood)}
+  .statblock p{margin:6px 0;font-size:13px}
+  .statblock .trait,.statblock .action{margin:6px 0}
+  .statblock .trait strong,.statblock .action strong{color:var(--blood);font-style:italic}
+
+  .scene{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:18px 0;border-top:4px solid var(--accent)}
+  .scene.s1{border-top-color:var(--forest)}
+  .scene.s2{border-top-color:var(--bone)}
+  .scene.s3{border-top-color:var(--forest)}
+  .scene.s4{border-top-color:var(--hell)}
+  .scene.s5{border-top-color:var(--moon)}
+  .scene.s6{border-top-color:var(--peace)}
+  .scene h2{margin-top:0}
+  .scene .scene-meta{color:var(--muted);font-size:12px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1.5px}
+
+  details{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin:10px 0;padding:0}
+  details summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--accent);user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary:before{content:"▶";font-size:10px;margin-right:8px;transition:transform 0.2s}
+  details[open] summary:before{transform:rotate(90deg)}
+  details summary::-webkit-details-marker{display:none}
+  details > *:not(summary){padding:0 16px 14px}
+  details.spoiler{border-left:4px solid var(--crit)}
+  details.spoiler summary{color:var(--crit)}
+
+  ul.tight,ol.tight{margin:6px 0;padding-left:22px}
+  ul.tight li,ol.tight li{margin:3px 0}
+
+  .pill{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1px 8px;font-size:11px;color:var(--muted);margin-right:4px}
+  .pill.crit{background:var(--blood);color:white;border-color:var(--blood)}
+  .pill.good{background:var(--good);color:var(--bg);border-color:var(--good)}
+  .pill.warn{background:var(--warn);color:var(--bg);border-color:var(--warn)}
+  .pill.fire{background:var(--fire);color:var(--bg);border-color:var(--fire)}
+  .pill.bolt{background:var(--bolt);color:var(--bg);border-color:var(--bolt)}
+
+  .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:14px 0}
+  .choice{background:var(--surface2);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:4px;padding:14px}
+  .choice.peace{border-left-color:var(--peace)}
+  .choice.war{border-left-color:var(--war)}
+  .choice h4{margin-top:0;color:var(--accent)}
+  .choice.peace h4{color:var(--peace)}
+  .choice.war h4{color:var(--war)}
+
+  .npc-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:14px;margin:16px 0}
+  .npc-card{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px;border-left:4px solid var(--bone)}
+  .npc-card.villain{border-left-color:var(--war)}
+  .npc-card.ally{border-left-color:var(--peace)}
+  .npc-card.dead{border-left-color:var(--muted);opacity:0.85}
+  .npc-card h4{margin:0 0 4px;color:var(--accent);font-family:'Cinzel',serif;text-transform:none;letter-spacing:1px;font-size:16px;padding:0;border:none}
+  .npc-card .role{color:var(--moon);font-size:11px;text-transform:uppercase;letter-spacing:1.5px;font-weight:600;margin-bottom:8px}
+  .npc-card .voice{font-style:italic;color:var(--bone);font-size:12px;margin-top:6px;border-top:1px dashed var(--border);padding-top:6px}
+  .npc-card .desc{font-size:13px;color:var(--ink)}
+
+  .init-tracker{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:14px 16px;margin-bottom:24px;border-left:4px solid var(--accent)}
+  .init-header{display:flex;justify-content:space-between;align-items:center;margin-bottom:10px;flex-wrap:wrap;gap:8px}
+  .init-header h3{margin:0;font-family:'Cinzel',serif;color:var(--accent);font-size:16px;letter-spacing:1.5px}
+  .init-controls{display:flex;gap:5px;flex-wrap:wrap}
+  .init-btn{background:var(--surface2);border:1px solid var(--border);color:var(--ink);padding:4px 10px;border-radius:3px;cursor:pointer;font-size:12px;font-family:inherit}
+  .init-btn:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+  .init-btn.primary{background:var(--accent);color:var(--bg);border-color:var(--accent);font-weight:600}
+  .init-btn.pc{border-color:var(--moon);color:var(--moon)}
+  .init-btn.fire{border-color:var(--fire);color:var(--fire)}
+  .init-btn.bolt{border-color:var(--bolt);color:var(--bolt)}
+  .init-btn.danger{border-color:var(--crit);color:var(--crit)}
+  .combatant-list{display:flex;flex-direction:column;gap:4px;max-height:360px;overflow-y:auto;background:var(--bg);border:1px solid var(--border);border-radius:4px;padding:6px}
+  .combatant{display:grid;grid-template-columns:44px 1fr 130px 56px 96px;gap:8px;padding:6px 10px;background:var(--surface2);border:1px solid var(--border);border-left:4px solid transparent;border-radius:3px;align-items:center;font-size:13px}
+  .combatant.current{border-left-color:var(--accent);background:linear-gradient(90deg,rgba(201,168,104,0.22),var(--surface2));box-shadow:0 0 0 1px var(--accent)}
+  .combatant.dead{opacity:0.45}
+  .combatant.dead .c-name{text-decoration:line-through}
+  .combatant.pc{border-left-color:var(--moon)}
+  .combatant.pc.current{border-left-color:var(--accent)}
+  .combatant.fire{border-left-color:var(--fire)}
+  .combatant.bolt{border-left-color:var(--bolt)}
+  .combatant .init-num input{width:38px;background:transparent;border:1px solid transparent;color:var(--accent);font-family:'Cinzel',serif;font-size:18px;font-weight:bold;text-align:center;padding:0;margin:0;border-radius:3px}
+  .combatant .init-num input:focus{border-color:var(--accent);background:var(--bg);outline:none}
+  .combatant .c-name{color:var(--ink);font-weight:600;line-height:1.2}
+  .combatant .c-hp{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);justify-content:flex-end}
+  .combatant .c-hp input{width:46px;background:var(--bg);border:1px solid var(--border);color:var(--ink);text-align:center;border-radius:2px;padding:2px;font-size:12px;font-family:inherit}
+  .combatant .c-ac{font-size:11px;color:var(--muted);text-align:center;background:var(--bg);border:1px solid var(--border);border-radius:3px;padding:2px 4px}
+  .combatant .c-actions{display:flex;gap:3px;justify-content:flex-end}
+  .combatant .c-actions button{background:var(--bg);border:1px solid var(--border);color:var(--ink);width:26px;height:24px;border-radius:2px;cursor:pointer;font-size:13px;padding:0;line-height:1;font-family:inherit}
+  .combatant .c-actions .dmg:hover{border-color:var(--crit);color:var(--crit)}
+  .combatant .c-actions .heal:hover{border-color:var(--good);color:var(--good)}
+  .combatant .c-actions .rm:hover{border-color:var(--crit);color:var(--crit)}
+  .init-empty{padding:20px;text-align:center;color:var(--muted);font-style:italic;font-size:13px}
+
+  .rumor-table tr{cursor:pointer}
+  .rumor-table tr.told td{opacity:0.5;text-decoration:line-through}
+  .rumor-table tr.told td:first-child{text-decoration:none;color:var(--good)}
+
+  .council-vote{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:8px;margin:12px 0}
+  .vote-card{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px;text-align:center;cursor:pointer;transition:all 0.15s}
+  .vote-card.yes{background:var(--peace);color:var(--bg);border-color:var(--peace)}
+  .vote-card.no{background:var(--war);color:var(--ink);border-color:var(--war)}
+  .vote-card .name{font-weight:600;font-size:13px;font-family:'Cinzel',serif}
+  .vote-card .status{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;margin-top:4px}
+  .vote-tally{display:flex;justify-content:center;gap:24px;margin-top:10px;font-family:'Cinzel',serif;font-size:18px}
+  .vote-tally .yes-count{color:var(--peace)}
+  .vote-tally .no-count{color:var(--war)}
+
+  .cue-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:10px;margin:10px 0}
+  .cue{background:var(--surface2);border:1px solid var(--border);border-radius:4px;padding:10px 12px;font-size:12px}
+  .cue .cue-id{color:var(--accent);font-family:'Cinzel',serif;font-size:13px;font-weight:bold;letter-spacing:1px}
+  .cue .cue-mood{color:var(--muted);font-style:italic;margin:2px 0 6px;font-size:11px}
+  .cue .cue-track{color:var(--ink);font-size:12px}
+  .cue button.play{background:var(--surface);border:1px solid var(--border);color:var(--accent);padding:3px 8px;border-radius:3px;cursor:pointer;font-size:11px;margin-top:6px;font-family:inherit}
+  .cue button.play:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+  .cue.hard-cut{border-left:3px solid var(--crit)}
+
+  .quickref{position:fixed;bottom:14px;right:14px;background:var(--surface);border:1px solid var(--accent);border-radius:6px;padding:0;z-index:100;max-width:280px;box-shadow:0 4px 18px rgba(0,0,0,0.6);font-size:12px}
+  .quickref.collapsed .quickref-body{display:none}
+  .quickref h5{margin:0;padding:8px 12px;background:var(--surface2);border-bottom:1px solid var(--border);color:var(--accent);font-family:'Cinzel',serif;font-size:12px;letter-spacing:1.5px;cursor:pointer;display:flex;justify-content:space-between;align-items:center}
+  .quickref-body{padding:10px 12px;max-height:60vh;overflow-y:auto}
+  .quickref-body table{margin:0;font-size:11px;background:transparent;border:none}
+  .quickref-body th,.quickref-body td{padding:4px 6px;background:transparent}
+
+  @media print {
+    nav.sidebar,.trackers,.init-tracker,.quickref{display:none}
+    .layout{grid-template-columns:1fr}
+    main{max-width:100%;padding:10px}
+    section{break-inside:avoid}
+    .statblock{break-inside:avoid;background:white;color:black}
+    .scene{break-inside:avoid}
+    body{background:white;color:black}
+    blockquote.read{background:#f0eae0;color:#222}
+  }
+
+  @media (max-width: 900px){
+    .layout{grid-template-columns:1fr}
+    nav.sidebar{position:relative;height:auto}
+    main{padding:16px}
+    .quickref{display:none}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+
+<nav class="sidebar">
+  <h1>WOLVES OF WELTON</h1>
+  <div class="sub">2nd–3rd lvl · ~4 hours</div>
+
+  <div class="navgroup">Trackers</div>
+  <ol>
+    <li><a href="#trackers">Live Trackers</a></li>
+    <li><a href="#initiative">Initiative</a></li>
+  </ol>
+
+  <div class="navgroup">Setup</div>
+  <ol>
+    <li><a href="#thesis">Design Thesis</a></li>
+    <li><a href="#background">DM Background</a></li>
+    <li><a href="#pacing">Pacing</a></li>
+    <li><a href="#cast">Cast</a></li>
+  </ol>
+
+  <div class="navgroup">Scenes</div>
+  <ol>
+    <li><a href="#scene1">1 · Road Ambush</a></li>
+    <li><a href="#scene2">2 · Welton &amp; Council</a></li>
+    <li><a href="#rumors">Rumor Table</a></li>
+    <li><a href="#featherock">Featherock</a></li>
+    <li><a href="#scene3">3 · Into the Woods</a></li>
+    <li><a href="#scene4">4 · Owlbear (opt)</a></li>
+    <li><a href="#scene5">5 · The Den</a></li>
+    <li><a href="#peace-trigger">Peace Trigger</a></li>
+    <li><a href="#scene6">6 · Resolution</a></li>
+    <li><a href="#vote">Council Vote</a></li>
+  </ol>
+
+  <div class="navgroup">Statblocks</div>
+  <ol>
+    <li><a href="#sb-wolf">Wolf</a></li>
+    <li><a href="#sb-welton-wolf">Welton Wolf</a></li>
+    <li><a href="#sb-flame">Flame</a></li>
+    <li><a href="#sb-bolt">Bolt</a></li>
+    <li><a href="#sb-owlbear">Owlbear (wounded)</a></li>
+    <li><a href="#sb-tuned" style="color:var(--fire)">★ Lvl-2 Tuned</a></li>
+  </ol>
+
+  <div class="navgroup">Reference</div>
+  <ol>
+    <li><a href="#skills">Skill Checks</a></li>
+    <li><a href="#xp">XP &amp; Rewards</a></li>
+    <li><a href="#tuning">Tuning</a></li>
+    <li><a href="#chaos">Chaos Branches</a></li>
+    <li><a href="#sound">Soundtrack</a></li>
+    <li><a href="#checklist">DM Checklist</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<header class="title">
+  <h1>The Wolves of Welton</h1>
+  <div class="meta">D&amp;D 5E oneshot · 2nd–3rd level · 4 PCs · ~4 hours · Winghorn Press · Pastoral mystery → moral-choice combat</div>
+</header>
+
+<section id="trackers" class="trackers">
+  <div class="tracker-grid">
+    <div class="tracker">
+      <div class="label"><span>Round</span><button onclick="setRound(1)">reset</button></div>
+      <div class="round-counter">
+        <button onclick="changeRound(-1)">−</button>
+        <input type="number" id="round-input" min="1" max="99" value="1" onchange="setRound(this.value)" />
+        <button onclick="changeRound(1)">+</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Wolves Killed (Scene 5)</span><button onclick="resetWolves()">reset</button></div>
+      <div class="tokens" id="wolf-tokens"></div>
+      <div style="margin-top:6px;font-size:11px;color:var(--muted)">Click each. <span id="wolf-count">0 / 10</span> down.</div>
+    </div>
+
+    <div class="tracker" style="grid-column:span 2">
+      <div class="label"><span>Peace Trigger</span><button onclick="resetPeace()">reset</button></div>
+      <div style="display:flex;flex-direction:column;gap:4px">
+        <div class="token peace" onclick="togglePeace(0)" id="peace-0">☐ 4+ wolves killed</div>
+        <div class="token peace" onclick="togglePeace(1)" id="peace-1">☐ Flame OR Bolt &lt; half HP</div>
+        <div class="token peace" onclick="togglePeace(2)" id="peace-2">☐ Any PC at 0 HP</div>
+      </div>
+      <div style="margin-top:6px;font-size:11px;color:var(--muted)" id="peace-status">Bolt has not roared yet.</div>
+    </div>
+
+    <div class="tracker">
+      <div class="label">
+        <span>Flame HP
+          <input type="number" id="flame-hp" min="0" value="47" onchange="setFlameHP(this.value)" style="width:48px;background:var(--bg);border:1px solid var(--border);color:var(--fire);text-align:center;font-family:'Cinzel',serif;font-size:13px;border-radius:3px;margin-left:4px"/>
+          / <input type="number" id="flame-max" min="1" value="47" onchange="setFlameMax(this.value)" style="width:42px;background:var(--bg);border:1px solid var(--border);color:var(--muted);text-align:center;font-family:'Cinzel',serif;font-size:12px;border-radius:3px"/>
+        </span>
+      </div>
+      <div class="hp-bar flame"><div class="fill" id="flame-fill" style="width:100%"></div><div class="text" id="flame-text">47 / 47</div></div>
+      <div class="hp-actions">
+        <button class="dmg" onclick="dmgFlame(5)">−5</button>
+        <button class="dmg" onclick="dmgFlame(10)">−10</button>
+        <button class="dmg" onclick="dmgFlame(20)">−20</button>
+        <button class="full" onclick="setFlameHP(47)">full</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label">
+        <span>Bolt HP
+          <input type="number" id="bolt-hp" min="0" value="47" onchange="setBoltHP(this.value)" style="width:48px;background:var(--bg);border:1px solid var(--border);color:var(--bolt);text-align:center;font-family:'Cinzel',serif;font-size:13px;border-radius:3px;margin-left:4px"/>
+          / <input type="number" id="bolt-max" min="1" value="47" onchange="setBoltMax(this.value)" style="width:42px;background:var(--bg);border:1px solid var(--border);color:var(--muted);text-align:center;font-family:'Cinzel',serif;font-size:12px;border-radius:3px"/>
+        </span>
+      </div>
+      <div class="hp-bar bolt"><div class="fill" id="bolt-fill" style="width:100%"></div><div class="text" id="bolt-text">47 / 47</div></div>
+      <div class="hp-actions">
+        <button class="dmg" onclick="dmgBolt(5)">−5</button>
+        <button class="dmg" onclick="dmgBolt(10)">−10</button>
+        <button class="dmg" onclick="dmgBolt(20)">−20</button>
+        <button class="full" onclick="setBoltHP(47)">full</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section id="initiative">
+  <div class="init-tracker">
+    <div class="init-header">
+      <h3>⚔ Initiative</h3>
+      <div class="init-controls">
+        <button class="init-btn pc" onclick="addPreset('PC',15,15,15,'pc')">+ PC</button>
+        <button class="init-btn" onclick="addPreset('Wolf',11,11,13,'')">+ Wolf</button>
+        <button class="init-btn" onclick="addPreset('Welton Wolf',11,11,13,'')">+ Welton Wolf</button>
+        <button class="init-btn" onclick="addPreset('Armored Wolf',11,11,14,'')">+ Armored Wolf</button>
+        <button class="init-btn fire" onclick="addPreset('Flame',47,47,14,'fire')">+ Flame</button>
+        <button class="init-btn bolt" onclick="addPreset('Bolt',47,47,14,'bolt')">+ Bolt</button>
+        <button class="init-btn" onclick="addPreset('Owlbear',40,40,13,'')">+ Owlbear</button>
+        <button class="init-btn primary" onclick="nextTurn()">Next →</button>
+        <button class="init-btn danger" onclick="clearInit()">Clear</button>
+      </div>
+    </div>
+    <div class="combatant-list" id="combatant-list"></div>
+  </div>
+</section>
+
+<section id="thesis">
+  <h2>Design Thesis</h2>
+  <blockquote class="read"><em>The hook is "kill the wolves." The truth is "the wolves are people now."</em></blockquote>
+  <p>This oneshot lives or dies on <strong>one reveal</strong>: the wolves talk. Everything before it is sheep-rustling investigation; everything after it is a negotiated peace under threat of a civil war inside the wolf pack itself.</p>
+
+  <div class="callout"><strong>Three things make it work at the table:</strong>
+    <ol class="tight">
+      <li><strong>The bounty is suspiciously generous</strong> (800 gp for a wolf cull). Hint it loud. Suspicious players investigate; greedy players still get the moral reveal in the cave.</li>
+      <li><strong>Featherock is the keystone clue.</strong> A halfling shepherd, broken, whispering "the wolves were <em>talking</em>." If players skip him, the cave reveal lands cold. If they believe him, they walk in with their swords lowered.</li>
+      <li><strong>Flame vs Bolt is the real boss fight.</strong> Two alpha wolves, one wants peace, one wants slaughter. The party picks which one wins by who they kill, who they spare, and who they talk to.</li>
+    </ol>
+  </div>
+
+  <div class="callout good"><strong>Win state</strong> Wolves dealt with (peace or kill) <strong>AND</strong> the council pays <strong>AND</strong> the party can live with what they did. Lying to the council is on the table — Father Merriksonn rolls Insight +5 against Deception.</div>
+</section>
+
+<section id="background">
+  <h2>DM-Only Background</h2>
+  <details class="spoiler" open>
+    <summary>The Truth About the Wolves (do not read aloud)</summary>
+    <p>Three months ago, the village sorcerer <strong>Alexi Merriksonn</strong> — wielder of Wild Magic — was patrolling the moors and stumbled into a normal wolf pack. He tried to drive them off, <strong>rolled a Wild Magic Surge</strong>, and was vaporized. The surge dumped his intelligence, language, and a sliver of his elemental power into the surviving wolves.</p>
+    <p>The pack woke up sapient. They learned Common in days. They built a fence. They drew on cave walls. They drove off the local Owlbear and took its den. They stole sheep — not to slaughter, but to <strong>breed</strong>. They're trying to live.</p>
+    <p>The alpha pair, <strong>Flame</strong> and <strong>Bolt</strong>, got the most magic — fire breath and lightning breath, respectively. They disagree on what to do next:</p>
+    <ul class="tight">
+      <li><span class="pill fire">FLAME</span> Chaotic neutral. Kill humans, terrorize them out of the woods, claim the land.</li>
+      <li><span class="pill bolt">BOLT</span> Lawful neutral. Negotiate or retreat, raise pups, never be hunted again.</li>
+    </ul>
+    <p>Within weeks they will kill each other if the party doesn't intervene.</p>
+    <p><strong>Nobody in Welton knows any of this.</strong> The village thinks it's a normal pack acting weird.</p>
+  </details>
+</section>
+
+<section id="pacing">
+  <h2>Pacing (4-hour table)</h2>
+  <table>
+    <tr><th>Block</th><th>Time</th><th>Content</th></tr>
+    <tr><td>Hook + Scene 1 (Road Ambush)</td><td>30 min</td><td>Sheep raid in progress, first combat, wolf retreat</td></tr>
+    <tr><td>Scene 2 (Welton)</td><td>60 min</td><td>Council meeting, Featherock interview, rumor-gathering</td></tr>
+    <tr><td>Scene 3 (Into the Woods)</td><td>35 min</td><td>Tracking, optional bait ambush, woods crossing</td></tr>
+    <tr><td>Scene 4 (Owlbear) <em>optional</em></td><td>25 min</td><td>Combat filler, foreshadow wolves vs owlbear</td></tr>
+    <tr><td>Scene 5 (The Den)</td><td>60 min</td><td>Approach, eavesdrop, reveal, the talk-or-fight choice</td></tr>
+    <tr><td>Scene 6 (Resolution)</td><td>30 min</td><td>Flame's betrayal OR final battle, council negotiation</td></tr>
+  </table>
+  <p style="color:var(--muted);font-size:12px"><em>Cut Scene 4 if the table is slow. Cut Scene 3 ambush if the table is fast.</em></p>
+</section>
+
+<section id="cast">
+  <h2>Cast</h2>
+  <div class="npc-grid">
+    <div class="npc-card">
+      <h4>Tillus Merrion</h4>
+      <div class="role">Halfling · de facto mayor</div>
+      <div class="desc">Pompous Growers &amp; Buyers Assoc. leader. Ledger-obsessed, treats lives as line items. Loves Welton. Folds under good arguments.</div>
+      <div class="voice">"Clipped, businesslike, indignant when interrupted."</div>
+    </div>
+    <div class="npc-card ally">
+      <h4>Father Johan Merriksonn</h4>
+      <div class="role">Human, ~55 · priest of Pelor</div>
+      <div class="desc">Kindly face, wispy white hair. Moral compass of the council. Wants peace, wants his brother back. <span class="pill">INSIGHT +5</span></div>
+      <div class="voice">"Warm, slow, measured."</div>
+    </div>
+    <div class="npc-card ally">
+      <h4>Corel</h4>
+      <div class="role">Human, ~50 · master shepherd</div>
+      <div class="desc">Quiet, weathered, lean. Wool tuft on vest. Will guide the party. Master of local terrain. <span class="pill">SURV +4 WIS 14</span></div>
+      <div class="voice">"Speaks rarely; the room listens when he does."</div>
+    </div>
+    <div class="npc-card ally">
+      <h4>Leanor Slatebeard</h4>
+      <div class="role">Dwarf, ~110 · innkeeper</div>
+      <div class="desc">Knows every secret in Welton. Free round + meal for adventurers. Quietly powerful — call on her for council politicking.</div>
+      <div class="voice">"Cheerful, knowing, gossipy."</div>
+    </div>
+    <div class="npc-card">
+      <h4>Willen Featherock</h4>
+      <div class="role">Halfling · broken shepherd</div>
+      <div class="desc">The keystone witness. Bandaged, sweat-soaked, jumpy. Tells the truth ONLY if the party promises to believe him.</div>
+      <div class="voice">"Trembling, hesitant. Breaks into tears."</div>
+    </div>
+    <div class="npc-card dead">
+      <h4>Alexi Merriksonn</h4>
+      <div class="role">Dead before the adventure · wild-mage</div>
+      <div class="desc">Welton's protector. Eccentric, passionate. Died in a Wild Magic Surge that dumped his mind into the wolves. <strong>His brother Johan does not know this yet.</strong></div>
+    </div>
+    <div class="npc-card villain">
+      <h4>Flame</h4>
+      <div class="role">Alpha female · CR 2</div>
+      <div class="desc">Chaotic neutral. Fire breath. Wants to terrorize humans out of the region. Eyes burn orange. Skin cracked like cooling lava.</div>
+      <div class="voice">"Raspy. Hot. Angry."</div>
+    </div>
+    <div class="npc-card ally">
+      <h4>Bolt</h4>
+      <div class="role">Alpha male · CR 2</div>
+      <div class="desc">Lawful neutral. Lightning breath. Wants to retreat and live in peace. Eyes pulse with blue light. Speaks softly because his voice rumbles like thunder.</div>
+      <div class="voice">"Deep. Soft. Almost subliminal — until he raises it and the room shakes."</div>
+    </div>
+  </div>
+</section>
+
+<section id="scene1" class="scene s1">
+  <div class="scene-meta">Scene 1 · ~30 min · Outdoor combat</div>
+  <h2>1 · The Welton Wolfpack</h2>
+
+  <h4>Cold Open (read aloud)</h4>
+  <blockquote class="read">The road from the high passes drops down through chalk hills and patchy woods, and below you sits Welton — white-walled houses, smoke from a dozen chimneys, sheep dotting the green like spilled flour. Easy country. Quiet country.
+
+Three hundred feet ahead, the road bends between a rock outcrop and the edge of a mossy wood. Two men in shepherd's cloaks are pushing a small flock through the gap, four sheepdogs working the flanks.
+
+Then the dogs go rigid. Ears up. Both of them barking at once. The shepherds reach for clubs at their belts — and from both sides of the road, grey shapes erupt out of the brush. <em>Eight wolves.</em> Moving like a single thing.</blockquote>
+
+  <p><strong>Roll initiative.</strong> Players are <strong>150 ft</strong> from the action.</p>
+
+  <h4>Encounter</h4>
+  <p><span class="pill">8 Wolves</span> vs. 2 Shepherds (<em>Commoner</em>, AC 10, HP 4, club +2 / 1d4) + 4 Sheepdogs (<em>Mastiff</em>) + ~12 sheep.</p>
+
+  <div class="callout danger"><strong>Wolf Tactics — Critical</strong>
+    <p>The wolves are <strong>NOT</strong> trying to kill. They are stealing sheep.</p>
+    <ul class="tight">
+      <li><strong>4 wolves</strong> harass shepherds — bite at legs/arms, no kill blows. Distraction.</li>
+      <li><strong>4 wolves</strong> grab sheep by scruff and bolt west at full speed (50 ft/round).</li>
+      <li>A wolf at &gt;50% HP loss disengages and runs.</li>
+      <li>If 3 wolves drop, the rest break contact and flee west, leaving stolen sheep if needed.</li>
+      <li><strong>No wolf fights to the death here.</strong></li>
+    </ul>
+  </div>
+
+  <h4>Aftermath</h4>
+  <p>If party intervened: shepherds <strong>Hennick</strong> and <strong>Toll</strong> are grateful. Walk back to Welton with them, seeded rumors on the way. <strong>No reward</strong> — poor farmhands.</p>
+  <p>If party watched: shepherds lose 6–8 sheep, are wounded, beg help to walk back. No hostility.</p>
+  <p><strong>XP:</strong> 400 (8 × 50). Award full even if wolves fled.</p>
+</section>
+
+<section id="scene2" class="scene s2">
+  <div class="scene-meta">Scene 2 · ~60 min · Investigation &amp; RP</div>
+  <h2>2 · Welton &amp; The Council</h2>
+
+  <h4>Welton at a Glance</h4>
+  <ul class="tight">
+    <li>Population ~300. Human-majority, halfling minority, handful of dwarves.</li>
+    <li>Wheat + wool economy. Exports both to nearby cities.</li>
+    <li><strong>Mood:</strong> scared, hungry, idle. Driven-off farmers camping in the village. Streets muddy with extra foot traffic.</li>
+    <li>Bright-white painted oak buildings. Carved eaves. Slow river. Two hills flanking.</li>
+  </ul>
+
+  <h4>Locations</h4>
+  <table>
+    <tr><th>Where</th><th>What</th></tr>
+    <tr><td>The Shepherd's Crook (inn)</td><td>Council meeting, Featherock's sickroom, free lodging</td></tr>
+    <tr><td>Growers' Hall</td><td>Tillus Merrion's HQ</td></tr>
+    <tr><td>Fleecers' Hall</td><td>Wool guild</td></tr>
+    <tr><td>General store</td><td>Basic gear</td></tr>
+    <tr><td>Father Merriksonn's chapel</td><td>Small shrine to Pelor</td></tr>
+  </table>
+
+  <h4>The Shepherd's Crook</h4>
+  <p>Owner: <strong>Leanor Slatebeard</strong> (dwarf, ~110). Husband Banteth cooks and brews. <strong>Free round + meal</strong> if the party identifies as adventurers there for the wolves.</p>
+  <p><strong>Mood:</strong> Old shepherds in cloaks, long pipes, muttering. Young displaced farmers nursing one drink each. Dour, suspicious of outsiders until the wolf job is mentioned.</p>
+
+  <h4>The Council Meeting (back room)</h4>
+  <p><strong>8-seat round table, 7 chairs filled.</strong> When the party arrives, <strong>Tillus and Father Merriksonn are mid-shouting-match</strong> over whether to halt grain exports during the crisis.</p>
+
+  <table>
+    <tr><th>Councillor</th><th>Role</th><th>Voice</th></tr>
+    <tr><td>Tillus Merrion (halfling m)</td><td>De facto mayor</td><td>Wants exports to continue</td></tr>
+    <tr><td>Father Johan Merriksonn</td><td>Priest of Pelor</td><td>Wants to feed locals first</td></tr>
+    <tr><td>Corel (human m)</td><td>Fleecers' Guild</td><td>Quiet, respected, neutral</td></tr>
+    <tr><td>Hanna Westly</td><td>Farmer rep</td><td>Worried, mostly silent</td></tr>
+    <tr><td>3 minor human reps</td><td>Guild background</td><td>Vote with majority</td></tr>
+    <tr><td>Mella Tinnsfoot (halfling f)</td><td>Halfling community rep</td><td>Sides with Tillus by default</td></tr>
+  </table>
+
+  <h4>What the Council Offers</h4>
+  <ul class="tight">
+    <li><span class="pill good">800 gp</span> on completion</li>
+    <li>Free lodging at the Crook</li>
+    <li>Free meals during the contract</li>
+    <li><strong>Corel</strong> as local guide if requested</li>
+  </ul>
+
+  <h4>What the Council Knows</h4>
+  <ul class="tight">
+    <li>Wolves driving people off farms for <strong>3 months</strong></li>
+    <li>Whole flocks, plus cattle/pigs/chickens missing</li>
+    <li>Wolves <strong>strangely organized</strong> — opening gates, pulling down fences, coordinated ambushes</li>
+    <li>A posse was attacked weeks ago and routed. Survivors talk of "thunder" and "fire."</li>
+    <li>Village sorcerer <strong>Alexi Merriksonn</strong> (Father Merriksonn's brother) vanished as attacks started</li>
+    <li>Wolves believed to den in the western woods</li>
+    <li><strong>Werewolves?</strong> Father Merriksonn shoots this down — full moons passed, nobody turned</li>
+  </ul>
+</section>
+
+<section id="rumors">
+  <h2>Shaggy Wolf Stories — Rumor Table</h2>
+  <p style="color:var(--muted);font-size:12px"><em>Click a rumor when you've told it. Greyed = used.</em></p>
+  <table class="rumor-table">
+    <tr><th style="width:30px">#</th><th>Rumor</th></tr>
+    <tr onclick="this.classList.toggle('told')"><td>1</td><td>"All this started when Father Merriksonn's brother, the sorcerer, upped and vanished. Not that I'd say a word against him, mind you."</td></tr>
+    <tr onclick="this.classList.toggle('told')"><td>2</td><td>"Petersens up Spurrok's Hill had a dozen sheep snatched from <strong>inside a locked barn.</strong> Boy got the strap for leaving it open. Week later, old Petersen locked it himself — and lost a dozen more."</td></tr>
+    <tr onclick="this.classList.toggle('told')"><td>3</td><td>"Wheatly the pot-seller got chased off his cart. Came back with help — horses gone, three sacks of thick leather gone with 'em."</td></tr>
+    <tr onclick="this.classList.toggle('told')"><td>4</td><td>"Old Grimstone heard a voice in the trees calling for help. Ran to look. Couldn't find a soul. Came back to find his flock gone."</td></tr>
+    <tr onclick="this.classList.toggle('told')"><td>5</td><td>"The posse that went hunting them — thunder and fire, they said. Booming, bursts of flame. Halfling named Featherock got dragged out half-dead and dumped on the Westly farm. Cracked in the head ever since. Says the wolves <em>talk</em>."</td></tr>
+    <tr onclick="this.classList.toggle('told')"><td>6</td><td>"800 gold for a pack of wolves? Either they're stupid, scared, or that ain't a normal pack."</td></tr>
+  </table>
+</section>
+
+<section id="featherock">
+  <h2>Featherock's Room — KEY SCENE</h2>
+  <div class="callout danger"><strong>Critical clue scene</strong> If players skip Featherock, the den reveal lands cold. If they believe him, they walk into Scene 5 ready to parley.</div>
+
+  <p><strong>Willen Featherock</strong>, halfling shepherd. Badly wounded weeks ago in the failed posse. White-faced, sweating, bandaged left arm and right leg. Father Merriksonn attends him daily.</p>
+  <p>Scared. Will not talk freely. <strong>Opens up only if the party promises to believe him.</strong></p>
+
+  <h4>The Story (deliver in fragments)</h4>
+  <ol class="tight">
+    <li>He was bitten, then trampled by his fleeing companions during the posse ambush.</li>
+    <li>Drifted in and out of consciousness.</li>
+    <li>He remembers <strong>gruff voices arguing in the darkness</strong> and a <strong>powerful grip on his ankle</strong>.</li>
+    <li>If pressed gently: <em>"They were talking. The wolves were talking. They were arguing whether to eat me."</em></li>
+    <li>He was dumped on the Westly farm doorstep at dawn — <strong>alive</strong>, deliberately.</li>
+    <li>Breaks down. Refuses to say more.</li>
+  </ol>
+
+  <div class="callout good"><strong>Recovery</strong> If the wolves' intelligence becomes publicly known, Featherock recovers within days. He'll come find the party to thank them.</div>
+</section>
+
+<section id="scene3" class="scene s3">
+  <div class="scene-meta">Scene 3 · ~35 min · Travel &amp; tracking</div>
+  <h2>3 · Into the Western Woods</h2>
+
+  <p>The wolves' den is in a <strong>hollow on the far western edge of the woods</strong>, ~4 hours' walking from Welton. <strong>There is no scripted path.</strong></p>
+
+  <table>
+    <tr><th>Approach</th><th>Outcome</th></tr>
+    <tr><td>Track from Scene 1 ambush site</td><td>WIS (Survival) DC 14 (16 if &gt;8h old). Failure: 1h lost + random encounter.</td></tr>
+    <tr><td>Bait with sheep flock (Corel offers his)</td><td>6 wolves attack in 2–4h. Same tactics as Scene 1. If party speaks, wolves may stammer a word then flee.</td></tr>
+    <tr><td>Hire Corel as guide</td><td>Commoner stats, WIS 14, Survival +4. Cuts travel to 3h. He will NOT enter the final hollow.</td></tr>
+    <tr><td>Speak with Animals on a captive wolf</td><td>Fragments: "Pack," "Lightbringer," "no kill shepherd."</td></tr>
+  </table>
+
+  <h4>Atmosphere (read aloud)</h4>
+  <blockquote class="read">The woods press in tight. Moss-thick trunks, knee-high ferns, the smell of wet earth. Every few minutes something small bolts through the undergrowth — squirrels, rabbits, you can't tell. Once, far off to the west, a single wolf howls. Then nothing. Just the rustle.</blockquote>
+</section>
+
+<section id="scene4" class="scene s4">
+  <div class="scene-meta">Scene 4 · OPTIONAL · ~25 min · Combat filler</div>
+  <h2>4 · The Owlbear's Picnic</h2>
+  <p><em>Cut this scene if you're tight on time. It foreshadows that wolves drove an Owlbear out of its den.</em></p>
+
+  <h4>The Encounter</h4>
+  <p>After ~2h in the woods, the party hears <strong>snapping branches</strong>. Unless they hide (DEX Stealth DC 15), an <strong>Owlbear</strong> (modified, see statblock below) crashes into them.</p>
+
+  <ul class="tight">
+    <li><strong>Max HP 40</strong> (reduced from 59) — bleeding for weeks</li>
+    <li>Limping, gaunt, half-healed bite wounds clotted with old black blood</li>
+    <li><strong>Scorch marks</strong> in the fur (Flame's work)</li>
+    <li><strong>Will not retreat.</strong> Starving. Charges easiest target. Fights to 0 HP.</li>
+  </ul>
+
+  <h4>Clues After the Kill</h4>
+  <ul class="tight">
+    <li>WIS (Nature) DC 12: wounds are 2+ weeks old, caused by <strong>sharp jaws</strong></li>
+    <li>WIS (Nature) DC 10 OR proficiency: <strong>wolves do not pick fights with owlbears</strong></li>
+    <li>If daytime: owlbears are nocturnal — <strong>this one was driven from its lair</strong></li>
+    <li>Scorch marks: WIS (Survival) DC 12 — magical heat, not natural fire</li>
+  </ul>
+  <p><strong>XP:</strong> 700 (reduced HP makes effective CR ~2.5)</p>
+</section>
+
+<section id="scene5" class="scene s5">
+  <div class="scene-meta">Scene 5 · ~60 min · THE REVEAL</div>
+  <h2>5 · The Wolves' Den</h2>
+
+  <h4>Approach</h4>
+  <p>Cave entrance ~10ft × 10ft in a low grey cliff. Smoke rises from a <strong>second hole ~30ft back on the hill above</strong> (chimney to the eastern sub-chamber).</p>
+  <p><strong>Tripwire perimeter</strong> at the treeline. <span class="pill">WIS Perception DC 13</span> to spot. Triggers bone noisemakers.</p>
+
+  <h4>What the Party Sees from the Treeline (read aloud)</h4>
+  <blockquote class="read">Through the trees you see a hollow opening before the cliff. <em>Six wolves.</em> Some lounging by an outdoor fire. Two of them are working on what looks like a wooden fence — with their teeth. One is tearing apart a sheep carcass with surgical care, like it's portioning out meals. Many of them wear strips of bright cloth or beadwork around limbs and necks.
+
+The scene is eerily peaceful. Eerily <em>organized</em>. Not a wolf den. A <em>settlement</em>.</blockquote>
+
+  <div class="callout"><strong>Pause here.</strong> Let the players notice. Let it land.</div>
+
+  <h4>The Back Door (Chimney Hole)</h4>
+  <p>The smoke hole on the hill, ~30ft from the cave entrance, opens 15ft above the eastern sub-chamber floor — directly above the meeting-room fire. Big enough for a Small creature (halfling, gnome) or a Medium creature with effort + grappling.</p>
+  <p><strong>Eavesdroppers will hear Flame and Bolt arguing:</strong></p>
+
+  <blockquote class="dialogue fire"><strong>Flame</strong> (snarled, hot): "They came armed. They came as hunters. We are weak as long as they think we are animals. Burn the next village. Make them flee. Take the land."</blockquote>
+  <blockquote class="dialogue bolt"><strong>Bolt</strong> (low, thunder-soft): "And every season after, more hunters. More fire-throwers like the Lightbringer. We did not become <em>this</em> to die in a glorious last stand. We disappear. We go deep. The pups grow up free."</blockquote>
+  <blockquote class="dialogue fire"><strong>Flame</strong>: "The pups grow up <em>starving</em> if we crawl."</blockquote>
+
+  <p><em>Continue ad-lib until the party acts. The argument lasts 5–10 minutes in-fiction.</em></p>
+
+  <h4>Inside the Cave</h4>
+  <table>
+    <tr><th>Chamber</th><th>Contents</th></tr>
+    <tr><td><strong>Central</strong> (largest)</td><td>Main living &amp; sleeping area. Bone pile SE corner. Leaf-cloth beds. <strong>Cave paintings</strong> in charcoal &amp; white ash showing wolves + a tall human throwing light + the human vanishing in a burst + wolves rising. WIS Perception DC 12 to read the full story.</td></tr>
+    <tr><td><strong>West sub</strong> — Storeroom</td><td>Bags of homespun wool, leather hides. Knives, shovel, mundane stolen gear. Stolen sheep penned behind a tool-shaped wooden fence. Constant bleating.</td></tr>
+    <tr><td><strong>Center sub</strong> — Nursery</td><td>~6 pups learning Common ("hunt?", "no", "mama"). 2 adult guards <strong>fight to the death</strong> for them. Use <strong>Cat</strong> (MM p.320) stats for pups in combat.</td></tr>
+    <tr><td><strong>East sub</strong> — Council Room</td><td>Small fire (chimney to surface). Otherwise bare. Where Flame &amp; Bolt argue.</td></tr>
+  </table>
+
+  <h4>Triggering Combat</h4>
+  <p>The wolves panic-bark if: noisemakers trip, stealth checks fail, party walks into the hollow openly. One wolf shouts <strong>"HUNTERS!"</strong> in growling, halting Common.</p>
+  <p>All 6 outer wolves attack. After <strong>1 full round</strong>, Flame &amp; Bolt emerge from the cave with <strong>4 more armored wolves</strong> (+1 AC from leather scraps).</p>
+
+  <div class="callout danger"><strong>Combat Tactics</strong>
+    <ul class="tight">
+      <li>All wolves intelligent. Aggressive Pack Tactics use.</li>
+      <li>Speed 50ft to outflank squishy casters.</li>
+      <li><strong>Bolt</strong> uses Lightning Breath in lines that <strong>never catch allies</strong>.</li>
+      <li><strong>Flame</strong> uses Fire Breath in cones, <strong>does not care if 1–2 wolves are caught</strong> — trades them for a full party blast.</li>
+      <li>Bite + DC 13 STR save knocks targets prone, then dogpile.</li>
+    </ul>
+  </div>
+</section>
+
+<section id="peace-trigger">
+  <h2>★ THE PEACE TRIGGER</h2>
+  <div class="callout peace"><strong>When to trigger</strong>
+    <p>After <strong>ANY ONE</strong> of these occurs, <strong>Bolt roars</strong> (thunder-shake the room) and bellows in Common:</p>
+    <blockquote class="dialogue bolt"><strong>Bolt</strong>: "<em>HOLD!</em> This fight serves none of us. Speak — or we all die for nothing."</blockquote>
+    <ol class="tight">
+      <li><strong>4 wolves are killed</strong></li>
+      <li>Flame <strong>OR</strong> Bolt drops below <strong>half HP</strong></li>
+      <li>Any <strong>PC drops to 0 HP</strong></li>
+    </ol>
+    <p>Track this with the tracker above. When any condition is met, the tracker glows.</p>
+    <p><strong>The party can ignore him.</strong> If they do, the wolves fight to the death. If they listen — Scene 6.</p>
+  </div>
+</section>
+
+<section id="scene6" class="scene s6">
+  <div class="scene-meta">Scene 6 · ~30 min · Resolution + climax</div>
+  <h2>6 · Settling the Scores</h2>
+
+  <div class="choice-grid">
+    <div class="choice war">
+      <h4>Branch A — Total War</h4>
+      <p>Party refuses or fails peace. Wolves fight to the death.</p>
+      <ul class="tight">
+        <li>Nursery wolves beg for pups' lives. Spare pups → surviving wolves vanish forever.</li>
+        <li>Threaten pups → guards fight to the death.</li>
+        <li>Contract fulfilled. Council pays 800 gp.</li>
+        <li><strong>Featherock does not recover.</strong> Lives, but haunted.</li>
+      </ul>
+    </div>
+
+    <div class="choice peace">
+      <h4>Branch B — Negotiated Peace</h4>
+      <p>Bolt explains everything:</p>
+      <ul class="tight">
+        <li>Pack was normal until they brought down "the Lightbringer" (Alexi Merriksonn).</li>
+        <li>Flash of light. They woke up <em>thinking</em>.</li>
+        <li>They hoard food so pups don't starve, elderly aren't abandoned.</li>
+        <li>They drove off the Owlbear.</li>
+        <li>Bolt hates Welton's people but <strong>is not Flame</strong> — he wants out, not war.</li>
+        <li><strong>His offer:</strong> woods + uninhabited western moors → the pack. No raids. Pack kills any other predator threatening Welton. A border.</li>
+      </ul>
+    </div>
+  </div>
+
+  <h2>★ THE FLAME BETRAYAL</h2>
+  <div class="callout danger"><strong>Climax — Do not telegraph</strong>
+    <p>The instant it becomes clear Bolt is striking a deal, <strong>Flame attacks Bolt from behind.</strong></p>
+    <ul class="tight">
+      <li>She bites him for <strong>massive damage</strong> (drop Bolt to ~1/4 HP, take him out of the fight)</li>
+      <li>She screams <strong>"COWARD!"</strong> in Common, eyes blazing</li>
+      <li>All <strong>armored wolves</strong> rally to her in a final desperate attack</li>
+      <li>Unarmored wolves <strong>fall back in fear and confusion</strong> — they don't know who to follow</li>
+    </ul>
+    <p><strong>This is the real boss fight.</strong> Flame + 4 armored wolves vs the party, Bolt bleeding on the cave floor.</p>
+    <p><strong>If party wins AND stabilizes Bolt</strong> (DC 10 WIS Medicine or any healing): peace holds. Bolt becomes new alpha.</p>
+    <p><strong>If Bolt dies in the chaos</strong>: peace dies with him. Surviving wolves flee. <strong>Sequel seed:</strong> a wounded, leaderless intelligent pack vanishes into the wild.</p>
+  </div>
+
+  <h4>Returning to Welton</h4>
+  <table>
+    <tr><th>Option</th><th>What Happens</th></tr>
+    <tr><td>1 — Total kill, truthful report</td><td>Council pays 800 gp on the spot.</td></tr>
+    <tr><td>2 — Wolves relocated, lied about it</td><td>Father Merriksonn rolls <span class="pill">WIS Insight +5</span> vs lowest party CHA Deception. If he beats it, confronts party in <strong>private</strong>. Heartbroken (brother died for this) but won't expose the lie. Still pays.</td></tr>
+    <tr><td>3 — Wolves negotiated, honest pitch</td><td>Father Merriksonn + Corel auto-support. <strong>Tillus must be convinced</strong> — see vote tracker below.</td></tr>
+  </table>
+</section>
+
+<section id="vote">
+  <h2>Council Vote (Branch 3 only)</h2>
+  <p><strong>DC 15 CHA (Persuasion)</strong> + decent argument to flip Tillus. If Tillus folds, the rest follow.</p>
+  <p>If Tillus refuses → vote called. <strong>DC 12 CHA (Persuasion)</strong> per councillor. Advantage/disadvantage based on argument quality.</p>
+  <p><strong>Need 3 successes</strong> for majority (Corel + Father Merriksonn auto-yes).</p>
+
+  <p style="color:var(--muted);font-size:12px"><em>Click a card to cycle: undecided → YES → NO → undecided.</em></p>
+  <div class="council-vote" id="council-vote">
+    <div class="vote-card yes" onclick="cycleVote(this)" data-state="yes"><div class="name">Corel</div><div class="status">auto-yes</div></div>
+    <div class="vote-card yes" onclick="cycleVote(this)" data-state="yes"><div class="name">Father Merriksonn</div><div class="status">auto-yes</div></div>
+    <div class="vote-card" onclick="cycleVote(this)" data-state="undecided"><div class="name">Tillus Merrion</div><div class="status">undecided</div></div>
+    <div class="vote-card" onclick="cycleVote(this)" data-state="undecided"><div class="name">Hanna Westly</div><div class="status">undecided</div></div>
+    <div class="vote-card" onclick="cycleVote(this)" data-state="undecided"><div class="name">Mella Tinnsfoot</div><div class="status">undecided</div></div>
+    <div class="vote-card" onclick="cycleVote(this)" data-state="undecided"><div class="name">Rep #1</div><div class="status">undecided</div></div>
+    <div class="vote-card" onclick="cycleVote(this)" data-state="undecided"><div class="name">Rep #2</div><div class="status">undecided</div></div>
+    <div class="vote-card" onclick="cycleVote(this)" data-state="undecided"><div class="name">Rep #3</div><div class="status">undecided</div></div>
+  </div>
+  <div class="vote-tally"><span class="yes-count">YES: <span id="yes-tally">2</span></span><span class="no-count">NO: <span id="no-tally">0</span></span><span style="color:var(--muted)">Need 3 to pass</span></div>
+
+  <div class="callout"><strong>If outvoted</strong> Tillus storms out broken, leaves the council, never returns. Pack relocates anyway. <strong>800 gp paid either way.</strong></div>
+</section>
+
+<section id="sb-wolf">
+  <h2>Statblocks</h2>
+  <div class="statblock">
+    <h3>Wolf</h3>
+    <div class="subtitle">Medium beast, unaligned · MM p.241</div>
+    <hr>
+    <p><strong>AC</strong> 13 · <strong>HP</strong> 11 (2d8+2) · <strong>Speed</strong> 40 ft</p>
+    <div class="ability"><div><span>STR</span>12 (+1)</div><div><span>DEX</span>15 (+2)</div><div><span>CON</span>12 (+1)</div><div><span>INT</span>3 (-4)</div><div><span>WIS</span>12 (+1)</div><div><span>CHA</span>6 (-2)</div></div>
+    <p><strong>Skills</strong> Perception +3, Stealth +4 · <strong>Senses</strong> passive Perception 13</p>
+    <p><strong>Challenge</strong> 1/4 (50 XP)</p>
+    <hr>
+    <p class="trait"><strong>Keen Hearing and Smell.</strong> Advantage on Perception (hearing/smell).</p>
+    <p class="trait"><strong>Pack Tactics.</strong> Advantage on attacks if an ally is within 5 ft of target and not incapacitated.</p>
+    <hr>
+    <p class="action"><strong>Bite.</strong> Melee Weapon Attack: +4 to hit, reach 5 ft, one target. Hit: 7 (2d4+2) piercing. If creature: DC 11 STR save or prone.</p>
+  </div>
+</section>
+
+<section id="sb-welton-wolf">
+  <div class="statblock">
+    <h3>Welton Wolf (Sapient Variant)</h3>
+    <div class="subtitle">Medium beast, lawful or chaotic neutral</div>
+    <hr>
+    <p>Same as standard Wolf <strong>but:</strong> INT 8 (-1), speaks halting <strong>Common</strong>. Will negotiate, surrender, retreat strategically. Wears strips of cloth or beads.</p>
+    <p><em>Armored Welton Wolf:</em> as above, AC 14 (crude leather scraps).</p>
+  </div>
+</section>
+
+<section id="sb-flame">
+  <div class="statblock" style="border-color:var(--fire);box-shadow:0 4px 12px rgba(232,120,32,0.3)">
+    <h3 style="color:#a52a0a">Flame</h3>
+    <div class="subtitle">Large beast, chaotic neutral · Alpha Female</div>
+    <hr>
+    <p><strong>AC</strong> 14 (natural) · <strong>HP</strong> 47 (7d10+10) · <strong>Speed</strong> 50 ft</p>
+    <div class="ability"><div><span>STR</span>17 (+3)</div><div><span>DEX</span>15 (+2)</div><div><span>CON</span>15 (+2)</div><div><span>INT</span>12 (+1)</div><div><span>WIS</span>14 (+2)</div><div><span>CHA</span>8 (-1)</div></div>
+    <p><strong>Skills</strong> Perception +3, Stealth +4 · <strong>Senses</strong> passive Perception 13</p>
+    <p><strong>Languages</strong> Common · <strong>Challenge</strong> 2 (450 XP)</p>
+    <hr>
+    <p class="trait"><strong>Keen Hearing and Smell.</strong> Advantage on Perception (hearing/smell).</p>
+    <p class="trait"><strong>Pack Tactics.</strong> Advantage on attacks if ally within 5 ft.</p>
+    <hr>
+    <p class="action"><strong>Bite.</strong> +5 to hit, 5 ft, 7 (1d6+3) piercing. DC 13 STR save or prone.</p>
+    <p class="action"><strong>Fire Breath (Recharge 5–6).</strong> 15-ft cone. DC 13 DEX save. 9 (2d8) fire damage, half on success.</p>
+    <hr>
+    <p style="font-size:12px;font-style:italic">Very large dark-grey wolf. Eyes burn with constant orange flame. Thin cracks of red light run across her body like cooling lava.</p>
+  </div>
+</section>
+
+<section id="sb-bolt">
+  <div class="statblock" style="border-color:var(--bolt);box-shadow:0 4px 12px rgba(90,142,200,0.3)">
+    <h3 style="color:#1a3a6a">Bolt</h3>
+    <div class="subtitle">Large beast, lawful neutral · Alpha Male</div>
+    <hr>
+    <p><strong>AC</strong> 14 (natural) · <strong>HP</strong> 47 (7d10+10) · <strong>Speed</strong> 50 ft</p>
+    <div class="ability"><div><span>STR</span>17 (+3)</div><div><span>DEX</span>15 (+2)</div><div><span>CON</span>15 (+2)</div><div><span>INT</span>12 (+1)</div><div><span>WIS</span>14 (+2)</div><div><span>CHA</span>8 (-1)</div></div>
+    <p><strong>Skills</strong> Perception +3, Stealth +4 · <strong>Senses</strong> passive Perception 13</p>
+    <p><strong>Languages</strong> Common · <strong>Challenge</strong> 2 (450 XP)</p>
+    <hr>
+    <p class="trait"><strong>Keen Hearing and Smell.</strong> Advantage on Perception (hearing/smell).</p>
+    <p class="trait"><strong>Pack Tactics.</strong> Advantage on attacks if ally within 5 ft.</p>
+    <hr>
+    <p class="action"><strong>Bite.</strong> +5 to hit, 5 ft, 7 (1d6+3) piercing. DC 13 STR save or prone.</p>
+    <p class="action"><strong>Lightning Breath (Recharge 5–6).</strong> 30-ft line. DC 13 DEX save. 9 (2d8) lightning damage, half on success. <em>Never targets allies.</em></p>
+    <hr>
+    <p style="font-size:12px;font-style:italic">Very large dark-grey wolf. Eyes &amp; skin pulse with crackling blue light. Speaks softly — raised voice rumbles like thunder and shakes the ground.</p>
+  </div>
+</section>
+
+<section id="sb-owlbear">
+  <div class="statblock">
+    <h3>Owlbear (Wounded)</h3>
+    <div class="subtitle">Large monstrosity, unaligned · MM p.249 modified</div>
+    <hr>
+    <p><strong>AC</strong> 13 · <strong>HP</strong> <span style="color:var(--blood)">40 (reduced from 59)</span> · <strong>Speed</strong> 40 ft</p>
+    <div class="ability"><div><span>STR</span>20 (+5)</div><div><span>DEX</span>12 (+1)</div><div><span>CON</span>17 (+3)</div><div><span>INT</span>3 (-4)</div><div><span>WIS</span>12 (+1)</div><div><span>CHA</span>7 (-2)</div></div>
+    <p><strong>Skills</strong> Perception +3 · <strong>Senses</strong> darkvision 60 ft, passive Perception 13</p>
+    <p><strong>Challenge</strong> 3 (700 XP) · <em>effective ~CR 2.5 with reduced HP</em></p>
+    <hr>
+    <p class="trait"><strong>Keen Sight and Smell.</strong> Advantage on Perception (sight/smell).</p>
+    <hr>
+    <p class="action"><strong>Multiattack.</strong> Beak + Claws.</p>
+    <p class="action"><strong>Beak.</strong> +7 to hit, 5 ft, 10 (1d10+5) piercing.</p>
+    <p class="action"><strong>Claws.</strong> +7 to hit, 5 ft, 14 (2d8+5) slashing.</p>
+  </div>
+</section>
+
+<section id="sb-tuned">
+  <h2>★ Level-2 Tuned Statblocks (4-PC Party)</h2>
+  <div class="callout danger"><strong>Use these instead of the defaults</strong> when running for 4 PCs at level 2. The default Flame/Bolt will TPK a level-2 party (Fire Breath 2d8 + 12 HP wizard = dead from one failed save).</div>
+
+  <div class="statblock" style="border-color:var(--fire);box-shadow:0 4px 12px rgba(232,120,32,0.3)">
+    <h3 style="color:#a52a0a">Flame (Level 2 Tuned)</h3>
+    <div class="subtitle">Large beast, chaotic neutral · Alpha Female · CR 1</div>
+    <hr>
+    <p><strong>AC</strong> 13 · <strong>HP</strong> <span style="color:var(--blood)">35 (was 47)</span> · <strong>Speed</strong> 50 ft</p>
+    <div class="ability"><div><span>STR</span>17 (+3)</div><div><span>DEX</span>15 (+2)</div><div><span>CON</span>14 (+2)</div><div><span>INT</span>12 (+1)</div><div><span>WIS</span>14 (+2)</div><div><span>CHA</span>8 (-1)</div></div>
+    <p><strong>Skills</strong> Perception +3, Stealth +4 · <strong>Languages</strong> Common · <strong>Challenge</strong> 1 (200 XP)</p>
+    <hr>
+    <p class="trait"><strong>Keen Hearing and Smell.</strong> Advantage on Perception (hearing/smell).</p>
+    <p class="trait"><strong>Pack Tactics.</strong> Advantage on attacks if ally within 5 ft.</p>
+    <hr>
+    <p class="action"><strong>Bite.</strong> +5 to hit, 5 ft, <strong>5 (1d6+2)</strong> piercing. DC 12 STR save or prone.</p>
+    <p class="action"><strong>Fire Breath (Recharge 6, earliest round 2).</strong> 15-ft cone. DC 12 DEX save. <strong>7 (2d6) fire</strong>, half on success. <em>Will not catch allies in this tuning.</em></p>
+  </div>
+
+  <div class="statblock" style="border-color:var(--bolt);box-shadow:0 4px 12px rgba(90,142,200,0.3)">
+    <h3 style="color:#1a3a6a">Bolt (Level 2 Tuned)</h3>
+    <div class="subtitle">Large beast, lawful neutral · Alpha Male · CR 1</div>
+    <hr>
+    <p><strong>AC</strong> 13 · <strong>HP</strong> <span style="color:var(--blood)">35 (was 47)</span> · <strong>Speed</strong> 50 ft</p>
+    <div class="ability"><div><span>STR</span>17 (+3)</div><div><span>DEX</span>15 (+2)</div><div><span>CON</span>14 (+2)</div><div><span>INT</span>12 (+1)</div><div><span>WIS</span>14 (+2)</div><div><span>CHA</span>8 (-1)</div></div>
+    <p><strong>Skills</strong> Perception +3, Stealth +4 · <strong>Languages</strong> Common · <strong>Challenge</strong> 1 (200 XP)</p>
+    <hr>
+    <p class="trait"><strong>Keen Hearing and Smell.</strong> Advantage on Perception (hearing/smell).</p>
+    <p class="trait"><strong>Pack Tactics.</strong> Advantage on attacks if ally within 5 ft.</p>
+    <hr>
+    <p class="action"><strong>Bite.</strong> +5 to hit, 5 ft, <strong>5 (1d6+2)</strong> piercing. DC 12 STR save or prone.</p>
+    <p class="action"><strong>Lightning Breath (Recharge 6, earliest round 3).</strong> 30-ft line. DC 12 DEX save. <strong>7 (2d6) lightning</strong>, half on success. Never targets allies.</p>
+  </div>
+
+  <div class="statblock">
+    <h3>Owlbear (Level 2 Tuned)</h3>
+    <div class="subtitle">Large monstrosity, unaligned · Effective CR ~1</div>
+    <hr>
+    <p style="color:var(--blood);font-weight:bold">RECOMMENDED: SKIP SCENE 4 ENTIRELY FOR LEVEL 2.</p>
+    <p>If you insist on running it:</p>
+    <ul class="tight" style="color:#1a1410">
+      <li><strong>HP 30</strong> (further reduced)</li>
+      <li><strong>Single attack per turn</strong>, not multiattack — choose Beak (10) OR Claws (14)</li>
+      <li><strong>At 0 HP: collapses, surrenders, doesn't die.</strong> Party can spare it or put it down.</li>
+    </ul>
+  </div>
+
+  <h4>Scene 5 — Encounter Composition</h4>
+  <table>
+    <tr><th>Default (lvl 3)</th><th>Tuned (lvl 2 × 4)</th></tr>
+    <tr><td>10 wolves + Flame + Bolt</td><td><strong>6 total</strong> (4 outside + 2 armored arriving) + Flame + Bolt</td></tr>
+    <tr><td>Peace Trigger: 4 wolves killed</td><td><strong>Peace Trigger: 3 wolves killed</strong></td></tr>
+    <tr><td>Flame uses breath turn 1</td><td><strong>Earliest round 2</strong></td></tr>
+    <tr><td>Both alphas breath same turn possible</td><td><strong>Only one alpha breaths per round</strong> (other bites)</td></tr>
+  </table>
+
+  <h4>Scene 1 — Wolf Count</h4>
+  <p><strong>Default:</strong> 8 wolves. <strong>Tuned for lvl 2:</strong> 6 wolves (4 distractor + 2 sheep-snatch).</p>
+</section>
+
+<section id="skills">
+  <h2>Skill Check Reference</h2>
+  <table>
+    <tr><th>Check</th><th>DC</th><th>Notes</th></tr>
+    <tr><td>Track wolf through woods</td><td>WIS (Survival) 14 / 16</td><td>16 if &gt;8h old</td></tr>
+    <tr><td>Track wolf carrying prey</td><td>WIS (Survival) 11 / 13</td><td>Blood trail, drag marks</td></tr>
+    <tr><td>Hide from wolves</td><td>DEX (Stealth) vs Wolf Perception +3</td><td>Advantage on scent/sound</td></tr>
+    <tr><td>Understand wolf habits</td><td>WIS (Nature) 12</td><td>DC 10 with proficiency</td></tr>
+    <tr><td>Spot the cave tripwire perimeter</td><td>WIS (Perception) 13</td><td>Triggers bone noisemakers</td></tr>
+    <tr><td>Read the cave-painting story</td><td>WIS (Perception) 12</td><td>Wolves + Lightbringer + burst</td></tr>
+    <tr><td>Father Merriksonn detecting a lie</td><td>WIS (Insight) +5</td><td>vs lowest party Deception</td></tr>
+    <tr><td>Convince Tillus directly</td><td>CHA (Persuasion) DC 15</td><td>Requires decent argument</td></tr>
+    <tr><td>Convince a councillor (vote)</td><td>CHA (Persuasion) DC 12</td><td>Per-councillor, adv/dis by argument</td></tr>
+    <tr><td>Stabilize Bolt during betrayal</td><td>WIS (Medicine) DC 10</td><td>Or any healing</td></tr>
+  </table>
+</section>
+
+<section id="xp">
+  <h2>XP &amp; Rewards</h2>
+  <table>
+    <tr><th>Source</th><th>XP</th></tr>
+    <tr><td>Scene 1 — 8 Wolves</td><td>400</td></tr>
+    <tr><td>Scene 3 — Optional 6-wolf bait ambush</td><td>300</td></tr>
+    <tr><td>Scene 4 — Owlbear (modified)</td><td>700</td></tr>
+    <tr><td>Scene 5 — Full fight (10 wolves + Flame + Bolt)</td><td>1,400</td></tr>
+    <tr><td>Scene 6 — Flame Betrayal (Flame + 4 armored wolves)</td><td>650</td></tr>
+    <tr><td>Milestone — Discovering the wolves are sapient</td><td>500</td></tr>
+    <tr><td>Milestone — Negotiated peace</td><td>500</td></tr>
+    <tr><td><strong>Total possible</strong></td><td><strong>~4,450</strong></td></tr>
+  </table>
+  <p><strong>Gold:</strong> 800 gp council reward, split party-wide.</p>
+  <h4>Cave Treasure (if explored)</h4>
+  <ul class="tight">
+    <li>~50 gp mixed coin (stolen, scattered)</li>
+    <li>3 sacks of thick leather (~30 gp)</li>
+    <li>Mundane knives, a shovel</li>
+    <li>Wheatly's lost cart-horse harness → return for a +1 healing potion as thanks</li>
+  </ul>
+</section>
+
+<section id="tuning">
+  <h2>Tuning Notes</h2>
+  <div class="choice-grid">
+    <div class="choice"><h4>Party of 5 at level 3</h4>
+      <ul class="tight"><li>+2 wolves in Scene 1</li><li>Flame HP → 60</li><li>Bolt HP → 60</li></ul>
+    </div>
+    <div class="choice"><h4>Party of 3 at level 2</h4>
+      <ul class="tight"><li>−2 wolves in Scene 1</li><li>Flame &amp; Bolt HP → 35 each</li><li>Cut Scene 4</li></ul>
+    </div>
+    <div class="choice war"><h4>Lethal Mode</h4>
+      <ul class="tight"><li>Flame uses Fire Breath the moment any PC is at half HP, allies be damned</li><li>Bolt uses Lightning Breath at max range to snipe casters</li></ul>
+    </div>
+    <div class="choice peace"><h4>Soft Mode</h4>
+      <ul class="tight"><li>Flame &amp; Bolt save breath weapons for round 3+</li><li>Wolves break and run at 1/3 HP individually</li></ul>
+    </div>
+  </div>
+</section>
+
+<section id="chaos">
+  <h2>Failure / Chaos Branches</h2>
+  <ul class="tight">
+    <li><strong>Party kills Bolt, lets Flame live:</strong> Flame consolidates the pack, starts deliberate murder raids. The village burns inside a month.</li>
+    <li><strong>Party negotiates, then betrays:</strong> Bolt's pack hunts them across the region. Pack tactics + 2 elemental alphas. The province becomes hostile.</li>
+    <li><strong>Party tells the whole village the truth:</strong> Welton splits. Half want peace, half want extermination. A second sorcerer arrives within a year. The wolves are either allies or conquerors.</li>
+    <li><strong>A PC dies to Flame's Fire Breath:</strong> Bolt offers, in genuine remorse, to negotiate a body return and concessions. He won't undo the death but he'll make it mean something.</li>
+  </ul>
+</section>
+
+<section id="sound">
+  <h2>Soundtrack Cues</h2>
+  <p style="color:var(--muted);font-size:12px"><em>Click ▶ to open a YouTube search for the track. Hard-cut cues marked with a red bar.</em></p>
+
+  <h4>Pre-show &amp; Scene 1</h4>
+  <div class="cue-grid">
+    <div class="cue"><div class="cue-id">0 · Pre-show</div><div class="cue-mood">Pastoral, warm</div><div class="cue-track">Tabletop Audio — Pastoral</div><button class="play" onclick="ytSearch('Tabletop Audio Pastoral')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">1.1 · The Approach</div><div class="cue-mood">False security, pastoral</div><div class="cue-track">Tabletop Audio — Pastoral / AvZ — Highlands</div><button class="play" onclick="ytSearch('Adrian von Ziegler Highlands')">▶ search</button></div>
+    <div class="cue hard-cut"><div class="cue-id">1.2 · Dogs Alert</div><div class="cue-mood">CUT → silence → wolf sting</div><div class="cue-track">Single wolf howl SFX</div><button class="play" onclick="ytSearch('wolf howl sound effect')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">1.3 · Wolf Combat</div><div class="cue-mood">Frantic, animal</div><div class="cue-track">Tabletop Audio — Combat, Forest</div><button class="play" onclick="ytSearch('Tabletop Audio Forest Combat')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">1.4 · Walk to Welton</div><div class="cue-mood">Wounded, tired</div><div class="cue-track">Michael Ghelfi — Travel Music</div><button class="play" onclick="ytSearch('Michael Ghelfi travel music long road')">▶ search</button></div>
+  </div>
+
+  <h4>Scene 2 — Village</h4>
+  <div class="cue-grid">
+    <div class="cue"><div class="cue-id">2.1 · Welton Arrival</div><div class="cue-mood">Village life, uneasy</div><div class="cue-track">Tabletop Audio — Village</div><button class="play" onclick="ytSearch('Tabletop Audio Village ambience')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">2.2 · The Inn</div><div class="cue-mood">Subdued tavern</div><div class="cue-track">Michael Ghelfi — Quiet Tavern</div><button class="play" onclick="ytSearch('Michael Ghelfi quiet tavern')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">2.3 · Council</div><div class="cue-mood">Tension under surface</div><div class="cue-track">Peter Gundry — Council Chambers</div><button class="play" onclick="ytSearch('Peter Gundry council chambers')">▶ search</button></div>
+    <div class="cue hard-cut"><div class="cue-id">2.4 · Featherock</div><div class="cue-mood">Quiet horror — DROP to zero at "talking"</div><div class="cue-track">Peter Gundry — Whispers of the Forgotten</div><button class="play" onclick="ytSearch('Peter Gundry whispers of the forgotten')">▶ search</button></div>
+  </div>
+
+  <h4>Scenes 3 &amp; 4 — Woods</h4>
+  <div class="cue-grid">
+    <div class="cue"><div class="cue-id">3.1 · Travel</div><div class="cue-mood">Watchful, dense</div><div class="cue-track">Tabletop Audio — Deep in the Woods</div><button class="play" onclick="ytSearch('Tabletop Audio deep in the woods')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">3.2 · Lone Howl</div><div class="cue-mood">1-shot SFX</div><div class="cue-track">Distant wolf howl</div><button class="play" onclick="ytSearch('distant wolf howl sound effect')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">4.1 · Owlbear Approach</div><div class="cue-mood">Bass building</div><div class="cue-track">Peter Gundry — Something in the Woods</div><button class="play" onclick="ytSearch('Peter Gundry something in the woods')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">4.2 · Owlbear Combat</div><div class="cue-mood">Wounded brawl</div><div class="cue-track">Tabletop Audio — The Pit Fight</div><button class="play" onclick="ytSearch('Tabletop Audio pit fight')">▶ search</button></div>
+  </div>
+
+  <h4>Scene 5 — The Den (THE REVEAL)</h4>
+  <div class="cue-grid">
+    <div class="cue"><div class="cue-id">5.1 · The Hollow</div><div class="cue-mood">Eerie wonder — most important cue</div><div class="cue-track">Peter Gundry — The Witching Hour</div><button class="play" onclick="ytSearch('Peter Gundry witching hour')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">5.2 · Eavesdrop</div><div class="cue-mood">Near-silent</div><div class="cue-track">Tabletop Audio — Cave (very low)</div><button class="play" onclick="ytSearch('Tabletop Audio cave ambience')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">5.3 · Inside Cave</div><div class="cue-mood">Tomb-quiet, echo</div><div class="cue-track">Tabletop Audio — Dripping Caverns</div><button class="play" onclick="ytSearch('Tabletop Audio dripping caverns')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">5.4 · Pack Combat</div><div class="cue-mood">Bigger than Scene 1, magical</div><div class="cue-track">Michael Ghelfi — Epic Battle: Wolves of the North</div><button class="play" onclick="ytSearch('Michael Ghelfi epic battle wolves')">▶ search</button></div>
+    <div class="cue hard-cut"><div class="cue-id">5.5 · "HOLD!"</div><div class="cue-mood">CUT → silence → slow lament</div><div class="cue-track">Peter Gundry — The Reckoning</div><button class="play" onclick="ytSearch('Peter Gundry the reckoning')">▶ search</button></div>
+  </div>
+
+  <h4>Scene 6 — Resolution</h4>
+  <div class="cue-grid">
+    <div class="cue"><div class="cue-id">6.1 · Negotiation</div><div class="cue-mood">Tense diplomacy</div><div class="cue-track">Adrian von Ziegler — Druid's Council</div><button class="play" onclick="ytSearch('Adrian von Ziegler druid council')">▶ search</button></div>
+    <div class="cue hard-cut"><div class="cue-id">6.2 · Flame Betrayal</div><div class="cue-mood">CUT → silence → SLAM, biggest cue of night</div><div class="cue-track">Two Steps From Hell — Star Sky</div><button class="play" onclick="ytSearch('Two Steps From Hell Star Sky')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">6.3 · Aftermath</div><div class="cue-mood">Mournful, exhausted</div><div class="cue-track">Adrian von Ziegler — End of an Era</div><button class="play" onclick="ytSearch('Adrian von Ziegler end of an era')">▶ search</button></div>
+    <div class="cue"><div class="cue-id">6.5 · Reward</div><div class="cue-mood">Earned, bittersweet</div><div class="cue-track">Adrian von Ziegler — Where the Wind Blows</div><button class="play" onclick="ytSearch('Adrian von Ziegler where the wind blows')">▶ search</button></div>
+  </div>
+</section>
+
+<section id="checklist">
+  <h2>DM Prep Checklist</h2>
+  <ul class="tight">
+    <li><label><input type="checkbox"> Print statblocks (Wolf, Flame, Bolt, Owlbear)</label></li>
+    <li><label><input type="checkbox"> Print Welton + surroundings map</label></li>
+    <li><label><input type="checkbox"> Print Wolves' Den gridded combat map</label></li>
+    <li><label><input type="checkbox"> Prep Featherock's testimony as slow reveal — not one paragraph</label></li>
+    <li><label><input type="checkbox"> Prep cave-painting read-aloud</label></li>
+    <li><label><input type="checkbox"> Decide how loud the bounty's strangeness is at session start</label></li>
+    <li><label><input type="checkbox"> Pre-roll 5 random woods encounters for slow tables</label></li>
+    <li><label><input type="checkbox"> Have Flame &amp; Bolt argument lines ready for eavesdrop</label></li>
+    <li><label><input type="checkbox"> Decide Father Merriksonn's deity (Pelor default)</label></li>
+    <li><label><input type="checkbox"> Queue soundtrack: Pre-show + Combat playlists ready</label></li>
+  </ul>
+</section>
+
+</main>
+</div>
+
+<div class="quickref" id="quickref">
+  <h5 onclick="document.getElementById('quickref').classList.toggle('collapsed')"><span>🎲 Quick Reference</span><span>−</span></h5>
+  <div class="quickref-body">
+    <table>
+      <tr><th>Roll</th><th>DC</th></tr>
+      <tr><td>Track fresh wolf</td><td>14</td></tr>
+      <tr><td>Track old wolf</td><td>16</td></tr>
+      <tr><td>Spot tripwire</td><td>13</td></tr>
+      <tr><td>Read paintings</td><td>12</td></tr>
+      <tr><td>Bolt Breath save</td><td>13 DEX</td></tr>
+      <tr><td>Flame Breath save</td><td>13 DEX</td></tr>
+      <tr><td>Wolf bite prone</td><td>13 STR</td></tr>
+      <tr><td>Convince Tillus</td><td>15 CHA</td></tr>
+      <tr><td>Convince councillor</td><td>12 CHA</td></tr>
+      <tr><td>Merriksonn Insight</td><td>+5</td></tr>
+    </table>
+  </div>
+</div>
+
+<script>
+"use strict";
+/* All dynamic content built via createElement + textContent.
+   No innerHTML on dynamic data anywhere. */
+
+const state = {
+  round: 1,
+  wolvesKilled: 0,
+  flameHP: 47, flameMax: 47,
+  boltHP: 47, boltMax: 47,
+  peace: [false, false, false],
+  combatants: [],
+  turn: 0,
+  nextId: 1
+};
+
+function clearChildren(el){
+  while(el.firstChild) el.removeChild(el.firstChild);
+}
+
+/* Round */
+function setRound(v){
+  state.round = Math.max(1, parseInt(v) || 1);
+  document.getElementById('round-input').value = state.round;
+}
+function changeRound(d){ setRound(state.round + d); }
+
+/* Wolves killed tracker */
+function renderWolves(){
+  const cont = document.getElementById('wolf-tokens');
+  clearChildren(cont);
+  for(let i = 0; i < 10; i++){
+    const t = document.createElement('div');
+    t.className = 'token wolf' + (i < state.wolvesKilled ? ' dead' : '');
+    t.textContent = i < state.wolvesKilled ? '\u2620' : '\uD83D\uDC3A';
+    t.addEventListener('click', function(){ toggleWolf(i); });
+    cont.appendChild(t);
+  }
+  document.getElementById('wolf-count').textContent = state.wolvesKilled + ' / 10';
+  checkPeace();
+}
+function toggleWolf(i){
+  if(i < state.wolvesKilled) state.wolvesKilled = i;
+  else state.wolvesKilled = i + 1;
+  renderWolves();
+}
+function resetWolves(){ state.wolvesKilled = 0; renderWolves(); }
+
+/* Peace trigger */
+function togglePeace(i){ state.peace[i] = !state.peace[i]; renderPeace(); }
+function resetPeace(){ state.peace = [false, false, false]; renderPeace(); }
+function renderPeace(){
+  const labels = ['4+ wolves killed', 'Flame OR Bolt < half HP', 'Any PC at 0 HP'];
+  for(let i = 0; i < 3; i++){
+    const el = document.getElementById('peace-' + i);
+    if(state.peace[i]){
+      el.classList.add('triggered');
+      el.textContent = '\u2612 ' + labels[i];
+    } else {
+      el.classList.remove('triggered');
+      el.textContent = '\u2610 ' + labels[i];
+    }
+  }
+  const status = document.getElementById('peace-status');
+  clearChildren(status);
+  const any = state.peace.some(function(x){ return x; });
+  if(any){
+    const s = document.createElement('strong');
+    s.style.color = 'var(--peace)';
+    s.textContent = '\u2605 Bolt CAN roar this round. Trigger if narrative ready.';
+    status.appendChild(s);
+  } else {
+    status.textContent = 'Bolt has not roared yet.';
+  }
+}
+function checkPeace(){
+  if(state.wolvesKilled >= 4 && !state.peace[0]){ state.peace[0] = true; renderPeace(); }
+  if((state.flameHP <= state.flameMax / 2 || state.boltHP <= state.boltMax / 2) && !state.peace[1]){
+    state.peace[1] = true; renderPeace();
+  }
+}
+
+/* HP bars */
+function setFlameHP(v){
+  state.flameHP = Math.max(0, Math.min(state.flameMax, parseInt(v) || 0));
+  renderFlame();
+}
+function setFlameMax(v){
+  state.flameMax = Math.max(1, parseInt(v) || 1);
+  if(state.flameHP > state.flameMax) state.flameHP = state.flameMax;
+  renderFlame();
+}
+function dmgFlame(n){ setFlameHP(state.flameHP - n); }
+function renderFlame(){
+  document.getElementById('flame-hp').value = state.flameHP;
+  document.getElementById('flame-max').value = state.flameMax;
+  document.getElementById('flame-fill').style.width = (state.flameHP / state.flameMax * 100) + '%';
+  document.getElementById('flame-text').textContent = state.flameHP + ' / ' + state.flameMax;
+  checkPeace();
+}
+function setBoltHP(v){
+  state.boltHP = Math.max(0, Math.min(state.boltMax, parseInt(v) || 0));
+  renderBolt();
+}
+function setBoltMax(v){
+  state.boltMax = Math.max(1, parseInt(v) || 1);
+  if(state.boltHP > state.boltMax) state.boltHP = state.boltMax;
+  renderBolt();
+}
+function dmgBolt(n){ setBoltHP(state.boltHP - n); }
+function renderBolt(){
+  document.getElementById('bolt-hp').value = state.boltHP;
+  document.getElementById('bolt-max').value = state.boltMax;
+  document.getElementById('bolt-fill').style.width = (state.boltHP / state.boltMax * 100) + '%';
+  document.getElementById('bolt-text').textContent = state.boltHP + ' / ' + state.boltMax;
+  checkPeace();
+}
+
+/* Initiative tracker (DOM-built, no innerHTML on dynamic data) */
+function addPreset(name, hp, maxHp, ac, css){
+  const init = Math.floor(Math.random() * 20) + 1 + 2;
+  const count = state.combatants.filter(function(c){
+    return c.name.indexOf(name) === 0;
+  }).length + 1;
+  const c = {
+    id: state.nextId++,
+    name: name + ' ' + count,
+    init: init,
+    hp: hp,
+    maxHp: maxHp,
+    ac: ac,
+    css: css || '',
+    dead: false
+  };
+  state.combatants.push(c);
+  sortCombatants();
+  renderInit();
+}
+function sortCombatants(){
+  state.combatants.sort(function(a, b){ return b.init - a.init; });
+}
+function nextTurn(){
+  if(state.combatants.length === 0) return;
+  const alive = state.combatants.filter(function(c){ return !c.dead; });
+  if(alive.length === 0) return;
+  let safety = state.combatants.length + 1;
+  do {
+    state.turn = (state.turn + 1) % state.combatants.length;
+    safety--;
+  } while(state.combatants[state.turn].dead && safety > 0);
+  if(state.turn === 0){
+    state.round++;
+    setRound(state.round);
+  }
+  renderInit();
+}
+function clearInit(){
+  state.combatants = [];
+  state.turn = 0;
+  setRound(1);
+  renderInit();
+}
+function updateInit(id, v){
+  const c = findCombatant(id);
+  if(c){
+    c.init = parseInt(v) || 0;
+    sortCombatants();
+    renderInit();
+  }
+}
+function updateHP(id, v){
+  const c = findCombatant(id);
+  if(c){
+    c.hp = parseInt(v) || 0;
+    c.dead = c.hp <= 0;
+    renderInit();
+  }
+}
+function dmgCombatant(id, n){
+  const c = findCombatant(id);
+  if(c){
+    c.hp = Math.max(0, c.hp - n);
+    c.dead = c.hp <= 0;
+    renderInit();
+  }
+}
+function rmCombatant(id){
+  state.combatants = state.combatants.filter(function(c){ return c.id !== id; });
+  if(state.turn >= state.combatants.length) state.turn = 0;
+  renderInit();
+}
+function findCombatant(id){
+  for(let i = 0; i < state.combatants.length; i++){
+    if(state.combatants[i].id === id) return state.combatants[i];
+  }
+  return null;
+}
+function renderInit(){
+  const list = document.getElementById('combatant-list');
+  clearChildren(list);
+  if(state.combatants.length === 0){
+    const empty = document.createElement('div');
+    empty.className = 'init-empty';
+    empty.textContent = 'Add combatants. Type initiative roll into the number field. Sort = automatic.';
+    list.appendChild(empty);
+    return;
+  }
+  state.combatants.forEach(function(c, i){
+    const row = document.createElement('div');
+    let cls = 'combatant';
+    if(c.css) cls += ' ' + c.css;
+    if(i === state.turn) cls += ' current';
+    if(c.dead) cls += ' dead';
+    row.className = cls;
+
+    const initCell = document.createElement('div');
+    initCell.className = 'init-num';
+    const initInput = document.createElement('input');
+    initInput.type = 'number';
+    initInput.value = c.init;
+    initInput.addEventListener('change', function(){ updateInit(c.id, this.value); });
+    initCell.appendChild(initInput);
+
+    const nameCell = document.createElement('div');
+    nameCell.className = 'c-name';
+    nameCell.textContent = c.name;
+
+    const hpCell = document.createElement('div');
+    hpCell.className = 'c-hp';
+    const hpInput = document.createElement('input');
+    hpInput.type = 'number';
+    hpInput.value = c.hp;
+    hpInput.addEventListener('change', function(){ updateHP(c.id, this.value); });
+    hpCell.appendChild(hpInput);
+    hpCell.appendChild(document.createTextNode(' / ' + c.maxHp));
+
+    const acCell = document.createElement('div');
+    acCell.className = 'c-ac';
+    acCell.textContent = 'AC ' + c.ac;
+
+    const actionsCell = document.createElement('div');
+    actionsCell.className = 'c-actions';
+    const dmgBtn = document.createElement('button');
+    dmgBtn.className = 'dmg';
+    dmgBtn.title = '-5';
+    dmgBtn.textContent = '-5';
+    dmgBtn.addEventListener('click', function(){ dmgCombatant(c.id, 5); });
+    const healBtn = document.createElement('button');
+    healBtn.className = 'heal';
+    healBtn.title = '+5';
+    healBtn.textContent = '+5';
+    healBtn.addEventListener('click', function(){ dmgCombatant(c.id, -5); });
+    const rmBtn = document.createElement('button');
+    rmBtn.className = 'rm';
+    rmBtn.title = 'remove';
+    rmBtn.textContent = 'x';
+    rmBtn.addEventListener('click', function(){ rmCombatant(c.id); });
+    actionsCell.appendChild(dmgBtn);
+    actionsCell.appendChild(healBtn);
+    actionsCell.appendChild(rmBtn);
+
+    row.appendChild(initCell);
+    row.appendChild(nameCell);
+    row.appendChild(hpCell);
+    row.appendChild(acCell);
+    row.appendChild(actionsCell);
+    list.appendChild(row);
+  });
+}
+
+/* Council vote */
+function cycleVote(el){
+  const cycle = { undecided: 'yes', yes: 'no', no: 'undecided' };
+  const next = cycle[el.dataset.state];
+  el.dataset.state = next;
+  el.classList.remove('yes', 'no');
+  if(next === 'yes') el.classList.add('yes');
+  if(next === 'no') el.classList.add('no');
+  el.querySelector('.status').textContent = next;
+  updateTally();
+}
+function updateTally(){
+  const cards = document.querySelectorAll('#council-vote .vote-card');
+  let y = 0, n = 0;
+  cards.forEach(function(c){
+    if(c.dataset.state === 'yes') y++;
+    else if(c.dataset.state === 'no') n++;
+  });
+  document.getElementById('yes-tally').textContent = y;
+  document.getElementById('no-tally').textContent = n;
+}
+
+/* Soundtrack open YouTube search */
+function ytSearch(q){
+  window.open('https://www.youtube.com/results?search_query=' + encodeURIComponent(q), '_blank');
+}
+
+/* Init on load */
+window.addEventListener('load', function(){
+  renderWolves();
+  renderPeace();
+  renderFlame();
+  renderBolt();
+  renderInit();
+  updateTally();
+});
+</script>
+
+</body>
+</html>
