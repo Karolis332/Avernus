@@ -575,6 +575,335 @@ If the wolves' intelligence becomes **publicly known**, Featherock begins recove
 
 ---
 
+## FLAVOR & DIALOGUE PACK
+
+*Read-aloud-ready prose and sample NPC dialogue. Mix, match, or cherry-pick.*
+
+---
+
+### WALKING INTO WELTON (read aloud)
+
+> The road curves down out of the hills and the smell hits you first — wet wool, woodsmoke, and the sour green tang of a sheep pen that wants mucking out. The river runs slow on your right, brown with spring melt. White-painted houses crowd the high ground above it, their oak beams carved with twisting vines and stylized rams' horns.
+>
+> Welton at noon isn't bustling. It's *crowded*. There are too many people in the muddy main square for the time of year — farmhands sitting on barrels, women with hands wrapped around mugs that have gone cold, a knot of old men by the well not so much talking as muttering. Children chase a piglet between their legs. A dog barks once and lays down again.
+>
+> Nobody is looking at the road. They're all looking west.
+
+**Sensory hooks to drop in:**
+- *The smell of damp wool, smoke, and turned earth*
+- *Bleating from a pen that's at twice its normal capacity — sheep brought inside the village walls*
+- *Two children playing "wolves and shepherds" in the street; one starts crying when she's "caught"*
+- *A nervous mother snatching her son indoors as the party passes*
+- *Notice boards covered in fresh handwritten flyers: REWARD — WOLVES — see council*
+
+---
+
+### THE SHEPHERD'S CROOK (extended description)
+
+#### Exterior
+
+> Three stories of black-stained oak under a steep slate roof. A weathered wooden sign hangs over the door — a shepherd's crook crossed over a tankard, the paint chipped pale. Smoke leans east from a chimney that runs the full height of the building. The shutters are open. From inside you can hear voices, but not laughter.
+
+#### Common Room
+
+> The door sticks. When you push through it, the room hushes for a half-beat — every head turns, every cup pauses — and then conversation picks back up at half its previous volume.
+>
+> The room is long, low-beamed, packed. Smoke layers under the rafters from a dozen long-stemmed clay pipes. The smell is wet wool drying by the fire, old beer, mutton stew, something herby — rosemary, maybe sage — and underneath it all the bitter dust of a hearth that's been burning continuously since autumn.
+>
+> Tables are full. Old shepherds in shapeless brown cloaks claim the corners, faces brown as boot-leather, talking through teeth that keep the pipe stem in place. Younger men and women — driven off their farms — share long benches by the wall, nursing one drink to last the day. A halfling woman knits in the chimney corner, watching everything.
+>
+> At the bar, a stout dwarven woman with grey-streaked black braids and forearms like firewood is pulling pints from a hand-cranked tap. She looks up. **"You're new."**
+
+#### What's on the Menu
+
+| Item | Price | Notes |
+|---|---|---|
+| Banteth's "rough cider" | 2 cp | House special. Cloudy. Strong. |
+| Brown ale | 2 cp | Local, decent |
+| Mulled wine | 5 cp | Sweet, spiced, good in cold weather |
+| Mutton stew with bread | 4 cp | "The bread's day-old, the stew's not" |
+| Sheep's milk cheese & rye | 3 cp | Sharp cheese, hard rye, vinegar-onion |
+| Private dining room | free with meal | Where the council meets |
+| Room for the night | 5 sp / person | Clean linen, shared washbasin |
+
+#### Overheard Conversation Snippets (roll d8 or drop ad-lib)
+
+Use these as you pass between tables, or have Leanor "remember" something while pouring:
+
+1. *"...Petersens lost another four ewes Tuesday night. Old man's drinking himself blind over there in the corner."*
+2. *"Mella says the council vote was three-to-three on the export question. Tillus broke the tie his way, naturally."*
+3. *"...not a sheep dog left on Spurrok's Hill. Either dead or run off. Smart ones run."*
+4. *"Father's been at the chapel near every night, praying for his brother. Six weeks of that now. Six weeks."*
+5. *"Couldn't sleep three nights running. Hear 'em howling from the west, and you can't tell if it's one wolf or twenty."*
+6. *"My nan said her nan told her stories about beasts that talk. I don't believe it. But Featherock —"*
+7. *"...eight hundred gold. **Eight hundred.** For wolves. You tell me that ain't strange."*
+8. *"Way I figure it, sorcerer goes missing and the wolves get bold. You don't have to be Father Merriksonn to see what that adds up to."*
+
+---
+
+### LEANOR SLATEBEARD — SAMPLE DIALOGUE
+
+She's friendly, sharp-eyed, knows everybody. Speaks with a slight Dwarvish burr — drops the *h* off "have" and rolls *r* hard.
+
+**On arrival:**
+> "Adventurers? Aye, you've a look of it. Drop your packs by the wall — nobody'll touch them under my roof, and if they do I'll know inside the hour. What're ye drinking?"
+
+**If they mention the wolves:**
+> *Her face changes. She leans on the bar.*
+> "Then ye'll be wanting the back room. Council's in session and they've been at each other's throats for two hours. *Free* round when ye come out, mind. Banteth's making stew."
+
+**On Featherock (if asked):**
+> *Voice drops.*
+> "Wee Willen Featherock. Upstairs, second on the left. Was a sweet lad, full of stories — now he's full of *the wrong* stories. Be gentle with him. He's not lying, whatever ye end up thinking he is. Now go on, before Tillus starts a fistfight in there."
+
+**On the bounty (if pressed):**
+> "Eight hundred gold. For wolves." *She pours your second pint without being asked.* "Aye. That's what *I* said."
+
+**On Father Merriksonn (if asked):**
+> "Good man. Better priest than half the gold-collars I've seen pass through here. His brother going missing — that broke something in him, though he won't show it. Don't poke at it unless ye've a reason to."
+
+---
+
+### THE COUNCIL ROOM (when the party enters)
+
+> The back room is hot and close. A long oak table — scarred from a century of meetings — runs down the middle, eight high-backed chairs around it, seven filled. A pewter ewer sits in the center beside a bowl of soft cheese gone slightly oily in the heat. Three lit candles, one guttering. The window is shut. The air smells of pipe-smoke, sweat, beeswax, and the particular dry-paper smell of too many ledgers in one room.
+>
+> Two men are shouting.
+>
+> The halfling — **Tillus Merrion**, you'll learn — is half out of his chair, finger jabbing at the priest across from him. He's red in the face. His doublet is good wool, the buttons silver. *"—will not — let — this village — go bankrupt over a problem we should have **solved** by — "*
+>
+> The priest — older, white-haired, kindly face gone hard — cuts him off. *"You will not let this village **starve**, Tillus, while you ship wheat to merchants who'll never set foot here. Sit DOWN."*
+>
+> Tillus does not sit down.
+>
+> A fourth man — lean, weathered, a tuft of raw wool tied to the lapel of his vest — clears his throat softly. The room goes quiet. **"There are people at the door."**
+
+---
+
+### COUNCIL DIALOGUE — VOICES & SAMPLE LINES
+
+#### Tillus Merrion (halfling, ledger-mayor)
+
+*Speaks fast, clipped sentences, hands always in motion. Calls people by their last names. Hates being interrupted.*
+
+**Initial reaction (interrupted):**
+> "*Yes?* Yes, who are — adventurers? Adventurers. Good. Sit, sit. We've been waiting for you. Whether we wanted to or not."
+
+**Pitching the contract:**
+> "Eight hundred gold. Eight hundred. Half on agreement, half on the heads of the alphas — or whatever passes for them. Free lodging at the Crook. Free meals from Slatebeard's kitchen. Done in a week, you go home wealthy and we go back to working. Are we agreed?"
+
+**If party hesitates:**
+> "What — what do you want, a *bonus?* A *cut* of the spring wool harvest? Speak up, I've a freight contract due in Tarsweald in nine days and the road's not getting safer."
+
+**On being told the wolves are intelligent:**
+> *Long silence. Then, very quietly:*
+> "Don't be ridiculous." *Pause.* "You're not joking. **Are you joking.**"
+
+**When losing the council vote (DC 12 fails):**
+> "This is — *no.* No, you cannot **possibly** be — Corel, you can't agree with this — Mella, **listen** to me — " *He realizes the room has turned against him. Sits down slowly. Doesn't speak again that night.*
+
+#### Father Johan Merriksonn (priest, brother of dead sorcerer)
+
+*Speaks slow, warm, measured. Quotes scripture only when grieving. Looks each person in the eye.*
+
+**Greeting the party:**
+> "Welcome, friends. I'm sorry you find us shouting — the wolves have been hard on everyone's tempers." *Half-smile.* "I'm Johan. Father Johan, if titles matter to you. They don't to me. Please. Sit."
+
+**Describing the situation:**
+> "Three months ago, we'd have called them wolves and meant it. Now —" *He stops, considers his words.* "Now we don't know what we're calling them. They take whole flocks. They open gates. A posse went out — good men, half of them my parishioners — and only six came back, two of those wounded. One of those... isn't himself anymore. Willen Featherock. Upstairs. You should speak with him."
+
+**On his brother Alexi (if asked):**
+> *He doesn't look at you when he answers.*
+> "Alexi was — *is* — the best of us. The village never thanked him properly. He went into those woods six weeks ago and didn't come back, and the wolves started… *changing*… at the same hour. I don't know what that means. I think I do, and I don't want to."
+
+**If party suggests peace with the wolves:**
+> *Long silence. He closes his eyes. When he opens them, his voice is steady.*
+> "If they killed my brother — and I think they did — then peace with them is the only thing his death could ever have been *for*. Make it real. I will speak for you in the council."
+
+**If party lies about killing the wolves and he catches them:**
+> "Don't." *Quiet.* "Don't lie to me. Not about him. I will not tell the village. I will not break your contract. But you and I, we will not pretend, *you and I*. Is that clear."
+
+#### Corel of the Fleecers (master shepherd)
+
+*Speaks rarely, in short sentences. Looks at the floor when thinking, at your eyes when answering. Knows the land better than anyone alive in Welton.*
+
+**Introducing himself:**
+> "Corel. Fleecers. Forty years on the hills west of here." *Pause.* "Lost twelve sheep last month. Pulled the rest in. If you mean to find the den, I'll walk you to the treeline."
+
+**Offering to guide:**
+> "Past the treeline you're on your own. I'll not go further. Not because I'm afraid of wolves. Because I'm afraid of *those* wolves, and I want to come home to my wife."
+
+**On the peace question:**
+> *Looks at you a long time.*
+> "Forty years I've killed wolves to keep my sheep. If these ones can talk — if they *think* — then I've maybe killed somebody's grandfather every winter, and didn't know it. We talk."
+
+#### Mella Tinnsfoot (halfling community rep)
+
+*Practical, dry, votes with Tillus by default unless given a reason not to. Smokes a small clay pipe.*
+
+> "I represent the halflings. We're a quarter of this village and twice the worry. If your peace deal means the woods are off-limits for foraging, my people starve faster than the humans do. Make me a guarantee on mushroom rights or I vote *no*."
+
+#### Hanna Westly (human, farmer rep, where Featherock was dumped)
+
+*Quiet. Anxious. Lost three pigs and her brother-in-law's livelihood. Wants this over.*
+
+> "I just want my husband to sleep through the night. He hasn't, not since Featherock turned up on our doorstep." *Looks at her hands.* "If they'll leave us alone — I'll vote for whatever lets us sleep."
+
+---
+
+### WILLEN FEATHEROCK'S ROOM (extended)
+
+> Second door on the left, end of a narrow hall. Floorboards creak in a specific pattern under your weight, like the room is announcing you.
+>
+> The door is open a finger's-width. Inside, sunlight slants through one shutter, lit dust motes hanging in the still air. A halfling lies on his back in a quilted bed, his left arm and right leg bandaged thick with linen that's been changed recently — there's a small wooden bowl on the chair beside him with brownish water in it. A sprig of cut white flowers in a clay cup on the dresser. A wooden carved sheep on the bedside table, very old, the paint mostly worn off.
+>
+> Featherock turns his head when you come in. His face is the color of dirty paper. His eyes are too wide and don't track right.
+>
+> **"Are you — Father Johan, he said someone was coming. Are you the ones who're going to find them?"**
+>
+> *His voice is dry. He swallows.*
+>
+> **"I have to tell you something. But you have to promise. You have to *promise* you'll believe me."**
+
+**Featherock dialogue (deliver in fragments — let the party ask):**
+
+> "I went out with the posse. Six weeks ago. Maybe seven. I lose track in here." *Looks at the ceiling.* "We had torches. The wolves came out of the dark and the next thing I knew I was on the ground and somebody was on my leg — *someone*, not something, you understand the difference?"
+
+> "I heard them arguing. *Arguing.* In words. One voice was hot, angry, kept saying *kill them, kill all of them.* The other voice was — was lower. Slower. Said *no, this one is small, this one is afraid, this one is not the threat.* And then —" *He starts to cry, doesn't seem to notice.* "And then I felt teeth let go of my leg. And I went to sleep. And I woke up on the Westly farm, in the morning. With my wounds *cleaned*. Wolves don't clean wounds."
+
+> *If you tell him you believe him:* "Oh." *Long pause. His face breaks. He covers it with his good hand.* "Oh, gods. Oh, thank you. *Thank you.*"
+
+> *If you don't seem to believe him, he goes quiet and turns his face to the wall.* "Father Johan said you would. He was wrong. Please go."
+
+---
+
+### THE WOODS — TIME-OF-DAY FLAVOR
+
+#### Morning (mist still in the trees)
+
+> Wet leaves. Cold breath. The sun is somewhere behind the canopy and the whole forest is the color of weak tea. Spider-webs strung between branches show as cords of beaded glass. Far off — a hundred yards? Two hundred? — something the size of a deer moves and stops moving and you cannot tell which direction.
+
+#### Midday (heat under the canopy)
+
+> The forest at noon is loud with insect sound. Sweat under your collar. The smell of crushed bracken under your boots. Every fifty yards there's a sun-shaft cutting down through the leaves and you walk through them like passing through rooms.
+
+#### Dusk (the howl)
+
+> The shadows long, the air cooling fast, and from somewhere west — closer than it has any right to be — a single wolf howls. It's not the long sad howl of a tracking beast. It's two short notes and then a held one, like a signal. You wait for the answering howl. None comes. The forest gets very quiet.
+
+#### Night (don't camp here)
+
+> Black like the inside of a coffin. Your eyes never adjust because there's no moon under the canopy. The night noises stop when you stop and start again when you move. You feel watched and you are not wrong.
+
+---
+
+### THE HOLLOW — FIRST GLIMPSE (extended read-aloud)
+
+> You ease through the last of the brush and the trees thin and there it is — the clifface ahead of you, grey limestone streaked black where rainwater has run down it for a hundred years. The cave entrance is a low arch, ten feet wide, propped open by a single weather-greyed beam wedged sideways under the lip.
+>
+> Smoke rises from above and behind it — a thin grey column from a hole in the rock thirty feet back, drifting east on the breeze.
+>
+> Below the cliff, in the hollow, **six wolves.**
+>
+> One lies near a small fire pit, eyes closed, head on its forepaws. Two are working a low wooden fence — broken branches lashed together with strips of leather — pushing a new piece into place with their muzzles, then biting and tugging the lashings tight. A third is butchering a sheep with surgical care, separating cuts with its teeth — not gorging, *portioning*, laying strips of meat on a flat stone to dry in the sun. The remaining two are simply lying in the long grass, watching everything. Sentries.
+>
+> Every one of them wears something. Strips of red cloth wrapped around a foreleg. A necklace of beads on a sinew cord. A bit of woven wool tied behind one ear. One of them — the butcher — has what looks like a small leather pouch slung across its chest on a knotted cord.
+>
+> *None of them are looking at the cave. They're not on guard inwards. They're on guard outwards.* They are protecting something *inside.*
+>
+> And every detail of the scene — the fence, the fire, the meat-drying stone, the ornaments, the patient organized work of it — every detail says one thing.
+>
+> *Not a den. A home.*
+
+---
+
+### THE CAVE PAINTINGS (read aloud when party reads them)
+
+Inside the central chamber, on the wall opposite the entrance:
+
+> The paintings are crude — charcoal and white ash, the lines smudged from being painted by something with no fingers. But they tell a story, left to right, like a frieze.
+>
+> **First panel:** Four wolves. Just wolves. Stick-legged, sharp-eared, running through stylized trees.
+>
+> **Second panel:** A figure stands among the trees. Tall, two-legged, hands raised. Lines radiate from his hands — light, or magic, or fire. The wolves have stopped running. They are crouched.
+>
+> **Third panel:** A bright sunburst, drawn over and over in concentric circles, taking up half the wall. In the middle of it, the figure is *gone* — not killed, *gone*. A small smudge of white ash where his outline used to be.
+>
+> **Fourth panel:** The wolves stand on two legs. Or it's drawn that way — their backs are straighter, their heads held up, their forepaws spread like *hands*. Around them, faint lines like the ones that came from the figure's hands.
+>
+> **Fifth panel, the largest, at the end:** A circle of wolves around a fire. Pups in the center. Above them, drawn small in the corner, a single human figure — running away. A red ash handprint covers his face. Whether the print means *enemy* or *do not kill* is impossible to tell.
+
+---
+
+### FLAME — VOICE & SAMPLE LINES
+
+*Harsh, fast, clipped. Bites her own words. Uses Common like she's still learning the rhythm — wrong stresses, missing connecting words.*
+
+**Snarled, in argument with Bolt (overheard from chimney):**
+> "Speak SOFT. Speak soft for the killers. They came with iron. They came with torches. They will come AGAIN. The pups will be **ash**, Bolt."
+
+**Demanding to be heard:**
+> "You give them words. *Words.* I give them fire. Fire stops them. Words make them *brave.*"
+
+**The Betrayal moment:**
+> *Bites Bolt without warning. His blood is on her teeth when she speaks.*
+> "COWARD. You die for the pack now, brother. Die well. I make pack live."
+
+---
+
+### BOLT — VOICE & SAMPLE LINES
+
+*Speaks low. Long pauses. Picks each word. Lengthens vowels when he's calm and cuts them short when he's angry. His voice rumbles — when he raises it, things vibrate.*
+
+**Calling for ceasefire:**
+> "**HOLD.**" *The cave shakes. Dust falls from the roof.* "This fight serves no one. Not yours. Not ours. Speak — or we all die for nothing."
+
+**Explaining the change:**
+> "We were wolves. Then there was a man. He was bright. He raised his hands and he was — *gone*. And we were — *new*. I knew my name. I had never known my name. I had never had one. Now I do." *Pause.* "The taste of words is strange. Like meat that is too hot."
+
+**Negotiating peace:**
+> "We take the woods. We take the moors past the woods. We do not raid your sheep. We kill any other thing that comes for your sheep. We do not speak to your kind again. If you come into the deep woods, we cannot promise. Out of the deep woods — you are safe. Your pups are safe." *Slow.* "Is this a deal that a man can make?"
+
+**Wounded by Flame, last words if he dies:**
+> *Voice losing its rumble, going almost human-soft.*
+> "Tell the Lightbringer's brother that we did not eat his man. We took his thinking. It is in us now. It will... try to be... kind."
+
+---
+
+### FATHER MERRIKSONN — IF THE TRUTH ABOUT ALEXI COMES OUT
+
+> *He doesn't speak for a long time. Then he sits down, and he sits down hard, like his legs have given up. He puts his face in his hands. When he looks up, his eyes are wet but his voice is steady.*
+>
+> "So he didn't die afraid. He died — making something. Of course he did. Of course that's how Alexi would go." *He laughs once, broken.* "Of course. Of course. I'll need a moment."
+>
+> *Later, when he returns:*
+>
+> "I will speak for them in council. For all of them. He would have wanted that. He would have *insisted*. Now. Tell me what they need. Tell me what they want. Tell me everything."
+
+---
+
+### EPILOGUE BEATS (pick whichever your party earned)
+
+#### If the pack was saved and peace was struck:
+
+> Three nights later, on the road out of Welton, you see a single wolf at the edge of a moonlit field. It watches you. It is too big to be a normal wolf. After a long moment, it raises one forepaw — slowly, deliberately, like a man tipping his hat — and then it is gone into the dark.
+
+#### If the pack was killed but the pups were spared:
+
+> A week later, in a tavern fifty miles east, a tinker tells you he saw something on the road at dawn — a half-dozen wolf pups, alone, walking in single file, eastward. One of them, he says, looked at him "like it had a *question* it couldn't ask." He laughs. He's drunk. You don't laugh.
+
+#### If the entire pack was wiped out:
+
+> Welton is grateful. Welton is generous. Welton offers a feast in your honor at the Shepherd's Crook, and Leanor pours the good wine she keeps in the back, and Tillus makes a speech that's almost warm.
+>
+> Father Merriksonn doesn't come.
+
+#### If a PC died:
+
+> Their body is brought back to Welton on Corel's wagon. Father Merriksonn performs the service. Half the village comes. Tillus pays out of his own purse for a stone marker — not the council's coin, his own — and stands at the graveside in the rain with his hat in his hand, and does not speak.
+
+---
+
 ## FAILURE / CHAOS BRANCHES
 
 - **Party kills Bolt, lets Flame live:** Flame consolidates the pack, starts deliberate murder raids on Welton. Sequel hook: the village burns inside a month.
