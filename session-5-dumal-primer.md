@@ -7,6 +7,52 @@
 
 ---
 
+## OPEN5E CANONICAL REFERENCES (SRD 2024 — verified 2026-05-16 via mcp__open5e)
+
+All non-homebrew statblocks and spell mechanics in this primer reference the SRD 2024 dataset. Live queries during the session via `mcp__open5e__get` / `search` / `rag_search`.
+
+### Creature statblocks used this session
+
+| Creature | AC | HP | CR | Speed | Open5e URL |
+|---|---|---|---|---|---|
+| Bone Devil (Dumal's bodyguard) | 19 | 142 | 9 | 40 ft, fly 40 ft | https://open5e.com/monsters/bone-devil |
+| Cult Fanatic ×3 (Bhaal cultists) | 13 | **22** | 2 | 30 ft | https://open5e.com/monsters/cult-fanatic |
+| Imp (Vix the herald) | 13 | 10 | 1 | 20 ft, fly 40 ft | https://open5e.com/monsters/imp |
+| Deva (encounter table #19) | 17 | 136 | 10 | 30 ft, fly 90 ft | https://open5e.com/monsters/deva |
+| Night Hag (encounter table #16) | 17 | 112 | 5 | 30 ft | https://open5e.com/monsters/night-hag |
+| Erinyes (encounter table #6) | 18 | 153 | 12 | 30 ft, fly 60 ft | https://open5e.com/monsters/erinyes |
+| Chain Devil (encounter table #6) | 16 | 85 | 11 | 30 ft | https://open5e.com/monsters/chain-devil |
+| Bearded Devil (encounter table #17) | 13 | 52 | 3 | 30 ft | https://open5e.com/monsters/bearded-devil |
+| Barbed Devil (encounter table #17) | 15 | 110 | 5 | 30 ft | https://open5e.com/monsters/barbed-devil |
+| Lemure (encounter table #3) | 7 | 13 | 0 | 15 ft | https://open5e.com/monsters/lemure |
+| Pit Fiend (encounter table #8 — distant) | 19 | 300 | 20 | 30 ft, fly 60 ft | https://open5e.com/monsters/pit-fiend |
+
+### Spells with RAW relevance this session
+
+| Spell | Level | Save | Key RAW Note | Open5e URL |
+|---|---|---|---|---|
+| **Wish** | 9 | — | STR 3 for **2d4 days** (RAW), 1d10 necrotic per spell level until long rest, **33% chance never to cast again**. See Aurora cost section for our homebrew variant. | https://open5e.com/spells/wish |
+| **Banishment** | 4 | CHA (DC by caster) | Fiend transported to home plane if spell lasts 1 minute. Concentration. **Primary mechanism to clear Smiler debt.** | https://open5e.com/spells/srd-2024_banishment |
+| **Plane Shift** | 7 | CHA (unwilling) | 250+ gp forked rod attuned to target plane. Touch. 8 willing or 1 unwilling. **Alternative Smiler banishment.** | https://open5e.com/spells/srd-2024_plane-shift |
+| **Hold Person** | 2 | WIS | Paralyzed, 1-min concentration. Cult Fanatic cast — DC 11. | https://open5e.com/spells/srd-2024_hold-person |
+| **Inflict Wounds** | 1 | CON (DC 11 from Fanatic) | Touch, 2d10 necrotic on fail. | https://open5e.com/spells/srd-2024_inflict-wounds |
+| **Spiritual Weapon** | 2 | — | Bonus action, 1d8+mod force, 60 ft. Cult Fanatic uses. | https://open5e.com/spells/srd-2024_spiritual-weapon |
+| **Sanctuary** | 1 | WIS | Attackers retarget. Deva-feather one-shot option. | https://open5e.com/spells/srd-2024_sanctuary |
+| **Remove Curse** | 3 | — | Ends curses. **Required to remove Bhaal-mark carved by Dumal's Ritual Dagger.** | https://open5e.com/spells/srd-2024_remove-curse |
+
+### Live-query commands at table
+
+```
+mcp__open5e__get          { resource_type: "monsters", slug: "bone-devil" }
+mcp__open5e__search       { query: "<term>", resource_type: "spells"|"monsters" }
+mcp__open5e__rag_search   { query: "wish spell exact text", mode: "hybrid" }
+mcp__open5e__list         { resource_type: "monsters", cr: 12, type: "Fiend" }
+```
+
+Spell slug format: `srd-2024_<spell-name>` (e.g. `srd-2024_banishment`). Monster slugs are plain (e.g. `bone-devil`).
+
+---
+
 ## DESIGN THESIS
 
 > Bitter Breath was a problem with a body. Dumal is a problem with a *face*.
@@ -35,7 +81,7 @@ Three things make it land:
 - **Captain Grozz — killed in the boss fight.** The hobgoblin captain didn't survive.
 - **No loot from Bitter Breath.** His power, weapons, soul coins, and Bhaal-marked Gutripper all dissolved with him when the Wish reverted his existence. The party has nothing of his.
 
-### Aurora's Wish stress (option C, modified)
+### Aurora's Wish stress (HOMEBREW — deviates from RAW; locked in at Session 4)
 
 Aurora paid the cost. Use these mechanics for **3 in-game days**:
 
@@ -43,6 +89,8 @@ Aurora paid the cost. Use these mechanics for **3 in-game days**:
 - **Cannot cast spells of 1st level or higher for d4 = 2 days** (rolled at table; this is a guideline — adjust if pacing breaks)
 - **Wish is GONE.** The ring had only 1 charge. It is now an inert silver band. Aurora cannot cast Wish again unless she finds another item or learns it natively (Mystic Arcanum at higher level).
 - **Side effect:** When she casts ANY divination or summoning spell while in this state, the Moonkite *appears* — even if it's not summoned. The celestial sees through her now.
+
+> **RAW comparison (SRD 2024 Wish — https://open5e.com/spells/wish):** Strength becomes 3 for **2d4 days** (not 3); each spell cast until next long rest costs **1d10 necrotic per spell level**; **33% chance she can never cast Wish again** (irrelevant here — ring is one-charge anyway). Our homebrew is gentler on damage but harsher on spell access. **If Aurora's player asks for RAW, switch to RAW for the spell-cost mechanic (it makes her playable sooner) and roll the d4 days as 2d4 instead.** Either choice is defensible — pick one and don't switch mid-session.
 
 ### The Bhaal carving at the Palace exit
 
@@ -524,7 +572,15 @@ The map shows:
 
 **Dumal has given them the map.** Free intel. *He wants them to choose.*
 
-The bone-handled shortsword — left as a gift, or a challenge — is now the party's. **DM call: is it cursed, attuned to Bhaal, or just a knife?** Suggestion: **a Bhaal-marked dagger, +1, deals an extra 1d6 necrotic. Anyone who attunes to it gains +5 Bhaal immediately and +1 per session of attunement. Anyone who *destroys* it gains -10 Bhaal.**
+The bone-handled shortsword — left as a gift, or a challenge — is now the party's. **DM call: is it cursed, attuned to Bhaal, or just a knife?** Suggestion: **a Bhaal-marked dagger, +1, deals an extra 1d6 necrotic.**
+
+| State | Bhaal tick | Effect |
+|---|---|---|
+| Carrying unattuned (in pack, not on belt) | **0** | Inert. No tick. |
+| Carrying on person (belt, sheath) | **+1 per session** | Whisper-dreams flavor only. |
+| Attuned (3 attunement slots — takes one) | **+5 immediate, +1 per session ongoing** | Gains the +1 / 1d6 necrotic bonus. Drenwal hears Dumal's voice during long rests. |
+| Destroyed (smith's forge, holy ground, Coram shrine ideal) | **−10 Bhaal** | Permanent. Plot beat. |
+| Cleansed via **Remove Curse** (lvl 3, SRD 2024 — https://open5e.com/spells/srd-2024_remove-curse) | **−3 Bhaal** | Becomes a mundane +1 dagger. The Bhaal-mark is severed from it. Drenwal must be the one to cast or witness. |
 
 ### Beat 5.3 — Tracker Update (announce visibly)
 
@@ -601,23 +657,46 @@ Update both meters based on Drenwal's choices this session. Sample math if he re
 
 ## SUPPORTING CAST IN ACT 3+ (if combat happens)
 
-### Bhaal Cultists ×3 (Cult Fanatic, MM p.345)
+### Bhaal Cultists ×3 (Cult Fanatic — SRD 2024)
 
-- AC 13, HP 33, Multiattack 2 daggers (+4 to hit, 4 (1d4 + 2) piercing + 3 (1d6) poison)
-- Spellcasting: Hold Person, Inflict Wounds, Spiritual Weapon
-- **Tactic:** Two stay back and cast support. One charges Drenwal specifically with a ritual dagger.
+**Open5e:** https://open5e.com/monsters/cult-fanatic
+
+- **AC 13, HP 22, CR 2** (corrected from prior 33 HP — RAW is 22)
+- **Stats:** STR 11 / DEX 14 / CON 12 / INT 10 / WIS 13 / CHA 14
+- **Multiattack:** 2 dagger attacks. **Dagger:** +4 to hit, reach 5 ft or 20/60 ft, 4 (1d4+2) piercing.
+- **Spellcasting (4th-level cleric, spell save DC 11, +3 to hit):**
+  - Cantrips: Light, Sacred Flame, Thaumaturgy
+  - 1st (4 slots): Command, **Inflict Wounds** (2d10 necrotic touch), Shield of Faith
+  - 2nd (3 slots): **Hold Person** (DC 11 WIS, paralyzed), **Spiritual Weapon** (1d8+2 force, BA)
+- **Dark Devotion:** advantage vs charm/fright.
+- **Tactic:** Two stay back and cast Spiritual Weapon + Hold Person. One charges Drenwal with the ritual dagger.
 - **Dumal will kill these himself in Round 3** for theatrical effect if combat is going his way.
 
-### Bone Devil (MM p.71)
+> **Live pull at table:** `mcp__open5e__get { resource_type: "monsters", slug: "cult-fanatic" }`
 
-- AC 19, HP 142, CR 9
-- Multiattack: 2 claws + 1 sting
-- Sting: 13 + DC 14 CON save or take 17 poison + lose poison immunity
-- **Tactic:** Bodyguards Dumal. Targets the highest-damage party member.
+### Bone Devil (SRD 2024)
 
-### Vix the Imp (already established)
+**Open5e:** https://open5e.com/monsters/bone-devil
 
-- AC 13, HP 10
+- **AC 19, HP 142, CR 9, Speed 40 ft / fly 40 ft**
+- **Stats:** STR 18 / DEX 16 / CON 18 / INT 13 / WIS 14 / CHA 16
+- **Saves:** INT +5, WIS +6, CHA +7
+- **Damage resistances:** cold; bludgeoning, piercing, slashing from non-silvered nonmagical
+- **Damage immunities:** fire, poison. **Condition immunities:** poisoned.
+- **Senses:** darkvision 120 ft, passive Perception 9. **Languages:** Infernal, telepathy 120 ft.
+- **Multiattack:** 2 claws + 1 sting.
+  - **Claw:** +8 to hit, reach 10 ft, 8 (1d8+4) slashing
+  - **Sting:** +8 to hit, reach 10 ft, 13 (2d8+4) piercing + 17 (5d6) poison; **DC 14 CON save** or poisoned 1 min (repeats save end of each turn).
+- **Devil's Sight + Magic Resistance.**
+- **Tactic:** Flies above the dialogue scene during Act 3 (silent overhead). Bodyguards Dumal in combat. Targets the highest-damage party member. **It can fly — use the vertical axis.**
+
+> **Live pull at table:** `mcp__open5e__get { resource_type: "monsters", slug: "bone-devil" }`
+
+### Vix the Imp (SRD 2024 — https://open5e.com/monsters/imp)
+
+- **AC 13, HP 10, CR 1, Speed 20 ft / fly 40 ft**
+- **Sting:** +5 to hit, 1d4+3 piercing + DC 11 CON save or 3d6 poison
+- **Invisibility (at will)** until it attacks. **Shapechanger:** rat / raven / spider forms.
 - Polite. Won't attack unless cornered. **Has biscuits in his pouch** (irrelevant flavor).
 - If killed: triggers Dumal's furious-arrival path. Don't kill the imp.
 
@@ -751,7 +830,7 @@ Update both meters based on Drenwal's choices this session. Sample math if he re
 | Mordenkainen accusation processed | Drenwal may seek to confront Mordenkainen — opens a "second tower" detour |
 | Tarsweald named | Coram-of-Small-Mercies pilgrimage option — a route to the "third deity" cure |
 | Bone dagger taken | Slow corruption arc OR purification quest (destroy at a Coram shrine?) |
-| Smiler banishment owed | Smiler will come collecting. **Aurora has no Wish.** Banishment options: a scroll of Banishment (4th lvl), Plane Shift (5th lvl scroll or NPC caster), an NPC archmage for hire, or a planar gate ritual (3-day prep). Plant one of these as a future quest hook. |
+| Smiler banishment owed | Smiler will come collecting. **Aurora has no Wish.** Banishment options (SRD 2024 verified): **(a) Banishment scroll (4th lvl, CHA save DC by caster, holds 1 min concentration — fiend then transported to home plane).** **(b) Plane Shift scroll (7th lvl, touch, 250+ gp forked rod attuned to Smiler's home plane; unwilling fiend gets CHA save).** **(c) Hire an NPC archmage** (Mahadi's Wandering Emporium has brokers — 500-2000 gp). **(d) Planar gate ritual (3-day prep, requires Bhaal-incompatible holy site — Coram's shrine at Tarsweald works).** Plant one of these as a future quest hook. Cleanest path = a Banishment scroll Drenwal can cast (he's a Cleric, it's on his list). |
 
 ---
 
@@ -917,6 +996,20 @@ I'll give exact numbers from the v2 system above.
 - The Fallen Three full backstories and current locations
 
 **To brief me on a new development:** just type what happened. I'll absorb it and adjust on the fly. Don't worry about format — just dump it raw.
+
+### Open5e MCP — pre-canned at-table queries
+
+I will use these automatically when you ask the matching question. You can also paste them verbatim.
+
+| You say | I run |
+|---|---|
+| `open5e: <monster name>` | `mcp__open5e__get { resource_type: "monsters", slug: "<kebab-case>" }` — returns full statblock |
+| `open5e spell: <name>` | `mcp__open5e__get { resource_type: "spells", slug: "srd-2024_<name>" }` — returns RAW text |
+| `find CR <n> <type>` | `mcp__open5e__list { resource_type: "monsters", cr: n, type: "<Fiend\|Celestial\|...>" }` |
+| `rules: <question>` | `mcp__open5e__rag_search { query: "<question>", mode: "hybrid" }` — hybrid lexical + semantic |
+| `is <slug> a thing?` | `mcp__open5e__check_slug { resource_type, slug }` — collision check |
+
+**Caching:** First call to Open5e per session is ~350ms. Subsequent identical calls are cached. Batch up to 50 resources via `mcp__open5e__batch_get` when prepping a full encounter.
 
 ---
 
