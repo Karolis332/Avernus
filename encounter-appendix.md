@@ -85,25 +85,97 @@ Vorath is a bureaucrat, not a berserker. He extends a clawed hand and speaks in 
 
 ### ROLL 11-12: WARLORD SCOUT PATROLS (4 variants, roll d4)
 
-#### Variant 1: Smiler's Bike Scouts
-**CR Budget:** 8 (Medium) | **XP:** 5,400
+#### Variant 1: Smiler the Defiler — Roaming Encounter (RP + possible combat)
 
-| Creature | Count | CR | HP | AC | XP |
-|----------|-------|-----|-----|-----|------|
-| Hobgoblin Captain (on Devil's Ride) | 1 | 3 | 39 | 17 | 700 |
-| Hobgoblin (on Devil's Ride) | 3 | 1/2 | 11 | 18 | 300 |
+> *Based on BG:DiA p.133-134 and Eventyr's sandbox restructure. Smiler is a recurring NPC who can appear multiple times.*
 
-**Total XP: 1,600 (adjusted 4,800)**
+**Smiler the Defiler** — Medium fey (elf), Chaotic Evil. An insane eladrin stranded in Avernus after his companions abandoned him. He sold his soul to a pit fiend, took over a warband ("Smiler's Defilers"), then lost everything when **Feonor, Princeps Kovik, and Bitter Breath** ganged up on him. Now he rides solo on his Devil's Ride "Free Spirit," scheming revenge.
 
-**Terrain:** Open wasteland. Bikes have speed 120 ft. They circle the party at range, throwing javelins.
+**CR Budget:** 14 (Hard, buffed for party of 3) | **XP:** 11,500
 
-**Tactics:** Hit and run. They don't engage in melee — they orbit at 60 ft and throw javelins (+3, 1d6+1). The Captain has a Signal Horn — blowing it summons 2d4 more hobgoblins in 10 minutes. If the party damages a bike (AC 19, 50 HP), the rider crashes (4d6 bludgeoning, prone).
+| Stat | Value |
+|------|-------|
+| AC | 18 (+2 leather armor) |
+| HP | 200 (buffed from 165 — he's survived Avernus solo) |
+| Speed | 30 ft (120 ft on Free Spirit) |
+| STR 14 | DEX 18 | CON 16 | INT 13 | WIS 12 | CHA 18 |
+| Skills | Deception +7, Persuasion +7 |
+| Magic Resistance | Advantage on saves vs spells |
+| Fey Step (Recharge 4-6) | Bonus action teleport 30 ft or to Free Spirit's seat |
+| Equipment | +2 leather armor, +1 shortsword, 7 soul coins |
 
-**Puzzle:** Catch them. The bikes are faster than the party on foot. Creative solutions: shoot out bikes, use Eldritch Blast to push riders off (Repelling Blast invocation if Aurora has it), lay traps, use the Lady Vengeance to chase.
+**Attacks:**
+- **Multiattack:** 2 weapon attacks; can cast a spell in place of one
+- **+1 Shortsword:** +9 to hit, 1d6+5 piercing
+- **Innate Spellcasting (CHA, DC 15):**
+  - At will: Charm Person, Tasha's Hideous Laughter
+  - 3/day: Confusion, Enthrall, Suggestion
+  - 1/day: Hallucinatory Terrain, Otto's Irresistible Dance
 
-**If captured:** They carry a map fragment showing Smiler's camp location and a coded message: "The Moonkite's light weakens. Move before it dies." (Smiler knows about the Moonkite.)
+**Buff for Party of 3:**
+- HP increased to 200
+- **Avernus Survivor (1/day):** When reduced to 0 HP, Fey Steps to Free Spirit and attempts to flee (speed 120 ft). If the party lets him escape, he returns as an ally or enemy later.
+- **Wild Fey Aura:** Creatures within 10 ft must DC 15 WIS save at the start of their turn or be charmed until end of their turn (can't attack Smiler). Save succeeds = immune 24 hours.
 
-**Drops:** 1 soul coin per bike, Signal Horn (1/day, summons 1d4 hobgoblin allies within 1 mile), salvageable Devil's Ride parts.
+---
+
+**Appearance:** An elf with wild red hair, tattered fey garments that somehow still look flamboyant, and a wide, *unnerving* grin that never drops — even when he's angry. He talks to his shortsword like it's a person.
+
+**Personality:** Recklessly optimistic, charismatic, completely untrustworthy. He thinks he can bend the multiverse to his will with a positive attitude and death-defying stunts. He's the self-proclaimed "puckish rogue of Avernus."
+
+---
+
+#### How to Roleplay Smiler
+
+**Voice:** Fast-talking, theatrical, slightly manic. Think Jack Sparrow meets a fey lord who's lost everything and decided to laugh about it. He speaks with absolute confidence about plans that are clearly insane.
+
+**Mannerisms:**
+- Never stops grinning — it's unsettling because it doesn't reach his eyes
+- Talks to his sword ("What do you think, darling? Should we trust them?")
+- Fidgets with soul coins, flipping them between his fingers
+- Calls everyone "friend" even when threatening them
+- Gets distracted mid-sentence by random Avernus details ("Beautiful sunset — oh wait, that's a fortress burning. Even better!")
+
+**Key Quotes:**
+
+> *"Well, well! The Bloodbath-killers! Oh, I HEARD what you did. Fed him to a genie? That's not murder, that's CUISINE. I love it."*
+
+> *"Here's the thing about Avernus, friend — everyone here is trying to be scary. Me? I'm trying to have FUN. And fun is so much more dangerous."*
+
+> *(flipping a soul coin)* *"You know what this is? This is someone's grandmother. Or a tax collector. Hard to tell, really. Either way — two more of these and I can buy a sandwich. Avernus economics are FASCINATING."*
+
+> *(about Bitter Breath)* *"My former colleague. And I use the word 'colleague' the way you might use 'tumour.' He took my people, my palace, my THRONE. Do you know how hard it is to find a good throne in Avernus? The lumbar support is nonexistent."*
+
+> *(if threatened)* *"Oh, you want to fight? Delightful! I should warn you — the last three people who tried to kill me are currently a chair, a hat, and something I'd rather not describe in polite company."*
+
+> *(to his sword)* *"She doesn't trust us, darling. Isn't that adorable? Tell her about the plan. No? Fine, I'LL tell her about the plan."*
+
+> *(making his pitch)* *"Bitter Breath has MY palace. You want your little glowing deer thing inside it. I want the palace back. You see where this is going? Beautiful. Symmetrical. Like revenge."*
+
+> *(if they accept)* *"Partners! Oh, this is going to end TERRIBLY for someone. Let's make sure it's him."*
+
+> *(leaving)* *"Don't die before we meet again. That would be rude."*
+
+---
+
+#### Encounter Scenario
+
+**Setup:** The party spots a Devil's Ride parked sideways across a narrow canyon pass. Painted on the side in blood: a grinning face. Smiler is sitting on a rock, eating something unidentifiable, grinning.
+
+**Smiler's Offer:**
+- He'll give them a **map to the Palace of Gore** with guard rotations and a **secret entrance** (collapsed drainage tunnel, east side)
+- In exchange: when the party kills Bitter Breath, Smiler gets the Palace and all its forces
+- **DC 16 Insight:** Smiler is genuine about wanting Bitter Breath dead, but he's holding back — he knows the Moonkite's value and wants to claim it
+
+**If the party accepts:** Advantage on scouting the Palace (Act 3). Smiler cackles, salutes, and roars away on Free Spirit.
+**If the party refuses:** "Your funeral. Literally." He drives off. No map, no secret entrance.
+**If the party attacks:** Fey Step to Free Spirit, flees at speed 120 ft. Becomes a future enemy who warns Bitter Breath.
+
+**Terrain (if combat):** Canyon pass, 30 ft wide. Free Spirit is parked blocking the path (AC 19, 100 HP, speed 120 ft). Smiler uses the canyon walls for cover and Fey Steps to stay mobile. His spell priority: Confusion (split the party), Tasha's Hideous Laughter (disable Asimov's burst damage), Charm Person (turn Aurora against allies for 1 round).
+
+**Drops (if killed):** +2 leather armor, +1 shortsword, 7 soul coins, Free Spirit (Devil's Ride, fully functional), Smiler's Map (guard rotations for Palace of Gore — still usable).
+
+**Drops (if allied):** Map to Palace of Gore with secret entrance, guard rotations, advantage on Palace stealth checks.
 
 ---
 
@@ -423,7 +495,9 @@ Olanthius is a **Death Knight** (CR 17, AC 20, HP 180). He is NOT hostile unless
 
 ---
 
-### HARUMAN'S HILL
+### HARUMAN'S HILL — ~~HARUMAN IS DEAD~~
+
+> **Campaign Note:** Haruman has been killed in this campaign. The Hill remains as a location but the boss encounter is resolved. The Iron Forest approach and narzugon lieutenant may still be active as guardians. Adjust as needed — without Haruman, the Hill's binding magic is weakening and the chained souls are beginning to break free.
 
 **Travel:** Varies (need directions from Mordenkainen — party has these) | **Navigation DC:** 15 (Mid)
 
@@ -740,7 +814,7 @@ Ulloch asks 9 questions — one about each layer of the Nine Hells. DC 15 Int (A
 | Roll / Location | CR Budget | Difficulty | Estimated XP (total) |
 |----------------|-----------|------------|---------------------|
 | 7-8 Toll Collectors | 13 | Hard | 10,000 |
-| 11-12v1 Smiler Scouts | 8 | Medium | 1,600 |
+| 11-12v1 Smiler the Defiler | 14 | Hard (RP/Combat) | 11,500 |
 | 11-12v2 Kovic Blockade | 14 | Hard | 8,400 |
 | 11-12v3 Rust Queen Ambush | 13 | Hard | 4,200 |
 | 11-12v4 The Cartographer | 12 | Hard | 6,800 |
@@ -751,7 +825,7 @@ Ulloch asks 9 questions — one about each layer of the Nine Hells. DC 15 Int (A
 | Crypt L2 | 14 | Hard | 5,000 |
 | Crypt L3 (Olanthius) | 17 | Social/Deadly | — |
 | Haruman's Hill Approach | 19 | Deadly | 14,600 |
-| Haruman (boss) | 17 | Deadly | 25,000 |
+| ~~Haruman (boss)~~ DEAD | 17 | ~~Deadly~~ Resolved | — |
 | Bel's Forge (fire giants) | 20+ | Deadly+ (environmental) | 20,000 |
 | Wrecked Fortress | 11-17 | Hard-Deadly | 21,000 |
 | Arkhan's Tower | 16-24 | Social/Deadly | varies |

@@ -107,28 +107,35 @@ Drenwal hasn't killed anyone meaningful recently. **The Hunger** mechanic:
 
 If the party travels for 4+ hours before reaching the Smiler encounter, roll on the random encounter table. Full stat blocks, tactics, terrain, puzzles, and drops for every result are in `encounter-appendix.md` (or open `encounter-appendix.html` for the navigable version with stat block cards).
 
-### Travel Encounter: The Smiler Proposition (Medium difficulty — RP + possible combat)
+### Travel Encounter: The Smiler Proposition (Hard difficulty — RP + possible combat)
 
-**Setup:** 4 hours into the journey, the party spots a war machine parked sideways across a narrow canyon pass. Painted on the side in blood: a grinning face. **Smiler the Defiler** is waiting for them.
+> **Full stat block, roleplay guide, and quotes in `encounter-appendix.md` under "Variant 1: Smiler the Defiler"**
+
+**Setup:** 4 hours into the journey, the party spots a Devil's Ride parked sideways across a narrow canyon pass. Painted on the side in blood: a grinning face. **Smiler the Defiler** — an insane eladrin with wild red hair and a grin that never drops — is sitting on a rock, eating something unidentifiable.
+
+**Who is Smiler?** A fey elf stranded in Avernus who sold his soul to a pit fiend, built a warband, then lost everything when Bitter Breath and two other warlords destroyed him. He rides solo now on his Devil's Ride "Free Spirit," scheming revenge. He talks to his sword.
+
+**Voice:** Fast, theatrical, manic. Jack Sparrow meets a fey lord who's lost everything and decided to laugh about it.
 
 Smiler is NOT here to fight. He's here to make a deal.
 
-> "Well, well! The Bloodbath-killers! I heard what you did. Impressive. Stupid, but impressive."
+> *"Well, well! The Bloodbath-killers! Oh, I HEARD what you did. Fed him to a genie? That's not murder, that's CUISINE. I love it."*
 
-> "Here's the thing — Bloodbath's little brother Bitter Breath? He's been consolidating. Took the Palace, took the troops, took the *throne*. And he's angry. Very angry."
+> *(flipping a soul coin)* *"Bitter Breath took my people, my palace, my THRONE. Do you know how hard it is to find a good throne in Avernus? The lumbar support is nonexistent."*
 
-> "Now, I've got a problem with Bitter Breath too. He's been raiding my supply lines. Killing my people. So I'm thinking... maybe we have a common enemy?"
+> *"You want your little glowing deer thing inside the Palace. I want the Palace back. You see where this is going? Beautiful. Symmetrical. Like revenge."*
 
 **Smiler's Offer:**
 - He'll give them **a map to the Palace of Gore** with guard rotations and a **secret entrance** (a collapsed drainage tunnel on the east side)
 - In exchange: when the party kills Bitter Breath, Smiler gets the Palace and all its forces
-- **DC 16 Insight:** Smiler is being genuine about wanting Bitter Breath dead, but he's also holding back information — he knows about the Moonkite's value and wants to claim it
+- **DC 16 Insight:** Smiler is genuine about wanting Bitter Breath dead, but he's holding back — he knows the Moonkite's value and wants to claim it
 
-**If the party accepts:** They get advantage on scouting the Palace (see Act 3). Smiler drives off cackling.
+**If the party accepts:** Advantage on scouting the Palace (see Act 3). Smiler salutes and roars away on Free Spirit.
+> *"Partners! Oh, this is going to end TERRIBLY for someone. Let's make sure it's him."*
 
-**If the party refuses:** Smiler shrugs. "Your funeral. Literally." He drives off. No map, no secret entrance. The party must scout the Palace themselves.
+**If the party refuses:** > *"Your funeral. Literally."* He drives off. No map, no secret entrance.
 
-**If the party attacks:** Smiler has Counterspell ready. He uses his war machine to flee (speed 100 ft). He becomes a future enemy who warns Bitter Breath they're coming.
+**If the party attacks:** Fey Step to Free Spirit (bonus action), flees at speed 120 ft. Wild Fey Aura (DC 15 WIS or charmed, can't attack him) buys him time. He becomes a future enemy who warns Bitter Breath. See full combat tactics in encounter appendix.
 
 ### Aurora's Wand — Intensifying
 
