@@ -7,6 +7,33 @@
 
 ---
 
+## MIDJOURNEY VISUAL ASSETS (generated 2026-05-16)
+
+All 14 scenes generated and downloaded via Midjourney v7 (`--style raw --s 250`). **All 56 variants (4 per scene) are committed to the repo** under `Images/session-5/`. The primer below uses the `-a` variant (top-left of each grid) as the default embed. To swap to a different variant for any scene, change `-a` to `-b`, `-c`, or `-d` in that `![]()` line.
+
+| # | Scene | MJ Job URL | Default embed | Embeds at |
+|---|---|---|---|---|
+| 1 | Throne Room Aftermath | https://www.midjourney.com/jobs/32669e47-5820-4c22-a45a-7f07f8ddf577 | `scene-01-throne-room-a.webp` | COLD OPEN |
+| 2 | Moonkite portrait | https://www.midjourney.com/jobs/92e3e8f7-499d-49ab-975c-788d5c8da9a5 | `scene-02-moonkite-a.webp` | Beat 1.2 (Moonkite Stands) |
+| 3 | Bhaal carving "He misses you" | https://www.midjourney.com/jobs/f35603cb-5de8-4c81-b28b-fcdc87ff80b8 | `scene-03-carving-a.webp` | Beat 1.3 (The Carving) |
+| 4 | Vix the Imp | https://www.midjourney.com/jobs/ed963509-23f9-441b-9eb0-1cbfbe754ac6 | `scene-04-vix-a.webp` | Beat 2.3 (The Herald) |
+| 5 | Dumal emerges from smog | https://www.midjourney.com/jobs/531547a8-7035-4906-85dd-3550a2b272a6 | `scene-05-dumal-arrives-a.webp` | Beat 3.1 (The Approach) |
+| 6 | Dumal portrait close-up | https://www.midjourney.com/jobs/cbe44e11-3aa9-4443-8bde-b38220ca4cc4 | `scene-06-dumal-portrait-a.webp` | DUMAL STATBLOCK |
+| 7 | The Letter handout | https://www.midjourney.com/jobs/2599dba9-f6f1-4ead-9bdb-d5db96ecff35 | `scene-07-letter-a.webp` | Beat 1.1 (THE LETTER) |
+| 8 | Dumal's hand-drawn map | https://www.midjourney.com/jobs/7a3c4ec6-28a8-4a20-884d-011174bc8776 | `scene-08-map-a.webp` | Beat 5.2 (What He Left Behind) |
+| 9 | Bone-handled shortsword | https://www.midjourney.com/jobs/5d5b7ad2-7d16-48be-9d27-e3a89a9cce67 | `scene-09-bone-dagger-a.webp` | Beat 5.2 alongside map |
+| 10 | Senna (foreshadow — do NOT show this session) | https://www.midjourney.com/jobs/91748390-3630-487b-994d-80600c0b5dd3 | `scene-10-senna-a.webp` | DM ONLY APPENDIX (bottom) |
+| 11 | Aldwin Ardentwine's body | https://www.midjourney.com/jobs/137fe620-0bca-421c-bab4-6f9adaeff265 | `scene-11-aldwin-body-a.webp` | Beat 1.1 (The Body) |
+| 12 | Bhaal Cultist token | https://www.midjourney.com/jobs/8ca9eaa5-74fa-4128-8862-e81322dc85a7 | `scene-12-cultist-a.webp` | Supporting Cast → Cultists |
+| 13 | Bone Devil token | https://www.midjourney.com/jobs/b8467ccd-2dcf-40e1-b186-ebd9a14fa75f | `scene-13-bone-devil-a.webp` | Supporting Cast → Bone Devil |
+| 14 | The Star (final beat) | https://www.midjourney.com/jobs/f7556314-4c01-4386-b7e1-a542149ca4c8 | `scene-14-star-a.webp` | Beat 5.4 (Final Beat) |
+
+**Note on quality:** images are 640px webp (the MJ web-preview resolution). For high-res print (handouts, projector at >1080p) open the MJ job URL on any device, click → "Download" → pick the upscaled 4K version. Drop those into `Images/session-5/` with the same filename to replace.
+
+Full prompts and style direction in `session-5-artstyles.md`.
+
+---
+
 ## OPEN5E CANONICAL REFERENCES (SRD 2024 — verified 2026-05-16 via mcp__open5e)
 
 All non-homebrew statblocks and spell mechanics in this primer reference the SRD 2024 dataset. Live queries during the session via `mcp__open5e__get` / `search` / `rag_search`.
@@ -187,6 +214,8 @@ When Drenwal dies and is reborn:
 
 ## COLD OPEN
 
+![Scene 1 — Throne Room Aftermath](Images/session-5/scene-01-throne-room-a.webp)
+
 Read aloud:
 
 > The throne room of the Palace of Gore is suddenly very quiet.
@@ -216,6 +245,8 @@ Read aloud:
 
 ### Beat 1.1 — The Body
 
+![Scene 11 — Aldwin Ardentwine's body](Images/session-5/scene-11-aldwin-body-a.webp)
+
 The mortal man's body is on the floor. Players will react. Let them lead.
 
 **What investigation reveals (no DC — let them have it):**
@@ -237,6 +268,8 @@ The mortal man's body is on the floor. Players will react. Let them lead.
 | Search the room one more time | DC 14 Investigation: a **small folded letter** in the robe's hem. Sealed with wax. Unsigned. Reads in shaky hand: *"If you read this and you are the one who freed me — I am sorry. He took my brother first. He will take yours too. Run. — A."* See "The Letter" below. |
 
 ### THE LETTER (handout text)
+
+![Scene 7 — Aldwin's letter](Images/session-5/scene-07-letter-a.webp)
 
 Hand this to the player physically if possible:
 
@@ -260,6 +293,8 @@ Hand this to the player physically if possible:
 
 ### Beat 1.2 — The Moonkite Stands
 
+![Scene 2 — The Moonkite](Images/session-5/scene-02-moonkite-a.webp)
+
 The Moonkite raises its head. It is the size of a small horse, antlered, with feathered wings and feline grace. Its eyes meet Aurora's. There is **no speech** — the bond is older than language.
 
 **Aurora gains:**
@@ -270,6 +305,8 @@ The Moonkite raises its head. It is the size of a small horse, antlered, with fe
 **Aurora's choice (RP only, no mechanic):** What does she name it? The name matters — it's the first time she's named a thing that wasn't hers to name.
 
 ### Beat 1.3 — The Carving
+
+![Scene 3 — Bhaal carving "He misses you"](Images/session-5/scene-03-carving-a.webp)
 
 When the party exits the throne room and reaches the upper Palace gate, they see it:
 
@@ -331,6 +368,8 @@ Lulu — riding on someone's shoulder or trotting alongside — stops. Looks sou
 
 ### Beat 2.3 — The Herald
 
+![Scene 4 — Vix the imp herald](Images/session-5/scene-04-vix-a.webp)
+
 Two hours in: a single **imp** descends from the smog and lands on a charred fence-post twenty feet ahead of the party. It is holding a small black flag. The flag is plain — no sigil, no marking. **A parley flag.**
 
 > The imp clears its throat. Its voice is too polite.
@@ -368,6 +407,8 @@ The trap: feeding Hunger is *fast* but ticks the meter. Resisting is *hard* but 
 ## ACT 3 — DUMAL ARRIVES — THE FIRST CUT (1 hour 15 min)
 
 ### Beat 3.1 — The Approach
+
+![Scene 5 — Dumal emerges from the smog](Images/session-5/scene-05-dumal-arrives-a.webp)
 
 Dumal does not come down a road. He walks *out of the smog itself* — like the smog parts for him. Behind him, four shadowy shapes follow at a respectful distance: three **Bhaal cultists** (use Cult Fanatic stats, MM p.345) and one **Bone Devil** bodyguard.
 
@@ -560,6 +601,10 @@ Whatever the outcome — accept, refuse-with-time, refuse-and-fight — Dumal le
 
 ### Beat 5.2 — What He Left Behind
 
+![Scene 8 — Dumal's hand-drawn map](Images/session-5/scene-08-map-a.webp)
+
+![Scene 9 — The bone-handled shortsword](Images/session-5/scene-09-bone-dagger-a.webp)
+
 After Dumal departs, the party finds — pinned to a nearby post by the bone-handled shortsword from his hip — a folded parchment.
 
 **It is a small, hand-drawn map.**
@@ -593,6 +638,8 @@ Update both meters based on Drenwal's choices this session. Sample math if he re
 
 ### Beat 5.4 — The Final Beat
 
+![Scene 14 — The Star](Images/session-5/scene-14-star-a.webp)
+
 > The smog is thinning. Somewhere overhead, behind the gore-clouds, a *star* is visible. One. The first time in weeks.
 >
 > The Moonkite is looking at it. Aurora is looking at it. The Moonkite makes a low sound — not a call. A *welcome*.
@@ -606,6 +653,8 @@ Update both meters based on Drenwal's choices this session. Sample math if he re
 ---
 
 ## DUMAL — STATBLOCK
+
+![Scene 6 — Dumal portrait](Images/session-5/scene-06-dumal-portrait-a.webp)
 
 **Dumal of Elturel, the Flame Ascendant**
 *Medium humanoid (Bhaalspawn), neutral evil*
@@ -659,6 +708,8 @@ Update both meters based on Drenwal's choices this session. Sample math if he re
 
 ### Bhaal Cultists ×3 (Cult Fanatic — SRD 2024)
 
+![Scene 12 — Bhaal Cultist token](Images/session-5/scene-12-cultist-a.webp)
+
 **Open5e:** https://open5e.com/monsters/cult-fanatic
 
 - **AC 13, HP 22, CR 2** (corrected from prior 33 HP — RAW is 22)
@@ -675,6 +726,8 @@ Update both meters based on Drenwal's choices this session. Sample math if he re
 > **Live pull at table:** `mcp__open5e__get { resource_type: "monsters", slug: "cult-fanatic" }`
 
 ### Bone Devil (SRD 2024)
+
+![Scene 13 — Bone Devil token](Images/session-5/scene-13-bone-devil-a.webp)
 
 **Open5e:** https://open5e.com/monsters/bone-devil
 
@@ -1023,5 +1076,15 @@ I will use these automatically when you ask the matching question. You can also 
 - **Family reveal sequence:** Act 3, Beat 3.2 (Mother → Father → Sister → Mordenkainen → Offer)
 - **Dumal statblock:** "DUMAL — STATBLOCK"
 - **Trackers:** every act has tracker updates flagged
+
+## DM-ONLY APPENDIX — Future-Session Foreshadow
+
+**DO NOT show this image to the players in Session 5.** It belongs to Session 6 or 7, when Dumal hands over the crayon letter from Senna. The visual surprise IS the punch.
+
+![Scene 10 — Senna (do NOT show this session)](Images/session-5/scene-10-senna-a.webp)
+
+The art-style break (warm green-gold instead of red/grey) is the visual cue when you finally drop it on the table — *this is what the brothers are fighting over*.
+
+---
 
 Good luck. Watch their faces when he says Senna's name.
