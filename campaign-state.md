@@ -13,7 +13,16 @@
 - **Transport:** The **Lady Vengeance** — Gondian-Portyr Hellship (AC 17, 350 HP, Arcane Cannons, Aether Harpoon, Soul Coin Overdrive)
 
 ## Current Location
-Outside the Tower of Urm — departing after encountering the real Mordenkainen
+**Outside the Palace of Gore**, gore-smog thinning. Lady Vengeance wrecked behind rubble inside the Palace tunnels. Walking out, or short-rest in immediate vicinity.
+
+## Active Session Prep
+**Session 5: The Flame Ascendant (Dumal) — primer:** `session-5-dumal-primer.md` (committed `aafbd68`, pushed)
+- Cold open: Palace aftermath with the corpse of Aldwin Ardentwine (the mortal man Aurora wished back to humanity — died of old age at once)
+- Encounter focus: Dumal arrives under parley, lore-heavy dialogue, optional combat
+- Multi-session arc seeded (4 escalating acts to Drenwal's rebirth ritual)
+- Avernus random encounter table (20 entries)
+- Mid-session live protocol — paste-templates for fast statblock/dialogue/lore/ruling/tracker queries
+- Bhaal/Gargauth Influence v2 system replaces old 0–6 tick scale (see file)
 
 ## What the Party Knows
 - The **Fallen Three** (Olanthius, Haruman, Bel) each know part of the path to the Bleeding Citadel
@@ -27,7 +36,10 @@ Outside the Tower of Urm — departing after encountering the real Mordenkainen
 - **Drenwal's cure:** Must **die and be reborn in the eyes of another god** to purge his Bhaal blood/sickness (Mordenkainen's revelation)
 - **Moonkite location:** Palace of Gore, follow the river of blood (they have the Moonkite Cage Key)
 - **Mordenkainen at the Tower of Urm was a simulacrum** — it was glitching, dripping water. The real Mordenkainen was in a second Tower of Urm and could never catch up to his simulacrum
-- **Haruman has NOT been killed yet** in this campaign
+- **Haruman of the Crimson Legion has been killed** by the party (prior session) — Fallen Three: 1/3 done. Trophy retconned as the "Haruman piece" for Blood Pay.
+- **Moonkite is freed and bonded** to Aurora as her mount (Wish, Session 4)
+- **Bitter Breath was reverted** to mortality and died of old age — Aldwin Ardentwine, former Hellrider of House Ardentwine (Session 4)
+- **Dumal carved a Bhaal symbol at the Palace exit** — "He misses you." Dumal was watching.
 
 ## What Has Happened
 - Completed Chapters 1-2 (Baldur's Gate → Elturel → Avernus)
@@ -43,12 +55,15 @@ Outside the Tower of Urm — departing after encountering the real Mordenkainen
 - Mordenkainen revealed: Fallen Three locations + Drenwal's cure (die and be reborn in the eyes of another god)
 
 ## Active Plot Threads
-1. **Main Quest:** Find the Bleeding Citadel → retrieve Zariel's Sword → free Elturel. Fallen Three locations now known (from Mordenkainen). Still need blood pay.
-2. **Drenwal's Arc:** Bhaal vs Gargauth tug-of-war. Dumal hunting him. Bhaalspawn siblings converging. NEW: Mordenkainen's cure — must die and be reborn in the eyes of another god. Which god? How? Gargauth wants to be that god (trap option).
-3. **Aurora's Arc:** Moonkite imprisoned at the **Palace of Gore** (Bitter Breath's lair). Party has the Cage Key and directions. This is the immediate next objective.
-4. **Asimov's Arc:** Interdimensional bounty hunter. Soul Capacitor evolved — Medium Souls unlocked + Bloodbath's Bounty Soul imprinted. Rasheem hinting at a future contract.
-5. **Gargauth's Manipulation:** Tempting Drenwal with power; now specifically angling to be the god who "catches" Drenwal during the rebirth ritual.
-6. **Time Pressure:** Elturel continues sinking into the River Styx
+1. **Main Quest:** Find the Bleeding Citadel → retrieve Zariel's Sword → free Elturel. Haruman piece collected (1/3). Olanthius + Bel remaining. Blood Pay timing per homebrew: Citadel manifests every 33 days, next window in 17 days.
+2. **Drenwal's Arc:** Bhaal vs Gargauth tug-of-war + new "third deity" option (Coram-of-Small-Mercies homebrew). Cure ritual = "die and be reborn in eyes of god who has never claimed you." Dumal is closing — see Session 5 primer for arc plan through Session 9+.
+3. **Aurora's Arc:** Moonkite recovered + mounted (Session 4). Ring of Wishes spent. STR 3 for 3 in-game days. Next personal arc: investigating Moonkite's lost celestial patron (potential third deity for Drenwal).
+4. **Asimov's Arc:** Soul Capacitor — Medium Souls unlocked. Rasheem hinting at Major Soul bounty. Rasheem warned Aurora about Dumal/Bhaal: *"That one's not yours."*
+5. **Gargauth's Manipulation:** Tempting Drenwal with power; angling to be the god who "catches" Drenwal during the rebirth ritual. Influence v2: 35.
+6. **Bhaal's Direct Hunt:** Influence v2: 50. Dumal arriving Session 5. Carved symbol at Palace exit.
+7. **Senna (NEW homebrew thread):** Dumal will reveal a third Bhaalspawn sibling — a 6-year-old sister raised by Harper Issa. Major emotional anchor across the arc. See Session 5 primer.
+8. **Smiler the Defiler — banishment debt:** Party owes Smiler banishment to his realm. No Wish access. Need scroll/NPC/ritual. Future quest.
+9. **Time Pressure:** Elturel continues sinking. Bleeding Citadel manifestation in 17 days.
 
 ## Session Log
 
@@ -81,6 +96,35 @@ Outside the Tower of Urm — departing after encountering the real Mordenkainen
 **Consequences:** Bloodbath encounter triggered by scarecrow noise. Bike destroyed. Bloodbath eliminated — consumed by Rasheem. Aurora now has a clear objective: the Palace of Gore holds the Moonkite. Rasheem can interrogate Bloodbath from within — useful intel source. Bhaal hijacked Drenwal's Divine Intervention — asserting ownership over his divine channel. Dumal threat is now known to the full party, but his location is unclear.
 **Items gained/lost:** Meatgrinder wreckage (repairable war machine?). Bloodbath's remains consumed by Rasheem. **Moonkite Cage Key** — opens the Moonkite's cage at the Palace of Gore.
 **NPC reactions:** —
+
+### Session 4 — The Palace of Gore (Bitter Breath) — completed
+**Location:** Palace of Gore, throne room
+**Events:**
+- Party reached throne room, engaged Bitter Breath (Amnizu) and entourage
+- Captain Grozz **killed** in the boss fight
+- Smiler deal: **party accepted, promised to banish Smiler to his realm** (debt unpaid, owed)
+- Aurora used her **Ring of Wishes (single charge)** — willed Bitter Breath to "return all his power to whence it came"
+- Effect: Bitter Breath devolved into the mortal man he was before becoming a devil. Decades of accumulated devilhood caught up at once — **he died of old age on the throne room floor**. His body remains in the Palace.
+- Cascading effect: **the Moonkite was fully freed** by the same Wish, now bonded to Aurora as her mount
+- **Moonbow of Celestial Warding fusion happened** — Aurora's +2 longbow + Wand of Celestial Warding merged
+- **No loot from Bitter Breath** — his power, weapons (Gutripper), soul coins, and Bhaal-marked gear dissolved with him when reverted
+- **Bhaal carving discovered at Palace exit** on the way out — fresh blood, signed in Dumal's handwriting: "He misses you." Dumal was watching.
+- The Ring of Wishes is now an inert silver band (single-charge, spent)
+
+**Wish stress (Aurora):** STR reduced to 3 for 3 in-game days, cannot cast spells ≥ 1st level for d4 = 2 days. Wish is GONE — she has no further Wish access until she finds another item or learns it natively.
+
+**Consequences:**
+- Moonkite recovered + mounted (no week-long bonding period)
+- Bhaal Influence (old system) — **did NOT tick** per DM ruling
+- **New tracking system (v2) introduced:** Bhaal's Claim 50 / Gargauth's Bargain 35 as starting baselines for Session 5 (see `session-5-dumal-primer.md`)
+- Smiler banishment is an unpaid debt — needs scroll, NPC caster, or planar ritual
+
+**Items gained:**
+- Moonbow of Celestial Warding (replaces +2 bow + Wand of Celestial Warding)
+- Moonkite as mount
+- Aldwin Ardentwine's body + signet ring + hidden letter (in the Palace) — if recovered
+
+---
 
 ### Session 2 — 2026-XX-XX
 **Location:** Tower of Urm → Second Tower of Urm
