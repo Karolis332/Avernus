@@ -1,0 +1,835 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 6 Primer — The Demon Zapper, the Ambush &amp; Bel&#x27;s Forge</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=Inter:wght@400;500;600;700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#0d0a0a; --surface:#181311; --surface2:#221a18; --surface3:#2c211d;
+  --border:#3a2c28; --border2:#4a3832;
+  --ink:#ece0d2; --muted:#a4948440; --muted2:#a49484; --accent:#d4af6a;
+  --silver:#b8c8d8; --blood:#a02424; --bone:#d8c6a4; --hell:#e0631f;
+  --good:#6bbf6b; --warn:#e6ab44; --crit:#e05050; --celest:#aeb8e0; --homebrew:#b07fd0;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);
+  font-family:'Inter','Segoe UI',system-ui,sans-serif;line-height:1.72;font-size:15.5px;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--accent);text-decoration:none}
+a:hover{text-decoration:underline}
+
+/* ---- layout ---- */
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr)}
+nav.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);
+  border-right:1px solid var(--border);padding:24px 14px 60px}
+nav .brand{font-family:'Cinzel','Georgia',serif;font-size:16px;color:var(--accent);
+  margin:0 0 4px;letter-spacing:.5px;line-height:1.35}
+nav .sub{color:var(--muted2);font-size:11px;margin-bottom:16px;font-style:italic;
+  padding-bottom:14px;border-bottom:1px solid var(--border)}
+nav .toctitle{font-size:10px;letter-spacing:2px;text-transform:uppercase;color:var(--muted2);
+  margin:6px 8px 8px}
+nav .toc ul{list-style:none;padding-left:0;margin:0}
+nav .toc>ul>li{margin:1px 0}
+nav .toc a{display:block;padding:5px 10px;border-radius:5px;color:var(--ink);font-size:13px;
+  border-left:2px solid transparent;line-height:1.4}
+nav .toc a:hover{background:var(--surface2);text-decoration:none}
+nav .toc a.active{background:var(--surface3);border-left-color:var(--accent);color:var(--accent);font-weight:600}
+nav .toc ul ul a{font-size:12px;color:var(--muted2);padding-left:22px}
+nav .toc ul ul ul a{font-size:11.5px;padding-left:34px;opacity:.85}
+/* h1 PART headers in the toc: bold accent */
+nav .toc>ul>li>a{font-family:'Cinzel',serif;font-size:12px;letter-spacing:.5px;
+  text-transform:uppercase;color:var(--hell);margin-top:10px}
+
+main{min-width:0}
+.wrap{max-width:920px;padding:0 48px 120px}
+
+/* ---- sticky title + quick-jump ---- */
+header.title{position:sticky;top:0;z-index:30;background:var(--bg);
+  padding:22px 48px 0;border-bottom:1px solid var(--border)}
+header.title h1{font-family:'Cinzel','Georgia',serif;font-size:30px;color:var(--accent);
+  margin:0 0 12px;letter-spacing:1.5px;line-height:1.2}
+.jumpbar{display:flex;flex-wrap:wrap;gap:6px;padding-bottom:12px}
+.jumpbar a{font-size:12px;padding:5px 12px;border-radius:20px;background:var(--surface);
+  border:1px solid var(--border2);color:var(--bone);white-space:nowrap}
+.jumpbar a:hover{background:var(--accent);color:#1a1208;border-color:var(--accent);text-decoration:none}
+
+/* ---- headings: strong vertical rhythm ---- */
+h1,h2,h3,h4{scroll-margin-top:140px}
+.wrap>h1{font-family:'Cinzel',serif;font-size:25px;color:#fff;letter-spacing:2px;text-transform:uppercase;
+  margin:64px 0 22px;padding:16px 20px;background:linear-gradient(100deg,var(--blood),#3a1010);
+  border-radius:8px;box-shadow:0 4px 18px rgba(0,0,0,.45)}
+h2{font-family:'Cinzel',serif;font-size:22px;color:var(--accent);
+  margin:48px 0 16px;padding-bottom:9px;border-bottom:1px solid var(--border2);letter-spacing:.5px}
+h3{font-family:'Cinzel',serif;font-size:17px;color:var(--bone);margin:30px 0 10px}
+h4{font-size:12px;color:var(--hell);margin:22px 0 8px;text-transform:uppercase;letter-spacing:1.5px;
+  font-weight:700}
+p{margin:13px 0}
+strong{color:var(--bone);font-weight:600}
+hr{border:none;height:1px;background:linear-gradient(90deg,transparent,var(--border2),transparent);
+  margin:40px 0}
+ul,ol{margin:13px 0;padding-left:26px}
+li{margin:7px 0}
+li::marker{color:var(--accent)}
+/* task checkboxes */
+li input[type=checkbox]{margin-right:8px;accent-color:var(--accent);width:15px;height:15px;vertical-align:-2px}
+
+code{background:var(--surface2);border:1px solid var(--border);border-radius:4px;
+  padding:1.5px 6px;font-family:'JetBrains Mono','Consolas',monospace;font-size:12.5px;color:var(--celest)}
+pre{background:#0a0707;border:1px solid var(--border);border-left:3px solid var(--accent);
+  border-radius:6px;padding:16px 18px;overflow-x:auto;margin:18px 0;line-height:1.5}
+pre code{background:none;border:none;padding:0;color:var(--bone);font-size:12.5px;white-space:pre}
+
+/* ---- read-aloud ---- */
+blockquote.read{background:var(--surface);border-left:4px solid var(--accent);padding:16px 22px;
+  margin:20px 0;font-style:italic;color:var(--bone);border-radius:0 8px 8px 0;line-height:1.7}
+blockquote.read em{color:var(--accent);font-style:normal;font-weight:600}
+blockquote.read strong{color:var(--hell)}
+blockquote.read p:first-child{margin-top:0}
+blockquote.read p:last-child{margin-bottom:0}
+
+/* ---- admonition callouts ---- */
+.admonition{margin:22px 0;padding:0 0 14px;border:1px solid var(--border2);border-radius:8px;
+  background:var(--surface);overflow:hidden;box-shadow:0 2px 10px rgba(0,0,0,.25)}
+.admonition>.admonition-title{font-family:'Cinzel',serif;font-size:12px;letter-spacing:1.5px;
+  text-transform:uppercase;padding:10px 18px;margin:0;background:var(--surface2);
+  border-bottom:1px solid var(--border);color:var(--accent);font-weight:700}
+.admonition>*:not(.admonition-title){padding-left:18px;padding-right:18px}
+.admonition p:first-of-type{margin-top:12px}
+.admonition p:last-child{margin-bottom:0}
+.admonition ul{margin:10px 0}
+.admonition.howto{border-color:var(--celest)}
+.admonition.howto>.admonition-title{color:var(--celest);background:#1a1d2a}
+.admonition.run>.admonition-title{color:var(--accent)}
+.admonition.mechanics{border-color:var(--good)}
+.admonition.mechanics>.admonition-title{color:var(--good);background:#13201380}
+.admonition.mechanics>.admonition-title:before{content:"🎲 "}
+.admonition.dial{border-color:var(--warn)}
+.admonition.dial>.admonition-title{color:var(--warn);background:#2a200f}
+.admonition.dial>.admonition-title:before{content:"🎲 "}
+.admonition.homebrew{border-color:var(--homebrew)}
+.admonition.homebrew>.admonition-title{color:var(--homebrew);background:#20162a}
+.admonition.danger{border-color:var(--crit)}
+.admonition.danger>.admonition-title{color:var(--crit);background:#2a1313}
+.admonition.danger>.admonition-title:before{content:"⚠ "}
+
+/* ---- tables ---- */
+table{width:100%;border-collapse:separate;border-spacing:0;margin:20px 0;background:var(--surface);
+  border:1px solid var(--border2);border-radius:8px;overflow:hidden;font-size:13.5px}
+th{background:var(--surface2);color:var(--accent);font-family:'Cinzel',serif;text-align:left;
+  padding:11px 13px;font-size:11.5px;text-transform:uppercase;letter-spacing:.6px;
+  border-bottom:2px solid var(--border2)}
+td{padding:10px 13px;border-bottom:1px solid var(--border);vertical-align:top}
+tr:last-child td{border-bottom:none}
+tbody tr:hover td{background:var(--surface2)}
+table code{font-size:11.5px}
+
+/* ---- back to top ---- */
+#totop{position:fixed;right:26px;bottom:26px;z-index:40;width:46px;height:46px;border-radius:50%;
+  background:var(--surface2);border:1px solid var(--border2);color:var(--accent);font-size:20px;
+  cursor:pointer;display:none;align-items:center;justify-content:center;box-shadow:0 4px 14px rgba(0,0,0,.5)}
+#totop:hover{background:var(--accent);color:#1a1208}
+#totop.show{display:flex}
+
+/* ---- responsive ---- */
+@media (max-width:980px){
+  .layout{grid-template-columns:1fr}
+  nav.sidebar{display:none}
+  .wrap,header.title{padding-left:18px;padding-right:18px}
+}
+@media print{
+  .layout{grid-template-columns:1fr}
+  nav.sidebar,.jumpbar,#totop{display:none}
+  html,body{background:#fff;color:#1a1410;font-size:11pt}
+  header.title{position:static;border:none;padding:0}
+  header.title h1{color:#7a1010}
+  .wrap{max-width:none;padding:0}
+  .wrap>h1{background:#7a1010;color:#fff;box-shadow:none}
+  h2,h3{color:#3a2018}h4{color:#7a1010}
+  blockquote.read{background:#f4ecdc;color:#1a1410}
+  .admonition{background:#f7f2e9;border-color:#bbb}
+  .admonition>.admonition-title{background:#eadfc9;color:#3a2018}
+  table{background:#fff}th{background:#eadfc9;color:#3a2018}
+  pre{background:#f2ede2;color:#1a1410}code{background:#eee;color:#3a2018}
+  a{color:#1a1410}
+}
+</style>
+</head>
+<body>
+<span id="top"></span>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="brand">Session 6 Primer — The Demon Zapper, the Ambush &amp; Bel&#x27;s Forge</div>
+    <div class="sub">Descent into Avernus — Bloodreina arc</div>
+    <div class="toctitle">Contents</div>
+    <div class="toc"><div class="toc">
+<ul>
+<li><a href="#run-order">▶ Run Order — the session at a glance</a></li>
+<li><a href="#where-we-are">▶ Where we are</a><ul>
+<li><a href="#last-session-the-bone-brambles">Last session — the Bone Brambles</a></li>
+<li><a href="#why-the-genie-matters">Why the genie matters</a></li>
+<li><a href="#fallen-three-progress">Fallen Three — progress</a></li>
+<li><a href="#the-clock-homebrew">The clock &nbsp;[HOMEBREW]</a></li>
+<li><a href="#threads-riding-in">Threads riding in</a></li>
+</ul>
+</li>
+<li><a href="#statblock-reference-index">▶ Statblock reference index</a></li>
+<li><a href="#design-thesis">▶ Design thesis</a></li>
+<li><a href="#part-a">PART A — The Demon Zapper</a><ul>
+<li><a href="#a-the-location-canon">A · The location &nbsp;[CANON]</a><ul>
+<li><a href="#read-aloud-arrival">Read-aloud — arrival</a></li>
+</ul>
+</li>
+<li><a href="#a1-free-the-genie">A1 · Free the genie</a><ul>
+<li><a href="#what-happens">What happens</a></li>
+<li><a href="#optional-free-the-unicorn-moral-tactical-hook">Optional — free the unicorn &nbsp;[moral + tactical hook]</a></li>
+</ul>
+</li>
+<li><a href="#a2-the-bargain-paid-the-win">A2 · The bargain paid — the win</a></li>
+<li><a href="#ambush">A3 · The ambush ⚔️ &nbsp;[HOMEBREW + canon betrayal, fused]</a><ul>
+<li><a href="#primary-staging-betrayal-into-ambush-recommended">Primary staging — betrayal into ambush &nbsp;(recommended)</a></li>
+<li><a href="#read-aloud-dumal-arrives">Read-aloud — Dumal arrives</a></li>
+<li><a href="#the-three-sides">The three sides</a></li>
+<li><a href="#the-unicorn-as-wildcard">The unicorn as wildcard</a></li>
+<li><a href="#alternate-staging-interrupted-rite">Alternate staging — interrupted rite &nbsp;🎲</a></li>
+</ul>
+</li>
+<li><a href="#a-statblocks">A · Statblocks</a><ul>
+<li><a href="#statblock-dumal">Statblock — Dumal &nbsp;[HOMEBREW boss]</a></li>
+<li><a href="#statblock-ralzala">Statblock — Ralzala the dao &nbsp;(Monster Manual; non-SRD)</a></li>
+<li><a href="#statblock-bone-devil-bone-devil">Statblock — Bone Devil &nbsp;(bone-devil ✓)</a></li>
+</ul>
+</li>
+<li><a href="#a-dumals-combat-doctrine">A · Dumal's combat doctrine</a></li>
+<li><a href="#the-dial">The Dial — does Dumal die? &nbsp;🎲 [DM choice]</a></li>
+<li><a href="#a-influence-triggers-homebrew">A · Influence triggers &nbsp;[HOMEBREW]</a></li>
+<li><a href="#a4-aftermath">A4 · Aftermath</a></li>
+</ul>
+</li>
+<li><a href="#part-b">PART B — Bel's Forge</a><ul>
+<li><a href="#b-the-location-canon">B · The location &nbsp;[CANON]</a><ul>
+<li><a href="#read-aloud-approach">Read-aloud — approach</a></li>
+</ul>
+</li>
+<li><a href="#b1-the-test-four-fire-giants">B1 · The test — four fire giants</a></li>
+<li><a href="#b2-the-bargain-with-bel">B2 · The bargain with Bel</a><ul>
+<li><a href="#what-bel-wants-canon">What Bel wants &nbsp;[CANON]</a></li>
+<li><a href="#the-lever-canon">The lever &nbsp;[CANON]</a></li>
+<li><a href="#what-bel-gives">What Bel gives</a></li>
+<li><a href="#bel-reads-the-party">Bel reads the party</a></li>
+</ul>
+</li>
+<li><a href="#b3-the-onward-path">B3 · The onward path</a></li>
+<li><a href="#statblock-bel">Statblock — Bel &nbsp;(book appendix; OCR HP corrected)</a></li>
+<li><a href="#b-loot">B · Loot</a></li>
+</ul>
+</li>
+<li><a href="#reference">Reference</a><ul>
+<li><a href="#mid-session-request-protocol">Mid-session request protocol</a></li>
+<li><a href="#the-two-lines-to-remember">The two lines to remember</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+  </nav>
+  <main>
+    <header class="title">
+      <h1>Session 6 Primer — The Demon Zapper, the Ambush &amp; Bel&#x27;s Forge</h1>
+      <div class="jumpbar"><a href="#top">Top</a><a href="#run-order">How to Run</a><a href="#where-we-are">Recap</a><a href="#part-a">Part A</a><a href="#ambush">The Ambush</a><a href="#part-b">Part B</a><a href="#statblock-bel">Bel</a><a href="#reference">Reference</a></div>
+    </header>
+    <div class="wrap">
+      <p><strong>Date:</strong> TBD &nbsp;·&nbsp; <strong>Length:</strong> 4–5 hours &nbsp;·&nbsp; <strong>Party:</strong> 3 PCs, Level 11</p>
+<p><strong>The PCs</strong></p>
+<ul>
+<li><strong>Drenwal</strong> — Light Cleric, Bhaalspawn. <strong>Carries the Shield of the Hidden Lord (Gargauth).</strong> The object everyone wants tonight.</li>
+<li><strong>Aurora</strong> — Archfey Warlock. Moonkite-mounted, Moonbow of Celestial Warding. (Ring of Wishes is spent — no Wish access.)</li>
+<li><strong>Asimov</strong> — Soulknife Rogue. Soul Capacitor + the genie Rasheem.</li>
+<li><strong>Lulu</strong> — hollyphant companion. Her conscience is a plot lever tonight.</li>
+</ul>
+<hr />
+<div class="admonition howto">
+<p class="admonition-title">How to use this primer — read this first</p>
+<p><strong>This document is two sessions of material in one file.</strong></p>
+<ul>
+<li><strong>PART A — The Demon Zapper</strong> is <em>the next session</em>: free the genie, get the letter, survive the ambush. Run this.</li>
+<li><strong>PART B — Bel's Forge</strong> is <em>the destination the letter unlocks</em>. Run it if Part A finishes early, or open it next session.</li>
+</ul>
+<p><strong>Navigation:</strong> use the left sidebar to jump to any beat. The bar under the title jumps to the big landmarks. Headings light up as you scroll so you always know where you are.</p>
+<p><strong>Tags:</strong> <strong>[CANON]</strong> = straight from the lorebook · <strong>[HOMEBREW]</strong> = our additions (Dumal, the meters, Blood Pay) · <strong>⚔️</strong> = combat · <strong>🎲 DIAL</strong> = a DM choice with no wrong answer.</p>
+</div>
+<hr />
+<h2 id="run-order">▶ Run Order — the session at a glance</h2>
+<blockquote class="read">
+<p><strong>The whole session in one breath:</strong> They came to free a genie and leave with a letter to Bel. They get the letter — then the genie turns on them for Drenwal's Shield, and <strong>Dumal walks out of the smog.</strong> They leave bleeding, but they leave with the road to Bel's Forge.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Beat</th>
+<th>~Time</th>
+<th>The one thing you do</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>A1 · Free the genie</strong></td>
+<td>30 min</td>
+<td>Cash in Red Ruth's method → break Ralzala's pact. (Optional: free the unicorn.)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>A2 · The bargain paid</strong></td>
+<td>15 min</td>
+<td>Ralzala gives the <strong>letter + directions</strong>. <em>Hand the letter out. Let them relax.</em></td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>A3 · The ambush</strong> ⚔️</td>
+<td>60–80 min</td>
+<td>Genie lunges for the Shield → <strong>Dumal erupts.</strong> Three-cornered fight.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>A4 · Aftermath</strong></td>
+<td>20 min</td>
+<td>Dumal exits (or dies — your dial). Unicorn's fate. Update the meters.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Travel</strong></td>
+<td>10 min</td>
+<td>18–30 hrs to Bel's Forge. Optional 1 encounter roll.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>PART B · Bel's Forge</strong></td>
+<td>if time</td>
+<td>Letter softens the giant-test → bargain → the road to the Bleeding Citadel.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Prep checklist before you sit down:</strong></p>
+<ul>
+<li>[ ] Print/copy the <strong>Letter of Introduction</strong> as a physical handout (Beat A2).</li>
+<li>[ ] Decide the <strong>Dumal Dial</strong> (retreat vs. death) <em>before</em> initiative — see <a href="#the-dial">The Dial</a>.</li>
+<li>[ ] Have these blocks open: <strong>Dumal</strong>, <strong>Ralzala the dao</strong>, <strong>Bone Devil</strong>, <strong>Unicorn</strong>.</li>
+<li>[ ] Confirm the current <strong>Bhaal / Gargauth</strong> meter values (S5 baseline: Bhaal 50 / Gargauth 35).</li>
+</ul>
+<hr />
+<h2 id="where-we-are">▶ Where we are</h2>
+<h3 id="last-session-the-bone-brambles">Last session — the Bone Brambles</h3>
+<p>The party fought through the night hag <strong>Red Ruth's</strong> thorn-warren and <strong>killed her</strong>. The prize: <strong>the method to free the genie</strong> — the dao <strong>Ralzala</strong>, bound by an infernal pact at the <strong>Demon Zapper</strong>.</p>
+<blockquote class="read">
+<p><strong>[CANON]</strong> Red Ruth is the one the dao believes "knows how to free it from its pact." She supplies the method — <em>"the dao must drink the blood of someone even less free than itself,"</em> or your homebrewed substitute. <em>(Ch. 3 DMs Resources.)</em></p>
+</blockquote>
+<h3 id="why-the-genie-matters">Why the genie matters</h3>
+<p>Ralzala is the <strong>gatekeeper to Bel's Forge.</strong> In exchange for freedom she gives <strong>directions to Bel's Forge AND a letter of introduction</strong> — the thing that turns Bel from "prove yourselves to a pit fiend" into "a known quantity." <strong>The letter is the prize. Bel is the destination.</strong></p>
+<h3 id="fallen-three-progress">Fallen Three — progress</h3>
+<p>The three beings who each know part of the path to the <strong>Bleeding Citadel</strong> (where <strong>Zariel's Sword</strong> waits to free Elturel):</p>
+<table>
+<thead>
+<tr>
+<th>Fallen Three</th>
+<th>Location</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Haruman</strong> of the Crimson Legion</td>
+<td>Haruman's Hill</td>
+<td>✅ <strong>Killed</strong> (1/3) — "Haruman piece" held for Blood Pay</td>
+</tr>
+<tr>
+<td><strong>Bel</strong>, former Archduke of Avernus</td>
+<td><strong>Bel's Forge</strong></td>
+<td>◀ <strong>DESTINATION</strong> (needs Ralzala's letter)</td>
+</tr>
+<tr>
+<td><strong>Olanthius</strong>, Zariel's fallen general</td>
+<td>Crypt of the Hellriders</td>
+<td>⏳ Remaining</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-clock-homebrew">The clock &nbsp;[HOMEBREW]</h3>
+<p>The Bleeding Citadel manifests on a <strong>33-day tide.</strong> Next window: <strong>~15 days</strong> out. Elturel keeps sinking.</p>
+<h3 id="threads-riding-in">Threads riding in</h3>
+<ul>
+<li><strong>Dumal the Flame Ascendant</strong> [HOMEBREW] — Drenwal's full-ascendant Bhaalspawn brother. Last contact: the carved symbol at the Palace, <em>"He misses you."</em> <strong>Tonight he stops watching and strikes.</strong></li>
+<li><strong>Bhaal / Gargauth meters</strong> [HOMEBREW] — carry forward (S5 baseline: <strong>Bhaal 50 / Gargauth 35</strong>). Both the dao and Dumal pull on these.</li>
+<li><strong>The Shield of the Hidden Lord (Gargauth)</strong> — Drenwal carries it. <strong>This is what Ralzala betrays the party to seize.</strong> The Shield is the hinge of the whole night.</li>
+</ul>
+<hr />
+<h2 id="statblock-reference-index">▶ Statblock reference index</h2>
+<p>Verified live via the <strong>Open5e MCP</strong> (<code>mcp__open5e__get</code>) where SRD. Non-SRD entries flagged.</p>
+<table>
+<thead>
+<tr>
+<th>Creature</th>
+<th>Role</th>
+<th>AC</th>
+<th>HP</th>
+<th>CR</th>
+<th>Speed</th>
+<th>Source</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Dumal</strong></td>
+<td>The ambusher</td>
+<td>19</td>
+<td>220</td>
+<td>13</td>
+<td>30</td>
+<td>[HOMEBREW] → <a href="#statblock-dumal">block</a></td>
+</tr>
+<tr>
+<td><strong>Ralzala the dao</strong></td>
+<td>Genie / betrayer</td>
+<td>18</td>
+<td>187</td>
+<td>11</td>
+<td>30, burrow 30, fly 30</td>
+<td><strong>MM (non-SRD)</strong> → <a href="#statblock-ralzala">block</a></td>
+</tr>
+<tr>
+<td><strong>Bone Devil</strong></td>
+<td>Dumal's cover</td>
+<td>19</td>
+<td>142</td>
+<td>9</td>
+<td>40, fly 40</td>
+<td><code>bone-devil</code> ✓</td>
+</tr>
+<tr>
+<td><strong>Unicorn</strong></td>
+<td>The Demon Zapper</td>
+<td>12</td>
+<td>67</td>
+<td>5</td>
+<td>50</td>
+<td><code>unicorn</code> ✓ (radiant; fiends hate it)</td>
+</tr>
+<tr>
+<td><strong>Bel</strong></td>
+<td>Bel's Forge climax</td>
+<td>19</td>
+<td>300</td>
+<td>25</td>
+<td>30, fly 60</td>
+<td>appendix; chassis <code>pit-fiend</code> ✓ → <a href="#statblock-bel">block</a></td>
+</tr>
+<tr>
+<td><strong>Fire Giant</strong> ×4</td>
+<td>Bel's "test"</td>
+<td>18</td>
+<td>162</td>
+<td>9</td>
+<td>30</td>
+<td><code>fire-giant</code> ✓</td>
+</tr>
+<tr>
+<td><strong>Salamander</strong></td>
+<td>Forge guards</td>
+<td>15</td>
+<td>90</td>
+<td>5</td>
+<td>30</td>
+<td><code>salamander</code> ✓</td>
+</tr>
+<tr>
+<td><strong>Lemure</strong></td>
+<td>Forge/Zapper slaves</td>
+<td>7</td>
+<td>13</td>
+<td>0</td>
+<td>15</td>
+<td><code>lemure</code> ✓</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="read">
+<p>The <strong>dao</strong> and <strong>spined devil</strong> are <strong>not in the Open5e SRD</strong> (404 confirmed). Dao supplied from the Monster Manual.</p>
+</blockquote>
+<p><strong>Live at table:</strong></p>
+<pre><code>mcp__open5e__get    { resource_type: &quot;monsters&quot;, slug: &quot;bone-devil&quot; }
+mcp__open5e__get    { resource_type: &quot;monsters&quot;, slug: &quot;unicorn&quot; }
+mcp__open5e__get    { resource_type: &quot;monsters&quot;, slug: &quot;fire-giant&quot; }
+mcp__open5e__search { query: &quot;imprisonment&quot;, resource_type: &quot;spells&quot; }
+</code></pre>
+<hr />
+<h2 id="design-thesis">▶ Design thesis</h2>
+<blockquote class="read">
+<p>They came to collect a favor. Bhaal came to collect <em>them.</em></p>
+</blockquote>
+<p>Three things make the night land:</p>
+<ol>
+<li><strong>The win is real, then it's taxed.</strong> They <em>will</em> get the letter — withholding it makes the betrayal feel cheap. The drama is <strong>what it costs to walk away with it.</strong></li>
+<li><strong>Greed and hunger arrive together.</strong> Canon already has Ralzala turn on them for the Shield. Fuse it with the ambush: her betrayal opens the fight, and <strong>Dumal erupts into the chaos.</strong></li>
+<li><strong>The unicorn is the out.</strong> A trapped celestial that blasts fiends with light. Free it and the party's worst enemies — the Bone Devil, Bhaal-corrupted Dumal — become its targets. <strong>Mercy is a weapon here.</strong></li>
+</ol>
+<p><strong>Win state:</strong> they leave with <strong>the letter</strong>, the unicorn's fate decided, the Shield kept (or lost — a real risk), and <strong>Dumal's first true strike survived.</strong></p>
+<hr />
+<h1 id="part-a">PART A — The Demon Zapper</h1>
+<h2 id="a-the-location-canon">A · The location &nbsp;[CANON]</h2>
+<p>A <strong>Demon Zapper</strong> — a <strong>unicorn trapped in an infernal contraption</strong> that lures demons close and burns them with <strong>radiant beams</strong>. Beside it, bound by an infernal pact, waits the dao <strong>Ralzala</strong>: proud, disgruntled, desperate to be free — and fully intending to rob the party the moment her debt is paid.</p>
+<h3 id="read-aloud-arrival">Read-aloud — arrival</h3>
+<blockquote class="read">
+<p>The plain crackles. Ahead, lashed inside a cage of black iron and humming wire, a <strong>unicorn</strong> stands — its horn forced upward, leashed to a lens of burning glass. Every time a demon drifts too near, the lens flares and a lance of white light burns it to ash. The unicorn's eyes are very old and very tired.</p>
+<p>Lounging in its shadow, picking ash from one fingernail, is a broad-shouldered figure of living stone and smoke. The dao smiles like a landlord who has already counted your coin.</p>
+<p><em>"You came back. And you smell of hag's blood. Good — then you know the price of my pact. Pay it, little priests, and I keep my word: directions to Bel's anvil, and a letter to keep his giants off your throats. Pay it."</em></p>
+</blockquote>
+<hr />
+<h2 id="a1-free-the-genie">A1 · Free the genie</h2>
+<h3 id="what-happens">What happens</h3>
+<p>The party delivers <strong>the method recovered from Red Ruth</strong> — the blood, the rite, whatever broke the infernal pact. Run it as the payoff to last session, not a fresh puzzle.</p>
+<div class="admonition mechanics">
+<p class="admonition-title">Mechanics — breaking the pact</p>
+<ul>
+<li><strong>If you want a roll:</strong> group <strong>DC 16 Arcana or Religion</strong> (auto-success if they carry the literal component Red Ruth named).</li>
+<li><strong>On failure:</strong> the pact lashes back — <strong>4d8 necrotic</strong> split among the casters — then it breaks anyway. <em>Do not gate the session behind a die.</em></li>
+</ul>
+</div>
+<h3 id="optional-free-the-unicorn-moral-tactical-hook">Optional — free the unicorn &nbsp;[moral + tactical hook]</h3>
+<p>Freeing the <em>dao</em> does <strong>not</strong> free the <em>unicorn</em>. Lulu fixates on it:</p>
+<blockquote class="read">
+<p><em>"It's like me. It's been here so long it's forgotten the sky. Please."</em></p>
+</blockquote>
+<ul>
+<li><strong>To free it:</strong> DC 15 thieves' tools / DC 18 STR on the cage, or <em>dispel magic</em> on the lens.</li>
+<li><strong>Why bother:</strong> it arms the battlefield for the ambush — a free, fiend-hating <strong>radiant artillery piece</strong> (see <a href="#the-unicorn-as-wildcard">the unicorn wildcard</a>).</li>
+<li><strong>[HOMEBREW] Meters:</strong> Gargauth <strong>−3</strong> / Coram <strong>+3</strong> for the mercy. Bhaal whispers it's a waste.</li>
+</ul>
+<hr />
+<h2 id="a2-the-bargain-paid-the-win">A2 · The bargain paid — the win</h2>
+<p><strong>Ralzala keeps her word first.</strong> <em>(Canon: she fulfills the bargain before betraying.)</em> She hands over:</p>
+<ul>
+<li>📜 <strong>The Letter of Introduction</strong> — sealed in stone-wax, addressed to Bel in Infernal. <strong>Hand this out as a physical prop.</strong> At Bel's Forge it grants <strong>advantage on the opening Persuasion</strong> and lets Bel <strong>waive or soften the fire-giant test</strong>.</li>
+<li>🗺️ <strong>Directions to Bel's Forge</strong> — 18–30 hours across the plains.</li>
+<li>💬 <em>Optional warning:</em> <em>"Bel hates the new queen more than he hates breathing. Offer him Zariel's throat and he'll give you anything. Beg, and he'll forge you into a doorstop."</em></li>
+</ul>
+<blockquote class="read">
+<p><strong>Let the table exhale here.</strong> They got it. The letter is in Drenwal's hands. <em>Then the floor drops.</em></p>
+</blockquote>
+<hr />
+<h2 id="ambush">A3 · The ambush ⚔️ &nbsp;[HOMEBREW + canon betrayal, fused]</h2>
+<h3 id="primary-staging-betrayal-into-ambush-recommended">Primary staging — betrayal into ambush &nbsp;(recommended)</h3>
+<p>The instant the letter changes hands, Ralzala's greed locks onto the <strong>Shield of the Hidden Lord</strong>. <em>(Canon: the dao betrays them "spurred on by Gargauth or simply desiring their riches.")</em> She lunges for it —</p>
+<h3 id="read-aloud-dumal-arrives">Read-aloud — Dumal arrives</h3>
+<blockquote class="read">
+<p><em>"…though, a courtesy for a courtesy, priest. That trinket on your arm — the Hidden Lord's face — I've wanted it a thousand years. I'll be having it now."</em></p>
+<p>Steel rings. The unicorn screams. And the smog to the north peels open.</p>
+<p>A figure in Hellrider grey walks out of it — unhurried, smiling, a lance of dried blood in his hand. He looks at the dao the way you look at a fly in your drink.</p>
+<p><em>"Den. You've been busy. Killing hags, freeing genies, running errands for devils. And this one wants to rob you. How tiresome. Step aside, stone-thing — he's mine, and you're in my light."</em></p>
+</blockquote>
+<h3 id="the-three-sides">The three sides</h3>
+<table>
+<thead>
+<tr>
+<th>Side</th>
+<th>Wants</th>
+<th>Behavior</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The party</strong></td>
+<td>Keep the Shield, survive</td>
+<td>—</td>
+</tr>
+<tr>
+<td><strong>Ralzala</strong></td>
+<td>The Shield + an exit</td>
+<td>Grab-and-flee. <strong>Flees at &lt;50 HP.</strong> Fears Dumal — may bolt Round 2, or try to bargain the Shield <em>to</em> him. <strong>Not</strong> his ally.</td>
+</tr>
+<tr>
+<td><strong>Dumal</strong></td>
+<td>Drenwal <em>changed</em>, not dead</td>
+<td>Lets the others bloody each other, then walks through the survivors.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-unicorn-as-wildcard">The unicorn as wildcard</h3>
+<p>If freed in A1, it targets <strong>fiends</strong> each round with its horn — Bone Devil first.</p>
+<div class="admonition mechanics">
+<p class="admonition-title">Unicorn radiant beam</p>
+<p>A PC can steer the lens (<strong>DC 12</strong>) to fire deliberately: <strong>2d8+9 radiant</strong>. At DM discretion the Zapper recognizes Bhaal's corruption in <strong>Dumal</strong> and will target him too. <strong>Telegraph this</strong> — it's the party's pressure valve against a CR-13 ambusher.</p>
+</div>
+<h3 id="alternate-staging-interrupted-rite">Alternate staging — interrupted rite &nbsp;🎲</h3>
+<p>Prefer Dumal hitting <em>during</em> the freeing? He erupts in A1 before the dao is loose. Then Ralzala is a <strong>caged wildcard</strong> — free her mid-fight and she might help (to escape) or grab the Shield and bolt. Messier; use if your table likes chaos.</p>
+<hr />
+<h2 id="a-statblocks">A · Statblocks</h2>
+<h3 id="statblock-dumal">Statblock — Dumal &nbsp;[HOMEBREW boss]</h3>
+<p><strong>Dumal of Elturel, the Flame Ascendant</strong> — <em>Medium humanoid (Bhaalspawn), neutral evil</em> — <strong>CR 13</strong></p>
+<ul>
+<li><strong>AC</strong> 19 (Bhaal-corrupted plate +1) · <strong>HP</strong> 220 (24d8+96) · <strong>Speed</strong> 30</li>
+<li><strong>STR</strong> 20(+5) · <strong>DEX</strong> 16(+3) · <strong>CON</strong> 18(+4) · <strong>INT</strong> 14(+2) · <strong>WIS</strong> 16(+3) · <strong>CHA</strong> 18(+4)</li>
+<li><strong>Saves</strong> STR +9, CON +8, WIS +7, CHA +8 · <strong>Skills</strong> Athletics +9, Insight +7, Intimidation +8, Perception +7</li>
+<li><strong>Resist</strong> necrotic, fire; nonmagical phys · <strong>Immune</strong> poison · <strong>Cond. Immune</strong> charmed, exhaustion, frightened, poisoned</li>
+<li><strong>Senses</strong> truesight 60 ft., passive Perception 17 · <strong>Legendary Resistance (2/day)</strong></li>
+</ul>
+<p><strong>Traits</strong></p>
+<ul>
+<li><strong>Bhaal's Anchor.</strong> Wish, Plane Shift, Banishment &amp; reality-altering spells fail vs. Dumal unless caster beats <strong>DC 20</strong>. <em>(Aurora's ring is empty anyway.)</em></li>
+<li><strong>Bhaal Sight.</strong> Auto-detects any Bhaalspawn within 1 mile + their emotional state. <em>This is why the ambush works.</em></li>
+<li><strong>Hunger Pact.</strong> No need to eat/sleep/breathe. <strong>Kills a humanoid → heals 20 HP.</strong></li>
+<li><strong>Magic Resistance.</strong></li>
+</ul>
+<p><strong>Actions</strong></p>
+<ul>
+<li><strong>Multiattack.</strong> Two <strong>Lance of Bhaal</strong> + one <strong>Ritual Dagger</strong> (or <strong>Bhaal-Marked Strike</strong> replaces a Lance attack 1/turn).</li>
+<li><strong>Lance of Bhaal.</strong> +10, reach 10 ft. <strong>11 (1d12+5) piercing + 9 (2d8) necrotic.</strong> Drops target to 0 → Dumal heals 20.</li>
+<li><strong>Ritual Dagger.</strong> +9, reach 5 ft. <strong>7 (1d6+4) piercing + 4 (1d8) necrotic.</strong> Crit on a Humanoid → carves a permanent Bhaal symbol (Remove Curse to clear).</li>
+<li><strong>Bhaal-Marked Strike (Recharge 5–6).</strong> As Lance; on hit DC 16 CON or <strong>+27 (6d8) necrotic</strong> and the <strong>Bhaal Mark</strong> (disadv. on saves vs. Bhaal effects, 24 hr). <strong>Drenwal auto-fails.</strong> <em>Play for horror, not numbers.</em></li>
+<li><strong>Bhaal Smoke (1/day).</strong> 20-ft cube, heavily obscured to outsiders; Dumal moves through freely; 2 rounds. <strong>His exit tool.</strong></li>
+</ul>
+<p><strong>Bonus Action — Bhaal's Whisper.</strong> One sentence to a target ≤60 ft; DC 16 WIS or <strong>frightened</strong> 1 round. <strong>Drenwal auto-fails unless he spent the prior round praying to a non-Bhaal god.</strong></p>
+<p><strong>Legendary Actions (3/turn)</strong></p>
+<ul>
+<li><strong>Step (1).</strong> Move ½ speed.</li>
+<li><strong>Bhaal's Hand (2).</strong> Spectral hand at a point ≤30 ft: +9, 9 (2d8) necrotic + grappled (escape DC 17).</li>
+<li><strong>Sibling Strike (3, only vs. Drenwal).</strong> One Lance vs. Drenwal w/ advantage; on hit DC 16 WIS or hears Dumal narrating his actions mockingly for 1 hr after combat. <strong>Roleplay only.</strong> <strong>Bhaal +5</strong> if it lands.</li>
+</ul>
+<h3 id="statblock-ralzala">Statblock — Ralzala the dao &nbsp;(Monster Manual; non-SRD)</h3>
+<p><strong>Ralzala</strong> — <em>Large elemental (genie, dao), neutral evil</em> — <strong>CR 11</strong></p>
+<ul>
+<li><strong>AC</strong> 18 (natural) · <strong>HP</strong> 187 (15d10+105) · <strong>Speed</strong> 30 ft., burrow 30 ft., fly 30 ft. (hover)</li>
+<li><strong>STR</strong> 23(+6) · <strong>DEX</strong> 12(+1) · <strong>CON</strong> 24(+7) · <strong>INT</strong> 14(+2) · <strong>WIS</strong> 13(+1) · <strong>CHA</strong> 16(+3)</li>
+<li><strong>Saves</strong> INT +6, WIS +5, CHA +7 · <strong>Senses</strong> darkvision 120 ft. · <strong>Languages</strong> Terran</li>
+</ul>
+<p><strong>Traits</strong></p>
+<ul>
+<li><strong>Elemental Demise.</strong> Dies → disintegrates to a pile of its equipment.</li>
+<li><strong>Earth Glide.</strong> Burrows through nonmagical earth/stone without disturbing it.</li>
+<li><strong>Sure-Footed.</strong> Advantage on STR/DEX saves vs. being knocked prone.</li>
+<li><strong>Innate Spellcasting (CHA, save DC 15).</strong> <em>At will:</em> detect evil and good, detect magic, stone shape. <em>3/day each:</em> passwall, move earth, tongues. <em>1/day each:</em> conjure elemental (earth only), gaseous form, invisibility, phantasmal killer, plane shift, wall of stone.</li>
+</ul>
+<p><strong>Actions</strong></p>
+<ul>
+<li><strong>Multiattack.</strong> Two fists, or two mauls.</li>
+<li><strong>Fist.</strong> +10, reach 5 ft. <strong>12 (2d6+6) bludgeoning.</strong></li>
+<li><strong>Maul of the Dao.</strong> +10, reach 5 ft. <strong>17 (3d6+6) bludgeoning</strong> + DC 18 STR or knocked prone.</li>
+</ul>
+<div class="admonition homebrew">
+<p class="admonition-title">Ralzala's betrayal behavior</p>
+<p>She isn't fighting a war — she wants the <strong>Shield</strong> and an exit. Grab-and-<strong>earth-glide</strong>, go <strong>invisible/gaseous</strong> to disengage, <strong>flees below ~50 HP</strong>. If she pries the Shield off Drenwal (contested STR / disarm ruling), she's gone underground with it → instant future quest (chase the dao to recover Gargauth's prison). With Dumal present, she fears him more than she wants the loot → likely bolts Round 2.</p>
+</div>
+<h3 id="statblock-bone-devil-bone-devil">Statblock — Bone Devil &nbsp;(<code>bone-devil</code> ✓)</h3>
+<ul>
+<li><strong>AC</strong> 19 · <strong>HP</strong> 142 · <strong>CR</strong> 9 · <strong>Speed</strong> 40, <strong>fly 40</strong></li>
+<li><strong>Multiattack:</strong> 2 claws (+8, 1d8+4) + sting (+8, 2d8+4 pierce + <strong>17 (5d6) poison</strong>, DC 14 CON or poisoned 1 min).</li>
+<li><strong>Devil's Sight + Magic Resistance.</strong> <strong>Flies — use the vertical axis.</strong> Drops from the smog Round 1; covers Dumal's retreat.</li>
+</ul>
+<hr />
+<h2 id="a-dumals-combat-doctrine">A · Dumal's combat doctrine</h2>
+<ol>
+<li><strong>Round 1:</strong> lets the dao and party tangle. Bone Devil drops from the smog onto the highest-damage PC. Dumal walks. <strong>Bhaal's Whisper on Drenwal.</strong></li>
+<li><strong>Round 2:</strong> reaches Drenwal. <strong>Bhaal-Marked Strike</strong> → the Mark. <em>"Stop pretending, Den."</em></li>
+<li><strong>Round 3+:</strong> may <strong>ritual-kill the dao or a lemure</strong> to heal 20 and make a point. Sibling Strike if he has the actions.</li>
+<li><strong>At 25% HP (≤55):</strong> <strong>disengages → Bhaal Smoke → Bone Devil covers → gone.</strong></li>
+</ol>
+<p><strong>Parting line:</strong></p>
+<blockquote class="read">
+<p><em>"You kept the Hidden Lord's face and you kept your own. For now. Bring both to Bel — I'll be interested to see which one he bargains with."</em></p>
+</blockquote>
+<hr />
+<h2 id="the-dial">The Dial — does Dumal die? &nbsp;🎲 [DM choice]</h2>
+<div class="admonition dial">
+<p class="admonition-title">Pick this BEFORE initiative — don't waffle mid-fight</p>
+<p><strong>Default — No (recommended).</strong> Bhaal extracts him at 0 HP (a column of red light, screaming faces) → <strong>Bhaal +15</strong> (a debt owed). The arc continues to Sessions 7–9.</p>
+<p><strong>If you want it to END here.</strong> You asked for the ambush — so let it pay off if they earn it. Bhaal <em>abandons a failed instrument</em> with contempt; Drenwal feels the brother-link snap like a tendon; <strong>Bhaal's Claim drops 20</strong>; and the <strong>Senna</strong> thread (the third sibling) becomes the party's to chase instead of Dumal's.</p>
+<p>Both are good stories. Commit before you roll.</p>
+</div>
+<hr />
+<h2 id="a-influence-triggers-homebrew">A · Influence triggers &nbsp;[HOMEBREW]</h2>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>Meter</th>
+<th>Δ</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Free the trapped <strong>unicorn</strong></td>
+<td>Gargauth <strong>−3</strong>, Coram <strong>+3</strong></td>
+<td>mercy the Shield hates</td>
+</tr>
+<tr>
+<td>Let Dumal land <strong>Sibling Strike</strong></td>
+<td>Bhaal <strong>+5</strong></td>
+<td>the brother-hook deepens</td>
+</tr>
+<tr>
+<td>Drenwal <strong>rages / kills with Bhaal hunger</strong></td>
+<td>Bhaal <strong>+6</strong></td>
+<td>feeds the Claim</td>
+</tr>
+<tr>
+<td>Party <strong>loses the Shield</strong> to the dao</td>
+<td>Gargauth <strong>−10</strong></td>
+<td>the Hidden Lord is <em>furious</em>, leash slackens — new quest opens</td>
+</tr>
+<tr>
+<td>Drive Dumal off <strong>without</strong> Drenwal landing the kill</td>
+<td>Bhaal <strong>−4</strong></td>
+<td>restraint denies the god a debt</td>
+</tr>
+<tr>
+<td><strong>Dumal dies</strong> (the Dial)</td>
+<td>Bhaal <strong>−20</strong></td>
+<td>god abandons a failed instrument</td>
+</tr>
+<tr>
+<td>Ritual-kill witnessed (Dumal heals on a kill)</td>
+<td>Bhaal <strong>+3</strong></td>
+<td>Drenwal sees what he could become</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="a4-aftermath">A4 · Aftermath</h2>
+<ul>
+<li><strong>The unicorn:</strong> freed → it bows to Lulu and flees toward the few clean winds in Avernus (a future ally seed). Still caged → it dies when the Zapper is wrecked, and Lulu grieves (Gargauth +2 if they left it).</li>
+<li><strong>The dao:</strong> fled with or without the Shield. If she took it → the <strong>chase-the-dao</strong> quest is live. If she died → her equipment pile may hold a soul coin or two.</li>
+<li><strong>Dumal:</strong> gone or dead per the Dial. <strong>Update the meters now</strong> before you forget.</li>
+<li><strong>In hand:</strong> Ralzala's <strong>letter + directions to Bel's Forge.</strong> On to Part B.</li>
+</ul>
+<hr />
+<h1 id="part-b">PART B — Bel's Forge</h1>
+<blockquote class="read">
+<p>Run now if Part A wrapped fast, or open <strong>next</strong> session here. The letter is what makes this scene land <em>soft</em> instead of <em>deadly.</em></p>
+</blockquote>
+<p><strong>Travel:</strong> 18–30 hrs across the Plains of Avernus [CANON]. Optional 1 roll on the S5 Avernus encounter table.</p>
+<h2 id="b-the-location-canon">B · The location &nbsp;[CANON]</h2>
+<p>A <strong>colossal furnace-fortress</strong> over a lake of magma where <strong>Bel forges infernal weapons and war machines</strong>, fueled by magma and damned souls. Guards: <strong>fire giants</strong> (smiths/enforcers), <strong>salamanders</strong> (tending metal), <strong>lemure slaves</strong> at the bellows.</p>
+<p>Bel — <strong>former Lord of Avernus</strong>, the pit fiend who <strong>cut off Zariel's hand</strong> — now serves as Zariel's warlord and <strong>hates her</strong> with a thousand years of patience.</p>
+<h3 id="read-aloud-approach">Read-aloud — approach</h3>
+<blockquote class="read">
+<p>A fortress the size of a city squats over a wound in the world — a lake of magma feeding a thousand chimneys, the clang of hammers rolling across the plain like a slow heartbeat. Chains of pale weeping things turn the great bellows. Fire giants the height of siege towers work the anvils without looking up.</p>
+<p>On a throne of cooling iron sits something that used to own all of this — and intends to again. It watches you with the patience of a creature that has already read the letter you carry.</p>
+</blockquote>
+<hr />
+<h2 id="b1-the-test-four-fire-giants">B1 · The test — four fire giants</h2>
+<p>[CANON] Bel tests the party with <strong>four fire giants</strong> to see if they're worth his breath, and <strong>may intervene before any giant dies.</strong></p>
+<div class="admonition mechanics">
+<p class="admonition-title">Running the test</p>
+<ul>
+<li><strong>With Ralzala's letter:</strong> Bel reads it and <strong>waives the test</strong> (or reduces it to one giant "for form's sake"). The letter is a literal fast-pass — reward it. Want a fight anyway? Run <strong>2 giants</strong> and call it the instant a PC is bloodied.</li>
+<li><strong>Without the letter:</strong> full canon test. 4× <strong>Fire Giant</strong> (AC 18, 162 HP, greatsword +11 / 28, rock +11 / 29). <strong>Stop the moment a giant drops OR a PC hits 0</strong> → <em>"Enough. You'll do."</em></li>
+<li><strong>Terrain:</strong> magma channels = shove for <strong>3d6 fire</strong>. Giants are <strong>fire-immune</strong> — don't let players waste fireballs.</li>
+</ul>
+</div>
+<hr />
+<h2 id="b2-the-bargain-with-bel">B2 · The bargain with Bel</h2>
+<p>Bel is <strong>articulate, cold, transactional</strong> — a weapons-foundry CEO who used to be a head of state. <strong>Truesight 120 ft.:</strong> he sees Asimov coming, sees through Aurora's illusions, knows the instant anyone lies.</p>
+<h3 id="what-bel-wants-canon">What Bel wants &nbsp;[CANON]</h3>
+<p>The <strong>adamantine control rods</strong> of the <strong>Wrecked Flying Fortress</strong> — leverage against Zariel. He'll send them to the <strong>Sibriex</strong> (knows the rods' location) or straight to the <strong>Arches of Ulloch</strong> (teleport gate). Or simply: a promise to <strong>move against Zariel.</strong></p>
+<h3 id="the-lever-canon">The lever &nbsp;[CANON]</h3>
+<p><strong>DC 18 Persuasion</strong> cuts his demands to <strong>a single favor.</strong> <strong>With the letter: advantage</strong> (or auto-success on a good pitch):</p>
+<blockquote class="read">
+<p><em>"Every move you ask of us is a knife in Zariel's back — why make us run errands?"</em></p>
+</blockquote>
+<h3 id="what-bel-gives">What Bel gives</h3>
+<ul>
+<li>The campaign-critical reveal: <strong>the Arches of Ulloch are the ONLY way to the Bleeding Citadel</strong> (Asmodeus hid it).</li>
+<li>A <strong>warning:</strong> Zariel will <em>sense</em> their moves against her.</li>
+</ul>
+<h3 id="bel-reads-the-party">Bel reads the party</h3>
+<ul>
+<li><strong>Drenwal:</strong> <em>"There's a slaughter-god in your marrow, little priest. I can smell it cooking."</em> He treats Bhaal as a loud, stupid neighbor — which unnerves Drenwal more than fear would. If Dumal survived Part A: <em>"And your brother's been sniffing at my plains. Keep your family feud off my anvil."</em></li>
+<li><strong>The Shield:</strong> with truesight he <strong>sees Gargauth</strong> — <em>"You carry a prisoner on your arm. Be careful which exile you trust."</em> (If the dao took it: <em>"You smell of the Hidden Lord but I see no shield. Careless."</em>)</li>
+<li><strong>Asimov:</strong> clocks the Soul Capacitor instantly — <em>"You eat souls and keep the receipts. We should talk, thief, when your friends aren't listening."</em> (Rasheem / future-bounty hook.)</li>
+</ul>
+<hr />
+<h2 id="b3-the-onward-path">B3 · The onward path</h2>
+<pre><code>BEL ──(yes)──► needs CONTROL RODS ──► SIBRIEX (DC 17 CHA, may lie) ──► ARCHES OF ULLOCH
+                                            │                                  │
+                                            └──► WRECKED FLYING FORTRESS ◄──────┘
+                                                 (6 vrocks, bone whelks,
+                                                  necromantic remorhaz — get rods)
+                                                          │
+                                                          ▼
+                                    BACK TO BEL ──► BLEEDING CITADEL  (or skip via the Arches)
+</code></pre>
+<p><strong>Pacing:</strong> you won't reach the Sibriex/Fortress this session. End on the bargain struck and the Arches named.</p>
+<hr />
+<h2 id="statblock-bel">Statblock — Bel &nbsp;(book appendix; OCR HP corrected)</h2>
+<div class="admonition danger">
+<p class="admonition-title">Combat is a consequence, not a plan</p>
+<p>Only if the party turns the Forge hostile (swings first, kills a giant after "Enough", attacks the throne). Bel is <strong>CR 25</strong> — he fights to <strong>expel, not kill</strong> (a TPK in his Forge is wasted leverage against Zariel).</p>
+</div>
+<p><strong>Bel</strong> — Large fiend (devil), LE · <strong>AC 19</strong> · <strong>HP 300</strong> (24d10+168) · Speed 30, fly 60</p>
+<ul>
+<li><strong>STR</strong> 28(+9) · <strong>DEX</strong> 14(+2) · <strong>CON</strong> 26(+8) · <strong>INT</strong> 25(+7) · <strong>WIS</strong> 19(+4) · <strong>CHA</strong> 26(+8)</li>
+<li>Saves Dex +10, Con +16, Wis +12 · Arcana +14, Deception +15, Insight +11, Persuasion +15</li>
+<li>Resist cold + nonmagical/non-silvered phys · Immune fire, poison, poisoned · Truesight 120 ft. · telepathy 120 ft.</li>
+<li><strong>Fear Aura</strong> (DC 23 WIS, 20 ft.) · <strong>Magic Resistance</strong> · <strong>Legendary Resistance 3/day</strong> · <strong>Magic Weapons</strong></li>
+<li><strong>Innate Spellcasting</strong> (DC 23): <em>at will</em> detect magic, <strong>fireball</strong>; <em>3/day</em> dispel magic, hold monster, mirror image, mislead, raise dead, teleport, wall of fire; <em>2/day</em> <strong>imprisonment, meteor swarm.</strong></li>
+<li><strong>Multiattack:</strong> 2 greatsword + 1 tail. <strong>Greatsword</strong> +16, 23 (4d6+9) slashing + 21 (6d6) fire. <strong>Tail</strong> +16, 25 (3d10+9) bludg + DC 23 CON or stunned.</li>
+<li><strong>Legendary (3/turn):</strong> Fireball · Tactical Edge (2: roll d6, subtract from next attack vs. Bel/ally) · Summon Ice Devil (3).</li>
+<li><strong>Doctrine:</strong> opens with <strong>meteor swarm / wall of fire</strong> to make a point, then re-offers terms. Stabilizes downed PCs and has them dragged out.</li>
+</ul>
+<p><strong>Supporting:</strong> Fire Giant ×4 (above) · Salamander (AC 15 / HP 90 / CR 5, <strong>Heated Body</strong> 2d6 fire on melee, tail grapple DC 14, <strong>vuln. cold</strong>).</p>
+<hr />
+<h2 id="b-loot">B · Loot</h2>
+<ul>
+<li><strong>An infernal weapon forged to order</strong> (DM pick from <em>Infernal Weapons</em> / <em>Vault of Magic</em>) — soul-fueled greatsword, or a weapon that ignores fire resistance. Price: a <strong>soul coin</strong> or a <strong>future favor</strong>, not gold.</li>
+<li><strong>1d4 soul coins</strong> for a real service.</li>
+<li><strong>Intel (free with the bargain):</strong> Arches of Ulloch location + Wrecked Flying Fortress approach.</li>
+<li><strong>[HOMEBREW] Blood Pay:</strong> Bel's blood (a former archduke's) is a top-tier Bleeding Citadel component — he'll <strong>never</strong> give it willingly (CR 25). Plant the want; a <em>gifted vial</em> as a down-payment is a generous DM call.</li>
+</ul>
+<hr />
+<h1 id="reference">Reference</h1>
+<h2 id="mid-session-request-protocol">Mid-session request protocol</h2>
+<p>Paste any of these for a seconds-fast reply:</p>
+<ul>
+<li><code>quick statblock: &lt;creature&gt;</code> → table-ready (Open5e-verified live)</li>
+<li><code>dumal line: &lt;situation&gt;</code> / <code>bel line: &lt;situation&gt;</code> / <code>dao line: &lt;situation&gt;</code> → in-voice dialogue</li>
+<li><code>ruling: &lt;edge case&gt;</code> → fast defensible call + the RAW behind it</li>
+<li><code>tracker: &lt;event&gt;</code> → which meter moves, by how much</li>
+<li><code>lore: &lt;topic&gt;</code> → canon on the Demon Zapper / Bel / Zariel / Avernus</li>
+<li><code>scale: &lt;±PCs / difficulty&gt;</code> → re-tuned encounter math</li>
+</ul>
+<p>Live lookups: <code>mcp__open5e__get / search / rag_search</code>. Spell slugs <code>srd-2024_&lt;name&gt;</code> or bare; monster slugs plain kebab (<code>bone-devil</code>, <code>fire-giant</code>, <code>unicorn</code>).</p>
+<h2 id="the-two-lines-to-remember">The two lines to remember</h2>
+<blockquote class="read">
+<p><strong>Bhaal didn't send Dumal to kill Drenwal.</strong> He sent him to remind Drenwal what he is — at the exact moment Drenwal felt clever.</p>
+<p><strong>Bel doesn't want a fight.</strong> He wants Zariel to lose. The letter says you might help with that.</p>
+</blockquote>
+    </div>
+  </main>
+</div>
+<button id="totop" title="Back to top">↑</button>
+<script>
+// back-to-top
+var bt=document.getElementById('totop');
+addEventListener('scroll',function(){bt.classList.toggle('show',scrollY>500)});
+bt.onclick=function(){scrollTo({top:0,behavior:'smooth'})};
+// scroll-spy: highlight the TOC link for the heading currently in view
+var links={};document.querySelectorAll('nav .toc a').forEach(function(a){
+  var id=a.getAttribute('href');if(id&&id[0]==='#')links[id.slice(1)]=a;});
+var heads=[].slice.call(document.querySelectorAll('.wrap h1,.wrap h2,.wrap h3')).filter(function(h){return h.id});
+var spy=new IntersectionObserver(function(es){
+  es.forEach(function(e){
+    if(e.isIntersecting){
+      Object.values(links).forEach(function(a){a.classList.remove('active')});
+      var a=links[e.target.id];
+      if(a){a.classList.add('active');a.scrollIntoView({block:'nearest'});}
+    }
+  });
+},{rootMargin:'-130px 0px -70% 0px',threshold:0});
+heads.forEach(function(h){spy.observe(h)});
+</script>
+</body>
+</html>
