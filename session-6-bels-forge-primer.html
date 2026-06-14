@@ -128,6 +128,43 @@ tr:last-child td{border-bottom:none}
 tbody tr:hover td{background:var(--surface2)}
 table code{font-size:11.5px}
 
+/* ---- 5e adventure stat block ---- */
+.statblock{
+  --sb-maroon:#7a200d; --sb-rule:#922610; --sb-ink:#2a1c0e; --sb-sub:#5c4326;
+  position:relative;background:#fdf1dc;
+  background-image:radial-gradient(ellipse at 50% 0,#fdf6e6,#f1e2c2);
+  color:var(--sb-ink);border:1px solid #d9c39a;border-radius:6px;
+  box-shadow:0 0 0 2px #c9a96f inset,0 6px 22px rgba(0,0,0,.55);
+  padding:18px 22px;margin:18px 0 30px;font-size:13.5px;line-height:1.55;
+  break-inside:avoid}
+.statblock::before,.statblock::after{content:"";position:absolute;left:0;right:0;height:5px;
+  background:linear-gradient(90deg,#7a200d,#c9442a,#7a200d)}
+.statblock::before{top:0;border-radius:6px 6px 0 0}
+.statblock::after{bottom:0;border-radius:0 0 6px 6px}
+.statblock .sb-name{font-family:'Cinzel',serif;color:var(--sb-maroon);font-size:23px;
+  font-weight:700;letter-spacing:.5px;line-height:1.12;margin:2px 0 0}
+.statblock .sb-type{font-style:italic;color:var(--sb-sub);font-size:12.5px;margin:2px 0 8px}
+.statblock .sb-rule{height:5px;border:0;margin:9px 0;background:var(--sb-rule);
+  clip-path:polygon(0 50%,7px 0,calc(100% - 7px) 0,100% 50%,calc(100% - 7px) 100%,7px 100%)}
+.statblock .sb-line{margin:2px 0;color:#3a1a0c}
+.statblock .sb-attr{color:var(--sb-maroon);font-weight:700}
+.statblock .sb-abilities{display:grid;grid-template-columns:repeat(6,1fr);text-align:center;margin:7px 0}
+.statblock .sb-abilities .ab{font-family:'Cinzel',serif;color:var(--sb-maroon);font-weight:700;
+  font-size:11.5px;letter-spacing:.5px}
+.statblock .sb-abilities .sc{color:#3a1a0c;font-size:13px}
+.statblock .sb-section{font-family:'Cinzel',serif;color:var(--sb-maroon);font-size:15.5px;font-weight:700;
+  letter-spacing:.5px;margin:14px 0 5px;padding-bottom:3px;border-bottom:2px solid var(--sb-rule)}
+.statblock .sb-entry{margin:5px 0;color:#241a0e}
+.statblock strong,.statblock .sb-entry strong{color:#3a1a0c;font-weight:700}
+.statblock .sb-entry .sb-attr,.statblock .sb-line .sb-attr{color:var(--sb-maroon)}
+.statblock em{color:#6a3a1a;font-style:italic}
+.statblock a{color:var(--sb-maroon);text-decoration:underline}
+.statblock .sb-tag{display:inline-block;font-family:'Cinzel',serif;font-size:9.5px;letter-spacing:1px;
+  text-transform:uppercase;color:#fdf1dc;background:var(--sb-maroon);padding:2px 9px;border-radius:10px;
+  vertical-align:middle;margin-left:8px;font-weight:700}
+.statblock .sb-phase{background:#fbe6d0;border-left:3px solid var(--sb-maroon);padding:6px 12px;
+  margin:7px 0;border-radius:0 4px 4px 0}
+
 /* ---- back to top ---- */
 #totop{position:fixed;right:26px;bottom:26px;z-index:40;width:46px;height:46px;border-radius:50%;
   background:var(--surface2);border:1px solid var(--border2);color:var(--accent);font-size:20px;
@@ -156,6 +193,11 @@ table code{font-size:11.5px}
   table{background:#fff}th{background:#eadfc9;color:#3a2018}
   pre{background:#f2ede2;color:#1a1410}code{background:#eee;color:#3a2018}
   a{color:#1a1410}
+  .statblock{background:#fff;box-shadow:none;border:1px solid #999}
+  .statblock .sb-name,.statblock .sb-attr,.statblock .sb-section,
+  .statblock .sb-abilities .ab{color:#7a200d}
+  .statblock::before,.statblock::after{background:#922610}
+  .statblock a{color:#7a200d}
 }
 </style>
 </head>
@@ -385,11 +427,11 @@ table code{font-size:11.5px}
 <tbody>
 <tr>
 <td><strong>Dumal</strong></td>
-<td>The ambusher</td>
-<td>19</td>
-<td>220</td>
-<td>13</td>
-<td>30</td>
+<td>The ambusher (solo boss)</td>
+<td>20</td>
+<td>350</td>
+<td>16</td>
+<td>40</td>
 <td>[HOMEBREW] → <a href="#statblock-dumal">block</a></td>
 </tr>
 <tr>
@@ -562,80 +604,148 @@ mcp__open5e__search { query: &quot;imprisonment&quot;, resource_type: &quot;spel
 <p>If freed in A1, it targets <strong>fiends</strong> each round with its horn — Bone Devil first.</p>
 <div class="admonition mechanics">
 <p class="admonition-title">Unicorn radiant beam</p>
-<p>A PC can steer the lens (<strong>DC 12</strong>) to fire deliberately: <strong>2d8+9 radiant</strong>. At DM discretion the Zapper recognizes Bhaal's corruption in <strong>Dumal</strong> and will target him too. <strong>Telegraph this</strong> — it's the party's pressure valve against a CR-13 ambusher.</p>
+<p>A PC can steer the lens (<strong>DC 12</strong>) to fire deliberately: <strong>2d8+9 radiant</strong>. At DM discretion the Zapper recognizes Bhaal's corruption in <strong>Dumal</strong> and will target him too. <strong>Telegraph this</strong> — it's the party's pressure valve against a CR-16 solo boss, and the cleanest way to chew through his 350 HP.</p>
 </div>
 <h3 id="alternate-staging-interrupted-rite">Alternate staging — interrupted rite &nbsp;🎲</h3>
 <p>Prefer Dumal hitting <em>during</em> the freeing? He erupts in A1 before the dao is loose. Then Ralzala is a <strong>caged wildcard</strong> — free her mid-fight and she might help (to escape) or grab the Shield and bolt. Messier; use if your table likes chaos.</p>
 <hr />
 <h2 id="a-statblocks">A · Statblocks</h2>
 <h3 id="statblock-dumal">Statblock — Dumal &nbsp;[HOMEBREW boss]</h3>
-<p><strong>Dumal of Elturel, the Flame Ascendant</strong> — <em>Medium humanoid (Bhaalspawn), neutral evil</em> — <strong>CR 13</strong></p>
-<ul>
-<li><strong>AC</strong> 19 (Bhaal-corrupted plate +1) · <strong>HP</strong> 220 (24d8+96) · <strong>Speed</strong> 30</li>
-<li><strong>STR</strong> 20(+5) · <strong>DEX</strong> 16(+3) · <strong>CON</strong> 18(+4) · <strong>INT</strong> 14(+2) · <strong>WIS</strong> 16(+3) · <strong>CHA</strong> 18(+4)</li>
-<li><strong>Saves</strong> STR +9, CON +8, WIS +7, CHA +8 · <strong>Skills</strong> Athletics +9, Insight +7, Intimidation +8, Perception +7</li>
-<li><strong>Resist</strong> necrotic, fire; nonmagical phys · <strong>Immune</strong> poison · <strong>Cond. Immune</strong> charmed, exhaustion, frightened, poisoned</li>
-<li><strong>Senses</strong> truesight 60 ft., passive Perception 17 · <strong>Legendary Resistance (2/day)</strong></li>
-</ul>
-<p><strong>Traits</strong></p>
-<ul>
-<li><strong>Bhaal's Anchor.</strong> Wish, Plane Shift, Banishment &amp; reality-altering spells fail vs. Dumal unless caster beats <strong>DC 20</strong>. <em>(Aurora's ring is empty anyway.)</em></li>
-<li><strong>Bhaal Sight.</strong> Auto-detects any Bhaalspawn within 1 mile + their emotional state. <em>This is why the ambush works.</em></li>
-<li><strong>Hunger Pact.</strong> No need to eat/sleep/breathe. <strong>Kills a humanoid → heals 20 HP.</strong></li>
-<li><strong>Magic Resistance.</strong></li>
-</ul>
-<p><strong>Actions</strong></p>
-<ul>
-<li><strong>Multiattack.</strong> Two <strong>Lance of Bhaal</strong> + one <strong>Ritual Dagger</strong> (or <strong>Bhaal-Marked Strike</strong> replaces a Lance attack 1/turn).</li>
-<li><strong>Lance of Bhaal.</strong> +10, reach 10 ft. <strong>11 (1d12+5) piercing + 9 (2d8) necrotic.</strong> Drops target to 0 → Dumal heals 20.</li>
-<li><strong>Ritual Dagger.</strong> +9, reach 5 ft. <strong>7 (1d6+4) piercing + 4 (1d8) necrotic.</strong> Crit on a Humanoid → carves a permanent Bhaal symbol (Remove Curse to clear).</li>
-<li><strong>Bhaal-Marked Strike (Recharge 5–6).</strong> As Lance; on hit DC 16 CON or <strong>+27 (6d8) necrotic</strong> and the <strong>Bhaal Mark</strong> (disadv. on saves vs. Bhaal effects, 24 hr). <strong>Drenwal auto-fails.</strong> <em>Play for horror, not numbers.</em></li>
-<li><strong>Bhaal Smoke (1/day).</strong> 20-ft cube, heavily obscured to outsiders; Dumal moves through freely; 2 rounds. <strong>His exit tool.</strong></li>
-</ul>
-<p><strong>Bonus Action — Bhaal's Whisper.</strong> One sentence to a target ≤60 ft; DC 16 WIS or <strong>frightened</strong> 1 round. <strong>Drenwal auto-fails unless he spent the prior round praying to a non-Bhaal god.</strong></p>
-<p><strong>Legendary Actions (3/turn)</strong></p>
-<ul>
-<li><strong>Step (1).</strong> Move ½ speed.</li>
-<li><strong>Bhaal's Hand (2).</strong> Spectral hand at a point ≤30 ft: +9, 9 (2d8) necrotic + grappled (escape DC 17).</li>
-<li><strong>Sibling Strike (3, only vs. Drenwal).</strong> One Lance vs. Drenwal w/ advantage; on hit DC 16 WIS or hears Dumal narrating his actions mockingly for 1 hr after combat. <strong>Roleplay only.</strong> <strong>Bhaal +5</strong> if it lands.</li>
-</ul>
+<div class="statblock">
+<div class="sb-name">Dumal of Elturel, the Flame Ascendant<span class="sb-tag">Homebrew Boss</span></div>
+<div class="sb-type">Medium humanoid (Bhaalspawn), neutral evil · CR 16 (solo boss — built to threaten 3 strong level-11 PCs)</div>
+<div class="sb-rule"></div>
+<div class="sb-line"><span class="sb-attr">Armor Class</span> 20 (Bhaal-corrupted plate +1) — <em>22 while bloodied</em></div>
+<div class="sb-line"><span class="sb-attr">Hit Points</span> 350 (28d10 + 196)</div>
+<div class="sb-line"><span class="sb-attr">Speed</span> 40 ft.</div>
+<div class="sb-rule"></div>
+<div class="sb-abilities">
+<div><div class="ab">STR</div><div class="sc">22 (+6)</div></div>
+<div><div class="ab">DEX</div><div class="sc">18 (+4)</div></div>
+<div><div class="ab">CON</div><div class="sc">24 (+7)</div></div>
+<div><div class="ab">INT</div><div class="sc">14 (+2)</div></div>
+<div><div class="ab">WIS</div><div class="sc">18 (+4)</div></div>
+<div><div class="ab">CHA</div><div class="sc">20 (+5)</div></div>
+</div>
+<div class="sb-rule"></div>
+<div class="sb-line"><span class="sb-attr">Saving Throws</span> STR +11, DEX +9, CON +12, WIS +9, CHA +10</div>
+<div class="sb-line"><span class="sb-attr">Skills</span> Athletics +11, Insight +9, Intimidation +10, Perception +9</div>
+<div class="sb-line"><span class="sb-attr">Damage Resistances</span> cold, fire, necrotic; bludgeoning, piercing, slashing from nonmagical attacks</div>
+<div class="sb-line"><span class="sb-attr">Damage Immunities</span> poison</div>
+<div class="sb-line"><span class="sb-attr">Condition Immunities</span> charmed, exhaustion, frightened, poisoned</div>
+<div class="sb-line"><span class="sb-attr">Senses</span> truesight 120 ft., passive Perception 19</div>
+<div class="sb-line"><span class="sb-attr">Languages</span> Common, Infernal</div>
+<div class="sb-line"><span class="sb-attr">Proficiency Bonus</span> +5</div>
+<div class="sb-rule"></div>
+<p class="sb-entry"><strong>Legendary Resistance (3/Day).</strong> If Dumal fails a saving throw, he can choose to succeed instead.</p>
+<p class="sb-entry"><strong>Magic Resistance.</strong> Dumal has advantage on saving throws against spells and other magical effects.</p>
+<p class="sb-entry"><strong>Bhaal's Anchor.</strong> <em>Banishment</em>, <em>plane shift</em>, <em>imprisonment</em>, <em>wish</em>, and other reality-altering or forced-teleport magic fail against Dumal unless the caster succeeds on a DC 22 spellcasting ability check. He cannot be involuntarily removed from the battlefield. <em>(Aurora's ring is empty anyway.)</em></p>
+<p class="sb-entry"><strong>Bhaal Sight.</strong> Dumal automatically senses every Bhaalspawn within 1 mile and reads their current emotional state. <em>This is why the ambush works — he felt Drenwal relax the instant the letter changed hands.</em></p>
+<p class="sb-entry"><strong>Hunger Pact.</strong> Dumal needs no air, food, drink, or sleep. Whenever he reduces a creature to 0 hit points, he regains 30 hit points and one expended use of Bhaal's Whisper.</p>
+<div class="sb-phase"><strong>Avatar of Slaughter (Bloodied).</strong> While Dumal has 175 hit points or fewer, Bhaal floods him: his AC rises by 2, he makes one extra attack on his Multiattack, and each of his weapon hits deals an extra 9 (2d8) necrotic damage. The smoke around him turns red and begins to scream.</div>
+<div class="sb-section">Actions</div>
+<p class="sb-entry"><strong>Multiattack.</strong> Dumal makes three Lance of Bhaal attacks. He can replace one with a Ritual Dagger attack, or with Bhaal-Marked Strike when it is available. <em>(Four attacks while bloodied.)</em></p>
+<p class="sb-entry"><strong>Lance of Bhaal.</strong> <em>Melee Weapon Attack:</em> +11 to hit, reach 10 ft., one target. <em>Hit:</em> 13 (1d12 + 6) piercing plus 13 (3d8) necrotic. If this reduces the target to 0 hit points, Dumal triggers Hunger Pact.</p>
+<p class="sb-entry"><strong>Ritual Dagger.</strong> <em>Melee Weapon Attack:</em> +11 to hit, reach 5 ft., one target. <em>Hit:</em> 9 (1d6 + 6) piercing plus 9 (2d8) necrotic. On a critical hit against a humanoid, Dumal carves a permanent Bhaal symbol into the wound (removable with <em>remove curse</em>).</p>
+<p class="sb-entry"><strong>Bhaal-Marked Strike (Recharge 5–6).</strong> Dumal makes one Lance of Bhaal attack. On a hit, the target must succeed on a DC 18 Constitution saving throw or take an extra 36 (8d8) necrotic damage and gain the <strong>Bhaal Mark</strong> (disadvantage on saving throws against Dumal's effects for 24 hours). <strong>Drenwal automatically fails this save.</strong> <em>Play it for horror, not the numbers.</em></p>
+<p class="sb-entry"><strong>Slaughter Nova (Recharge 6).</strong> Bhaal's hunger erupts in a 20-foot-radius sphere centered on Dumal. Each other creature in the area makes a DC 18 Dexterity saving throw, taking 45 (10d8) necrotic damage on a failure or half as much on a success. A creature reduced to 0 hit points by this can't be stabilized for 1 minute. <em>His answer to being surrounded.</em></p>
+<p class="sb-entry"><strong>Bhaal Smoke (1/Day).</strong> Dumal fills a 30-foot cube within 5 ft. of him with screaming red smoke. The area is heavily obscured to everyone but Dumal, who moves through it freely. It lasts 2 rounds. <strong>His exit tool.</strong></p>
+<div class="sb-section">Bonus Actions</div>
+<p class="sb-entry"><strong>Bhaal's Whisper.</strong> Dumal speaks one sentence to a creature he can see within 60 ft. The target must succeed on a DC 18 Wisdom saving throw or be frightened of him until the end of its next turn. <strong>Drenwal auto-fails unless he spent his previous turn praying to a non-Bhaal god.</strong></p>
+<p class="sb-entry"><strong>Blood Step.</strong> Dumal moves up to his speed without provoking opportunity attacks. If he ends his move adjacent to a creature, he makes one Ritual Dagger attack against it. <em>(Lets him reach the backline or run down Aurora's mount.)</em></p>
+<div class="sb-section">Reactions</div>
+<p class="sb-entry"><strong>Murderous Riposte.</strong> When a creature Dumal can see within 10 ft. hits him with a melee attack, he makes one Lance of Bhaal attack against that creature.</p>
+<p class="sb-entry"><strong>Bhaal's Refusal (1/Day).</strong> When an effect would move Dumal against his will, banish him, or incapacitate him, he ends that effect on himself before it takes hold.</p>
+<div class="sb-section">Legendary Actions</div>
+<p class="sb-entry">Dumal can take 3 legendary actions, choosing from the options below. Only one legendary action can be used at a time, and only at the end of another creature's turn. He regains spent legendary actions at the start of his turn.</p>
+<p class="sb-entry"><strong>Step (Costs 1).</strong> Dumal moves up to half his speed without provoking opportunity attacks.</p>
+<p class="sb-entry"><strong>Bhaal's Hand (Costs 1).</strong> A spectral red hand claws a point Dumal can see within 30 ft.: +10 to hit, one target, 9 (2d8) necrotic damage, and the target is grappled (escape DC 18).</p>
+<p class="sb-entry"><strong>Lance (Costs 2).</strong> Dumal makes one Lance of Bhaal attack.</p>
+<p class="sb-entry"><strong>Reaping Arc (Costs 2).</strong> Each creature within 10 ft. of Dumal makes a DC 18 Dexterity saving throw or takes 14 (4d6) slashing-and-necrotic damage.</p>
+<p class="sb-entry"><strong>Sibling Strike (Costs 3, only vs. Drenwal).</strong> Dumal makes one Lance of Bhaal attack against Drenwal with advantage. On a hit, Drenwal hears Dumal narrating his every move mockingly for 1 hour after combat (roleplay only). <strong>Bhaal +5</strong> if it lands.</p>
+<div class="sb-rule"></div>
+<p class="sb-entry"><strong>Last Rites (if the Dial = death).</strong> When Dumal drops to 0 hit points, Bhaal's claim detonates: each creature within 20 ft. takes 28 (8d6) necrotic damage (DC 18 Dexterity save for half) as a pillar of red light tears him out of the world.</p>
+</div>
+
 <h3 id="statblock-ralzala">Statblock — Ralzala the dao &nbsp;(Monster Manual; non-SRD)</h3>
-<p><strong>Ralzala</strong> — <em>Large elemental (genie, dao), neutral evil</em> — <strong>CR 11</strong></p>
-<ul>
-<li><strong>AC</strong> 18 (natural) · <strong>HP</strong> 187 (15d10+105) · <strong>Speed</strong> 30 ft., burrow 30 ft., fly 30 ft. (hover)</li>
-<li><strong>STR</strong> 23(+6) · <strong>DEX</strong> 12(+1) · <strong>CON</strong> 24(+7) · <strong>INT</strong> 14(+2) · <strong>WIS</strong> 13(+1) · <strong>CHA</strong> 16(+3)</li>
-<li><strong>Saves</strong> INT +6, WIS +5, CHA +7 · <strong>Senses</strong> darkvision 120 ft. · <strong>Languages</strong> Terran</li>
-</ul>
-<p><strong>Traits</strong></p>
-<ul>
-<li><strong>Elemental Demise.</strong> Dies → disintegrates to a pile of its equipment.</li>
-<li><strong>Earth Glide.</strong> Burrows through nonmagical earth/stone without disturbing it.</li>
-<li><strong>Sure-Footed.</strong> Advantage on STR/DEX saves vs. being knocked prone.</li>
-<li><strong>Innate Spellcasting (CHA, save DC 15).</strong> <em>At will:</em> detect evil and good, detect magic, stone shape. <em>3/day each:</em> passwall, move earth, tongues. <em>1/day each:</em> conjure elemental (earth only), gaseous form, invisibility, phantasmal killer, plane shift, wall of stone.</li>
-</ul>
-<p><strong>Actions</strong></p>
-<ul>
-<li><strong>Multiattack.</strong> Two fists, or two mauls.</li>
-<li><strong>Fist.</strong> +10, reach 5 ft. <strong>12 (2d6+6) bludgeoning.</strong></li>
-<li><strong>Maul of the Dao.</strong> +10, reach 5 ft. <strong>17 (3d6+6) bludgeoning</strong> + DC 18 STR or knocked prone.</li>
-</ul>
+<div class="statblock">
+<div class="sb-name">Ralzala the Dao<span class="sb-tag">MM · non-SRD</span></div>
+<div class="sb-type">Large elemental (genie, dao), neutral evil · CR 11</div>
+<div class="sb-rule"></div>
+<div class="sb-line"><span class="sb-attr">Armor Class</span> 18 (natural armor)</div>
+<div class="sb-line"><span class="sb-attr">Hit Points</span> 187 (15d10 + 105)</div>
+<div class="sb-line"><span class="sb-attr">Speed</span> 30 ft., burrow 30 ft., fly 30 ft. (hover)</div>
+<div class="sb-rule"></div>
+<div class="sb-abilities">
+<div><div class="ab">STR</div><div class="sc">23 (+6)</div></div>
+<div><div class="ab">DEX</div><div class="sc">12 (+1)</div></div>
+<div><div class="ab">CON</div><div class="sc">24 (+7)</div></div>
+<div><div class="ab">INT</div><div class="sc">14 (+2)</div></div>
+<div><div class="ab">WIS</div><div class="sc">13 (+1)</div></div>
+<div><div class="ab">CHA</div><div class="sc">16 (+3)</div></div>
+</div>
+<div class="sb-rule"></div>
+<div class="sb-line"><span class="sb-attr">Saving Throws</span> INT +6, WIS +5, CHA +7</div>
+<div class="sb-line"><span class="sb-attr">Senses</span> darkvision 120 ft., passive Perception 11</div>
+<div class="sb-line"><span class="sb-attr">Languages</span> Terran</div>
+<div class="sb-rule"></div>
+<p class="sb-entry"><strong>Elemental Demise.</strong> If Ralzala dies, her body disintegrates into a pile of her equipment.</p>
+<p class="sb-entry"><strong>Earth Glide.</strong> She can burrow through nonmagical earth and stone without disturbing it.</p>
+<p class="sb-entry"><strong>Sure-Footed.</strong> Advantage on Strength and Dexterity saving throws against being knocked prone.</p>
+<p class="sb-entry"><strong>Innate Spellcasting.</strong> Spellcasting ability is Charisma (save DC 15). <em>At will:</em> detect evil and good, detect magic, stone shape. <em>3/day each:</em> passwall, move earth, tongues. <em>1/day each:</em> conjure elemental (earth only), gaseous form, invisibility, phantasmal killer, plane shift, wall of stone.</p>
+<div class="sb-section">Actions</div>
+<p class="sb-entry"><strong>Multiattack.</strong> Ralzala makes two fist attacks or two maul attacks.</p>
+<p class="sb-entry"><strong>Fist.</strong> <em>Melee Weapon Attack:</em> +10 to hit, reach 5 ft., one target. <em>Hit:</em> 12 (2d6 + 6) bludgeoning damage.</p>
+<p class="sb-entry"><strong>Maul of the Dao.</strong> <em>Melee Weapon Attack:</em> +10 to hit, reach 5 ft., one target. <em>Hit:</em> 17 (3d6 + 6) bludgeoning damage, and the target must succeed on a DC 18 Strength saving throw or be knocked prone.</p>
+</div>
+
 <div class="admonition homebrew">
 <p class="admonition-title">Ralzala's betrayal behavior</p>
 <p>She isn't fighting a war — she wants the <strong>Shield</strong> and an exit. Grab-and-<strong>earth-glide</strong>, go <strong>invisible/gaseous</strong> to disengage, <strong>flees below ~50 HP</strong>. If she pries the Shield off Drenwal (contested STR / disarm ruling), she's gone underground with it → instant future quest (chase the dao to recover Gargauth's prison). With Dumal present, she fears him more than she wants the loot → likely bolts Round 2.</p>
 </div>
 <h3 id="statblock-bone-devil-bone-devil">Statblock — Bone Devil &nbsp;(<code>bone-devil</code> ✓)</h3>
-<ul>
-<li><strong>AC</strong> 19 · <strong>HP</strong> 142 · <strong>CR</strong> 9 · <strong>Speed</strong> 40, <strong>fly 40</strong></li>
-<li><strong>Multiattack:</strong> 2 claws (+8, 1d8+4) + sting (+8, 2d8+4 pierce + <strong>17 (5d6) poison</strong>, DC 14 CON or poisoned 1 min).</li>
-<li><strong>Devil's Sight + Magic Resistance.</strong> <strong>Flies — use the vertical axis.</strong> Drops from the smog Round 1; covers Dumal's retreat.</li>
-</ul>
+<div class="statblock">
+<div class="sb-name">Bone Devil<span class="sb-tag">SRD ✓</span></div>
+<div class="sb-type">Large fiend (devil), lawful evil · CR 9</div>
+<div class="sb-rule"></div>
+<div class="sb-line"><span class="sb-attr">Armor Class</span> 19 (natural armor)</div>
+<div class="sb-line"><span class="sb-attr">Hit Points</span> 142 (15d10 + 60)</div>
+<div class="sb-line"><span class="sb-attr">Speed</span> 40 ft., fly 40 ft.</div>
+<div class="sb-rule"></div>
+<div class="sb-abilities">
+<div><div class="ab">STR</div><div class="sc">18 (+4)</div></div>
+<div><div class="ab">DEX</div><div class="sc">16 (+3)</div></div>
+<div><div class="ab">CON</div><div class="sc">18 (+4)</div></div>
+<div><div class="ab">INT</div><div class="sc">13 (+1)</div></div>
+<div><div class="ab">WIS</div><div class="sc">14 (+2)</div></div>
+<div><div class="ab">CHA</div><div class="sc">16 (+3)</div></div>
+</div>
+<div class="sb-rule"></div>
+<div class="sb-line"><span class="sb-attr">Saving Throws</span> INT +5, WIS +6, CHA +7</div>
+<div class="sb-line"><span class="sb-attr">Skills</span> Deception +7, Insight +6</div>
+<div class="sb-line"><span class="sb-attr">Damage Resistances</span> cold; bludgeoning, piercing, slashing from nonmagical attacks that aren't silvered</div>
+<div class="sb-line"><span class="sb-attr">Damage Immunities</span> fire, poison</div>
+<div class="sb-line"><span class="sb-attr">Condition Immunities</span> poisoned</div>
+<div class="sb-line"><span class="sb-attr">Senses</span> darkvision 120 ft., passive Perception 12</div>
+<div class="sb-line"><span class="sb-attr">Languages</span> Infernal, telepathy 120 ft.</div>
+<div class="sb-rule"></div>
+<p class="sb-entry"><strong>Devil's Sight.</strong> Magical darkness doesn't impede the devil's darkvision.</p>
+<p class="sb-entry"><strong>Magic Resistance.</strong> Advantage on saving throws against spells and other magical effects.</p>
+<div class="sb-section">Actions</div>
+<p class="sb-entry"><strong>Multiattack.</strong> The bone devil makes two claw attacks and one sting attack.</p>
+<p class="sb-entry"><strong>Claw.</strong> <em>Melee Weapon Attack:</em> +8 to hit, reach 10 ft., one target. <em>Hit:</em> 8 (1d8 + 4) slashing damage.</p>
+<p class="sb-entry"><strong>Sting.</strong> <em>Melee Weapon Attack:</em> +8 to hit, reach 10 ft., one target. <em>Hit:</em> 13 (2d8 + 4) piercing damage plus 17 (5d6) poison damage, and the target must succeed on a DC 14 Constitution saving throw or become poisoned for 1 minute.</p>
+<div class="sb-phase"><strong>At the table.</strong> Flies — use the vertical axis. Drops from the smog on Round 1 onto the highest-damage PC, then covers Dumal's exit.</div>
+</div>
+
 <hr />
 <h2 id="a-dumals-combat-doctrine">A · Dumal's combat doctrine</h2>
 <ol>
-<li><strong>Round 1:</strong> lets the dao and party tangle. Bone Devil drops from the smog onto the highest-damage PC. Dumal walks. <strong>Bhaal's Whisper on Drenwal.</strong></li>
-<li><strong>Round 2:</strong> reaches Drenwal. <strong>Bhaal-Marked Strike</strong> → the Mark. <em>"Stop pretending, Den."</em></li>
-<li><strong>Round 3+:</strong> may <strong>ritual-kill the dao or a lemure</strong> to heal 20 and make a point. Sibling Strike if he has the actions.</li>
-<li><strong>At 25% HP (≤55):</strong> <strong>disengages → Bhaal Smoke → Bone Devil covers → gone.</strong></li>
+<li><strong>Round 1 — the walk.</strong> He lets the dao and party tangle. The Bone Devil drops from the smog onto the highest-damage PC. Dumal advances (40 ft.), opens with <strong>Bhaal's Whisper</strong> on Drenwal, and burns legendary actions on <strong>Step</strong> + <strong>Bhaal's Hand</strong> to pin a backliner. He is in no hurry — let the dread build.</li>
+<li><strong>Round 2 — first blood.</strong> He reaches Drenwal and leads with <strong>Bhaal-Marked Strike</strong> → the Mark. <em>"Stop pretending, Den."</em> Then Multiattack (three Lances) on whoever is closest. <strong>Murderous Riposte</strong> punishes the first melee PC who lands on him.</li>
+<li><strong>Round 3+ — the grind.</strong> Surrounded? <strong>Slaughter Nova.</strong> He will <strong>ritual-kill the dao, a lemure, or a downed PC</strong> to heal <strong>30</strong> and make a point. <strong>Blood Step</strong> runs down Aurora's mount or the healer. Sibling Strike whenever the legendary actions are free.</li>
+<li><strong>Bloodied (≤175 HP) — Avatar of Slaughter.</strong> This is the gear change that makes him <em>feel</em> like a god's champion: <strong>+2 AC, a fourth attack, +2d8 necrotic on every hit,</strong> the smoke screaming red. Lean into the escalation out loud.</li>
+<li><strong>At 25% HP (≤88) — the exit.</strong> If the <strong>Dial = retreat:</strong> <strong>disengage → Bhaal Smoke → Bone Devil covers → gone.</strong> If the <strong>Dial = death:</strong> he fights to 0 and <strong>Last Rites</strong> detonates. Decide which <em>before</em> initiative.</li>
 </ol>
 <p><strong>Parting line:</strong></p>
 <blockquote class="read">
@@ -769,17 +879,48 @@ mcp__open5e__search { query: &quot;imprisonment&quot;, resource_type: &quot;spel
 <p class="admonition-title">Combat is a consequence, not a plan</p>
 <p>Only if the party turns the Forge hostile (swings first, kills a giant after "Enough", attacks the throne). Bel is <strong>CR 25</strong> — he fights to <strong>expel, not kill</strong> (a TPK in his Forge is wasted leverage against Zariel).</p>
 </div>
-<p><strong>Bel</strong> — Large fiend (devil), LE · <strong>AC 19</strong> · <strong>HP 300</strong> (24d10+168) · Speed 30, fly 60</p>
-<ul>
-<li><strong>STR</strong> 28(+9) · <strong>DEX</strong> 14(+2) · <strong>CON</strong> 26(+8) · <strong>INT</strong> 25(+7) · <strong>WIS</strong> 19(+4) · <strong>CHA</strong> 26(+8)</li>
-<li>Saves Dex +10, Con +16, Wis +12 · Arcana +14, Deception +15, Insight +11, Persuasion +15</li>
-<li>Resist cold + nonmagical/non-silvered phys · Immune fire, poison, poisoned · Truesight 120 ft. · telepathy 120 ft.</li>
-<li><strong>Fear Aura</strong> (DC 23 WIS, 20 ft.) · <strong>Magic Resistance</strong> · <strong>Legendary Resistance 3/day</strong> · <strong>Magic Weapons</strong></li>
-<li><strong>Innate Spellcasting</strong> (DC 23): <em>at will</em> detect magic, <strong>fireball</strong>; <em>3/day</em> dispel magic, hold monster, mirror image, mislead, raise dead, teleport, wall of fire; <em>2/day</em> <strong>imprisonment, meteor swarm.</strong></li>
-<li><strong>Multiattack:</strong> 2 greatsword + 1 tail. <strong>Greatsword</strong> +16, 23 (4d6+9) slashing + 21 (6d6) fire. <strong>Tail</strong> +16, 25 (3d10+9) bludg + DC 23 CON or stunned.</li>
-<li><strong>Legendary (3/turn):</strong> Fireball · Tactical Edge (2: roll d6, subtract from next attack vs. Bel/ally) · Summon Ice Devil (3).</li>
-<li><strong>Doctrine:</strong> opens with <strong>meteor swarm / wall of fire</strong> to make a point, then re-offers terms. Stabilizes downed PCs and has them dragged out.</li>
-</ul>
+<div class="statblock">
+<div class="sb-name">Bel, Warlord of Avernus<span class="sb-tag">Appendix · CR 25</span></div>
+<div class="sb-type">Large fiend (devil), lawful evil · CR 25</div>
+<div class="sb-rule"></div>
+<div class="sb-line"><span class="sb-attr">Armor Class</span> 19 (natural armor)</div>
+<div class="sb-line"><span class="sb-attr">Hit Points</span> 300 (24d10 + 168)</div>
+<div class="sb-line"><span class="sb-attr">Speed</span> 30 ft., fly 60 ft.</div>
+<div class="sb-rule"></div>
+<div class="sb-abilities">
+<div><div class="ab">STR</div><div class="sc">28 (+9)</div></div>
+<div><div class="ab">DEX</div><div class="sc">14 (+2)</div></div>
+<div><div class="ab">CON</div><div class="sc">26 (+8)</div></div>
+<div><div class="ab">INT</div><div class="sc">25 (+7)</div></div>
+<div><div class="ab">WIS</div><div class="sc">19 (+4)</div></div>
+<div><div class="ab">CHA</div><div class="sc">26 (+8)</div></div>
+</div>
+<div class="sb-rule"></div>
+<div class="sb-line"><span class="sb-attr">Saving Throws</span> DEX +10, CON +16, WIS +12</div>
+<div class="sb-line"><span class="sb-attr">Skills</span> Arcana +14, Deception +15, Insight +11, Persuasion +15</div>
+<div class="sb-line"><span class="sb-attr">Damage Resistances</span> cold; bludgeoning, piercing, slashing from nonmagical attacks that aren't silvered</div>
+<div class="sb-line"><span class="sb-attr">Damage Immunities</span> fire, poison</div>
+<div class="sb-line"><span class="sb-attr">Condition Immunities</span> poisoned</div>
+<div class="sb-line"><span class="sb-attr">Senses</span> truesight 120 ft., passive Perception 14</div>
+<div class="sb-line"><span class="sb-attr">Languages</span> Infernal, telepathy 120 ft.</div>
+<div class="sb-rule"></div>
+<p class="sb-entry"><strong>Fear Aura.</strong> Any creature hostile to Bel that starts its turn within 20 ft. of him must succeed on a DC 23 Wisdom saving throw or be frightened until the start of its next turn.</p>
+<p class="sb-entry"><strong>Magic Resistance.</strong> Advantage on saving throws against spells and other magical effects.</p>
+<p class="sb-entry"><strong>Magic Weapons.</strong> Bel's weapon attacks are magical.</p>
+<p class="sb-entry"><strong>Legendary Resistance (3/Day).</strong> If Bel fails a saving throw, he can choose to succeed instead.</p>
+<p class="sb-entry"><strong>Innate Spellcasting.</strong> Spellcasting ability is Charisma (save DC 23). <em>At will:</em> detect magic, fireball. <em>3/day each:</em> dispel magic, hold monster, mirror image, mislead, raise dead, teleport, wall of fire. <em>2/day each:</em> imprisonment, meteor swarm.</p>
+<div class="sb-section">Actions</div>
+<p class="sb-entry"><strong>Multiattack.</strong> Bel makes two greatsword attacks and one tail attack.</p>
+<p class="sb-entry"><strong>Greatsword.</strong> <em>Melee Weapon Attack:</em> +16 to hit, reach 10 ft., one target. <em>Hit:</em> 23 (4d6 + 9) slashing damage plus 21 (6d6) fire damage.</p>
+<p class="sb-entry"><strong>Tail.</strong> <em>Melee Weapon Attack:</em> +16 to hit, reach 15 ft., one target. <em>Hit:</em> 25 (3d10 + 9) bludgeoning damage, and the target must succeed on a DC 23 Constitution saving throw or be stunned until the end of its next turn.</p>
+<div class="sb-section">Legendary Actions</div>
+<p class="sb-entry">Bel can take 3 legendary actions, choosing from the options below. Only one can be used at a time, and only at the end of another creature's turn. He regains spent legendary actions at the start of his turn.</p>
+<p class="sb-entry"><strong>Cast a Spell (Costs 1).</strong> Bel casts fireball.</p>
+<p class="sb-entry"><strong>Tactical Edge (Costs 2).</strong> Bel picks an ally he can see; that ally rolls a d6 and subtracts the result from the next attack roll made against it or Bel before Bel's next turn.</p>
+<p class="sb-entry"><strong>Summon Ice Devil (Costs 3).</strong> Bel summons an ice devil in an unoccupied space within 60 ft.; it acts as his ally.</p>
+<div class="sb-phase"><strong>Doctrine.</strong> Bel fights to <strong>expel, not kill</strong> — a TPK in his Forge wastes his leverage against Zariel. He opens with meteor swarm or wall of fire to make a point, then re-offers terms. He stabilizes downed PCs and has them dragged out.</div>
+</div>
+
 <p><strong>Supporting:</strong> Fire Giant ×4 (above) · Salamander (AC 15 / HP 90 / CR 5, <strong>Heated Body</strong> 2d6 fire on melee, tail grapple DC 14, <strong>vuln. cold</strong>).</p>
 <hr />
 <h2 id="b-loot">B · Loot</h2>
