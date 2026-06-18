@@ -1,0 +1,81 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 400 400" width="400" height="400" role="img" aria-label="Hellrider sigil: a golden sun pierced by a sword on a field of Hellrider blue">
+  <title>Sigil of the Hellriders of Elturel — a sun pierced by a sword</title>
+  <defs>
+    <radialGradient id="field" cx="50%" cy="36%" r="72%">
+      <stop offset="0%" stop-color="#2c569a"/>
+      <stop offset="58%" stop-color="#1a3a6c"/>
+      <stop offset="100%" stop-color="#0e2244"/>
+    </radialGradient>
+    <linearGradient id="gold" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#f4d57a"/>
+      <stop offset="48%" stop-color="#e3b23c"/>
+      <stop offset="100%" stop-color="#a9781f"/>
+    </linearGradient>
+    <linearGradient id="steel" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#eef2f6"/>
+      <stop offset="50%" stop-color="#c2cad3"/>
+      <stop offset="100%" stop-color="#9aa3ad"/>
+    </linearGradient>
+    <polygon id="rayL" points="200,84 209,148 191,148"/>
+    <polygon id="rayS" points="200,108 206,148 194,148"/>
+    <path id="arcTop" d="M 52 200 A 148 148 0 0 1 348 200" fill="none"/>
+  </defs>
+
+  <!-- medallion -->
+  <circle cx="200" cy="200" r="192" fill="#0e2244"/>
+  <circle cx="200" cy="200" r="188" fill="none" stroke="url(#gold)" stroke-width="3"/>
+  <circle cx="200" cy="200" r="176" fill="url(#field)"/>
+  <circle cx="200" cy="200" r="176" fill="none" stroke="#c8a24a" stroke-width="1.5"/>
+
+  <!-- order name along the top rim -->
+  <text font-family="Cinzel, Georgia, 'Times New Roman', serif" font-size="20" font-weight="700"
+        letter-spacing="3" fill="#ecc868">
+    <textPath href="#arcTop" startOffset="50%" text-anchor="middle">HELLRIDERS OF ELTUREL</textPath>
+  </text>
+
+  <!-- the sun in splendour -->
+  <g fill="url(#gold)" stroke="#8a6118" stroke-width="1.5" stroke-linejoin="round">
+    <use href="#rayL" transform="rotate(0 200 200)"/>
+    <use href="#rayL" transform="rotate(45 200 200)"/>
+    <use href="#rayL" transform="rotate(90 200 200)"/>
+    <use href="#rayL" transform="rotate(135 200 200)"/>
+    <use href="#rayL" transform="rotate(180 200 200)"/>
+    <use href="#rayL" transform="rotate(225 200 200)"/>
+    <use href="#rayL" transform="rotate(270 200 200)"/>
+    <use href="#rayL" transform="rotate(315 200 200)"/>
+    <use href="#rayS" transform="rotate(22.5 200 200)"/>
+    <use href="#rayS" transform="rotate(67.5 200 200)"/>
+    <use href="#rayS" transform="rotate(112.5 200 200)"/>
+    <use href="#rayS" transform="rotate(157.5 200 200)"/>
+    <use href="#rayS" transform="rotate(202.5 200 200)"/>
+    <use href="#rayS" transform="rotate(247.5 200 200)"/>
+    <use href="#rayS" transform="rotate(292.5 200 200)"/>
+    <use href="#rayS" transform="rotate(337.5 200 200)"/>
+  </g>
+  <circle cx="200" cy="200" r="58" fill="url(#gold)" stroke="#8a6118" stroke-width="2.5"/>
+  <circle cx="200" cy="200" r="46" fill="none" stroke="#c98f23" stroke-width="2"/>
+
+  <!-- the sword, piercing the sun (point down) -->
+  <g stroke="#20283a" stroke-width="2.4" stroke-linejoin="round">
+    <!-- blade -->
+    <polygon points="192,150 208,150 208,288 200,348 192,288" fill="url(#steel)"/>
+    <line x1="200" y1="162" x2="200" y2="300" stroke="#8f99a4" stroke-width="2"/>
+    <!-- crossguard -->
+    <rect x="150" y="136" width="100" height="15" rx="7" fill="url(#gold)"/>
+    <circle cx="150" cy="143.5" r="7" fill="url(#gold)"/>
+    <circle cx="250" cy="143.5" r="7" fill="url(#gold)"/>
+    <!-- grip + pommel -->
+    <rect x="194" y="110" width="12" height="30" rx="3" fill="#6b4a22"/>
+    <circle cx="200" cy="102" r="12" fill="url(#gold)"/>
+    <circle cx="200" cy="102" r="4" fill="#8a6118" stroke="none"/>
+  </g>
+
+  <!-- motto ribbon -->
+  <g stroke="#caa24a" stroke-width="1.5" stroke-linejoin="round">
+    <polygon points="58,312 64,300 64,328 58,316" fill="#0c1c39"/>
+    <polygon points="342,312 336,300 336,328 342,316" fill="#0c1c39"/>
+    <rect x="64" y="298" width="272" height="32" rx="3" fill="#14274d"/>
+  </g>
+  <text x="200" y="320" font-family="Cinzel, Georgia, 'Times New Roman', serif" font-size="17"
+        font-weight="700" letter-spacing="4" fill="#ecc868" text-anchor="middle">KEEP THE WATCH</text>
+</svg>

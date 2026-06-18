@@ -24,6 +24,14 @@
 - Mid-session live protocol — paste-templates for fast statblock/dialogue/lore/ruling/tracker queries
 - Bhaal/Gargauth Influence v2 system replaces old 0–6 tick scale (see file)
 
+## Session 6 Prep & New Canon
+**Primer:** `session-6-bels-forge-primer.md` (Demon Zapper → ambush → Bel's Forge). **Finale:** `siege-of-lady-vengeance.md` (Dumal assaults the Lady Vengeance). **Cards:** `session-6-dumal-fight-cards.md`.
+- **Dumal** rebuilt as a CR 16 solo boss (AC 20 / HP 350) → can ascend to an **Avatar of Bhaal** (stat pending). Bound titan in his host: **Maw of Yeenoghu** (CR 20) or the Hecatomb (CR 18).
+- **Allies recovered:** **Sgt. Veska** (Crimson Watch; woke from a self-petrification Vigil; knows the cult; officiates Drenwal's rebirth), **Ser Lucan** (old Crimson Watch, rebuilt with Gondian automaton legs by **Jeremy** + Aurora's *Fabricate*), **the Gith** (psionic monk). See `npc-reference.md`.
+- **Drenwal's blood:** Sigil of the Kept Watch drawn (leashed). Veska revealed the **Three Sigils** path to *master* it (other Bhaalspawn blood → kill the last sibling) — competes with Mordenkainen's *rebirth* cure. See `drenwal-bhaal-blood.md`.
+- **Celestial liquid** from the Demon Zapper = **Tears of the Caged Star** (raw celestial power). **Soul-coin truth:** spending = annihilation; souls can be **freed** via Lulu / the Moonkite. See `souls-and-celestial-power.md`.
+- **Mahadi** wants Red Ruth's leftover secrets (the party holds them). **Hellrider lore + sigil:** `hellrider-lore.md`, `Images/hellrider-sigil.svg`.
+
 ## What the Party Knows
 - The **Fallen Three** (Olanthius, Haruman, Bel) each know part of the path to the Bleeding Citadel
 - **Mordenkainen (real)** gave them the **locations of the Fallen Three** — intermediary quest complete

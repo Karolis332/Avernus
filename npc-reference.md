@@ -132,6 +132,7 @@
 - Proprietor. Polite but warns against fights.
 - DC 18 Insight: fears angering Asmodeus
 - 10 gp per question. Knows general Avernus locations.
+- **[HOMEBREW] Red Ruth was his oracle-on-retainer** — he pampered her (the canon spa/makeover) in exchange for secrets. Now she's dead, he wants her **Bhaalspawn knowledge** (Drenwal/Dumal/Senna), her **soul-stock**, the **Mordenkainen letter**, her **heartstone** — and **the party holds those.** Expect him to seek the PCs out to buy/barter/steal Ruth's leftovers and trade Bhaalspawn-arc intel for a price (never overtly defying bigger powers).
 
 ### Salamander Artificer
 - Sells **shattersticks** (5d6 thunder, DC 15 Dex, 10-ft radius)
@@ -158,3 +159,35 @@
 2. **Valruk the Chain-Bride (Half-Orc):** Enslaves undead, sickle. Leaves desecrated Helm scripture with "LIAR."
 3. **Dumal the Flame Ascendant (Human):** Walking pyre, melted Hellrider armor. Converts radiant to necrotic fire.
    > "You clung to Helm like a child clings to his toy shield. But you know what I've become."
+
+---
+
+## Crimson Watch & Session 5–6 Allies
+*Full statblocks: `session-6-dumal-fight-cards.md`. Order lore: `hellrider-lore.md`. Drenwal's arc: `drenwal-bhaal-blood.md`.*
+
+### Sgt. Veska, Knight of the Crimson Watch [HOMEBREW]
+- Hellrider of the **Crimson Watch**; **came after** Lucan's generation (no shared history). One of the few loyalists who **knows the Bhaal cult inside the order.**
+- Found in Bitter Breath's Palace — sealed in a **Hellrider Vigil** (self-petrification, ageless) to survive/hide. **Woke** when the party broke it (needs a celestial-light catalyst: Lulu, the Moonkite, or *Tears of the Caged Star*).
+- Knows **Halvard was murdered by the cult** ("died at the Wall" is the lie); clocks Drenwal as Halvard's son on sight.
+- **Officiates Drenwal's rebirth ritual** (lower DC if she runs it); **re-consecrates** a cracked Sigil of the Kept Watch.
+- Combat: anti-Bhaal commander (CR 8) — aura shields minds vs. Dumal, radiant smite.
+- **OPEN:** toward Drenwal — *shield* (save the soul) or *wary blade* (help but watch him)?
+
+### Ser Lucan, the Reforged [HOMEBREW]
+- Old **Crimson Watch** Hellrider; survived **the Wall (the Descent)**, then ~30 yrs fused in Red Ruth's Bone Brambles (kept alive to suffer). Knew **Halvard** personally.
+- Freed as a legless torso → **rebuilt with Gondian automaton legs** (Jeremy + Aurora's *Fabricate*; see `loot-and-items.md`).
+- Carries **Halvard's last words:** *"Find him. Find Dumal. Save him."* Knows the cult, the Vigil rite, the sigil-trick.
+- Combat: the shield (CR 7) — *Keep the Watch* intercepts hits; near-unkillable. Creed: *"Keep the watch."*
+
+### Jeremy — operator of the Lady Vengeance [HOMEBREW]
+- Runs the **Gondian Planar Core** (soul/reagent reactor) — the ship's engineering brain.
+- Built **Lucan's legs** with Aurora's *Fabricate*; can **un-coin a soul** without destroying it (the Gondian way); manages the **Soul Coin Overdrive** (and its moral cost).
+- Gondian/Portyr tension: Portyr wants soul-coin fuel; Gondians argue for **clean alternative fuel** — a live party choice.
+
+### The Gith (githzerai monk) — "the river of mirrors" [HOMEBREW]
+- Half-mad githzerai who fell through a planar tear; Cage 3 in Bitter Breath's Palace. Mutters about a "river of mirrors."
+- Combat: psionic skirmisher (CR 6) — blinks, Mind Lance, best shot at **stunning Dumal.** Planar-origin plot hook.
+
+### Senna (the third Bhaalspawn sibling) [HOMEBREW]
+- Drenwal & Dumal's hidden **younger sister**, ~6, raised by Harper **Issa**. Mother died before her birth; Halvard hid her name to his last breath.
+- The fulcrum of the **Three Sigils** ("the last one"?), the cult, and Dumal. Red Ruth verified her for Dumal (the Lock of Senna's Hair).

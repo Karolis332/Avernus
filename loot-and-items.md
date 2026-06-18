@@ -100,4 +100,31 @@ Methods: eat (random), DC 15 Alchemy to extract specific, 10-min arcane infusion
 ## Gondian-Portyr Hellship ("The Lady Vengeance")
 - AC 17, 350 HP (damage threshold 15), speed 40 ft hover / 60 ft on Styx
 - **Weapons:** 2 Arcane Cannons (8d10 force, 600/2400 ft), Aether Harpoon (4d12 piercing + tether)
-- **Soul Coin Overdrive (1h):** Speed doubled, weapons +2d10, 30-ft damage aura, crew buffed. Risk: d20, 1-5 = 8d10 backlash + engine down 1d4h.
+- **Soul Coin Overdrive (1h):** Speed doubled, weapons +2d10, 30-ft damage aura, crew buffed. Risk: d20, 1-5 = 8d10 backlash + engine down 1d4h. **Moral cost:** burns a soul (annihilated — see `souls-and-celestial-power.md`).
+
+## Session 5–6 Items & Subsystems
+
+### Tears of the Caged Star — RAW celestial power [HOMEBREW]
+- Unrefined essence of the Upper Planes, wrung from the caged unicorn by the Demon Zapper. ~1d4+1 doses bottled (best in a living/blessed vessel; DC 13 Nature/Arcana to stabilize, or auto via Lulu/Moonkite).
+- Creates/restores life, reveals truth, **unmakes the corrupt, severs infernal bindings**, empowers celestials. Catalyst for waking Veska, regrowing Lucan, restoring the Moonkite, hard soul-freeing.
+- **Burns Drenwal (Bhaal blood) — can't purge it.** Safest channeled through a celestial conduit. Full rules: `souls-and-celestial-power.md`.
+
+### Ser Lucan's Automaton Legs [HOMEBREW]
+- Gondian war-salvage prosthetics fitted by **Jeremy** + Aurora's *Fabricate* (Drenwal binds them to flesh). Speed 30 (35 if soul-coin fueled); **can't be knocked prone**; loud (Stealth disadvantage).
+- **Fuel fork:** soul-coin (faster, grim, trackable) vs. **clean Gondian core** (recommended) vs. fey/celestial. *Tears of the Caged Star* can instead regrow living flesh at the graft.
+
+### Hellrider Sigil Pendants [HOMEBREW]
+- Silver pendants from dead Hellriders. **+1 to one save vs. fiend effects, 1/long rest.** Lucan's is the third (Drenwal recognizes it). Sigil-trick: +1 to next save vs. Bhaal effects (24h). Art: `Images/hellrider-sigil.svg`. Lore: `hellrider-lore.md`.
+
+### Hag-Potion Refinement [HOMEBREW]
+Red Ruth's brews carry a hidden tax. Refine to strip it: ~1 hr, DC 15 (17 cursed) Nature/Arcana/Medicine/tools (Rasheem assist or a holy site = advantage) + the right catalyst. Success strips the downside; failure ruins it; crit = enhanced.
+
+| Potion | Effect | Catch | Refine → |
+|---|---|---|---|
+| Crying Pot | heal 4d4+4, 1/day | 3rd drink/day → 2 exhaustion + week of nightmares | holy water / Sacred Flame / Lulu's tears / Tarsweald → **Stillwater Pot** (safe to 3/day) |
+| Memory Vial | gain a memory; adv. next Calm Emotions | identity bleed | psionic / Calm Emotions → **Clear Memory** (benefit, no residue) |
+| Tear of a Pit Fiend | smash, 20 ft., DC 14 CON or frightened | friendly fire | shape it (Arcana) → **Focused Tear** (enemies only) |
+| Devil's-Veil Tea | adv. vs charmed 8h | brew fresh, 1 dose | stabilize → **Veil Draught** (24h, 2 doses) |
+| Potion of Mind Reading | *Detect Thoughts* | target may notice | veil it → silent surface-read |
+
+*Clean potions (Superior Healing, Healing, Heroism, Lesser Restoration, Elixir of Speed) carry no downside — "refine" = optional upgrade.*

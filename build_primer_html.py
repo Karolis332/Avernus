@@ -32,11 +32,14 @@ body_html = body_html.replace("<blockquote>", '<blockquote class="read">')
 page_title = html.escape(title)
 
 # Quick-jump landmarks (stable ids set in the source).
-JUMPS = [
-    ("Top", "#top"), ("How to Run", "#run-order"), ("Recap", "#where-we-are"),
-    ("Part A", "#part-a"), ("The Ambush", "#ambush"),
-    ("Part B", "#part-b"), ("Bel", "#statblock-bel"), ("Reference", "#reference"),
-]
+if "bels-forge" in os.path.basename(SRC):
+    JUMPS = [
+        ("Top", "#top"), ("How to Run", "#run-order"), ("Recap", "#where-we-are"),
+        ("Part A", "#part-a"), ("The Ambush", "#ambush"),
+        ("Part B", "#part-b"), ("Bel", "#statblock-bel"), ("Reference", "#reference"),
+    ]
+else:
+    JUMPS = [("Top", "#top")]
 jump_bar = "".join(f'<a href="{href}">{html.escape(label)}</a>' for label, href in JUMPS)
 
 CSS = r"""
