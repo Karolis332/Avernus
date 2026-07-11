@@ -10,6 +10,8 @@
 - **Companions:**
   - **Lulu** — Hollyphant. Zariel's former companion. Fragmented memories recovering. Emotional, loyal.
   - **Whiskerbright** — Aurora's familiar, currently in imp form (Avernus adaptation).
+  - **Veska** — Hellrider of Elturel, freed from captivity in the Palace of Gore (Bitter Breath's). A devil-fighting knight of the same order Drenwal's father served — the order **Dumal betrayed.** Martial striker, immune to fear; now rides with the party. (Statblock in `yeenoghu-encounter.md`.)
+  - **Gith monk** — a prisoner also freed from the Palace of Gore (held in Bitter Breath's cells). Details/allegiance TBD.
 - **Transport:** The **Lady Vengeance** — Gondian-Portyr Hellship (AC 17, 350 HP, Arcane Cannons, Aether Harpoon, Soul Coin Overdrive)
 
 ## Current Location
@@ -116,6 +118,7 @@
 - Cascading effect: **the Moonkite was fully freed** by the same Wish, now bonded to Aurora as her mount
 - **Moonbow of Celestial Warding fusion happened** — Aurora's +2 longbow + Wand of Celestial Warding merged
 - **No loot from Bitter Breath** — his power, weapons (Gutripper), soul coins, and Bhaal-marked gear dissolved with him when reverted
+- **Freed two of Bitter Breath's prisoners:** **Veska**, a captive **Hellrider of Elturel** (now a party ally — see Party roster), and a **gith monk** held in the Palace cells.
 - **Bhaal carving discovered at Palace exit** on the way out — fresh blood, signed in Dumal's handwriting: "He misses you." Dumal was watching.
 - The Ring of Wishes is now an inert silver band (single-charge, spent)
 

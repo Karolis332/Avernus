@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Session Primer — The Lord of Slaughter, Leashed</title>
+<script src="https://cdn.jsdelivr.net/npm/marked/marked.min.js"></script>
+<style>
+:root{
+  --bg:#140f0d; --panel:#1c1512; --ink:#e9dec9; --muted:#a89a82;
+  --red:#b3322c; --red-deep:#7c1d1a; --gold:#c9a14a; --blue:#6ea2d6; --line:#3a2c25;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:
+  radial-gradient(1200px 600px at 70% -10%, #2a1410 0%, transparent 60%),
+  var(--bg);
+  color:var(--ink);
+  font:17px/1.65 "Iowan Old Style","Palatino Linotype",Georgia,serif;}
+#wrap{display:grid;grid-template-columns:300px 1fr;max-width:1400px;margin:0 auto;}
+nav{position:sticky;top:0;align-self:start;height:100vh;overflow:auto;
+  padding:24px 18px;border-right:1px solid var(--line);background:#100b09;}
+nav h1{font-size:13px;letter-spacing:.12em;text-transform:uppercase;color:var(--gold);margin:0 0 14px}
+nav a{display:block;color:var(--muted);text-decoration:none;padding:3px 0 3px 10px;font-size:13px;border-left:2px solid transparent}
+nav a:hover{color:var(--ink);border-left-color:var(--red)}
+nav a.h3{padding-left:24px;font-size:12px;opacity:.78}
+main{padding:42px 60px;min-width:0;max-width:920px}
+h1,h2,h3,h4{font-family:"Iowan Old Style",Georgia,serif;line-height:1.2;color:#f3ead6}
+main h1{font-size:33px;color:var(--red);border-bottom:2px solid var(--red-deep);padding-bottom:.3em;letter-spacing:.01em}
+main h2{font-size:25px;color:var(--gold);margin-top:1.9em;border-bottom:1px solid var(--line);padding-bottom:.25em}
+main h3{font-size:19px;color:var(--blue);margin-top:1.5em}
+main h4{font-size:15px;color:var(--ink);text-transform:uppercase;letter-spacing:.05em}
+a{color:var(--blue)}
+blockquote{margin:1em 0;padding:.6em 1.1em;border-left:4px solid var(--red);
+  background:#221813;color:#efe6d2;border-radius:0 6px 6px 0}
+blockquote em{color:#e7d8b6}
+blockquote strong{color:var(--gold)}
+table{border-collapse:collapse;width:100%;margin:1.1em 0;font-size:14px}
+th,td{border:1px solid var(--line);padding:7px 10px;text-align:left;vertical-align:top}
+th{background:#2a1d17;color:var(--gold)}
+tr:nth-child(even) td{background:#181210}
+code{background:#241a15;color:#e7c98a;padding:1px 5px;border-radius:4px;font-size:13.5px}
+pre{background:#0e0a08;border:1px solid var(--line);border-radius:8px;padding:14px 16px;overflow:auto}
+pre code{background:none;color:#cdbfa6;font-size:12.5px;line-height:1.5}
+hr{border:none;border-top:1px solid var(--line);margin:2em 0}
+strong{color:#f6ecd6}
+ul,ol{padding-left:1.4em} li{margin:.2em 0}
+::selection{background:var(--red-deep);color:#fff}
+@media(max-width:900px){#wrap{grid-template-columns:1fr}nav{display:none}main{padding:24px}}
+</style>
+</head>
+<body>
+<div id="wrap">
+  <nav><h1>Contents</h1><div id="toc"></div></nav>
+  <main id="content">Loading primer&hellip;</main>
+</div>
+<script>
+const file = new URLSearchParams(location.search).get('f') || 'yeenoghu-encounter.md';
+const main = document.getElementById('content');
+fetch(file).then(function(r){ if(!r.ok) throw new Error('HTTP '+r.status); return r.text(); }).then(function(md){
+  md = md.replace(/^(#{1,6} .+?)\s*\{#([\w-]+)\}\s*$/gm, function(m,h,id){ return h + ' <a id="'+id+'" class="anchor"></a>'; });
+  marked.setOptions({gfm:true, breaks:false});
+  main.textContent='';
+  main.insertAdjacentHTML('afterbegin', marked.parse(md));
+  const toc = document.getElementById('toc');
+  main.querySelectorAll('h2,h3').forEach(function(h,i){
+    let id = (h.querySelector('a.anchor')||{}).id;
+    if(!id){ id='sec'+i; h.id=id; }
+    const a=document.createElement('a');
+    a.href='#'+id;
+    a.textContent=h.textContent.replace(/[▶★➕🌂⚔️💥⚠️]/g,'').trim();
+    if(h.tagName==='H3') a.className='h3';
+    toc.appendChild(a);
+  });
+}).catch(function(e){ main.textContent='Error loading '+file+': '+e.message; });
+</script>
+</body>
+</html>
