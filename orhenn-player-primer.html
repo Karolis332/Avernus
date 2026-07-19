@@ -1,0 +1,370 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Or'Henn, the Ashen Shepherd — Player Primer</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* PHB / Homebrewery palette */
+    --parch:#EEE5CE; --parch-edge:#E3D6B4;
+    --ink:#1D1A17; --ink-soft:#4a3f2c;
+    --red:#58180D; --red-soft:#7a2a15;
+    --tan:#FDF1DC; --tan-edge:#E7D4AC;
+    --gold:#B8863B; --brass-dark:#7d5a1e;
+    --row:#E0E4C8;
+    --beast:#3d6b2f; --infernal:#9a4f1a;
+    --page-bg:#100e0a;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--page-bg);}
+  body{font-family:'EB Garamond',Georgia,serif;color:var(--ink);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* ---------- screen-only toolbar ---------- */
+  .toolbar{
+    max-width:900px;margin:24px auto 0;padding:13px 20px;
+    background:#211a10;border:1px solid #4a3a1f;border-radius:7px;
+    color:#e4d6ac;font-family:'Cinzel',serif;font-size:12.5px;line-height:1.5;
+    display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  }
+  .toolbar b{color:#d99a5c;}
+  .toolbar button{
+    font-family:'Cinzel',serif;font-size:12.5px;cursor:pointer;
+    background:var(--red);color:#f4ecd6;border:1px solid #822712;border-radius:5px;
+    padding:8px 16px;font-weight:700;letter-spacing:.6px;
+  }
+  .toolbar button:hover{background:var(--red-soft);}
+
+  /* ---------- the book page ---------- */
+  .sheet{
+    position:relative;max-width:900px;margin:22px auto;padding:54px 54px 48px;
+    background-color:var(--parch);
+    background-image:
+      radial-gradient(circle at 18% 12%, rgba(150,124,78,.16), transparent 42%),
+      radial-gradient(circle at 82% 18%, rgba(132,108,70,.14), transparent 46%),
+      radial-gradient(circle at 68% 72%, rgba(120,96,58,.13), transparent 42%),
+      radial-gradient(circle at 26% 84%, rgba(110,88,54,.12), transparent 46%),
+      radial-gradient(circle at 92% 92%, rgba(96,74,42,.14), transparent 40%),
+      repeating-linear-gradient(102deg, rgba(120,100,64,.05) 0 2px, transparent 2px 5px),
+      linear-gradient(180deg, var(--parch), var(--parch-edge));
+    box-shadow:0 0 46px rgba(0,0,0,.6), inset 0 0 120px rgba(84,64,26,.22);
+  }
+  /* ornamental double frame */
+  .sheet::before{
+    content:"";position:absolute;inset:15px;pointer-events:none;z-index:2;
+    border:2.5px solid var(--red);
+    outline:1px solid rgba(88,24,13,.42);outline-offset:5px;
+    box-shadow:inset 0 0 0 1px rgba(88,24,13,.18);
+  }
+  /* corner flourishes */
+  .sheet::after{
+    content:"";position:absolute;inset:15px;pointer-events:none;z-index:3;
+    background:
+      radial-gradient(circle 4.5px at 7px 7px, var(--red) 62%, transparent 66%),
+      radial-gradient(circle 4.5px at calc(100% - 7px) 7px, var(--red) 62%, transparent 66%),
+      radial-gradient(circle 4.5px at 7px calc(100% - 7px), var(--red) 62%, transparent 66%),
+      radial-gradient(circle 4.5px at calc(100% - 7px) calc(100% - 7px), var(--red) 62%, transparent 66%),
+      radial-gradient(circle 2px at 20px 20px, rgba(88,24,13,.55) 60%, transparent 64%),
+      radial-gradient(circle 2px at calc(100% - 20px) 20px, rgba(88,24,13,.55) 60%, transparent 64%),
+      radial-gradient(circle 2px at 20px calc(100% - 20px), rgba(88,24,13,.55) 60%, transparent 64%),
+      radial-gradient(circle 2px at calc(100% - 20px) calc(100% - 20px), rgba(88,24,13,.55) 60%, transparent 64%);
+    background-repeat:no-repeat;
+  }
+
+  /* ---------- two-column body ---------- */
+  .book{
+    position:relative;z-index:1;
+    column-count:2;column-gap:28px;
+    font-size:11.4pt;line-height:1.34;
+  }
+  .book p{margin:0 0 8px;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
+  .book p.lead{font-size:11.8pt;}
+  em.eye{color:var(--red-soft);font-style:italic;}
+
+  /* full-width elements break out of the columns */
+  .titleband, h2, h3, table, .statblock, .callout, .legend, .foot{
+    column-span:all;-webkit-column-span:all;
+  }
+
+  /* ---------- title band ---------- */
+  .titleband{text-align:center;margin:0 0 14px;padding-bottom:14px;
+    border-bottom:3px double var(--red);}
+  .titleband .epithet{font-family:'Cinzel',serif;font-size:13px;letter-spacing:5px;
+    color:var(--brass-dark);text-transform:uppercase;margin:0 0 2px;}
+  h1{font-family:'Cinzel',serif;font-size:40px;font-weight:700;margin:2px 0 4px;
+    letter-spacing:1px;color:var(--red);text-shadow:0 1px 0 rgba(255,248,224,.5);}
+  .titleband .who{font-family:'EB Garamond',serif;font-style:italic;color:var(--ink-soft);
+    margin:8px 0 0;font-size:15.5px;}
+
+  /* ---------- headings ---------- */
+  h2{font-family:'Cinzel',serif;font-size:23px;font-weight:600;color:var(--red);
+    margin:26px 0 2px;letter-spacing:.4px;line-height:1.1;}
+  h2::after{content:"";display:block;height:5px;margin:5px 0 6px;background:var(--red);
+    clip-path:polygon(0 50%, 2.2% 0, 97.8% 0, 100% 50%, 97.8% 100%, 2.2% 100%);}
+  h3{font-family:'Cinzel',serif;font-size:15.5px;font-weight:600;color:var(--red-soft);
+    margin:16px 0 4px;letter-spacing:.3px;line-height:1.2;}
+  h3 .cr{color:var(--brass-dark)!important;}
+
+  /* ---------- drop caps ---------- */
+  p.dropcap::first-letter{
+    font-family:'Cinzel',serif;font-weight:700;color:var(--red);
+    font-size:3.5em;line-height:.76;float:left;padding:8px 10px 0 0;
+  }
+
+  /* ---------- links ---------- */
+  a{color:var(--red-soft);text-decoration:none;border-bottom:1px dotted var(--red-soft);font-weight:600;}
+  a:hover{color:var(--red);border-bottom-style:solid;}
+
+  /* ---------- sidebars / callouts ---------- */
+  .callout{
+    background:linear-gradient(180deg,#FBF3DD,#F1E4C2);
+    border:1px solid var(--tan-edge);border-left:4px solid var(--red);
+    padding:14px 18px;margin:14px 0;border-radius:3px;font-size:11pt;line-height:1.4;
+    box-shadow:0 2px 6px rgba(60,40,12,.22), inset 0 0 30px rgba(120,90,40,.06);
+    break-inside:avoid;
+  }
+  .callout.ember{border-left-color:var(--red-soft);background:linear-gradient(180deg,#FBEEDD,#F2E0C4);}
+  .callout.brass{border-left-color:var(--gold);}
+  .callout b{font-variant:small-caps;letter-spacing:.4px;color:var(--red);}
+
+  /* ---------- legend ---------- */
+  .legend{display:flex;gap:24px;flex-wrap:wrap;font-size:12.5px;margin:8px 0 6px;color:var(--ink-soft);}
+  .legend span{display:inline-flex;align-items:center;gap:6px;}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block;border:1px solid rgba(0,0,0,.15);}
+  .dot.b{background:var(--beast);} .dot.i{background:var(--infernal);}
+
+  /* ---------- PHB tables ---------- */
+  table{width:100%;border-collapse:collapse;margin:2px 0 12px;font-size:10.6pt;
+    background:linear-gradient(180deg,rgba(255,252,242,.35),rgba(224,228,200,.12));
+    border-top:2px solid var(--red);border-bottom:2px solid var(--red);break-inside:avoid;}
+  th{font-family:'Cinzel',serif;font-size:11px;letter-spacing:.8px;text-transform:uppercase;
+    text-align:left;color:#F4ECD6;background:var(--red);padding:7px 9px;}
+  td{padding:7px 9px;border-bottom:1px solid rgba(88,24,13,.16);vertical-align:top;line-height:1.34;}
+  tr:nth-child(even) td{background:rgba(224,228,200,.55);}
+  tr:last-child td{border-bottom:none;}
+  td.form{white-space:nowrap;}
+  .type{font-size:11px;color:var(--ink-soft);font-variant:small-caps;letter-spacing:.4px;}
+  .tag{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:3px;color:#fff;
+    vertical-align:1px;letter-spacing:.3px;text-transform:uppercase;}
+  .tag.b{background:var(--beast);} .tag.i{background:var(--infernal);}
+  .star{color:var(--red-soft);font-weight:700;}
+
+  /* locked tier — dimmed */
+  table.locked{opacity:.62;filter:saturate(.7);}
+
+  /* ---------- spell list ---------- */
+  .spelllist{margin:6px 0 8px 2px;padding:0;list-style:none;font-size:11pt;}
+  .spelllist li{margin:3px 0;}
+  .spelllist li::before{content:"\25C6 ";color:var(--red-soft);font-size:10px;vertical-align:2px;}
+
+  /* ---------- magic-item stat block ---------- */
+  .statblock{
+    background:linear-gradient(180deg,var(--tan),#F6E7C4);
+    border:1px solid var(--red);border-radius:4px;
+    padding:16px 20px 14px;margin:10px 0 16px;
+    box-shadow:0 3px 9px rgba(60,40,12,.28), inset 0 0 40px rgba(120,90,40,.07);
+    break-inside:avoid;position:relative;
+  }
+  .statblock::before{content:"";position:absolute;left:0;right:0;top:0;height:5px;
+    background:var(--red);border-radius:4px 4px 0 0;}
+  .statblock .typeline{font-style:italic;color:var(--ink-soft);margin:4px 0 8px;font-size:11pt;line-height:1.45;}
+  .statblock .flavor{font-style:italic;color:#5a4620;margin:0 0 4px;font-size:11pt;line-height:1.5;}
+  .prop{margin:0;padding:10px 0 0;font-size:11pt;line-height:1.45;
+    border-top:1px solid rgba(88,24,13,.42);}
+  .prop:first-of-type{border-top:none;padding-top:6px;}
+  .prop b{font-variant:small-caps;letter-spacing:.4px;color:var(--red);}
+  .statblock .spelllist{margin-top:2px;}
+
+  /* ---------- quick reference table ---------- */
+  .quickgrid td:first-child{font-family:'Cinzel',serif;font-size:11.5px;letter-spacing:.4px;
+    color:var(--red);width:38%;text-transform:uppercase;font-weight:600;}
+  .quickgrid tr:nth-child(even) td{background:rgba(224,228,200,.55);}
+
+  /* ---------- footer ---------- */
+  .foot{margin-top:26px;padding-top:14px;font-size:12px;color:var(--ink-soft);font-style:italic;
+    text-align:center;line-height:1.5;}
+  .foot::before{content:"\2766";display:block;font-style:normal;color:var(--red);
+    font-size:22px;line-height:1;margin-bottom:8px;}
+
+  /* ---------- print ---------- */
+  @media print{
+    @page{size:A4;margin:0;}
+    html,body{background:var(--parch);}
+    .toolbar{display:none;}
+    .sheet{max-width:none;margin:0;padding:16mm 15mm;box-shadow:none;min-height:297mm;}
+    .book{column-gap:26px;}
+    a{color:var(--red-soft);}
+    h1,h2,h3{break-after:avoid;}
+    tr{break-inside:avoid;}
+    table,.statblock,.callout{break-inside:avoid;}
+  }
+
+  /* ===== ART FRAME INTEGRATION (real MidJourney page frame via border-image) ===== */
+  .sheet::before,.sheet::after{display:none!important;}   /* drop the CSS-drawn frame */
+  .sheet{
+    max-width:960px;padding:22px 34px;
+    border-style:solid;
+    border-width:150px 112px 140px 112px;
+    -webkit-border-image:url('art/page-bg-player.png') 205 150 190 150 stretch;
+    border-image:url('art/page-bg-player.png') 205 150 190 150 stretch;
+  }
+  .chapterband{display:block;width:100%;height:168px;object-fit:cover;object-position:center 44%;
+    column-span:all;-webkit-column-span:all;border:2px solid var(--red);border-radius:3px;
+    margin:0 0 16px;box-shadow:0 3px 10px rgba(60,30,10,.4);}
+  @media print{
+    .sheet{max-width:none;margin:0;padding:22px 30px;border-width:150px 106px 140px 106px;}
+    html,body{background:#fff;}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar">
+  <span><b>Or'Henn</b> — Player Primer &amp; operating manual. Print or Save-as-PDF for the table. 5e.tools links stay clickable.</span>
+  <button onclick="window.print()">&#9113; Print / PDF</button>
+</div>
+
+<div class="sheet">
+ <div class="book">
+
+  <img class="chapterband" src="art/header-avernus.png" alt="A charred Avernus estate-garden under a red sky">
+  <div class="titleband">
+    <p class="epithet">The Ashen Shepherd</p>
+    <h1>Or'Henn</h1>
+    <p class="who">Elderly Red Dragonborn Druid &middot; Circle of Wildfire &middot; Level 11 &middot; native of Avernus</p>
+  </div>
+
+  <!-- ============ 1 — WHO YOU ARE ============ -->
+  <h2>Who You Are</h2>
+  <p class="lead dropcap">You were <b>hatched in the Ashen Garden</b> — a chartered enclave of living retainers kept on the estate of an Avernian devil-noble. Hell can corrupt what grows, but it cannot <em>create</em> it; so the household preserved mortal gardeners, handlers, and scribes whose living hands could cultivate what devils could not. You were raised there as gardener and beast-keeper.</p>
+  <p>Your predecessor — a druid dragged from the Material Plane and bound to the estate — taught you to drive roots through iron, bone, and ash. When he passed, he left you <b>Cinderbloom</b>: the badge of the estate's chief keeper and the key to its menagerie wards.</p>
+  <p>Then a <b>Yeenoghu-aligned demon warband</b> breached the estate and razed it. You fled — <b>without the staff</b>. You still carry every scrap of your druidic craft; what the fire took was your <em>office</em>, your authority over the surviving beasts, and any lawful claim to the Ashen Garden.</p>
+  <p>You are old now, roughly sixty-five: crimson scales gone matte, horns chipped, one eye <em class="eye">scarred pale-grey and blind</em>, the other a calm, molten <em class="eye">gold</em>. Weathered, patient, and not finished yet.</p>
+
+  <!-- ============ 2 — YOUR AMBITION ============ -->
+  <h2>Your Ambition</h2>
+  <div class="callout ember">
+    <b>Recover the staff. Restore it. Reclaim a domain of your own in Hell.</b><br><br>
+    Cinderbloom is your title and your inheritance, not merely a tool. Find it, rekindle it if the old legend is true, and turn the estate's unfinished obligations to your advantage — until the Ashen Garden, or something greater, answers to <b>you</b>.
+  </div>
+
+  <!-- ============ 3 — CINDERBLOOM ============ -->
+  <h2>Cinderbloom, Your Lost Staff</h2>
+  <div class="statblock">
+    <p class="typeline">Staff, very rare (requires attunement by a druid) &middot; a magic quarterstaff and druidic focus. <b>Currently lost</b> — this is your reference for the day you get it back.</p>
+
+    <p class="flavor">Living-ashwood, warm as sun-baked stone, its grain twisting up into a cage of blackened branches that cradles a fist-sized ember burning without fuel or smoke — brightening whenever beasts draw near or roots stir underground.</p>
+
+    <p class="prop"><b>Ashwood Weapon.</b> While you hold it: <b>+2 to attack and damage rolls</b> with the quarterstaff, and <b>+2 to your spell attack rolls</b>.</p>
+
+    <p class="prop"><b>Cinderheart.</b> Bonus action, 2 charges: hurl the ember to a point within 60 ft. One creature within 5 ft makes a Dexterity save vs your spell save DC, taking <b>3d8 fire</b> (half on success). Smoldering roots erupt in a 10-ft radius (difficult terrain until your next turn). Ignites loose flammables; never harms plants you choose.</p>
+
+    <p class="prop"><b>Rootwright Magic.</b> The staff holds <b>10 charges</b>. Take a Magic action to spend charges and cast, using your spell save DC:</p>
+    <ul class="spelllist">
+      <li><i>Entangle</i> &mdash; 1 charge</li>
+      <li><i>Spike Growth</i> &mdash; 2 charges</li>
+      <li><i>Erupting Earth</i> &mdash; 3 charges</li>
+      <li><i>Plant Growth</i> &mdash; 3 charges</li>
+      <li><i>Wall of Fire</i> &mdash; 4 charges</li>
+    </ul>
+    <p class="prop">Cast from Cinderbloom, <i>entangle</i>, <i>spike growth</i>, and <i>plant growth</i> can erupt black ashwood roots straight out of bare stone, metal, bone, or blasted Avernus soil — no vegetation needed. Such growth crumbles to ash after 8 hours.</p>
+
+    <p class="prop"><b>Keeper of Fell Beasts.</b> Advantage on Wisdom (Animal Handling) checks with Beasts, Monstrosities, or Fiends of Intelligence 6 or lower. Magic action, 4 charges: present the ember to one such creature within 30 ft whose CR is no higher than your proficiency bonus; it makes a Wisdom save vs your spell save DC (advantage if hostile) or is <b>charmed 1 hour</b> as your trusted keeper, obeying simple bonus-action commands unless obviously suicidal. It re-saves whenever it takes damage; when the effect ends it's immune for 24 hours.</p>
+
+    <p class="prop"><b>Recharge.</b> Regains <b>1d6 + 4</b> charges on the attuned bearer's long rest, once every 24 hours. Spend the last charge and roll a d20 — on a <b>1</b>, the ember darkens and it becomes a plain staff until replanted in fertile soil and watered through a long rest.</p>
+  </div>
+
+  <div class="callout brass">
+    <b>The legend of the rekindling.</b> The keepers say Cinderbloom can supposedly be <b>rekindled at the last living tree of Avernus</b> — restored to a far greater power. Whether that tree still stands, and what it would cost, is a story worth chasing. <i>(A goal, not yet a recipe.)</i>
+  </div>
+
+  <!-- ============ 4 — WILD SHAPE (CENTERPIECE) ============ -->
+  <h2>Wild Shape &mdash; Your Infernal Menagerie</h2>
+
+  <div class="callout">
+    <b>How it works (2024 rules).</b> You Wild Shape as a <b>Bonus Action</b>. You are a <b>Circle of Wildfire</b> druid — by the book that caps you at <b>CR 1</b>, but your infernal keeper's training (a DM ruling for you) lets you take <b>Beast</b> and earned-infernal forms of <b>challenge rating 2 or lower</b>. <b>CR 3 forms are beyond your reach.</b> The <span class="tag b">BEAST</span> rows below are always legal.
+    <br><br>
+    <b>Your infernal edge (homebrew).</b> You can <em>also</em> wear infernal forms — Monstrosity, Fiend, or Elemental — but only ones you have personally <b>earned</b> by studying, defeating, binding, or tending that specific creature. You gain its <b>physical shape and natural attacks only</b> — no innate spellcasting, no <i>Shapechanger</i>, no summoning. These <span class="tag i">EARNED</span> forms are a growing collection, not a free list.
+  </div>
+
+  <div class="legend">
+    <span><span class="dot b"></span> <span class="tag b">BEAST</span> &mdash; always legal (RAW)</span>
+    <span><span class="dot i"></span> <span class="tag i">EARNED</span> &mdash; Monstrosity / Fiend / Elemental you must unlock in play</span>
+    <span><span class="star">&#9733;</span> signature form</span>
+  </div>
+
+  <h3>Tier I &mdash; Scouts &amp; Saboteurs <span class="cr" style="float:right;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--brass-dark);">CR 1/8 &ndash; 1/2</span></h3>
+  <table>
+    <tr><th>Form</th><th>Type</th><th>CR</th><th>Why take it</th></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#abyssal%20chicken_bgdia" target="_blank">Abyssal Chicken</a> <span class="tag i">EARNED</span></td><td class="type">Fiend (demon)</td><td>1/8</td><td>Flutter 30 ft, utterly disposable, blends into any Avernus flock. A throwaway infiltration body native to the plane.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#stirge_mm" target="_blank">Stirge</a> <span class="tag b">BEAST</span></td><td class="type">Beast</td><td>1/8</td><td>Fly 40, latch-and-drain blood. Tiny, ignorable; bleed a wounded foe or a bound captive dry.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#dretch_mm" target="_blank">Dretch</a> <span class="tag i">EARNED</span></td><td class="type">Fiend (demon)</td><td>1/4</td><td><i>Fetid Cloud</i> nausea aura; a demon body no devil looks at twice on the front line.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#cockatrice_mm" target="_blank">Cockatrice</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>1/2</td><td>Bite forces a save or <b>petrify</b>. Fly 40. Lockdown on a single elite target.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#nupperibo_bgdia" target="_blank">Nupperibo</a> <span class="tag i">EARNED</span></td><td class="type">Fiend (devil)</td><td>1/2</td><td>Blindsight, immune to fear &amp; charm, drawn to living warmth. A blind, fearless tracker body.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#rust%20monster_mm" target="_blank">Rust Monster</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>1/2</td><td>Corrodes metal on touch — ruin a devil's blade, a war-machine, or a portcullis. Pure sabotage.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#magma%20mephit_mm" target="_blank">Magma Mephit</a> <span class="tag i">EARNED</span></td><td class="type">Elemental</td><td>1/2</td><td>Fly 30, fire immunity, <i>Death Burst</i> of lava, passes for ambient hell-fauna. Fireproof scout.</td></tr>
+  </table>
+
+  <h3>Tier II &mdash; The Pack &amp; the Wing <span class="cr" style="float:right;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--brass-dark);">CR 1</span></h3>
+  <table>
+    <tr><th>Form</th><th>Type</th><th>CR</th><th>Why take it</th></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#giant%20hyena_mm" target="_blank">Giant Hyena</a> <span class="tag b">BEAST</span></td><td class="type">Beast</td><td>1</td><td><i>Rampage</i>: drop a foe, then bonus-action move + bite again. Yeenoghu's own beast — thematic to the arc just closed.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#giant%20vulture_mm" target="_blank">Giant Vulture</a> <span class="tag b">BEAST</span></td><td class="type">Beast</td><td>1</td><td>Fly 60, keen sight &amp; smell, understands speech. The definitive Avernus carrion scout — and it can eavesdrop.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#dire%20wolf_mm" target="_blank">Dire Wolf</a> <span class="tag b">BEAST</span></td><td class="type">Beast</td><td>1</td><td>Pack Tactics + knock-prone bite. Reskin as an ash-furred hell-wolf; your reliable melee bruiser.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#death%20dog_mm" target="_blank">Death Dog</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>1</td><td>Two heads: can't be surprised, advantage vs many conditions. Bite inflicts a wasting <b>disease</b>.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#hippogriff_mm" target="_blank">Hippogriff</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>1</td><td>Fly 60, can't be surprised. Cleanest CR-1 flight when the Beast list runs dry.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#imp_mm" target="_blank">Imp</a> <span class="star">&#9733;</span> <span class="tag i">EARNED</span></td><td class="type">Fiend (devil)</td><td>1</td><td><b>Invisibility at will</b>, fly 40, Magic Resistance, Devil's Sight. The best spy body in Hell — walk the Emporium unseen.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#quasit_mm" target="_blank">Quasit</a> <span class="tag i">EARNED</span></td><td class="type">Fiend (demon)</td><td>1</td><td>Invisibility, <i>Scare</i>, Magic Resistance. The demon-side counterpart to the Imp.</td></tr>
+  </table>
+
+  <h3>Tier III &mdash; Hunters <span class="cr" style="float:right;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--brass-dark);">CR 2</span></h3>
+  <table>
+    <tr><th>Form</th><th>Type</th><th>CR</th><th>Why take it</th></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#spined%20devil_mm" target="_blank">Spined Devil</a> <span class="star">&#9733;</span> <span class="tag i">EARNED</span></td><td class="type">Fiend (devil)</td><td>2</td><td>Fly 40 + <b>ranged tail spines</b> (fire), Devil's Sight. Your only real ranged-attacker form — flying artillery.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#peryton_mm" target="_blank">Peryton</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>2</td><td>Fly 60, <i>Dive Attack</i> bonus damage, casts no shadow. A diving hell-raptor.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#ankheg_mm" target="_blank">Ankheg</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>2</td><td>Burrow 10, grapple-and-drag, line of <b>acid</b> breath. Ambush from beneath the ash.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#giant%20constrictor%20snake_mm" target="_blank">Giant Constrictor Snake</a> <span class="tag b">BEAST</span></td><td class="type">Beast</td><td>2</td><td>Swim 30, grapple + crush. The best RAW-legal control Beast at CR 2 — wrap and hold a priority target.</td></tr>
+  </table>
+
+  <h3>Tier IV &mdash; Locked: Beyond Your Reach <span class="cr" style="float:right;font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;color:var(--brass-dark);">CR 3 &middot; above your CR 2 cap</span></h3>
+  <p style="font-style:italic;color:#6a4a18;margin:2px 0 8px;font-size:14px;">One step above your cap — aspirational goals, not yet available. The <b>Hell Hound</b> is your signature ambition; ask your DM if your cap ever rises.</p>
+  <table class="locked">
+    <tr><th>Form</th><th>Type</th><th>CR</th><th>Why take it</th></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#hell%20hound_mm" target="_blank">Hell Hound</a> <span class="star">&#9733;</span> <span class="tag i">EARNED</span></td><td class="type">Fiend (devil)</td><td>3</td><td><b>Immunity to fire</b>, <b>Fire Breath</b> (cone), Pack Tactics, Keen Smell. Your signature war-form — a beast you already know how to command.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#manticore_mm" target="_blank">Manticore</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>3</td><td>Fly 50 + a <b>volley of three tail spikes</b> per turn. Flying multi-shot artillery.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#displacer%20beast_mm" target="_blank">Displacer Beast</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>3</td><td><i>Displacement</i>: attacks against it have disadvantage. Your durable front-line form — hard to pin down.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#basilisk_mm" target="_blank">Basilisk</a> <span class="tag i">EARNED</span></td><td class="type">Monstrosity</td><td>3</td><td><b>Petrifying Gaze</b>. Slow, but can turn a lone pursuer to stone.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#bearded%20devil_mm" target="_blank">Bearded Devil</a> <span class="tag i">EARNED</span></td><td class="type">Fiend (devil)</td><td>3</td><td>Glaive with <i>Infernal Wound</i> (ongoing bleed), poison beard, Magic Resistance, fear immunity. The relentless duelist.</td></tr>
+    <tr><td class="form"><a href="https://5e.tools/bestiary.html#giant%20scorpion_mm" target="_blank">Giant Scorpion</a> <span class="tag b">BEAST</span></td><td class="type">Beast</td><td>3</td><td>Two claw grapples + poison sting. The top RAW-legal Beast at the CR-3 ceiling — reskin as an ash-carapaced hell-scorpion.</td></tr>
+  </table>
+
+  <div class="callout ember">
+    <b>How to add a form.</b> Your menagerie grows through play. <b>Study</b> a creature you can watch closely, <b>defeat</b> one in the field, <b>bind</b> one with Cinderbloom's Keeper of Fell Beasts, or <b>tend</b> one back to health — then it may join your list. Tell your DM which creature you're working toward; every hunt is a chance to add a new skin.
+  </div>
+
+  <!-- ============ 5 — WORKING THE EMPORIUM ============ -->
+  <h2>At the Wandering Emporium</h2>
+  <p class="dropcap">The ravagers took your estate, not your wits. You made your way to the <b>Wandering Emporium</b> — Mahadi's traveling infernal market — for what a burned-out keeper needs: <b>supplies, shelter, and word of other estates</b> you might serve, claim, or rebuild. Weathered and alone among its stalls and advocates, you are exactly where an <b>adventuring party</b> crosses your path. What they want with an old dragonborn gardener — and what you might want with them — is where your story begins.</p>
+
+  <!-- ============ 6 — QUICK REFERENCE ============ -->
+  <h2>Quick Reference</h2>
+  <table class="quickgrid">
+    <tr><td>Wild Shape</td><td>Bonus Action &middot; Beast &amp; earned-infernal forms <b>CR &le; 2</b> (Circle of Wildfire, L11, DM ruling). Earned forms grant shape + natural attacks only.</td></tr>
+    <tr><td>Staff save effects</td><td>Cinderheart, Rootwright spells, and Keeper of Fell Beasts all use <b>your spell save DC</b>.</td></tr>
+    <tr><td>Cinderbloom bonus</td><td><b>+2 to spell attack rolls</b> while held (and +2 attack/damage as a quarterstaff).</td></tr>
+    <tr><td>Charges</td><td>10 total &middot; regain <b>1d6 + 4</b> per long rest (once / 24 hr). Last charge: d20, on a <b>1</b> it goes dark.</td></tr>
+    <tr><td>The dream</td><td>Recover Cinderbloom &rarr; rekindle it at the last living tree of Avernus &rarr; carve out your own domain.</td></tr>
+  </table>
+
+  <p class="foot">
+    Or'Henn, the Ashen Shepherd &middot; played by Mikas &middot; a <i>Baldur's Gate: Descent into Avernus</i> character (D&amp;D 5e, 2024 rules). Wild Shape forms link to their 5e.tools stat blocks — click any name. Infernal (non-Beast) forms are a table-agreed homebrew; earn them in play.
+  </p>
+
+ </div>
+</div>
+</body>
+</html>

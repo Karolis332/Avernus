@@ -4,13 +4,31 @@
 
 > Companion to **`yeenoghu-encounter.md`** — that file holds the full statblocks (Yeenoghu, Dumal, Warden, Chain, Veska), the read-aloud pack, the Dial, and the influence meters. **This primer is the mountaintop run-sheet:** the fort, the map, the two-track engine, Jeremy's failsafes, and the upgraded weave engine. Pull deep blocks from the encounter doc as needed.
 >
-> **Tags:** **[CANON]** lorebook · **[HOMEBREW]** ours · **⚔️** combat · **🎲 DIAL** DM choice · **[NON-SRD]** supplied from book/knowledge.
+> **Rules baseline:** 2014 fifth edition, especially *Baldur's Gate: Descent into Avernus* and the 2014 demon lore.  
+> **Tags:** **[D&D CANON]** published lore or rules · **[CAMPAIGN CANON]** established at this table · **[HOMEBREW]** encounter rule · **⚔️** combat · **🎲 DIAL** DM choice.
+
+---
+
+## ▶ D&D LORE ANCHOR — what is published and what is ours {#lore-anchor}
+
+| Element | Lore-accurate ruling for this primer |
+|---|---|
+| **Yeenoghu** | **[D&D CANON]** The Beast of Butchery is a **Huge** demon lord from the Abyss. His realm is the **Death Dells**, and he has **one hyena-like head**. The three heads belong to his flail, not his body. His published speed is 50 ft and he has no flying speed. |
+| **Tonight's scale** | **[CAMPAIGN CANON]** Run him as **Gargantuan** because Dumal has fed him powerful devils. Size, reach, aura, Devil-Glutted, the leash, and the leashed throttle are all encounter additions. |
+| **Demons outside the Abyss** | **[D&D CANON]** Destroying a demon outside the Abyss sends its essence back there to re-form. Published lore gives no universal **100-year** recovery time. Permanent destruction normally requires killing it in the Abyss. |
+| **The century ward** | **[HOMEBREW]** The overload does more than ordinary banishment: it casts Yeenoghu back to the Death Dells and bars this manifestation from returning for **100 years**. The duration belongs to the Lady Vengeance's failsafe, not to general demon lore. |
+| **The doom-gate** | **[HOMEBREW]** Dumal is opening a tri-planar wound from the **Death Dells**, through **Avernus**, into **Faerûn**. This is how an Abyssal host threatens the Material Plane while the battle occurs in Hell. |
+| **Gnolls** | **[D&D CANON, 2014]** Ordinary gnolls are humanoids, not fiends. They do **not** trigger Devil-Glutted. Devils and demons do. |
+| **Soul coins** | **[D&D CANON + HOMEBREW ENGINE]** A soul coin contains a trapped soul and can fuel an infernal war machine. The Lady's one-coin shots, infusions, overload acceleration, and Bhaal meter are this campaign's expanded fuel rules. |
+| **Spell infusions** | **[HOMEBREW]** The engine converts spells into ship-scale effects. The spell name describes the energy pattern; it does not make the ship effect rules-as-written. Any exception is stated in its row. |
+
+> **Visual lock:** Yeenoghu has **one head**. **His flail has three.** If any companion art or prose shows a three-headed demon, correct the demon, not the weapon.
 
 ---
 
 ## ▶ The one-breath summary
 
-> The party **beached the Lady Vengeance on the hilltop** and dug in. Out of the red mist below climbs **Dumal, riding a Yeenoghu grown Gargantuan on a diet of hunted devils** — and the pact is bigger than a brother's obsession now: **Bhaal's grip + Mephistopheles' chain, aimed at tearing a rift and pouring the Abyss into Faerûn forever.** You can't kill a demon lord at level 11. You **break the leash** and let the two titans turn on each other, or you **overload the ship's weave engine** to rip the rift *yourself* — banishing Yeenoghu and collapsing the doom-gate in the same blast. The ship is the fort, the fort is the gun, and the gun is the bomb.
+> The party **beached the Lady Vengeance on the hilltop** and dug in. Out of the red mist below climbs **Dumal, riding a Yeenoghu grown Gargantuan on a diet of hunted devils**. The pact is bigger than a brother's obsession now: **Bhaal's grip and Mephistopheles' chain are forcing a corridor from Yeenoghu's Death Dells, through Avernus, into Faerûn.** You can't win a level-11 damage race against a demon lord. You **break the leash** and let captor and captive turn on each other, or **overload the ship's weave engine** to cast Yeenoghu back into the Abyss and collapse the doom-gate. The ship is the fort, the fort is the gun, and the gun is the bomb.
 
 **This is a fortress-defense set-piece.** Yeenoghu is **grounded (Speed 50, no fly)** and swollen too large to scramble — he **must climb the one ridge** into the party's cannon-fire. That single fact is what makes a CR-24 survivable.
 
@@ -22,13 +40,13 @@
 |---|---|
 | **Battlefield** | Lady Vengeance **beached on the hilltop = the fort.** Not a flying kite — a grounded gun-emplacement redoubt. |
 | **Yeenoghu's size** | **Gargantuan.** Dumal fed him powerful devils on shared hunts. Reach **20 ft**, aura **40 ft**, +Devil-Glutted (below). |
-| **Dumal's thesis** | Apocalyptic. The leash exists to **tear a planar rift and drown Faerûn in Avernus.** The "save Den" wound still beats underneath — play both. |
+| **Dumal's thesis** | Apocalyptic. The leash exists to tear a path from the **Death Dells through Avernus into Faerûn**, releasing Yeenoghu's Abyssal host. The "save Den" wound still beats underneath — play both. **[HOMEBREW]** |
 | **The Gish** | From the Palace of Gore. **Speaks broken Common now** — can take orders, warn, banter. Githyanki spellblade → mobile Chain-cutter. |
 | **The Hellriders** | **Veska** (Palace of Gore) **+ Corwin** *(rename freely)*, the second Hellrider freed in the **Bone Brambles.** Two fear-anchors now. |
 | **The captain** | **Colico Jack** — current captain of the Lady Vengeance. Holds the **remote detonation relay.** |
 | **The weave engine** | Jeremy finished the **3rd-level upgrade.** Baseline still 1 cannon shot per 1st-level slot; now accepts **3rd-level infusions** (hull / plating / cannon — full tables below). |
 
-**Yeenoghu — Devil-Glutted [HOMEBREW add-on]:** he ate his way here. **HP 380** (up from 333). When any **fiend** dies within 40 ft of him, he regains **20 HP** (matters only if Unleashed — and a reason *not* to let gnolls/the Warden die next to him). Everything else = the encounter-doc block, run **Leashed/Unleashed** as written.
+**Yeenoghu — Devil-Glutted [HOMEBREW add-on]:** he ate his way here. **HP 380** (up from 333). When any **fiend** dies within 40 ft of him, he regains **20 HP** (Unleashed only). The **Warden**, devils, and demons can feed this trait. Under the campaign's 2014 rules, ordinary **gnolls are humanoids and do not trigger it**. Everything else uses the encounter-doc block, run **Leashed/Unleashed** as written; that block is table-tuned rather than a reproduction of the published statblock.
 
 ---
 
@@ -70,7 +88,7 @@
 | **The Slope** (Mist Line → Wall) | ~120 ft switchback, **difficult terrain** | Cannon range 600 ft covers all of it. Yeenoghu climbs it as the Advance track. |
 | **The Wall** (chokepoint) | **40 ft wide** gap | The only breach in the hilltop rim. **Bess plants here.** A Gargantuan body barely fits — great grapple geometry. |
 | **The Muster Yard** (redoubt) | ~80 ft deep | PC fighting position between the Wall and the ship. |
-| **Lady Vengeance** | ~120 ft long, beached across the plateau | Cannon deck faces **down-slope (south).** AC 17, HP 350. Engine room + helm are interior sections (AC 17, 60 HP each). |
+| **Lady Vengeance** | ~150 ft long, beached across the plateau | Cannon deck faces **down-slope (south).** AC 17, HP 350. Engine room + helm are interior sections. |
 | **The Peak-Rift** | ~60 ft past the stern, higher ground | Dumal's goal. Also the point where the **overload tears the rift.** |
 | **E / W / N faces** | **sheer cliffs** | Yeenoghu (no fly) cannot use them. The **Warden** (fly 40) can — it's the only enemy that reaches the deck from the sides. |
 
@@ -99,7 +117,7 @@
 - **Strain ≈ 30–40/round** from the Fort + PC contributions. ~5–6 rounds to 200.
 - **The clocks are tuned to collide at the climax.** Nudge either rate live to land the beat you want. If the players are crushing Strain, speed the Advance; if they're drowning, let Bess hold an extra round.
 
-**Strain sources** (from `yeenoghu-encounter.md`, unchanged): radiant/force/banishment hits **+6** and deal **double** to the Chain · breaking Dumal's Reins concentration **+15** · Aether Harpoon on the Chain **+15** · unicorn beam crossing it **+10** · **Dispel Magic** shell **+40** (see infusions). Strain milestones at **100** (Yeenoghu tests the chain, free flail at Dumal) and **160** (aura flares at Dumal — GET AIRBORNE... or here, get off the Wall).
+**Strain sources** (all **[HOMEBREW]**, from `yeenoghu-encounter.md`): radiant/force/banishment hits **+6** and deal **double** to the Chain · breaking Dumal's Reins concentration **+15** · Aether Harpoon on the Chain **+15** · unicorn beam crossing it **+10** · **Dispel Magic** shell **+40** (see infusions). Strain milestones at **100** (Yeenoghu tests the chain, free flail at Dumal) and **160** (the encounter's aura flares at Dumal — get off the Wall).
 
 ---
 
@@ -112,13 +130,13 @@ One clean action each, most contributing **flat Strain** so there's no dice-bloa
 | **Force Cannons** ×2 | Gunner (a PC or auto) | Fire what's charged down-slope at the Chain/Yeenoghu | **+8 Strain** flat, or roll 6d10 force ×2 vs Chain |
 | **Weave Engine** | **Jeremy** (or a PC) | **One** action: charge a cannon **or** run an infusion (tables below) | enables cannons / buffs the fort |
 | **Bess** (Gargantuan awakened crab) | auto | Plant in the Wall, **grapple Yeenoghu's leg** (one contested STR) | On a hold: **Advance −1** this round. Your main brake. |
-| **Veska** — Hellrider | auto | Hold the left flank; **fear-immunity bubble** (allies near her auto-pass frighten) + 1 radiant lance | fear anchor · **+6 Strain** |
-| **Corwin** — Hellrider *(rename)* | auto | Hold the right flank; second fear bubble + 1 radiant lance | fear anchor · **+6 Strain** |
+| **Veska** — Hellrider | auto | Hold the left flank; **homebrew fear-anchor aura** (nearby allies auto-pass this encounter's frighten effects) + 1 radiant lance | fear anchor · **+6 Strain** |
+| **Corwin** — Hellrider *(rename)* | auto | Hold the right flank; second homebrew fear anchor + 1 radiant lance | fear anchor · **+6 Strain** |
 | **The Gish** | auto or a PC | Misty-step to the Chain, force/psychic strike, blink out — the Warden can't cover him | **+8 Strain** (mobile cutter) |
 | **Ship Automatons** ×? | auto | Reload cannons + body-block the gnoll wave on the deck | deletes gnoll bookkeeping (soak 1 wave/round) |
-| **Lulu / freed Unicorn** | auto | Radiant beam across the Chain + speaks the tutorial line | **+10 Strain** |
+| **Lulu / freed Unicorn** | auto | **Homebrew station beam** across the Chain + speaks the tutorial line | **+10 Strain** |
 
-**Two Hellriders = two overlapping fear bubbles.** Park one near the PCs on the Wall, one on the cannon deck. Between them, Yeenoghu's fear aura, Maddening Roar, and Bhaal's Whisper mostly bounce off — which is exactly what lets a level-11 party stand on an open hilltop and keep firing.
+**Two Hellriders = two overlapping fear anchors [HOMEBREW].** Park one near the PCs on the Wall, one on the cannon deck. These auras suppress the encounter's homebrew fear effects and Bhaal's Whisper. They are a fortress abstraction, not a universal Hellrider feature.
 
 ---
 
@@ -145,25 +163,25 @@ One clean action each, most contributing **flat Strain** so there's no dice-bloa
 
 ## ▶ THE WEAVE ENGINE — 3rd-level infusions {#infusions}
 
-Baseline unchanged: **1st-level slot = 1 cannon shot.** With Jeremy's upgrade, feeding a **3rd-level** spell into the engine does one of the following instead. **Only one infusion active at a time** — starting a new one ends the old. Choosing a big infusion means the cannon may sit idle that round: that's the trade.
+Baseline unchanged: **1st-level slot = 1 cannon shot.** With Jeremy's upgrade, feeding a **3rd-level** spell into the engine creates one of the homebrew ship effects below. The named spell is the energy pattern, not the rules-as-written effect. **Only one infusion active at a time** — starting a new one ends the old. Choosing a big infusion means the cannon may sit idle that round: that's the trade.
 
 ### ⛨ PLATING — abjuration / defense
 
 | 3rd-level spell | Ship effect | Why it matters here |
 |---|---|---|
 | **Protection from Energy** | **Aegis Plating** — hull gains **resistance to fire** (or a chosen type), 1 min. | Halves Yeenoghu's hellfire *and* Dumal's **Hellfire Pillar (28→14).** Highest-value defensive load. |
-| **Magic Circle** | **Warded Deck** — fiends attack the ship at **disadvantage** and **cannot teleport/appear aboard**, 1 hr. | Locks the **Warden** and gnolls **off the cannon deck.** Neutralizes the one enemy that can fly to you. |
-| **Counterspell** | **Null Field** — reaction, **1 use:** the engine counters one spell aimed at the ship or its crew. | Eats Dumal's Pillar or Bhaal's Whisper before it lands on the deck. |
-| **Dispel Magic** | **Unmaking Pulse** — fire at the **Chain:** DC 20 check, on success **+40 Strain** (strips a binding layer). Or dispel an enemy buff. | The clever shortcut, now cannon-delivered. One good pulse ≈ a whole round of grind. |
+| **Magic Circle** | **Warded Deck [expanded]** — projects a ship-scale circle. Fiends have disadvantage against protected creatures; magical entry requires a **Charisma save**, 1 hr. | Protects the cannon crew. The published spell covers a 10-ft-radius cylinder and does not automatically stop teleportation; the ship-scale area is the infusion's homebrew expansion. Ordinary gnolls are not fiends. |
+| **Counterspell** | **Null Field [expanded]** — reaction, **1 use:** counter one spell or named magical feature aimed at the ship or its crew. | The ability to stop Dumal's non-spell features is an explicit homebrew expansion; ordinary *counterspell* stops spells only. |
+| **Dispel Magic** | **Unmaking Pulse [expanded]** — fire at the **Chain:** DC 20 check, on success **+40 Strain** (strips a binding layer). Or dispel an eligible spell effect. | The Chain interaction is homebrew. Against ordinary magic, use *dispel magic* normally. |
 
 ### 🔨 HULL — structure / control
 
 | 3rd-level spell | Ship effect | Why it matters here |
 |---|---|---|
 | **Sleet Storm** | **Hoarfrost Vent** — the hull exhales a 40-ft ice sheet down the Slope: difficult terrain, DC save or prone, 1 min. | **Advance −1** while it holds. Freezes Yeenoghu mid-climb — buys a whole zone. |
-| **Stinking Cloud** | **Bilge Purge** — 20-ft cloud on the Slope; creatures retch (CON save or lose action). | Gnoll-wave off-switch. Clears the deck-boarders. |
+| **Stinking Cloud** | **Bilge Purge** — 20-ft cloud on the Slope; creatures retch (CON save or lose action). | Gnoll-wave off-switch. **Yeenoghu is immune to poison and automatically succeeds**, so this controls the mob, not the demon lord. |
 | **Wall of Water** (or *Wall of Sand*) | **Barricade Weave** — raise a 30-ft wall segment at the Wall chokepoint; blocks line, halves fire damage through it. | Physically plugs the door beside Bess. Slows the Advance and shields the cannon crew. |
-| **Aura of Vitality** *(reflavored)* | **Structural Weave** — the engine knits the hull: repair **2d6 hull HP** at the start of each of the ship's turns, 1 min. | Keeps the fort standing if Yeenoghu reaches the Redoubt and starts wrecking it. |
+| **Aura of Vitality** *(reflavored)* | **Structural Weave [expanded]** — the engine knits the hull: repair **2d6 hull HP** at the start of each Fort turn, 1 min. | The published spell heals creatures, not objects. Repairing the hull is the infusion's explicit homebrew conversion. |
 
 ### 💥 FORCE CANNON — offense (applies to the next shot)
 
@@ -171,8 +189,8 @@ Baseline unchanged: **1st-level slot = 1 cannon shot.** With Jeremy's upgrade, f
 |---|---|---|
 | **Fireball** | **Explosive Shell** — the next shot bursts in a **20-ft radius** at impact: **+8d6 fire**, DC 15 DEX half. | Turns a single bolt into a slope-clearing AoE. Cooks the whole gnoll pack, or Yeenoghu + everything behind him. |
 | **Lightning Bolt** | **Rail Shot** — the cannon fires a **100-ft line** instead of a bolt: **8d6 lightning**, DC 15 DEX half, to all in the line. | Spears Yeenoghu *and* every gnoll queued behind him on the switchback. Best when the Slope is packed. |
-| **Haste** | **Rapid-Fire Servo** — the cannon fires **twice** this round (or gunner gets a second broadside), 1 min. | Doubles Strain output for the price of one engine action. Load it once the leash is close to breaking. |
-| **Slow** *(fired down-slope)* | **Gravebind Round** — Yeenoghu/targets in a 40-ft cube: DC save or halved speed & actions, 1 min. | **Advance −1** *and* throttles the demon's attacks. Defensive cannon load. |
+| **Haste** | **Rapid-Fire Servo [expanded]** — one cannon fires **one additional shot on the next Fort count**, then the infusion ends. | Doubles one round's Strain output for the price of one engine action without granting a minute of free broadsides. |
+| **Slow** *(fired down-slope)* | **Gravebind Round [expanded]** — targets in a 40-ft cube save or suffer the spell's slowing effects, 1 min. | A failed save gives **Advance −1**. Yeenoghu has Magic Resistance in the published statblock, so he rolls the save with advantage. |
 
 > **DM note — keep the choice sharp:** because the engine does *one* thing per round and holds *one* infusion, every load is a real decision: fire, or fortify, or freeze the climb, or prime the bomb. That single-action bottleneck is what keeps a fortress full of assets from becoming a spreadsheet.
 
@@ -182,15 +200,15 @@ Baseline unchanged: **1st-level slot = 1 cannon shot.** With Jeremy's upgrade, f
 
 The mountaintop version of the scuttle. Same engine, relocated, and now **crewed remotely** so no one has to martyr themselves.
 
-**Prime — 3 rounds** (or faster with fuel). Jeremy (or a PC at the engine) commits the engine's action each round to priming. While priming: cannons drop to **1**, no infusions. **Burning soul coins accelerates it — each coin = −1 prime round, 3 coins = instant prime** ([soul coins](#soulcoins)). **Telegraph hard** — runes screaming, soul coins boiling in their slots, the hum climbing to a shriek. The engine room (AC 17, 60 HP) can be attacked to interrupt.
+**Prime — 3 rounds** (or faster with confirmed fuel). Jeremy (or a PC at the engine) commits the engine's action each round to priming. While priming: cannons drop to **1**, no infusions. **Burning soul coins accelerates it — each coin = −1 prime round, 3 coins = instant prime** ([soul coins](#soulcoins)). Do not offer this shortcut unless the current inventory confirms the coins. **Telegraph hard** — runes screaming, coin-sockets boiling, the hum climbing to a shriek. The engine room (AC 17, 60 HP) can be attacked to interrupt.
 
 **Trigger — Colico Jack, remotely.** Once primed, **Captain Colico Jack** can detonate from the **helm relay** — and the relay reaches him **wherever he is.** Prime the core, evacuate the whole company, and Jack drops it from Bess's back / the Moonkite / halfway down the ridge. *No sacrifice play required* — that's the upgrade the party bought.
 
 **Detonation.** Everyone aboard must be clear. The Lady Vengeance is **consumed.**
 - **Blast.** 120-ft radius. DC 20 DEX: **66 (12d10) force + 33 (6d10) radiant**, half on save.
-- **Weave Rupture.** The blast tears the local Weave open — **a rift between planes.** Yeenoghu (and any bound/leashed fiend in radius) makes **DC 22 CHA or is banished:** his Avernus avatar destroyed, hurled to the Abyss to **reform over 100 years** [CANON]. The **Chain shatters automatically.** Dumal, if caught, may be flung/banished too.
+- **Weave Rupture [HOMEBREW].** The blast tears open a temporary planar rift. Yeenoghu and any other extraplanar target in radius makes **DC 22 CHA or is banished**. On a failed save, Yeenoghu's manifestation in Avernus is torn apart and his essence is cast back to the **Death Dells**, where demons destroyed outside the Abyss re-form **[D&D CANON]**. The engine's **century ward** prevents this manifestation from returning for 100 years **[HOMEBREW]**. The Chain shatters automatically. Dumal is native to the Material Plane, so a failed save can cast him back to Faerûn.
 - **The rift — 🎲 DIAL.** The rupture is violent enough to tear a *lasting* hole. Pick the beat:
-  - **Sealing blast (default):** the party's rift collapses **Dumal's doom-gate** in the same tearing — the apocalypse is unmade with the ship. Clean, heroic, expensive.
+  - **Sealing blast (default):** the party's rift collapses **Dumal's Death Dells-Avernus-Faerûn corridor** in the same tearing. Clean, heroic, expensive.
   - **Two-edged tear:** the rift banishes Yeenoghu but *stays open a moment* — something else notices the door (a future thread; Mephistopheles' Cania, a stray demon, a way home for the Gish). Bank it for later.
 
 **Escape outs** (set at least one, or someone may choose to ride her down): **Bess** carrying riders off the peak · the **Moonkite** ferrying · the **unicorn** carrying the wounded · Aurora's **Misty Escape** · a Hellrider's steed. With Jack's **remote** trigger, a clean full evac is genuinely on the table — reward the party that sets it up.
@@ -203,7 +221,7 @@ The mountaintop version of the scuttle. Same engine, relocated, and now **crewed
 *[Gondian/Baldurian arcane warship · Gargantuan vehicle (150 ft × 30 ft) · currently **beached** on the hilltop = the fort] · supersedes the brief block in `yeenoghu-encounter.md` for this fight.*
 
 - **Armor Class** 17 · **Hull Points** 350 · **Damage Threshold** 15 *(ignore any single hit dealing < 15)*
-- **Speed** 0 ft (**beached — grounded this fight**). *Airborne profile (reference): fly 40 ft / round on a consumed Fly scroll or 1 soul coin; +60 ft with Overdrive.*
+- **Speed** 0 ft (**beached — grounded this fight**). *Airborne profile [HOMEBREW]: fly 40 ft/round when the weave engine converts a consumed* fly *scroll or soul coin into ship-scale motion; +60 ft with Overdrive. The ordinary spell cannot target a ship.*
 - **Resist** poison, psychic · **Immune** cold (Avernus-hardened), charmed, exhaustion, frightened, paralyzed, petrified, poisoned
 - **Creature Capacity** 30 crew + passengers · **Cargo** 20 tons · **Crew (minimum)** 4
 
@@ -219,7 +237,7 @@ The mountaintop version of the scuttle. Same engine, relocated, and now **crewed
 
 **Traits**
 - **Weave Engine (arcane core).** Stores spell energy to run the ship. Cannons and infusions draw from it. **One engine action per round** (charge a cannon **or** run an infusion **or** commit a prime round). Upgraded to accept **3rd-level** infusions ([tables](#infusions)).
-- **Soul-Fueled.** The engine burns **soul coins** as universal raw fuel — no spell slot required ([rules](#soulcoins)).
+- **Soul-Fueled [CAMPAIGN CANON].** The engine converts **soul coins** into single arcane impulses. This is an expanded use beyond the published infernal-war-machine fuel duration ([rules](#soulcoins)).
 - **Beached.** Speed 0; the ship **cannot dodge or reposition** this fight. It survives on plating, infusions, and its Damage Threshold. Make the party *defend* it.
 - **Damage Threshold 15.** Gnoll boarders and small hits **bounce off the hull** — they must board and strike sections/crew, not plink the ship. (Yeenoghu's flail, cannon-grade hits, and Dumal's Pillar all exceed it.)
 
@@ -237,7 +255,9 @@ The ship takes **up to 3 crew actions per round**, each requiring a living crewm
 | **Batten Down** | Captain | The fort braces: ship + all crew aboard gain **+2 AC** and **resistance to one damage type** until the start of the ship's next turn. The grounded ship's substitute for evasion. |
 
 ### Soul Coins — engine fuel {#soulcoins}
-The party is carrying a **hoard** of soul coins (use their current tally — the tracker last logged 3+; add any looted since). Each coin is a trapped soul the weave engine can devour as raw power.
+**Inventory lock:** the campaign tracker confirms **no soul coins were recovered from Bitter Breath** because that loot dissolved with the Wish. It does **not** confirm a later hoard. Write the actual current tally here before play: **_____ coins**. If the tally is 0, all coin options below are unavailable.
+
+**Lore lock:** each coin holds a trapped mortal soul. Published infernal-war-machine rules consume a coin into a furnace for sustained fuel and risk destroying the trapped soul. The Lady Vengeance instead consumes a whole coin for one violent arcane impulse **[HOMEBREW]**; in this campaign, that use destroys the soul immediately.
 
 | Burn 1 soul coin to... | Effect |
 |---|---|
@@ -247,7 +267,7 @@ The party is carrying a **hoard** of soul coins (use their current tally — the
 | **Accelerate the overload** | **−1 prime round** (burn 3 at once → the core primes **instantly**) |
 | **Overcharge the blast** | pump the detonation yield (scaling below) |
 
-> **The cost of feeding souls to the fire:** every soul coin *spent* is a damnation, not a resource. Each coin burned ticks **Bhaal's Claim +2** (the god of murder relishes souls spent as ammunition), and Drenwal *feels* each one go. A Bhaalspawn overloading a demon-lord bomb with a fistful of screaming coins is exactly the kind of "victory" Bhaal wants. **Let the choice cost something.**
+> **The cost of feeding souls to the fire:** every soul coin spent through this engine destroys the trapped soul **[CAMPAIGN CANON]**. Each coin burned ticks **Bhaal's Claim +2 [HOMEBREW]**, and Drenwal feels each one go. A Bhaalspawn overloading a demon-lord bomb with a fistful of screaming coins is exactly the kind of "victory" Bhaal wants. **Let the choice cost something.**
 
 ### Overcharged Detonation — scaling the nuke with coins
 Baseline overload = 3-round prime, **66 (12d10) force + 33 (6d10) radiant**, DC 22 banish, 120-ft radius ([full overload](#overload)). Coins burned *into the blast* (declared at trigger) scale it:
@@ -264,11 +284,11 @@ Baseline overload = 3-round prime, **66 (12d10) force + 33 (6d10) radiant**, DC 
 
 ## ▶ ROUND-BY-ROUND SPINE (mountaintop cut)
 
-- **Round 0 — the reveal (no rolls).** Mist peels. Dumal walks out, then rises — riding the Gargantuan. Read the encounter doc's **(1) Reveal / (2) Presence / (3) Chain** boxed text. Let them *see the leash.* Lulu: *"You can't kill the Beast of Butchery, child — but that chain is devil-work on demon-flesh. It hates itself."*
+- **Round 0 — the reveal (no rolls).** Mist peels. Dumal walks out, then rises — riding the Gargantuan. Describe **one vast hyena-like head** and the separate **three-headed flail**. Read the encounter doc's **(1) Reveal / (2) Presence / (3) Chain** boxed text, correcting any three-headed-demon wording. Let them *see the leash.* Lulu: *"You can't kill the Beast of Butchery, child — but that chain is devil-work on demon-flesh. It hates itself."*
 - **Round 1 — establish.** Dumal points Yeenoghu up the Slope; leashed flail at whoever's forward. **The Warden peels off the smog for the cannon deck** (the only enemy that reaches you up here). Cannons open — force barely marks the demon but the **Chain flares and screams.** *Tutorial: shoot the chain, not the god.*
 - **Rounds 2–4 — the climb vs. the grind.** Yeenoghu advances zone by zone up the funnel; **Bess and the Wall infusions slow him.** Cannons + Gish + Hellriders + unicorn pour into the Chain; **Strain climbs.** Gnolls swarm the Slope and try the deck (automatons + Hellriders hold). Every time Dumal takes a hit → **Reins concentration save**, break it for **+15 Strain**. Decide *now* whether to commit the **overload prime**.
 - **Strain 100 / 160 — the telegraphs.** The demon turns a skull toward its rider; then the aura flares at Dumal. *"No — not yet, I'm not finished with him—"*
-- **The pivot — UNLEASHED (Strain 200 or Chain 0).** Leash detonates red-and-blue. **Yeenoghu's first act = full Multiattack on DUMAL.** Resolve Dumal via the **Dial** (encounter doc). Then Yeenoghu rounds on the fort as a full **CR 24** — start the **Recall Timer (1d4+1 rounds)** or trigger the **overload.** The party must be **leaving or detonating**, not "finishing him."
+- **The pivot — UNLEASHED (Strain 200 or Chain 0).** Leash detonates red-and-blue. **Yeenoghu's first act = full Multiattack on DUMAL.** Resolve Dumal via the **Dial** (encounter doc). Then Yeenoghu rounds on the fort as a full **CR 24**. Start the encounter's **homebrew Recall Timer (1d4+1 rounds)** or trigger the **overload.** The party must be **leaving or detonating**, not "finishing him."
 - **Aftermath.** Log per the encounter doc: Yeenoghu banished/recalled · Dumal escaped/slain(by whom) · **Lady Vengeance intact or scuttled** · the rift sealed or left ajar · meters ticked · Mephistopheles thread state.
 
 ---
@@ -286,9 +306,20 @@ Baseline overload = 3-round prime, **66 (12d10) force + 33 (6d10) radiant**, DC 
 
 ---
 
+## ▶ D&D lore sources used {#lore-sources}
+
+- ***Baldur's Gate: Descent into Avernus***: Avernus, the Blood War, Yeenoghu, soul coins, and infernal war-machine fuel.
+- ***Mordenkainen's Tome of Foes***: Yeenoghu's 2014 fifth-edition presentation and demon-lord context.
+- ***Monster Manual* / published demon lore**: a demon destroyed outside the Abyss re-forms in the Abyss; permanent destruction normally requires defeating it there.
+- ***Player's Handbook***: *magic circle*, *counterspell*, *dispel magic*, *protection from energy*, *haste*, *slow*, and *banishment*. Ship-scale conversions in this primer remain homebrew.
+
+**Compatibility note:** this primer deliberately uses the campaign's **2014 fifth-edition baseline**. Do not silently substitute revised 2024/2025 statblocks or creature types during play.
+
+---
+
 ## ▶ To log after (state deltas)
 
-- Yeenoghu: **banished (100 yr)** / recalled / loose.
+- Yeenoghu: cast back to the Death Dells with the **homebrew century ward** / recalled / loose.
 - Dumal: escaped / slain by Yeenoghu / slain by party (Dial). Bhaal & Mephistopheles meters per encounter doc.
 - **Lady Vengeance:** intact / **scuttled (lost)** — if lost, next session opens the company **grounded in Avernus.** Colico Jack & Jeremy status.
 - **The rift:** sealed the doom-gate / left ajar (future thread).

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Or'Henn — Cinderbloom &amp; The Emporium Contracts</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;700&family=IM+Fell+English:ital@0;1&family=EB+Garamond:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --parch:#e6d5ac;
+    --parch-shade:#cdb277;
+    --ink:#2a1d10;
+    --ink-soft:#4a3720;
+    --brass:#b98b3e;
+    --brass-dark:#5f4318;
+    --ember:#ff6a1f;
+    --ember-glow:#ff8a3a;
+    --soul:#7fe4ff;      /* cold captured-soul glow */
+    --soul-deep:#2b6d86;
+    --page-bg:#0c0a09;
+  }
+
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--page-bg);}
+  body{
+    font-family:'EB Garamond', Georgia, serif;
+    color:var(--ink);
+    padding:32px 16px 64px;
+    -webkit-print-color-adjust:exact; print-color-adjust:exact;
+  }
+
+  /* ---------- screen-only toolbar ---------- */
+  .toolbar{
+    max-width:720px;margin:0 auto 28px;padding:14px 18px;
+    background:#161311;border:1px solid #3a2f22;border-radius:8px;
+    color:#d9c79b;font-family:'Cinzel',serif;font-size:13px;line-height:1.5;
+    display:flex;gap:16px;align-items:center;justify-content:space-between;flex-wrap:wrap;
+  }
+  .toolbar b{color:var(--ember-glow);}
+  .toolbar button{
+    font-family:'Cinzel',serif;font-size:13px;cursor:pointer;
+    background:var(--ember);color:#1a0f06;border:none;border-radius:5px;
+    padding:8px 16px;font-weight:700;letter-spacing:.5px;
+  }
+
+  /* ---------- shared card ---------- */
+  .card{
+    position:relative;max-width:640px;margin:0 auto 40px;
+    padding:30px 34px 34px;border-radius:6px;
+    background:
+      radial-gradient(120% 90% at 50% -10%, rgba(255,255,255,.10), transparent 55%),
+      radial-gradient(140% 120% at 15% 110%, rgba(0,0,0,.28), transparent 55%),
+      radial-gradient(140% 120% at 90% 105%, rgba(0,0,0,.30), transparent 50%),
+      linear-gradient(175deg, var(--parch) 0%, var(--parch-shade) 100%);
+    box-shadow:0 10px 34px rgba(0,0,0,.6), inset 0 0 60px rgba(90,55,15,.35);
+    color:var(--ink);
+  }
+  /* singed / aged edge */
+  .card::after{
+    content:"";position:absolute;inset:0;border-radius:6px;pointer-events:none;
+    box-shadow:inset 0 0 22px rgba(40,20,5,.55), inset 0 0 3px rgba(20,10,0,.7);
+    background:
+      radial-gradient(60% 40% at 100% 0%, rgba(30,12,0,.35), transparent 60%),
+      radial-gradient(60% 40% at 0% 100%, rgba(30,12,0,.30), transparent 60%);
+    mix-blend-mode:multiply;
+  }
+  .frame{
+    position:absolute;inset:9px;border-radius:4px;pointer-events:none;
+    border:2px solid transparent;
+    background:
+      linear-gradient(180deg,var(--brass),var(--brass-dark)) border-box;
+    -webkit-mask:linear-gradient(#000 0 0) padding-box, linear-gradient(#000 0 0);
+    -webkit-mask-composite:xor;mask-composite:exclude;
+  }
+  .corner{position:absolute;width:16px;height:16px;border:2px solid var(--brass);opacity:.85;}
+  .corner.tl{top:5px;left:5px;border-right:none;border-bottom:none;}
+  .corner.tr{top:5px;right:5px;border-left:none;border-bottom:none;}
+  .corner.bl{bottom:5px;left:5px;border-right:none;border-top:none;}
+  .corner.br{bottom:5px;right:5px;border-left:none;border-top:none;}
+
+  .card h2{
+    font-family:'Cinzel',serif;margin:0 0 2px;font-size:26px;font-weight:700;
+    letter-spacing:.5px;line-height:1.1;
+  }
+  .subtype{font-style:italic;font-size:15px;color:var(--ink-soft);margin:0 0 14px;}
+  .flavor{font-family:'IM Fell English',serif;font-style:italic;font-size:15px;line-height:1.45;margin:0 0 16px;color:#3a2a17;}
+  .prop{margin:0 0 11px;font-size:15.5px;line-height:1.5;}
+  .prop b{font-variant:small-caps;letter-spacing:.3px;}
+  .rule{border:0;height:2px;margin:14px 0;
+    background:linear-gradient(90deg,transparent,var(--brass),transparent);opacity:.7;}
+  .spelllist{margin:6px 0 4px 4px;padding:0;list-style:none;font-size:15px;}
+  .spelllist li{margin:2px 0;}
+  .spelllist li::before{content:"◆ ";color:var(--ember);font-size:11px;vertical-align:2px;}
+
+  /* ---------- art slot ---------- */
+  .art{
+    position:relative;height:230px;margin:4px 0 18px;border-radius:4px;overflow:hidden;
+    border:1px solid rgba(95,67,24,.6);
+    background:radial-gradient(60% 70% at 50% 40%, #241813, #120b08);
+    display:flex;align-items:center;justify-content:center;
+  }
+  .art .emberstaff{  /* CSS-drawn placeholder of the staff */
+    position:absolute;width:8px;height:78%;top:12%;border-radius:4px;
+    background:linear-gradient(180deg,#3a2a17,#1c130a);
+    box-shadow:0 0 2px #000, inset 0 0 4px rgba(0,0,0,.6);
+  }
+  .art .orb{
+    position:absolute;top:9%;width:46px;height:46px;border-radius:50%;
+    background:radial-gradient(circle at 40% 35%, #fff0c0, var(--ember) 55%, #7a1e00 100%);
+    box-shadow:0 0 26px 8px rgba(255,106,31,.7),0 0 60px 20px rgba(255,80,0,.35);
+    animation:pulse 3.2s ease-in-out infinite;
+  }
+  .art .cage{
+    position:absolute;top:6%;width:64px;height:64px;border-radius:50%;
+    border:2px solid #241610;border-top-color:#3a2416;border-left-color:#3a2416;
+    transform:rotate(20deg);box-shadow:inset 0 0 10px rgba(0,0,0,.7);
+  }
+  .art .cap{position:absolute;bottom:10px;left:0;right:0;text-align:center;
+    font-family:'Cinzel',serif;font-size:10.5px;letter-spacing:.5px;color:#c79a5a;padding:0 12px;}
+  @keyframes pulse{0%,100%{transform:scale(1);opacity:.95;}50%{transform:scale(1.08);opacity:1;}}
+  .art--filled{height:360px;}
+  .art--filled img{width:100%;height:100%;object-fit:cover;object-position:38% 30%;display:block;}
+  .art--filled .cap{background:linear-gradient(180deg,transparent,rgba(10,7,5,.75));padding-top:20px;}
+
+  /* ---------- STAFF CARD (warm ember) ---------- */
+  .card--staff{--brass:#c58f3a;}
+  .card--staff .banner{
+    font-family:'Cinzel',serif;font-size:11px;letter-spacing:3px;color:var(--ember);
+    text-transform:uppercase;margin:0 0 6px;
+    text-shadow:0 0 8px rgba(255,106,31,.4);
+  }
+  .questbox{background:rgba(61,107,47,.12);border:1px solid rgba(120,150,60,.5);border-left:4px solid #6a8a2a;
+    border-radius:0 6px 6px 0;padding:13px 16px;margin:8px 0 4px;font-size:14.5px;line-height:1.55;}
+  .questbox b{font-variant:small-caps;letter-spacing:.3px;color:#3d5a1f;}
+
+  /* ---------- CONTRACT CARD (soul-capacitor cold glow) ---------- */
+  .card--contract{
+    color:#e9dcbb;
+    padding:90px 76px 94px;
+    min-height:820px;
+    background:url('orhenn-contract-frame.png') center / 100% 100% no-repeat, #0a0d12;
+    box-shadow:0 12px 36px rgba(0,0,0,.7), 0 0 36px rgba(43,109,134,.42);
+  }
+  .card--contract::after{display:none;}                          /* drop parchment singe overlay */
+  .card--contract .frame,.card--contract .corner{display:none;}  /* frame comes from the image */
+  .card--contract::before{                                       /* legibility scrim in the frame window */
+    content:"";position:absolute;inset:66px 60px;z-index:0;border-radius:10px;
+    background:radial-gradient(120% 100% at 50% 42%, rgba(8,16,20,.30), rgba(5,9,13,.60));
+    box-shadow:inset 0 0 44px rgba(0,0,0,.5);
+  }
+  .card--contract > *{position:relative;z-index:1;}
+  .card--contract .capacitor{border-bottom-color:rgba(127,228,255,.32);}
+  .card--contract .capacitor .label{color:#8fd3e6;}
+  .card--contract .capacitor .label b{color:#c6ecf6;}
+  .card--contract .contract-no{color:#7fd0e6;}
+  .card--contract h2{color:#f3e7c6;text-shadow:0 2px 6px rgba(0,0,0,.75);}
+  .card--contract .field{color:#e9dcbb;}
+  .card--contract .field .k{color:#8fbfd0;}
+  .card--contract .field b,.card--contract .catch b{color:#fff3d6;}
+  .card--contract .catch{color:#dcecf2;}
+  /* player handout: hide the catch (the trap) — full text stays in source + orhenn-session-digest.md for DM/Asimov */
+  .card--contract .catch{font-size:0;padding:9px 13px;border-left:3px solid rgba(127,228,255,.30);background:rgba(18,38,48,.32);border-radius:0 4px 4px 0;}
+  .card--contract .catch *{display:none;}
+  .card--contract .catch::after{
+    content:"\2696  Fine print \2014 infernal terms, set too small to read at a glance.  (DC 15 Investigation, or ask Asimov, to reveal the catch.)";
+    font-size:12.5px;font-style:italic;color:#93aaa5;line-height:1.45;display:block;letter-spacing:.2px;}
+  .card--contract .sigil{border-color:rgba(127,228,255,.28);color:#7fd0e6;
+    background:radial-gradient(circle,rgba(127,228,255,.16),transparent 65%);}
+  .capacitor{  /* soul-capacitor header device */
+    display:flex;align-items:center;gap:12px;margin:0 0 10px;
+    padding-bottom:12px;border-bottom:1px solid rgba(95,67,24,.5);
+  }
+  .soulvessel{
+    position:relative;flex:0 0 auto;width:40px;height:52px;border-radius:8px 8px 10px 10px;
+    background:linear-gradient(180deg, rgba(20,30,34,.65), rgba(10,16,20,.85));
+    border:2px solid var(--brass-dark);box-shadow:inset 0 0 8px rgba(0,0,0,.7);
+    display:flex;align-items:center;justify-content:center;overflow:hidden;
+  }
+  .soulvessel::before{  /* brass cap */
+    content:"";position:absolute;top:-6px;left:50%;transform:translateX(-50%);
+    width:22px;height:8px;border-radius:2px;background:linear-gradient(var(--brass),var(--brass-dark));
+  }
+  .soulvessel .soul{
+    width:20px;height:20px;border-radius:50%;
+    background:radial-gradient(circle at 45% 40%, #eafcff, var(--soul) 55%, var(--soul-deep) 100%);
+    box-shadow:0 0 16px 5px rgba(127,228,255,.7);
+    animation:drift 4s ease-in-out infinite;
+  }
+  @keyframes drift{0%,100%{transform:translateY(2px) scale(.94);}50%{transform:translateY(-3px) scale(1.06);}}
+  .capacitor .label{font-family:'Cinzel',serif;font-size:10px;letter-spacing:2px;
+    color:var(--soul-deep);text-transform:uppercase;line-height:1.4;}
+  .capacitor .label b{display:block;color:#25506a;font-size:11px;letter-spacing:1.5px;}
+
+  .contract-no{font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;color:var(--soul-deep);}
+  .field{margin:0 0 9px;font-size:15px;line-height:1.5;}
+  .field .k{font-family:'Cinzel',serif;font-size:11px;letter-spacing:1px;text-transform:uppercase;
+    color:#6a4a18;display:block;margin-bottom:1px;}
+  .catch{background:rgba(43,60,70,.12);border-left:3px solid var(--soul-deep);
+    padding:8px 12px;margin-top:12px;font-size:14.5px;line-height:1.5;font-style:italic;}
+  .catch .k{color:var(--soul-deep);display:block;margin-bottom:2px;}
+  .sigil{position:absolute;right:26px;bottom:22px;width:52px;height:52px;border-radius:50%;
+    border:2px solid rgba(95,67,24,.5);opacity:.35;
+    background:radial-gradient(circle,rgba(255,106,31,.25),transparent 65%);
+    display:flex;align-items:center;justify-content:center;
+    font-family:'Cinzel',serif;font-size:22px;color:#7a5320;}
+
+  .voiceover{
+    max-width:640px;margin:0 auto 26px;padding:16px 22px;border-radius:6px;
+    background:linear-gradient(180deg,#14100d,#0e0b09);border:1px solid #34281c;
+    font-family:'IM Fell English',serif;font-style:italic;font-size:15.5px;line-height:1.55;color:#c9b48a;
+  }
+  .voiceover b{color:var(--soul);font-style:normal;}
+
+  /* ---------- appendix ---------- */
+  .appendix{max-width:640px;margin:40px auto 0;color:#c9b48a;font-family:'EB Garamond',serif;}
+  .appendix h3{font-family:'Cinzel',serif;color:var(--ember-glow);border-bottom:1px solid #3a2f22;padding-bottom:6px;}
+  .appendix pre{white-space:pre-wrap;background:#141110;border:1px solid #332920;border-radius:6px;
+    padding:14px 16px;font-family:ui-monospace,Consolas,monospace;font-size:12.5px;line-height:1.5;color:#d9c79b;}
+  .appendix .mj{color:var(--ember-glow);}
+
+  /* ---------- print ---------- */
+  @media print{
+    body{background:#fff;padding:0;}
+    .toolbar,.appendix{display:none;}
+    .card,.voiceover{box-shadow:none;margin:0 auto;page-break-after:always;break-after:page;}
+    .card{border:1px solid #8a6a2a;}
+    .art .orb,.soulvessel .soul{animation:none;}
+    @page{size:auto;margin:12mm;}
+  }
+</style>
+</head>
+<body>
+
+  <div class="toolbar">
+    <span><b>Or'Henn</b> — Cinderbloom &amp; the Emporium Contracts. Print or Save-as-PDF for table handouts (one card per page).</span>
+    <button onclick="window.print()">⎙ Print / PDF</button>
+  </div>
+
+  <!-- ============ CINDERBLOOM ITEM CARD ============ -->
+  <div class="card card--staff">
+    <div class="frame"></div>
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+
+    <p class="banner">Heirloom of the Ashen Garden</p>
+    <h2>Cinderbloom, the Ashen Shepherd</h2>
+    <p class="subtype">Staff, very rare (requires attunement by a druid)</p>
+
+    <div class="art art--filled">
+      <img src="orhenn-staff-cinderbloom-art.png" alt="Cinderbloom, the Ashen Shepherd">
+    </div>
+
+    <p class="flavor">Living-ashwood, warm as sun-baked stone. Its grain twists upward into a cage of blackened branches cradling a fist-sized ember that burns without fuel or smoke — brightening whenever beasts draw near or roots stir beneath the earth. It serves as a magic quarterstaff and a druidic spellcasting focus.</p>
+
+    <hr class="rule">
+
+    <p class="prop"><b>Ashwood Weapon.</b> You gain a <b>+2 bonus to attack and damage rolls</b> made with this magic quarterstaff, and a <b>+2 bonus to spell attack rolls</b> while you hold it.</p>
+
+    <p class="prop"><b>Cinderheart.</b> As a bonus action, expend 2 charges to send the ember streaking to a point within 60 ft. One creature within 5 ft of that point makes a <b>Dexterity saving throw against your spell save DC</b>, taking <b>3d8 fire</b> damage on a fail, half on a success. A 10-ft-radius of smoldering roots erupts there, becoming difficult terrain until the start of your next turn. The flames ignite unattended flammables but never harm plants you choose.</p>
+
+    <p class="prop"><b>Rootwright Magic.</b> The staff has <b>10 charges</b>. While holding it you can take a <b>Magic action</b> to expend charges and cast one of the following, using your spellcasting ability and <b>your spell save DC</b>:</p>
+    <ul class="spelllist">
+      <li><i>Entangle</i> — 1 charge</li>
+      <li><i>Spike Growth</i> — 2 charges</li>
+      <li><i>Erupting Earth</i> — 3 charges</li>
+      <li><i>Plant Growth</i> — 3 charges</li>
+      <li><i>Wall of Fire</i> — 4 charges</li>
+    </ul>
+    <p class="prop">When cast from the staff, <i>entangle</i>, <i>spike growth</i>, and the overgrowth of <i>plant growth</i> can erupt black ashwood roots from bare stone, metal, bone, or the blasted soil of Avernus — no existing vegetation required. Such conjured growth crumbles to harmless ash after 8 hours.</p>
+
+    <p class="prop"><b>Recharge.</b> The staff regains <b>1d6 + 4</b> expended charges when the attuned bearer finishes a long rest, but only <b>once every 24 hours</b>. If you expend the last charge, roll a d20; on a <b>1</b> the ember goes dark and the staff becomes a nonmagical quarterstaff until it is planted in fertile soil and watered continuously for 8 hours.</p>
+
+    <p class="prop"><b>Keeper of Fell Beasts.</b> You have advantage on Wisdom (Animal Handling) checks involving Beasts, Monstrosities, or Fiends of Intelligence 6 or lower. As a <b>Magic action</b>, expend <b>4 charges</b> and present the ember to one such creature within 30 ft that can see it, provided its <b>challenge rating is no higher than your proficiency bonus</b>: it makes a <b>Wisdom saving throw against your spell save DC</b> (with advantage if currently hostile) or is <b>charmed for 1 hour</b>, treating you as its trusted keeper and obeying simple bonus-action commands unless obviously suicidal. Whenever it takes damage it repeats the save, ending the effect on a success; on a save or when the effect ends, the creature is immune for 24 hours.</p>
+    <div class="sigil">❦</div>
+  </div>
+
+  <!-- ============ CINDERBLOOM REKINDLED (upgrade) ============ -->
+  <div class="card card--staff">
+    <div class="frame"></div>
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+
+    <p class="banner" style="color:#7ba032;text-shadow:0 0 8px rgba(120,160,60,.4);">The Mother Ash &middot; Restoration</p>
+    <h2>Cinderbloom Rekindled</h2>
+    <p class="subtype">Staff, legendary (requires attunement by a druid) &mdash; Cinderbloom's awakened form</p>
+
+    <div class="questbox">
+      <b>The Mother Ash (Vaelisha), the Last Green of Avernus.</b> Before this plane became the first layer of Hell it was a living world; when it fell, all its nature burned save one tree &mdash; hidden in a warded hollow, kept barely alive. Every infernal gardener's staff, Or'Henn's and his predecessor's alike, was cut from her boughs. To rekindle Cinderbloom the party must gather <b>what remains of the nature of Avernus</b> and feed it to the Mother Ash; her renewed sap re-infuses the staff.
+      <br><br>
+      <b>The infusion (quest):</b> collect three <b>Green Remnants</b> &mdash; e.g. the last seed of Idyllglen, living moss from a fallen titan's ribs in the Bleeding Wastes, and a sap-heart cutting held within Lady Urexiel's Scabrous Menagerie (ties into Contract V) &mdash; then perform an 8-hour rite at the Mother Ash. Cinderbloom becomes <b>Cinderbloom Rekindled</b>, keeping all its powers and gaining those below.
+    </div>
+
+    <hr class="rule">
+
+    <p class="prop"><b>Greenfire Charges.</b> Capacity rises to <b>14 charges</b>; it regains <b>2d6 + 4</b> on a long rest and no longer risks going dark on a 1 &mdash; the Mother Ash's sap keeps the ember lit.</p>
+    <p class="prop"><b>Deepwood Casting.</b> Add to the Rootwright list: <i>Wall of Thorns</i> (5 charges), <i>Sunbeam</i> (6), <i>Fire Storm</i> (7). Cinderheart now deals <b>4d8</b>, and against fiends its damage is <b>radiant</b> &mdash; the last nature of Avernus burns straight through devilish fire-immunity.</p>
+    <p class="prop"><b>Bloom of the Last Green.</b> Once per day, as an action, raise a living grove in a 30-ft radius for 1 minute: natural difficult terrain of ashwood roots and ember-flowers. At the start of each of your turns, allies within regain <b>1d8 hit points</b> and any fiend that starts its turn there takes <b>2d8 radiant</b>. You can see and target through it freely.</p>
+    <p class="prop"><b>Warden's Hold.</b> <i>Keeper of Fell Beasts</i> now affects creatures of <b>Intelligence 8 or lower</b>, and you may keep <b>two</b> such creatures charmed at once.</p>
+    <div class="sigil" style="color:#6a8a2a;border-color:rgba(120,150,60,.4);background:radial-gradient(circle,rgba(120,160,60,.18),transparent 65%);">&#10047;</div>
+  </div>
+
+  <!-- ============ CONTRACTS VOICEOVER ============ -->
+  <div class="voiceover">
+    The soul capacitor grows warm. Asimov's voice arrives beneath a murmur of turning pages, clinking coins, and distant screams: <b>“Good news: the Emporium has leads. Bad news: every lead has read the fine print.”</b>
+  </div>
+
+  <!-- ============ CONTRACT 1 ============ -->
+  <div class="card card--contract">
+    <div class="frame"></div>
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+    <div class="capacitor">
+      <div class="soulvessel"><div class="soul"></div></div>
+      <div class="label"><b>SOUL BOUNTY — RELAY I</b>Bounty relayed to Or'Henn by Asimov</div>
+    </div>
+    <p class="contract-no">SOUL BOUNTY I &middot; not binding until sealed &amp; notarized</p>
+    <h2>The Gardener's Due</h2>
+    <p class="field"><span class="k">Issuer</span>Procurator Vhalzareth, Estate-Reclamation Advocate of the Third Infernal Chancery</p>
+    <p class="field"><span class="k">The Mark</span>Return to the ruins of Or'Henn's former estate and recover its brass boundary seal from beneath the demolished western conservatory — intact and "substantially free of demonic residue."</p>
+    <p class="field"><span class="k">The Bounty</span>An authenticated Blood War salvage manifest naming the barlgura <b>Kharzug the Root-Eater</b> as the creature that removed Cinderbloom from the estate. No honest document gives a distance in Avernus; it fixes Kharzug's last deployment as the <b>Weeping Furrow</b>, known by three signs — broken chains crossing the sky, iron rain falling upward, and a trench that weeps black sap.</p>
+    <p class="field"><span class="k">Execution</span>Binding only once Or'Henn marks it in ash, the issuer countersigns, and <b>Fhet'Ahla</b> — Mahadi's amnizu notary — affixes the seal of the charter. Voidable only by both signatories before Fhet'Ahla, on surrender of the original and payment of his fee.</p>
+    <div class="catch"><span class="k">The Encumbrance</span>Recovery of the seal confirms Or'Henn as the estate's final acting groundskeeper and assigns him custody of every escaped, unculled, or improperly interred specimen registered to its grounds. Three remain unaccounted for. At each infernal dawn a specimen stays uncatalogued, the seal gains one breach-mark; upon three, the Chancery may seize any property recovered under this instrument.</div>
+  </div>
+
+  <!-- ============ CONTRACT 2 ============ -->
+  <div class="card card--contract">
+    <div class="frame"></div>
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+    <div class="capacitor">
+      <div class="soulvessel"><div class="soul"></div></div>
+      <div class="label"><b>SOUL BOUNTY — RELAY II</b>Bounty relayed to Or'Henn by Asimov</div>
+    </div>
+    <p class="contract-no">SOUL BOUNTY II &middot; not binding until sealed &amp; notarized</p>
+    <h2>A Measure of Honest Fire</h2>
+    <p class="field"><span class="k">Issuer</span>Serephine Coal-Tongue, salamander smith of the Gilded Crucible (an elemental — so this is a chartered commercial instrument, enforced only once notarized under Mahadi's charter)</p>
+    <p class="field"><span class="k">The Mark</span>Her forge is being poisoned by a rival's shipment of grave-cold iron. Enter the rival's warehouse, identify the contaminated ingots, and mark them with druidic flame. Nothing stolen, no employee slain.</p>
+    <p class="field"><span class="k">The Bounty</span>She binds one nonmagical weapon in infernal brass (granting a +1 bonus to attack and damage rolls), or one druidic focus (granting a +1 bonus to spell attack rolls while held). In place of this service, Or'Henn may instead claim three <b>cinderseed ampoules</b> (an action to throw within 30 ft; <i>entangle</i> in a 20-ft square for 1 minute, save DC 15).</p>
+    <p class="field"><span class="k">Execution</span>Binding only once Or'Henn marks it in ash, the issuer countersigns, and <b>Fhet'Ahla</b> affixes the seal of Mahadi's charter. Voidable only by both signatories before Fhet'Ahla, on surrender of the original and payment of his fee.</p>
+    <div class="catch"><span class="k">The Encumbrance</span>"Employee" excludes contractors, debtors, summoned creatures, animated tools, and any creature whose employment ended before its recorded moment of death. Every ingot Or'Henn marks is thereby certified defective; if any marked ingot is later adjudged sound, he owes one year and one day of furnace service — or <b>three soul coins</b>.</div>
+  </div>
+
+  <!-- ============ CONTRACT 3 ============ -->
+  <div class="card card--contract">
+    <div class="frame"></div>
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+    <div class="capacitor">
+      <div class="soulvessel"><div class="soul"></div></div>
+      <div class="label"><b>SOUL BOUNTY — RELAY III</b>Bounty relayed to Or'Henn by Asimov</div>
+    </div>
+    <p class="contract-no">SOUL BOUNTY III &middot; not binding until sealed &amp; notarized</p>
+    <h2>The Hound That Remembers</h2>
+    <p class="field"><span class="k">Issuer</span>Pellucid Jax, infernal beast broker of Jax's Immaculate Menagerie</p>
+    <p class="field"><span class="k">The Mark</span>Capture — alive and unmaimed — an ember-muzzled hell hound prowling beneath the Emporium's nightly route. It wears the remains of a green copper collar and answers to "Morrow." Jax claims it has eaten three customers and one technically irreplaceable ledger.</p>
+    <p class="field"><span class="k">The Bounty</span>Jax provides the key and authentication phrase that open the sealed inner plate of Morrow's collar. Beneath it lie the crest of Or'Henn's former household and a hardened flake of living ashwood: held over a flame, the flake bends toward the tree — or staff — it was cut from, a <b>compass for 1 hour</b> before burning to ash.</p>
+    <p class="field"><span class="k">Execution</span>Binding only once Or'Henn marks it in ash, the issuer countersigns, and <b>Fhet'Ahla</b> affixes the seal of Mahadi's charter. Voidable only by both signatories before Fhet'Ahla, on surrender of the original and payment of his fee.</p>
+    <div class="catch"><span class="k">The Encumbrance</span>Morrow is registered under infernal law as an "independent commercial predator." Delivery therefore constitutes an unsolicited adoption unless <b>500 gp is deposited into the collar's escrow seal before Jax opens it</b>. If the escrow remains unpaid, title to Morrow — and every recorded liability of its prior killings — vests in Or'Henn.</div>
+  </div>
+
+  <!-- ============ CONTRACT 4 ============ -->
+  <div class="card card--contract">
+    <div class="frame"></div>
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+    <div class="capacitor">
+      <div class="soulvessel"><div class="soul"></div></div>
+      <div class="label"><b>SOUL BOUNTY — RELAY IV</b>Bounty relayed to Or'Henn by Asimov</div>
+    </div>
+    <p class="contract-no">SOUL BOUNTY IV &middot; not binding until sealed &amp; notarized</p>
+    <h2>Articles of Temporary Embodiment</h2>
+    <p class="field"><span class="k">Issuer</span>Mistress Nymira Quill, night hag and broker of posthumous opportunities (a hag — so <b>Fhet'Ahla</b> stands as enforcing notary)</p>
+    <p class="field"><span class="k">The Mark</span>Obtain the still-warm shadow of a creature that willingly entered an infernal bargain and died regretting it — folded into the instrument before the corpse grows cold.</p>
+    <p class="field"><span class="k">The Bounty</span>Asimov receives a spectral facsimile of his former body for 1 hour, using his normal statistics; spectral copies of his carried equipment function for him alone. Once during the rental he can touch one creature and perceive the exact text of one infernal contract binding it, and he learns one concealed clause engraved into the soul capacitor's own confinement instrument.</p>
+    <p class="field"><span class="k">Execution</span>Binding only once Or'Henn marks it in ash, the issuer countersigns, and <b>Fhet'Ahla</b> affixes the seal of Mahadi's charter. Voidable only by both signatories before Fhet'Ahla, on surrender of the original and payment of his fee.</p>
+    <div class="catch"><span class="k">The Encumbrance</span>When the hour ends, the nearest eligible recipient takes <b>necrotic damage equal to half the hit points Asimov lost during the rental, to a maximum of 8d10</b>, ignoring resistance but never reducing the recipient below 1 hit point. An eligible recipient is any creature that knowingly accepted healing, inspiration, protection, food, or tactical counsel from Asimov during the rental.</div>
+  </div>
+
+  <!-- ============ CONTRACT 5 ============ -->
+  <div class="card card--contract">
+    <div class="frame"></div>
+    <span class="corner tl"></span><span class="corner tr"></span><span class="corner bl"></span><span class="corner br"></span>
+    <div class="capacitor">
+      <div class="soulvessel"><div class="soul"></div></div>
+      <div class="label"><b>SOUL BOUNTY — RELAY V</b>Bounty relayed to Or'Henn by Asimov</div>
+    </div>
+    <p class="contract-no">SOUL BOUNTY V &middot; not binding until sealed &amp; notarized</p>
+    <h2>The Orchard of Borrowed Names</h2>
+    <p class="field"><span class="k">Issuer</span>Advocate Malfius Nine-Reeds, lesser counsel to Fhet'Ahla and clerk of the Third Infernal Chancery, working a curtained stall with no visible entrance</p>
+    <p class="field"><span class="k">The Mark</span>A grove of iron trees has grown around a buried infernal war machine, feeding on the true names of those who approach. Cut a path to the machine and retrieve the obsidian coffer from its command seat. Do not open the coffer, and do not speak your own name while inside the grove.</p>
+    <p class="field"><span class="k">The Bounty</span>A <b>writ of reclamation</b> recognized by Zariel's legions and every merchant under Mahadi's charter, unless countermanded by a pit fiend, infernal duke, or archdevil. It names Cinderbloom property of Or'Henn's inherited household and authorizes recovery from any registered scavenger, bonded mercenary, infernal unit, or chartered merchant holding it. Malfius further attests the staff passed through the Weeping Furrow and was presented as tribute to <b>Lady Urexiel, Keeper of the Scabrous Menagerie</b>.</p>
+    <p class="field"><span class="k">Execution</span>Binding only once Or'Henn marks it in ash, the issuer countersigns, and <b>Fhet'Ahla</b> affixes the seal of Mahadi's charter. Voidable only by both signatories before Fhet'Ahla, on surrender of the original and payment of his fee.</p>
+    <div class="catch"><span class="k">The Encumbrance</span>The writ names Or'Henn successor to his former master's estate, transferring every surviving asset, servant, enemy, debt, oath, lien, and unfinished sentence attached to that household. The coffer contains a <b>blank name-substitution writ keyed to the Third Chancery</b>; if it is opened, the first true name released replaces Or'Henn's name on every agreement notarized by that Chancery. Malfius declines to identify the name imprisoned within.</div>
+  </div>
+
+  <!-- ============ ART-PROMPT APPENDIX (screen only) ============ -->
+  <div class="appendix">
+    <h3>Art slots — paste-ready image prompts</h3>
+    <p>These fill the placeholders. Cinderbloom's slot is CSS-drawn so the card prints fine with no art; drop a render in to upgrade it. Contracts are text handouts — for a background texture use the parchment prompt and set it as the card's <code>background-image</code>, or print onto real aged cardstock.</p>
+
+    <p class="mj">▸ Cinderbloom — loot-card illustration (MidJourney v7)</p>
+    <pre>A single druidic quarterstaff laid on dark obsidian stone, museum-object framing. Grown from one unpolished living-ashwood limb, bark intact and twisted, the top spiraling into a cage of blackened branches that cradles a floating fist-sized ember-orb of crimson-orange light, glowing without smoke, casting warm light on the wood. Faint blackened roots creep from the base across the stone. Painterly loot-card object study, official Dungeons &amp; Dragons 5e sourcebook illustration, warm ember key-light against cool shadow, high detail, matte finish, no text no logos no UI --style raw --v 7 --s 250 --ar 4:3</pre>
+
+    <p class="mj">▸ Soul-capacitor parchment — background texture (MidJourney v7)</p>
+    <pre>Aged singed parchment sheet viewed through the glass of an infernal soul-capacitor: blackened-brass frame and corner fittings, a cold pale-cyan captured-soul glow bleeding in from the edges, faint etched infernal runes, warm ember light from below, empty center left blank for handwriting. Top-down flat scan, dark fantasy, painterly, no text no writing no logos no UI --style raw --v 7 --s 250 --ar 3:4</pre>
+
+    <p class="mj">▸ House-style variant (matches session-5-artstyles.md lock, if you want table consistency)</p>
+    <pre>...append: dark fantasy oil-painting, chiaroscuro lighting, muted blood-red and ash-grey palette with single accent of infernal-orange ember, painterly brushwork in the style of Zdzisław Beksiński crossed with Gerald Brom, heavy atmospheric perspective, no logos no text no UI --style raw --v 7 --s 250</pre>
+    <p>Open this file in any browser → <b>Print / PDF</b> button, or Ctrl+P → Save as PDF. Each card breaks onto its own page.</p>
+  </div>
+
+<script>
+  // ponytail: single-purpose page, no framework. print button only.
+</script>
+</body>
+</html>

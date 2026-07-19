@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>The Ashen Shepherd's Codex of Fell Shapes — Or'Henn's own hand</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,600;1,400;1,600&family=Grenze+Gotisch:wght@500;600;700&display=swap" rel="stylesheet">
+<style>
+  /* =========================================================================
+     OR'HENN'S BURNT CODEX — a survivor's field-book carried through Avernus.
+     Ashen parchment, scorched edges, ember-orange ink. Every creature form is
+     a CARD with an ART SLOT (see "FILLING AN ART SLOT" below the palette).
+     ========================================================================= */
+
+  :root{
+    --parch:#d9c39a; --parch-lt:#e8d5ad; --parch-shade:#b99c66; --parch-dk:#8f7642;
+    --ink:#241708; --ink-soft:#4a3720;
+    --brass:#b98b3e; --brass-dark:#5f4318;
+    --ember:#c24a12; --ember-lt:#e2661f; --ember-glow:rgba(226,102,31,.55);
+    --beast:#3d6b2f; --earned:#8a3410; --danger:#8a3410;
+    --char:#0f0905; --page-bg:#080605;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:var(--page-bg);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  body{font-family:'EB Garamond',Georgia,serif;color:var(--ink);
+    background:
+      radial-gradient(60% 40% at 50% 0%, rgba(120,50,14,.18), transparent 60%),
+      radial-gradient(80% 60% at 50% 120%, rgba(60,25,8,.25), transparent 60%),
+      var(--page-bg);}
+
+  /* ---- the charred sheet ------------------------------------------------- */
+  .sheet{
+    position:relative; max-width:940px; margin:34px auto; padding:54px 58px 66px;
+    color:var(--ink);
+    background:
+      radial-gradient(78% 42% at 50% -6%, rgba(255,214,150,.11), transparent 60%),
+      radial-gradient(55% 40% at 106% 38%, rgba(194,74,18,.16), transparent 55%),
+      radial-gradient(50% 45% at -6% 62%, rgba(194,74,18,.10), transparent 55%),
+      radial-gradient(130% 90% at 0% 100%, rgba(0,0,0,.42), transparent 55%),
+      radial-gradient(130% 90% at 100% 0%, rgba(0,0,0,.36), transparent 52%),
+      linear-gradient(168deg, var(--parch-lt), var(--parch) 46%, var(--parch-shade));
+    border:1px solid #2a1a0c; border-radius:3px;
+    box-shadow:
+      0 0 70px rgba(0,0,0,.85),
+      inset 0 0 4px rgba(0,0,0,.6),
+      inset 0 0 70px rgba(60,30,8,.55),
+      inset 0 0 180px rgba(18,9,3,.52);
+  }
+  /* torn / burnt-out corners */
+  .sheet::before, .sheet::after{
+    content:""; position:absolute; width:130px; height:130px; z-index:5; pointer-events:none;
+    background:radial-gradient(circle at 50% 50%, var(--page-bg) 22%,
+      rgba(18,9,3,.9) 46%, rgba(80,38,12,.35) 63%, transparent 74%);
+  }
+  .sheet::before{top:-16px; right:-12px; transform:rotate(11deg);
+    clip-path:polygon(28% 0,100% 0,100% 72%,86% 54%,70% 66%,58% 46%,44% 60%,36% 38%,18% 46%);}
+  .sheet::after{bottom:-18px; left:-14px; transform:rotate(-9deg);
+    clip-path:polygon(0 28%,14% 44%,30% 32%,42% 52%,56% 38%,64% 60%,82% 50%,70% 100%,0 100%);}
+  /* soot smudges */
+  .soot{position:absolute; z-index:1; pointer-events:none; border-radius:50%;
+    background:radial-gradient(circle, rgba(14,8,4,.5), transparent 70%); filter:blur(7px);}
+  .soot.s1{width:170px;height:92px;top:128px;left:-8px;transform:rotate(-18deg);}
+  .soot.s2{width:128px;height:128px;bottom:210px;right:10px;opacity:.7;}
+  .soot.s3{width:210px;height:74px;top:53%;left:38%;opacity:.5;transform:rotate(7deg);}
+  .ink{position:relative; z-index:2;}
+
+  /* ---- title block ------------------------------------------------------- */
+  h1{font-family:'Grenze Gotisch',serif; font-weight:700; font-size:46px; line-height:1.02;
+     margin:0 0 2px; letter-spacing:.5px; color:#2a1608;
+     text-shadow:0 1px 0 rgba(255,236,200,.35), 0 0 24px var(--ember-glow);}
+  h1 .small{display:block;font-family:'Cinzel',serif;font-weight:500;font-size:15px;
+     letter-spacing:2px;color:var(--ember);margin-top:6px;text-shadow:none;}
+  .sub{font-style:italic;color:var(--ink-soft);margin:8px 0 14px;font-size:16px;}
+  .epigraph{font-family:'EB Garamond',serif;font-style:italic;font-size:16.5px;line-height:1.5;
+    color:#3a2814;max-width:62ch;margin:6px 0 18px;padding:8px 0 8px 15px;
+    border-left:3px solid var(--ember);text-shadow:0 1px 0 rgba(255,236,200,.3);}
+  .epigraph .sig{display:block;margin-top:8px;font-variant:small-caps;letter-spacing:.6px;
+    font-style:normal;font-size:14px;color:var(--ember);}
+
+  /* ---- callouts ---------------------------------------------------------- */
+  .callout{position:relative;font-size:15px;line-height:1.56;margin:16px 0;padding:14px 18px;
+    background:linear-gradient(180deg, rgba(42,26,10,.15), rgba(42,26,10,.06));
+    border:1px solid rgba(95,67,24,.5); border-left:4px solid var(--ember);
+    border-radius:0 5px 5px 0; box-shadow:inset 0 0 34px rgba(60,30,8,.16);}
+  .callout b{font-variant:small-caps;letter-spacing:.3px;}
+  .callout + .callout{margin-top:12px;}
+
+  /* ---- legend ------------------------------------------------------------ */
+  .legend{display:flex;gap:22px;flex-wrap:wrap;font-size:13.5px;margin:14px 0 6px;color:var(--ink-soft);}
+  .legend span{display:inline-flex;align-items:center;gap:7px;}
+  .dot{width:11px;height:11px;border-radius:50%;display:inline-block;}
+  .dot.b{background:var(--beast);} .dot.d{background:var(--earned);}
+
+  /* ---- tier headings ----------------------------------------------------- */
+  h2{font-family:'Cinzel',serif;font-size:19px;color:var(--danger);margin:32px 0 12px;
+     border-bottom:2px solid var(--brass);padding-bottom:6px;letter-spacing:.5px;
+     text-shadow:0 1px 0 rgba(255,236,200,.3);}
+  h2 .cr{float:right;font-size:12px;color:var(--brass-dark);font-weight:500;letter-spacing:1px;
+     padding-top:5px;}
+
+  /* ---- beast card grid --------------------------------------------------- */
+  .beast-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(232px,1fr));
+    gap:18px;margin:6px 0 10px;}
+  .beast-card{position:relative;display:flex;flex-direction:column;overflow:hidden;
+    border:1px solid rgba(60,38,14,.55);border-radius:5px;
+    background:linear-gradient(180deg, rgba(30,18,8,.10), rgba(30,18,8,.02));
+    box-shadow:0 3px 10px rgba(0,0,0,.32), inset 0 0 26px rgba(60,30,8,.12);
+    break-inside:avoid;}
+  .beast-card.is-beast{border-top:3px solid var(--beast);}
+  .beast-card.is-earned{border-top:3px solid var(--ember);}
+
+  /* ===== ART SLOT — square, charred frame, "sketch pending" until filled ==
+     ---------------------------------------------------------------------
+     FILLING AN ART SLOT (do this later, one creature at a time). Every slot
+     carries a unique data-beast slug (e.g. data-beast="hell-hound"). Two ways:
+
+       1) DROP AN IMAGE  (recommended, self-hiding):
+          Put an <img> inside the matching slot —
+            <div class="beast-art" data-beast="hell-hound">
+              <img src="art/hell-hound.png" alt="Hell Hound">
+              <div class="art-empty">...</div>
+            </div>
+          The <img> is absolutely positioned to cover the placeholder.
+
+       2) BACKGROUND IMAGE:
+            .beast-art[data-beast="hell-hound"]{
+              background-image:url('art/hell-hound.png');
+              background-size:cover; background-position:center;
+            }
+          ...then add the class "has-art" to that div to hide the label.
+     ===================================================================== */
+  .beast-art{position:relative;width:100%;aspect-ratio:1/1;overflow:hidden;
+    border-bottom:1px solid rgba(60,38,14,.6);
+    background:
+      radial-gradient(60% 50% at 50% 38%, rgba(194,74,18,.12), transparent 70%),
+      linear-gradient(158deg,#1d1109,#0f0905);
+    box-shadow:inset 0 0 44px rgba(0,0,0,.72), inset 0 0 3px rgba(226,102,31,.28);}
+  .beast-art .art-empty{position:absolute;inset:0;z-index:1;display:flex;flex-direction:column;
+    align-items:center;justify-content:center;gap:6px;text-align:center;padding:10px;
+    background:repeating-linear-gradient(45deg, rgba(226,102,31,.025) 0 8px, transparent 8px 16px);}
+  .art-name{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.6px;color:#cbaa70;
+    text-shadow:0 0 12px rgba(194,74,18,.45);}
+  .art-pending{font-family:'EB Garamond',serif;font-style:italic;font-size:11px;
+    letter-spacing:.5px;color:#7c5c36;opacity:.8;}
+  .beast-art img{position:absolute;inset:0;z-index:2;width:100%;height:100%;object-fit:cover;}
+  .beast-art.has-art .art-empty{display:none;}
+  /* LOCKED forms — past his CR-2 cap; dimmed & desaturated so they read as goals */
+  .beast-card.locked{opacity:.55;filter:grayscale(.72);}
+  .beast-card.locked::after{content:"\1F512  SEALED";position:absolute;top:6px;right:6px;z-index:6;
+    font-family:'Cinzel',serif;font-size:9px;letter-spacing:1px;color:#e7d3a4;
+    background:rgba(15,9,5,.86);border:1px solid rgba(226,102,31,.4);border-radius:3px;
+    padding:2px 7px;text-shadow:0 0 6px rgba(194,74,18,.5);}
+
+  /* ---- card body (lighter panel for legibility over the char) ------------ */
+  .card-body{flex:1;position:relative;padding:11px 13px 13px;
+    background:linear-gradient(180deg, rgba(232,213,173,.62), rgba(217,195,154,.46));}
+  .card-title{font-family:'Cinzel',serif;font-size:15px;line-height:1.22;margin:0 0 3px;}
+  .card-title a{color:var(--danger);text-decoration:none;border-bottom:1px dotted var(--danger);
+    font-weight:600;}
+  .card-title a:hover{color:var(--ember-lt);}
+  .card-meta{font-size:11.5px;color:var(--ink-soft);margin-bottom:7px;
+    font-variant:small-caps;letter-spacing:.3px;}
+  .why{font-size:13.5px;line-height:1.46;margin:0;color:var(--ink);}
+  .tag{font-size:9.5px;font-weight:700;padding:1px 5px;border-radius:3px;color:#fff;
+    font-variant:normal;letter-spacing:.6px;vertical-align:1px;}
+  .tag.b{background:var(--beast);} .tag.d{background:var(--earned);}
+  .star{color:var(--ember);font-weight:700;text-shadow:0 0 8px var(--ember-glow);}
+
+  /* ---- Or'Henn's inked margin notes -------------------------------------- */
+  .margin-note{font-family:'EB Garamond',serif;font-style:italic;font-size:12.5px;line-height:1.42;
+    color:var(--ember);margin:9px 0 0;padding:7px 10px;
+    border-left:2px solid var(--ember);background:rgba(194,74,18,.07);
+    text-shadow:0 1px 0 rgba(255,236,200,.25);}
+  .margin-note::before{content:"in his own hand";display:block;font-style:normal;font-size:8.5px;
+    font-variant:small-caps;letter-spacing:1.4px;color:#a05a2a;opacity:.75;margin-bottom:3px;}
+
+  /* ---- cap quick-ref & locked-tier note ---------------------------------- */
+  .caprule{font-size:13.5px;line-height:1.5;margin:6px 0 4px;color:var(--ink-soft);}
+  .lock-title{color:#7a6a55;letter-spacing:2px;}
+  .locked-note{font-size:14px;line-height:1.52;font-style:italic;margin:2px 0 12px;
+    padding:10px 14px;color:var(--ink-soft);
+    background:rgba(40,26,10,.12);border-left:4px solid #7a6a55;border-radius:0 5px 5px 0;}
+
+  /* ---- foot -------------------------------------------------------------- */
+  .foot{margin-top:28px;font-size:13px;color:var(--ink-soft);font-style:italic;
+    border-top:1px solid var(--brass);padding-top:12px;line-height:1.5;}
+
+  /* ---- appendix (screen only) -------------------------------------------- */
+  .appendix{margin-top:38px;border-top:2px solid var(--brass);padding-top:18px;}
+  .appendix h2{border-bottom:1px dashed var(--brass);}
+  .appendix p{font-size:14.5px;line-height:1.5;}
+  .prompt-box{white-space:pre-wrap;font-family:'EB Garamond',serif;font-size:13.5px;line-height:1.55;
+    color:#e7d3a4;background:#140c06;border:1px solid rgba(226,102,31,.4);border-radius:5px;
+    padding:14px 16px;margin:10px 0 16px;box-shadow:inset 0 0 34px rgba(194,74,18,.14);
+    user-select:all;}
+  .prompt-box .ph{color:var(--ember-lt);font-weight:700;}
+  .slug-list{columns:2;column-gap:30px;font-size:12.5px;line-height:1.7;margin:4px 0 0;
+    list-style:none;padding:0;}
+  .slug-list li{break-inside:avoid;}
+  .slug-list b{font-family:'Cinzel',serif;font-size:11.5px;color:#5a3d14;}
+  .slug-list code{font-family:ui-monospace,'Courier New',monospace;font-size:11.5px;
+    color:var(--earned);background:rgba(138,52,16,.1);padding:0 4px;border-radius:3px;}
+
+  /* ---- print ------------------------------------------------------------- */
+  @media print{
+    html,body{background:#fff;}
+    .sheet{margin:0;max-width:none;border:none;border-radius:0;
+      background:
+        radial-gradient(130% 90% at 0% 100%, rgba(0,0,0,.28), transparent 55%),
+        radial-gradient(130% 90% at 100% 0%, rgba(0,0,0,.24), transparent 52%),
+        linear-gradient(168deg,#e8d5ad,#d9c39a 46%,#b99c66);
+      box-shadow:inset 0 0 70px rgba(60,30,8,.42);
+      -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+    .sheet::before,.sheet::after,.soot{display:none;}
+    .appendix{display:none;}
+    .beast-grid{grid-template-columns:repeat(3,1fr);gap:12px;}
+    .beast-card{break-inside:avoid;box-shadow:none;}
+    .beast-art{box-shadow:inset 0 0 22px rgba(0,0,0,.55);}
+    .tier{break-inside:auto;}
+    .tier + .tier{break-before:auto;}
+    h2{break-after:avoid;}
+    a{color:var(--danger);}
+    @page{size:A4;margin:12mm;}
+  }
+</style>
+</head>
+<body>
+<div class="sheet">
+  <div class="soot s1"></div><div class="soot s2"></div><div class="soot s3"></div>
+
+  <div class="ink">
+  <h1>The Ashen Shepherd's Codex of Fell Shapes
+    <span class="small">&mdash; kept in Or'Henn's own hand &middot; Circle of Wildfire &middot; Druid 11 of Avernus &mdash;</span>
+  </h1>
+
+  <p class="epigraph">
+    I kept a garden in Hell once, and beasts within it &mdash; fed them, named them, mended their hurts.
+    The garden is ash now and the beasts are pages. What I could not carry out, I learned to <i>wear</i>.
+    Read gently; some of these I loved.
+    <span class="sig">&mdash; Or'Henn, called the Ashen Shepherd</span>
+  </p>
+
+  <p class="sub">Forms of Avernus available to the Ashen Shepherd &middot; each name opens its 5e.tools stat block</p>
+
+  <div class="callout">
+    <b>The rule at this level (2024).</b> Or'Henn uses Wild Shape as a <b>Bonus Action</b>. He walks the <b>Circle of Wildfire</b> &mdash; which grants <i>no</i> CR boost, so by the book he would cap at <b>CR 1</b>. By DM ruling, his long keeper's training among infernal beasts lets him assume <b>Beast and earned-infernal forms of CR 2 or lower</b>. <b>CR 3 forms are beyond his reach.</b> Wild Shape normally permits <b>Beasts only</b> &mdash; the <span class="tag b">BEAST</span> forms are always legal. Every <span class="tag d">EARNED</span> form (Monstrosity, Fiend, or Elemental) is a campaign-specific shape granted through Or'Henn's infernal training and his bond with <a href="orhenn-cinderbloom-and-contracts.html">Cinderbloom</a>.
+  </div>
+
+  <div class="callout">
+    <b>Unlocking infernal forms.</b> Or'Henn does <b>not</b> automatically gain every eligible non-Beast form. Each must be <b>unlocked</b> &mdash; by studying, defeating, binding, or tending that specific creature &mdash; and he gains only its physical shape and natural attacks. <i>Innate Spellcasting</i>, <i>Shapechanger</i>, <i>Summon</i>, and similar magical traits are <b>not</b> gained unless the DM explicitly grants them. This list is campaign progression, not a power grant. An <span class="tag d">EARNED</span> shape is a memory paid for, not a gift.
+  </div>
+
+  <div class="legend">
+    <span><span class="dot b"></span> <span class="tag b">BEAST</span> &mdash; Wild-Shape legal (RAW)</span>
+    <span><span class="dot d"></span> <span class="tag d">EARNED</span> &mdash; Monstrosity / Fiend / Elemental, unlocked (DM fiat)</span>
+    <span>&#128274; <b>LOCKED</b> &mdash; CR 3, beyond his reach (aspirational)</span>
+    <span><span class="star">&#9733;</span> signature form &mdash; noted in his own hand</span>
+  </div>
+  <p class="caprule"><b>His cap:</b> Wild Shape as a Bonus Action; <b>CR 2 or lower</b> &mdash; Beast or earned-infernal &mdash; by DM ruling. <b>CR 3 is sealed to him</b> until the DM says otherwise.</p>
+
+  <!-- ============================ TIER I ============================ -->
+  <section class="tier">
+  <h2>Tier I &mdash; Scouts &amp; Saboteurs <span class="cr">CR 1/8 &ndash; 1/2</span></h2>
+  <div class="beast-grid">
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="abyssal-chicken">
+        <div class="art-empty"><span class="art-name">Abyssal Chicken</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#abyssal%20chicken_bgdia" target="_blank" rel="noopener">Abyssal Chicken</a></div>
+        <div class="card-meta">Fiend (demon) &middot; CR 1/8 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Flutter 30 ft, utterly disposable, blends into any Avernus flock. Perfect throwaway infiltration body &mdash; a native of the plane.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-beast">
+      <div class="beast-art" data-beast="stirge">
+        <div class="art-empty"><span class="art-name">Stirge</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#stirge_mm" target="_blank" rel="noopener">Stirge</a></div>
+        <div class="card-meta">Beast &middot; CR 1/8 &middot; <span class="tag b">BEAST</span></div>
+        <p class="why">Fly 40, latch-and-drain blood. Tiny, ignorable, drains a wounded foe or a bound captive dry.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="dretch">
+        <div class="art-empty"><span class="art-name">Dretch</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#dretch_mm" target="_blank" rel="noopener">Dretch</a></div>
+        <div class="card-meta">Fiend (demon) &middot; CR 1/4 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why"><i>Fetid Cloud</i> nausea aura; a demon body no devil looks at twice on the front line.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="cockatrice">
+        <div class="art-empty"><span class="art-name">Cockatrice</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#cockatrice_mm" target="_blank" rel="noopener">Cockatrice</a></div>
+        <div class="card-meta">Monstrosity &middot; CR 1/2 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Bite forces a save or <b>petrify</b> (restrained &rarr; petrified). Fly 40. Lockdown on a single elite.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="nupperibo">
+        <div class="art-empty"><span class="art-name">Nupperibo</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#nupperibo_bgdia" target="_blank" rel="noopener">Nupperibo</a></div>
+        <div class="card-meta">Fiend (devil) &middot; CR 1/2 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Blindsight, immune to fear &amp; charm, drawn to living warmth. A blind, fearless tracker body.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="rust-monster">
+        <div class="art-empty"><span class="art-name">Rust Monster</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#rust%20monster_mm" target="_blank" rel="noopener">Rust Monster</a></div>
+        <div class="card-meta">Monstrosity &middot; CR 1/2 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Corrodes metal on touch &mdash; ruin a devil's blade, an infernal war-machine, or a portcullis. Pure sabotage.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="magma-mephit">
+        <div class="art-empty"><span class="art-name">Magma Mephit</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#magma%20mephit_mm" target="_blank" rel="noopener">Magma Mephit</a></div>
+        <div class="card-meta">Elemental &middot; CR 1/2 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Fly 30, fire immunity, <i>Death Burst</i> of lava, feigns being ambient hell-fauna. Fireproof scout.</p>
+      </div>
+    </div>
+
+  </div>
+  </section>
+
+  <!-- ============================ TIER II ============================ -->
+  <section class="tier">
+  <h2>Tier II &mdash; The Pack &amp; the Wing <span class="cr">CR 1</span></h2>
+  <div class="beast-grid">
+
+    <div class="beast-card is-beast">
+      <div class="beast-art" data-beast="giant-hyena">
+        <div class="art-empty"><span class="art-name">Giant Hyena</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#giant%20hyena_mm" target="_blank" rel="noopener">Giant Hyena</a> <span class="star">&#9733;</span></div>
+        <div class="card-meta">Beast &middot; CR 1 &middot; <span class="tag b">BEAST</span></div>
+        <p class="why"><i>Rampage</i>: drop a foe, then bonus-action move + bite again. Yeenoghu's own beast &mdash; thematic to the arc just closed.</p>
+        <p class="margin-note">The warband that took my garden ran with these; I learned their hunger by watching them unmake my hedge-beasts, one gentle thing at a time.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-beast">
+      <div class="beast-art" data-beast="giant-vulture">
+        <div class="art-empty"><span class="art-name">Giant Vulture</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#giant%20vulture_mm" target="_blank" rel="noopener">Giant Vulture</a></div>
+        <div class="card-meta">Beast &middot; CR 1 &middot; <span class="tag b">BEAST</span></div>
+        <p class="why">Fly 60, keen sight &amp; smell, <i>understands speech</i>. The definitive Avernus carrion scout &mdash; and it can eavesdrop.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-beast">
+      <div class="beast-art" data-beast="dire-wolf">
+        <div class="art-empty"><span class="art-name">Dire Wolf</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#dire%20wolf_mm" target="_blank" rel="noopener">Dire Wolf</a></div>
+        <div class="card-meta">Beast &middot; CR 1 &middot; <span class="tag b">BEAST</span></div>
+        <p class="why">Pack Tactics + knock-prone bite. Reskin as an ash-furred hell-wolf; the reliable melee bruiser.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="death-dog">
+        <div class="art-empty"><span class="art-name">Death Dog</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#death%20dog_mm" target="_blank" rel="noopener">Death Dog</a></div>
+        <div class="card-meta">Monstrosity &middot; CR 1 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Two heads: can't be surprised, advantage vs blinded/charmed/frightened/deafened/stunned. Bite inflicts a wasting <b>disease</b>.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="hippogriff">
+        <div class="art-empty"><span class="art-name">Hippogriff</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#hippogriff_mm" target="_blank" rel="noopener">Hippogriff</a></div>
+        <div class="card-meta">Monstrosity &middot; CR 1 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Fly 60, can't be surprised. Cleanest CR-1 flight when a Beast list runs dry.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="imp">
+        <div class="art-empty"><span class="art-name">Imp</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#imp_mm" target="_blank" rel="noopener">Imp</a> <span class="star">&#9733;</span></div>
+        <div class="card-meta">Fiend (devil) &middot; CR 1 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why"><b>Invisibility at will</b>, fly 40, Shapechanger, Magic Resistance, Devil's Sight. The best spy body in Hell &mdash; walk into the Emporium unseen.</p>
+        <p class="margin-note">One nested in my master's rafters; I fed it scraps so it would not name me to the house. Now I borrow its skin and do the skulking myself.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="quasit">
+        <div class="art-empty"><span class="art-name">Quasit</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#quasit_mm" target="_blank" rel="noopener">Quasit</a></div>
+        <div class="card-meta">Fiend (demon) &middot; CR 1 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Invisibility, <i>Scare</i>, shift to bat/centipede/toad, Magic Resistance. The demon-side counterpart to the Imp.</p>
+      </div>
+    </div>
+
+  </div>
+  </section>
+
+  <!-- ============================ TIER III ============================ -->
+  <section class="tier">
+  <h2>Tier III &mdash; Hunters <span class="cr">CR 2</span></h2>
+  <div class="beast-grid">
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="spined-devil">
+        <div class="art-empty"><span class="art-name">Spined Devil</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#spined%20devil_mm" target="_blank" rel="noopener">Spined Devil</a> <span class="star">&#9733;</span></div>
+        <div class="card-meta">Fiend (devil) &middot; CR 2 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Fly 40 + <b>ranged tail spines</b> (fire), Devil's Sight. Or'Henn's only real ranged-attacker form &mdash; a flying artillery body.</p>
+        <p class="margin-note">One roosted over the ash-orchard gate for years. I never had a reach that mattered; it taught me to throw fire instead of tending it.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="peryton">
+        <div class="art-empty"><span class="art-name">Peryton</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#peryton_mm" target="_blank" rel="noopener">Peryton</a></div>
+        <div class="card-meta">Monstrosity &middot; CR 2 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Fly 60, <i>Dive Attack</i> bonus damage, casts no shadow. A diving hell-raptor.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned">
+      <div class="beast-art" data-beast="ankheg">
+        <div class="art-empty"><span class="art-name">Ankheg</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#ankheg_mm" target="_blank" rel="noopener">Ankheg</a></div>
+        <div class="card-meta">Monstrosity &middot; CR 2 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Burrow 10, grapple-and-drag, line of <b>acid</b> breath. Ambush from beneath the ash.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-beast">
+      <div class="beast-art" data-beast="giant-constrictor-snake">
+        <div class="art-empty"><span class="art-name">Giant Constrictor Snake</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#giant%20constrictor%20snake_mm" target="_blank" rel="noopener">Giant Constrictor Snake</a></div>
+        <div class="card-meta">Beast &middot; CR 2 &middot; <span class="tag b">BEAST</span></div>
+        <p class="why">Swim 30, grapple + crush. The best RAW-legal control Beast at CR 2 &mdash; wrap and hold a priority target.</p>
+      </div>
+    </div>
+
+  </div>
+  </section>
+
+  <!-- ============================ TIER IV — LOCKED ============================ -->
+  <section class="tier">
+  <h2>Tier IV &mdash; <span class="lock-title">&#128274; LOCKED</span> &middot; Beyond Your Reach <span class="cr">CR 3 &middot; aspirational</span></h2>
+  <p class="locked-note">These six lie past Or'Henn's <b>CR-2 cap</b> &mdash; he cannot assume them yet. They are goals, not options; the DM may grant them as the arc deepens. The <b>Hell Hound</b> is his signature ambition: the war-form he means to earn.</p>
+  <div class="beast-grid">
+
+    <div class="beast-card is-earned locked">
+      <div class="beast-art" data-beast="hell-hound">
+        <div class="art-empty"><span class="art-name">Hell Hound</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#hell%20hound_mm" target="_blank" rel="noopener">Hell Hound</a> <span class="star">&#9733;</span></div>
+        <div class="card-meta">Fiend (devil) &middot; CR 3 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why"><b>Immunity to fire</b>, <b>Fire Breath</b> (2d6 cone), Pack Tactics, Keen Smell. The signature war-form &mdash; and a beast he already knows how to command.</p>
+        <p class="margin-note">I raised three from whelps at the estate kennel; their flame never frightened me. Wearing this shape feels like coming home to a house of ash.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned locked">
+      <div class="beast-art" data-beast="manticore">
+        <div class="art-empty"><span class="art-name">Manticore</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#manticore_mm" target="_blank" rel="noopener">Manticore</a> <span class="star">&#9733;</span></div>
+        <div class="card-meta">Monstrosity &middot; CR 3 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Fly 50 + a <b>volley of three ranged tail spikes</b> per turn. Flying multi-shot artillery.</p>
+        <p class="margin-note">It thinned my flock long before I ever learned its name. I keep its shape now the way an old man keeps an old scar &mdash; carefully.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned locked">
+      <div class="beast-art" data-beast="displacer-beast">
+        <div class="art-empty"><span class="art-name">Displacer Beast</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#displacer%20beast_mm" target="_blank" rel="noopener">Displacer Beast</a></div>
+        <div class="card-meta">Monstrosity &middot; CR 3 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why"><i>Displacement</i>: attack rolls against it have disadvantage. The durable front-line form &mdash; hard to pin down.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned locked">
+      <div class="beast-art" data-beast="basilisk">
+        <div class="art-empty"><span class="art-name">Basilisk</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#basilisk_mm" target="_blank" rel="noopener">Basilisk</a></div>
+        <div class="card-meta">Monstrosity &middot; CR 3 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why"><b>Petrifying Gaze</b>. Slow, low speed, but can turn a lone pursuer to stone.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-earned locked">
+      <div class="beast-art" data-beast="bearded-devil">
+        <div class="art-empty"><span class="art-name">Bearded Devil</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#bearded%20devil_mm" target="_blank" rel="noopener">Bearded Devil</a></div>
+        <div class="card-meta">Fiend (devil) &middot; CR 3 &middot; <span class="tag d">EARNED</span></div>
+        <p class="why">Glaive with <i>Infernal Wound</i> (ongoing bleed), poison beard, Magic Resistance, fear immunity. The relentless duelist.</p>
+      </div>
+    </div>
+
+    <div class="beast-card is-beast locked">
+      <div class="beast-art" data-beast="giant-scorpion">
+        <div class="art-empty"><span class="art-name">Giant Scorpion</span><span class="art-pending">sketch pending</span></div>
+      </div>
+      <div class="card-body">
+        <div class="card-title"><a href="https://5e.tools/bestiary.html#giant%20scorpion_mm" target="_blank" rel="noopener">Giant Scorpion</a></div>
+        <div class="card-meta">Beast &middot; CR 3 &middot; <span class="tag b">BEAST</span></div>
+        <p class="why">Two claw grapples + poison sting (multiattack). The top RAW-legal Beast form at CR 3 &mdash; a locked goal above his reach; reskin as an ash-carapaced hell-scorpion once earned.</p>
+      </div>
+    </div>
+
+  </div>
+  </section>
+
+  <p class="foot">
+    Sources: <i>Monster Manual</i> (mm) and <i>Baldur's Gate: Descent into Avernus</i> (bgdia). Wild Shape RAW: PHB (Beasts only, Bonus Action). Circle of Wildfire grants no CR increase, so Or'Henn's <b>CR-2 reach</b> &mdash; and every <span class="tag d">EARNED</span> non-Beast form &mdash; is a deliberate DM ruling for this campaign, not RAW; the CR-3 tier stays <b>&#128274; locked</b> until granted. Clear each with your table. Click any form name to open its 5e.tools stat block.
+  </p>
+
+  <!-- ============ APPENDIX (screen only) — Sketching the Menagerie ============ -->
+  <div class="appendix">
+    <h2>Appendix &mdash; Sketching the Menagerie</h2>
+    <p>One reusable MidJourney v7 prompt to portrait all twenty-four forms in the same charred-codex hand. Swap <span class="ph">{CREATURE}</span> for each name below, generate at 1:1, then drop the image into the matching art slot (see the CSS note in <code>&lt;style&gt;</code> &mdash; each slot's <code>data-beast</code> slug is listed here).</p>
+
+    <div class="prompt-box">charred bestiary study of a <span class="ph">{CREATURE}</span>, aged ink-and-ember field sketch on scorched parchment, singed and torn edges, soot smudges, muted ash-tan page with ember-orange highlights and faint charcoal shading, hand-drawn naturalist study by a weary beast-keeper, the plane of Avernus setting &mdash; cracked bloodstone ground, distant hellfire haze, low red light, no text, no words, no logos, no border --style raw --v 7 --ar 1:1</div>
+
+    <p style="margin:0 0 4px;font-family:'Cinzel',serif;font-size:13px;color:#5a3d14;letter-spacing:.5px;">THE TWENTY-FOUR &mdash; name &amp; slot slug</p>
+    <ul class="slug-list">
+      <li><b>Abyssal Chicken</b> &mdash; <code>abyssal-chicken</code></li>
+      <li><b>Stirge</b> &mdash; <code>stirge</code></li>
+      <li><b>Dretch</b> &mdash; <code>dretch</code></li>
+      <li><b>Cockatrice</b> &mdash; <code>cockatrice</code></li>
+      <li><b>Nupperibo</b> &mdash; <code>nupperibo</code></li>
+      <li><b>Rust Monster</b> &mdash; <code>rust-monster</code></li>
+      <li><b>Magma Mephit</b> &mdash; <code>magma-mephit</code></li>
+      <li><b>Giant Hyena</b> &mdash; <code>giant-hyena</code></li>
+      <li><b>Giant Vulture</b> &mdash; <code>giant-vulture</code></li>
+      <li><b>Dire Wolf</b> &mdash; <code>dire-wolf</code></li>
+      <li><b>Death Dog</b> &mdash; <code>death-dog</code></li>
+      <li><b>Hippogriff</b> &mdash; <code>hippogriff</code></li>
+      <li><b>Imp</b> &mdash; <code>imp</code></li>
+      <li><b>Quasit</b> &mdash; <code>quasit</code></li>
+      <li><b>Spined Devil</b> &mdash; <code>spined-devil</code></li>
+      <li><b>Peryton</b> &mdash; <code>peryton</code></li>
+      <li><b>Ankheg</b> &mdash; <code>ankheg</code></li>
+      <li><b>Giant Constrictor Snake</b> &mdash; <code>giant-constrictor-snake</code></li>
+      <li><b>Hell Hound</b> &mdash; <code>hell-hound</code></li>
+      <li><b>Manticore</b> &mdash; <code>manticore</code></li>
+      <li><b>Displacer Beast</b> &mdash; <code>displacer-beast</code></li>
+      <li><b>Basilisk</b> &mdash; <code>basilisk</code></li>
+      <li><b>Bearded Devil</b> &mdash; <code>bearded-devil</code></li>
+      <li><b>Giant Scorpion</b> &mdash; <code>giant-scorpion</code></li>
+    </ul>
+  </div>
+
+  </div><!-- /.ink -->
+</div>
+</body>
+</html>

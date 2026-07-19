@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Or'Henn — DM's Behind-the-Screen Primer (SPOILERS)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@500;600;700&family=EB+Garamond:ital,wght@0,400;0,500;0,600;1,400;1,600&display=swap" rel="stylesheet">
+<style>
+  :root{
+    /* Official PHB/DMG cream-page family, tuned a touch redder for the DM volume */
+    --parch:#EEE5CE; --parch-deep:#DDD1AE; --parch-edge:#E7DCC0;
+    --ink:#1D1A17; --ink-soft:#4A3F2E;
+    --red:#58180D;          /* dragon red / DMG accent */
+    --red-lt:#7A2412; --red-deep:#40110A;
+    --gold:#C9AD6A; --brass:#9A7A46; --brass-dk:#6E5528;
+    --tint:#E0E4C8;         /* signature PHB table stripe */
+    --side-bg:#EAE1C7; --side-bg2:#E0D4B2; --side-bd:#B79C63;
+    --soul:#2b6d86; --green:#4d6a24;
+    --catch:#7a1608;        /* trap / encumbrance colour */
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;background:#2a2018;}
+  body{font-family:'EB Garamond',Georgia,serif;color:var(--ink);font-size:11pt;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* ---------- toolbar ---------- */
+  .toolbar{max-width:860px;margin:0 auto 6px;text-align:right;padding-top:14px;}
+  .toolbar button{font-family:'Cinzel',serif;font-size:12px;cursor:pointer;
+    background:var(--red);color:#F3E7CE;border:1px solid var(--red-deep);border-radius:4px;
+    padding:7px 15px;font-weight:600;letter-spacing:.5px;}
+  .toolbar button:hover{background:var(--red-lt);}
+
+  /* ---------- DM EYES ONLY warning ribbon ---------- */
+  .dmbanner{
+    max-width:860px;margin:0 auto;padding:11px 26px 12px;
+    background:linear-gradient(180deg,var(--red),var(--red-deep));
+    border:2px solid var(--red-deep);border-bottom:none;
+    color:#F3E7CE;font-family:'Cinzel',serif;font-size:12px;letter-spacing:2px;
+    text-transform:uppercase;text-align:center;position:relative;
+    box-shadow:inset 0 0 0 1px rgba(201,173,106,.5);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  .dmbanner b{display:block;color:#F6E7C0;font-size:15px;letter-spacing:3px;margin-bottom:2px;}
+  .dmbanner .warn{display:block;font-family:'EB Garamond',serif;text-transform:none;
+    letter-spacing:.2px;font-size:12.5px;color:#EBD8BC;font-style:italic;margin-top:4px;line-height:1.45;}
+  .dmbanner em{color:#F3E2BE;font-style:italic;}
+
+  /* ---------- the parchment page ---------- */
+  .sheet{
+    max-width:860px;margin:0 auto;padding:46px 54px 42px;position:relative;color:var(--ink);
+    background:
+      radial-gradient(115% 55% at 50% 0%, rgba(255,247,225,.5), transparent 60%),
+      radial-gradient(120% 90% at 6% 100%, rgba(110,84,36,.13), transparent 55%),
+      radial-gradient(120% 90% at 100% 94%, rgba(120,70,30,.12), transparent 52%),
+      repeating-linear-gradient(94deg, rgba(120,90,40,.02) 0 3px, transparent 3px 7px),
+      linear-gradient(175deg,var(--parch),var(--parch-deep));
+    box-shadow:0 0 40px rgba(0,0,0,.6);
+    column-count:2;column-gap:28px;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;
+  }
+  /* ornamental double frame + corner flourishes (CSS only) */
+  .sheet::before{content:"";position:absolute;inset:13px;pointer-events:none;z-index:1;
+    border:2px solid var(--red);
+    box-shadow:inset 0 0 0 3px var(--parch), inset 0 0 0 4px rgba(88,24,13,.35);}
+  .pf{position:absolute;width:13px;height:13px;background:var(--gold);
+    border:1.5px solid var(--red);transform:rotate(45deg);z-index:2;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .pf.tl{top:6px;left:6px;} .pf.tr{top:6px;right:6px;}
+  .pf.bl{bottom:6px;left:6px;} .pf.br{bottom:6px;right:6px;}
+
+  /* full-width (span-all) elements */
+  h1,.sub,h2,table,.callout,.chain,.opt,.lead,ol.beats,.foot{
+    -webkit-column-span:all;column-span:all;}
+
+  /* ---------- headings ---------- */
+  h1{font-family:'Cinzel',serif;font-size:30px;font-weight:700;margin:4px 0 3px;letter-spacing:.5px;
+     color:var(--red);text-align:center;line-height:1.12;}
+  .sub{font-style:italic;color:var(--ink-soft);margin:0 0 14px;font-size:14px;text-align:center;
+     padding-bottom:12px;border-bottom:1px solid var(--brass);}
+  h2{font-family:'Cinzel',serif;font-size:19px;font-weight:700;color:var(--red);
+     margin:26px 0 4px;letter-spacing:.4px;}
+  h2::after{content:"";display:block;height:6px;margin:5px 0 4px;background:var(--red);
+     clip-path:polygon(0 50%,2.5% 0,97.5% 0,100% 50%,97.5% 100%,2.5% 100%);}
+  h2 .n{color:var(--red-lt);margin-right:8px;}
+  h3{font-family:'Cinzel',serif;font-size:14px;font-weight:600;color:var(--red-lt);
+     margin:16px 0 3px;letter-spacing:.3px;}
+
+  /* ---------- body text ---------- */
+  p{line-height:1.5;font-size:11pt;margin:0 0 9px;text-align:justify;
+    hyphens:auto;-webkit-hyphens:auto;}
+  p.dropcap::first-letter{font-family:'Cinzel',serif;font-weight:700;color:var(--red);
+    float:left;font-size:3.5em;line-height:.72;padding:6px 8px 0 0;}
+  strong,b{color:var(--red-deep);font-weight:600;}
+  em{color:var(--ink-soft);}
+  .lead{font-style:italic;font-size:15px;color:var(--ink-soft);text-align:center;
+    margin:6px auto 10px;line-height:1.5;max-width:92%;}
+
+  /* ---------- sidebars / callouts ---------- */
+  .callout{background:linear-gradient(180deg,var(--side-bg),var(--side-bg2));
+    border:1px solid var(--side-bd);border-left:5px solid var(--red);
+    padding:12px 16px;margin:12px 0;border-radius:2px;font-size:10.6pt;line-height:1.5;
+    box-shadow:1px 2px 5px rgba(60,40,15,.22);text-align:left;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .callout b{font-variant:small-caps;letter-spacing:.3px;color:var(--red);}
+  .callout.ember{border-left-color:var(--red-lt);}
+  .callout.green{border-left-color:var(--green);} .callout.green b{color:#3c561c;}
+  .callout.soul{border-left-color:var(--soul);} .callout.soul b{color:#215d74;}
+
+  .opt{background:linear-gradient(180deg,var(--side-bg),var(--side-bg2));
+    border:1px solid var(--side-bd);border-left:5px solid var(--soul);
+    padding:10px 14px;margin:8px 0;border-radius:2px;font-size:10.4pt;line-height:1.45;
+    box-shadow:1px 2px 5px rgba(60,40,15,.2);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .opt b{color:var(--red);font-variant:small-caps;letter-spacing:.3px;}
+
+  .chain{font-family:'Cinzel',serif;font-size:13px;letter-spacing:.2px;color:var(--red-deep);
+    background:var(--side-bg);border:1px dashed var(--brass);border-radius:3px;
+    padding:13px 18px;margin:10px 0;line-height:1.75;text-align:center;
+    box-shadow:1px 2px 5px rgba(60,40,15,.18);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .chain b{color:var(--red);}
+
+  /* ---------- tables (PHB style) ---------- */
+  table{width:100%;border-collapse:collapse;margin:10px 0 12px;font-size:10pt;
+    box-shadow:1px 2px 6px rgba(60,40,15,.2);}
+  th{font-family:'Cinzel',serif;font-size:10px;letter-spacing:.8px;text-transform:uppercase;
+     text-align:left;color:#F3E7CE;background:var(--red);border:none;border-bottom:2px solid var(--red-deep);
+     padding:7px 9px;vertical-align:bottom;font-weight:600;
+     -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  td{padding:7px 9px;border:none;border-bottom:1px solid rgba(120,80,30,.35);vertical-align:top;
+     line-height:1.4;background:var(--parch-edge);
+     -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  tbody tr:nth-child(even) td{background:var(--tint);}
+  tr:last-child td{border-bottom:none;}
+  td.tight{white-space:nowrap;}
+  .enc{color:var(--catch);font-weight:700;}
+  .enc-cell{background:rgba(122,22,8,.11)!important;}
+  .give{color:#3c561c;font-weight:700;}
+  .num{font-family:'Cinzel',serif;color:var(--red);font-weight:700;text-align:center;
+    white-space:nowrap;font-size:14px;}
+
+  /* ---------- lists ---------- */
+  ol,ul{font-size:11pt;line-height:1.5;padding-left:22px;margin:4px 0 10px;text-align:justify;
+    hyphens:auto;-webkit-hyphens:auto;}
+  li{margin:2px 0;}
+  .sigs{list-style:none;padding-left:6px;font-size:10.6pt;}
+  .sigs li{margin:3px 0;}
+
+  ol.beats{list-style:none;counter-reset:beat;padding:6px 18px;margin:10px 0;
+    background:linear-gradient(180deg,var(--side-bg),var(--side-bg2));
+    border:1px solid var(--side-bd);border-radius:3px;
+    box-shadow:1px 2px 5px rgba(60,40,15,.2);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  ol.beats > li{counter-increment:beat;position:relative;padding:10px 4px 10px 48px;
+    border-bottom:1px solid rgba(120,80,30,.3);text-align:left;}
+  ol.beats > li:last-child{border-bottom:none;}
+  ol.beats > li::before{content:counter(beat);position:absolute;left:2px;top:9px;
+    width:30px;height:30px;border-radius:50%;background:var(--red);
+    color:#F3E7CE;font-family:'Cinzel',serif;font-weight:700;font-size:15px;
+    display:flex;align-items:center;justify-content:center;border:2px solid var(--gold);
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+
+  /* ---------- tags ---------- */
+  .tag{font-size:9.5px;font-weight:700;padding:1px 6px;border-radius:2px;color:#F3E7CE;
+    vertical-align:1px;letter-spacing:.4px;font-family:'Cinzel',serif;
+    -webkit-print-color-adjust:exact;print-color-adjust:exact;}
+  .tag.trap{background:var(--catch);} .tag.key{background:var(--brass-dk);}
+  .tag.boss{background:var(--red);} .tag.gate{background:var(--red-deep);}
+
+  a{color:var(--red);text-decoration:none;border-bottom:1px dotted var(--red-lt);font-weight:600;}
+  a:hover{color:var(--red-lt);}
+
+  /* ---------- footer ---------- */
+  .foot{margin-top:26px;font-size:10pt;color:var(--ink-soft);font-style:italic;
+    border-top:1px solid var(--brass);padding-top:12px;line-height:1.5;text-align:left;position:relative;}
+  .foot::before{content:"\276E \2726 \276F";display:block;text-align:center;color:var(--red);
+    font-size:15px;font-style:normal;letter-spacing:4px;margin:-2px 0 8px;}
+
+  @media print{
+    html,body{background:#fff;}
+    .toolbar{display:none;}
+    .sheet{max-width:none;margin:0;box-shadow:none;}
+    .dmbanner{max-width:none;margin:0;}
+    a{color:var(--red);}
+    @page{size:A4;margin:0;}
+    *{-webkit-print-color-adjust:exact !important;print-color-adjust:exact !important;}
+    h2,h3{break-after:avoid;}
+    table,tr,.callout,.chain,.opt,ol.beats,ol.beats>li,.sigs{break-inside:avoid;}
+  }
+
+  /* ===== ART FRAME INTEGRATION (real MidJourney page frame via border-image) ===== */
+  .sheet::before{display:none!important;} .pf{display:none!important;}   /* drop CSS frame */
+  .dmbanner{max-width:960px;}
+  .sheet{
+    max-width:960px;padding:22px 34px;
+    border-style:solid;
+    border-width:150px 112px 140px 112px;
+    -webkit-border-image:url('art/page-bg-dm.png') 205 150 190 150 stretch;
+    border-image:url('art/page-bg-dm.png') 205 150 190 150 stretch;
+  }
+  .chapterband{display:block;width:100%;height:168px;object-fit:cover;object-position:center 44%;
+    -webkit-column-span:all;column-span:all;border:2px solid var(--red);border-radius:3px;
+    margin:0 0 14px;box-shadow:0 3px 10px rgba(60,20,8,.5);}
+  @media print{
+    .sheet{max-width:none;margin:0;padding:22px 30px;border-width:150px 106px 140px 106px;}
+    html,body{background:#fff;}
+  }
+</style>
+</head>
+<body>
+
+<div class="toolbar"><button onclick="window.print()">⎙ Print / Save PDF</button></div>
+
+<div class="dmbanner">
+  <b>◆ DM EYES ONLY — SPOILERS ◆</b>
+  <span class="warn">Behind-the-screen primer for Or'Henn, the Ashen Shepherd. Every contract trap, NPC motive, and the true backstory are stated openly here. Do NOT hand to the player (Mikas). Player-facing cards live in <em>orhenn-cinderbloom-and-contracts.html</em> and <em>orhenn-wildshape-codex.html</em>.</span>
+</div>
+
+<div class="sheet">
+  <span class="pf tl"></span><span class="pf tr"></span><span class="pf bl"></span><span class="pf br"></span>
+  <img class="chapterband" src="art/header-avernus.png" alt="A charred Avernus estate-garden under a red sky">
+  <h1>Or'Henn — The Ashen Shepherd</h1>
+  <p class="sub">DM's behind-the-screen primer &middot; D&amp;D 5e (2024) &middot; <em>Descent into Avernus</em> &middot; PC of "Mikas" &middot; elderly Red Dragonborn druid, Level 11</p>
+
+  <div class="callout ember">
+    <b>The one-line pitch.</b> Or'Henn is a dispossessed <em>keeper</em>, not a refugee. He was the chief living retainer of an Avernian noble's garden-estate; a demon warband razed it and a barlgura looted his badge-of-office (the staff <a href="orhenn-cinderbloom-and-contracts.html">Cinderbloom</a>). He kept his druid magic but lost his <em>title, authority, and lawful claim</em>. The whole arc is him clawing back a domain — and the Emporium's devils are happy to sell him the paperwork, each sheet with a hook in it.
+  </div>
+
+  <!-- ============ 1. TRUE BACKSTORY ============ -->
+  <h2><span class="n">1</span>True Backstory (the full, canonical version)</h2>
+
+  <h3>The Ashen Garden</h3>
+  <p class="dropcap">Or'Henn was hatched in the <b>Ashen Garden</b> — a <b>chartered enclave of living retainers</b> attached to the estate of an Avernian devil noble. The household deliberately kept mortal gardeners, handlers, and scribes alive because <b>living hands can cultivate what Hell can corrupt but cannot create</b>. Devils can twist, torment, and pervert life; they cannot <em>grow</em> it. So the noble house farmed the one thing Avernus lacks: genuine, living nature — tended by a stable of enslaved-but-skilled keepers. This is <em>why the enclave existed and why Or'Henn's kind were valuable</em> rather than merely tortured.</p>
+
+  <h3>The predecessor &amp; the staff</h3>
+  <p>His teacher was <b>an enslaved druid taken from the Material Plane</b> — dragged to Avernus and put to work. This predecessor taught Or'Henn to drive roots through iron, bone, and ash (the flavor behind Cinderbloom's <em>Rootwright Magic</em>), and on his passing left Or'Henn <b>Cinderbloom</b>. Crucially, Cinderbloom is <b>NOT his class powers</b>. It is three things at once:</p>
+  <ul>
+    <li><b>The badge of the estate's chief keeper</b> — the symbol of office.</li>
+    <li><b>The key to the menagerie wards</b> — it opens/commands the estate's beast-containment (mechanically echoed by <em>Keeper of Fell Beasts</em>).</li>
+    <li><b>Legal proof of keepership</b> — infernal law recognizes the bearer as the lawful groundskeeper.</li>
+  </ul>
+  <div class="callout">
+    <b>Load-bearing ruling.</b> Or'Henn <b>keeps his druidic magic without the staff.</b> Wild Shape, spellcasting, Circle features — all his, always. The staff is his <em>title and inheritance</em>, not his character sheet. This is deliberate: it preserves his agency and makes recovery a story goal, not a power crutch. Do not let a table read the staff-loss as "the druid is nerfed until he gets it back." He is fully functional; what he lacks is <em>standing</em>.
+  </div>
+
+  <h3>The razing</h3>
+  <p>The estate was destroyed by a <b>Yeenoghu-aligned warband</b> — explicitly a <b>vanguard, not the demon lord himself</b> (demons that die on Avernus reform in the Abyss, so "Yeenoghu attacked" never means the god in person). Or'Henn fled without the staff. <b>What he actually lost was not power but position:</b> his office as chief keeper, his authority over the surviving beasts, and any lawful claim to the Ashen Garden.</p>
+  <div class="callout ember">
+    <b>Tie-in to Session 7 (strongly recommended).</b> The party just defeated the <b>Yeenoghu + Dumal</b> front in the Demon Zapper climax. Bolt Or'Henn's backstory onto that victory: the warband that razed his estate was <em>the same demonic incursion the party already broke.</em> That makes the new PC's grievance and the old party's triumph the same event — instant shared stakes, and it explains why the survivors/loose assets are surfacing <em>now</em>. The shield crest (a devil noble house) is the open thread; name it when the party asks, and you can hang the estate's former master off it.
+  </div>
+
+  <h3>His real ambition</h3>
+  <p>Not vengeance, not going home. Or'Henn wants to <b>recover Cinderbloom, then settle or weaponize the estate's remaining obligations and build a domain of his own.</b> He is an heir chasing an inheritance in a plane that runs on contracts — which is exactly the bait the Emporium dangles. Play him as patient, proprietary, and comfortable with infernal legalism; he is a <em>native</em> of Avernus, not a horrified visitor.</p>
+
+  <!-- ============ 2. RECOVERY ARC ============ -->
+  <h2><span class="n">2</span>The Recovery Arc — structure &amp; pacing</h2>
+  <p class="dropcap">The staff-recovery questline is a clean <b>3-beat chase to a boss</b>, threaded through three of the five contracts. The other two (II, IV) are optional side-deals for gear and for Asimov's benefit.</p>
+
+  <div class="chain">
+    estate boundary seal <b>→</b> Blood-War salvage manifest <b>→</b> barlgura <b>Kharzug the Root-Eater</b> <b>→</b> the <b>Weeping Furrow</b> trench <b>→</b> staff given as tribute to <b>Lady Urexiel, Keeper of the Scabrous Menagerie</b> (the boss)
+  </div>
+
+  <h3>The breadcrumb chain (what each contract does for the chase)</h3>
+  <ul>
+    <li><b>Contract I — <span class="tag key">LEAD</span> the manifest.</b> Recovering the estate's brass boundary seal earns an authenticated salvage manifest that <em>names</em> Kharzug the Root-Eater as the barlgura who removed Cinderbloom, and fixes his last deployment at the Weeping Furrow.</li>
+    <li><b>Contract III — <span class="tag key">TRACKER</span> the ashwood-flake compass.</b> Inside Morrow's collar is a flake of living ashwood; held over flame it bends toward the tree/staff it was cut from — a <b>1-hour compass</b> before it burns away. This is the tool that actually points at the staff.</li>
+    <li><b>Contract V — <span class="tag key">CROWBAR</span> the writ of reclamation.</b> The writ names Cinderbloom as Or'Henn's lawful property and lets him seize it from any holder below pit-fiend rank. It also <em>confirms</em> the staff passed through the Weeping Furrow to Lady Urexiel. This is the legal lever that lets him take the staff back from Urexiel without simply murdering a Keeper.</li>
+  </ul>
+
+  <h3>Avernus has no fixed distances</h3>
+  <p>No honest infernal document gives a distance. The <b>Weeping Furrow is found by three supernatural signs</b>, not by "two days east":</p>
+  <ul class="sigs">
+    <li>◆ broken chains crossing the sky</li>
+    <li>◆ iron rain falling <em>upward</em></li>
+    <li>◆ a trench that weeps black sap</li>
+  </ul>
+
+  <h3>Suggested run order (3 beats)</h3>
+  <ol class="beats">
+    <li><b>Beat 1 — Contract I (the manifest).</b> Party returns to the ruined estate, recovers the boundary seal, earns the manifest. Reveal: Kharzug + Weeping Furrow. <em>Trap primed: Or'Henn is now legally the "final acting groundskeeper" (see Encumbrance I).</em></li>
+    <li><b>Beat 2 — Contract III (the compass), then Contract V (the writ).</b> Bag Morrow for the ashwood-flake compass; take the iron-orchard job for the writ. Now the party has a pointer <em>and</em> a legal claim. Confront Kharzug at the Weeping Furrow — recover the staff, or learn it was handed onward to Urexiel.</li>
+    <li><b>Beat 3 — Lady Urexiel (the boss).</b> The staff is tribute in her Scabrous Menagerie. Resolve by writ (present the reclamation writ), by bargain, or by fight. <b>This dovetails into the Mother Ash capstone</b> — one of the three Green Remnants sits in her menagerie, so beating/dealing-with Urexiel can hand off both the staff and the first upgrade component.</li>
+  </ol>
+
+  <!-- ============ 3. CONTRACTS / ENCUMBRANCES ============ -->
+  <h2><span class="n">3</span>The Contracts — full Encumbrances (the traps, stated openly)</h2>
+  <p class="lead">"Good news: the Emporium has leads. Bad news: every lead has read the fine print." — Asimov, from inside the soul capacitor.</p>
+
+  <div class="callout soul">
+    <b>Binding mechanic (know this cold).</b> Every contract is a <b>proposed instrument</b> — it binds <em>nothing</em> until three things happen: (1) Or'Henn <b>marks it in ash</b>, (2) the <b>issuer countersigns</b>, and (3) <b>Fhet'Ahla</b> — Mahadi's amnizu notary — <b>affixes the seal of the charter</b>. Until Fhet'Ahla seals it, players can freely <em>decline</em>. Once sealed, they're hooked. Each instrument is <b>voidable only by both signatories, before Fhet'Ahla, on surrender of the original and payment of his fee</b> — so backing out is possible but costs. Asimov (soul rides the capacitor, can read infernal fine print) is the party's early-warning system for the Encumbrances; let him flag them if the players ask, or via Contract IV.
+  </div>
+
+  <table>
+    <thead>
+      <tr><th style="width:5%">No.</th><th style="width:22%">Title / Issuer</th><th style="width:34%">Consideration (what's promised)</th><th style="width:39%">Encumbrance (the trap)</th></tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="num">I</td>
+        <td><b>The Gardener's Due</b><br><em>Procurator Vhalzareth,<br>Third Infernal Chancery</em></td>
+        <td>Recover the estate's brass boundary seal ("substantially free of demonic residue") → an authenticated Blood-War <b>salvage manifest</b> naming <b>Kharzug the Root-Eater</b> as the looter and fixing his deployment at the <b>Weeping Furrow</b> (three signs).</td>
+        <td class="enc-cell"><span class="tag trap">TRAP</span> Recovering the seal <b>legally affirms Or'Henn as the estate's final acting groundskeeper</b> — assigning him custody of every <b>escaped, unculled, or improperly buried specimen</b>. <b>Three remain loose.</b> Each infernal dawn a specimen stays uncatalogued adds a <span class="enc">breach-mark to the seal; at three marks the Chancery may seize any property recovered under this instrument</span> — including the staff.</td>
+      </tr>
+      <tr>
+        <td class="num">II</td>
+        <td><b>A Measure of Honest Fire</b><br><em>Serephine Coal-Tongue,<br>salamander smith</em><br>(chartered/elemental instrument)</td>
+        <td>Infiltrate a rival's warehouse, identify grave-cold iron ingots poisoning her forge, mark them with druidic flame (no theft, no employee slain) → either <b>+1 infernal-brass sheath</b> on one weapon (+1 atk/dmg) or focus (+1 spell attack), <b>or</b> three <b>cinderseed ampoules</b> (thrown <em>entangle</em>, 20-ft, DC 15).</td>
+        <td class="enc-cell"><span class="tag trap">TRAP</span> "No employee slain" <b>excludes contractors, debtors, summoned creatures, animated tools, and anyone retroactively terminated before their recorded death.</b> Every ingot he marks is <b>certified defective</b>; if one marked ingot later proves <span class="enc">sound, he owes a year-and-a-day of furnace service — or three soul coins</span>.</td>
+      </tr>
+      <tr>
+        <td class="num">III</td>
+        <td><b>The Hound That Remembers</b><br><em>Pellucid Jax,<br>beast broker</em></td>
+        <td>Capture alive &amp; unmaimed the ember-muzzled hell hound <b>"Morrow"</b> (green-copper collar; ate three customers + one ledger) → the collar's inner plate holds his household crest and the <b>living-ashwood flake compass</b> (bends toward the staff for 1 hour over flame).</td>
+        <td class="enc-cell"><span class="tag trap">TRAP</span> Morrow is filed as an <b>"independent commercial predator," not Jax's property.</b> Delivery is an unsolicited adoption unless <b>500 gp is deposited into the collar's escrow before Jax opens it</b>. Unpaid → <span class="enc">title to Morrow and every recorded liability of its prior killings vests in Or'Henn</span>.</td>
+      </tr>
+      <tr>
+        <td class="num">IV</td>
+        <td><b>Articles of Temporary Embodiment</b><br><em>Mistress Nymira Quill,<br>night hag</em><br>(Fhet'Ahla enforces)</td>
+        <td>Obtain the still-warm shadow of a creature that <em>willingly</em> took an infernal bargain and <em>died regretting it</em>, folded in before the corpse cools → <b>Asimov manifests for 1 hour</b> (own stats, spectral gear); can touch one creature to read the exact text of one contract binding it, and <b>learns one hidden clause in his own confinement instrument</b>.</td>
+        <td class="enc-cell"><span class="tag trap">TRAP</span> A rental, not a resurrection. At hour's end the <b>nearest eligible recipient takes necrotic damage = half the HP Asimov lost during the rental (max 8d10)</b>, ignoring resistance, never below 1 HP. <span class="enc">"Eligible" = anyone who knowingly accepted Asimov's healing, inspiration, protection, food, or tactical counsel during the hour.</span></td>
+      </tr>
+      <tr>
+        <td class="num">V</td>
+        <td><b>The Orchard of Borrowed Names</b><br><em>Advocate Malfius Nine-Reeds,<br>clerk under Fhet'Ahla</em></td>
+        <td>Cut through a grove of iron trees (feeding on true names) to a buried infernal war machine; retrieve the obsidian coffer from its command seat — <b>don't open it, don't speak your own name inside the grove</b> → a <b>writ of reclamation</b> (honored below pit-fiend rank) naming Cinderbloom Or'Henn's property, seizable from any holder. Malfius attests the staff went to <b>Lady Urexiel</b>.</td>
+        <td class="enc-cell"><span class="tag trap">TRAP</span> The writ establishes ownership <b>by inheritance</b> — naming Or'Henn legal successor to his master's whole estate: <b>every surviving asset, servant, enemy, debt, oath, lien, and unfinished punishment.</b> The coffer holds a <b>blank name-substitution writ keyed to the Third Chancery</b>; <span class="enc">open it (even by accident) and the first true name released replaces Or'Henn's on every contract he's ever signed</span>. Malfius won't say whose name is inside.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <div class="callout">
+    <b>How the traps interlock (the elegant part).</b> Encumbrance I makes Or'Henn liable for the three loose specimens; Encumbrance V makes him heir to <em>every</em> asset/enemy/debt of the estate. Sign both and he has legally adopted the entire wreck of the Ashen Garden — which is <em>exactly the domain he wants</em>, just weaponized against him. That's the campaign: he can accept the burdens and become a landed keeper, or spend the arc voiding instruments before Fhet'Ahla. Both are good outcomes; make him choose.
+  </div>
+
+  <!-- ============ 4. MOTHER ASH ============ -->
+  <h2><span class="n">4</span>The Mother Ash — the staff upgrade (capstone)</h2>
+  <div class="callout green">
+    <b>Vaelisha, the Mother Ash — the Last Green of Avernus.</b> Before this plane became the first layer of Hell it was a living world; when it fell, all its nature burned save <b>one tree</b>, hidden in a warded hollow and kept barely alive. <b>Every infernal gardener's staff — Or'Henn's and his predecessor's alike — was cut from her boughs.</b> To rekindle Cinderbloom the party gathers what remains of Avernus's nature and feeds it to her; her renewed sap re-infuses the staff.
+  </div>
+
+  <h3>The rite (quest)</h3>
+  <p class="dropcap">Collect <b>three Green Remnants</b> — the last living scraps of Avernus's nature — then perform an <b>8-hour infusion rite</b> at Vaelisha. Suggested remnants:</p>
+  <ul>
+    <li>the <b>last seed of Idyllglen</b>;</li>
+    <li><b>living moss from a fallen titan's ribs</b> in the Bleeding Wastes;</li>
+    <li>a <b>sap-heart cutting held in Lady Urexiel's Scabrous Menagerie</b> — <b>dovetails directly with Contract V and the boss beat</b>, so the same confrontation that recovers the staff can also yield the first upgrade component.</li>
+  </ul>
+  <div class="callout ember">
+    <b>Gating advice.</b> <b>Do not open the Mother Ash arc until the staff itself is recovered.</b> Cinderbloom must exist in Or'Henn's hand before it can be Rekindled; recovering it is the emotional payoff of the whole chase, and the upgrade is the <em>reward beyond the reward</em>. Sequence: recover staff (Urexiel beat) → then Green Remnants → then Vaelisha rite. The Urexiel Green Remnant is your natural bridge between the two arcs.
+  </div>
+
+  <h3>Cinderbloom Rekindled — what the upgrade grants (LEGENDARY)</h3>
+  <p>Keeps every base power, and adds:</p>
+  <table>
+    <thead><tr><th style="width:26%">Upgrade</th><th>Effect</th></tr></thead>
+    <tbody>
+      <tr><td><b>Greenfire Charges</b></td><td>Capacity rises to <b>14 charges</b>; regains <b>2d6 + 4</b> on a long rest; <b>no longer risks going dark on a 1</b> (the Mother Ash's sap keeps the ember lit).</td></tr>
+      <tr><td><b>Deepwood Casting</b></td><td>Adds to the Rootwright list: <b>Wall of Thorns</b> (5), <b>Sunbeam</b> (6), <b>Fire Storm</b> (7). <b>Cinderheart now deals 4d8</b>, and <b>against fiends its damage is radiant</b> — burns straight through devilish fire-immunity.</td></tr>
+      <tr><td><b>Bloom of the Last Green</b></td><td>Once/day, action: raise a living grove in a <b>30-ft radius for 1 min</b> (natural difficult terrain). Start of each of your turns: allies within regain <b>1d8 HP</b>; any fiend that starts its turn there takes <b>2d8 radiant</b>. You see/target through it freely.</td></tr>
+      <tr><td><b>Warden's Hold</b></td><td><em>Keeper of Fell Beasts</em> now affects creatures of <b>Int 8 or lower</b>, and you may keep <b>two</b> such creatures charmed at once.</td></tr>
+    </tbody>
+  </table>
+
+  <!-- ============ 5. NPC ROSTER ============ -->
+  <h2><span class="n">5</span>NPC Roster — motives &amp; betrayal angles</h2>
+  <table>
+    <thead><tr><th style="width:17%">NPC</th><th style="width:20%">Role</th><th style="width:31%">What they want</th><th style="width:32%">How they betray / complicate</th></tr></thead>
+    <tbody>
+      <tr>
+        <td><b>Fhet'Ahla</b></td>
+        <td>Amnizu notary of Mahadi's charter (the seal on <em>every</em> contract)</td>
+        <td>Order, fees, and the integrity of his own charter. He is the fulcrum of the whole system — nothing binds or voids without him.</td>
+        <td>Neutral-but-not-safe: he enforces the letter exactly as written, including the Encumbrances. Voiding costs "his fee" (leave it vague — a favor, a secret, a soul-coin). He can slow-walk a voiding the party urgently needs.</td>
+      </tr>
+      <tr>
+        <td><b>Procurator Vhalzareth</b></td>
+        <td>Estate-Reclamation Advocate, Third Infernal Chancery (Contract I)</td>
+        <td>To re-file the ruined Ashen Garden as a taxable, liability-bearing asset — with a warm body legally on the hook for it.</td>
+        <td>He wants Or'Henn to <em>be</em> the acting groundskeeper (Encumbrance I) so the Chancery can seize recovered property via breach-marks. He profits whether Or'Henn succeeds or defaults.</td>
+      </tr>
+      <tr>
+        <td><b>Serephine Coal-Tongue</b></td>
+        <td>Salamander smith, the Gilded Crucible (Contract II)</td>
+        <td>To sabotage a rival by having a neutral third party "certify" the rival's iron defective.</td>
+        <td>Or'Henn is her patsy: his druidic mark <em>is</em> the certification. If any ingot proves sound, the year-service / three-soul-coin penalty falls on him, not her.</td>
+      </tr>
+      <tr>
+        <td><b>Pellucid Jax</b></td>
+        <td>Infernal beast broker, Jax's Immaculate Menagerie (Contract III)</td>
+        <td>To offload a lethal, liability-laden hound ("Morrow") onto someone else while keeping the useful collar-intel as bait.</td>
+        <td>The 500 gp escrow is a trapdoor: forget it and Or'Henn inherits Morrow <em>and</em> all its prior kills. Jax profits from the adoption either way.</td>
+      </tr>
+      <tr>
+        <td><b>Mistress Nymira Quill</b></td>
+        <td>Night hag, broker of posthumous opportunities (Contract IV)</td>
+        <td>Souls and dependency. She sells Asimov an hour of embodiment because the debt it creates is worth more than the favor.</td>
+        <td>The injury-transfer clause weaponizes the party's own teamwork against them — anyone Asimov helped becomes the "willing" recipient of up to 8d10 necrotic. She profits from party cohesion.</td>
+      </tr>
+      <tr>
+        <td><b>Advocate Malfius Nine-Reeds</b></td>
+        <td><b>Lesser counsel / clerk under Fhet'Ahla</b> (Contract V) — NOT a second amnizu</td>
+        <td>To move a dangerous name-substitution device out of the war machine and into a mark's hands, wrapped in a genuinely useful writ.</td>
+        <td>The writ is real and works — but its inheritance clause and the coffer's blank name-writ are the sting. He declines to name the imprisoned true name. Treat him as a mid-rank fixer who answers upward to Fhet'Ahla.</td>
+      </tr>
+      <tr>
+        <td><b>Lady Urexiel</b></td>
+        <td><b>Keeper of the Scabrous Menagerie — holds the staff</b> (the boss of the recovery arc)</td>
+        <td>To keep her collection intact; Cinderbloom was given to her as <em>tribute</em> and a sap-heart Green Remnant sits in her menagerie.</td>
+        <td>She won't surrender tribute cheaply. Resolve by writ (Contract V), by bargain (offer a specimen, a service, or a rival's head), or by force. She can also be the party's route to the first Green Remnant — leverage, not just a fight.</td>
+      </tr>
+      <tr>
+        <td><b>Kharzug the Root-Eater</b></td>
+        <td>Barlgura who looted the staff from the estate (the mid-arc obstacle)</td>
+        <td>Plunder and survival; he's a Blood-War asset last deployed to the Weeping Furrow. He passed the staff up the chain as tribute.</td>
+        <td>He no longer has the staff (gave it to Urexiel), so killing him yields intel, not the prize — a deliberate mid-point turn that redirects the party to the real boss.</td>
+      </tr>
+    </tbody>
+  </table>
+
+  <!-- ============ 6. ADJUDICATION ============ -->
+  <h2><span class="n">6</span>Adjudication Notes — running Or'Henn</h2>
+
+  <h3>(a) Wild Shape &amp; the infernal form list</h3>
+  <div class="callout">
+    <b>Non-Beast forms must be EARNED individually.</b> Or'Henn does <b>not</b> auto-gain the Monstrosity/Fiend/Elemental forms in the <a href="orhenn-wildshape-codex.html">Wild Shape Codex</a>. Each must be unlocked by studying, defeating, binding, or tending that specific creature. When earned, he gains only its <b>physical shape and natural attacks</b> — <b>no innate spellcasting, no Shapechanger, no Summon</b>, no other magical traits, unless you explicitly grant them. He is a <b>Circle of Wildfire</b> druid (RAW cap: CR 1); by your ruling he Wild Shapes as a <b>Bonus Action</b> into <b>CR ≤ 2</b> — Beast and earned-infernal forms alike, synergizing with <em>Keeper of Fell Beasts</em>. <b>CR 3 forms stay locked</b> (aspirational; the Hell Hound is his signature goal).
+  </div>
+
+  <h3>(b) Cinderbloom balance (very rare, as tuned in review)</h3>
+  <table>
+    <thead><tr><th style="width:32%">Property</th><th>Ruling</th></tr></thead>
+    <tbody>
+      <tr><td><b>Rarity</b></td><td><b>Very rare</b> (attunement by a druid). Legendary only after the Mother Ash rite.</td></tr>
+      <tr><td><b>The +2</b></td><td>+2 to weapon attack/damage <em>and</em> <b>+2 to spell ATTACK rolls only</b>. <b>No save-DC bump</b> (the +2-to-DC version was pulled back; kept in line with the rare Staff of the Woodlands). All staff effects use <b>the wielder's own spell save DC</b>.</td></tr>
+      <tr><td><b>Cinderheart</b></td><td>Costs <b>2 charges</b> (dialed up from 1). 3d8 fire, DC = his spell save DC.</td></tr>
+      <tr><td><b>Keeper of Fell Beasts</b></td><td>Costs <b>4 charges</b>; only affects creatures of <b>CR ≤ his proficiency bonus</b>; the target <b>re-saves whenever it takes damage</b>; 24-hr immunity after it ends.</td></tr>
+      <tr><td><b>Recharge</b></td><td><b>1d6 + 4</b> on a long rest, <b>only once per 24h</b>. Last charge → d20, on a <b>1</b> it goes dark until replanted in fertile soil and watered for 8h.</td></tr>
+    </tbody>
+  </table>
+
+  <h3>(c) The staff is title, not class</h3>
+  <p>Restated because it's the most important framing: <b>Or'Henn keeps all his druid magic without Cinderbloom.</b> The staff is inheritance/authority/keeper's-badge. Losing it costs him <em>standing</em>, not <em>spells</em>. Never adjudicate the arc as "underpowered until recovery."</p>
+
+  <h3>(d) Asimov, the soul capacitor &amp; the Soul Council's clock</h3>
+  <div class="callout soul">
+    <b>Asimov is the party's own fallen Soulknife.</b> He <b>died at Yeenoghu's hands</b> in the Session-7 climax, and his soul was taken into the <b>soul capacitor</b> — a bounty-hunter's soul-vessel governed by the <b>Soul Council</b>. His soul occupies it now <b>in place of Rasheem</b> — the <b>previous occupant</b>, and the one who <b>fed Asimov his bounties</b> back when Asimov was the living hunter. The role runs in a chain: the trapped soul relays bounties to a living bounty hunter, and when that hunter dies they take the occupant's place. Asimov's death to Yeenoghu is why the vessel holds him now and not Rasheem — and why Asimov relays to the party exactly as Rasheem once did to him. <b>The Soul Council has given Asimov one week to find another bounty hunter</b> — that ticking clock is why he relays the <b>soul-bounties</b> and why the party needs <b>Or'Henn</b>. From inside the vessel he can <b>read infernal fine print</b>: mechanically he's the party's rules-lawyer against the Encumbrances (let him warn players who consult him), and <b>Bounty IV (Articles of Temporary Embodiment)</b> is his showcase — an hour of embodiment that reads the exact text of a contract binding a creature <em>and</em> exposes one hidden clause of his own confinement. <b>Continuity:</b> the party knew Asimov; <b>Or'Henn never did</b> — Or'Henn is the fresh recruit, met at the Emporium as a post-ravager refugee.
+  </div>
+
+  <!-- ============ 7. THREADS ============ -->
+  <h2><span class="n">7</span>Threads &amp; Foreshadowing</h2>
+
+  <h3>The coffer's imprisoned true name (Contract V) — DM decides whose</h3>
+  <p class="dropcap">The blank name-substitution writ inside the obsidian coffer holds one imprisoned true name; Malfius won't say whose. Pick one and seed it:</p>
+  <div class="opt"><b>Option A — Or'Henn's dead master.</b> The devil noble who owned the Ashen Garden. Releasing his name onto Or'Henn's contracts makes Or'Henn <em>legally become his former owner</em> — inheriting the estate's enemies in the most literal, horrifying way. Ties the whole arc into a single knot.</div>
+  <div class="opt"><b>Option B — the enslaved predecessor druid.</b> The Material-Plane druid who taught Or'Henn and left him the staff. A mercy-and-horror choice: freeing the name could liberate a long-tormented soul — or overwrite Or'Henn with a broken one. Emotional, personal.</div>
+  <div class="opt"><b>Option C — a Yeenoghu-front demon lieutenant.</b> The named commander of the warband that razed the estate (and the Session-7 front). Releasing it swaps Or'Henn's identity for a wanted demon's — every devil debt in Avernus suddenly hunts <em>him</em>. Highest-stakes, most explosive.</div>
+
+  <h3>The three uncatalogued specimens (Contract I)</h3>
+  <p>Three beasts from the estate menagerie are loose and unaccounted for — the live source of Encumbrance I's breach-marks, and a ready-made monster-of-the-week trio. One of them can be <b>Morrow</b> (Contract III), collapsing two threads into one. The other two are yours to design (candidates: something that escaped into the Bleeding Wastes near a Green Remnant; something a rival keeper is already hunting). Each day they stay loose ticks the clock on the seal.</p>
+
+  <h3>Hooks toward the next arc — Bel's Forge</h3>
+  <p>Next destination is <b>Bel's Forge</b> (<em>session-6-bels-forge-primer.md</em>). Bridges: (1) the infernal war machine in Contract V is Forge-made — trace its maker's mark to Bel; (2) infernal-brass gear (Contract II) and the writ's authority both point toward Bel's industrial-legal apparatus; (3) a Green Remnant or the Mother Ash's warded hollow can sit along the road to the Forge. Use the staff-recovery arc as the connective tissue between the closed Dumal/Yeenoghu arc and Bel's Forge.</p>
+
+  <p class="foot">
+    Sources of truth: <em>orhenn-session-digest.md</em> (canon), <em>orhenn-cinderbloom-and-contracts.html</em> (item + contract cards, Encumbrances extracted above), <em>orhenn-wildshape-codex.html</em> (form list &amp; Wild Shape rulings). This primer contradicts none of them; where the digest and the HTML cards differ, the HTML cards are canonical. DM-only — do not print for the player.
+  </p>
+</div>
+
+</body>
+</html>
