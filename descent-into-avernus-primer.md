@@ -1,6 +1,6 @@
 # ELTUREL FALLING
 
-**A living DM primer for *Baldur's Gate: Descent into Avernus* — heavily homebrewed · D&D 5e · a party of three at Level 11.**
+**A living DM primer for *Baldur's Gate: Descent into Avernus* — heavily homebrewed · D&D 5e · a party of three at Level 12.**
 
 ---
 
@@ -9,7 +9,7 @@
 This is a **sandbox reference, refreshed each session — not a script.** The players go where they want; your job is to hold the world steady and let it react. Everything below serves that.
 
 - **One volatile section.** Only the **Living State Header** is edited each session — location, clocks, influence, ship status, party snapshot. Every other section is stable and points back to the header for any live value. If you find a date, countdown, or "current" fact ticking anywhere *but* the header, it is a bug — move it there.
-- **A web, not a rail.** Every site in **Chapter 3** is enterable right now at level 11. Play gates on **KEYS and INFORMATION, never sequence.** Skip a key (the compass, the writ, Eldra's signet, the adamantine rods, Kreeg's living hand) and the party still gets in — they just pay in blood, coin, or a buried clause. Never a locked door; improvise the price.
+- **A web, not a rail.** Every site in **Chapter 3** is enterable right now at level 12. Play gates on **KEYS and INFORMATION, never sequence.** Skip a key (the compass, the writ, Eldra's signet, the adamantine rods, Kreeg's living hand) and the party still gets in — they just pay in blood, coin, or a buried clause. Never a locked door; improvise the price.
 - **Two voices, never mixed.** DM prose is blunt and imperative. Player-facing text sits in blockquotes marked **"READ ALOUD:"** — read those aloud; never read a DM note or a **DM ONLY:** line to the table. All read-aloud text here is original.
 - **Glyphs = live state at a glance.** ✅ done / held · ⚠️ live / ticking · ❌ lost / dead · ❓ unknown to the party.
 - **Beats fire once, on events.** The gut-punches in **Revelations** trigger on things that *happen* — a first entry, a clock expiry, a roll — never on a menu choice, so each lands on any route. Mark it fired; it never repeats.
@@ -22,7 +22,7 @@ This is a **sandbox reference, refreshed each session — not a script.** The pl
 
 > **PREMISE —** High Overseer **Thavius Kreeg** sold Elturel to the archdevil **Zariel** by infernal contract, then bound the whole city to it through the **Creed Resolute**. Elturel now hangs in the burning sky of Avernus, sinking by degrees toward the **river Styx** — and when it touches, every soul aboard becomes a devil forever. Two levers can save it: **THE SWORD** — Zariel's own blade in the **Bleeding Citadel**, which bleeds into being once every **33 days** — and **THE LAW** — Kreeg's true contract, the instrument that can annul the sale itself. Find the blade, break the contract, beat the heartbeat.
 >
-> **PARTY (Level 11) —** **Drenwal** (Light Cleric, Bhaalspawn, just killed his brother Dumal, cure pending) · **Aurora** (Archfey Warlock riding the freed celestial **Moonkite**) · **Or'Henn** (elderly Red Dragonborn Wildfire Druid hunting his lost staff **Cinderbloom**, now the Soul Capacitor's living carrier). Allies on call: **Veska** (Hellrider), **Ser Lucan the Reforged**, a **githzerai monk**, **Jeremy** (Lady Vengeance), **Lulu** (hollyphant, memories returning). **Asimov** is dead — his soul **SAVED** inside the Capacitor, speaking to Or'Henn.
+> **PARTY (Level 12) —** **Drenwal** (Light Cleric, Bhaalspawn, his brother Dumal escaped him alive, cure pending) · **Aurora** (Archfey Warlock riding the freed celestial **Moonkite**) · **Or'Henn** (elderly Red Dragonborn Wildfire Druid hunting his lost staff **Cinderbloom**, now the Soul Capacitor's living carrier). Allies on call: **Veska** (Hellrider), **Ser Lucan the Reforged**, a **githzerai monk**, **Jeremy** (Lady Vengeance), **Lulu** (hollyphant, memories returning). **Asimov** is dead — his soul **SAVED** inside the Capacitor, speaking to Or'Henn.
 >
 > **RIGHT NOW —** The **Wandering Emporium** is the hub. Or'Henn has sealed on as the Capacitor's carrier (Asimov's soul secured, the Soul Council clock **closed**); soul-bounties now flow to him. Kreeg hides here as "**Vessper Hain**." The **Lady Vengeance** is crippled and needs **adamantine control rods** — the same rods **Bel** demands (one fetch, two payoffs). Standing next destination: **Bel's Forge**.
 >
@@ -53,8 +53,15 @@ Read top to bottom the first time; after that, jump. Only the **Living State Hea
 
 > **HARD RULE:** M1 is the ONLY section that ever holds a date, countdown, or "current" fact. Every other module points here with "(see M1)". If you find a number ticking anywhere in M2–M9, it is a bug — move it here.
 
-**WHERE:** The party is at the **Wandering Emporium**, two days after Or'Henn's Bag-of-Beans trial. The bazaar has re-anchored on a slag plain under a bruise-colored sky; Mahadi's tents are up, the perfume-and-carrion smell is thick.
-**WHAT:** **Or'Henn has signed on as the Soul Capacitor's living carrier** — the binding sealed in ash at Fhet'Ahla's desk. **Asimov's soul is SAVED** (secured in the Capacitor; no reassignment, no auction) and the Council's one-week clock is **closed**. Or'Henn now receives the Emporium's soul-bounties directly. The remaining contracts still sit on the desk as tools (compass, writ, etc.). The **Lady Vengeance** limps at the Emporium's edge: half speed, ONE force cannon live, NO Soul Coin Overdrive, until she gets **adamantine control rods** (the same rods Bel demands — one fetch, two payoffs).
+**WHERE:** On the move — the party is **traveling toward Arkhan's Tower.** They have just come from **the Obelisk**, where they tried many approaches to prise out the **passwords** to the **Crypt of the Hellriders** and the **Mirror of Mephistar** (see those entries in Ch.3).
+**WHAT:** The party is now **Level 12** (the Bag-of-Beans trial — the pink-frog fight — tipped them over). **Or'Henn is the Soul Capacitor's carrier; Asimov's soul is SAVED** (Council clock closed). The **Lady Vengeance** still needs **adamantine control rods** (Bel wants them too).
+
+**⚠️ LIVE THREADS — this session:**
+- **Dumal is ALIVE.** He escaped the Demon Zapper through the **black smoke**; Drenwal **scried him bound for the Mirror of Mephistar** to petition **Mephistopheles** that the party set Yeenoghu loose on him. Arc **OPEN** — a returning, aggrieved Bhaalspawn courting a devil-lord's backing.
+- **Feonor — *Geas*-bound.** Or'Henn defeated her and cast ***Geas*** to make her **bring back Cinderbloom** (his ashen staff). She is now the party's living staff-hunter (5d10 psychic/day if she defies it; 30 days per casting — track re-casts). See her dossier.
+- **The Obelisk — passwords.** The party worked the obelisk hard for the words to the **Crypt of the Hellriders** and the **Mirror of Mephistar.** DM: rule exactly what they got and note it here.
+- **Ubbalex's deal — UNTAKEN.** The devil Ubbalex's offer is on the table and **unsigned** — still a live lever. See his dossier.
+- **Next: Arkhan's Tower** (current heading — see Ch.3).
 
 ---
 
@@ -79,7 +86,7 @@ Read top to bottom the first time; after that, jump. Only the **Living State Hea
 
 | PC / Ally | State this session |
 |---|---|
-| **Drenwal** — Light Cleric, Bhaalspawn | Grieving fresh kill of brother Dumal. Attuned: **Shield of the Hidden Lord** (Gargauth whispering). Cure pending: rebirth before a god who never claimed him. Sister **Senna** hidden with Harper Issa. HP/spell slots: _DM-fill_ |
+| **Drenwal** — Light Cleric, Bhaalspawn | Shaken: brother Dumal escaped the Demon Zapper alive (scried en route to Mephistar). Attuned: **Shield of the Hidden Lord** (Gargauth whispering). Cure pending: rebirth before a god who never claimed him. Sister **Senna** hidden with Harper Issa. HP/spell slots: _DM-fill_ |
 | **Aurora** — Archfey Warlock | Bonded the celestial **Moonkite** as mount; Wish spent. Next thread: the Moonkite's lost patron (→ Coram). HP/slots: _DM-fill_ |
 | **Or'Henn** — Wildfire Druid 11 (NEW) | Cinderbloom **lost** (staff hunt live). Wild Shape CR≤2 by ruling; Wildfire spirit + spells intact. Does not yet know his master's crest = Kreeg's seal. HP/slots: _DM-fill_ |
 | **Allies on call** | Veska (CR8, fear-immune, officiates Drenwal's rebirth) · Ser Lucan the Reforged (CR7 shield) · githzerai monk (CR6, psionic) · Jeremy (Lady Vengeance) · Lulu (hollyphant, memories returning) |
@@ -169,7 +176,7 @@ Elturel — the City of the Second Sun — did not fall by accident, and it did 
 | 3 | **Bone Brambles** | ✅ | **Red Ruth** the night hag destroyed. Her hoarded leftovers — secrets, ingredients, teeth — sit in the party's packs to this day. **Mahadi** of the Wandering Emporium covets them, and has said so. |
 | 4 | **Haruman's Hill** | ✅ | **Haruman** annihilated. **Fallen Three: 1 of 3.** The trophy became "the Haruman piece" — one third of the blood-price the Citadel demands. |
 | 5 | **Palace of Gore** | ✅ | Aurora spent her **one Wish** to strip the amnizu **Bitter Breath** of his stolen power. Decades of devilhood caught him at once and he died a withered old man — **Aldwin Ardentwine**, a Hellrider lost to Hell long ago. The same Wish shattered the **Moonkite's** cage; the celestial steed bonded to Aurora as her mount. Freed from the cells: the Hellrider **Veska** and a **githzerai monk.** On the way out, a fresh Bhaal-glyph carved in blood — *"He misses you."* Dumal had been watching. |
-| 6 | **The Demon Zapper** | ✅ | The climax. **Yeenoghu**, Demon Lord of Gnolls, was destroyed — and so was **Dumal the Flame Ascendant**, Drenwal's own brother. Drenwal struck the killing blow himself. **Asimov died** in the same fight; his soul did not scatter — it was caught, whole, in the **Soul Capacitor.** |
+| 6 | **The Demon Zapper** | ✅ | The climax. **Yeenoghu's** incursion-avatar was destroyed — but **Dumal the Flame Ascendant**, Drenwal's brother, **escaped through the black smoke, alive.** **Asimov died** in the same fight; his soul was caught, whole, in the **Soul Capacitor.** |
 | 7 | **The Wandering Emporium** | ⚠️ | **Current hub.** Mahadi's roving bazaar under a peace older than the war. The party recruited **Or'Henn**, an old Red Dragonborn druid burned out of his home, now the Capacitor's living carrier — Asimov's soul relays **soul-bounties** to him from inside. The **Lady Vengeance** limps at berth, crippled and in need of parts. |
 
 ---
@@ -180,7 +187,7 @@ Elturel — the City of the Second Sun — did not fall by accident, and it did 
 
 | Who | The wound |
 |---|---|
-| **Drenwal** | He killed **Dumal** — his brother "Den" — with his own hand. There is no undoing it and no bringing him back; there is only the grief. Beneath it, two gods pull at his spine: **Bhaal's Claim** (50) hunts him through his own Divine Intervention, and **Gargauth's Bargain** (35) whispers through the Shield, angling to be the god who "catches" him in the rebirth. ❓ And somewhere out there breathes **Senna** — a hidden 6-year-old Bhaalspawn sister he does not yet know exists. |
+| **Drenwal** | He had **Dumal** — his brother "Den" — beaten, and Dumal **slipped the black smoke and got away.** He is alive; Drenwal **scried him making for the Mirror of Mephistar** to petition Mephistopheles over the Yeenoghu the party loosed on him. Beneath the guilt, two gods pull at his spine: **Bhaal's Claim** (50) hunts him through his own Divine Intervention, and **Gargauth's Bargain** (35) whispers through the Shield, angling to be the god who "catches" him in the rebirth. ❓ And somewhere out there breathes **Senna** — a hidden 6-year-old Bhaalspawn sister he does not yet know exists. |
 | **Aurora** | Her **Wish is gone** — one charge, spent to un-devil a monster, and now an inert silver band. It bought a mercy: **Aldwin Ardentwine's** dust, a man who got to die human. She carries the cost and the kindness together. |
 | **Or'Henn** | His home, the **Ashen Garden**, is a razed cinder. His staff — **Cinderbloom**, his title, his inheritance, the key to the beasts he once shepherded — was carried off in the sack. ❓ *(DM ONLY: the raid that burned his estate was commissioned by Lady Urexiel, and it was hunting a man named Kreeg; the crest on Or'Henn's shield is Kreeg's own house. The party knows none of this.)* |
 | **Asimov** | Dead, but not lost — a voice under turning pages and distant screams. The **Soul Council** has given him **one week** to seat a new living hunter or forfeit the vessel. That is why Or'Henn was recruited. That is why the bounties keep coming. |
@@ -211,7 +218,7 @@ Elturel hangs in the red sky of Avernus on chains of light, and the chains are f
 
 > **READ ALOUD:** There is no sun here — only a sky the color of a wound that will not close, and light that comes from everywhere and warms nothing. The ground is cracked black glass and drifting ash, and it goes to the horizon in every direction you turn. Far off, dust-plumes crawl in long lines where war-machines grind toward a battle no one remembers starting. The river you can smell before you see it: the Styx, sluggish and grey, muttering the names of everyone who ever drank from it. And overhead — chained to the sky by links each as long as a keep is tall — hangs Elturel. Your city. It turns slowly on its chains, close enough that you can count the dark streets where the lamps have gone out, and it sits lower today than it did yesterday. Not falling. *Sinking.* Patient as a stone in water. Somewhere under all that iron and fire, people are still praying, and the prayers are still going nowhere.
 
-Avernus is the first layer of the Nine Hells — the Blood War's front line, a wasteland of basalt flats, blood pools, wrecked fortresses, and roving devil legions. It has weather (ash-storms, firefalls), it has factions (Zariel's armies, demon incursions up from the Abyss, scavenger warlords, the Emporium's neutral commerce), and it has one law above all others: **nothing here is free, and everything is watching.** The party is at level 11, well-armed, ship-borne, and known. That is enough to survive Avernus. It is not enough to leave it. Leaving requires the Sword.
+Avernus is the first layer of the Nine Hells — the Blood War's front line, a wasteland of basalt flats, blood pools, wrecked fortresses, and roving devil legions. It has weather (ash-storms, firefalls), it has factions (Zariel's armies, demon incursions up from the Abyss, scavenger warlords, the Emporium's neutral commerce), and it has one law above all others: **nothing here is free, and everything is watching.** The party is at level 12, well-armed, ship-borne, and known. That is enough to survive Avernus. It is not enough to leave it. Leaving requires the Sword.
 
 ---
 
@@ -309,7 +316,9 @@ Feeds: **MAIN** (free Elturel / the Sword) · **STAFF** (Or'Henn's Cinderbloom h
 | **Palace of Gore** `palace` | ✅ | Done: Bitter Breath dead (wished mortal), **Moonkite freed** & bonded to Aurora. Lulu's memory-thread began here. | (resolved) | → history |
 | **Bone Brambles** `brambles` | ✅ | Done: Red Ruth dead. Her leftovers (Bhaalspawn intel, heartstone) are party loot Mahadi covets. | (resolved) | → history |
 | **Haruman's Hill** `haruman` | ✅ | Done: Haruman killed → **Fallen Three 1/3**, the "Haruman piece" held. | MAIN (banked) | → history |
-| **The Demon Zapper** `zapper` | ✅ | Done: **Dumal + Yeenoghu killed**. Yielded the **Tears of the Caged Star** (raw celestial power). | (resolved) | → history |
+| **The Demon Zapper** `zapper` | ✅ | **Yeenoghu's avatar destroyed; Dumal ESCAPED** (black smoke). Yielded the **Tears of the Caged Star**. | ⚠️ Dumal at large | → history |
+| **Arkhan's Tower** `arkhan` | ⚠️ | **CURRENT DESTINATION.** Arkhan the Cruel (paladin of Tiamat) — deals, doesn't give; possible password / road-lead. | ◻ new | ↓ entry |
+| **The Obelisk** `obelisk` | ✅⚠️ | Password source for the **Crypt** + **Mephistar**; party tried many ways — DM rule the payoff. | resource | ↓ entry |
 
 ---
 
@@ -321,6 +330,8 @@ Feeds: **MAIN** (free Elturel / the Sword) · **STAFF** (Or'Henn's Cinderbloom h
 > `Haruman ✅ → Bel ⚠️ → Olanthius ◻️`. Each holds a fragment of the road to the Bleeding Citadel. Assemble all three (or lean on **Lulu's returning memory**, the redundant route) → reach the Citadel in a window → take **Zariel's Sword**. The Sword is the *physical* lever on Elturel's chains.
 >
 > **WEB 2 — THE STAFF-HUNT (Or'Henn's PC arc).**
+
+> **★ NEW — Feonor is *Geas*-bound to fetch the staff.** Or'Henn's *Geas* makes **Feonor** run this exact chain for him. She's a **forward scout, not a substitute**: she can reach the staff (Urexiel's vault) but *delivering* it still means dealing with Urexiel — and she's a betrayal risk once the leash frays. The party can follow her, race her, or clean up after her. See her dossier (NPC Dossiers).
 > `Ashen Garden → Weeping Furrow → Scabrous Menagerie → Vaelisha`. A linear breadcrumb — each site names the next — ending in **Cinderbloom Rekindled**. Reads as a personal side-quest.
 >
 > **THE FUSION — Urexiel's vault at the Scabrous Menagerie.** This is the hinge the players won't see coming. Lady Urexiel's vault holds, in one place: **Or'Henn's stolen staff** (Web 2), a **Green Remnant** (Web 2), *and* **Kreeg's puzzle box** — the *legal* lever on Elturel's contract (Web 1: copy + Kreeg's living hand + an infernal writ → void the sale). The druid's grief-quest and the paladin's rescue-quest collect the same key. Urexiel is also the **paymaster** who commissioned the raid that razed the Garden and killed Asimov (Kreeg was the target). So the Menagerie is where the staff hunt, the Sword's alternate lever, Asimov's murder, and Kreeg's exposure all land on the same table at once. Do not tip it — let the party walk in hunting a staff and walk out holding the fate of a city.
@@ -571,7 +582,7 @@ Bel does not grant audience to anyone who cannot survive his workforce. The fire
 
 > **READ ALOUD — the trial begins:** A giant sets down its hammer. The sound of it hitting the anvil-plate is like a door slamming in a cathedral. It turns, and its eyes are two forge-coals in a face like a cliff. It does not draw a weapon. It picks one up — a sword you could use as a gangplank — and speaks, in a Giant so slow it feels geological: *"The Warlord watches. Show him you are worth the cooling of his iron. Or be swept into the pour with the rest of the slag."*
 
-**How to run it for an L11 party of 3 + allies:**
+**How to run it for an L12 party of 3 + allies:**
 
 | Mode | How | When to use |
 |---|---|---|
@@ -663,6 +674,8 @@ The road to the Bleeding Citadel then runs through **Olanthius alone** (the Cryp
 
 ### The Crypt of the Hellriders
 
+> **DM — GATED BY A PASSWORD.** Receiving Olanthius as kin (rather than forcing the crypt) turns on a **password** the party has been chasing at **the Obelisk**. No password ≠ locked out — they can force or trick their way in and pay for it, or buy the word elsewhere (Mahadi, Rigorath, Olanthius's own creed). Fail-forward, never a wall.
+
 > **Chapter 3 — Avernus.** ◻️ UNVISITED. The Sword-road's second lever. If the party never comes here, the path to the Bleeding Citadel leans wholly on Bel's Forge and Lulu's own recovering memories — this site is the shortcut and the emotional detonation.
 
 **What it is (DM only).** A pocket of Elturel that fell into Avernus with the city and did *not* rot the way the rest did. It is the memorial crypt of the Hellriders — the order that first charged into Hell behind Zariel. The dead-magic cold here is not infernal; it is *grief that refuses to burn*. Devils avoid it. So does Zariel. It holds one occupant: **Olanthius**, a death knight, kneeling at an empty sarcophagus, guarding a road no one has walked in a hundred years.
@@ -701,7 +714,7 @@ READ ALOUD (on finding the name):
 
 Stone effigies of armored riders lie atop their tombs, lances across their chests, carved mid-charge in the frieze above — the eternal charge, forever a half-second from impact. One alcove is set apart: the **Crimson Watch**, the order Drenwal's father served.
 
-**DM ONLY — live emotional site (Drenwal).** This is the shrine of Drenwal's father's order. Drenwal is a Bhaalspawn who killed his brother Dumal; the Watch's fall to Bhaal-cult rot is *his* inheritance, spoken aloud in stone. Play this before Olanthius if you can — let Drenwal read his father's order's honor roll in a room that still holds the line, then learn how it ended.
+**DM ONLY — live emotional site (Drenwal).** This is the shrine of Drenwal's father's order. Drenwal is a Bhaalspawn whose brother Dumal escaped him (alive, now Mephistar-bound); the Watch's fall to Bhaal-cult rot is *his* inheritance, spoken aloud in stone. Play this before Olanthius if you can — let Drenwal read his father's order's honor roll in a room that still holds the line, then learn how it ended.
 
 Olanthius, once engaged (Area 3), will confirm the rot: the **Crimson Watch was hollowed from within by a Bhaal cult** in the years after the Charge — the same infection that touches Veska's and Lucan's histories. He watched good riders die for an order already gutted from the inside. This is offered as truth, not accusation — but Drenwal may take it either way. (Ties to Veska/Lucan lore; if either ally is present, give them a line.)
 
@@ -764,7 +777,7 @@ No signet, no name — Olanthius is a locked door, but not a hostile one. He giv
 
 **Path B — The Worthiness Trial.** He offers one of two, party's choice:
 - **The Vigil.** Stand watch at the empty sarcophagus through one full "night" of Avernus (a long rest's worth) without leaving, without drawing steel, letting the crypt's grief press on you. Each character makes a DC 14 Wisdom save at the end; **on any two successes among the party**, Olanthius judges them steady enough to trust and opens as if keyed. (No combat. This is a patience/faith test — reward players who lean in.)
-- **The Half-Heart Duel.** He rises and fights — but at **half heart**, testing whether they fight with honor, not to see them die. **Olanthius is a death knight, CR 17** (statblock: *Monster Manual* death knight; run him with legendary-tier caution against an L11 party — he fights defensively, pulls killing blows, uses *Hellfire Orb* only as a warning shot, never on downed PCs). **Killing him is NOT the intended path.** If the party fights *with* honor — accepts a yield, doesn't gang a downed foe, sheathes when he sheathes — he ends the duel himself and opens up. If they play it as a murder, he fights to the death.
+- **The Half-Heart Duel.** He rises and fights — but at **half heart**, testing whether they fight with honor, not to see them die. **Olanthius is a death knight, CR 17** (statblock: *Monster Manual* death knight; run him with legendary-tier caution against an L12 party — he fights defensively, pulls killing blows, uses *Hellfire Orb* only as a warning shot, never on downed PCs). **Killing him is NOT the intended path.** If the party fights *with* honor — accepts a yield, doesn't gang a downed foe, sheathes when he sheathes — he ends the duel himself and opens up. If they play it as a murder, he fights to the death.
 
 **DM ONLY — the cost of destroying him.** If Olanthius is destroyed, **his knowledge dies with him.** The road to the Bleeding Citadel, the "why the Sword was hidden," and the Coram plant are all lost from this source; the Citadel route **defaults to Bel's Forge + Lulu's memories only** (slower, and Lulu's recovery is incomplete without the witness-recognition trigger). Make the party feel this as a real loss, not a scolding. His sword (*a Hellrider's blade, functions as a +2 longsword, sheds cold blue light*) and his blackened Hellrider plate remain — small consolation.
 
@@ -835,7 +848,7 @@ Each anchor can be broken two ways — and the irony is the point.
 
 | Wave | Statblock (Open5e / MM) | Notes |
 |------|-------------------------|-------|
-| Standard | **Ice Devil** (CR 14) — reflavor as a hoarfrost sentinel | 1 per failed anchor; brutal for L11, use as a clock not a grind |
+| Standard | **Ice Devil** (CR 14) — reflavor as a hoarfrost sentinel | 1 per failed anchor; brutal for L12, use as a clock not a grind |
 | Lighter | **Frost Salamander** (CR 9) ×2 | swarming, mobile, good for pressure without a TPK |
 | Nastier finale | 1 Ice Devil + 2 Frost Salamanders on the **third** anchor | Zariel's binding does not die quietly |
 
@@ -937,7 +950,7 @@ Barracks, mess, a chapel to Zariel's cause — all pitched sideways, furniture p
 
 | Encounter / feature | Detail |
 |---|---|
-| **Malfunctioning constructs** (waves) | Reskin **animated armor** (CR 1, MM) as *Zariel honor-guard husks* — 4 of them, dormant until a PC crosses the chapel threshold. At L11 this is a warm-up; use it to establish that the fortress still thinks it's crewed. |
+| **Malfunctioning constructs** (waves) | Reskin **animated armor** (CR 1, MM) as *Zariel honor-guard husks* — 4 of them, dormant until a PC crosses the chapel threshold. At L12 this is a warm-up; use it to establish that the fortress still thinks it's crewed. |
 | Rust spoor (second sighting) | The corrosion here is fresh. A **DC 13 Survival/Investigation** dates it to *within a day* — the Rust Queen's salvage crew has already been through, or is still aboard. Escalates the clock. |
 | Treasure | A chapel reliquary: **a soul coin** (the freeing choice re-offered — Lulu goes still near it), a *potion of fire resistance* ×2, and Zariel campaign banners worth 50 gp to the right collector at the Emporium. |
 
@@ -965,7 +978,7 @@ The heart of the wreck, dropped through the tilted decks into a vertical shaft. 
 
 | Encounter | Detail |
 |---|---|
-| **The Warden** | Reskin **helmed horror** (CR 4, MM) buffed to L11 boss-add weight, OR run **2× helmed horror + 2× animated armor** as a coordinated guard. Better: a single **shield guardian**-class construct (CR 7) reskinned as *the Fortress Warden*, immune to the spells it "remembers." Tune to the party's remaining resources — this is the objective fight. |
+| **The Warden** | Reskin **helmed horror** (CR 4, MM) buffed to L12 boss-add weight, OR run **2× helmed horror + 2× animated armor** as a coordinated guard. Better: a single **shield guardian**-class construct (CR 7) reskinned as *the Fortress Warden*, immune to the spells it "remembers." Tune to the party's remaining resources — this is the objective fight. |
 | **The rods** | The primary bank: **a matched pair** (→ Lady Vengeance refit) **plus surplus** (→ Bel's toll). Extracting them is a **DC 15 Strength (or Arcana to release the cradle-locks)**; a failed Strength pull scorches the puller for **2d8 residual fire.** |
 | Treasure (salvage table) | Roll/pick from the **Salvage Table** below. |
 
@@ -1090,6 +1103,8 @@ The cure and Coram cosmology must arrive **slower and in fragments** — surface
 
 ### The Mirror of Mephistar
 
+> **DM — DUMAL IS COMING HERE.** Drenwal scried **Dumal** (alive; escaped the Demon Zapper) making for this mirror to petition **Mephistopheles** that the party unleashed **Yeenoghu** on him. Choose the timing: Dumal arriving as the party does (a charged near-miss or confrontation), already gone (Rigorath will *sell* that he came, and what he asked for), or mid-audience. A clean audience is also eased by the **password** sought at the Obelisk — without it Rigorath still deals, only colder and dearer.
+
 > **Chapter 3 — Avernus Hexcrawl · Optional Intermediary · ◻️ UNVISITED**
 > A rival archdevil's answering service. Never a place you *must* go — a valve you can open if the party wants archdevil-grade certainty about Urexiel's vault, the contract law, or the Solar's Helmet. Skip it entirely and nothing breaks; the same truths surface slower elsewhere.
 
@@ -1157,18 +1172,18 @@ The cure and Coram cosmology must arrive **slower and in fragments** — surface
 | 2 | **The throne-room dust** — Aurora's wound. | She spent her only Wish to save a stranger and got a corpse. A return visit is a grief/identity beat for her, not loot. |
 | 3 | **Power vacuum** — a lesser warlord (**Kovic?**) may claim the ruin. | If the region is ignored, the raids resume under weaker but crueler management — a low-stakes hook the party can answer or leave. |
 
-> **DM ONLY — M8 grief trigger (Dumal's carving):** *"He misses you."* Post-fratricide, this is now unbearable for Drenwal — Dumal wrote it *before* the Demon Zapper, before his brother killed him. Do not spend it as a throwaway. Save it for a quiet moment (a return here, or the cure-quest climax) where it can land as the cost of what Drenwal did, and as a hook toward Coram-of-Small-Mercies and the rebirth question.
+> **DM ONLY — M8 grief trigger (Dumal's carving):** *"He misses you."* Dumal carved it *before* the Demon Zapper — and now that he has **slipped away alive**, it reads less as an epitaph than a promise. Save it for a quiet moment (a return here, or the cure-quest climax) as a hook toward Coram-of-Small-Mercies, the rebirth question, and the brother still out there.
 
 ### The Demon Zapper
-**[homebrew · Chapter 3 site · ✅ Dumal + Yeenoghu killed here]**
+**[homebrew · Chapter 3 site · ✅ Yeenoghu's avatar destroyed · ⚠️ Dumal escaped here via the black smoke]**
 
 > **READ ALOUD:** The great copper coils stand cold now, canted like the ribs of something that starved to death upright. No hum. No spark. The lightning that once arced between the pylons is gone, and the grass beneath has gone with it — a black glass ring of scorched earth, sterile, where nothing has tried to grow back. The wind moves through the frame and finds no note to play. It is quiet the way a battlefield is quiet after the crows have finished.
 
-**What happened (Session 7 climax).** The party lured Yeenoghu's incursion-avatar and **Dumal the Flame Ascendant** into the zapper's kill-field and turned the machine's celestial discharge on both. Dumal fell — **Drenwal struck down his own brother** with his own hand, the wound that still hasn't closed in him (see M8, Bhaal-fallout). Yeenoghu's vanguard broke and was destroyed; the Gnoll Lord's toehold in Avernus collapsed with it. The cost was paid here too: **Asimov fell to Yeenoghu.** His soul did not scatter — it was **caught in the Soul Capacitor** at the instant of death. Saved, not lost. Or'Henn now carries him.
+**What happened (Session 7 climax).** The party lured Yeenoghu's incursion-avatar and **Dumal the Flame Ascendant** into the zapper's kill-field and turned the machine's celestial discharge on both. **Yeenoghu's avatar was destroyed** and the Gnoll Lord's toehold collapsed — but **Dumal escaped through a gout of black smoke** at the last instant. The cost was paid here too: **Asimov fell to Yeenoghu** — his soul caught whole in the **Soul Capacitor**, saved, not lost; Or'Henn now carries him. **Drenwal later scried Dumal** approaching the **Mirror of Mephistar**, going to complain to Mephistopheles that the party set Yeenoghu loose on him.
 
 **Current state.** The machine is **burnt out and dead** — a single discharge of that magnitude was always going to be its last. The scorched ring around it stays barren. No enemy holds the site; there is nothing here to fight. What remains is grief, salvage, and the long shadow the day cast on Drenwal.
 
-> **❌ RULE IN A BOX (DM — hold this line):** Dumal is **dead**. Yeenoghu's vanguard is **broken**. There are **no returns, no resurrections, no avatar teases** from this thread. Do not dangle a "he's not really gone." The horror of this place is finished business — its only live current is **grief and the Bhaal-fallout in Drenwal** (M8). Let it stay a wound, not a sequel hook.
+> **⚠️ RULE IN A BOX (DM):** Yeenoghu's **avatar is destroyed** — that demon stays dead. But **Dumal is ALIVE**: he escaped via the black smoke and the arc is **OPEN.** Drenwal scried him bound for the **Mirror of Mephistar** to petition Mephistopheles over the Yeenoghu the party unleashed on him. Play Dumal as a live, aggrieved Bhaalspawn now angling for a devil-lord's backing — a returning threat, not a ghost.
 
 **The zapper's discharge = Tears of the Caged Star.** The celestial liquid the machine wept when it fired is **raw Tears of the Caged Star** — a Coram-of-Small-Mercies breadcrumb the party **already holds** a measure of. It feeds the Coram / Drenwal-cure thread; treat any use of it as a redemption-arc lever, not loot.
 
@@ -1227,7 +1242,7 @@ Same footprint as the seal. Clearing the conservatory (Area 2) reveals it **auto
 
 The ravagers' lair, downslope.
 
-- **ENCOUNTER — 1d3 Ravagers.** Reskin: gnoll pack-lords / hell hounds with the Yeenoghu-warband stink. Suggested statblocks — **Gnoll Pack Lord** (CR 2, MM) or **Gnoll Fang of Yeenoghu** (CR 4) for the leader; **Hell Hound** (CR 3) for the rest; scale count/CR to a 4×L11 party (2× Fang of Yeenoghu + 2 hell hounds ≈ a warm-up, not a wall). Open5e: search "gnoll" / "hell hound."
+- **ENCOUNTER — 1d3 Ravagers.** Reskin: gnoll pack-lords / hell hounds with the Yeenoghu-warband stink. Suggested statblocks — **Gnoll Pack Lord** (CR 2, MM) or **Gnoll Fang of Yeenoghu** (CR 4) for the leader; **Hell Hound** (CR 3) for the rest; scale count/CR to a 4×L12 party (2× Fang of Yeenoghu + 2 hell hounds ≈ a warm-up, not a wall). Open5e: search "gnoll" / "hell hound."
 - **Trigger:** loud digging (Areas 1–3), or entering the terraces directly. If the party is quiet and quick they can clear the seal and the grave and leave without a fight — reward the stealth.
 - **Tactics:** they fight to eat, not to win; at half strength they try to drag a downed PC toward Area 4 (the same instinct that took Asimov's body). Let one flee — a live thread the party can track toward the Weeping Furrow tribute road.
 - **Loot:** a gnawed Hellrider gauntlet, 40 gp in scattered soul-slag, and (DC 13 Investigation on the den) a torn contract-scrap bearing a broker's wax mark — a yellowish, oily seal. (DM: Urexiel's mark. Not identifiable here; it matches later at the Scabrous Menagerie.)
@@ -1539,6 +1554,31 @@ No save. No mechanic. No clock. This is Or'Henn's arc landing — the elder who 
 > **DM ONLY — if the party dawdles after collecting all three Remnants:**
 > Seed that Vaelisha is being hunted. Signs, escalating: (a) a scorched patrol-track angling toward the hollow on the next hexcrawl leg; (b) ash-wraiths thicker on the approach; (c) a Zariel scout seen circling the green from a distance. She is not guaranteed forever. If the table stalls indefinitely, she can be found half-burned on a return trip — the rite still works at a diminished, sorrowful pitch, and the "cost of leaving" beat becomes "the cost of waiting." Use sparingly; the intent is to make the safe place feel precious, not to punish.
 
+### Arkhan's Tower
+> **STATUS:** ⚠️ CURRENT DESTINATION · real DiA figure · Chapter 3 node
+
+**What it is.** The Avernian stronghold of **Arkhan the Cruel**, dragonborn oathbreaker-paladin of **Tiamat** — a warlord-sorcerer hoarding dragon-power and the Dragon Queen's favor. The party is en route.
+
+**Why they're going.** *(DM: confirm the party's stated reason — a lead, a bargain, a password, war-machine muscle for the Elturel road, or Arkhan's own agenda.)* Arkhan is transactional and vain: he **deals**, he does not give. Every price flatters Tiamat or costs the party service or blood.
+
+**Running it.**
+- **Arkhan** — a high-CR sorcerer/paladin warlord with a draconic retinue; build to the L12 party. He would far rather bargain than brawl.
+- **What he can offer:** infernal war-machines, a Blood-War contact, or knowledge — potentially a **password** or a road-marker toward the Fallen Three / the Bleeding Citadel. He and **Bel** are rivals; set them against each other.
+- ⚠️ **The catch:** anything Arkhan gives ties the party to **Tiamat's** interests. A gift now is a summons later.
+
+> **READ ALOUD:** *A spire of black basalt and dragon-bone leans against the red sky, five scaled skulls mortared above the gate like trophies. Something vast breathes behind the walls, slow and patient. A herald in draconic plate does not ask your names — only your business, and whether it is worth the Cruel one's time.*
+
+### The Obelisk
+> **STATUS:** ✅ visited · ⚠️ ongoing lead · Chapter 3 node
+
+**What it is.** A black monolith the party worked over hard, hunting **passwords** — the words that open the **Crypt of the Hellriders** and buy a clean audience at the **Mirror of Mephistar.** They **tried many approaches.**
+
+**Resolve the payoff (DM, rule it and log it in the Living State Header):**
+- **What did they actually get?** A full password, a partial/riddle, a false lead, or a debt incurred for the answer. Whatever they earned gates (or eases) the Crypt and Mephistar entries.
+- **If they got a fragment or nothing:** the obelisk stays a return-to lead; the password can also be **bought** (Mahadi, Rigorath) or **bypassed** with the right relic/creed. Never a hard wall (fail-forward).
+
+> **READ ALOUD:** *The obelisk drinks the light. Its faces are cut with names in a script older than the Hells — and where you press your questions against it, the stone answers only what it wishes, in the order it wishes.*
+
 ## CHAPTER 4 — THE SWORD OF ZARIEL
 
 > **STATUS: ◻️ NOT YET REACHED — future content, full depth.**
@@ -1617,7 +1657,7 @@ The Bleeding Citadel is not a place you can march to whenever you please. It sur
 | **Miss the window entirely** (spent elsewhere) | Elturel drops one descent rung toward the Styx (rungs do NOT reset — track in M1). Next window is **+33 days**, deeper, harder. |
 
 **The Vigil (off-window arrival).** If the party reaches the scar off-window, they may camp the days until manifestation — but this is hostile ground. Each day of vigil:
-- Roll **1d6**; on a **1–2**, an Avernus threat finds the exposed camp (ice devil patrol, a redcap warband, a Styx-drawn scavenger — scale to L11, CR 8–12).
+- Roll **1d6**; on a **1–2**, an Avernus threat finds the exposed camp (ice devil patrol, a redcap warband, a Styx-drawn scavenger — scale to L12, CR 8–12).
 - Each PC makes a **DC 13 Wisdom save** at dawn or gains one level of a custom **Grief-Weight** (disadvantage on the next day's saves; the plain leaks the penitents' despair). Cleared by a long rest away from the scar.
 - **Lulu's presence halves the threat roll's odds** (1 on a d6 only) — the penitents remember her.
 
@@ -1832,7 +1872,7 @@ Do not tell the players the tier names. Show them the shapes; let the Doom Ladde
 
 ### 5.3 — THE CLIMAX: ZARIEL'S AUDIENCE (three phases)
 
-The climax is **an audience that becomes a battle over a sinking city.** Run it in three phases. The levers are **actions taken on the field**, not just damage — a party can *win the argument* as much as win the fight. Zariel's statblock is the published archdevil (CR 26); at a 3-PC L11 table she is a **set-piece with legendary actions and lair effects, backed by allies and modifiers**, not a HP sponge to grind. Structure beats numbers.
+The climax is **an audience that becomes a battle over a sinking city.** Run it in three phases. The levers are **actions taken on the field**, not just damage — a party can *win the argument* as much as win the fight. Zariel's statblock is the published archdevil (CR 26); at a 3-PC L12 table she is a **set-piece with legendary actions and lair effects, backed by allies and modifiers**, not a HP sponge to grind. Structure beats numbers.
 
 #### Opening beat — Lulu's final memory (fires before initiative)
 
@@ -1925,7 +1965,7 @@ Run this as an epilogue round-the-table. Match the column to the ending they ear
 
 ## ACTIVE ARCS & THREADS (staff hunt web + PC arcs + clocks, with statblocks)
 
-> **DM ORIENTATION:** This is the tactical layer — everything in motion, with numbers. Nothing here is a route. Every location in M5 is enterable at level 11 right now. What changes by play order is what the party **knows** and **holds**, not what door opens. Read the WEB first, then whichever PC arc is loudest at the table. All volatile values (clocks, influence, contract-seal state) live in **M1**; this module gives the machinery those numbers drive.
+> **DM ORIENTATION:** This is the tactical layer — everything in motion, with numbers. Nothing here is a route. Every location in M5 is enterable at level 12 right now. What changes by play order is what the party **knows** and **holds**, not what door opens. Read the WEB first, then whichever PC arc is loudest at the table. All volatile values (clocks, influence, contract-seal state) live in **M1**; this module gives the machinery those numbers drive.
 
 ---
 
@@ -1958,6 +1998,20 @@ Every card carries the same six fields:
 Facts that can fire an authored beat are tagged **(→ M8 #n)**. First qualifying trigger fires the beat once (→ M8).
 
 ---
+
+### Feonor — the Geas-Bound Hunter
+> ⚠️ Defeated by the party; bound by Or'Henn's ***Geas*** to recover **Cinderbloom.**
+
+- **What she is:** *(DM-fill her exact nature — the foe bested in the Bag-of-Beans / pink-frog trial.)* Whatever she was, she is now a **leashed asset**: act against the *Geas* and she takes **5d10 psychic** (once/day), and she cannot move directly against it. The casting runs **30 days** — track re-casts.
+- **The task:** bring Or'Henn's **ashen staff (Cinderbloom)** back to him. That forces her down the same trail the party would walk — **Kharzug** at the Weeping Furrow → **Lady Urexiel's** Scabrous Menagerie vault, where the staff sits as tribute.
+- **VOICE / WANTS:** resentful, literal compliance — she does exactly what the leash compels and hunts for the seam. **DM ONLY:** a live **betrayal risk** the moment the *Geas* lapses or she can twist the letter of the task. Decide now: recurring frenemy, bought-off ally, or a knife waiting to turn.
+- **Hook:** if Feonor reaches Urexiel first she may **bargain the staff away** or lead the party into the yugoloth's vault as bait. Her leash and Urexiel's vault are the same road (→ Scabrous Menagerie).
+
+### Ubbalex — the Deal Left on the Table
+> ⚠️❓ An infernal broker whose bargain the party has heard and **not** taken.
+
+- **The deal:** *(DM-fill the exact terms.)* Whatever Ubbalex offered stays **open and unsigned** — which keeps it a lever: he can sweeten it, call it in, or let it sour into a threat.
+- **VOICE / WANTS:** patient, courteous, keeps the offer warm; he profits either way — a signature, or the party's growing need. **DM ONLY:** an untaken devil's deal is a loaded gun on the mantel. Decide what Ubbalex truly wants from these three and when he stops waiting. He wires naturally into the soul-economy and Mephistopheles/Mahadi's web.
 
 ## LORE & FACTIONS (Avernus, the Blood War, souls, Hellriders, Bhaal, celestial power)
 
@@ -2085,7 +2139,7 @@ The clean story — *"Halvard died at the Wall"* — is a lie. A **Bhaal-sworn c
 | Bhaalspawn | Status | What they are |
 |---|---|---|
 | **Drenwal** (PC) | ⚠️ Alive, resisting | The heir who won't wear the blue; the whole thread bends toward him. |
-| **Dumal the Flame Ascendant** | ❌ Dead (killed by Drenwal, S7) | Embraced the Claim; forged by the Three Sigils. Arc **closed** — only grief and Bhaal-fallout remain (→ M8). |
+| **Dumal the Flame Ascendant** | ⚠️ **ALIVE** — escaped the Demon Zapper via black smoke (S7); scried making for Mephistar to petition Mephistopheles | Embraced the Claim; forged by the Three Sigils. Arc **OPEN** — a live, aggrieved threat (→ M8). |
 | **Senna** | ❓ Hidden, ~6 years old | Raised by Harper **Issa**. The Mother died before her birth; Halvard hid her name to his last breath. The stakes made human. (→ M6: Senna, Issa.) |
 | **Maelys the Thorn-Crowned** (elf) | ⚠️ At large, off-screen | Silent executioner, dominates beasts. *"One voice. One blade. One god. You are not him."* |
 | **Valruk the Chain-Bride** (half-orc) | ⚠️ At large, off-screen | Enslaves undead; leaves desecrated Helm scripture marked *"LIAR."* |
@@ -2395,7 +2449,7 @@ Killing Kreeg then remains fully available — but as an **informed choice with 
 
 > READ ALOUD: *Drenwal — I use no cipher; I am too frightened for cleverness, and speed is worth the risk. First, hold this: Senna is well. She is fed and warm, and this morning she laughed until she hiccuped. Keep those three things in your hands while I tell you the rest. Three nights running she has woken the house screaming a name no child should know. Today I found a drawing — a man made of bone, a little girl holding his hand — and she had signed it in a red that is not ink, from no cut I can find anywhere on her. She asked me why the kind man in her dreams keeps calling her "daughter." Tell me what to do. She is six years old. — Issa*
 
-**THE TURN** — Bhaal's Claim is not bound to Drenwal alone. It runs the bloodline. Dumal is dead; Drenwal is uncured; the Claim is already testing the next vessel — and the next vessel is a child. Drenwal's cure stops being self-rescue and becomes the only thing standing between Bhaal and a six-year-old. **DM ONLY:** Gargauth, through the Shield, knows Senna is next and will weaponize her — a "take my bargain and shield her faster" temptation. The living siblings Maelys & Valruk may sense the shift too (→ M7, → M6).
+**THE TURN** — Bhaal's Claim is not bound to Drenwal alone. It runs the bloodline. Dumal is alive and at large; Drenwal is uncured; the Claim is already testing the next vessel — and the next vessel is a child. Drenwal's cure stops being self-rescue and becomes the only thing standing between Bhaal and a six-year-old. **DM ONLY:** Gargauth, through the Shield, knows Senna is next and will weaponize her — a "take my bargain and shield her faster" temptation. The living siblings Maelys & Valruk may sense the shift too (→ M7, → M6).
 
 **TABLE FALLOUT**
 - **Drenwal —** The god fighting him for his own soul has reached past him to his six-year-old sister. On the table: the highest possible stakes for the cure, a child-clock on every day he delays dying-and-being-reborn, and Gargauth already whispering that the Shield would shield her sooner.
@@ -2444,7 +2498,7 @@ Resolve it by disclosed rule, not fiat:
 > RULING: Track every hit point Asimov's borrowed body loses during the hour. At the final grain, that exact total is levied as **necrotic damage** onto the living creature bound to the capacitor as its hunter (Or'Henn) — or, if no contract is yet sealed, onto the last PC Asimov touched. It cannot be prevented, only chosen: spend the hour gently and the bill is trivial; throw the flesh between a PC and harm and you save them while the bound hunter pays the total in blood at the toll. The choice of how hard to spend the flesh is the Mikas player's; the hag priced generosity in advance.
 
 **TABLE FALLOUT**
-- **Drenwal —** Available: one long rest with no Bhaal-dream, and a dead man's testimony about where Dumal's soul went. On the table only as closure or salt — the Dumal arc stays shut and cannot reopen.
+- **Drenwal —** Available: one long rest with no Bhaal-dream, and word from the soul-traffic on **where Dumal fled** (the black smoke; the road to Mephistar). The Dumal arc is **OPEN** — treat this as a live lead, not closure.
 - **Aurora —** Available: a returned keepsake and a hard lead toward the Caged Star from the one vantage no living creature holds — set against losing the friend a second time when the glass takes him.
 - **Or'Henn —** Available: a warband name and a first meeting with the man whose seat he took — and, at the final grain, the necrotic bill for however hard the flesh was spent (see the sting).
 - **Asimov (Mikas) —** The whole beat is Mikas's: sixty minutes as a person, spent however he chooses, ending either with the clause in hand (success) or one breath short of it (failure). What Asimov does with the hour, and what it costs him, is the player's to play.
@@ -2638,7 +2692,7 @@ Run this before every session. It is the whole prep loop.
 | **Vaelisha, the Mother Ash** | The air tastes green. Something living. | A single fall of pollen-ash, warm not cold. | The last tree of Avernus, vast and scarred, roots deep in hell. |
 | **Wrecked Flying Fortress** | Debris rains upward toward a wound in the sky. | A shadow the size of a town, drifting broken. | Adamantine hull-plates; scavengers already crawling it. |
 
-#### d20 travel encounter table (tiered for level 11 — reskinned campaign 20-entry table, escalated)
+#### d20 travel encounter table (tiered for level 12 — reskinned campaign 20-entry table, escalated)
 
 Roll when a leg has no scripted content. **Entries 16-20 foreshadow M8 plants (→ column notes) — they carry no combat, they SEED the gut-punches.**
 
@@ -2789,7 +2843,7 @@ Run every session as repeating cycles of three, in any location, in any order:
 
 #### Ally-fielding action economy (3 PCs + NPC allies)
 
-**Default: bench the allies.** 3 PCs is a small action economy but level 11 is potent. Field allies only per this table, and dial boss HP accordingly (Kharzug 230 solo / 165 with allies).
+**Default: bench the allies.** 3 PCs is a small action economy but level 12 is potent. Field allies only per this table, and dial boss HP accordingly (Kharzug 230 solo / 165 with allies).
 
 | Situation | Field allies? | Why |
 |-----------|--------------|-----|
@@ -2803,4 +2857,4 @@ Run every session as repeating cycles of three, in any location, in any order:
 **Ally combat discipline:** NPC allies act on the PCs' initiative band, take ONE meaningful action per round (attack OR support, not both), and never out-damage a PC. They are pressure valves, not protagonists.
 
 #### The one-line rule for unplanned routes
-> RULING: **Gate by keys and information, never by sequence — improvise the price, not a wall.** Every M5 site is enterable at level 11 (→ Continuity §13). If the party skips the key (compass, writ, signet, rods, Kreeg's hand), they still get in — they just pay in blood, coin, or a clause instead. When they surprise you, ask: "What key would have made this easy?" Then charge them for not having it, and say yes.
+> RULING: **Gate by keys and information, never by sequence — improvise the price, not a wall.** Every M5 site is enterable at level 12 (→ Continuity §13). If the party skips the key (compass, writ, signet, rods, Kreeg's hand), they still get in — they just pay in blood, coin, or a clause instead. When they surprise you, ask: "What key would have made this easy?" Then charge them for not having it, and say yes.
