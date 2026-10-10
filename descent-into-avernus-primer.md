@@ -58,10 +58,10 @@ Read top to bottom the first time; after that, jump. Only the **Living State Hea
 
 **⚠️ LIVE THREADS — this session:**
 - **Dumal is ALIVE.** He escaped the Demon Zapper through the **black smoke**; Drenwal **scried him bound for the Mirror of Mephistar** to petition **Mephistopheles** that the party set Yeenoghu loose on him. Arc **OPEN** — a returning, aggrieved Bhaalspawn courting a devil-lord's backing.
-- **Feonor — *Geas*-bound.** Or'Henn defeated her and cast ***Geas*** to make her **bring back Cinderbloom** (his ashen staff). She is now the party's living staff-hunter (5d10 psychic/day if she defies it; 30 days per casting — track re-casts). See her dossier.
+- **Feonor — *Geas*-bound.** The Lady Vengeance's **Aether Harpoon** tore her off her war machine; Or'Henn defeated her and cast ***Geas*** to make her **bring back Cinderbloom** (his ashen staff). She is now the party's living staff-hunter (5d10 psychic/day if she defies it; 30 days per casting — track re-casts). See her dossier.
 - **The Obelisk — passwords.** The party worked the obelisk hard for the words to the **Crypt of the Hellriders** and the **Mirror of Mephistar.** DM: rule exactly what they got and note it here.
 - **Ubbalex's deal — UNTAKEN.** The devil Ubbalex's offer is on the table and **unsigned** — still a live lever. See his dossier.
-- **Next: Arkhan's Tower** (current heading — see Ch.3).
+- **Next: Arkhan's Tower** — the session ended en route. They want **Tiamat's blood** (the vial on Arkhan's neck); his price is a good-aligned sacrifice (**Moonkite**, then **Lulu**). Run it from `session-9-arkhans-tower-primer.md` + `session-9-arkhan-fight-cards.html`.
 
 ---
 
@@ -317,7 +317,7 @@ Feeds: **MAIN** (free Elturel / the Sword) · **STAFF** (Or'Henn's Cinderbloom h
 | **Bone Brambles** `brambles` | ✅ | Done: Red Ruth dead. Her leftovers (Bhaalspawn intel, heartstone) are party loot Mahadi covets. | (resolved) | → history |
 | **Haruman's Hill** `haruman` | ✅ | Done: Haruman killed → **Fallen Three 1/3**, the "Haruman piece" held. | MAIN (banked) | → history |
 | **The Demon Zapper** `zapper` | ✅ | **Yeenoghu's avatar destroyed; Dumal ESCAPED** (black smoke). Yielded the **Tears of the Caged Star**. | ⚠️ Dumal at large | → history |
-| **Arkhan's Tower** `arkhan` | ⚠️ | **CURRENT DESTINATION.** Arkhan the Cruel (paladin of Tiamat) — deals, doesn't give; possible password / road-lead. | ◻ new | ↓ entry |
+| **Arkhan's Tower** `arkhan` | ⚠️ | **CURRENT DESTINATION (Session 9).** Arkhan the Cruel (paladin of Tiamat) — holds **Tiamat's blood**; price = a good-aligned sacrifice (Moonkite/Lulu). | ◻ new | ↓ entry |
 | **The Obelisk** `obelisk` | ✅⚠️ | Password source for the **Crypt** + **Mephistar**; party tried many ways — DM rule the payoff. | resource | ↓ entry |
 
 ---
@@ -1559,7 +1559,7 @@ No save. No mechanic. No clock. This is Or'Henn's arc landing — the elder who 
 
 **What it is.** The Avernian stronghold of **Arkhan the Cruel**, dragonborn oathbreaker-paladin of **Tiamat** — a warlord-sorcerer hoarding dragon-power and the Dragon Queen's favor. The party is en route.
 
-**Why they're going.** *(DM: confirm the party's stated reason — a lead, a bargain, a password, war-machine muscle for the Elturel road, or Arkhan's own agenda.)* Arkhan is transactional and vain: he **deals**, he does not give. Every price flatters Tiamat or costs the party service or blood.
+**Why they're going.** **Tiamat's blood** — the vial Arkhan wears at his neck. His price: the sacrifice of a good-aligned creature (he names **Moonkite** first, then **Lulu**). Wrong him and it's a fight they should lose — escape is the win. Full run: `session-9-arkhans-tower-primer.md`. Arkhan is transactional and vain: he **deals**, he does not give. Every price flatters Tiamat or costs the party service or blood.
 
 **Running it.**
 - **Arkhan** — a high-CR sorcerer/paladin warlord with a draconic retinue; build to the L12 party. He would far rather bargain than brawl.
@@ -2002,7 +2002,7 @@ Facts that can fire an authored beat are tagged **(→ M8 #n)**. First qualifyin
 ### Feonor — the Geas-Bound Hunter
 > ⚠️ Defeated by the party; bound by Or'Henn's ***Geas*** to recover **Cinderbloom.**
 
-- **What she is:** *(DM-fill her exact nature — the foe bested in the Bag-of-Beans / pink-frog trial.)* Whatever she was, she is now a **leashed asset**: act against the *Geas* and she takes **5d10 psychic** (once/day), and she cannot move directly against it. The casting runs **30 days** — track re-casts.
+- **What she is:** the book warlord — a willowy, neutral evil **archmage-necromancer** with milky-white eyes and a **parasol of bone and human flesh**. Whispers in short sentences broken by frustrated sighs. **Mahadi** (rakshasa master of the Wandering Emporium) brought her to Avernus out of love; she got bored, stole one of his infernal war machines, and left without a word — he still calls her "the one that got away." The Lady Vengeance's **Aether Harpoon** dragged her down. She is now a **leashed asset**: act against the *Geas* and she takes **5d10 psychic** (once/day), and she cannot move directly against it. The casting runs **30 days** — track re-casts.
 - **The task:** bring Or'Henn's **ashen staff (Cinderbloom)** back to him. That forces her down the same trail the party would walk — **Kharzug** at the Weeping Furrow → **Lady Urexiel's** Scabrous Menagerie vault, where the staff sits as tribute.
 - **VOICE / WANTS:** resentful, literal compliance — she does exactly what the leash compels and hunts for the seam. **DM ONLY:** a live **betrayal risk** the moment the *Geas* lapses or she can twist the letter of the task. Decide now: recurring frenemy, bought-off ally, or a knife waiting to turn.
 - **Hook:** if Feonor reaches Urexiel first she may **bargain the staff away** or lead the party into the yugoloth's vault as bait. Her leash and Urexiel's vault are the same road (→ Scabrous Menagerie).

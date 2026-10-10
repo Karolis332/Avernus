@@ -203,3 +203,8 @@ artifact, a resolved incident); commit it with the work it describes.
 Newest last, **last 10 entries only** — this file loads into context every session, so an
 unbounded log would eat the smart zone it exists to protect. Promote anything still valuable
 past that into the body above, or into `brain/`. No secrets or customer PII: this is committed.
+
+### 2026-10-11 — Session 9 prep: Arkhan's Tower
+- **Did:** added `session-9-arkhans-tower-primer.md` + `session-9-arkhan-fight-cards.html`; living primer updated (Feonor harpooned by the Aether Harpoon, dossier filled; Arkhan's Tower = Tiamat's blood).
+- **Why:** DM-locked design: dragon ambush on approach (resource tax, Krull/Obatala end it) + Arkhan showdown as contingency. Arkhan buffed to CR 22 (345 HP, AC 23, +15). Price Moonkite then Lulu; Gargauth side-bargain + Krull double-cross bait. Wronging him = a fight they should lose, escape is the win, lethal.
+- **Open:** confirm what the party needs the blood for; Obelisk password payoff unruled; `session-9-orhenn-staff-hunt-primer.md` untracked + stale (staff hunt deferred while Feonor runs the Geas errand).
