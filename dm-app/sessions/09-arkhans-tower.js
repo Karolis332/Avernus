@@ -6,14 +6,13 @@ window.SESSION = {
 
   party: [
     { id: "drenwal", name: "Drenwal", note: "Light Cleric 12. Carries the Shield of the Hidden Lord, with Gargauth trapped inside." },
-    { id: "aurora", name: "Aurora", note: "Archfey Warlock 12. Rides the celestial Moonkite." },
+    { id: "aurora", name: "Aurora", note: "Level 12 (class not yet ruled). Rides the celestial Moonkite." },
     { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 12. Carries the Soul Capacitor." }
   ],
 
   allies: [
     { id: "veska", name: "Veska", note: "Hellrider" },
     { id: "ser-lucan", name: "Ser Lucan the Reforged", note: "ally" },
-    { id: "githzerai-monk", name: "Githzerai Monk", note: "ally" },
     { id: "jeremy", name: "Jeremy", note: "Pilots the Lady Vengeance" },
     { id: "moonkite", name: "Moonkite", note: "Celestial mount, Aurora's companion" },
     { id: "lady-vengeance", name: "Lady Vengeance (Jeremy)", note: "AC 17 · HP 350 · DT 15" }
@@ -27,7 +26,7 @@ window.SESSION = {
       role: "Geas-bound hunter, sent after Or'Henn's staff",
       description: "A tall, thin woman with milky-white eyes, ash in her hair, and a parasol made of bone and stretched human skin, now snapped in half. She moves like someone who is very tired and very angry.",
       roleplay: [
-        "Appearance: willowy elf-like archmage, necromancer's robes torn and scorched by the harpoon. Milky eyes that never seem to blink.",
+        "Appearance: willowy human archmage, necromancer's robes torn and scorched by the harpoon. Milky eyes that never seem to blink.",
         "Voice: whispers in short sentences, broken by long, frustrated sighs.",
         "Wants: to be free of the geas. Until then, does exactly what it says and not one inch more.",
         "Knows: the road to Kharzug and Lady Urexiel's vault, where Or'Henn's staff is. Mahadi still pines for her.",
@@ -80,6 +79,7 @@ window.SESSION = {
       ac: 19, acNote: "natural armor",
       hp: 195, hpFormula: "17d12 + 85",
       speed: "40 ft., fly 80 ft., swim 40 ft.",
+      init: 12,   // 2024 MM: initiative expertise
       abilities: { str: 23, dex: 14, con: 21, int: 14, wis: 13, cha: 17 },
       saves: "Dex +7, Con +10, Wis +6, Cha +8", skills: "Perception +11, Stealth +7",
       vulnerable: "", resist: "", immune: "acid", condImmune: "",
@@ -138,6 +138,7 @@ window.SESSION = {
       ac: 19, acNote: "natural armor",
       hp: 225, hpFormula: "18d12 + 108",
       speed: "40 ft., burrow 30 ft., fly 80 ft.",
+      init: 10,   // 2024 MM: initiative expertise
       abilities: { str: 25, dex: 10, con: 23, int: 16, wis: 15, cha: 19 },
       saves: "Dex +5, Con +11, Wis +7, Cha +9", skills: "Perception +12, Stealth +5",
       vulnerable: "", resist: "", immune: "lightning", condImmune: "",
@@ -195,6 +196,7 @@ window.SESSION = {
       ac: 19, acNote: "natural armor",
       hp: 207, hpFormula: "18d12 + 90",
       speed: "40 ft., fly 80 ft., swim 40 ft.",
+      init: 11,   // 2024 MM: initiative expertise
       abilities: { str: 23, dex: 12, con: 21, int: 18, wis: 15, cha: 17 },
       saves: "Dex +6, Con +10, Wis +7, Cha +8", skills: "Deception +8, Insight +7, Perception +12, Persuasion +8, Stealth +6",
       vulnerable: "", resist: "", immune: "poison", condImmune: "poisoned",
@@ -253,6 +255,7 @@ window.SESSION = {
       ac: 19, acNote: "natural armor",
       hp: 256, hpFormula: "19d12 + 133",
       speed: "40 ft., climb 40 ft., fly 80 ft.",
+      init: 12,   // 2024 MM: initiative expertise
       abilities: { str: 27, dex: 10, con: 25, int: 16, wis: 13, cha: 21 },
       saves: "Dex +6, Con +13, Wis +7, Cha +11", skills: "Perception +13, Stealth +6",
       vulnerable: "", resist: "", immune: "fire", condImmune: "",
@@ -310,6 +313,7 @@ window.SESSION = {
       ac: 19, acNote: "natural armor",
       hp: 287, hpFormula: "23d12 + 138",
       speed: "40 ft., burrow 30 ft., fly 80 ft., swim 40 ft.",
+      init: 12,   // 2024 MM: initiative expertise
       abilities: { str: 24, dex: 10, con: 22, int: 8, wis: 12, cha: 14 },
       saves: "Dex +6, Con +12, Wis +7, Cha +8", skills: "Perception +13, Stealth +6",
       vulnerable: "", resist: "", immune: "cold", condImmune: "",
@@ -334,7 +338,7 @@ window.SESSION = {
       ],
       legendary: {
         count: 3,
-        intro: "Obatala can take one legendary action at the end of another creature's turn. It regains spent legendary actions at the start of its turn.",
+        intro: "Obatala can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
         actions: [
           { name: "Detect", cost: 1, text: "Obatala makes a Wisdom (Perception) check." },
           { name: "Tail Attack", cost: 1, text: "Obatala makes one tail attack." },
@@ -342,7 +346,7 @@ window.SESSION = {
         ]
       },
       tactics: [
-        "Does not fight in {@scene dragons-attack|the dragon ambush}. Arrives carrying {@c krull|Krull} when the fight ends and lands between the combatants.",
+        "Does not fight in {@scene dragons-attack|the dragon ambush}. Arrives carrying {@c krull|Krull} when the fight ends and hovers between the combatants.",
         "Breathes cold as a warning shot into open air, not at anyone, when Krull calls the halt.",
         "If the party attacks Krull after the halt is called, fights for real with full stats above.",
         "In {@scene the-escape|the escape}, leads the pursuit in open sky together with any surviving tower dragons, using Frightful Presence and Cold Breath for real."
@@ -355,13 +359,13 @@ window.SESSION = {
       role: "Arkhan's priest and seneschal, a tortle cleric who covets Arkhan's place",
       source: { page: "bestiary", name: "Krull", src: "BGDIA" },
       homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: HP 117 to 180, AC 17 to 19, save DC 16 to 18, spells up to 7th level, Multiattack added.",
-      description: "An old tortle in ceremonial armour, wrinkled and slow. His shell is carved all over with tiny Draconic runes: hundreds of prayers to Tiamat, cut one by one. He carries a heavy maul and a sling bag that clinks. Four ghouls shuffle behind him, gnawing bones and staring hungrily at the party until he clicks his tongue at them.",
+      description: "An old tortle in ceremonial armour, wrinkled and slow. His shell is carved all over with tiny Draconic runes: hundreds of prayers to Tiamat, cut one by one. He carries a heavy maul and a sling bag that clinks. In the air he rides on Obatala's back; on the ground, at the tower, four ghouls trail him like hungry dogs until he clicks his tongue at them.",
       roleplay: [
         "Appearance: grey-green skin, cloudy old eyes, rune-carved shell, ceremonial plate. Smells of incense and grave dirt.",
         "Voice: slow, dry, grandfatherly. Calls everyone \"child\" or \"children\", even the dragons. Says \"tsk\" when someone dies.",
         "Wants: Arkhan's place as Tiamat's first champion. He has waited a century. He hides it well, but not perfectly.",
         "Knows: every secret of the tower, and lets no one inside. The way to the Monument. That Arkhan's body is rotting, and that the Hand may win in the end.",
-        "Carries: a {@item +1 maul|DMG}, five {@item potion of healing|DMG} potions, and two {@item soul coin|BGDIA} coins in his sling bag.",
+        "Carries: a {@item +1 maul|DMG}, five healing potions ({@item potion of healing|DMG}), and two {@item soul coin|BGDIA}s in his sling bag.",
         "Sample line: \"Enough, children. You have made your point. All of you.\"",
         "Sample line: \"Tsk. That one is dead. Arkhan can fix that. For a price. Everything here has a price.\"",
         "Sample line: \"I do not let guests inside the tower. Nothing personal. The last guest became furniture.\"",
@@ -432,7 +436,7 @@ window.SESSION = {
       actions: [
         { name: "Multiattack", text: "Three scimitars, one horns." },
         { name: "Scimitar", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 10 (1d6 + 7) slashing plus 3 (1d6) fire." },
-        { name: "Horns", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 16 (2d8 + 7) slashing." }
+        { name: "Horns", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 16 (2d8 + 7) piercing." }
       ],
       bonus: [], reactions: [],
       tactics: [
@@ -579,7 +583,7 @@ window.SESSION = {
       roleplay: [
         "Appearance: champion of Tiamat in obsidian flint dragon plate. One side of his body is decaying because of the Hand of Vecna. He keeps that side turned away from guests when he can.",
         "Origin: he took the Hand of Vecna on a short trip to a distant world called Exandria, and cut off his own hand to wear it. Now he fights the Hand every day for control of his own body.",
-        "Voice: soft, slow and polite. Never shouts. Calls people by what they are (priest, warlock, old druid) until they earn a name. Sometimes pauses, as if listening to someone else. He is: Tiamat speaks to him.",
+        "Voice: soft, slow and polite. Never shouts. Calls people by what they are (priest, rider, old druid) until they earn a name. Sometimes pauses, as if listening to someone else. He is: Tiamat speaks to him.",
         "Wants: to master the Hand and use it to free Tiamat from Avernus. To hold back the rot, he must use the Hand to snuff out the life of good creatures. That is the real reason for his price.",
         "Faith: utterly devout. Every bargain is an offering to his queen. He keeps his word to the letter, because a broken oath would shame her.",
         "In battle: his blows blaze with Tiamat's radiant power. If the fight turns, he teleports home to his tower with as many allies as he can take, then brings the fallen back with {@spell revivify} and {@spell raise dead}.",
@@ -655,7 +659,7 @@ window.SESSION = {
       duration: "5 minutes (read before play)",
       banner: "art/official/arkhan-the-cruel.webp",
       blocks: [
-        { t: "p", text: "This session is designed for the three 12th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with their allies Veska, Ser Lucan, the githzerai monk, Jeremy and Lulu. It runs about four to five hours. It is a social session between two hard fights: a real aerial battle with four adult dragons on the way in, and, if the characters wrong Arkhan, a showdown they are not meant to win." },
+        { t: "p", text: "This session is designed for the three 12th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with their allies Veska, Ser Lucan, Jeremy and Lulu. It runs about four to five hours. It is a social session between two hard fights: a real aerial battle with four adult dragons on the way in, and, if the characters wrong Arkhan, a showdown they are not meant to win." },
         { t: "note", title: "Tell the Players Before You Start", text: "Say this out of character, before the first scene: \"Arkhan's Tower is the most dangerous place you have been. If you pick a fight here, characters can die, and stay dead. Talking, paying, or running are all valid plans.\"" },
         { t: "h", text: "Background" },
         { t: "p", text: "{@c arkhan-the-cruel|Arkhan the Cruel} is a dragonborn paladin and the most devoted champion of Tiamat, the five-headed dragon queen. Tiamat is trapped in Avernus. Arkhan has sworn to set her free." },
@@ -679,8 +683,8 @@ window.SESSION = {
         ] },
         { t: "h", text: "Adventure Hooks" },
         { t: "p", text: "{@b Tiamat's blood.} The party needs the vial on Arkhan's neck. {@b DM: confirm with the table, before play, what they need it for.} Two suggested uses are given in {@scene ending|Ending the Session}." },
-        { t: "p", text: "{@b Feonor.} Last session the Lady Vengeance's harpoon tore {@c feonor|Feonor} out of the sky. Or'Henn beat her and laid a geas on her: she must bring back his ashen staff. She is alive and leashed. She leaves at the start of this session." },
-        { t: "p", text: "{@b Moonkite.} In the book, Krull only leads visitors to Arkhan if they bring something Arkhan values, such as the unicorn freed from the Demon Zapper. In this campaign that celestial is Moonkite, Aurora's mount. Krull senses it the moment he sees it, and that is why the door opens." },
+        { t: "p", text: "{@b Feonor.} Last session the Lady Vengeance's harpoon tore {@c feonor|Feonor} off her war machine. Or'Henn beat her and laid a geas on her: she must bring back his ashen staff. She is alive and leashed. She leaves at the start of this session." },
+        { t: "p", text: "{@b Moonkite.} In the book, Krull only leads visitors to Arkhan if they bring something Arkhan values, such as the unicorn freed from the Demon Zapper. In this campaign that role goes to Moonkite, Aurora's mount, freed at the Palace of Gore. Krull senses it the moment he sees it, and that is why the door opens." },
         { t: "h", text: "Where things stand" },
         { t: "list", items: [
           "Asimov's soul is safe inside the Soul Capacitor that Or'Henn carries. He sometimes speaks to Or'Henn.",
@@ -725,7 +729,7 @@ window.SESSION = {
         { t: "read", text: "Below, a cart crawls along a road of packed ash. A dozen chained, weeping things pull it. They might once have been people. Two horned devils walk beside it with whips.\n\nThe cart is heaped with coins. The coins are glowing. The coins are crying. You can hear them from up here: thousands of thin voices, all begging at once.\n\nOne devil looks up at your ship and grins. Then it goes back to its whip." },
         { t: "img", src: "art/generated/event-soul-coin-cart.webp", caption: "The soul-coin cart, seen from the deck.", credit: "Generated art (gpt-image-1)." },
         { t: "p", text: "These are soul coins on their way to the war. Each one is a trapped soul. The devils do not chase the ship. If the characters land, the drivers flee and leave the cart behind. Freeing the souls is possible with Lulu, Moonkite or Jeremy's Gondian method, but it takes time the party may not want to spend." },
-        { t: "p", text: "If Or'Henn is on deck, the Soul Capacitor grows warm against him. Asimov's voice whispers in his ear: \"So many. Do not look too long, old friend.\"" },
+        { t: "p", text: "If Or'Henn is on deck, the Soul Capacitor grows warm against him. Asimov's voice whispers in his ear: \"So many. Do not look too long, old dragon.\"" },
 
         { t: "h", text: "Event: The Blood War" },
         { t: "read", text: "Far to the east, the horizon flickers. Fire. Lightning. Something black pours over a ridge like spilled oil. It is the Blood War: demons and devils tearing each other apart, as they have for longer than anyone remembers.\n\nThe wind brings the sound in pieces. Horns. A roar. A scream as long as a song. Then it brings the smell, guts and bile and burning fat, and someone on deck throws up over the rail.\n\nAbove it all, very far away, a city hangs in the red sky on great chains. Elturel. Its towers still stand. Its light is still on. For now." },
@@ -739,13 +743,13 @@ window.SESSION = {
           "Each character on deck makes a DC 13 Dexterity saving throw. On a success, they dodge the spray.",
           "On a failure, the Styx touches their skin. They make a DC 15 Intelligence saving throw.",
           "On a failed Intelligence save, the water steals memories. The character forgets the last day, plus one memory the player chooses: a face, a name, or a promise. The memories come back if a {@spell greater restoration} is cast on them.",
-          "A character who falls fully into the river loses everything: who they are, their friends, their spells, as if hit by {@spell feeblemind}. Only a reckless choice should put someone in the river."
+          "A character who falls fully into the river is targeted by {@spell feeblemind} (DC 20 Intelligence save, repeated at the start of each turn in the water until it fails). After 30 days under it, their memories are gone for good. Only a reckless choice should put someone in the river."
         ] },
         { t: "note", title: "Why the Styx Matters", text: "This is the river Elturel is sinking toward. When the chains finally pull the city down into this water, every soul in it becomes a devil. If no one at the table says it, Veska says it, quietly, looking up at the city in the sky." },
 
         { t: "h", text: "Event: The Ash Storm" },
         { t: "read", text: "On the far bank, the wind turns hot and grey. An ash storm rolls toward you like a wall. For ten minutes there is nothing but grit in your eyes, grit in your teeth, the taste of burnt bone on your tongue, and the ship's lanterns glowing orange in the dark.\n\nThen the storm tears open." },
-        { t: "read", text: "Far ahead stands a tower. It is black, and it is tall, taller than any tower you have seen, and its walls are lined with burnt skulls stuck on iron spikes. Near the top it splits into five thin spires. They curl toward the sky like the fingers of a claw.\n\nSomething huge and white is flying slow circles around the top. A dragon. Its scales are grey with ash.\n\nAs the ship draws closer, you see movement on the walls. Figures shuffle back and forth along the ramparts. They are dead. Some still have skin. Some do not." },
+        { t: "read", text: "Far ahead stands a tower. It is black, and it is tall, taller than any tower you have seen, and its walls are lined with burnt skulls stuck on iron spikes. Near the top it splits into five thin spires. They curl toward the sky like the fingers of a claw.\n\nSomething huge and white is flying slow circles around the top. A dragon. His scales are grey with ash.\n\nAs the ship draws closer, you see movement on the walls. Figures shuffle back and forth along the ramparts. They are dead. Some still have skin. Some do not." },
         { t: "read", text: "The wind turns and brings the tower's smell: old smoke, wet stone, and the thick, greasy stink of bodies rotting in the heat. Some of the skulls on the spikes still have hair. On the walls, the guards turn all together, and look up at your ship." },
 
         { t: "h", text: "Arkhan's Tower" },
@@ -761,7 +765,7 @@ window.SESSION = {
         { t: "h", text: "Inside the Tower" },
         { t: "p", text: "The characters will not see this. Krull never lets visitors in. The tower holds his experiments, laboratories, morgues full of bodies waiting to be raised, dragon hatcheries, and Arkhan's private rooms. If the characters ever break in, the treasure there is warded, and its details are up to you." },
         { t: "h", text: "Checks on the Approach" },
-        { t: "p", text: "Characters with a passive Wisdom (Perception) of 14 or higher notice four smaller shapes uncurling from the four lower spires, and the white dragon turning its head toward the ship. The party is not surprised when the dragons dive." },
+        { t: "p", text: "Characters with a passive Wisdom (Perception) of 14 or higher notice four smaller shapes uncurling from the four lower spires, and the white dragon turning his head toward the ship. The party is not surprised when the dragons dive." },
         { t: "p", text: "A successful DC 15 Intelligence (History or Religion) check recalls what the tales say: the tower belongs to Arkhan the Cruel, Tiamat's champion; he wears a hand that is not his own; and he always keeps his word, to the letter." },
         { t: "p", text: "When the ship is a mile out, go to {@scene dragons-attack|The Dragons Attack}." }
       ]
@@ -776,15 +780,15 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "Four dragons live in the tower's lower spires. In the book they fight to the death to defend it. Here they are adults, and they fly out to meet the {@c lady-vengeance|Lady Vengeance} before it ever reaches the walls. Obatala, circling above, roars to wake Krull and does not join in." },
         { t: "note", title: "Pacing the Breath Weapons", text: "Do the maths before you roll: four adult breaths in one round average about 239 damage, roughly six times a Deadly encounter. So pace them. In round 1 the dragons strafe the SHIP and its gun crews, not the PCs. In any round after that, at most 2 breath weapons target PCs; the rest go at the ship. The end conditions do not change: the fight stops when one dragon falls, at the end of round 4, or when the party is clearly losing." },
-        { t: "note", title: "Why the Dragons Attack", text: "This is a real fight. The ship's force cannons would shred young dragons in one round, so these are adults, and they fight to win. It ends when one dragon falls, at the end of round 4, or when the party is clearly losing. Then Krull lands on Obatala and calls the halt. It shows the characters, before they meet Arkhan, how dangerous this place is." },
+        { t: "note", title: "Why the Dragons Attack", text: "This is a real fight. The ship's force cannons would shred young dragons in one round, so these are adults, and they fight to win. It ends when one dragon falls, at the end of round 4, or when the party is clearly losing. Then Krull arrives on Obatala's back and calls the halt. It shows the characters, before they meet Arkhan, how dangerous this place is." },
 
         { t: "h", text: "Event: The Dragons Dive" },
-        { t: "read", text: "The white dragon at the top of the tower throws back its head and roars. The sound hits the ship like a wave. Your teeth ache. The deck boards hum under your feet.\n\nFour shapes drop from the four lower spires: black, blue, green and red. They fall like stones. Then their wings snap open with a crack you feel in your chest. They do not call out. They do not ask who you are. They dive straight at your ship.\n\nThe black one comes first, jaws open, acid hanging from its teeth in long strings. Where it grabs the rail, the wood smokes and bubbles. The stink is unbearable: rotten eggs, swamp mud and burning flesh." },
+        { t: "read", text: "The white dragon at the top of the tower throws back his head and roars. The sound hits the ship like a wave. Your teeth ache. The deck boards hum under your feet.\n\nFour shapes drop from the four lower spires: black, blue, green and red. They fall like stones. Then their wings snap open with a crack you feel in your chest. They do not call out. They do not ask who you are. They dive straight at your ship.\n\nThe black one comes first, jaws open, acid hanging from its teeth in long strings. Where it grabs the rail, the wood smokes and bubbles. The stink is unbearable: rotten eggs, swamp mud and burning flesh." },
         { t: "p", text: "The four dragons are {@c skarrix|Slarkas} (black), {@c vhennic|Vistalancer} (blue), {@c mirelle|Vermilius} (green) and {@c praxamor|Flash} (red). Roll initiative." },
         { t: "h", text: "How the Dragons Fight" },
         { t: "steps", items: [
           "First round. All four dragons dive at the ship. They strafe the hull and the gun crews, not the PCs.",
-          "Second round. Slarkas and Vermilius keep attacking the ship. Vistalancer and Flash breathe on whichever character is doing the most damage. That is the most breath weapons that ever target PCs in one round: two.",
+          "Second round. Slarkas and Flash keep attacking the ship. Vistalancer breathes on whichever character is doing the most damage, and Vermilius on the biggest cluster of characters. That is the most breath weapons that ever target PCs in one round: two.",
           "Third round. The dragons breathe again if they can, and use Wing Attack to knock gunners off the cannons. Each dragon uses Wingover the first time a ship weapon targets it each round.",
           "The fight ends when one dragon falls, or the party is clearly losing, or the fourth round is over. Then read the box at the end of this scene."
         ] },
@@ -793,9 +797,9 @@ window.SESSION = {
           "Vermilius taunts in Common as she circles: \"Pretty boat. It will make a lovely coffin.\" When she sees Moonkite: \"Oh, is that a celestial I smell? The master will want that.\"",
           "Vistalancer counts every hit out loud in Draconic: \"One. Two. Three.\"",
           "Flash shrieks in Draconic. If anyone calls him small or young, he loses his temper and attacks that character next, even if it makes no sense.",
-          "Slarkas says nothing. He just melts things."
+          "Slarkas only curses, in Draconic. Mostly it just melts things."
         ] },
-        { t: "note", title: "The Ship", text: "The {@c lady-vengeance|Lady Vengeance} has AC 17, 350 hit points and a damage threshold of 15. Jeremy flies her. A crew member can fire one of the two force cannons as an action (8d10 force each). The aether harpoon (4d12) can pin a dragon to the ship so everyone can hit it, but a pinned dragon can also reach the deck. Every dragon's breath beats the damage threshold. Each round Jeremy makes a DC 15 Intelligence (Arcana) check to keep the core steady; on a failure, one cannon or the ship's speed is lost for that round. The {@side soul-coin-overdrive|Soul Coin Overdrive} is not used here. Save it for the escape." },
+        { t: "note", title: "The Ship", text: "The {@c lady-vengeance|Lady Vengeance} has AC 17, 350 hit points and a damage threshold of 15. Jeremy flies her. A crew member can fire one of the two force cannons as an action (8d10 force each). The aether harpoon (4d12) can pin a dragon to the ship so everyone can hit it, but a pinned dragon can also reach the deck. Every dragon's breath beats the damage threshold. Each round Jeremy makes a DC 15 Intelligence (Arcana) check to keep the core steady; on a failure, she loses 10 feet of speed or one cannon goes silent until his next turn. The {@side soul-coin-overdrive|Soul Coin Overdrive} is not used here. Save it for the escape." },
         { t: "h", text: "Moonkite in the Air" },
         { t: "p", text: "Aurora can take Moonkite off the deck and fight one dragon in open air. Vermilius goes for her gladly, but none of the dragons tries to kill Moonkite. They have been told about celestials. Anything holy is the master's." },
         { t: "h", text: "Checks During the Fight" },
@@ -813,7 +817,7 @@ window.SESSION = {
           { c: "praxamor", n: 1 }
         ], notes: "Real fight against four adults. End it the moment one dragon drops, the party is clearly losing, or round 4 ends. Then Krull lands." },
         { t: "h", text: "Event: The Second Roar" },
-        { t: "read", text: "A second roar shakes the sky, deeper than the first. The white dragon is diving, straight down from the top of the tower, faster than anything that big should move.\n\nOn its neck, small and still, sits a figure in ceremonial armour." },
+        { t: "read", text: "A second roar shakes the sky, deeper than the first. The white dragon is diving, straight down from the top of the tower, faster than anything that big should move.\n\nOn his back, small and still, sits a figure in ceremonial armour." },
         { t: "p", text: "Go to {@scene krull-arrives|Krull Arrives}." }
       ]
     },
@@ -828,10 +832,10 @@ window.SESSION = {
         { t: "p", text: "Obatala's first roar woke {@c krull|Krull}. The old priest does not want the guests dead. Dead guests bring nothing to Arkhan. Krull only leads visitors to his master if they carry something Arkhan values. Otherwise he tells them to leave at once or die. This time, he sees Moonkite, and changes his mind." },
 
         { t: "h", text: "Event: Krull's Welcome" },
-        { t: "read", text: "\"ENOUGH!\"\n\nThe word lands like a dropped anvil. The great white dragon swoops in between your ship and the attackers and hangs there in the air, its wings beating so hard the ship rocks. Frost spreads across the hull where its breath brushes it, and melts at once into dirty water. It opens its jaws and breathes, not at you, but straight up. A cone of freezing white roars into the red clouds. For one heartbeat snow falls on the deck. Then it turns to warm, dirty rain.\n\nOn the dragon's neck sits an old tortle in ceremonial armour. His shell is carved all over with tiny runes. He looks tired. \"You have made your point, children. All of you.\"\n\nThe four dragons hiss and snap, but they pull back toward their spires. The red one goes last, and slowly." },
+        { t: "read", text: "\"ENOUGH!\"\n\nThe white dragon roars the word, and it lands like a dropped anvil. The great white dragon swoops in between your ship and the attackers and hangs there in the air, his wings beating so hard the ship rocks. Frost spreads across the hull where his breath brushes it, and melts at once into dirty water. He opens his jaws and breathes, not at you, but straight up. A cone of freezing white roars into the red clouds. For one heartbeat snow falls on the deck. Then it turns to warm, dirty rain.\n\nOn the dragon's back sits an old tortle in ceremonial armour. His shell is carved all over with tiny runes. He looks tired. \"You have made your point, children. All of you.\"\n\nThe four dragons hiss and snap, but they pull back toward their spires. The red one goes last, and slowly." },
         { t: "p", text: "The white dragon is {@c obatala|Obatala}. The tortle is Krull, Arkhan's priest and seneschal. The dragons obey him, grumbling. Any dragon that fled stays gone." },
         { t: "h", text: "Event: Landing at the Gate" },
-        { t: "read", text: "Krull points down. \"Land there, at the gate. Slowly.\"\n\nThe ship drifts the last mile in silence. The dragons sit on their spires and watch it all the way. On the walls, the dead guards turn their heads to follow you. Jeremy sets the Lady Vengeance down on a flat black terrace in front of the tower's gate, and the hull groans as it settles.\n\nObatala lands beside you. The ground shakes. Krull slides down from the dragon's shoulder, slow and careful, like an old man getting off a horse. He walks to the nearest wounded dragon as it lands, and lays a wrinkled hand on its torn side. Soft grey light. The flesh knits shut.\n\nThen he walks to the foot of your gangplank and waits for your wounded to come down to him. He heals them too, without asking and without waiting for thanks. His hands are cold and dry, and they smell of incense and grave dirt." },
+        { t: "read", text: "Krull points down. \"Land there, at the gate. Slowly.\"\n\nThe ship drifts the last mile in silence. The dragons sit on their spires and watch it all the way. On the walls, the dead guards turn their heads to follow you. Jeremy sets the Lady Vengeance down on a flat black terrace in front of the tower's gate, and the hull groans as it settles.\n\nObatala lands beside you. The ground shakes. Krull slides down from the dragon's back, slow and careful, like an old man getting off a horse. He walks to the nearest wounded dragon as it lands, and lays a wrinkled hand on its torn side. Soft grey light. The flesh knits shut.\n\nThen he walks to the foot of your gangplank and waits for your wounded to come down to him. He heals them too, without asking and without waiting for thanks. His hands are cold and dry, and they smell of incense and grave dirt." },
         { t: "p", text: "Krull heals everyone who was hurt, dragons included. This is a real courtesy, not a trick. If a character died, he says \"Tsk,\" and then, calmly: \"Arkhan can bring that one back. For a price.\" See {@side raise-the-dead|Raise the Dead}." },
 
         { t: "h", text: "Event: The Ghouls" },
@@ -866,11 +870,11 @@ window.SESSION = {
       duration: "20 minutes",
       banner: "art/official/white-abishai.webp",
       blocks: [
-        { t: "p", text: "The Monument to Tiamat is several hours away by air, at the foot of a black mountain. Obatala flies ahead. Krull, to everyone's surprise, rides on the deck of the Lady Vengeance, so he can talk. This is the party's best chance to learn about Arkhan before they meet him." },
+        { t: "p", text: "The Monument to Tiamat is several hours away by air, at the foot of a black mountain. Krull rides on Obatala's back, and the white dragon flies alongside the ship, close enough to talk across the rail. The tower dragons still standing follow far behind, sulking, and settle on the mountain above the skull. This is the party's best chance to learn about Arkhan before they meet him." },
         { t: "note", title: "Running This Scene", text: "Read the travel boxes and let the players question Krull between them. His answers are in {@side krull-on-the-walk|What Krull Says on the Way}. End the scene with the abishai rushing out, so the players arrive at the Monument already nervous." },
 
-        { t: "h", text: "Event: Krull Comes Aboard" },
-        { t: "read", text: "Obatala climbs into the red sky, and Jeremy follows. Just before the ship pulls away, Krull steps off the dragon's wing onto your deck, slow and steady, and sits down on a coil of rope.\n\n\"It is a long way,\" he says. \"And I am old. And Obatala is not much of a talker.\"\n\nHe looks at each of you in turn, and for once he is not smiling. \"One thing, children, before we go, and I will say it plainly. Do not fight him. I have watched many champions try. I buried what was left of them. Talk to him, pay him, or walk away. Those are the ways out.\"\n\nThe four ghouls stay behind on the ramparts. They watch the ship go until it is out of sight." },
+        { t: "h", text: "Event: Krull Flies Alongside" },
+        { t: "read", text: "Krull climbs back onto Obatala, slow and careful. The white dragon climbs into the red sky, and Jeremy follows. Then Obatala drops in beside your ship, so close that one great wing almost brushes the rail, and Krull leans toward you from his back.\n\n\"It is a long way,\" he calls across. \"And I am old. And Obatala is not much of a talker.\"\n\nHe looks at each of you in turn, and for once he is not smiling. \"One thing, children, before we go, and I will say it plainly. Do not fight him. I have watched many champions try. I buried what was left of them. Talk to him, pay him, or walk away. Those are the ways out.\"\n\nThe four ghouls stay behind at the gate. They watch the ship go until it is out of sight." },
 
         { t: "h", text: "Event: The Field of Spikes" },
         { t: "read", text: "The bone fields give way to cracked red rock and slow rivers of glowing lava. Then you pass over a plain of iron spikes, hundreds of them in neat rows. Every spike holds someone.\n\nMost are still. Some are not. Their moans rise on the hot wind and fade behind you. A flock of small winged things hops from spike to spike, tearing off strips. The smell rises with the heat: old blood, opened bellies, and burnt hair." },
@@ -880,12 +884,13 @@ window.SESSION = {
         { t: "read", text: "You fly over a battlefield that ended a few days ago. Demons and devils lie where they fell, tangled together, swelling and splitting in the heat. Carrion things with too many legs crawl in and out of them.\n\nThe foul stench of guts and regurgitated body parts fills the air. Demon blood boils on the hot rock in black, stinking bubbles. Somebody gags.\n\nKrull breathes in deeply, like an old man smelling fresh bread." },
 
         { t: "h", text: "Event: The Mountain and the Smoke" },
-        { t: "read", text: "After hours, a black mountain rises ahead, jagged as a broken tooth. A thin line of grey smoke climbs from its foot.\n\nKrull gets up. \"There. Tell your pilot to set down on the ridge. Not closer. The guards at the skull are... eager.\"" },
-        { t: "read", text: "At the foot of the mountain lies a skull. A dragon's skull, so big a castle could sit inside its open jaws. It leans back against the rock as if the dragon died resting there. Bones lie all around it, ribs and spines and leg bones, each one as big as a house. Yellow smoke curls out of the skull's mouth and drifts up the mountain. It stinks of sulfur even from here.\n\nAmong the bones stands a big red tent, like a general's tent in a war camp. Beside it squats a machine of black iron on two great spiked wheels.\n\nAround the tent, a dozen figures stand and chatter. They are the size of men, with white scales, white bat-like wings, and long swords that catch the red light." },
+        { t: "read", text: "After hours, a black mountain rises ahead, jagged as a broken tooth. A thin line of yellow smoke climbs from its foot.\n\nKrull points. \"There. Tell your pilot to set down on the ridge. Not closer. The guards at the skull are... eager.\"" },
+        { t: "read", text: "At the foot of the mountain lies a skull. A dragon's skull, so big a castle could sit inside its open jaws. It leans back against the rock as if the dragon died resting there. Bones lie all around it, ribs and spines and leg bones, each one as big as a house. Yellow smoke curls out of the skull's mouth and drifts up the mountain. It stinks of sulfur even from here.\n\nJust beside the skull, in open ground, stands a big black tent, like a general's tent in a war camp. Beside it squats a machine of black iron on two great spiked wheels.\n\nAround the tent, a dozen figures stand and chatter. They are the size of men, with white scales, white bat-like wings, and long swords that catch the red light." },
 
         { t: "h", text: "Event: The Abishai Rush" },
-        { t: "read", text: "The moment your ship touches the ridge, the chattering stops. Twelve white heads turn at once. Twelve pairs of wings snap open. They come up the slope at you, fast and low, hissing, swords out.\n\nKrull raises one hand. \"Tiamat's children,\" he calls in Draconic, sounding bored. \"These are guests. Arkhan will want them.\"\n\nThe devils stop ten feet away. They do not lower their swords. One leans close to the nearest of you and breathes in, long and slow, as if tasting you. Its breath is ice cold and smells of old meat." },
-        { t: "p", text: "These are {@c white-abishai|white abishai}, Tiamat's draconic devils. They rush anyone who comes near the skull, unless Krull escorts them or they bring something Arkhan values. They fall back into a ring around the tent and watch." },
+        { t: "read", text: "The moment your ship touches the ridge, the chattering stops. Twelve white heads turn at once. Twelve pairs of wings snap open. They come up the slope at you, fast and low, hissing, swords out.\n\nKrull raises one hand. \"Tiamat's children,\" he calls in Draconic, sounding bored. \"These are guests. Arkhan will want them.\"\n\nThe devils stop ten feet away. They do not lower their swords. Then one steps in, leans close to the nearest of you and breathes in, long and slow, as if tasting you. Its breath is ice cold and smells of old meat." },
+        { t: "p", text: "These are {@c white-abishai|white abishai}, Tiamat's draconic devils. They rush anything that comes near the skull, and stop only for Krull's word or for something Arkhan values. Then they fall back into a ring around the tent and watch." },
+        { t: "note", title: "Why the Devils Obey Krull", text: "Krull does not control the abishai. They are Tiamat's own devils, made from the souls of her dead worshippers, and they serve her chain of command: Tiamat, then her chosen champion Arkhan, then Arkhan's priest. Krull speaks with Arkhan's authority, so they stop when he speaks. They do not like it, which is why the swords stay up. If Krull falls out of Arkhan's favour (see {@side krull-trick|the Krull trick}), they stop listening to him at once." },
 
         { t: "h", text: "Checks on the Road" },
         { t: "list", items: [
@@ -896,7 +901,7 @@ window.SESSION = {
 
         { t: "h", text: "If the Characters..." },
         { t: "p", text: "{@b ...refuse to land on the ridge and fly straight at the skull.} The abishai swarm into the air around the ship, hissing. Krull sighs: \"Children.\" Jeremy has to set down among the bones by the tent, and every abishai keeps a hand on its sword the whole time." },
-        { t: "p", text: "{@b ...attack the abishai.} This is madness without an army, and Krull says so. Dozens more boil out of the caves behind the skull. Krull shouts them down after one exchange of blows. Arkhan walks out of his tent and gives his {@b last warning} (see Event: The Last Warning in {@scene arkhans-price|Arkhan's Price}). If the characters keep fighting, go to {@scene the-fight|The Fight with Arkhan}, and add 1d4 + 1 {@c white-abishai|white abishai} to the tracker at once with Add creature, because they were attacked." },
+        { t: "p", text: "{@b ...attack the abishai.} This is madness without an army, and Krull says so. Dozens more boil out of the caves behind the skull. Krull shouts them down after one exchange of blows. Arkhan walks out of his tent and gives his {@b last warning} (see Event: The Last Warning in {@scene arkhans-price|Arkhan's Price}; paraphrase it: he is standing outside, and the swords are already out). If the characters keep fighting, go to {@scene the-fight|The Fight with Arkhan}, and add 1d4 + 1 {@c white-abishai|white abishai} to the tracker at once with Add creature, because they were attacked." },
         { t: "p", text: "Go to {@scene the-monument|The Monument to Tiamat}." }
       ]
     },
@@ -908,22 +913,22 @@ window.SESSION = {
       duration: "30 minutes",
       banner: "art/official/arkhan-the-cruel.webp",
       blocks: [
-        { t: "p", text: "Arkhan is camped here to pray. He tells Tiamat how his fight with the Hand of Vecna is going. Prayers spoken into the skull's mouth reach her. When she answers, she speaks in five voices at once, out of the dark. Behind the skull, a tunnel runs down toward wherever she is kept. Nobody goes in." },
+        { t: "p", text: "Arkhan is camped here to pray. He tells Tiamat how his fight with the Hand of Vecna is going. Prayers spoken into the skull's mouth reach her. When she answers, she speaks in five voices at once, out of the dark. At the back of the skull, a tunnel runs down toward wherever she is kept. Nobody goes in." },
         { t: "note", title: "Arkhan's Rot", text: "The Hand of Vecna is slowly corrupting Arkhan. One side of his body is decomposing. To hold the rot back he must use the Hand to snuff out the life of good creatures. That is why he wants a good creature's death for the vial. Giving him one is an evil act. Let the players see the rot before they hear the price, so the price makes sense when it comes." },
 
         { t: "h", text: "The Monument, Area by Area" },
         { t: "h", text: "The Bone Field" },
-        { t: "p", text: "Bones the size of houses lie everywhere around the skull: ribs like arches, leg bones like fallen towers. They form a maze of narrow, shadowed paths. Smaller bones crunch underfoot on every step. Flies are thick here, and the ground is sticky." },
+        { t: "p", text: "Bones the size of houses lie everywhere around the skull: ribs like arches, leg bones like fallen towers. The biggest, a dragon's spine and ribcage curving across the ground between the ridge and the skull, form a maze of narrow, shadowed paths, lit by iron braziers. Smaller bones crunch underfoot on every step. Flies are thick here, and the ground is sticky." },
         { t: "h", text: "The Skull" },
-        { t: "p", text: "A colossal dragon's skull leans against the mountain. Its open jaws are taller than a castle gate. Acrid yellow smoke drifts out of the maw, and the heat from inside is like an open oven. Every few breaths, from deep within, comes the sound of something enormous breathing slowly." },
+        { t: "p", text: "A colossal dragon's skull leans against the mountain. Its open jaws could hold a small castle. Acrid yellow smoke drifts out of the maw, and the heat from inside is like an open oven. Every few breaths, from deep within, comes the sound of something enormous breathing slowly." },
         { t: "h", text: "The Maw" },
-        { t: "p", text: "The floor inside the jaws is smooth stone, slick with soot. Here worshippers leave offerings and speak their prayers into the dark. Tiamat hears them. The offerings are piled against the back teeth (see Treasure, below)." },
+        { t: "p", text: "The floor inside the jaws is smooth stone, slick with soot. Here worshippers leave offerings and speak their prayers into the dark. A small black prayer-tent stands just inside the jaws. Tiamat hears them. The offerings are piled against the back teeth (see Treasure, below)." },
         { t: "h", text: "The Eye Sockets and the Caves" },
         { t: "p", text: "White abishai sleep in the skull's empty eye sockets. Behind the skull, the mountain is full of hot, stinking caves, and those caves are full of abishai: white, black, green, blue and red, far too many to count. Are they guarding Tiamat, or guarding the world from her? They never say. A small party that attacks this place will be buried in devils." },
         { t: "h", text: "The Tunnel" },
         { t: "p", text: "At the very back of the skull, a tunnel leads down into the dark toward Tiamat's lair. Deep inside it lairs {@c asojano|Asojano}, Arkhan's chimera. The characters should not go in. If they try, the abishai stop them, and so does common sense." },
         { t: "h", text: "Arkhan's Tent" },
-        { t: "p", text: "A big military tent of dark red hide, pitched among the bones. Inside: a worn rug, a map table, a brazier, and a small field altar to Tiamat with five candles, one of each colour. {@c manticore|Chango}, Arkhan's manticore, sprawls across the entrance. {@c torogar-steelfist|Torogar Steelfist}, his minotaur bodyguard, stands beside the flap." },
+        { t: "p", text: "A big military tent of black hide, pitched in open ground just beside the skull. Next to it stands a throne of dragon bones, where Arkhan holds court in the open. Inside: a worn rug, a map table, a brazier, and a small field altar to Tiamat with five candles, one of each colour. {@c manticore|Chango}, Arkhan's manticore, sprawls across the entrance. {@c torogar-steelfist|Torogar Steelfist}, his minotaur bodyguard, stands beside the flap." },
         { t: "h", text: "The Devil's Ride" },
         { t: "p", text: "Parked next to the tent is Torogar's {@b Devil's Ride}, a two-wheeled infernal war machine of black iron and spikes, with skulls bolted to the handlebars. It runs on a burning soul coin. It matters in {@scene the-escape|the escape}." },
 
@@ -931,13 +936,13 @@ window.SESSION = {
         { t: "read", text: "Krull leads you down through the bones. Small ones crunch under your boots. Big ones loom over you like the ribs of a burned ship. The flies are so thick you breathe them. The ground is sticky, and it pulls at your feet.\n\nThe closer you get to the skull, the hotter it gets. The smoke from the maw stings your eyes and tastes of sulfur and scorched hair. And under the buzzing of the flies, from deep inside the skull, you hear something breathing. Slow. Enormous. Patient." },
         { t: "h", text: "Event: Arkhan's Demonstration" },
         { t: "p", text: "This is the third warning. Before the talk begins, the characters see what Arkhan can do. A captured adult gold dragon lies chained in front of the skull's maw, an offering for the Hand. Arkhan kills it while they watch." },
-        { t: "read", text: "In front of the skull's maw, a dragon lies in chains. A gold dragon, bigger than your ship, its scales dull and cracked, iron spikes driven through both wings into the ground. It lifts its head as you come out of the bones, and its eyes are full of hope. Then it sees Krull, and the hope goes out of them.\n\nA tall dragonborn in black armour stands beside it. He does not look at you. He raises his left hand, a shrivelled black thing, and points one finger at the dragon's head. A thread of green-black light leaps from the nail. The gold dragon convulses once, from snout to tail. Its scales go grey. Its eyes go white. Then it is still, and the smell of its death rolls over you, hot and sweet and rotten.\n\nThe dragonborn lifts his battleaxe and brings it down once, lazily, through the dragon's neck. The axe goes through scale and bone like a knife through bread. Frost spreads across the gold where it bites.\n\nOnly then does he turn to look at you. \"Forgive me,\" he says softly. \"It was hungry. Come in.\"" },
-        { t: "p", text: "Arkhan used the Hand of Vecna ({@spell finger of death}) and one swing of Fane-Eater. For a moment after the kill, the rotting side of his face looks less grey. It does not last. It never does, and that is why he still needs Moonkite." },
+        { t: "read", text: "In front of the skull's maw, a dragon lies in chains. A gold dragon, almost as long as your ship, its scales dull and cracked, iron spikes driven through both wings into the ground. It lifts its head as you come out of the bones, and its eyes are full of hope. Then it sees Krull, and the hope goes out of them.\n\nA tall dragonborn in black armour stands beside it. He does not look at you. He raises his left hand, a shrivelled black thing, and points one finger at the dragon's head. A thread of green-black light leaps from the nail. The gold dragon convulses once, from snout to tail. Its scales go grey. Its eyes go white. Then it is still, and the smell of its death rolls over you, hot and sweet and rotten.\n\nThe dragonborn lifts his battleaxe and brings it down once, lazily, through the dragon's neck. The axe goes through scale and bone like a knife through bread. Frost spreads across the gold where it bites.\n\nOnly then does he turn to look at you. \"Forgive me,\" he says softly. \"It was hungry. Come in.\"" },
+        { t: "p", text: "Arkhan used the Hand of Vecna ({@spell finger of death}) and one swing of Fane-Eater. For a moment after the kill, the rotting side of his face looks less grey. It does not last. It never does, and that is why he still needs Moonkite. That cost the Hand 5 of its 12 charges: if a fight comes later today, he starts it with 7." },
         { t: "read", text: "At the tent, a huge minotaur in scorched leather blocks the way. Flames crawl over his iron gauntlets when he flexes his fists. At his feet sprawls a manticore with a man's face and a grin far too wide, chewing something that used to have fingers. It laughs at you, a very human laugh.\n\nKrull bows to the minotaur. The minotaur does not bow back. He pulls the tent flap aside." },
 
         { t: "h", text: "Event: Arkhan" },
         { t: "read", text: "Inside, the tent smells of incense, and under the incense, of rotting meat.\n\nThe dragonborn from the skull has gone in ahead of you. He sits on a camp stool before a small altar with five candles. He wears black plate made from a dragon's scales. A battleaxe rests across his knees, and the air around its blade is frosted white. At his throat, on a chain, hangs a small crystal vial. The dark blood inside it moves on its own.\n\nHe turns to look at you, and you see the other half of his face. It is grey and sunken. The scales are peeling away from it in patches, and underneath, the flesh is soft and dark. His left hand is not his. It is black and shrivelled, with long yellow nails, fixed to his wrist with iron staples." },
-        { t: "read", text: "\"You survived my welcome. Good. Krull tends to overdo things when he is embarrassed, and I would hate for this to end before we have talked.\"\n\nHis voice is soft and polite. He does not stand.\n\n\"Sit, if you like. Stand ready, if you would rather. I already know what you want.\" He touches the vial with his good hand, without looking at it. \"Tiamat's blood. Everyone who comes here wants Tiamat's blood. What interests me is what you will give for it.\"" },
+        { t: "read", text: "\"You survived my dragons' welcome. Good. They do overdo things, and I would hate for this to end before we have talked.\"\n\nHis voice is soft and polite. He does not stand.\n\n\"Sit, if you like. Stand ready, if you would rather. I already know what you want.\" He touches the vial with his good hand, without looking at it. \"Tiamat's blood. Everyone who comes here wants Tiamat's blood. What interests me is what you will give for it.\"" },
         { t: "p", text: "This is {@c arkhan-the-cruel|Arkhan the Cruel}. He is calm, polite and very dangerous. He does not attack first. He wants to make a deal." },
 
         { t: "h", text: "Event: The Five Voices" },
@@ -960,11 +965,11 @@ window.SESSION = {
           "A silver diadem set with sapphires, taken from some noble's head (750 gp).",
           "An onyx statuette of a five-headed dragon with gemstone eyes (2,500 gp).",
           "A blue dragon's tooth carved with Draconic prayers (250 gp).",
-          "A bronze bowl holding three {@item soul coin|BGDIA} coins, still whispering.",
+          "A bronze bowl holding three {@item soul coin|BGDIA}s, still whispering.",
           "A small chest of mixed coins from a dozen worlds (1,200 gp).",
           "A {@item potion of fire breath|DMG} in a red glass bottle shaped like a dragon's head."
         ] },
-        { t: "p", text: "Krull carries a {@item +1 maul|DMG}, five {@item potion of healing|DMG} potions and two soul coins in his sling bag." },
+        { t: "p", text: "Krull carries a {@item +1 maul|DMG}, five healing potions ({@item potion of healing|DMG}) and two soul coins in his sling bag." },
         { t: "p", text: "When Arkhan names his price, go to {@scene arkhans-price|Arkhan's Price}." }
       ]
     },
@@ -980,7 +985,7 @@ window.SESSION = {
         { t: "note", title: "Running the Negotiation", text: "Arkhan is never in a hurry. He answers questions (see {@side what-arkhan-knows|What Arkhan Knows}), he listens to offers, and he is honest about what he wants. The price never changes: a good creature's death. Everything else is open to talk." },
 
         { t: "h", text: "Event: The First Price" },
-        { t: "read", text: "Arkhan raises the black hand and turns it slowly in the candlelight. The fingers twitch on their own.\n\n\"You see what I carry. It gives me everything. It also eats me, a little more each day.\" He touches the rotting side of his face. \"It must be fed, or it takes the rest of me. And it only eats one thing: the life of something good.\"\n\nHis eyes go past you to Moonkite.\n\n\"The warlock's star-beast. I can smell the upper heavens on it from here. Give it to me, and the vial is yours before the hour is out. A fair trade: one bright life, for a god's own blood.\"" },
+        { t: "read", text: "Arkhan raises the black hand and turns it slowly in the candlelight. The fingers twitch on their own.\n\n\"You see what I carry. It gives me everything. It also eats me, a little more each day.\" He touches the rotting side of his face. \"It must be fed, or it takes the rest of me. And it only eats one thing: the life of something good.\"\n\nHis eyes go past you to Moonkite.\n\n\"The star-beast. I can smell the upper heavens on it from here. Give it to me, and the vial is yours before the hour is out. A fair trade: one bright life, for a god's own blood.\"" },
         { t: "p", text: "{@c moonkite|Moonkite} understands. Its light dims to almost nothing. It presses itself against Aurora and does not move. Let Aurora's player answer. Do not hurry them." },
 
         { t: "h", text: "Event: The Second Price" },
@@ -995,7 +1000,7 @@ window.SESSION = {
         { t: "list", items: [
           "{@b Persuasion, DC 20.} On a success, Arkhan adds a sweetener, but never changes the price. He might add safe passage from Avernus's dragons, or one free {@spell raise dead} for a character whose body he holds, or an answer from {@side what-arkhan-knows|What Arkhan Knows} for free.",
           "{@b Intimidation.} It always fails. He laughs, kindly. On a 25 or higher, he respects the nerve, and the next Persuasion check against him has advantage.",
-          "{@b Deception, DC 22.} To pass off a creature as good when it is not. Krull casts {@spell detect evil and good} before any sacrifice, so a lie about alignment is found out at the altar. A failed lie is an insult: go to {@scene the-fight|the fight}."
+          "{@b Deception, DC 22.} To pass off a creature as good when it is not. Arkhan tastes goodness through the Hand (\"I can taste it from here\"), so a lie about alignment is found out at the altar. A failed lie is an insult: go to {@scene the-fight|the fight}."
         ] },
 
         { t: "h", text: "If the Characters..." },
@@ -1030,7 +1035,7 @@ window.SESSION = {
         { t: "note", title: "Why Arkhan Plays Tricks", text: "A fight costs him blood, time and Hand charges. A trick costs him nothing. Each trick either gets him a deal, or gets him leverage over someone in the room. Neither trick is a fight by itself. If the characters insult him, try to steal the vial or attack him at any point, go to the fight." },
 
         { t: "h", text: "Event: The Refusal" },
-        { t: "read", text: "Arkhan is quiet for a long moment. The candles on the little altar gutter, though there is no wind.\n\n\"No to the star-beast. No to the little elephant.\" He nods slowly, as if you have told him the weather. \"Then we are still friends. Friends who want different things.\"\n\nHe stands for the first time. He is taller than you expected. The rotting side of him creaks inside the armour, and the smell of it rolls across the tent, sweet and thick, like meat left in a cellar.\n\n\"Let us see,\" he says gently, \"who in this room wants something.\"" },
+        { t: "read", text: "Arkhan is quiet for a long moment. The candles on the little altar gutter, though there is no wind.\n\n\"No to the star-beast. No to the little elephant.\" He nods slowly, as if you have told him the weather. \"Then we are still friends. Friends who want different things.\"\n\nHe stands for the first time since you came in. In the low tent, he is very tall. The rotting side of him creaks inside the armour, and the smell of it rolls across the tent, sweet and thick, like meat left in a cellar.\n\n\"Let us see,\" he says gently, \"who in this room wants something.\"" },
 
         { t: "h", text: "Running the Tricks" },
         { t: "steps", items: [
@@ -1069,7 +1074,7 @@ window.SESSION = {
 
         { t: "h", text: "Event: The Fight Begins" },
         { t: "read", text: "Arkhan sighs, the way a teacher sighs at a slow pupil.\n\n\"Torogar.\"\n\nThe minotaur roars, and fire bursts over both his fists. Outside, twelve swords hiss from twelve sheaths at once. The manticore is suddenly on its feet, tail raised, spikes rattling.\n\nArkhan rises and lifts his axe. Frost runs down the blade. Golden-red light, Tiamat's own light, flares along the edge.\n\nAnd from deep in the skull, five voices laugh." },
-        { t: "map", id: "avernus-encounter-map-40x40", note: "The tent stands in the middle, the skull's maw on one edge, the bone maze around both. The ship is off the map, up on the ridge." },
+        { t: "map", src: "maps/monument-battlemap.webp", title: "The Monument to Tiamat", note: "The skull is on the left, facing you, jaws wide open, with a small prayer-tent inside the maw. Arkhan's black tent and bone throne stand just right of it, in open ground: Arkhan, Torogar and Chango start there. The dragon spine and ribcage on the right, with its three braziers, is the bone maze; the characters come in through it. The dark rocky rise along the right edge is the slope up to the ridge, where the Lady Vengeance waits off-map. Not drawn: the mountain the skull leans on, and Torogar's Devil's Ride (put a token beside Arkhan's tent)." },
 
         { t: "h", text: "Who Fights" },
         { t: "p", text: "Arkhan, his bodyguard {@c torogar-steelfist|Torogar}, his manticore {@c manticore|Chango}, and {@c krull|Krull}, unless Krull already turned on Arkhan. If the characters start winning, Arkhan orders the {@c white-abishai|white abishai} around the tent to join in: 1d4 + 1 of them arrive." },
@@ -1115,9 +1120,9 @@ window.SESSION = {
       duration: "20 to 30 minutes",
       banner: "art/official/adult-white-dragon.webp",
       blocks: [
-        { t: "p", text: "The characters run for the {@c lady-vengeance|Lady Vengeance} in four legs. Arkhan stays at the skull, or has already teleported home. Torogar, Chango, Obatala and any tower dragons still standing chase them." },
+        { t: "p", text: "The characters run for the {@c lady-vengeance|Lady Vengeance} in four legs. Arkhan stays at the skull, or has already teleported home. Torogar, Chango, Obatala and any tower dragons still standing chase them. If Arkhan teleported away, whoever he took with him is gone too: skip their part of each leg." },
         { t: "note", title: "Running the Escape", text: "Run each leg as one or two rounds. Read the box, show the obstacle, call for the check, and move on. Keep it fast. The danger is real, but the party should usually make it." },
-        { t: "map", id: "avernus-encounter-map-40x40", note: "Same map as the fight. The characters run from the tent, through the bone maze, up the slope to the ridge." },
+        { t: "map", src: "maps/monument-battlemap.webp", title: "The Monument to Tiamat", note: "Same map as the fight. The characters run from Arkhan's tent beside the skull, through the spine-and-rib maze on the right, then up the dark rocky rise along the right edge to the ridge, where the ship comes in low off-map." },
 
         { t: "h", text: "Leg 1: The Tent" },
         { t: "read", text: "You run. Behind you the tent goes up in flames, and the minotaur comes through the burning canvas like a bull through a fence, horns down, fists blazing.\n\nThe skull hisses again. Another cone of colour rolls across the bones after you." },
@@ -1138,7 +1143,7 @@ window.SESSION = {
         { t: "h", text: "Leg 4: The Ship" },
         { t: "read", text: "And there she is. The Lady Vengeance comes over the ridge low and fast, Jeremy screaming something you cannot hear, the cannons blazing at the dragons. She drops so low her keel scrapes the rocks. The rail is right there.\n\nJump." },
         { t: "p", text: "{@b Obstacle.} Jeremy brings the ship in low without being told. Each character on foot makes a DC 12 Strength (Athletics) or Dexterity (Acrobatics) check to jump aboard. Jeremy makes a DC 15 Intelligence (Arcana) check to keep the ship steady while Obatala's breath hits the hull." },
-        { t: "p", text: "{@b Success:} aboard, and away. {@b Failure:} the character misses the rail and falls. The aether harpoon can catch them (+6 to hit, as a rescue, not an attack) and reel them in. If Jeremy fails his check, the ship lurches: everyone on deck makes a DC 12 Dexterity save or falls prone." },
+        { t: "p", text: "{@b Success:} aboard, and away. {@b Failure:} the character misses the rail and falls. The aether harpoon can catch them (+9 to hit, as a rescue, not an attack) and reel them in. If Jeremy fails his check, the ship lurches: everyone on deck makes a DC 12 Dexterity save or falls prone." },
         { t: "note", title: "The Soul Coin Overdrive", text: "If things go very badly, see {@side soul-coin-overdrive|Soul Coin Overdrive}." },
         { t: "p", text: "{@b If the characters stole the vial or killed Krull,} Arkhan teleports onto the ship's deck once, as a last scare. He says one sentence: \"I will remember your faces.\" Then he is gone again." },
 
@@ -1146,7 +1151,7 @@ window.SESSION = {
           { c: "obatala", n: 1 },
           { c: "torogar-steelfist", n: 1 },
           { c: "manticore", n: 1 }
-        ], notes: "Add any tower dragons from the dragon ambush that are still standing." },
+        ], notes: "Add any tower dragons from the dragon ambush that are still standing. Drop anyone who teleported out with Arkhan." },
 
         { t: "h", text: "Event: Away" },
         { t: "read", text: "The ship climbs. Obatala follows for a long time, a white shape in the red murk, roaring. Then, at last, he turns back.\n\nBehind you, the great skull grows small against the mountain. The smoke from its maw rises straight up, slow and patient, as if nothing at all has happened. You are bleeding. The deck is scorched. Someone is laughing, and someone is crying, and it might be the same person." },
@@ -1164,11 +1169,11 @@ window.SESSION = {
 
         { t: "h", text: "Outcome: Moonkite Was Given" },
         { t: "read", text: "Arkhan lays the black hand on Moonkite's brow, almost gently. The celestial's light flares once, bright as a star, so bright the abishai cover their eyes. Then it goes out.\n\nFor one moment the rotting side of Arkhan's face is smooth and whole. He closes his eyes and breathes out. Then he lifts the chain from his neck and puts the warm vial in your hand.\n\n\"A fair trade,\" he says. \"My queen thanks you.\"" },
-        { t: "p", text: "The party has the blood. Aurora loses her companion. {@b Campaign change:} freeing the Caged Star needed Moonkite as its celestial witness. That road now needs another witness, or it is closed. Arkhan is cordial to the party from now on." },
+        { t: "p", text: "The party has the blood. Aurora loses her companion. {@b Campaign change:} freeing the Caged Star needed Moonkite as its celestial witness. That road now needs another witness, or it is closed. Moonkite may not be gone for good: see {@side arc-moonkite|Arc: Aurora and Moonkite}, Branch B. Within 10 days, a vial of Tears of the Caged Star can call it back. Arkhan is cordial to the party from now on." },
 
         { t: "h", text: "Outcome: Lulu Was Given" },
         { t: "read", text: "Lulu does not struggle. She looks back at you once, and her trunk lifts, as if she wants to say something. Then the black hand touches her, and her small golden light goes out like a candle.\n\nIn the silence afterward, you can hear the flies. Arkhan puts the warm vial in your hand. It feels heavier than it should." },
-        { t: "p", text: "The party has the blood. The whole party grieves. {@b Campaign change:} Lulu's memories were the most direct road to the Bleeding Citadel and the Sword of Zariel. That road is gone. The Fallen Three are now the only way to the Citadel. Arkhan is cordial to the party from now on." },
+        { t: "p", text: "The party has the blood. The whole party grieves. {@b Campaign change:} Lulu's memories were the most direct road to the Bleeding Citadel and the Sword of Zariel. That road is gone. The Fallen Three are now the only way to the Citadel. Moonkite grieves her, and soul-freeing loses its shepherd (see {@side arc-moonkite|Arc: Aurora and Moonkite}, Branch A). Freeing the Caged Star also needed her memory. Arkhan is cordial to the party from now on." },
 
         { t: "h", text: "Outcome: Another Good Creature Was Given" },
         { t: "p", text: "Use the Moonkite box, changed to fit. If it was an ally such as Veska, the other allies remember. Note it in the campaign log: some of them may not stay." },
@@ -1187,7 +1192,7 @@ window.SESSION = {
         { t: "h", text: "What the Vial Does" },
         { t: "p", text: "The vial holds a few spoonfuls of Tiamat's living blood. It is warm, it moves, and it whispers in Draconic in the dark. {@b DM: confirm with the table what the party needs it for.} Two suggested uses:" },
         { t: "list", items: [
-          "{@b Uldrak's curse (the book's road).} Spilled on the ground of Avernus at Uldrak's Grave, it breaks the curse on Uldrak, an empyrean that Tiamat turned into a spined devil. Restored, his blood frees Ralzala, who can write a letter of introduction to Bel. The party has already been to Bel's Forge, so use this chain only for what it still gives them: a grateful titan ally, and a favour.",
+          "{@b Uldrak's curse (the book's road).} Spilled on the ground of Avernus at Uldrak's Grave, it breaks the curse on Uldrak, an empyrean that Tiamat turned into a spined devil. Restored, he gives the party a gallon of his own empyrean blood, then plane shifts home to his god, Surtur. (In the book that blood frees the dao Ralzala at the Demon Zapper; in this campaign that link is already spent.)",
           "{@b A price at the Mirror of Mephistar.} Mephistopheles collects the blood of powers. The vial buys a full, honest answer from his mirror, and perhaps news of Dumal, who was last seen heading there."
         ] },
 
@@ -1213,11 +1218,11 @@ window.SESSION = {
         { t: "read", text: "\"A whole city, dragged down on chains. The chains are pulling it toward the Styx. When it touches the water, every soul in it forgets itself, and Avernus gets a city of new devils. Cities do not fall into Hell by accident, you know. Someone always signs something.\"" },
         { t: "p", text: "{@b Twist:} he does not know whose name is on the deal, and says so. DM: use the last line only if you want to plant the contract clue." },
         { t: "h", text: "The Sword of Zariel" },
-        { t: "read", text: "\"Her old blade. It left Hell long ago, carried out by someone who loved her. Nobody has found it since. My queen would very much like to know where it went.\" His eyes drift to Lulu, and rest there a moment too long." },
+        { t: "read", text: "\"Her old blade. When she fell, someone who loved her carried it off the field and hid it, somewhere in this layer, I am told. Nobody has found it since. My queen would very much like to know where it went.\" His eyes drift to Lulu, and rest there a moment too long." },
         { t: "p", text: "{@b Twist:} he does not know about Lulu's past, but he suspects there is something holy about her. Asking more makes him curious, which is dangerous." },
         { t: "h", text: "Bel" },
         { t: "read", text: "\"The archduke Zariel threw down. He sits in his forge and builds her war machines and hates her every hour. He is a rival of mine. Anything you take from him makes me happy.\"" },
-        { t: "p", text: "{@b Price:} a small one. Arkhan asks the party to tell Bel, the next time they see him, that Arkhan sends his regards. Bel will not like it." },
+        { t: "p", text: "{@b Price:} a small one. Arkhan asks the party to tell Bel, when they meet him, that Arkhan sends his regards. Bel will not like it." },
         { t: "h", text: "The Hand of Vecna" },
         { t: "read", text: "\"I found it on a world called Exandria. A short trip, a long story. I cut off my own hand to wear it. Every day it asks me for something. Every day I say no, until I feed it. One day I will master it, and then I will open my queen's prison with it.\" He flexes the black fingers. \"Or it will master me.\"" },
         { t: "p", text: "{@b Twist:} he says it calmly. A successful DC 16 Wisdom (Insight) check shows that he is far more afraid than he sounds." },
@@ -1233,7 +1238,7 @@ window.SESSION = {
     "krull-on-the-walk": {
       title: "What Krull Says on the Way",
       blocks: [
-        { t: "p", text: "Krull rides on the deck of the Lady Vengeance on the way to the Monument. He is talkative in a slow, dry way. He answers almost anything, and each answer has a little hook in it." },
+        { t: "p", text: "On the way to the Monument, Krull rides on Obatala's back, alongside the Lady Vengeance, close enough to talk across the rail. He is talkative in a slow, dry way. He answers almost anything, and each answer has a little hook in it." },
         { t: "list", items: [
           "{@b About Arkhan:} \"A great man. A very great man. He gave his own hand for our queen. Lately he gives more than that.\" He touches the left side of his own face, and says no more.",
           "{@b About the Hand:} \"It eats. He feeds it. Do not let him touch you with it, children, unless you have agreed to something.\"",
@@ -1257,7 +1262,7 @@ window.SESSION = {
         { t: "p", text: "Pass Drenwal's player a secret note, or take them aside. Gargauth whispers through the shield, to Drenwal only:" },
         { t: "read", text: "\"He will take the little elephant and never trouble you again. Or, and he does not know I am telling you this, he would give you the blood for a promise: your service, after your rebirth. He thinks he is dealing with me. Let him think it. It costs you nothing to let two devils believe they are clever.\"" },
         { t: "h", text: "If Drenwal Agrees" },
-        { t: "p", text: "Arkhan accepts a promise of service as a sweetener, but the Hand must still eat: the vial still costs a good creature's death. A promise does not replace the price. But it does go on the books. Drenwal now owes Arkhan one service after his rebirth, and Gargauth was the one who brokered it. Raise Gargauth's Bargain on the campaign tracker (suggested: +3)." },
+        { t: "p", text: "Gargauth oversold it. Arkhan accepts a promise of service as a sweetener, but the Hand must still eat: the vial still costs a good creature's death. A promise does not replace the price. But it does go on the books. Drenwal now owes Arkhan one service after his rebirth, and Gargauth was the one who brokered it. Raise Gargauth's Bargain on the campaign tracker (suggested: +3)." },
         { t: "h", text: "If Drenwal Refuses" },
         { t: "read", text: "The shield goes quiet. Then, so softly it might be imagined: \"As you like. I will be here when you change your mind.\"" },
         { t: "note", title: "Gargauth's Angle", text: "Gargauth wins either way. If Drenwal agrees, he owes a devil and Gargauth held the pen. If he refuses, he remembers that Gargauth knew a way out and he did not take it. Play Gargauth as the only one in the room who seems to be on Drenwal's side. He is not." }
@@ -1268,12 +1273,12 @@ window.SESSION = {
       title: "The Krull Trick",
       blocks: [
         { t: "p", text: "Arkhan knows Krull has wanted his place for a hundred years. He uses the characters as an audience, and Krull as the knife." },
-        { t: "read", text: "Arkhan turns to the old tortle as if he has just remembered him.\n\n\"Krull healed you tonight, did he not. Gentle old Krull. He has been gentle a long time. Gentle enough that our queen has not tasted his devotion in... what is it now, Krull? A century?\" He smiles. \"She wonders, sometimes, whether gentleness is a virtue, or a vacancy.\"" },
+        { t: "read", text: "Arkhan turns to the old tortle as if he has just remembered him.\n\n\"Krull healed you today, did he not. Gentle old Krull. He has been gentle a long time. Gentle enough that our queen has not tasted his devotion in... what is it now, Krull? A century?\" He smiles. \"She wonders, sometimes, whether gentleness is a virtue, or a vacancy.\"" },
         { t: "read", text: "Krull goes very still. His old eyes stop blinking. The runes on his shell, a hundred years of prayers, seem to darken in the candlelight. Outside, the abishai stop chattering." },
         { t: "p", text: "Krull loses his temper. Choose what he does:" },
         { t: "list", items: [
           "{@b He turns on the characters,} to prove he is loyal. He attacks one of them with his maul. Arkhan watches, lets it go one round, then raises his good hand: \"Enough. You see how my people love me. Shall we start again, as friends?\" Arkhan now holds the moral high ground, and the party owes him for stopping it.",
-          "{@b He turns on Arkhan,} finally reaching for the champion's place. He casts {@spell contagion} or swings his maul. Arkhan kills him in one turn, without hurry. Then he turns to the party: \"See what betrayal earns here. I would never do that to you.\""
+          "{@b He turns on Arkhan,} finally reaching for the champion's place. He casts {@spell contagion} or swings his maul. Arkhan kills him in a round or two, without hurry. Then he turns to the party: \"See what betrayal earns here. I would never do that to you.\""
         ] },
         { t: "p", text: "Read this only if Krull dies." },
         { t: "read", text: "The old tortle falls without a sound. His shell cracks on the stone floor, and a hundred years of prayers split down the middle.\n\nArkhan wipes his axe on the rug. \"Tsk,\" he says, in Krull's own voice, and smiles." },

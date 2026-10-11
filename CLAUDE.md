@@ -233,5 +233,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Why:** the paid CartographyAssets "Arkhan's Tower" pack (€4) is the tower INTERIOR, 10 floors, not the Monument. Only its style was matched. Art derived from a paid map stays out of the public repo. Image generation cost about $0.75 for 3 calls, against $0.50 approved.
 - **Open:**
   - The map's tent sits beside the maw, not inside it.
-  - Leftover audit findings were not applied (see the lore-fixer report).
+  - Audit applied 60 fixes in S9. Not yet fixed:
+    - optional D1–D4: Moonkite-arc links, Torogar "huge", gate skull colours;
+    - stale facts outside S9: campaign-state.md (level 11, Asimov, Session 5), primer Or'Henn level 11 and Aurora as Warlock, campaign-arcs L306/L438 (Devil's Ride is at the Monument).
+    - Trigger: next prep session.
   - Buy the €4 pack if the party ever enters the tower.
