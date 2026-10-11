@@ -34,10 +34,7 @@
         s("feonor", "horror-ambience", "Horror Ambience", "Mixkit — Horror ambience", MIXKIT),
         s("feonor", "dark-spellcast", "Dark Spellcast", "Mixkit — Cinematic whoosh magic gust", MIXKIT)
       ],
-      videos: [
-        { label: "Necromancer D&D animation", url: "https://www.youtube.com/watch?v=4C1q3IEPLsE", credit: "Tiger in Translation" },
-        { label: "Necromancer!", url: "https://www.youtube.com/shorts/WoZjye5cYZ4", credit: "Punkey Doodles" }
-      ]
+      videos: []
     },
     "young-black-dragon": {
       sounds: [
