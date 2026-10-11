@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DM App</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <header id="app-header">
+    <button id="search-btn" title="Search (/ or Ctrl+K)">🔍 Search</button>
+    <button id="library-btn" title="Library (L)">📚 Library</button>
+    <button id="map-btn" title="Map (M)">🗺 Map</button>
+    <span id="header-subtitle"></span>
+    <button id="help-btn" title="Keyboard shortcuts">?</button>
+    <div id="help-popover" class="popover">
+      <h4>Shortcuts</h4>
+      <ul>
+        <li><kbd>←</kbd> / <kbd>→</kbd> — previous / next scene</li>
+        <li><kbd>N</kbd> — next turn (active fight)</li>
+        <li><kbd>/</kbd> or <kbd>Ctrl</kbd>+<kbd>K</kbd> — search</li>
+        <li><kbd>Esc</kbd> — close panel / search</li>
+      </ul>
+    </div>
+  </header>
+
+  <div id="layout">
+    <aside id="left">
+      <h2 id="session-title-label">Session</h2>
+      <select id="session-switcher"></select>
+      <ol id="scene-list"></ol>
+      <div id="campaign-nav-group" class="hidden">
+        <h2 id="campaign-title-label">Campaign</h2>
+        <ul id="campaign-list"></ul>
+      </div>
+    </aside>
+
+    <main id="center">
+      <div id="scene-view">
+        <div id="scene-banner" class="hidden"></div>
+        <h1 id="scene-title"></h1>
+        <div id="scene-duration" class="hidden"></div>
+        <div id="scene-body"></div>
+        <div id="scene-nav">
+          <button id="prev-scene">← Prev</button>
+          <button id="next-scene">Next →</button>
+        </div>
+      </div>
+      <div id="library-view" class="hidden">
+        <div id="library-toolbar">
+          <button id="library-back-btn">← Back to session</button>
+          <div id="library-tabs">
+            <button class="lib-tab active" data-lib-tab="maps">Maps</button>
+            <button class="lib-tab" data-lib-tab="books">Books</button>
+          </div>
+          <input id="library-filter" type="text" placeholder="Filter…">
+        </div>
+        <div id="library-content"></div>
+      </div>
+      <div id="campaign-map-view" class="hidden">
+        <div id="campaign-map-toolbar">
+          <button id="campaign-map-back-btn">← Back to session</button>
+          <span id="campaign-map-title"></span>
+          <div id="campaign-map-view-toggle">
+            <button id="campaign-map-dm-btn" class="map-toggle-btn active" data-variant="dm">DM</button>
+            <button id="campaign-map-player-btn" class="map-toggle-btn" data-variant="player">Player</button>
+          </div>
+          <div id="campaign-map-zoom">
+            <button id="campaign-map-zoom-out" title="Zoom out">−</button>
+            <button id="campaign-map-zoom-fit" title="Fit to screen">Fit</button>
+            <button id="campaign-map-zoom-in" title="Zoom in">+</button>
+          </div>
+        </div>
+        <div id="campaign-map-body">
+          <div id="campaign-map-viewport">
+            <div id="campaign-map-canvas">
+              <img id="campaign-map-img" alt="" draggable="false">
+              <div id="campaign-map-pins"></div>
+            </div>
+            <div id="campaign-map-empty" class="hidden">No campaign map loaded.</div>
+          </div>
+          <aside id="campaign-ledger">
+            <div id="campaign-ledger-header">
+              <h3 id="campaign-ledger-title">Progression Ledger</h3>
+              <div id="campaign-sessions-left"></div>
+            </div>
+            <div id="campaign-legend">
+              <span class="legend-item"><span class="legend-seal legend-seal-done"></span>Done</span>
+              <span class="legend-item"><span class="legend-seal legend-seal-open"></span>Open</span>
+              <span class="legend-item"><span class="legend-seal legend-seal-skipped"></span>Skipped</span>
+              <span class="legend-item"><span class="legend-seal legend-seal-changed"></span>Changed</span>
+              <span class="legend-item"><span class="legend-drop"></span>Blood price</span>
+            </div>
+            <div id="campaign-ledger-body"></div>
+            <div id="campaign-ledger-controls">
+              <button id="campaign-export-btn">Export</button>
+              <button id="campaign-import-btn">Import</button>
+              <input id="campaign-import-file" type="file" accept="application/json" class="hidden">
+              <button id="campaign-reset-btn">Reset</button>
+            </div>
+          </aside>
+        </div>
+      </div>
+    </main>
+
+    <aside id="panel">
+      <div id="panel-header">
+        <button id="panel-back">← Back</button>
+        <span id="panel-title"></span>
+        <button id="panel-close">✕</button>
+      </div>
+      <div id="panel-body"></div>
+    </aside>
+  </div>
+
+  <div id="search-overlay">
+    <div id="search-box">
+      <div id="search-input-row">
+        <input id="search-input" type="text" placeholder="Search scenes, creatures, spells…">
+        <button id="search-close">✕</button>
+      </div>
+      <div id="search-results"></div>
+    </div>
+  </div>
+
+  <script src="library/library.js"></script>
+  <script>window.LIBRARY = window.LIBRARY || { maps: [], docs: [] };</script>
+  <script src="js/core.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/statblock.js"></script>
+  <script src="js/tracker.js"></script>
+  <script src="js/panel.js"></script>
+  <script src="js/library.js"></script>
+  <script src="js/search.js"></script>
+  <script src="js/campaign-map.js"></script>
+  <script src="sessions/index.js"></script>
+  <script src="sessions/campaign-ship.js"></script>
+  <script src="sessions/campaign-arcs.js"></script>
+  <script src="sessions/campaign-map.js"></script>
+  <script src="media/media.js"></script>
+  <script>window.MEDIA = window.MEDIA || {};</script>
+  <script src="js/app.js"></script>
+</body>
+</html>

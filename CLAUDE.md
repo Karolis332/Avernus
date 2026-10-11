@@ -208,3 +208,13 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Did:** added `session-9-arkhans-tower-primer.md` + `session-9-arkhan-fight-cards.html`; living primer updated (Feonor harpooned by the Aether Harpoon, dossier filled; Arkhan's Tower = Tiamat's blood).
 - **Why:** DM-locked design: dragon ambush on approach (resource tax, Krull/Obatala end it) + Arkhan showdown as contingency. Arkhan buffed to CR 22 (345 HP, AC 23, +15). Price Moonkite then Lulu; Gargauth side-bargain + Krull double-cross bait. Wronging him = a fight they should lose, escape is the win, lethal.
 - **Open:** confirm what the party needs the blood for; Obelisk password payoff unruled; `session-9-orhenn-staff-hunt-primer.md` untracked + stale (staff hunt deferred while Feonor runs the Geas errand).
+
+### 2026-10-11 — DM app: Session 9 + campaign layer (primer tool stage 1)
+- **Did:** `dm-app/` (interactive DM app, book-styled). Session 9 rebuilt from the official DiA text: `sessions/09-arkhans-tower.js`. Campaign layer shared by every session: `sessions/campaign-ship.js`, `campaign-arcs.js` and `campaign-map.js`. The map view (key M) is `js/campaign-map.js`. There is a library with book-page search (key L), media at `media/media.js`, and an `img` block with `tools/gen_event_art.py`. Old md primer and fight cards deleted; the living primer was updated so Dumal is alive, the ship is repaired, and it points at the app.
+- **Why:** the DM wants prep that reads like an official adventure book, not dense primers. Every enemy except Arkhan was upscaled: the four dragons are now adult (CR 14–17) and Obatala is an ancient white. The reason is that the Lady Vengeance's two 8d10 force cannons deleted young dragons in one volley. "Find out" consequences are told to the players and then enforced. Round 1 dragon breath goes at the ship, to keep the ambush survivable.
+- **Open:**
+  - Stage 2 is a generator that drafts session files from book text + notes; it needs its own grill and PRD.
+  - The other 31 Event sections have no art (about $0.25 each).
+  - Portraits are missing for the lady-vengeance, jeremy, dumal and moonkite creatures.
+  - Unruled: Obelisk prisoner (Ubbalux vs Ubbalex), what Tiamat's blood buys, Aurora's class (Wizard vs Warlock).
+  - Official art, maps, PDFs and sfx are gitignored. The repo is public.

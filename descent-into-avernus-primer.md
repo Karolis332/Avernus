@@ -24,7 +24,7 @@ This is a **sandbox reference, refreshed each session — not a script.** The pl
 >
 > **PARTY (Level 12) —** **Drenwal** (Light Cleric, Bhaalspawn, his brother Dumal escaped him alive, cure pending) · **Aurora** (Archfey Warlock riding the freed celestial **Moonkite**) · **Or'Henn** (elderly Red Dragonborn Wildfire Druid hunting his lost staff **Cinderbloom**, now the Soul Capacitor's living carrier). Allies on call: **Veska** (Hellrider), **Ser Lucan the Reforged**, a **githzerai monk**, **Jeremy** (Lady Vengeance), **Lulu** (hollyphant, memories returning). **Asimov** is dead — his soul **SAVED** inside the Capacitor, speaking to Or'Henn.
 >
-> **RIGHT NOW —** The **Wandering Emporium** is the hub. Or'Henn has sealed on as the Capacitor's carrier (Asimov's soul secured, the Soul Council clock **closed**); soul-bounties now flow to him. Kreeg hides here as "**Vessper Hain**." The **Lady Vengeance** is crippled and needs **adamantine control rods** — the same rods **Bel** demands (one fetch, two payoffs). Standing next destination: **Bel's Forge**.
+> **RIGHT NOW —** The **Wandering Emporium** is the hub. Or'Henn has sealed on as the Capacitor's carrier (Asimov's soul secured, the Soul Council clock **closed**); soul-bounties now flow to him. Kreeg hides here as "**Vessper Hain**." The **Lady Vengeance** is **repaired** — primary adamantine control rods installed: full speed, both force cannons, Overdrive online. **Bel's** price — the spare rods and the fortress command cipher, still in the wreck — is unclaimed and unknown to the party. Standing next destination: **Bel's Forge**.
 >
 > **LIVE CLOCKS live in the Living State Header** — Bleeding Citadel window · Elturel's descent (the Rung) · Bhaal's Claim / Gargauth's Bargain · Fallen Three (1/3) · Green Remnants · Contracts sealed · Kreeg's box in Urexiel's vault (❓ party unaware).
 
@@ -54,14 +54,14 @@ Read top to bottom the first time; after that, jump. Only the **Living State Hea
 > **HARD RULE:** M1 is the ONLY section that ever holds a date, countdown, or "current" fact. Every other module points here with "(see M1)". If you find a number ticking anywhere in M2–M9, it is a bug — move it here.
 
 **WHERE:** On the move — the party is **traveling toward Arkhan's Tower.** They have just come from **the Obelisk**, where they tried many approaches to prise out the **passwords** to the **Crypt of the Hellriders** and the **Mirror of Mephistar** (see those entries in Ch.3).
-**WHAT:** The party is now **Level 12** (the Bag-of-Beans trial — the pink-frog fight — tipped them over). **Or'Henn is the Soul Capacitor's carrier; Asimov's soul is SAVED** (Council clock closed). The **Lady Vengeance** still needs **adamantine control rods** (Bel wants them too).
+**WHAT:** The party is now **Level 12** (the Bag-of-Beans trial — the pink-frog fight — tipped them over). **Or'Henn is the Soul Capacitor's carrier; Asimov's soul is SAVED** (Council clock closed). The **Lady Vengeance** is **repaired** (DM, 2026-10-11): primary rods installed — full speed, both force cannons, Overdrive online. Bel's spare rods + command cipher are still in the wreck, unclaimed and unknown to the party.
 
 **⚠️ LIVE THREADS — this session:**
 - **Dumal is ALIVE.** He escaped the Demon Zapper through the **black smoke**; Drenwal **scried him bound for the Mirror of Mephistar** to petition **Mephistopheles** that the party set Yeenoghu loose on him. Arc **OPEN** — a returning, aggrieved Bhaalspawn courting a devil-lord's backing.
 - **Feonor — *Geas*-bound.** The Lady Vengeance's **Aether Harpoon** tore her off her war machine; Or'Henn defeated her and cast ***Geas*** to make her **bring back Cinderbloom** (his ashen staff). She is now the party's living staff-hunter (5d10 psychic/day if she defies it; 30 days per casting — track re-casts). See her dossier.
 - **The Obelisk — passwords.** The party worked the obelisk hard for the words to the **Crypt of the Hellriders** and the **Mirror of Mephistar.** DM: rule exactly what they got and note it here.
 - **Ubbalex's deal — UNTAKEN.** The devil Ubbalex's offer is on the table and **unsigned** — still a live lever. See his dossier.
-- **Next: Arkhan's Tower** — the session ended en route. They want **Tiamat's blood** (the vial on Arkhan's neck); his price is a good-aligned sacrifice (**Moonkite**, then **Lulu**). Run it from `session-9-arkhans-tower-primer.md` + `session-9-arkhan-fight-cards.html`.
+- **Next: Arkhan's Tower** — the session ended en route. They want **Tiamat's blood** (the vial on Arkhan's neck); his price is a good-aligned sacrifice (**Moonkite**, then **Lulu**). Run it from the DM app (`dm-app/`, Session 9: Arkhan's Tower; campaign map: key M).
 
 ---
 
@@ -268,7 +268,7 @@ Avernus is the first layer of the Nine Hells — the Blood War's front line, a w
 | 7 | Heat drops; **birdsong** where there are no birds. | Vaelisha's edge — or a lie wearing its face. |
 | 8 | A **chained caravan** of the freshly damned passes, singing. | The Blood War's tithe — a soul-freeing choice offered. |
 
-> **RULING — clocks run on days, not routes.** A detour costs time regardless of which way the party goes. There is no shortcut that cheats a clock — only the **crippled Lady Vengeance** (half speed, one cannon, no Overdrive until the adamantine rods are installed) and, once repaired, her full flight.
+> **RULING — clocks run on days, not routes.** A detour costs time regardless of which way the party goes. There is no shortcut that cheats a clock — only the **Lady Vengeance**, now **repaired** (primary rods installed): full speed, both cannons, Overdrive online.
 
 ---
 
@@ -426,10 +426,10 @@ Jeremy hauled her here wrecked from the Yeenoghu fight. She lists against the sl
 
 | Lady Vengeance — current state | |
 |---|---|
-| Speed | ⚠️ **Half** until adamantine control rods installed |
-| Armament | ⚠️ **One** force cannon operational |
-| Soul Coin Overdrive | ❌ **Offline** until rods (and a moral choice on soul-coin fuel — Jeremy vs Portyr) |
-| Fix | ◻️ **Adamantine control rods** — Bel's Forge and/or the Wrecked Flying Fortress (→ Ch.4) |
+| Speed | ✅ **Full** — primary adamantine control rods installed (DM, 2026-10-11) |
+| Armament | ✅ **Both** force cannons operational |
+| Soul Coin Overdrive | ✅ **Online** (the moral choice on soul-coin fuel — Jeremy vs Portyr — still stands) |
+| Fix | ✅ Done. Bel's spare rods + command cipher still sit in the Wrecked Flying Fortress, unclaimed |
 
 ---
 
@@ -532,7 +532,7 @@ KNOWS: the scope and voiding clauses of all five contracts ✅; that a living si
 
 #### FUSION LOCK — read this first (DM ONLY)
 
-> **The adamantine control rods Bel demands ARE the parts the crippled Lady Vengeance needs.** After the Yeenoghu fight she flies at half speed, one force-cannon live, no Soul-Coin Overdrive, until she is re-rodded (→ M4 ship state). Both needs are answered by **one raid on the Wrecked Flying Fortress.** Do NOT split this into two fetch quests. Say the double-payoff out loud the moment the party grasps it — the insight is the intended play, and rewarding it is the point.
+> **The adamantine control rods Bel demands come from the same wreck that repaired the Lady Vengeance.** ✅ **Ship repaired (DM, 2026-10-11):** the primary rods are installed — full speed, both force cannons, Overdrive online. ⚠️ Bel's half — the **spare rod-set + the fortress command cipher** — is still in the wreck, unclaimed, and the party does not yet know Bel wants it; his first audience reveals the price. Both needs are answered by **one raid on the Wrecked Flying Fortress.** Do NOT split this into two fetch quests. Say the double-payoff out loud the moment the party grasps it — the insight is the intended play, and rewarding it is the point.
 
 **The split ruling — pin this so the table isn't cheated:** the Fortress carries a **matched pair of drive-rod assemblies plus its command-cipher core** (it was a flagship; everything is redundant).
 
@@ -921,6 +921,8 @@ No downside. An unpulled lever. Kostchtchie stays iced and roaring, Zariel keeps
 > ◻️ **UNVISITED — full detail.** A Zariel war-engine that fell out of the sky and never finished dying. It lies canted across a plain of black volcanic glass, one wing driven into the ground to the shoulder, the whole hull tilted maybe thirty degrees so every deck reads like a ship heeling in a storm. Debris still drifts *upward* from it toward a puckered wound in the sky where it came through. **Nothing aboard has been told it crashed.** Turrets still track. A conduit still hums. Somewhere in the dark below-decks a war-machine is still, technically, at its post.
 
 > **THE DOUBLE PAYOFF — SAY IT PLAINLY: the adamantine control rods in this wreck pay BOTH debts at once. One raid satisfies Bel's price AND repairs the crippled Lady Vengeance (restores full flight + the second force cannon + Soul Coin Overdrive). Do not split this into two fetch quests.**
+>
+> ✅ **UPDATE (DM, 2026-10-11): the primary rods are taken and installed — the ship is repaired.** ⚠️ The **spare rod-set + the command cipher** are still aboard the wreck (unless the Rust Queen gets there first). The cipher is the real prize for Bel; a return run is ~0.5–1 session.
 
 **PINNED RULING — the one-set / two-claimants problem (resolve it exactly this way):** A fortress this size ran a *redundant bank* of control rods — a primary array plus cold spares, the way any war-engine carries backups. The engine-well holds **more than one usable set.** The Lady Vengeance needs a **matched pair** to fly whole; **Bel wants the remainder** as his toll and his leverage-material against Zariel (he does not need working ones — he needs *Zariel's* adamantine with her forge-marks on it). So: **one raid, enough rods for both, no contradiction.** If a player asks "won't Bel take the ship's rods?" — no. Bel appraises the box and takes his cut of the haul; he explicitly does not steal (per the Forge entry). Jeremy claims the matched pair for the refit; Bel takes the surplus and the cipher-rod for his intelligence value. Both parties leave satisfied. Do not let the table talk you into inventing a shortage.
 
@@ -1193,7 +1195,7 @@ The cure and Coram cosmology must arrive **slower and in fragments** — surface
 |---|---|---|
 | Asimov's unmarked death-site | ⚠️ open | If the party returns to raise a marker or say words over him, **award the moment.** The Capacitor answers: **one free Asimov intel-relay** (a soul-bounty lead or a warning, DM's pick), resonating up through Or'Henn. |
 | Residual Tears in the coils | ⚠️ open | One last vial clings inside the dead coils. **DC 15 Intelligence (Arcana)** to extract intact (failure = it boils off). Feeds the Coram / cure thread. |
-| Bhaal-fallout in Drenwal | ⚠️ active | Killing his brother here is the pressure-point M8 works. Carry it forward; it does not resolve at the site. |
+| Bhaal-fallout in Drenwal | ⚠️ active | Beating his brother here — and watching him escape alive through the black smoke — is the pressure-point M8 works. Carry it forward; it does not resolve at the site. |
 
 > **READ ALOUD (if they return to mark the grave):** There is no stone, no name, no cairn — only the place where he stood when he fell, unremarkable now beneath the same scorched sky. And then, faint as a coin turning over in a closed hand, something in the Capacitor stirs. A warmth. An attention. As if someone you buried has just lifted his head to listen.
 
@@ -1559,7 +1561,7 @@ No save. No mechanic. No clock. This is Or'Henn's arc landing — the elder who 
 
 **What it is.** The Avernian stronghold of **Arkhan the Cruel**, dragonborn oathbreaker-paladin of **Tiamat** — a warlord-sorcerer hoarding dragon-power and the Dragon Queen's favor. The party is en route.
 
-**Why they're going.** **Tiamat's blood** — the vial Arkhan wears at his neck. His price: the sacrifice of a good-aligned creature (he names **Moonkite** first, then **Lulu**). Wrong him and it's a fight they should lose — escape is the win. Full run: `session-9-arkhans-tower-primer.md`. Arkhan is transactional and vain: he **deals**, he does not give. Every price flatters Tiamat or costs the party service or blood.
+**Why they're going.** **Tiamat's blood** — the vial Arkhan wears at his neck. His price: the sacrifice of a good-aligned creature (he names **Moonkite** first, then **Lulu**). Wrong him and it's a fight they should lose — escape is the win. Full run: the DM app (`dm-app/`, Session 9: Arkhan's Tower; campaign map: key M). Arkhan is transactional and vain: he **deals**, he does not give. Every price flatters Tiamat or costs the party service or blood.
 
 **Running it.**
 - **Arkhan** — a high-CR sorcerer/paladin warlord with a draconic retinue; build to the L12 party. He would far rather bargain than brawl.
@@ -1926,7 +1928,7 @@ Freeing Elturel doesn't end in Avernus — the party has to **get out**, and so 
 
 **PRE-FLIGHT CHECKLIST — she cannot make the escape run until:**
 
-- ◻️ **Adamantine control rods installed** (from the **Wrecked Flying Fortress** → M3/M5). Same rods Bel demands — **one fetch, two payoffs.** Until installed: half speed, one force cannon, no Overdrive. The escape run **requires full speed and Overdrive** — this is a hard prerequisite, flagged from Session 8.
+- ✅ **Adamantine control rods installed** (DM, 2026-10-11) — primary rods in: full speed, both force cannons, Overdrive online. The escape run **requires full speed and Overdrive** — met. (Bel's spare rods + cipher are a separate, still-open errand.)
 - ◻️ **Jeremy at the helm** (non-combat NPC; flies and repairs her).
 - ◻️ **Lulu aboard** (her memory both unlocked the ending and steadies the celestial course home).
 
@@ -2459,7 +2461,7 @@ Killing Kreeg then remains fully available — but as an **informed choice with 
 
 **AFTERSHOCK** — Senna becomes an on-clock protected asset; the cure gains urgency and a moral floor (→ M3, → M7). **M1:** log "Senna endangered — Claim reaching the next vessel; Issa requests instruction." As Bhaal's Claim climbs, escalate Issa's letters. Gargauth's Bargain gains a fresh hook (protect Senna via the Shield).
 
-**PLANTED CLUE** — The established **line-of-the-Claim** (Drenwal, dead Dumal, hidden Senna, siblings Maelys & Valruk) and **Gargauth's earlier whispers** through the Shield about "the ones who come after." Senna's existence and the bloodline rule were both on the board; the letter is the Claim collecting on them.
+**PLANTED CLUE** — The established **line-of-the-Claim** (Drenwal, Dumal — alive and at large, bound for the Mirror of Mephistar — hidden Senna, siblings Maelys & Valruk) and **Gargauth's earlier whispers** through the Shield about "the ones who come after." Senna's existence and the bloodline rule were both on the board; the letter is the Claim collecting on them.
 
 ---
 
@@ -2475,7 +2477,7 @@ Killing Kreeg then remains fully available — but as an **informed choice with 
 **THE HOUR BELONGS TO MIKAS.** Asimov is a living PC again for sixty minutes. Do **not** script him. Hand the scene to the Mikas player and let him decide how Asimov spends the hour — who he goes to, what he says, what he chases, whether he even sits still. Everything below is a menu of what is *available* if Asimov reaches for it, never a plan for what he does.
 
 **WHAT'S AVAILABLE IF ASIMOV REACHES FOR IT** (offer, never impose):
-- **With Drenwal —** Asimov can stand a death-watch: if he keeps the vigil while the cleric truly sleeps, Drenwal gets the first dreamless rest since Dumal (mechanically: a full long rest with no Bhaal-dream intrusion). Asimov has also seen the soul-traffic from inside and *can*, if he chooses, tell Drenwal what became of Dumal's soul. **HARD LOCK — THE DUMAL ARC IS CLOSED.** Drenwal already killed Dumal; that arc is over and stays over. Anything Asimov relays about Dumal is **testimony only — final, and NON-ACTIONABLE.** It may give closure, comfort, or salt (DM sets the tone following the Mikas player's lead), but it **cannot** reopen the Dumal thread — it cannot imply Dumal can be reached, restored, bargained for, or avenged again. If the table starts treating it as a new quest hook, say so plainly at the table: this is a report from the far side of a shut door, not the door reopening.
+- **With Drenwal —** Asimov can stand a death-watch: if he keeps the vigil while the cleric truly sleeps, Drenwal gets the first dreamless rest since Dumal (mechanically: a full long rest with no Bhaal-dream intrusion). Asimov has also seen the soul-traffic from inside and *can*, if he chooses, tell Drenwal where Dumal went. **THE DUMAL ARC IS OPEN.** Dumal is **alive**: he escaped the Demon Zapper through the black smoke and is bound for the **Mirror of Mephistar** to petition Mephistopheles. Anything Asimov relays about him is a **live lead** — a direction, a timing, what he carried — and may be acted on (DM sets the tone following the Mikas player's lead).
 - **With Aurora —** Asimov can return a keepsake from their years adventuring (a soulknife-cut token, a shared trophy) and describe the soul-side from the inside — including a vast caged light "upstream" that everything in Hell seems to drink from. That is a real lead toward Coram (→ Beat 5), if he offers it.
 - **With Or'Henn —** They never met in life; Asimov can seek him out — the man who took his seat — and hand over what the soul-traffic taught him about the warband that razed the Ashen Garden and killed him: a name, a direction, and the warning that the broker who *paid* for the raid sits a rung above the killers. If he does, two of Mikas's characters meet exactly once, and the dead one arms the living one.
 

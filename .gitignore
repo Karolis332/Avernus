@@ -58,3 +58,9 @@ video-production/renders/
 video-production/cache/
 video-production/pipeline/__pycache__/
 video-production/pipeline/venv/
+
+# DM app: official WotC art + third-party media stay local (public repo)
+dm-app/art/official/
+dm-app/media/sfx/
+dm-app/library/
+dm-app/maps/
