@@ -134,7 +134,7 @@ window.CAMPAIGN.map = {
       requires: ["The Lady Vengeance, to fight the dragons from the deck and to run.", "A reason to want the blood. DM: confirm what it buys."],
       unlocks: ["Tiamat's blood.", "Arkhan's lore on Zariel, Bel, the Sword and Mephistopheles.", "News of Dumal on the road to the Mirror, for a favor owed."],
       sessions: 1,
-      dmChoices: ["Upscaled to threaten a level 12 party: four adult dragons (black CR 14, green CR 15, blue CR 16, red CR 17), Obatala as an ancient white dragon (CR 20), Krull CR 12, Torogar CR 15, Arkhan CR 22 (345 HP, AC 23).", "The dragon ambush taxes the party's resources before the talking starts. Obatala calls the halt.", "Arkhan names Aurora's bonded {@c moonkite|Moonkite} first, so the price is personal. See {@side arc-moonkite|the Moonkite's arc}.", "Krull may double-cross. Gargauth offers a side bargain."],
+      dmChoices: ["Upscaled to threaten a level 12 party: four adult dragons (black CR 14, green CR 15, blue CR 16, red CR 17), Obatala as an elder adult white dragon (CR 18), Krull CR 12, Torogar CR 15, Arkhan CR 22 (345 HP, AC 23).", "The dragon ambush taxes the party's resources before the talking starts. Obatala calls the halt.", "Arkhan names Aurora's bonded {@c moonkite|Moonkite} first, so the price is personal. See {@side arc-moonkite|the Moonkite's arc}.", "Krull may double-cross. Gargauth offers a side bargain."],
       alternatives: ["Eventyr's other good creature: Krikendolt, the soft-hearted bearded devil at the Spawning Trees. Still a good creature's death.", "Walk away and bleed someone else: Uldrak, Shummrath or the Obelisk's prisoner.", "Fight, grab the vial, and run for the ship."],
       session: "09-arkhans-tower",
       blocks: [
@@ -154,7 +154,7 @@ window.CAMPAIGN.map = {
       x: 12.6, y: 9.0,
       stage: "ch3b", path: "main", status: "open",
       objective: "Meet Arkhan where he prays to Tiamat, and hear his price.",
-      bloodPrice: "This is where the price is paid, or refused. Refuse and push, and the party faces Arkhan (CR 22), Torogar (CR 15), Krull (CR 12), a dozen white abishai and Obatala (ancient white, CR 20) overhead. Deadly: running for the ship is the win. Any gift from Arkhan ties the party to Tiamat.",
+      bloodPrice: "This is where the price is paid, or refused. Refuse and push, and the party faces Arkhan (CR 22), Torogar (CR 15), Krull (CR 12), a dozen white abishai and Obatala (elder adult white, CR 18) overhead. Deadly: running for the ship is the win. Any gift from Arkhan ties the party to Tiamat.",
       blood: 3,
       eventyr: "3b, the same step as Arkhan's Tower: Krull leads the party here for the trade.",
       requires: ["Krull's escort from the tower."],

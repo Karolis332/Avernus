@@ -296,46 +296,49 @@ window.SESSION = {
     "obatala": {
       name: "Obatala",
       kind: "adult-white-dragon",
-      role: "Krull's mount, the ancient dragon that calls the halt",
-      source: { page: "bestiary", name: "Ancient White Dragon", src: "MM" },
-      homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book adult raised to ancient (MM stats).",
-      description: "A huge white dragon, stained grey with ash and soot. In the heat of Avernus his scales steam and drip. Frost spreads wherever he lands and melts at once into mud.",
+      role: "Krull's mount, the elder adult dragon that calls the halt",
+      source: { page: "bestiary", name: "Adult White Dragon", src: "MM" },
+      homebrew: "Elder adult: canon adult white, buffed above the four tower dragons (CR 14–17) so his 'ENOUGH!' lands; scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons.",
+      description: "A huge white dragon, older and bigger than the four in the spires, stained grey with ash and soot. In the heat of Avernus his scales steam and drip. Frost spreads wherever he lands and melts at once into mud.",
       roleplay: [
         "Personality: Obatala is slow, sulky and loyal to Krull. Misses the cold.",
         "Voice: deep, slow Common, few words.",
         "Sample line: \"Krull says stop. So you stop.\""
       ],
       npc: false,
-      sizeType: "Gargantuan dragon, chaotic evil",
-      ac: 20, acNote: "natural armor",
-      hp: 333, hpFormula: "18d20 + 144",
-      speed: "40 ft., burrow 40 ft., fly 80 ft., swim 40 ft.",
-      abilities: { str: 26, dex: 10, con: 26, int: 10, wis: 13, cha: 14 },
-      saves: "Dex +6, Con +14, Wis +7, Cha +8", skills: "Perception +13, Stealth +6",
+      sizeType: "Huge dragon, chaotic evil",
+      ac: 19, acNote: "natural armor",
+      hp: 287, hpFormula: "23d12 + 138",
+      speed: "40 ft., burrow 30 ft., fly 80 ft., swim 40 ft.",
+      abilities: { str: 24, dex: 10, con: 22, int: 8, wis: 12, cha: 14 },
+      saves: "Dex +6, Con +12, Wis +7, Cha +8", skills: "Perception +13, Stealth +6",
       vulnerable: "", resist: "", immune: "cold", condImmune: "",
       senses: "blindsight 60 ft., darkvision 120 ft., passive Perception 23",
       languages: "Common, Draconic",
-      cr: "20", xp: 25000, pb: 6,
+      cr: "18", xp: 20000, pb: 6,
       traits: [
-        { name: "Ice Walk", text: "Moves across ice and snow without a check; difficult terrain from ice or snow costs it no extra movement." },
-        { name: "Legendary Resistance (3/Day)", text: "If Obatala fails a save, it can choose to succeed instead." }
+        { name: "Ice Walk", text: "Moves across ice and snow without a check; difficult terrain from ice or snow costs him no extra movement." },
+        { name: "Legendary Resistance (2/Day)", text: "If Obatala fails a save, he can choose to succeed instead." }
       ],
       actions: [
         { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-        { name: "Bite", text: "Melee Weapon Attack: +14 to hit, reach 15 ft. Hit: 19 (2d10 + 8) piercing plus 9 (2d8) cold." },
-        { name: "Claw", text: "Melee Weapon Attack: +14 to hit, reach 10 ft. Hit: 15 (2d6 + 8) slashing." },
-        { name: "Tail", text: "Melee Weapon Attack: +14 to hit, reach 20 ft. Hit: 17 (2d8 + 8) bludgeoning." },
-        { name: "Frightful Presence", text: "Each creature of its choice within 120 ft. aware of Obatala: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-        { name: "Cold Breath (Recharge 5-6)", text: "90-ft. cone. DC 22 Constitution save, 72 (16d8) cold, half on a success." }
+        { name: "Bite", text: "Melee Weapon Attack: +13 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 9 (2d8) cold." },
+        { name: "Claw", text: "Melee Weapon Attack: +13 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
+        { name: "Tail", text: "Melee Weapon Attack: +13 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
+        { name: "Frightful Presence", text: "Each creature of his choice within 120 ft. aware of Obatala: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+        { name: "Cold Breath (Recharge 5-6)", text: "60-ft. cone. DC 20 Constitution save, 63 (14d8) cold, half on a success." }
       ],
-      bonus: [], reactions: [],
+      bonus: [],
+      reactions: [
+        { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Obatala, the attack has disadvantage. If the weapon forces a save instead, he takes half damage." }
+      ],
       legendary: {
         count: 3,
         intro: "Obatala can take one legendary action at the end of another creature's turn. It regains spent legendary actions at the start of its turn.",
         actions: [
           { name: "Detect", cost: 1, text: "Obatala makes a Wisdom (Perception) check." },
           { name: "Tail Attack", cost: 1, text: "Obatala makes one tail attack." },
-          { name: "Wing Attack", cost: 2, text: "Each creature within 15 ft.: DC 22 Dexterity save or 15 (2d6 + 8) bludgeoning and knocked prone. Obatala then flies up to half its speed." }
+          { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 21 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Obatala then flies up to half his speed." }
         ]
       },
       tactics: [
@@ -658,7 +661,7 @@ window.SESSION = {
         { t: "p", text: "{@c arkhan-the-cruel|Arkhan the Cruel} is a dragonborn paladin and the most devoted champion of Tiamat, the five-headed dragon queen. Tiamat is trapped in Avernus. Arkhan has sworn to set her free." },
         { t: "p", text: "On a short trip to a distant world called Exandria, Arkhan took the {@item Hand of Vecna|DMG}, a dead god's hand. He cut off his own hand to wear it. The Hand gives him terrible power, but it is slowly eating him. One whole side of his body is rotting. The only thing that holds the rot back is death: he must use the Hand to snuff out the life of good creatures." },
         { t: "p", text: "Arkhan wears a small crystal vial of Tiamat's own blood on a chain around his neck. The characters want that vial. He will trade it, but his price is always the same: the death of a good creature, given to the Hand." },
-        { t: "p", text: "Arkhan's black tower stands on the plains of Avernus. His priest, the old tortle {@c krull|Krull}, runs it for him, with the ancient white dragon {@c obatala|Obatala} and four adult dragons. Arkhan himself is not at home. He is camped at the Monument to Tiamat, a colossal dragon skull leaning against a mountain, where Tiamat answers prayers in five voices." },
+        { t: "p", text: "Arkhan's black tower stands on the plains of Avernus. His priest, the old tortle {@c krull|Krull}, runs it for him, with the elder white dragon {@c obatala|Obatala} and four adult dragons. Arkhan himself is not at home. He is camped at the Monument to Tiamat, a colossal dragon skull leaning against a mountain, where Tiamat answers prayers in five voices." },
         { t: "h", text: "Overview" },
         { t: "p", text: "This session has eleven scenes and takes about four to five hours to play. Arkhan's Tricks happens only if they refuse the price. The Fight and the Escape happen only if they wrong Arkhan. The Ending always runs." },
         { t: "list", items: [
@@ -848,7 +851,7 @@ window.SESSION = {
         ] },
 
         { t: "h", text: "If the Characters..." },
-        { t: "p", text: "{@b ...attack Krull when he lands.} Krull pulls into his shell. Obatala, an ancient dragon, fights for real, with his full stat block, and the other dragons come back. From inside his shell Krull says, \"Children, you are being very foolish.\" After one round he calls a second halt. If the characters keep fighting, Krull says, \"Leave at once, or die,\" and means it. Let them run for open sky." },
+        { t: "p", text: "{@b ...attack Krull when he lands.} Krull pulls into his shell. Obatala, an elder adult dragon stronger than any of the four, fights for real, with his full stat block, and the other dragons come back. From inside his shell Krull says, \"Children, you are being very foolish.\" After one round he calls a second halt. If the characters keep fighting, Krull says, \"Leave at once, or die,\" and means it. Let them run for open sky." },
         { t: "p", text: "{@b ...refuse to follow him.} Krull shrugs. \"Then leave at once, or die. Those are the two choices visitors get here.\" He lets them go. If they want to wait at the tower for Arkhan instead, Krull allows it outside the walls. Arkhan comes home in a day or two, with Torogar, but without his chimera. Run the talk outside the gate and ignore the skull." },
         { t: "p", text: "{@b ...try to fly straight to the Monument without him.} Krull will not say where it is. From the air, a DC 18 Wisdom (Survival) check follows a thin line of smoke to it after several hours. When they arrive unescorted, all twelve white abishai rush the ship and surround it, swords drawn. Arkhan still talks to them if they show him Moonkite, but he is colder, and he makes them wait." },
         { t: "p", text: "{@b ...ask about Arkhan.} Krull answers politely and says little. The real conversation happens on the way. See {@side krull-on-the-walk|What Krull Says on the Way}." },
