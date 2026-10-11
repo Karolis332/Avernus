@@ -11,7 +11,7 @@
   - **Lulu** — Hollyphant. Zariel's former companion. Fragmented memories recovering. Emotional, loyal.
   - **Whiskerbright** — Aurora's familiar, currently in imp form (Avernus adaptation).
   - **Veska** — Hellrider of Elturel, freed from captivity in the Palace of Gore (Bitter Breath's). A devil-fighting knight of the same order Drenwal's father served — the order **Dumal betrayed.** Martial striker, immune to fear; now rides with the party. (Statblock in `yeenoghu-encounter.md`.)
-  - **Gith monk** — a prisoner also freed from the Palace of Gore (held in Bitter Breath's cells). Details/allegiance TBD.
+  - **Gith monk** — a prisoner freed from the Palace of Gore (held in Bitter Breath's cells). **Dead** (DM ruling 2026-10-11). See `npc-reference.md`.
 - **Transport:** The **Lady Vengeance** — Gondian-Portyr Hellship (AC 17, 350 HP, Arcane Cannons, Aether Harpoon, Soul Coin Overdrive)
 
 ## Current Location

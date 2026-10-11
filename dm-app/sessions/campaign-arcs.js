@@ -8,7 +8,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     kind: "dumal",
     role: "Drenwal's brother. Bhaalspawn. Now backed by Mephistopheles, Lord of Cania.",
     source: { page: "bestiary", name: "Blackguard", src: "VGM" },
-    homebrew: "Built on the Session 5 Dumal stat block (CR 13). Changes: CR 13 to 16, HP 220 to 285, AC 19 to 20, proficiency +5 so every DC is 18, Legendary Resistance 2 to 3, cold resistance. New gifts of Cania: cold damage and no-healing on the Lance, Hellfire of Cania, Cania's Lien. Black Smoke is now a bonus action. New reaction: Blood Answers Blood. Avatar of Bhaal is the recommended answer to the siege's open decision. Kept on purpose: INT 14 (the gith's Mind Lance note) and no stun immunity.",
+    homebrew: "Built on the Session 5 Dumal stat block (CR 13). Changes: CR 13 to 16, HP 220 to 285, AC 19 to 20, proficiency +5 so every DC is 18, Legendary Resistance 2 to 3, cold resistance. New gifts of Cania: cold damage and no-healing on the Lance, Hellfire of Cania, Cania's Lien. Black Smoke is now a bonus action. New reaction: Blood Answers Blood. Avatar of Bhaal is the recommended answer to the siege's open decision. Kept on purpose: INT 14 (a weak save some effects can exploit) and no stun immunity.",
     npc: false,
     sizeType: "Medium humanoid (Bhaalspawn), neutral evil",
     ac: 20, acNote: "Bhaal-corrupted plate +1, rimed with Cania's frost",
@@ -59,7 +59,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     tactics: [
       "Dumal does not want Drenwal dead. He wants him home. He never makes a killing blow on Drenwal. If Drenwal drops, Dumal stands over him and turns on the others.",
       "Round 1: Hellfire of Cania on the tightest group, ideally Aurora (the Wish-wielder) and the allies around her. He blames the whole party for loosing Yeenoghu on him.",
-      "Then Multiattack on whoever hurt him most. Bhaal's Hand pins the gith monk or any caster who is winding up.",
+      "Then Multiattack on whoever hurt him most. Bhaal's Hand pins any caster who is winding up.",
       "Sibling Strike whenever Drenwal is in reach and he has 3 legendary actions left. It is cruelty, not tactics.",
       "Black Smoke to break line of sight when he is focused, then Step out of it somewhere unexpected.",
       "Before the siege (Beats 1 to 4), he leaves at half his hit points (142): through Black Smoke, or through a door of black ice Rigorath holds open for him.",
@@ -317,7 +317,7 @@ Object.assign(window.CAMPAIGN.side, {
         "{@b Feonor:} her map, her distraction, or her betrayal, depending on how the leash has held.",
         "{@b No keys:} the price is blood or treasure, never a locked door. Urexiel names a number, or she dies and the party takes the ring from her body."
       ] },
-      { t: "note", title: "Lady Urexiel at a Glance", text: "Yugoloth broker, solo CR 13-14 on a chain devil chassis. AC 18. HP 248, or 190 if Veska, Lucan or the gith fight. Legendary Resistance 3/day. Four Animated Chains a turn (+9, reach 15 ft., 2d6+4 slashing, grappled DC 16, bleeding 1d6 a turn). Collector's Verdict: DC 17 Wisdom or frightened. She deals before she fights, respects a writ and respects coin. If the fight turns, she falls back to the Killing Floor and opens the cages. Her full stat block is in the campaign primer." },
+      { t: "note", title: "Lady Urexiel at a Glance", text: "Yugoloth broker, solo CR 13-14 on a chain devil chassis. AC 18. HP 248, or 190 if Veska or Lucan fight. Legendary Resistance 3/day. Four Animated Chains a turn (+9, reach 15 ft., 2d6+4 slashing, grappled DC 16, bleeding 1d6 a turn). Collector's Verdict: DC 17 Wisdom or frightened. She deals before she fights, respects a writ and respects coin. If the fight turns, she falls back to the Killing Floor and opens the cages. Her full stat block is in the campaign primer." },
       { t: "note", title: "The Ledger", text: "Urexiel's ledger records the raid on the Ashen Garden: the warband's fee, the buyers above her, the tally of what was taken. If the party kills her before they get it, the paper trail dies with her. Warn them in the fiction: she taps the ledger and smiles. When Or'Henn reads it, his household is a line of figures. That is the horror. To her it was never personal." },
 
       { t: "h", text: "The Green Remnants" },

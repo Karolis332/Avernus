@@ -102,16 +102,19 @@
       }
       case "map": {
         var mapWrap = el("div", "block block-map");
-        var map = ((window.LIBRARY || {}).maps || []).filter(function (m) { return m.id === block.id; })[0];
+        // src = inline generated art (own image, no library lookup); id = library map.
+        var map = block.src ? { src: block.src, title: block.title || "Map" } :
+          ((window.LIBRARY || {}).maps || []).filter(function (m) { return m.id === block.id; })[0];
         if (!map) {
           mapWrap.appendChild(el("div", "map-missing", "Map not available on this device"));
           return mapWrap;
         }
         var card = el("div", "map-card");
-        card.dataset.mapId = map.id;
+        if (block.src) { card.dataset.mapSrc = block.src; card.dataset.mapTitle = block.title || map.title; }
+        else card.dataset.mapId = map.id;
         var thumb = document.createElement("img");
         thumb.className = "map-thumb";
-        thumb.src = "library/" + map.thumb;
+        thumb.src = block.src || ("library/" + map.thumb);
         thumb.alt = block.title || map.title;
         card.appendChild(thumb);
         card.appendChild(el("div", "map-caption", block.title || map.title));

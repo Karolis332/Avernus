@@ -22,12 +22,13 @@
     try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* ponytail: quota/full ignored, tracker still works in-memory */ }
   }
 
-  function dexModOf(creature) {
-    return creature && creature.abilities ? Core.abilityMod(creature.abilities.dex || 10) : 0;
+  // creature.init (an optional static bonus) overrides DEX mod when set.
+  function initModOf(creature) {
+    return Core.initiativeBonus(creature);
   }
 
   function rollInit(creature) {
-    var mod = dexModOf(creature);
+    var mod = initModOf(creature);
     var r = Core.rollDice("1d20" + (mod >= 0 ? "+" + mod : mod));
     return { total: r.total, roll: r.rolls[0], mod: mod };
   }
@@ -109,7 +110,7 @@
           var initInput = numberInput("", function () {});
           allyRows[ally.id] = { cb: cb, init: initInput, ally: ally };
           var tdCb = el("td"); tdCb.appendChild(cb); tr.appendChild(tdCb);
-          tr.appendChild(el("td", null, ally.name));
+          tr.appendChild(creatureNameTd(ally.name, session.creatures[ally.id] ? ally.id : null));
           var tdInit = el("td"); tdInit.appendChild(initInput); tr.appendChild(tdInit);
           allyBody.appendChild(tr);
         });
@@ -121,16 +122,16 @@
       var rollBtn = el("button", "tracker-btn", "Roll monster initiative");
       root.appendChild(rollBtn);
       var monsterTable = el("table", "tracker-table");
-      monsterTable.appendChild(headerRow(["Monster", "Init", "Dex mod", "Reroll"]));
+      monsterTable.appendChild(headerRow(["Monster", "Init", "Init mod", "Reroll"]));
       var monsterBody = el("tbody");
       var monsterState = combatantInstances.map(function (inst) {
-        return { inst: inst, init: "", dex: dexModOf(inst.creature) };
+        return { inst: inst, init: "", dex: initModOf(inst.creature) };
       });
       function renderMonsterRows() {
         monsterBody.innerHTML = "";
         monsterState.forEach(function (m) {
           var tr = el("tr");
-          tr.appendChild(el("td", null, m.inst.instanceName));
+          tr.appendChild(creatureNameTd(m.inst.instanceName, m.inst.cid));
           var initInput = numberInput(m.init || "", function (v) { m.init = v; });
           var tdInit = el("td"); tdInit.appendChild(initInput); tr.appendChild(tdInit);
           tr.appendChild(el("td", null, (m.dex >= 0 ? "+" : "") + m.dex));
@@ -172,7 +173,8 @@
           if (row.cb.checked) {
             rows.push(makeRow({
               id: "ally-" + aid, kind: "ally", name: row.ally.name,
-              init: Number(row.init.value) || 0, dex: 0, hp: 0, maxHp: 0, ac: null
+              init: Number(row.init.value) || 0, dex: 0, hp: 0, maxHp: 0, ac: null,
+              cid: session.creatures[aid] ? aid : null
             }));
           }
         });
@@ -206,6 +208,16 @@
       thead.appendChild(tr);
       return thead;
     }
+    // Same opener as a {@c id} link (render.js) and the fight-view name below:
+    // a bare <span class="tag tag-creature" data-cid> that app.js's delegated
+    // click handler picks up. cid is null for names with no creature entry
+    // (PCs, Veska, Ser Lucan) — those stay plain text.
+    function creatureNameTd(name, cid) {
+      var td = el("td");
+      td.appendChild(el("span", cid ? "tag tag-creature" : null, name));
+      if (cid) td.lastChild.dataset.cid = cid;
+      return td;
+    }
     function numberInput(value, onChange) {
       var inp = document.createElement("input");
       inp.type = "number";
@@ -213,6 +225,12 @@
       inp.value = value;
       inp.addEventListener("change", function () { onChange(inp.value === "" ? "" : Number(inp.value)); });
       return inp;
+    }
+    // re-sort by initiative; the turn marker stays on the same creature
+    function resort() {
+      var current = state.rows[state.idx];
+      state.rows = Core.sortInitiative(state.rows.map(function (r) { return { init: Number(r.init) || 0, dex: r.dex, isPC: r.kind === "pc", _row: r }; })).map(function (w) { return w._row; });
+      state.idx = Math.max(0, state.rows.indexOf(current));
     }
 
     // -------- fight view -----------------------------------------------------
@@ -238,7 +256,7 @@
         var tr = el("tr", i === state.idx ? "fight-row fight-row-current" : "fight-row");
         if (row.hp === 0 && row.maxHp > 0 && row.kind === "monster") tr.classList.add("fight-row-dead");
 
-        var initInput = numberInput(row.init, function (v) { row.init = v; persist(); });
+        var initInput = numberInput(row.init, function (v) { row.init = v; resort(); persist(); renderFight(); });
         var tdInit = el("td"); tdInit.appendChild(initInput); tr.appendChild(tdInit);
 
         var nameCell = el("td");
@@ -382,13 +400,11 @@
         var c = session.creatures[select.value];
         var newRow = makeRow({
           id: "mon-" + select.value + "-" + Date.now(), kind: "monster", name: c.name,
-          init: rollInit(c).total, dex: dexModOf(c), hp: c.hp || 0, maxHp: c.hp || 0, ac: c.ac != null ? c.ac : null,
+          init: rollInit(c).total, dex: initModOf(c), hp: c.hp || 0, maxHp: c.hp || 0, ac: c.ac != null ? c.ac : null,
           legendaryCount: (c.legendary && c.legendary.count) || 0, cid: select.value
         });
         state.rows.push(newRow);
-        var currentRow = state.rows[state.idx];
-        state.rows = Core.sortInitiative(state.rows.map(function (r) { return { init: r.init, dex: r.dex, isPC: r.kind === "pc", _row: r }; })).map(function (w) { return w._row; });
-        state.idx = Math.max(0, state.rows.indexOf(currentRow));
+        resort();
         persist();
         renderFight();
         select.value = "";

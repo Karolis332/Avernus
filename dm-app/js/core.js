@@ -80,6 +80,14 @@
     return Math.floor((score - 10) / 2);
   }
 
+  // Initiative bonus: creature.init (a 2024-style static bonus) overrides DEX
+  // mod when set; otherwise the classic d20 + DEX mod.
+  function initiativeBonus(creature) {
+    if (!creature) return 0;
+    if (creature.init != null) return creature.init;
+    return creature.abilities ? abilityMod(creature.abilities.dex || 10) : 0;
+  }
+
   // ---- search ranking -------------------------------------------------------
   // Tiers (higher = better): 4 exact phrase, 3 word-prefix, 2 all-words-present,
   // 1 subsequence, 0/-1 no match.
@@ -254,11 +262,80 @@
     return { main: main, all: all };
   }
 
+  // ---- spellcasting trait parsing (render-time, no data changes) -----------
+  // Splits a "Spellcasting"/"Innate Spellcasting" trait's free text into:
+  //   intro  - the sentence(s) before the first group header
+  //   groups - one per "Cantrips:"/"At will:"/"Nth (N slots):"/"N/day[ each]:"
+  //            header, each { key, label, spells, and AT MOST ONE of
+  //            slots|perDay|each (a number) }. Cantrips/At will carry none.
+  //   outro  - a trailing sentence after the last group, if any
+  // Returns null when no group header is found — caller falls back to
+  // rendering the trait as plain text.
+  var SPELL_HEADER_RE = /(Cantrips|At will)\s*:|(\d+)(st|nd|rd|th)(?:\s*level)?\s*\((\d+)(?:\s*slots?)?\)\s*:|(\d+)\/day each\s*:|(\d+)\/day\s*:/gi;
+
+  // First ". " that still has text after it — separates a group's own spell
+  // list from a trailing note sentence (e.g. Krull's "does not have raise
+  // dead himself..."). No match (period is simply the end of the string) ->
+  // no outro.
+  function splitTrailingNote(remainder) {
+    var m = /\.\s+(?=\S)/.exec(remainder);
+    if (m) {
+      return { spells: remainder.slice(0, m.index), outro: remainder.slice(m.index + m[0].length).trim() };
+    }
+    return { spells: remainder.replace(/\.\s*$/, ""), outro: "" };
+  }
+
+  function parseSpellcasting(text) {
+    text = text == null ? "" : String(text);
+    var headers = [];
+    var m;
+    SPELL_HEADER_RE.lastIndex = 0;
+    while ((m = SPELL_HEADER_RE.exec(text))) {
+      var h;
+      if (m[1]) {
+        h = { label: m[1] };
+      } else if (m[2]) {
+        h = { label: m[2] + m[3] + " level", slots: parseInt(m[4], 10) };
+      } else if (m[5]) {
+        h = { label: m[5] + "/day each", each: parseInt(m[5], 10) };
+      } else {
+        h = { label: m[6] + "/day", perDay: parseInt(m[6], 10) };
+      }
+      h.start = m.index;
+      h.end = SPELL_HEADER_RE.lastIndex;
+      headers.push(h);
+    }
+    if (!headers.length) return null;
+
+    var outro = "";
+    var groups = headers.map(function (h, i) {
+      var segEnd = i + 1 < headers.length ? headers[i + 1].start : text.length;
+      var seg = text.slice(h.end, segEnd);
+      if (i === headers.length - 1) {
+        var split = splitTrailingNote(seg);
+        seg = split.spells;
+        outro = split.outro;
+      } else {
+        seg = seg.replace(/\.\s*$/, "");
+      }
+      var spells = seg.split(",").map(function (s) { return s.trim(); }).filter(Boolean);
+      var group = { key: "g" + i, label: h.label, spells: spells };
+      if (h.slots != null) group.slots = h.slots;
+      else if (h.perDay != null) group.perDay = h.perDay;
+      else if (h.each != null) group.each = h.each;
+      return group;
+    });
+
+    return { intro: text.slice(0, headers[0].start).trim(), groups: groups, outro: outro };
+  }
+
   var DMCore = {
     parseTags: parseTags,
     stripTags: stripTags,
     rollDice: rollDice,
     abilityMod: abilityMod,
+    initiativeBonus: initiativeBonus,
+    parseSpellcasting: parseSpellcasting,
     fuzzyScore: fuzzyScore,
     compareInitiative: compareInitiative,
     sortInitiative: sortInitiative,

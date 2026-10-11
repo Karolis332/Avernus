@@ -213,4 +213,53 @@ var DMCore = require("../js/core.js");
   assert.deepStrictEqual(DMCore.countSessionsLeft(undefined, undefined), { main: 0, all: 0 });
 })();
 
+// initiativeBonus
+(function () {
+  assert.strictEqual(DMCore.initiativeBonus({ init: 5, abilities: { dex: 10 } }), 5); // init overrides DEX
+  assert.strictEqual(DMCore.initiativeBonus({ abilities: { dex: 14 } }), 2); // falls back to DEX mod
+  assert.strictEqual(DMCore.initiativeBonus({ init: 0, abilities: { dex: 18 } }), 0); // 0 is a set value, not "unset"
+  assert.strictEqual(DMCore.initiativeBonus({}), 0);
+  assert.strictEqual(DMCore.initiativeBonus(null), 0);
+})();
+
+// parseSpellcasting — real trait text from sessions/09-arkhans-tower.js (Krull,
+// Arkhan) and campaign-arcs.js (Moonkite), per addendum 3.
+(function () {
+  var krull = DMCore.parseSpellcasting("14th-level cleric. Spell save DC 18, +10 to hit. Cantrips: chill touch, mending, sacred flame, spare the dying, thaumaturgy. 1st (4 slots): cure wounds, detect evil and good, inflict wounds. 2nd (3): hold person, spiritual weapon. 3rd (3): animate dead, spirit guardians, speak with dead. 4th (3): banishment, death ward, divination. 5th (2): contagion, flame strike, mass cure wounds. 6th (1): blade barrier, harm. 7th (1): fire storm, regenerate. Krull does not have raise dead himself; he can only broker Arkhan's innate raise dead (see {@side raise-the-dead|Raise the Dead}), not cast it.");
+  assert.strictEqual(krull.intro, "14th-level cleric. Spell save DC 18, +10 to hit.");
+  assert.strictEqual(krull.groups.length, 8); // cantrips + 7 slot levels
+  assert.strictEqual(krull.groups[0].label, "Cantrips");
+  assert.strictEqual(krull.groups[0].slots, undefined);
+  assert.deepStrictEqual(krull.groups[0].spells, ["chill touch", "mending", "sacred flame", "spare the dying", "thaumaturgy"]);
+  assert.strictEqual(krull.groups[1].label, "1st level");
+  assert.strictEqual(krull.groups[1].slots, 4);
+  assert.deepStrictEqual(krull.groups[1].spells, ["cure wounds", "detect evil and good", "inflict wounds"]);
+  assert.strictEqual(krull.groups[7].label, "7th level");
+  assert.strictEqual(krull.groups[7].slots, 1);
+  assert.deepStrictEqual(krull.groups[7].spells, ["fire storm", "regenerate"]);
+  assert.strictEqual(krull.outro, "Krull does not have raise dead himself; he can only broker Arkhan's innate raise dead (see {@side raise-the-dead|Raise the Dead}), not cast it.");
+
+  var arkhan = DMCore.parseSpellcasting("Charisma (spell save DC 20, +12 to hit). 3/day each: animate dead, branding smite, revivify. 1/day each: geas, raise dead.");
+  assert.strictEqual(arkhan.intro, "Charisma (spell save DC 20, +12 to hit).");
+  assert.strictEqual(arkhan.groups.length, 2);
+  assert.strictEqual(arkhan.groups[0].label, "3/day each");
+  assert.strictEqual(arkhan.groups[0].each, 3);
+  assert.deepStrictEqual(arkhan.groups[0].spells, ["animate dead", "branding smite", "revivify"]);
+  assert.strictEqual(arkhan.groups[1].each, 1);
+  assert.deepStrictEqual(arkhan.groups[1].spells, ["geas", "raise dead"]);
+  assert.strictEqual(arkhan.outro, "");
+
+  var moonkite = DMCore.parseSpellcasting("Charisma (spell save DC 14). At will: {@spell detect evil and good}, {@spell druidcraft}, {@spell pass without trace}. 1/day each: {@spell calm emotions}, {@spell dispel evil and good}, {@spell entangle}.");
+  assert.strictEqual(moonkite.groups.length, 2);
+  assert.strictEqual(moonkite.groups[0].label, "At will");
+  assert.strictEqual(moonkite.groups[0].each, undefined);
+  assert.deepStrictEqual(moonkite.groups[0].spells, ["{@spell detect evil and good}", "{@spell druidcraft}", "{@spell pass without trace}"]);
+  assert.strictEqual(moonkite.groups[1].each, 1);
+  assert.deepStrictEqual(moonkite.groups[1].spells, ["{@spell calm emotions}", "{@spell dispel evil and good}", "{@spell entangle}"]);
+
+  // doesn't parse -> null, caller falls back to plain rendering
+  assert.strictEqual(DMCore.parseSpellcasting("Can hold its breath for 1 hour."), null);
+  assert.strictEqual(DMCore.parseSpellcasting(""), null);
+})();
+
 console.log("core.test.js: all assertions passed");

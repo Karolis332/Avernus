@@ -50,6 +50,7 @@ window.SESSION = {
   ac: 18, acNote: "natural armor",
   hp: 84, hpFormula: "13d10 + 13",
   speed: "40 ft., fly 80 ft., swim 40 ft.",
+  init: 7,                          // optional; 2024-MM style initiative bonus, overrides DEX mod
   abilities: { str: 27, dex: 14, con: 13, int: 12, wis: 11, cha: 15 },
   saves: "Dex +5, Con +4",  skills: "Perception +6, Stealth +5",
   vulnerable: "", resist: "", immune: "acid", condImmune: "",
@@ -68,7 +69,7 @@ window.SESSION = {
 }
 ```
 
-Initiative modifier = DEX mod (the tracker rolls d20 + DEX mod). Legendary `count` gives the tracker its pips.
+Initiative modifier = `init` when set, otherwise DEX mod (the tracker rolls d20 + that bonus; shown as the "Init mod" column). Legendary `count` gives the tracker its pips.
 
 ### SCENE
 
@@ -96,7 +97,7 @@ Initiative modifier = DEX mod (the tracker rolls d20 + DEX mod). Legendary `coun
 | `table` | `caption`, `head: []`, `rows: [[]]` | Rollable table (only for dice tables) |
 | `choices` | `prompt`, `items: [{ label, goto: "<scene id>" } or { label, side: "<side id>" }]` | Big decision buttons |
 | `encounter` | `id`, `title`, `combatants: [{ c: "<creature id>", n: 1 }]`, `lair: "<creature id>"` (optional), `notes` | Inline initiative tracker |
-| `map` | `id` (library map id), `title` (optional), `note` (optional) | Thumbnail card; click opens the map in the right panel (Plain/Grid/DM + open full size). If `id` isn't in the library, renders a muted "Map not available on this device" note — never crashes. |
+| `map` | `id` (library map id) OR `src` (image path, e.g. `maps/x.webp`), `title` (optional), `note` (optional) | Thumbnail card; click opens the map in the right panel (Plain/Grid/DM + open full size). If `id` isn't in the library, renders a muted "Map not available on this device" note — never crashes. With `src`, skips the library and opens that single image + an open-full-size link (no Plain/Grid/DM switcher). |
 | `img` | `src`, `caption` (optional), `credit` (optional) | Full-width book-plate illustration (double-rule parchment frame), italic caption below. Lazy-loaded; if the image fails to load, the whole figure hides itself. `tools/gen_event_art.py` generates art for `art/generated/`. |
 
 The first `p` block of a scene gets a decorative drop cap (book style). Every `read`

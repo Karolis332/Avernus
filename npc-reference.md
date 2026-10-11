@@ -187,6 +187,7 @@
 ### The Gith (githzerai monk) — "the river of mirrors" [HOMEBREW]
 - Half-mad githzerai who fell through a planar tear; Cage 3 in Bitter Breath's Palace. Mutters about a "river of mirrors."
 - Combat: psionic skirmisher (CR 6) — blinks, Mind Lance, best shot at **stunning Dumal.** Planar-origin plot hook.
+- **Status: dead** (DM ruling 2026-10-11; circumstances to fill in).
 
 ### Senna (the third Bhaalspawn sibling) [HOMEBREW]
 - Drenwal & Dumal's hidden **younger sister**, ~6, raised by Harper **Issa**. Mother died before her birth; Halvard hid her name to his last breath.

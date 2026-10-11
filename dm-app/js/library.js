@@ -114,6 +114,24 @@
     window.DMPanel.open("raw", wrap, map.title);
   }
 
+  // Opens a map that ships its own image (e.g. generated art) rather than a
+  // library map keyed by id — same panel, no Plain/Grid/DM variant switcher.
+  function openMapSrc(src, title) {
+    var wrap = el("div", "map-panel");
+    var img = document.createElement("img");
+    img.className = "map-panel-img";
+    img.src = src;
+    wrap.appendChild(img);
+    var btnRow = el("div", "map-panel-buttons");
+    var openBtn = el("a", "map-open-full", "Open full size");
+    openBtn.href = src;
+    openBtn.target = "_blank";
+    openBtn.rel = "noopener";
+    btnRow.appendChild(openBtn);
+    wrap.appendChild(btnRow);
+    window.DMPanel.open("raw", wrap, title || "Map");
+  }
+
   function open() {
     state.sceneView.classList.add("hidden");
     state.libraryView.classList.remove("hidden");
@@ -137,5 +155,5 @@
     opts.filterInput.addEventListener("input", function () { state.filter = opts.filterInput.value; renderTab(); });
   }
 
-  window.DMLibrary = { init: init, open: open, close: close, isOpen: isOpen, openMap: openMap };
+  window.DMLibrary = { init: init, open: open, close: close, isOpen: isOpen, openMap: openMap, openMapSrc: openMapSrc };
 })();

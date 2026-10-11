@@ -4,7 +4,7 @@ An epic two-front battle: Dumal + boarders assault the ship while a titan wrecks
 
 ## Concept
 Dumal's host marches on the *Lady Vengeance* across Avernus, a titan at the front. Two battles run at once:
-- **The Deck** (personal): Dumal + Bone Devils vs. the party + Veska / Lucan / the Gith + crew.
+- **The Deck** (personal): Dumal + Bone Devils vs. the party + Veska / Lucan + crew.
 - **The Siege** (vehicle): the titan vs. the ship's guns. **The ship is the only thing that can fell the titan; the heroes keep the gun crews alive.**
 
 ## ⚠ OPEN DECISIONS (lock before play)
@@ -41,7 +41,6 @@ Dumal's host marches on the *Lady Vengeance* across Avernus, a titan at the fron
 ## Ally & crew roles
 - **Lucan** — *Keep the Watch* shields the gun crews and Jeremy.
 - **Veska** — her aura frees minds vs. Dumal (even Drenwal rolls vs. Bhaal's Whisper); **Sergeant's Rally buffs a cannon shot (+2d8)**; smite blinds the titan/Dumal.
-- **The Gith** — blinks between cannons to man a vacant one; **Mind Lance** abuses the titan's / Dumal's weak INT; saves his **Stun** for the Avatar.
 - **Crew** — the gunners (every one killed = a silent cannon). **Jeremy** — the Core, the Overdrive, and the soul question.
 
 ## Win / lose

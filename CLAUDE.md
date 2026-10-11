@@ -220,3 +220,18 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
   - Portraits are missing for the lady-vengeance, jeremy, dumal and moonkite creatures.
   - Unruled: Obelisk prisoner (Ubbalux vs Ubbalex), what Tiamat's blood buys, Aurora's class (Wizard vs Warlock).
   - Official art, maps, PDFs and sfx are gitignored. The repo is public.
+
+### 2026-10-11 — DM app: tracker upgrades, Monument battle map, S9 text audit
+- **Did:**
+  - Tracker: creature names are clickable and open the stat block; rows re-sort when an init is edited.
+  - Creature `init` field, which gives dragons their initiative bonus.
+  - Spell-slot circles via `Core.parseSpellcasting()`.
+  - Wider side panel, smaller left nav.
+  - Map block accepts `src`.
+  - Generated Monument battle map at `dm-app/maps/monument-battlemap.webp`, gitignored and deploy-only. `gen_event_art.py` gained `--ref`, `--max-width` and `--quality`.
+  - S9 flavour-text audit (Krull rides Obatala, not the ship deck). Monk dead; Gith teacher replaced by the Gith's journal.
+- **Why:** the paid CartographyAssets "Arkhan's Tower" pack (€4) is the tower INTERIOR, 10 floors, not the Monument. Only its style was matched. Art derived from a paid map stays out of the public repo. Image generation cost about $0.75 for 3 calls, against $0.50 approved.
+- **Open:**
+  - The map's tent sits beside the maw, not inside it.
+  - Leftover audit findings were not applied (see the lore-fixer report).
+  - Buy the €4 pack if the party ever enters the tower.

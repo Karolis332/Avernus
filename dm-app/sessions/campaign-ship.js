@@ -46,7 +46,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Shield Scroll (Engineer)", text: "When she is hit by an attack, the engineer feeds a {@spell shield} scroll into the Core: +5 AC against that attack and until the start of the engineer's next turn." }
     ],
     tactics: [
-      "Before initiative, ask the players to place everyone: helm, two cannons, harpoon, Core. Jeremy takes the Core unless told otherwise. Allies can man a gun; the githzerai blinks between empty cannons.",
+      "Before initiative, ask the players to place everyone: helm, two cannons, harpoon, Core. Jeremy takes the Core unless told otherwise. Allies can man a gun.",
       "Every round, Jeremy's first job is Maintain Core. Roll it in the open. A failure is drama: a cannon coughs and goes dark.",
       "Gunners and the harpooner act on their own turns. The harpoon pins a flyer so both cannons can hit it next round. Use it on diving dragons and devils.",
       "Smart enemies go for the crew, not the hull. Every dead gunner is a silent cannon. Devils that reach the Core go for Jeremy. Ser Lucan's Keep the Watch exists for this.",
@@ -248,7 +248,7 @@ Object.assign(window.CAMPAIGN.side, {
         ["Reverse-engineer in battle", "1 day after the fight", "Intelligence (Arcana) +7, DC 15 / 17 / 20", "Half a schematic: advantage on his next try by any other way. Fail by 5+: he learns it wrong (see below)."]
       ] },
       { t: "p", text: "{@b Studying a machine.} He needs a machine that has the thing. A working one (captured, borrowed, bought) is easier: he can run it and watch it work. A wreck has to be read from the pieces. Blueprints written in Infernal take 2 extra days unless someone aboard reads Infernal." },
-      { t: "p", text: "{@b Being taught.} Each teacher has a price and a limit. {@b Mad Maggie} teaches tier I and II Armament, Hull and Engine, for one secret or memory per tier. {@b Bel} teaches anything infernal (never the mercy path), for 1 soul coin per tier or a service; he teaches the Soul Furnace for free, because he wants it built. {@b The githzerai monk} teaches only the Weave Jump, and only on lucid days: roll a d6 each morning, and on a 5 or 6 he is lucid (the days need not be in a row). His price is that someone sits and listens to the whole story of the river of mirrors. {@b A Gondian} teaches the mercy path for free: the tinker who turns up on the road wants a soul-freeing favour first, and the mechanic the Rust Queen holds wants his freedom." },
+      { t: "p", text: "{@b Being taught.} Each teacher has a price and a limit. {@b Mad Maggie} teaches tier I and II Armament, Hull and Engine, for one secret or memory per tier. {@b Bel} teaches anything infernal (never the mercy path), for 1 soul coin per tier or a service; he teaches the Soul Furnace for free, because he wants it built. {@b The Gith's journal}, recovered from his body, teaches only the Weave Jump: his own cramped hand, half of it about the river of mirrors. Reading it takes 2 days, no check, but it is a one-time source — the lesson is spent once learned. {@b A Gondian} teaches the mercy path for free: the tinker who turns up on the road wants a soul-freeing favour first, and the mechanic the Rust Queen holds wants his freedom." },
       { t: "p", text: "{@b Reverse-engineering in battle.} Jeremy must be aboard, conscious, and see the enemy weapon fire at least twice in the same fight. It does not have to hit. After the fight he makes the check. On a failure by 5 or more he learns it wrong, and only the DM knows: the first install check for that upgrade has disadvantage, and if it fails, he finds the flaw and the next try is normal." },
       { t: "read", text: "In the middle of the fight, Jeremy is standing at the rail. Not ducking. Notebook open, pencil moving. A shell bursts forty feet off the bow and he does not even flinch.\n\n\"Again,\" he mutters at the enemy gun. \"Fire again, you beautiful thing. Show me the breech.\"" },
 
@@ -259,7 +259,7 @@ Object.assign(window.CAMPAIGN.side, {
         ["Hellfire Rails", "Hull II", "Fort Knucklebone: Chukka and Clonk wired Maggie's walls with them, and Maggie teaches it. The rigs of the Rust Queen's scrap-riders."],
         ["Adamantine Keel", "Hull III", "Bel's Forge: his smiths forge Zariel's keels, and Bel teaches it. The keel of the Wrecked Flying Fortress (a big wreck, 2 days of study)."],
         ["Gyro Helm", "Engine II", "Any working devil's ride or tormentor (capture one, or borrow one at Fort Knucklebone). Mahadi sells a blueprint for 1,000 gp."],
-        ["Weave Jump", "Engine III", "The githzerai monk, on his lucid days. Nowhere else in Hell."],
+        ["Weave Jump", "Engine III", "The Gith's journal, recovered from his body. One-time read, 2 days, no check. Nowhere else in Hell."],
         ["Grace Lantern", "Soul Engine II (mercy)", "Watch Lulu or the Moonkite free a soul aboard the ship: it counts as studying a working machine. The Gondian tinker on the road teaches it for a soul-freeing favour."],
         ["Choir Core", "Soul Engine III (mercy)", "The Gondian mechanic held by the Rust Queen (rescue or ransom him). Or Jeremy designs it himself once he has freed 10 souls with his own hands."],
         ["Soul Furnace", "Soul Engine III (Portyr)", "Bel teaches it, gladly and for free. The engine of any of Zariel's fortress-machines."]

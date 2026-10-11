@@ -79,7 +79,7 @@ kbd {
 /* ---- 3-col layout ---- */
 #layout { display: flex; height: calc(100vh - 54px); }
 #left {
-  width: 260px;
+  width: 190px;
   flex-shrink: 0;
   overflow-y: auto;
   padding: 16px;
@@ -88,17 +88,24 @@ kbd {
 }
 #session-switcher { width: 100%; margin-bottom: 12px; padding: 4px; }
 #scene-list { list-style: none; padding: 0; margin: 0; }
-.scene-item { padding: 8px 6px; cursor: pointer; border-radius: 4px; }
+/* Smaller than body text — this column (and #campaign-list, which reuses
+   these same classes) needs to stay narrow without wrapping every title. */
+.scene-item { padding: 6px 4px; cursor: pointer; border-radius: 4px; font-size: 0.85rem; line-height: 1.3; }
 .scene-item:hover { background: #0001; }
 .scene-item.current { background: var(--red); color: var(--parchment); font-weight: bold; }
 .scene-item.visited .scene-num::after { content: " \2713"; }
 .scene-item.conditional { opacity: 0.6; }
-.scene-when { font-size: 0.8em; font-style: italic; }
+.scene-when { font-size: 0.8em; font-style: italic; } /* relative to .scene-item's 0.85rem -> smaller still */
 .scene-num { margin-right: 6px; }
 
 #center {
   flex: 1;
+  /* A flex item's default min-width is its content's min-content size, not 0 —
+     a wide tracker table would otherwise force #center (and so #layout/body)
+     wider than the viewport instead of shrinking/scrolling internally. */
+  min-width: 0;
   overflow-y: auto;
+  overflow-x: auto;
   padding: 24px 32px;
   transition: flex-basis 0.2s;
 }
@@ -114,7 +121,7 @@ body.panel-open #center { flex: 1 1 60%; }
   border-left: 2px solid var(--red);
   transition: width 0.2s;
 }
-#panel.open { width: 420px; flex-shrink: 0; overflow-y: auto; }
+#panel.open { width: 500px; flex-shrink: 0; overflow-y: auto; } /* was 420px; +~20% so stat blocks read comfortably */
 #panel-header {
   display: flex;
   align-items: center;
@@ -193,6 +200,22 @@ body.panel-open #center { flex: 1 1 60%; }
 .sb-entries-title { color: var(--red); margin: 10px 0 4px; }
 .sb-entry { margin: 4px 0; }
 .sb-5etools-link { display: inline-block; margin-top: 8px; color: var(--red); }
+
+/* ---- spellcasting slot tracker (render-time parse of trait text) ---- */
+.spellcasting-block { margin: 4px 0; }
+.spell-group-row { display: flex; flex-wrap: wrap; align-items: baseline; gap: 6px; margin: 4px 0; }
+.spell-group-label { font-variant-caps: small-caps; font-weight: bold; color: var(--red); letter-spacing: 0.02em; }
+.spell-pips { display: inline-flex; gap: 3px; }
+.spell-pip {
+  width: 14px; height: 14px; border-radius: 50%; border: 1.5px solid var(--ink);
+  background: transparent; cursor: pointer; padding: 0; flex-shrink: 0;
+}
+.spell-pip.filled { background: var(--ink); }
+.spell-pip:focus-visible { outline: 2px solid var(--red); outline-offset: 1px; }
+.spell-group-each-list { display: flex; flex-direction: column; gap: 4px; }
+.spell-group-each-row { display: flex; align-items: baseline; gap: 6px; }
+.spell-outro { font-style: italic; font-size: 0.85em; opacity: 0.8; }
+.spell-long-rest { margin-top: 6px; }
 
 /* ---- creature panel ---- */
 .portrait-wrap { width: 100%; height: 220px; background: #0001; display: flex; align-items: center; justify-content: center; overflow: hidden; border-radius: 4px; }

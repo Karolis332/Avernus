@@ -212,7 +212,9 @@
   function openCreature(cid) {
     var c = app.session.creatures[cid];
     if (!c) return;
-    window.DMPanel.open("creature", c);
+    // _cid/_sessionId are synthetic (not part of the CREATURE data shape) —
+    // statblock.js's spell-slot tracker needs them to key localStorage.
+    window.DMPanel.open("creature", Object.assign({ _cid: cid, _sessionId: app.session.id }, c));
   }
   function openSide(sid) {
     var s = app.session.side[sid];
@@ -266,6 +268,8 @@
         if (scEl) { e.preventDefault(); goToScene(scEl.dataset.sceneGoto); return; }
         var dEl = t.closest("[data-dice]");
         if (dEl) { e.preventDefault(); showDiceToast(dEl.dataset.dice); return; }
+        var mSrcEl = t.closest("[data-map-src]");
+        if (mSrcEl) { e.preventDefault(); window.DMLibrary.openMapSrc(mSrcEl.dataset.mapSrc, mSrcEl.dataset.mapTitle); return; }
         var mEl = t.closest("[data-map-id]");
         if (mEl) { e.preventDefault(); window.DMLibrary.openMap(mEl.dataset.mapId); return; }
       }
