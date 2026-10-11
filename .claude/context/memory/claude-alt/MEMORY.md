@@ -1,0 +1,2 @@
+- [DM prep format](dm-prep-format.md) — session prep = interactive DM app in Fall-of-Elturel book style, never dense md primers
+- [DM app hosting](dm-app-hosting.md) — VPS nginx + basic auth, redeploy recipe, public-repo asset rules

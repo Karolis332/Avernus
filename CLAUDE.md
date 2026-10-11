@@ -187,6 +187,8 @@ npx @claude-flow/cli@latest doctor --fix
 - Documentation: https://github.com/ruvnet/claude-flow
 - Issues: https://github.com/ruvnet/claude-flow/issues
 
+Portable agent context: `.claude/context/` (memory from both Claude homes + last checkpoint; synced by `/sync-context`, restore with `--restore`).
+
 ## Session Log
 
 Rolling context so a fresh session — or a different model, account or tool — starts where the
