@@ -31,7 +31,7 @@ window.SESSION = {
       source: { page: "bestiary", name: "Sibriex", src: "MTF" },
       homebrew: "Stats as the party's own encounter table: AC 19, HP 150, CR 18, Squirt Bile, Warp Creature, 3 legendary actions. Campaign change: the Haruman errand that once justified this site is already spent (the trophy supplied the piece), so the sibriex is no longer a quest-giver. It is a temptation, and it has read what rides in Or'Henn's blood.",
       npc: true,
-      sizeType: "Large fiend (demon), chaotic evil",
+      sizeType: "Huge fiend (demon), chaotic evil",
       description: "A vast bloated head the size of a cart, hanging in rusted chains over a pit of its own leavings. No body worth the name: a sagging mass of folds, a lipless mouth, and long thin arms that end in fingers far too delicate for something so huge. Flesh it has shaped lies heaped below -- things with too many joints, still breathing. It smells of vinegar and birth.",
       roleplay: [
         "Appearance: a head in chains, eyes like wet stones, the skin running with pale bile.",
@@ -42,9 +42,37 @@ window.SESSION = {
         "Sample line: \"Let us down and we will tell you. We will even tell you true. We have no reason to lie to the short-lived.\"",
         "Never: begs. It has been here a long time and expects to be here longer."
       ],
-      ac: 19, acNote: "unnatural resilience",
-      hp: 150,
-      cr: "18", xp: 20000,
+      ac: 19, acNote: "natural armor",
+      hp: 150, hpFormula: "12d12 + 72",
+      speed: "0 ft., fly 20 ft. (hover) -- chained in place here",
+      abilities: { str: 10, dex: 3, con: 23, int: 25, wis: 24, cha: 25 },
+      saves: "Int +13, Cha +13", skills: "Arcana +13, History +13, Perception +13",
+      vulnerable: "", resist: "cold, fire, lightning; bludgeoning, piercing, and slashing from nonmagical attacks", immune: "poison", condImmune: "poisoned",
+      senses: "truesight 120 ft., passive Perception 23",
+      languages: "all, telepathy 120 ft.",
+      cr: "18", xp: 20000, pb: 6,
+      traits: [
+        { name: "Contamination", text: "The sibriex emits an aura of corruption 30 feet in every direction. Plants that aren't creatures wither in the aura, and the ground in it is difficult terrain for other creatures. Any creature that starts its turn in the aura must succeed on a DC 20 Constitution saving throw or take 14 (4d6) poison damage. A creature that succeeds is immune to this sibriex's Contamination for 24 hours." },
+        { name: "Innate Spellcasting", text: "Charisma (spell save DC 21, +13 to hit with spell attacks), no material components. At will: {@spell charm person}, {@spell command}, {@spell dispel magic}, {@spell hold person}. 3/day: {@spell feeblemind}." },
+        { name: "Legendary Resistance (3/Day)", text: "If the sibriex fails a saving throw, it can choose to succeed instead." },
+        { name: "Magic Resistance", text: "The sibriex has advantage on saving throws against spells and other magical effects." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "The sibriex uses Squirt Bile once and makes three attacks using its chain, bite, or both." },
+        { name: "Chain", text: "Melee Weapon Attack: +6 to hit, reach 15 ft., one target. Hit: 13 (2d12) piercing damage." },
+        { name: "Bite", text: "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 9 (2d8) piercing damage plus 9 (2d8) acid damage." },
+        { name: "Squirt Bile", text: "The sibriex targets one creature it can see within 120 feet. The target must succeed on a DC 20 Dexterity saving throw or take 35 (10d6) acid damage." },
+        { name: "Warp Creature", text: "The sibriex targets up to three creatures it can see within 120 feet. Each makes a DC 20 Constitution saving throw. On a success, the creature is immune to this sibriex's Warp Creature. On a failure, it is poisoned and gains 1 level of exhaustion. While poisoned this way it repeats the save at the start of each of its turns: three successes end the poison and remove the exhaustion it caused; each failure adds another level. At 6 levels it dies and becomes a living abyssal wretch under the sibriex's control. Only a {@spell wish} undoes the transformation." }
+      ],
+      legendary: {
+        count: 3,
+        intro: "The sibriex can take 3 legendary actions, one at a time, at the end of another creature's turn. It regains spent legendary actions at the start of its turn.",
+        actions: [
+          { name: "Cast a Spell", cost: 1, text: "The sibriex casts a spell." },
+          { name: "Spray Bile", cost: 1, text: "The sibriex uses Squirt Bile." },
+          { name: "Warp", cost: 2, text: "The sibriex uses Warp Creature." }
+        ]
+      },
       tactics: [
         "Opens with Warp Creature on whoever looks most physically perfect (Aurora or Moonkite).",
         "Squirt Bile at 120 ft. against anyone trying to cut the chains.",
@@ -68,6 +96,27 @@ window.SESSION = {
         "Knows: Tiamat's tricks, because she played one on him. How the orb in his pommel works. That Arkhan's dragons hunt this stretch of river.",
         "Sample line: \"I came here to kill a god. She made me small instead. Three thousand years I have been small. Pour it, and you will see what I was.\"",
         "Sample line: \"Do not pity me. Pour.\""
+      ],
+      // Spined devil numbers: he is not meant to be fought, but the table may try.
+      ac: 13, acNote: "natural armor",
+      hp: 22, hpFormula: "5d6 + 5",
+      speed: "20 ft., fly 40 ft.",
+      abilities: { str: 10, dex: 15, con: 12, int: 11, wis: 14, cha: 8 },
+      vulnerable: "", resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered", immune: "fire, poison", condImmune: "poisoned",
+      senses: "darkvision 60 ft., passive Perception 12",
+      languages: "Infernal, telepathy 120 ft. (and every tongue he knew as an empyrean)",
+      cr: "2", xp: 450, pb: 2,
+      traits: [
+        { name: "Devil's Sight", text: "Magical darkness doesn't impede his darkvision." },
+        { name: "Flyby", text: "He doesn't provoke opportunity attacks when he flies out of an enemy's reach." },
+        { name: "Limited Spines", text: "He has twelve tail spines. Used spines regrow by the time he finishes a long rest." },
+        { name: "Magic Resistance", text: "He has advantage on saving throws against spells and other magical effects." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "Two attacks: one with his bite and one with his fork, or two with his tail spines." },
+        { name: "Bite", text: "Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 5 (2d4) piercing damage." },
+        { name: "Fork", text: "Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 3 (1d6) piercing damage." },
+        { name: "Tail Spine", text: "Ranged Weapon Attack: +4 to hit, range 20/80 ft., one target. Hit: 4 (1d4 + 2) piercing damage plus 3 (1d6) fire damage." }
       ]
     },
 

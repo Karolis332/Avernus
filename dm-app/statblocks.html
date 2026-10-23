@@ -63,6 +63,16 @@
     s.onload = render;
     document.body.appendChild(s);
 
+    // Campaign-layer creatures the session links to ({@c id|...}) but doesn't redefine, e.g. Arkhan, the Lady Vengeance.
+    function pullLinkedCampaignCreatures(session) {
+      var camp = (window.CAMPAIGN || {}).creatures || {};
+      var text = JSON.stringify([session.scenes, session.side || {}]);
+      var re = /\{@c ([a-z0-9-]+)\|/g, m;
+      while ((m = re.exec(text))) {
+        if (!session.creatures[m[1]] && camp[m[1]]) session.creatures[m[1]] = camp[m[1]];
+      }
+    }
+
     // Encounter order first (the order they hit the table), then any other creature the session defines.
     function creatureOrder(session) {
       var seen = {}, out = [];
@@ -78,6 +88,8 @@
 
     function render() {
       var session = window.SESSION;
+      session.creatures = session.creatures || {};
+      pullLinkedCampaignCreatures(session);
       document.title = "Stat Blocks · " + session.title;
       document.getElementById("sb-title").textContent = session.title + ": Stat Blocks";
       document.getElementById("sb-sub").textContent = session.subtitle || "";
@@ -111,10 +123,7 @@
         card.setAttribute("role", "tabpanel");
         cards[cid] = card;
         // _cid/_sessionId: same keys app.js passes, so spell-slot pips stay in sync with the main app.
-        // This page is for fighting, so an npc with real numbers (e.g. the sibriex) still shows its stat block.
-        var shown = Object.assign({ _cid: cid, _sessionId: session.id }, c);
-        if (c.npc && c.ac != null && c.hp != null) shown.npc = false;
-        card.appendChild(window.DMStatblock.renderCreaturePanelBody(shown));
+        card.appendChild(window.DMStatblock.renderCreaturePanelBody(Object.assign({ _cid: cid, _sessionId: session.id }, c)));
         if (c.lair && c.lair.text) {
           var lair = el("div", "lair-panel");
           lair.appendChild(el("h3", null, "Lair Action"));

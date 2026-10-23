@@ -399,7 +399,8 @@
     }
     var roleplay = renderTactics(creature.roleplay, "Roleplaying", "ul");
 
-    if (!creature.npc) {
+    // An npc with real numbers (e.g. the sibriex) is still fightable, so show its stats too
+    if (!creature.npc || creature.abilities) {
       body.appendChild(renderStatblock(creature));
     } else if (creature.homebrew) {
       body.appendChild(el("div", "sb-homebrew", "Homebrew: " + creature.homebrew));
