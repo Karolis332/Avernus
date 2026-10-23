@@ -238,3 +238,17 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
     - stale facts outside S9: campaign-state.md (level 11, Asimov, Session 5), primer Or'Henn level 11 and Aurora as Warlock, campaign-arcs L306/L438 (Devil's Ride is at the Monument).
     - Trigger: next prep session.
   - Buy the €4 pack if the party ever enters the tower.
+
+### 2026-10-23 — Reinstall restore + Session 10 "The Styx Run" built in the DM app
+- **Did:**
+  - Restored `DnD/` from GitHub after the Windows reinstall. Gitignored art, maps, PDFs and sfx were pulled back from the VPS (the pre-reinstall backup is gone; the VPS + this PC are the only copies).
+  - The laptop's `da7a8a3`..`fa7fa3d` recorded Session 9 as played: party level 13, vial stolen, Word of Recall escape.
+  - Session 10 is now a full session in the Session 9 format: primer, recap, Styx run, Sibriex, Uldrak's Grave, The Call, Wings Over the Grave, Ending, plus the orb, Krull's offer and curse-jump side panels.
+  - The tower dragons, Krull and Arkhan moved into the new `sessions/campaign-tower.js`. Sessions override only `tactics`.
+- **Why:**
+  - DM rulings: Word of Recall went to the St. Cuthbert statue on the Lady Vengeance; nobody was left behind; Colico Jack pilots; Aurora is an Archfey Warlock; the Sibriex is not met yet.
+  - The party's plan is to free Uldrak, then call Arkhan's dragons with his Orb of Dragonkind (SRD rules). The fight runs in waves so it stays survivable, and Vermilius baits the Or'Henn curse.
+- **Open:**
+  - DM's choices still open: one vial or two curses; the Solar's Helmet under the sword; whether Krull survived Session 9.
+  - No art yet for Uldrak or the Styx (generating it costs money; ask first).
+  - Krull's stat block links to the Session 9-only `raise-the-dead` panel; in Session 10 that link does nothing.

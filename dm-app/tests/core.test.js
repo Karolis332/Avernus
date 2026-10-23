@@ -222,7 +222,7 @@ var DMCore = require("../js/core.js");
   assert.strictEqual(DMCore.initiativeBonus(null), 0);
 })();
 
-// parseSpellcasting — real trait text from sessions/09-arkhans-tower.js (Krull,
+// parseSpellcasting — real trait text from sessions/campaign-tower.js (Krull,
 // Arkhan) and campaign-arcs.js (Moonkite), per addendum 3.
 (function () {
   var krull = DMCore.parseSpellcasting("14th-level cleric. Spell save DC 18, +10 to hit. Cantrips: chill touch, mending, sacred flame, spare the dying, thaumaturgy. 1st (4 slots): cure wounds, detect evil and good, inflict wounds. 2nd (3): hold person, spiritual weapon. 3rd (3): animate dead, spirit guardians, speak with dead. 4th (3): banishment, death ward, divination. 5th (2): contagion, flame strike, mass cure wounds. 6th (1): blade barrier, harm. 7th (1): fire storm, regenerate. Krull does not have raise dead himself; he can only broker Arkhan's innate raise dead (see {@side raise-the-dead|Raise the Dead}), not cast it.");

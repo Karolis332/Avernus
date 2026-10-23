@@ -6,7 +6,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "lady-vengeance": {
     name: "The Lady Vengeance",
     kind: "lady-vengeance",
-    role: "The party's warship. Jeremy flies her and keeps her alive",
+    role: "The party's warship. Colico Jack flies her; Jeremy keeps her alive",
     source: { page: "bestiary", name: "Lady Vengeance", src: "HB" },
     homebrew: "Shown repaired: the adamantine control rods are in, so she has full speed, both force cannons and the Soul Coin Overdrive. If she is ever crippled again (rods torn out, Core wrecked), she drops to half speed, one cannon and no Overdrive until new rods go in. This is the base ship. Add upgrades from the Ship Upgrades page as the party builds them.",
     npc: false,

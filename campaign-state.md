@@ -5,7 +5,7 @@
 - **Size:** 3 players (was 4 — Xebeche and Rebecca had earlier arcs; Mikas transitioned from Asimov to Or'Henn after Session 7)
 - **Current PCs:**
   - **Drenwal** — Light Cleric 13. **SIGIL #2 (the Binding) IS DONE** — drawn in Dumal's blood, taken when he wounded his brother at the Last Hill. He is now **Tier II** on the Three Sigils road: the *power* road, the same ritual that forged Dumal the Flame Ascendant, which `drenwal-bhaal-blood.md` warns "may be Bhaal's design dressed as salvation." Only **Step 3 — Mastery** remains: *kill the last living Bhaalspawn*, a kinslaying. The surviving Bhaalspawn are **Dumal, Senna (~6) and Drenwal himself** — so followed honestly, his own ritual ends with his own death, which is also Mordenkainen's rebirth. That convergence is the redemption out. Hellrider, child of Bhaal. Gargauth tempts him via the Shield. Primary healer/support/frontline. Warding Flare, Radiance of the Dawn, Divine Intervention (hijacked by Bhaal). *Wounded his brother Dumal "Den" at the Last Hill (Session 7); Dumal broke free and escaped — brother still at large, RP fallout unresolved.*
-  - **Aurora** — Archfey Warlock, Level 13. [TO CONFIRM WITH DM: the DM app's Session 9 party block lists her as *"Level 12 (class not yet ruled)"* while this file has had her as Archfey Warlock throughout. Her 13th-level gain depends on it — a warlock takes **Mystic Arcanum 7th** (Forcecage, Plane Shift, Finger of Death, Etherealness); a full caster instead gets one 7th-level slot.] Moonkite bonded as mount. Moonbow of Celestial Warding (evolved from +2 bow + Wand of Celestial Warding). Fey Presence, Misty Escape. Sustained ranged DPS.
+  - **Aurora** — Archfey Warlock, Level 13 (DM ruling 2026-10-23). Her 13th-level gain is **Mystic Arcanum 7th** (Forcecage, Plane Shift, Finger of Death, Etherealness — player picks). Moonkite bonded as mount. Moonbow of Celestial Warding (evolved from +2 bow + Wand of Celestial Warding). Fey Presence, Misty Escape. Sustained ranged DPS.
   - **Or'Henn** — Circle of Wildfire Druid (Level 13). **AFFLICTED WITH TIAMAT'S CURSE (Session 9)** — see *Or'Henn's Arc* below. The curse is a delivery mechanism, not an affliction: it pressures the victim into **asking a dragon for help**, transfers to that dragon, **sacrifices the dragon, and summons Tiamat**. Doing nothing is not neutral — it is a clock. The only stated safe cure is the stolen vial (Arkhan: *"Spill it on the right ground and it breaks curses that she laid"*). [HOMEBREW] Elderly (~65) Red Dragonborn, native to Avernus. Blind scarred left eye; molten-gold right. Infernal-adapted druid armor (leather/bark/ashwood + blackened iron & dark brass, living hellflowers growing from it). Round ashwood shield bearing a devil-noble-house heraldic crest [devil house TBD — HOMEBREW]. Played by Mikas. Wild Shape cap raised to CR 2 by DM ruling. Personal arc: recover lost staff **Cinderbloom** via 5 Wandering Emporium soul-bounty contracts relayed by Asimov's soul. *New recruit — never met Asimov in life; joins the party at the Wandering Emporium.*
 - **Fallen PC (soul in the capacitor):**
   - **Asimov** — Soulknife Rogue. DIED to Yeenoghu in Session 7. His soul was captured in the **Soul Capacitor**. He is no longer a playable PC. The Soul Council placed Asimov in the bounty-hunter succession in place of Rasheem — Asimov now relays Wandering Emporium "soul-bounties" to Or'Henn (as Rasheem once relayed bounties to Asimov). The Soul Council has given a **one-week clock** for Asimov to establish a new living bounty hunter (Or'Henn / the party), or the succession lapses.
@@ -15,26 +15,28 @@
   - **Sgt. Veska** — Hellrider of Elturel (Crimson Watch), freed from Bitter Breath's Palace of Gore. Knows the Bhaal cult inside the order. Officiates Drenwal's rebirth ritual. [HOMEBREW]
   - **Ser Lucan the Reforged** — Old Crimson Watch Hellrider rebuilt with Gondian automaton legs (Jeremy + Aurora's *Fabricate*). Carries Halvard's last words. [HOMEBREW]
   - **The Gith** — Githzerai monk, freed from Bitter Breath's cells. Half-mad, psionic skirmisher. **Dead** (DM ruling 2026-10-11; circumstances to fill in). His journal survives (Weave Jump teaching, see DM app ship). [HOMEBREW]
-  - **Colico Jack** — Captain of the Lady Vengeance. Holds the remote detonation relay. [HOMEBREW]
+  - **Colico Jack** — Captain of the Lady Vengeance, and **her pilot** (DM ruling 2026-10-23). Holds the remote detonation relay. [HOMEBREW]
   - **Jeremy** — Gondian operator of the Lady Vengeance's Planar Core. Built Lucan's legs. Can un-coin a soul without destroying it. [HOMEBREW]
 - **Transport:** The **Lady Vengeance** — Gondian-Portyr Hellship (AC 17, 350 HP, Arcane Cannons, Aether Harpoon, Soul Coin Overdrive). **Status: beached/damaged at the Last Hill** after the Session 7 Yeenoghu battle. [TO CONFIRM WITH DM: extent of hull damage; is the ship recoverable/mobile before the party departs for the Emporium, or do they travel overland?]
 
 ---
 
 ## Current Location
-**Drenwal's sanctuary — wherever that is.** The party left the Monument to Tiamat by **Word of Recall** with the vial, which teleported them to a previously designated sanctuary rather than running the Escape scene.
+**Aboard the Lady Vengeance.** The party left the Monument to Tiamat by **Word of Recall** with the vial. Drenwal's sanctuary is **the statue of St. Cuthbert on the Lady Vengeance**, so the spell carried them straight back to their own deck (DM ruling 2026-10-23).
 
-Three things this leaves open, all needing a DM ruling before Session 10:
-- **Where is the sanctuary?** RAW it must be somewhere dedicated to or strongly linked to Drenwal's deity. He severed his amulet connection, his Divine Intervention is hijacked by Bhaal, and he has just sworn to **Torm** (Session 8). [TO CONFIRM WITH DM]
-- **Who was left behind?** Word of Recall carries the caster plus **five** willing creatures. Present at the Monument: Drenwal, Aurora, Or'Henn, Veska, Ser Lucan, Jeremy, Lulu, Moonkite — **eight**. At least two stayed with a furious Arkhan. If Moonkite or Lulu is among them, Arkhan took the price he asked for, free. [TO CONFIRM WITH DM]
-- **Where is the Lady Vengeance?** She was waiting off-map at the ridge and **Jeremy flies her**. If he teleported out, she is parked unpiloted on Arkhan's doorstep; if he did not, he is one of those left behind. [TO CONFIRM WITH DM]
+Resolved (DM rulings 2026-10-23):
+- **The sanctuary** is the statue of St. Cuthbert aboard the Lady Vengeance.
+- **Nobody was left behind.** Only the party was at the Monument, and they all got out.
+- **The Lady Vengeance** is flown by Colico Jack; Jeremy runs the Planar Core.
 
 ---
 
 ## Active Session Prep
-**Session 10: The Styx Run** — primer: `dm-app-patches/10-the-styx-run.js`.
+**Session 10: The Styx Run** — DM app: `dm-app/sessions/10-the-styx-run.js` (full session, Session 9 format). The Sibriex has **not** been met yet.
 
 **The route, as the party has settled it:** run the **River Styx** to **Uldrak's Grave** and **spill the vial** to break the empyrean's curse. **The Stygian Dock is being SKIPPED** — Thavius Kreeg keeps, and the pin stays on the map for later. **They will pass the Sibriex** on the way; the scene is written.
+
+**Added 2026-10-23 — the dragon trap:** after freeing Uldrak, the party plans to use the **Orb of Dragonkind** in his sword's pommel to **call Arkhan's dragons to the Grave and fight them** with the restored empyrean beside them. Built in the DM app as *The Call* + *Wings Over the Grave*: Flash (r1), Slarkas + Vermilius (r3), Vistalancer (r5), Obatala + Krull with an offer for the orb (r7). Vermilius offers Or'Henn "help" — the curse's bait.
 
 **The Uldrak fork is closed** — the book version stands: the vial frees him. *(Note the campaign map still carries the Eventyr twist text under `uldraks-grave`; ignore or edit it there.)*
 
@@ -310,7 +312,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 ---
 
 ### Session 9 — Arkhan's Tower (completed)
-**Location:** The Last Hill → Arkhan's Tower → the Monument to Tiamat → Drenwal's sanctuary (by Word of Recall)
+**Location:** The Last Hill → Arkhan's Tower → the Monument to Tiamat → the Lady Vengeance (Word of Recall to the statue of St. Cuthbert)
 **Events:**
 - **The tower's four dragons attacked the Lady Vengeance** — Slarkas (black), Vistalancer (blue), Vermilius (green), Flash (red), all scaled to adults. Krull called the halt from Obatala's back.
 - **Krull escorted the party to the Monument to Tiamat**, where Arkhan demonstrated the Hand of Vecna on a chained adult gold dragon before naming his price: the death of a good creature. He asked for **Moonkite** first, then **Lulu**.
@@ -323,7 +325,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 - **Arkhan the Cruel is now an enemy.** Per the Session 9 ending, he knows their faces and any return to the tower starts as a fight. [TO CONFIRM WITH DM: what happened to Krull — loyal, turned, or dead?]
 - **The party holds the vial of Tiamat's blood**, and four claims now compete for it: Blood Pay at the Citadel, a stand-in Fallen Three piece, a bribe for Bel or Mephistopheles, or lifting Or'Henn's curse. They intend to spend it on Uldrak.
 - **Full combat XP awarded (67,400 / 22,467 each) → the party is Level 13.**
-- At least two companions were left behind at the Monument by Word of Recall's five-passenger cap. [TO CONFIRM WITH DM: who?]
+- Nobody was left behind: only the party was at the Monument, and all of them got out (DM ruling 2026-10-23).
 
 ---
 
