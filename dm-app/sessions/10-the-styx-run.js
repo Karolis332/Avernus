@@ -19,10 +19,149 @@ window.SESSION = {
     { id: "lulu", name: "Lulu", note: "Hollyphant. HER MEMORY IS A CAMPAIGN PREREQUISITE -- see the warning in scene 1." },
     { id: "moonkite", name: "Moonkite", note: "Celestial mount, Aurora's companion" },
     { id: "lady-vengeance", name: "Lady Vengeance (Colico Jack)", note: "AC 17 · HP 350 · DT 15" },
-    { id: "uldrak", name: "Uldrak", note: "Empyrean, from Uldrak's Grave on. CR 23 ally." }
+    { id: "feonor", name: "Feonor", note: "Brought Cinderbloom. Geas fulfilled. Fights beside them once, if asked." }
   ],
 
   creatures: {
+    "tiamat-risen": {
+      "name": "Tiamat Risen",
+      "kind": "tiamat",
+      "role": "The Dragon Queen, half-born into Vermilius's body. Not her true form.",
+      "source": {
+        "page": "bestiary",
+        "name": "Tiamat",
+        "src": "FTD"
+      },
+      "homebrew": "Campaign homebrew, CR 24, built for a three-sided Session 10 fight against a level-13 party, not the published CR 30 Tiamat. She is unfinished: 250 HP rising by 50 a turn to 400.",
+      "description": "Five heads on long necks rising out of a dead green dragon, still growing. The body is too small for what is inside it; scales of five colours keep pushing through the green, and the wings tear and regrow as she moves.",
+      "sizeType": "Gargantuan fiend (dragon), chaotic evil",
+      "ac": 22,
+      "acNote": "natural armor",
+      "hp": 400,
+      "hpFormula": "starts at 250; see Unfinished",
+      "speed": "40 ft., fly 120 ft.",
+      "abilities": {
+        "str": 30,
+        "dex": 10,
+        "con": 29,
+        "int": 26,
+        "wis": 26,
+        "cha": 28
+      },
+      "saves": "Dex +7, Con +16, Wis +15, Cha +16",
+      "skills": "Arcana +15, Insight +15, Perception +22, Religion +15",
+      "vulnerable": "",
+      "resist": "",
+      "immune": "acid, cold, fire, lightning, poison; bludgeoning, piercing, and slashing from nonmagical attacks",
+      "condImmune": "charmed (except by the orb of dragonkind), frightened, poisoned, stunned",
+      "senses": "truesight 120 ft., passive Perception 32",
+      "languages": "all",
+      "cr": "24",
+      "xp": 62000,
+      "pb": 7,
+      "traits": [
+        {
+          "name": "Unfinished",
+          "text": "Tiamat Risen enters the fight with 250 hit points. At the start of each of her turns she regains 50 hit points, until she has regained 150 in total. If she drops to 0 hit points, the stolen body dies and she falls back into sleep at the Monument."
+        },
+        {
+          "name": "Bound to Avernus",
+          "text": "She cannot leave Avernus by any means. Asmodeus's prison still holds."
+        },
+        {
+          "name": "Dread Majesty",
+          "text": "A chromatic dragon that sees her for the first time makes a DC 20 Wisdom saving throw. On a failure it kneels to her until she harms it or for 1 minute. On a success it is immune for 24 hours. See Tiamat's Dominion."
+        },
+        {
+          "name": "Five Heads",
+          "text": "She has advantage on saving throws against being blinded, deafened, or knocked unconscious. Each head has its own breath (below); she can use only one breath per turn."
+        },
+        {
+          "name": "Legendary Resistance (5/Day)",
+          "text": "If she fails a saving throw, she can choose to succeed instead."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "She has advantage on saving throws against spells and other magical effects."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "Tiamat Risen makes three Bite attacks, each with a different head, or uses one breath and makes one Bite."
+        },
+        {
+          "name": "Bite",
+          "text": "Melee Weapon Attack: +17 to hit, reach 20 ft., one target. Hit: 21 (2d10 + 10) piercing damage plus 14 (4d6) damage of the head's type (fire, lightning, poison, acid or cold)."
+        },
+        {
+          "name": "Red Breath (Recharge 5-6)",
+          "text": "90-ft. cone. DC 24 Dexterity save. 56 (16d6) fire damage on a failure, half on a success."
+        },
+        {
+          "name": "Blue Breath (Recharge 5-6)",
+          "text": "120-ft. line, 10 ft. wide. DC 24 Dexterity save. 88 (16d10) lightning damage on a failure, half on a success."
+        },
+        {
+          "name": "Green Breath (Recharge 5-6)",
+          "text": "90-ft. cone. DC 24 Constitution save. 56 (16d6) poison damage on a failure, half on a success."
+        },
+        {
+          "name": "Black Breath (Recharge 5-6)",
+          "text": "120-ft. line, 10 ft. wide. DC 24 Dexterity save. 72 (16d8) acid damage on a failure, half on a success."
+        },
+        {
+          "name": "White Breath (Recharge 5-6)",
+          "text": "90-ft. cone. DC 24 Constitution save. 72 (16d8) cold damage on a failure, half on a success."
+        }
+      ],
+      "legendary": {
+        "count": 3,
+        "intro": "Tiamat Risen can take 3 legendary actions, one at a time, at the end of another creature's turn. She regains them at the start of her turn.",
+        "actions": [
+          {
+            "name": "Bite",
+            "cost": 1,
+            "text": "She makes one Bite attack."
+          },
+          {
+            "name": "Command Her Children",
+            "cost": 1,
+            "text": "One chromatic dragon kneeling to her uses its reaction to make one attack."
+          },
+          {
+            "name": "Wing Storm",
+            "cost": 2,
+            "text": "Each creature within 20 ft. makes a DC 25 Dexterity saving throw or takes 17 (2d6 + 10) bludgeoning damage and is knocked prone. She can then fly up to half her flying speed."
+          },
+          {
+            "name": "Speak to the Gardener",
+            "cost": 2,
+            "text": "Or'Henn, if he can hear her, makes his Pull save at DC 20, even if the curse has left him. On a failure he is charmed by her until the end of his next turn."
+          }
+        ]
+      },
+      "tactics": [
+        "Round 1: does not attack. She speaks: thanks Or'Henn, forgives Arkhan, and names Krull a traitor. Let the table see the split happen.",
+        "Wants the orb more than anyone's death. Whoever holds it is her first target, and she bites to disarm, not to kill.",
+        "Breath goes at Krull's side first: they are the ones who could leash her. The party comes second.",
+        "Never fights to the death. Below 100 hit points she takes the sky and leaves, and Avernus hears her go."
+      ],
+      "roleplay": [
+        "Five voices that finish each other's sentences. Warm, proud, patient. Only the white head threatens.",
+        "She never lies. She does not need to.",
+        "Sample line: \"You did this for me, little red. I will not forget it. I never forget anything.\""
+      ]
+    },
+    "arkhan-the-cruel": Object.assign({}, window.CAMPAIGN.creatures["arkhan-the-cruel"], {
+      tactics: [
+        "Session 10: he is not in the dragon fight. He arrives in {@scene arkhans-gambit|Arkhan's Gambit}, when the party is winning.",
+        "His only goal is the Offering: three turns of ritual. He spends Legendary Resistance and legendary actions to protect his concentration, not to deal damage.",
+        "Uses Command the Line to keep Vermilius beside him, and to have Flash breathe on whoever is hurting him.",
+        "After Tiamat rises: fights at her side. Breath of the Five recharges every turn while she lives. Targets Krull before anyone else: a traitor first.",
+        "Still teleports out at about 230 hit points, unless Tiamat is watching. In front of her, he will not run."
+      ]
+    }),
 
     "sibriex": {
       name: "The Sibriex",
@@ -191,6 +330,243 @@ window.SESSION = {
 
   },
 
+  timeline: [
+    {
+      "phase": "All Session",
+      "events": [
+        {
+          "when": "Start",
+          "tag": "trigger",
+          "text": "Set Or'Henn's {@b Pull} to 2 + 1 per gold scale. Say it out loud. Rules: {@side tiamats-pull|Tiamat's Pull}."
+        },
+        {
+          "when": "Each vision",
+          "tag": "trigger",
+          "text": "Dragon Queen's Garden {@b +2}; each Small Vision {@b +1}; first sight of each chromatic dragon {@b +1}; touching the orb {@b +1}."
+        },
+        {
+          "when": "Feonor arrives",
+          "tag": "choice",
+          "text": "While they argue about the orb: {@scene feonor-returns|Feonor Returns}. Cinderbloom attunes as a bonus action. Each Cinderheart charge: Pull {@b -1} or reroll a Pull save."
+        }
+      ]
+    },
+    {
+      "phase": "Wings Over the Grave",
+      "events": [
+        {
+          "when": "Every Or'Henn turn",
+          "tag": "every-turn",
+          "text": "If he sees a chromatic dragon: {@b Wisdom save DC 10 + Pull}. Fail: 0-3 disadvantage vs dragons; 4-6 can't target them and drifts toward them; 7-9 charmed and asks for help (curse can jump); 10 asks, no save."
+        },
+        {
+          "when": "Round 1",
+          "tag": "round",
+          "text": "{@b Flash} (red) arrives. Breath at the Lady Vengeance, not the characters."
+        },
+        {
+          "when": "Round 3",
+          "tag": "round",
+          "text": "{@b Slarkas} (black) and {@b Vermilius} (green) arrive. Vermilius talks to Or'Henn."
+        },
+        {
+          "when": "Round 5",
+          "tag": "round",
+          "text": "{@b Vistalancer} (blue) arrives, fastest of the four."
+        },
+        {
+          "when": "Round 7",
+          "tag": "round",
+          "text": "{@b Obatala} and {@b Krull} arrive. Krull makes his offer: {@side krulls-offer|Krull's Offer}."
+        },
+        {
+          "when": "Any dragon at its flee line",
+          "tag": "trigger",
+          "text": "It tries to leave. Stop it if they want a live dragon for Urexiel."
+        },
+        {
+          "when": "2 dragons down or fled",
+          "tag": "trigger",
+          "text": "Go to {@scene arkhans-gambit|Arkhan's Gambit}."
+        }
+      ]
+    },
+    {
+      "phase": "Arkhan's Gambit",
+      "events": [
+        {
+          "when": "Arkhan arrives",
+          "tag": "round",
+          "text": "Teleports in with his cronies and Vermilius kneels behind him. Add them to the tracker."
+        },
+        {
+          "when": "Arkhan turn 1",
+          "tag": "round",
+          "text": "{@b Draw the Debt}: Or'Henn DC 22 Charisma save. Fail: gold thread to the Hand; his Pull stops rising."
+        },
+        {
+          "when": "Arkhan turn 2",
+          "tag": "round",
+          "text": "{@b Bind the Vessel}: thread into Vermilius (within 30 ft.). Thread: AC 20, 30 HP, radiant/force only. Cut it: curse back at Pull 8."
+        },
+        {
+          "when": "Arkhan turn 3",
+          "tag": "round",
+          "text": "{@b The Sacrifice}: Fane-Eater kills Vermilius. Tiamat wakes."
+        },
+        {
+          "when": "Any damage to Arkhan",
+          "tag": "every-turn",
+          "text": "Concentration: Con save DC 10 or half damage (+15, 4 Legendary Resistances)."
+        },
+        {
+          "when": "Vermilius moved 30+ ft. / killed early",
+          "tag": "trigger",
+          "text": "Step fails; curse snaps back at Pull 8; Arkhan picks the nearest dragon next round."
+        }
+      ]
+    },
+    {
+      "phase": "Tiamat Reborn",
+      "events": [
+        {
+          "when": "Her round 1",
+          "tag": "round",
+          "text": "She does not attack: thanks Or'Henn, forgives Arkhan, names Krull a traitor."
+        },
+        {
+          "when": "Each dragon, first sight",
+          "tag": "trigger",
+          "text": "{@b DC 20 Wisdom save} ({@side tiamats-dominion|Dominion}). Flash kneels, no save. Obatala saves with advantage. Fail: kneels to Tiamat. Success: joins Krull."
+        },
+        {
+          "when": "Start of her turns",
+          "tag": "every-turn",
+          "text": "Tiamat Risen regains {@b 50 HP} (250 up to 400) unless Uldrak's blade hit her since his last turn."
+        },
+        {
+          "when": "Orb holder's action",
+          "tag": "choice",
+          "text": "Control Tiamat: DC 25 Charisma (Or'Henn with advantage). Success: charmed until end of holder's next turn. Fail: Tiamat's suggestion (DC 18)."
+        },
+        {
+          "when": "Round 3 or first PC at 0 HP",
+          "tag": "trigger",
+          "text": "{@b Uldrak returns} with the fiendish blade. {@side uldraks-errand|Uldrak's Errand}."
+        },
+        {
+          "when": "Tiamat below 100 HP",
+          "tag": "trigger",
+          "text": "She takes the sky and leaves. Avernus hears her go."
+        },
+        {
+          "when": "Feonor",
+          "tag": "trigger",
+          "text": "Leaves by teleport when Tiamat rises, unless given a very good reason."
+        }
+      ]
+    }
+  ],
+
+  companions: [
+    {
+      "id": "lady-vengeance",
+      "name": "The Lady Vengeance (Colico Jack)",
+      "creature": "lady-vengeance",
+      "role": "The party's warship. Jack flies her; anyone can man a gun.",
+      "inFight": "Dragons treat her as the biggest threat on the field. Round 1 breath goes at her, not at the characters.",
+      "behaviour": [
+        "{@b Jack} keeps her moving: he never ends a round in the same place twice, and he flies her between a dragon and a downed character if asked.",
+        "{@b Cannons} need a crew: any ally or character on board can fire one as their action.",
+        "{@b Under Tiamat:} Jack wants to run. He will stay only if a character tells him to, to his face."
+      ]
+    },
+    {
+      "id": "jeremy",
+      "name": "Jeremy",
+      "creature": "jeremy",
+      "role": "Gondian engineer at the Planar Core",
+      "inFight": "Maintain Core every round (+10 vs DC 15). Damage Control only when she burns or drops below half.",
+      "behaviour": [
+        "Never burns a soul coin unless a player asks. He asks back once: \"You sure?\"",
+        "If the Core fails twice in a row, one cannon goes dark until he fixes it.",
+        "{@b When Tiamat rises} he goes very quiet, then says: \"I can give you one Overdrive. Then she falls out of the sky.\""
+      ]
+    },
+    {
+      "id": "moonkite",
+      "name": "Moonkite",
+      "creature": "moonkite",
+      "role": "Aurora's celestial mount, with a mind of its own",
+      "inFight": "Rolls its own initiative. Carries Aurora out of danger before it attacks anything.",
+      "behaviour": [
+        "Shimmering Shield on Aurora first, then on whoever is lowest.",
+        "Will not go within 30 ft. of Tiamat unless Aurora asks well (DC 15 Persuasion, or a promise).",
+        "Hates Krull's ghouls and the Hand of Vecna: it attacks Arkhan's Hand hand on sight if it has a clear shot."
+      ]
+    },
+    {
+      "id": "veska",
+      "creature": "veska",
+      "name": "Veska",
+      "role": "Hellrider of Elturel. Fear-immune. Officiates Drenwal's rebirth.",
+      "inFight": "Fights on the ground beside Drenwal. Mans a cannon if the fight is in the air.",
+      "behaviour": [
+        "{@b Fear-immune:} she is the anchor when frightful presence lands. Let her drag a frightened character out of a breath line (her action).",
+        "Targets whatever is attacking Drenwal. She will not leave him.",
+        "{@b Arkhan:} she knows Hellrider stories about Tiamat's champion. She tells the party to break his line of sight with the curse thread (see Arkhan's Gambit)."
+      ]
+    },
+    {
+      "id": "ser-lucan",
+      "creature": "ser-lucan",
+      "name": "Ser Lucan the Reforged",
+      "role": "Old Crimson Watch Hellrider on Gondian legs. A shield wall.",
+      "inFight": "Stands in front of the weakest character and takes the hits.",
+      "behaviour": [
+        "Uses his reaction to protect an adjacent ally (imposes disadvantage on one attack against them).",
+        "Carries Halvard's last words. If Drenwal goes down, Lucan says them aloud: it gives Drenwal advantage on his next death save.",
+        "Will not fight Krull's side if Krull's side is fighting Tiamat. Says so."
+      ]
+    },
+    {
+      "id": "lulu",
+      "creature": "lulu",
+      "name": "Lulu",
+      "role": "Hollyphant. Her memory is a campaign prerequisite.",
+      "inFight": "Stays on the ship. Her job is to stay alive and remember.",
+      "behaviour": [
+        "Casts healing and protection on whoever is closest to the rail; never goes near the Styx.",
+        "{@b When Tiamat rises} she remembers something: one true thing about Zariel and Tiamat from before the fall. Decide what, and let her blurt it.",
+        "If anyone tries to hand her the orb, she drops it. She will not touch it."
+      ]
+    },
+    {
+      "id": "feonor",
+      "creature": "feonor",
+      "name": "Feonor",
+      "role": "The archmage Or'Henn bound with a geas. She just brought his staff.",
+      "inFight": "Free of the geas. She fights beside them once, if Or'Henn asks her nicely.",
+      "behaviour": [
+        "Counterspells Arkhan's Hand of Vecna once, with relish.",
+        "Leaves the moment Tiamat rises, by teleport, unless someone gives her a very good reason.",
+        "Urexiel's hunters are on her trail. Wherever she goes, they follow."
+      ]
+    },
+    {
+      "id": "uldrak",
+      "name": "Uldrak (returning)",
+      "creature": "uldrak",
+      "role": "Empyrean, away hunting a god-killing weapon. Comes back mid-fight.",
+      "inFight": "Arrives when Tiamat rises (see Tiamat Reborn), or the moment the orb calls and the party is losing.",
+      "behaviour": [
+        "Goes straight for Tiamat. Ignores the other dragons unless they are killing someone.",
+        "With the new weapon: see {@side uldraks-errand|Uldrak's Errand} for what it does and what it cost him.",
+        "Will not let Arkhan teleport away if he can reach him: he grabs him (contested Athletics) and holds."
+      ]
+    }
+  ],
+
   scenes: [
     {
       id: "adventure-primer",
@@ -251,6 +627,7 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "The session opens on the deck of the Lady Vengeance, the moment Word of Recall lands." },
         { t: "read", text: "One moment: the dragon skull's maw, the black Hand rising, Arkhan's voice behind you like a furnace door opening.\n\nThe next: silence, and the smell of tar and hot brass.\n\nYou are standing on your own deck at the foot of the statue of St. Cuthbert, all of you, breathing hard. The vial is warm in someone's fist. Inside the glass, the blood turns over by itself.\n\nAt the wheel, Colico Jack takes one look at your faces and does not ask. He throws the helm hard over and opens the throttle, and the whole ship shudders as she climbs.\n\n\"Where to?\" he shouts over the engines. \"And how fast?\"" },
+        { t: "note", title: "Start Tiamat's Pull Now", text: "Or'Henn's curse is tracked from the first minute of this session. Set his Pull to 2, plus 1 for each gold scale he already has. Rules and triggers: {@side tiamats-pull|Tiamat's Pull}. Keep the number where the players can see it." },
         { t: "p", text: "Let them breathe, heal and argue for a minute. They have already chosen: flight scrolls, and straight across the waste to Uldrak's Grave. When they give Jack the course, go to {@scene the-flight|The Flight to the Grave}." }
       ]
     },
@@ -383,7 +760,7 @@ window.SESSION = {
           "{@b A gallon of his blood,} drawn at once into whatever they hand him. Empyrean blood is Blood Pay: a powerful creature's blood for the Intermediaries. He pays this first, so the party keeps it even if he falls later.",
           "{@b Greater restoration, at will,} on anyone the Styx touched on the way here ({@spell greater restoration}). Their memories come back.",
           "{@b His sword arm.} He came to Avernus to kill Tiamat. Her dragons are a down payment. If the party proposes calling Arkhan's dragons, he is delighted: \"Call them. Call all of them. I would like to be big at someone.\"",
-          "{@b The orb.} He pulls it from his pommel and gives it to them. He once offered it to Arkhan in trade for the vial; it means nothing to him. See {@side using-the-orb|Using the Orb} for what that costs. Tiamat hears it change hands."
+          "{@b The orb, as payment for the vial.} He pulls it from his pommel and gives it to them: that is his price for the blood, paid in full. He once offered it to Arkhan in the same trade; it means nothing to him. See {@side using-the-orb|Using the Orb} for what that costs. Tiamat hears it change hands."
         ] },
         { t: "h", text: "Event: Uldrak Goes" },
         { t: "p", text: "Table ruling: Uldrak does not stay. Once he has paid what he owes, he leaves to find a weapon that can kill dragons, because he knows exactly what comes next." },
@@ -460,11 +837,87 @@ window.SESSION = {
         { t: "h", text: "Event: Waking" },
         { t: "read", text: "You wake with a jerk, on the deck, in the dark, with the smell of roses in your nose. Your hand is hot.\n\nThe Avernus night is the same as it was. Elturel hangs on its chains. The Styx moves below, slow and black.\n\nAnd from the orb, very softly, someone is humming the tune Eldra used to hum." },
         { t: "h", text: "Event: Word from Feonor" },
+        { t: "note", title: "Table Ruling: Skip This", text: "Feonor comes in person with the staff instead. Run {@scene feonor-returns|Feonor Returns} while the party decides what to do with the orb, and skip the crow below." },
         { t: "p", text: "At dawn, the morning after the vision. Feonor has moved faster than anyone expected and is already at the Scabrous Menagerie. This pulls the day-10 message on her road forward: count today as day 4 of the geas." },
         { t: "read", text: "A crow lands on the rail at first light. It is made of ash, packed tight, and it leaves grey prints where its feet touch the wood. When it opens its beak, the voice that comes out is Feonor's: dry, tired and furious.\n\n\"Your staff is in the Scabrous Menagerie. In a vault, on velvet, with a little brass plate. The owner is a yugoloth called Urexiel, and she will not sell it. Not to me, not for coin, not for anything I have.\"\n\nA pause. The crow tilts its head.\n\n\"She wants the matched set, gardener. The staff, and its keeper in a cage beside it. Or...\" The voice almost laughs. \"Or something rarer. Her collection has everything except a dragon.\"\n\nThe crow falls apart into ash, and the wind takes it." },
         { t: "p", text: "Now the dragon fight is about Or'Henn too. Urexiel will trade Cinderbloom for a {@b live chromatic dragon}. Either way, the party still has to go to the Menagerie to collect the staff. That is a later session." },
         { t: "note", title: "A Dragon for the Collector", text: "Taking a dragon alive: an attack that drops it to 0 hit points can knock it out instead of killing it. It stays down for {@dice 1d4} hours. To keep it, they need chains strong enough for a dragon (the Aether Harpoon's chain will do, towed behind the ship) and someone watching it day and night.\n\nA dead dragon is worth less. Urexiel is insulted, but trades the Green Remnant under its bell jar for a fresh carcass. That is one of the three Remnants Or'Henn needs for Cinderbloom Rekindled.\n\nThe danger: a chained, frightened dragon in tow for days, and an old druid who keeps hearing the word \"Ask.\" If they catch Vermilius, it spends the whole journey offering Or'Henn help." },
         { t: "p", text: "When they are ready to call the dragons, go to {@scene the-call|The Call}." }
+      ]
+    },
+
+    {
+      "id": "feonor-returns",
+      "title": "Feonor Returns",
+      "when": "While the party decides what to do with the orb",
+      "duration": "15 to 20 minutes",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Table ruling: Feonor brings Cinderbloom in person, now, instead of sending a crow. Run this while the party is arguing about the orb. It gives Or'Henn something to hold onto before the hardest fight of the campaign."
+        },
+        {
+          "t": "read",
+          "text": "The air beside the sword splits with a sound like tearing silk, and a woman falls out of it onto her knees in the ash.\n\nFeonor. Her robes are scorched to the knee. One sleeve is gone, and the arm under it is wrapped in something that is still smoking. She is holding a long bundle of red velvet against her chest the way you would hold a child.\n\nShe stands up, slowly, and walks to Or'Henn, and holds it out.\n\n\"Take it,\" she says. \"Take it, and let me go.\"\n\nThe velvet falls away. Under it is a staff of grey ashwood, carved with leaves, and a little brass plate screwed into the heel: PROPERTY OF THE SCABROUS MENAGERIE. At its head, a dark ember the size of a heart.\n\nAs Or'Henn's fingers close on it, the ember flickers. Once."
+        },
+        {
+          "t": "h",
+          "text": "What Happened"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b She stole it.} Urexiel would not sell it. Feonor broke into the Trophy Vault, took the staff and nothing else, and teleported out with a mezzoloth's trident through her arm.",
+            "{@b The geas is fulfilled.} The task is done, so the spell ends. She is free, and she knows it. She is also very, very angry.",
+            "{@b Urexiel knows.} The brass plate is a tracking sigil. Urexiel's hunters will find the staff, and whoever carries it. The rest of the vault (the ledger, the Green Remnant, Kreeg's puzzle box) is still in the Menagerie, so Session 11's Menagerie road still matters."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "Cinderbloom, Dormant"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b It knows his hand.} No short rest needed: Or'Henn attunes to it as a bonus action, because it was his.",
+            "{@b Its stats} are on Or'Henn's card ({@b orhenn-cinderbloom-and-contracts.html}): Cinderheart 2 charges, Keeper 4 charges, +2 to spell attacks. Its ember stays dark until the Mother Ash rite.",
+            "{@b Against the curse:} while he holds it, Or'Henn can spend 1 Cinderheart charge as a reaction to lower his Pull by 1, or to reroll a failed Pull save. Tiamat hates it: it is the one thing in his hands she did not give him."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "Feonor's Terms"
+        },
+        {
+          "t": "read",
+          "text": "\"I have done what you made me do,\" Feonor says. \"I will not do it twice. Ask me nicely, druid, and I will burn one thing for you before I go. One.\""
+        },
+        {
+          "t": "p",
+          "text": "If Or'Henn asks nicely, she stays for one fight and counterspells Arkhan once. If he threatens her, or tries to lay a new geas, she teleports away and becomes an enemy for the rest of the campaign. Either way, she leaves when Tiamat rises."
+        },
+        {
+          "t": "choices",
+          "prompt": "What do the characters do?",
+          "items": [
+            {
+              "label": "Use the orb and call the dragons",
+              "goto": "the-call"
+            },
+            {
+              "label": "Read the orb's rules",
+              "side": "using-the-orb"
+            },
+            {
+              "label": "Check Or'Henn's Pull",
+              "side": "tiamats-pull"
+            },
+            {
+              "label": "Wait, and let Arkhan come to them",
+              "goto": "arkhans-gambit"
+            }
+          ]
+        }
       ]
     },
 
@@ -583,7 +1036,7 @@ window.SESSION = {
           { c: "vhennic", n: 1 },
           { c: "obatala", n: 1 },
           { c: "krull", n: 1 }
-        ], notes: "Hold each dragon out until its wave round: Flash 1, Slarkas and Vermilius 3, Vistalancer 5, Obatala and Krull 7. Add Uldrak and the ship from the ally rows. XP: Flash 18,000, Vistalancer 15,000, Vermilius 13,000, Slarkas 11,500, Obatala 20,000, Krull 8,400, for each one killed or driven off." },
+        ], notes: "Hold each dragon out until its wave round: Flash 1, Slarkas and Vermilius 3, Vistalancer 5, Obatala and Krull 7. Add the ship (and Feonor, if she stayed) from the ally rows. Uldrak is away. Each round, Or'Henn makes his Pull save (see Tiamat's Pull). If two or more dragons are down or fleeing, go to Arkhan's Gambit. XP: Flash 18,000, Vistalancer 15,000, Vermilius 13,000, Slarkas 11,500, Obatala 20,000, Krull 8,400, for each one killed or driven off." },
 
         { t: "h", text: "Event: Something in the River" },
         { t: "p", text: "Round 3, as Slarkas surfaces." },
@@ -604,6 +1057,209 @@ window.SESSION = {
           { label: "They took Krull's deal", side: "krulls-offer" },
           { label: "The curse jumped", side: "if-the-curse-jumps" }
         ] }
+      ]
+    },
+
+    {
+      "id": "arkhans-gambit",
+      "title": "Arkhan's Gambit",
+      "when": "When the dragon fight turns the party's way (two dragons down or fleeing), or a day after they refuse to call",
+      "duration": "30 to 45 minutes",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Arkhan has watched his dragons lose. He stops trying to win the fight and does the one thing he came to Avernus for: he takes the curse out of Or'Henn and puts it into a dragon, and Tiamat wakes. He has chosen {@c mirelle|Vermilius}, the green, who is devout and willing."
+        },
+        {
+          "t": "note",
+          "title": "Running This Scene",
+          "text": "Arkhan arrives with his cronies: use any Session 9 stat blocks you like (Torogar, the white abishai). Add him and them to the tracker. The ritual takes three of Arkhan's turns. Tell the players what each step does as it happens. The whole scene is a race: can they stop him before the third step?"
+        },
+        {
+          "t": "read",
+          "text": "The sky over the Grave goes black, then gold.\n\nArkhan the Cruel steps out of nothing at the foot of the sword, with the Hand of Vecna raised and smoking. He does not look at the dead dragons. He does not look at you. He looks at Or'Henn.\n\n\"You have been carrying something of hers,\" he says, kindly. \"Let me take it off your hands.\"\n\nAbove him, the green dragon Vermilius folds its wings and comes down to land at his back, and bows its head to the ground like a dog waiting to be fed."
+        },
+        {
+          "t": "h",
+          "text": "The Offering (three of Arkhan's turns)"
+        },
+        {
+          "t": "steps",
+          "items": [
+            "{@b Turn 1: Draw the Debt.} Arkhan's action. Or'Henn, if within 120 ft., makes a {@b DC 22 Charisma saving throw}. On a failure, a gold thread pulls out of his chest and runs to the Hand of Vecna. His Pull stops rising: the curse is leaving him. On a success, nothing happens and Arkhan tries again next turn (he will spend Legendary Resistance to keep his own concentration).",
+            "{@b Turn 2: Bind the Vessel.} Arkhan's action. He winds the thread into Vermilius, who must be within 30 ft. of him. The thread is visible: AC 20, 30 hit points, harmed only by radiant or force damage. Cutting it snaps the curse back into Or'Henn at Pull 8.",
+            "{@b Turn 3: The Sacrifice.} Arkhan kills Vermilius with one blow of Fane-Eater (automatic hit, the dragon does not resist). Tiamat wakes inside the body. Go to {@scene tiamat-reborn|Tiamat Reborn}."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "Ways to Stop It"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b Break his concentration.} Treat the ritual as concentration: any damage forces a Constitution save (DC 10 or half the damage). Arkhan has +15 and 4 Legendary Resistances. It will take a lot.",
+            "{@b Move the vessel.} Push, pull or teleport Vermilius more than 30 ft. from Arkhan during turn 2 or 3, and the step fails.",
+            "{@b Kill Vermilius first.} If the vessel dies before Arkhan's turn 3, the thread snaps back into Or'Henn at Pull 8. Arkhan picks a new vessel next round: the nearest chromatic dragon.",
+            "{@b Let it happen.} Or'Henn is free of the curse for good. His gold scales stay gold. And Tiamat is awake."
+          ]
+        },
+        {
+          "t": "choices",
+          "prompt": "Did Arkhan finish the Offering?",
+          "items": [
+            {
+              "label": "Yes: Tiamat wakes",
+              "goto": "tiamat-reborn"
+            },
+            {
+              "label": "No: they stopped him",
+              "goto": "ending"
+            },
+            {
+              "label": "Krull's offer",
+              "side": "krulls-offer"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
+      "id": "tiamat-reborn",
+      "title": "Tiamat Reborn",
+      "when": "If Arkhan finishes the Offering",
+      "duration": "60 to 90 minutes",
+      "blocks": [
+        {
+          "t": "read",
+          "text": "Vermilius dies without a sound.\n\nFor a heartbeat nothing happens. Then the green dragon's body splits down the spine like a seed husk, the way Uldrak's did, and something climbs out of it that is far too big to have been inside.\n\nOne head. Then two. Then five: red and blue and green and black and white, rising on long necks over the battlefield, and every one of them is looking at you.\n\nThe sky changes colour five times.\n\nEvery dragon in the air stops fighting.\n\n\"Thank you, little gardener,\" says the red head, in Or'Henn's mother's voice. \"Arkhan,\" says the white head, \"you may stand.\""
+        },
+        {
+          "t": "note",
+          "title": "She Is Not Finished",
+          "text": "This is {@c tiamat-risen|Tiamat Risen}: a goddess half-born into a stolen body, not her true form. She starts at 250 hit points and regains 50 at the start of each of her turns until she reaches 400. The party is not meant to kill her today. They are meant to survive, and to decide which side of the split to stand on."
+        },
+        {
+          "t": "h",
+          "text": "The Dragons Choose"
+        },
+        {
+          "t": "p",
+          "text": "Tiamat cannot simply command dragons. No published stat block gives her that power. Chromatic dragons worship and fear her, but they keep their own minds. Here, her presence forces the choice. Each surviving dragon makes a {@b DC 20 Wisdom saving throw} the first time it sees her ({@side tiamats-dominion|Tiamat's Dominion})."
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b Flash (red)} kneels without a save. He is a zealot. He fights for her.",
+            "{@b Arkhan} rises and fights at her side. His Breath of the Five recharges at the start of each of his turns while she lives.",
+            "{@b Krull} sees his chance, and turns. A goddess in a dragon's body is a dragon, and the orb of dragonkind can leash a dragon. He wants the orb, and he wants Arkhan's place. Obatala goes with him (advantage on the save: he trusts his rider more than his god).",
+            "{@b Slarkas and Vistalancer} roll. A dragon that succeeds follows Krull. One that fails kneels to Tiamat until she harms it, or for 1 minute."
+          ]
+        },
+        {
+          "t": "read",
+          "text": "Krull laughs. It is the first time you have heard him laugh.\n\nHe slaps Obatala's neck, and the white dragon wheels away from the goddess and roars at her, and two of the tower dragons wheel with him.\n\n\"The orb!\" Krull bellows down at you. \"Whoever holds it, hold it HIGH! She is wearing a dragon now! Leash her, and I will give you anything you want!\""
+        },
+        {
+          "t": "h",
+          "text": "Three Sides"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b Tiamat, Arkhan, Flash} (and Arkhan's cronies): want Or'Henn alive, the orb, and everyone else dead.",
+            "{@b Krull, Obatala and the dragons who refused:} want the orb, Tiamat leashed, and Arkhan dead. They will not attack the party unless the party attacks them first, or refuses to hand over the orb.",
+            "{@b The party} is in the middle, holding the one item both sides want."
+          ]
+        },
+        {
+          "t": "note",
+          "title": "The Orb Against Tiamat",
+          "text": "Anyone holding the orb can try to control Tiamat Risen: an action, and a DC 25 Charisma check (Or'Henn makes it with advantage, because she wants him). On a success she is charmed by the orb's holder until the end of their next turn and cannot attack them. On a failure, the orb's own trapped dragon turns on its holder: {@spell suggestion}, DC 18, from Tiamat herself. Krull will try to take the orb by force if nobody uses it well."
+        },
+        {
+          "t": "h",
+          "text": "Uldrak Returns"
+        },
+        {
+          "t": "p",
+          "text": "Bring him in at the start of round 3 of this fight, or the moment someone drops to 0 hit points, whichever comes first."
+        },
+        {
+          "t": "read",
+          "text": "The ground shakes.\n\nThen it shakes again, closer, and every head of the goddess turns at once toward the waste.\n\nUldrak comes over the ridge at a run, twenty feet of bronze and fire, and in his hands is a weapon that should not exist: black iron that drinks the light, and a long blade that weeps something red that is not blood. You can hear it. It is laughing.\n\n\"Mother of Dragons!\" he roars, and it is not a greeting. \"I have been small for three thousand years. Let me show you what I bought.\""
+        },
+        {
+          "t": "p",
+          "text": "Uldrak's numbers with the new weapon, and who sold it to him: {@side uldraks-errand|Uldrak's Errand}."
+        },
+        {
+          "t": "encounter",
+          "id": "tiamat-reborn",
+          "title": "Tiamat Reborn",
+          "combatants": [
+            {
+              "c": "tiamat-risen",
+              "n": 1
+            },
+            {
+              "c": "arkhan-the-cruel",
+              "n": 1
+            },
+            {
+              "c": "praxamor",
+              "n": 1
+            },
+            {
+              "c": "krull",
+              "n": 1
+            },
+            {
+              "c": "obatala",
+              "n": 1
+            },
+            {
+              "c": "skarrix",
+              "n": 1
+            },
+            {
+              "c": "vhennic",
+              "n": 1
+            }
+          ],
+          "notes": "Three-sided fight. Mark Krull's side in the tracker notes (Krull, Obatala, and whichever of Slarkas and Vistalancer passed the Dominion save). Carry over current hit points from the dragon fight. Tiamat Risen starts at 250 HP and regains 50 at the start of her turns until 400. Uldrak arrives at the start of round 3. XP: Tiamat Risen driven off 62,000; Arkhan killed 75,000."
+        },
+        {
+          "t": "h",
+          "text": "How It Ends"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b Tiamat Risen drops to 0 hit points:} the stolen body dies, and she goes back to sleep at the Monument, weaker. Unless Uldrak's weapon struck the final blow: then see his errand panel.",
+            "{@b Tiamat leashed by the orb:} the orb turns gold, and Krull wants it more than anything in Avernus.",
+            "{@b Tiamat flies:} she cannot leave Avernus (Asmodeus's prison still holds), but she is awake, and Avernus knows it. Everything changes. See the Ending."
+          ]
+        },
+        {
+          "t": "choices",
+          "prompt": "How did it end?",
+          "items": [
+            {
+              "label": "Go to the Ending",
+              "goto": "ending"
+            },
+            {
+              "label": "Uldrak's weapon",
+              "side": "uldraks-errand"
+            },
+            {
+              "label": "Can she control dragons?",
+              "side": "tiamats-dominion"
+            }
+          ]
+        }
       ]
     },
 
@@ -652,15 +1308,155 @@ window.SESSION = {
   ],
 
   side: {
+    "tiamats-pull": {
+      "title": "Tiamat's Pull",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Or'Henn's curse as a number, from 0 to 10, tracked from the first minute of Session 10. The higher it is, the harder the curse pulls him toward a dragon, and the worse it is when he fails."
+        },
+        {
+          "t": "h",
+          "text": "Starting Value"
+        },
+        {
+          "t": "list",
+          "items": [
+            "2 at the start of the session, plus 1 for each gold scale he has."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "What Raises It"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b +2} The vision in The Dragon Queen's Garden.",
+            "{@b +1} Each Small Vision (see {@side arc-tiamat|Arc: Or'Henn and Tiamat}).",
+            "{@b +1} The first time he sees each chromatic dragon this session.",
+            "{@b +1} He touches or uses the orb of dragonkind.",
+            "{@b +2} He accepts one of Tiamat's gifts (and gains a gold scale)."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "What Lowers It"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b -1} Cinderbloom: spend 1 Cinderheart charge as a reaction (or use it to reroll a failed Pull save).",
+            "{@b -1} Once per scene, an ally talks him back: DC 15 Wisdom (Insight) or Charisma (Persuasion), as an action, within 30 ft.",
+            "{@b -1} He rolls a natural 20 on a Pull save."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "The Pull Save"
+        },
+        {
+          "t": "p",
+          "text": "At the start of each of Or'Henn's turns in combat, if he can see a chromatic dragon or Tiamat, he makes a {@b Wisdom saving throw, DC 10 + his Pull}. Out of combat, he makes it when a dragon speaks to him. {@spell Protection from evil and good} on him gives advantage. A natural 1 also triggers a Small Vision."
+        },
+        {
+          "t": "table",
+          "caption": "On a Failed Pull Save",
+          "head": [
+            "Pull",
+            "Effect until the start of his next turn"
+          ],
+          "rows": [
+            [
+              "0-3 Whispers",
+              "Disadvantage on his first attack roll against a chromatic dragon. His fire damage to chromatic dragons is halved."
+            ],
+            [
+              "4-6 The Leash",
+              "He cannot target a chromatic dragon with an attack or a harmful spell. He must spend half his movement moving toward the nearest one."
+            ],
+            [
+              "7-9 Kin",
+              "He is charmed by the nearest chromatic dragon. On his turn he says aloud one line asking it for help. If a chromatic dragon within 60 ft. answers yes (its reaction), the curse jumps: see {@side if-the-curse-jumps|If the Curse Jumps}. An ally within 5 ft. can use a reaction to stop the words: grapple, a hand over his mouth, or {@spell silence}."
+            ],
+            [
+              "10 Ask",
+              "No save. He asks the nearest chromatic dragon for help. The DM decides if it says yes."
+            ]
+          ]
+        },
+        {
+          "t": "note",
+          "title": "Make It Visible",
+          "text": "Say the number out loud when it changes. The players should feel it climbing all session, long before the fight."
+        }
+      ]
+    },
+    "tiamats-dominion": {
+      "title": "Tiamat's Dominion",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Can Tiamat control other dragons? Not by any rule in the published books."
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b The books:} no 5e stat block for Tiamat (Rise of Tiamat, Fizban's Treasury of Dragons) has a power to command dragons. Chromatic dragons see her as their creator and queen. They worship her, fear her and often serve her, but each one keeps its own mind and its own greed.",
+            "{@b Why she is in Avernus:} she is imprisoned there and guards the way to Dis, against her will. The books leave the exact terms of her bargain with Asmodeus vague.",
+            "{@b Campaign ruling (Dread Majesty):} her presence forces each dragon to choose. DC 20 Wisdom save the first time it sees her. A dragon that fails kneels until she harms it, or for 1 minute. A dragon that succeeds is free, and stays free for a day. Loyal ones (Flash) kneel without a save. Bonded ones (Obatala to Krull) save with advantage."
+          ]
+        },
+        {
+          "t": "note",
+          "title": "Why This Is Better Than Control",
+          "text": "If she could simply command them, the split would be automatic. This way every dragon's choice is a story: who kneels, who refuses, and who is too proud to be anyone's servant, even a god's."
+        }
+      ]
+    },
     "uldraks-errand": {
-      title: "Uldrak's Errand",
-      blocks: [
-        { t: "p", text: "Uldrak has gone to find a weapon that can kill dragons, because he believes Arkhan will hunt the party with every dragon he has. He is right." },
-        { t: "note", title: "DM's Choice: Which Weapon", text: "Not yet ruled. Pick one before he comes back. When he returns, he arrives in the middle of the fight that matters most, which is most likely Arkhan's hunt." },
-        { t: "list", items: [
-          "{@b When he comes back:} he is the cavalry. Uldrak is CR 23; give him a big entrance, then let the party finish the fight.",
-          "{@b If they need him sooner:} the orb's magic still answers to him. He hears it if it is used, wherever he is, and knows it means they are in trouble."
-        ] }
+      "title": "Uldrak's Errand",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Uldrak left to find a weapon that can kill a god, because Arkhan will hunt the party with every dragon he has. He comes back in Tiamat Reborn, at the start of round 3, carrying something fiendish. He made a deal to get it."
+        },
+        {
+          "t": "h",
+          "text": "Who Has the Power to Make It"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b Bel, at Bel's Forge (recommended for a demonic weapon).} Bel was archduke of Avernus until Zariel took it from him. In the book he wants her disgraced and his throne back, and his forge is the greatest in the layer. {@b The weapon:} Gnashing Hunger, Yeenoghu's flail, recovered from the Demon Zapper field and reforged into a blade sized for an empyrean. A demon lord's hunger, beaten into shape on a devil's anvil. {@b The price:} when Tiamat falls, Uldrak marches with Bel against Zariel. A CR 23 empyrean on Bel's side of the war.",
+            "{@b Mephistopheles, through the Mirror of Mephistar (the biggest juice).} The archdevil of Cania, the greatest wizard in the Hells. In the book he reaches into Avernus through the Mirror to work against Zariel. That he wants Tiamat dead is a campaign invention: her death would break the prison Asmodeus built, and Mephistopheles would love to see Asmodeus embarrassed. {@b The weapon:} Cania's Verdict, a blade of hellfire and black ice. {@b The price:} whatever divine power Tiamat sheds when the blade kills her goes into the sword, and from the sword to Mephistopheles. Dumal is bound for the Mirror too. Uldrak may have met him there.",
+            "{@b Zariel} is possible but unlikely. She would rather the party died.",
+            "{@b Asmodeus} gains from Tiamat's imprisonment. He would not sell this."
+          ]
+        },
+        {
+          "t": "note",
+          "title": "DM's Choice",
+          "text": "Pick one. Bel fits a literally demonic weapon and is close by on the map. Mephistopheles is the bigger story, and ties to Dumal and the Mirror."
+        },
+        {
+          "t": "h",
+          "text": "The Weapon in Play"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b Godsbane Strike.} Uldrak's attacks with it: +17 to hit, reach 15 ft. Hit: 39 (6d12) slashing plus 27 (6d8) necrotic. This damage ignores Tiamat's immunities and resistances.",
+            "{@b Drinker.} When it hits Tiamat Risen, she cannot regain hit points (including Unfinished) until the start of Uldrak's next turn.",
+            "{@b The Catch.} If it lands the blow that drops Tiamat Risen to 0 hit points, she does not go back to sleep at the Monument. She is destroyed in the Nine Hells, which by the campaign's rule means destroyed for good, and the patron collects (above). A goddess's death in Avernus shakes every layer of the Hells.",
+            "{@b The Voice.} It laughs. With Bel's blade, the laughter is Yeenoghu's. On a natural 1, Uldrak makes a DC 18 Wisdom save or attacks the nearest creature, friend or foe."
+          ]
+        },
+        {
+          "t": "note",
+          "title": "If the Orb Calls Him Early",
+          "text": "The orb's magic still answers to him. If it is used and the party is losing, he hears it wherever he is, and comes, with or without the weapon finished."
+        }
       ]
     },
 
