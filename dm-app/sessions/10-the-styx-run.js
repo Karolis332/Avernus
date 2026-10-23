@@ -211,7 +211,7 @@ window.SESSION = {
         {
           "when": "Feonor arrives",
           "tag": "choice",
-          "text": "While they argue about the orb: {@scene feonor-returns|Feonor Returns}. Cinderbloom attunes as a bonus action. Each Cinderheart charge: Pull {@b -1} or reroll a Pull save."
+          "text": "While they argue about the orb: {@scene feonor-returns|Feonor Returns}. Cinderbloom attunes as a bonus action. Each staff charge: Pull {@b -1} or reroll a Pull save."
         }
       ]
     },
@@ -670,7 +670,7 @@ window.SESSION = {
           "items": [
             "{@b It knows his hand.} No short rest needed: Or'Henn attunes to it as a bonus action, because it was his.",
             "{@b Its stats} are on Or'Henn's card ({@b orhenn-cinderbloom-and-contracts.html}): Cinderheart 2 charges, Keeper 4 charges, +2 to spell attacks. Its ember stays dark until the Mother Ash rite.",
-            "{@b Against the curse:} while he holds it, Or'Henn can spend 1 Cinderheart charge as a reaction to lower his Pull by 1, or to reroll a failed Pull save. Tiamat hates it: it is the one thing in his hands she did not give him."
+            "{@b Against the curse:} while he holds it, Or'Henn can expend 1 of the staff's charges as a reaction to lower his Pull by 1, or to reroll a failed Pull save ({@side cinderbloom|Cinderbloom}). Tiamat hates it: it is the one thing in his hands she did not give him."
           ]
         },
         {

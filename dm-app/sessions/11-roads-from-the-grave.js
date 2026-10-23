@@ -10,7 +10,7 @@ window.SESSION = {
   party: [
     { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding drawn (Tier II). Carries the Shield of the Hidden Lord." },
     { id: "aurora", name: "Aurora", note: "Archfey Warlock 13 (Mystic Arcanum 7th). Rides the celestial Moonkite." },
-    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. Tiamat's curse: carry his Pull number over from Session 10 (see Tiamat's Pull). Cinderbloom in hand, ember dark. Carries the Soul Capacitor." }
+    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. Tiamat's curse: carry his Pull number over from Session 10 (see Tiamat's Pull). Cinderbloom arrives this session, with Feonor. Carries the Soul Capacitor." }
   ],
 
   allies: [
@@ -21,7 +21,7 @@ window.SESSION = {
     { id: "moonkite", name: "Moonkite", note: "Celestial mount, Aurora's companion" },
     { id: "lady-vengeance", name: "Lady Vengeance (Colico Jack)", note: "AC 17 · HP 350 · DT 15" },
     { id: "uldrak", name: "Uldrak", note: "Away at Bel's Forge, buying a weapon that can kill Tiamat. Returns when she rises, or when the orb is used and the party is losing." },
-    { id: "feonor", name: "Feonor", note: "Free of the geas: she stole Cinderbloom and brought it. Stays only if asked nicely; leaves when Tiamat rises." }
+    { id: "feonor", name: "Feonor", note: "Geas-bound. She stole Cinderbloom and is bringing it to Or'Henn: she arrives during the Crypt siege. Stays only if asked nicely; leaves when Tiamat rises." }
   ],
 
     creatures: {
@@ -360,7 +360,7 @@ window.SESSION = {
     }),
 
     "feonor": Object.assign({}, window.CAMPAIGN.creatures.feonor, {
-      role: "Archmage, free of the geas. Brought Cinderbloom to the Grave; here only if asked nicely",
+      role: "Archmage. Stole Cinderbloom and brings it to Or'Henn in the Crypt; free of the geas once he takes it",
       npc: false,
       roleplay: [
         "Appearance: willowy human archmage in scorched robes, one sleeve gone and the arm under it still bandaged. Her mended parasol is her pride.",
@@ -370,7 +370,7 @@ window.SESSION = {
         "Sample line: \"I have done what you made me do. Ask nicely, druid, and I will burn one thing for you before I go. One.\""
       ],
       tactics: [
-        "At the Crypt: stays on the ship outside the Cold Line. \"I have had enough of graves.\"",
+        "At the Crypt: arrives during the siege with the staff (Feonor Brings the Staff). Will not go deeper than area C2. \"I have had enough of graves.\"",
         "If Arkhan comes: counterspells the Hand of Vecna once, with relish, then fights from range behind Lucan or inside Lulu's aura.",
         "Leaves by misty step and fly the moment Tiamat rises, unless someone gives her a very good reason."
       ]
@@ -691,6 +691,7 @@ window.SESSION = {
           "tag": "trigger",
           "text": "ELDRA VASH on the older wall: Or'Henn finds it with no roll. Halvard's name in the Crimson Watch alcove: let Drenwal have the moment, then Veska or Lucan speaks."
         },
+      {"when": "Feonor arrives", "tag": "choice", "text": "Invisible, by fly, past the dragons: {@scene feonor-brings-the-staff|Feonor Brings the Staff}. Ember relights in Or'Henn's hand with 1d6 charges; geas ends. Green flare = the ship comes."},
         {
           "when": "C3 / C6 checks",
           "tag": "choice",
@@ -784,10 +785,10 @@ window.SESSION = {
       "id": "feonor",
       "creature": "feonor",
       "name": "Feonor",
-      "role": "Aboard the hidden ship. Not at the Crypt.",
+      "role": "Arrives during the siege with Cinderbloom. Free of the geas once Or'Henn takes it.",
       "inFight": "Counterspells Arkhan's Hand of Vecna once. Fireball and cone of cold from range. Leaves when Tiamat rises.",
       "behaviour": [
-        "Stays on the ship outside the Cold Line: \"I have had enough of graves.\"",
+        "Arrives invisible during the siege, by fly, past the dragons. Will not go deeper than area C2: \"I have had enough of graves.\"",
         "Urexiel's hunters are following the staff. Feonor knows it and says so."
       ]
     },
@@ -845,7 +846,7 @@ window.SESSION = {
 
         { t: "h", text: "Adventure Hooks" },
         { t: "p", text: "{@b The Sword.} The Sword of Zariel waits in the Bleeding Citadel, missing one shard. The shard is in the Crypt. Lulu dreams of a cold place and a man at a gate." },
-        { t: "p", text: "{@b The staff.} Table ruling: Feonor stole Cinderbloom from the vault and brought it to the Grave. Or'Henn has it, ember dark. Its brass plate is a tracking sigil, so Urexiel's hunters are on the party's trail." },
+        { t: "p", text: "{@b The staff.} Table ruling: Feonor stole Cinderbloom from the vault and is bringing it to Or'Henn; she arrives during the Crypt ({@scene feonor-brings-the-staff|Feonor Brings the Staff}). Its brass plate is a tracking sigil, so Urexiel's hunters are on the party's trail." },
         { t: "p", text: "{@b The traitor.} Veska has known since Session 8 that the man who sold her city is alive, two days up the Styx. She has not stopped thinking about it." },
 
         { t: "h", text: "Where things stand" },
@@ -869,7 +870,7 @@ window.SESSION = {
       duration: "15 minutes",
       blocks: [
         { t: "p", text: "The session opens at Uldrak's Grave. Table ruling: the party is flying for the Crypt of the Hellriders. Use whichever read-aloud fits: they fought the dragons at the Grave, or they lifted off before calling them." },
-        { t: "note", title: "Carry Over From Session 10", text: "Or'Henn's {@b Pull} number, as it stood ({@side tiamats-pull|Tiamat's Pull}). The orb of dragonkind, and who carries it. Cinderbloom in Or'Henn's hand, ember dark. Uldrak away. Feonor free, aboard only if asked nicely." },
+        { t: "note", title: "Carry Over From Session 10", text: "Or'Henn's {@b Pull} number, as it stood ({@side tiamats-pull|Tiamat's Pull}). The orb of dragonkind, and who carries it. Cinderbloom is still with Feonor, who is on her way. Uldrak away." },
         { t: "h", text: "If They Fought the Dragons" },
         { t: "read", text: "The smoke is still going up from the Grave when the red sky turns to morning. The ash is black and glassy where the dragon fire hit it, and it cracks under your boots like thin ice.\n\nThe sword stands alone in the ash. Uldrak is a day gone toward Bel's Forge, and the ground has finally stopped shaking.\n\nOn the deck of the Lady Vengeance, Colico Jack has the charts out, weighted down with a wrench and a cold cup of something. He taps the map three times.\n\n\"Right,\" he says. \"Where now?\"" },
         { t: "h", text: "If They Never Called Them" },
@@ -878,7 +879,7 @@ window.SESSION = {
         { t: "h", text: "Event: Three Roads" },
         { t: "p", text: "Let each road come from someone at the table. Read the three short boxes one after another, then let the players argue." },
         { t: "read", text: "Lulu is sitting very still on the rail. \"There's a cold place,\" she says, quietly. \"West of here, a day, maybe. I dreamed it. There was a man at a gate, and he didn't stop us. I don't know who 'us' is.\"" },
-        { t: "read", text: "The brass plate screwed into Cinderbloom's heel is warm in Or'Henn's hand. PROPERTY OF THE SCABROUS MENAGERIE. South and east, a long way off, something is counting its losses, and a great many things in cages are singing about it." },
+        { t: "read", text: "Something tugs at the back of Or'Henn's mind, like a fishhook on a line: the geas he laid on Feonor. She is out there, and she is coming closer, carrying something heavy. South and east, a long way off, something is counting its losses, and a great many things in cages are singing about it." },
         { t: "read", text: "Veska has not looked at the map. She is looking up the Styx, the way you came.\n\n\"He's up there,\" she says. \"Kreeg. Two days. Counting souls on a dock like a clerk.\" She turns her helmet over in her hands. \"I'm not asking. I'm telling you where I'll be looking.\"" },
         { t: "list", items: [
           "{@b The Crypt of the Hellriders.} About a day west. The shard missing from the Sword, and the road to the Citadel. Bring Lulu.",
@@ -1313,6 +1314,103 @@ window.SESSION = {
     },
 
     {
+      "id": "feonor-brings-the-staff",
+      "title": "Feonor Brings the Staff",
+      "when": "During the Crypt siege (after Knock at the Gates), or whenever you want it",
+      "duration": "15 to 20 minutes",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Feonor stole Cinderbloom from the Trophy Vault of the Scabrous Menagerie, as Or'Henn's {@spell geas} commanded, and the geas has pulled her to him ever since. She has followed it across the waste to the Crypt. Arkhan's dragons are circling outside. She slips past them under {@spell greater invisibility}, with {@spell fly}, and down the stair."
+        },
+        {
+          "t": "note",
+          "title": "Running This Scene",
+          "text": "Run it once the gates are open and the party is inside, during a lull in the siege, or while Arkhan is still on the stair if you want her to arrive mid-fight (she counterspells the Hand of Vecna first, and hands over the staff after). It gives Or'Henn his staff before the Crypt's hardest choices."
+        },
+        {
+          "t": "p",
+          "text": "When she arrives, read:"
+        },
+        {
+          "t": "read",
+          "text": "The mist at your feet stirs, though there is no wind.\n\nThen the air beside you shimmers like heat over a forge, and a woman stumbles out of nothing onto the cold stone floor.\n\nFeonor. Her robes are scorched to the knee. One sleeve is gone, and the arm under it is wrapped in something that is still smoking. A mended parasol hangs from her belt. She is holding a long bundle of red velvet against her chest the way you would hold a child.\n\nShe looks back once, up toward the stair and the dragons beyond it. Then she walks to Or'Henn, and holds the bundle out.\n\n\"Take it,\" she says. \"Take it, and let me go.\""
+        },
+        {
+          "t": "p",
+          "text": "When Or'Henn takes it, read:"
+        },
+        {
+          "t": "read",
+          "text": "The velvet falls away. Under it is a staff of grey ashwood, carved with leaves, and a little brass plate screwed into the heel: PROPERTY OF THE SCABROUS MENAGERIE. At its head, inside a cage of blackened branches, sits a dark ember the size of a heart.\n\nAs Or'Henn's fingers close on it, the ember flickers. Once. Twice.\n\nThen it catches, and burns, low and red and steady, and the ash in the cage of branches is warm as sun-baked stone. Somewhere in the crypt, very faintly, a cold candle gutters."
+        },
+        {
+          "t": "h",
+          "text": "Cinderbloom"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b It knows his hand.} The ember relights at his touch with {@dice 1d6} charges, and refills normally (1d6 + 4) on his next long rest. He attunes as a bonus action.",
+            "{@b Inside the Cold Line} it works normally. Its curse benefit (expend 1 charge: Pull -1, or reroll a Pull save) matters the moment he steps back outside.",
+            "{@b The full card,} with the Rekindled upgrade: {@side cinderbloom|Cinderbloom}. Give the player the card ({@b orhenn-cinderbloom-and-contracts.html} prints it)."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "What Happened"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b She stole it.} Urexiel would not sell it. Feonor broke into the Trophy Vault, took the staff and nothing else, and teleported out with a mezzoloth's trident through her arm.",
+            "{@b The geas is fulfilled.} The moment Or'Henn takes the staff, the spell ends. She is free, and she knows it. She is also very, very angry.",
+            "{@b Urexiel knows.} The brass plate is a tracking sigil. Urexiel's hunters will follow the staff until the plate is destroyed (an action and a DC 15 Strength check, or dispel magic, DC 15). The rest of the vault (the ledger, the Green Remnant, Kreeg's puzzle box) is still in the Menagerie, so that road still matters.",
+            "{@b She saw the ship.} On her way in she passed the Lady Vengeance, hidden in a gully an hour west. Jack told her to say: one green flare, and he comes, dragons or no dragons."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "Feonor's Terms"
+        },
+        {
+          "t": "read",
+          "text": "\"I have done what you made me do,\" Feonor says. \"I will not do it twice. Ask me nicely, druid, and I will burn one thing for you before I go. One.\""
+        },
+        {
+          "t": "p",
+          "text": "If Or'Henn asks nicely, she stays for one fight and counterspells Arkhan's Hand of Vecna once. If he threatens her, or tries to lay a new geas, she leaves the way she came and becomes an enemy for the rest of the campaign. If someone offers her passage home on the Lady Vengeance, she says yes, and means it. Either way, she leaves the moment Tiamat rises."
+        },
+        {
+          "t": "p",
+          "text": "{@b If Olanthius is present,} he watches her for a long moment, then says: \"Another one who came in without knocking properly.\" He lets her stay in area C2. She will not go deeper. \"I have had enough of graves.\""
+        },
+        {
+          "t": "choices",
+          "prompt": "What next?",
+          "items": [
+            {
+              "label": "The staff's full card",
+              "side": "cinderbloom"
+            },
+            {
+              "label": "Back to the Kneeling Knight",
+              "goto": "the-kneeling-knight"
+            },
+            {
+              "label": "Arkhan comes back down the stair",
+              "goto": "arkhans-gambit"
+            },
+            {
+              "label": "Tiamat's Pull",
+              "side": "tiamats-pull"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
       id: "the-kneeling-knight",
       title: "C5. The Kneeling Knight",
       when: "Only if they enter the Crypt",
@@ -1457,7 +1555,7 @@ window.SESSION = {
       when: "Only if they reach the Menagerie's vault",
       duration: "60 to 90 minutes",
       blocks: [
-        { t: "note", title: "Table Ruling: The Staff Is Gone", text: "Feonor stole Cinderbloom in Session 10 and the party has it. Every bargain below that names the staff is now about the Green Remnant, the three beasts, the ledger, or Urexiel's forgiveness for the theft. Her first demand: the staff back, or its price, one soul coin for every day it has been missing. She knows exactly who has it: the brass plate told her." },
+        { t: "note", title: "Table Ruling: The Staff Is Gone", text: "Feonor stole Cinderbloom and gave it to Or'Henn in the Crypt. Every bargain below that names the staff is now about the Green Remnant, the three beasts, the ledger, or Urexiel's forgiveness for the theft. Her first demand: the staff back, or its price, one soul coin for every day it has been missing. She knows exactly who has it: the brass plate told her." },
         { t: "read", text: "She does not stand up. She is arranging something behind glass with a jeweller's patience, and she speaks without turning around.\n\n\"You came up the singing aisle and you're still on your feet, so you're not stock. That leaves two kinds of guest.\"\n\nNow she turns, and her smile is a merchant's smile: warm, total, and entirely for sale.\n\n\"Buyers. Or the beginnings of a very fine new exhibit. I do love a matched set.\"\n\nHer eyes settle on Or'Henn, and something crosses her face. Not fear. The look of a collector who has seen this piece in a catalogue.\n\n\"You. I know your crest.\"" },
         { t: "p", text: "{@c urexiel|Lady Urexiel} deals before she fights. She has no grudge against the party. The Ashen Garden was a job. That is what makes the ledger so terrible." },
 
@@ -1497,7 +1595,7 @@ window.SESSION = {
         { t: "map", src: "art/outlines/vault-outline.svg", title: "Trophy Vault and Killing Floor (outline)", note: "Battle outline, 1 square = 5 ft. Urexiel starts at her desk; she falls back down the corridor to the Killing Floor." },
 
         { t: "h", text: "Event: The Staff in His Hand" },
-        { t: "note", title: "Already Happened", text: "Or'Henn took the staff from Feonor at the Grave in Session 10. The ember still will not light until Vaelisha. Skip the box below unless the players want to replay the moment." },
+        { t: "note", title: "Already Happened", text: "Or'Henn took the staff from Feonor in the Crypt ({@scene feonor-brings-the-staff|Feonor Brings the Staff}). Skip the box below unless the players want to replay the moment. Full card: {@side cinderbloom|Cinderbloom}." },
         { t: "read", text: "It is lighter than you remember. The ember is still dark. But it is warm, and it has always been yours." },
         { t: "p", text: "Cinderbloom is home, but it is not whole. Its ember will not light until the rite at Vaelisha, the Mother Ash, with three Green Remnants. The bell-jar shoot is the first." },
         { t: "choices", prompt: "When they leave the Menagerie:", items: [

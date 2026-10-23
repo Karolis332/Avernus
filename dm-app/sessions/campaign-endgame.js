@@ -177,7 +177,7 @@
       {
         "t": "list",
         "items": [
-          "{@b -1} Cinderbloom: spend 1 Cinderheart charge as a reaction (or use it to reroll a failed Pull save).",
+          "{@b -1} Cinderbloom: expend 1 of the staff's charges as a reaction (or use it to reroll a failed Pull save). See {@side cinderbloom|Cinderbloom}.",
           "{@b -1} Once per scene, an ally talks him back: DC 15 Wisdom (Insight) or Charisma (Persuasion), as an action, within 30 ft.",
           "{@b -1} He rolls a natural 20 on a Pull save."
         ]
@@ -220,6 +220,56 @@
         "t": "note",
         "title": "Make It Visible",
         "text": "Say the number out loud when it changes. The players should feel it climbing all session, long before the fight."
+      }
+    ]
+  };
+
+  C.side["cinderbloom"] = {
+    "title": "Cinderbloom",
+    "blocks": [
+      {
+        "t": "p",
+        "text": "{@i Staff, very rare (requires attunement by a druid).} Or'Henn's heirloom from the Ashen Garden. Source: Or'Henn's card ({@b orhenn-cinderbloom-and-contracts.html})."
+      },
+      {
+        "t": "read",
+        "text": "Living ashwood, warm as sun-baked stone. Its grain twists upward into a cage of blackened branches cradling a fist-sized ember that burns without fuel or smoke, brightening whenever beasts draw near or roots stir beneath the earth."
+      },
+      {
+        "t": "p",
+        "text": "It serves as a magic quarterstaff and a druidic spellcasting focus."
+      },
+      {
+        "t": "list",
+        "items": [
+          "{@b Ashwood Weapon.} +2 bonus to attack and damage rolls made with this magic quarterstaff, and +2 to spell attack rolls while you hold it.",
+          "{@b Cinderheart.} As a bonus action, expend 2 charges to send the ember streaking to a point within 60 ft. One creature within 5 ft. of that point makes a Dexterity saving throw against your spell save DC, taking 3d8 fire damage on a failure, half on a success. A 10-ft. radius of smouldering roots erupts there and is difficult terrain until the start of your next turn. The flames ignite unattended flammables but never harm plants you choose.",
+          "{@b Rootwright Magic.} The staff has 10 charges. As a Magic action, expend charges to cast, using your spellcasting ability and spell save DC: {@spell entangle} (1), {@spell spike growth} (2), {@spell erupting earth} (3), {@spell plant growth} (3), {@spell wall of fire} (4). Cast from the staff, entangle, spike growth and plant growth can erupt black ashwood roots from bare stone, metal, bone or the blasted soil of Avernus; the growth crumbles to ash after 8 hours.",
+          "{@b Recharge.} Regains 1d6 + 4 expended charges when the attuned bearer finishes a long rest, but only once every 24 hours. If you expend the last charge, roll a d20: on a 1 the ember goes dark and the staff becomes a nonmagical quarterstaff until it is planted in fertile soil and watered continuously for 8 hours.",
+          "{@b Keeper of Fell Beasts.} Advantage on Wisdom (Animal Handling) checks with Beasts, Monstrosities or Fiends of Intelligence 6 or lower. As a Magic action, expend 4 charges and present the ember to one such creature within 30 ft. that can see it, if its challenge rating is no higher than your proficiency bonus: it makes a Wisdom saving throw against your spell save DC (with advantage if hostile) or is charmed for 1 hour, treating you as its trusted keeper and obeying simple bonus-action commands unless obviously suicidal. It repeats the save whenever it takes damage; on a success, or when the effect ends, it is immune for 24 hours."
+        ]
+      },
+      {
+        "t": "note",
+        "title": "Campaign Rulings",
+        "text": "{@b It knows his hand.} The ember lay dark in Urexiel's vault. It relights the moment Or'Henn grips it, with {@dice 1d6} charges; it refills normally on his next long rest. He attunes as a bonus action, because it was his.\n\n{@b Against Tiamat's curse.} While he holds it, Or'Henn can expend 1 charge as a reaction to lower his Pull by 1, or to reroll a failed Pull save ({@side tiamats-pull|Tiamat's Pull}). Tiamat hates it: it is the one thing in his hands she did not give him.\n\n{@b The brass plate.} PROPERTY OF THE SCABROUS MENAGERIE, screwed into the heel. It is a tracking sigil: Urexiel's hunters can find the staff until it is pried off and destroyed (an action and a DC 15 Strength check, or {@spell dispel magic} at DC 15)."
+      },
+      {
+        "t": "h",
+        "text": "Cinderbloom Rekindled"
+      },
+      {
+        "t": "p",
+        "text": "{@i Staff, legendary.} Its awakened form, through the Mother Ash quest: three Green Remnants and an 8-hour rite at Vaelisha, the Last Green of Avernus ({@side arc-orhenn|Arc: Or'Henn and Cinderbloom}). It keeps everything above and gains:"
+      },
+      {
+        "t": "list",
+        "items": [
+          "{@b Greenfire Charges.} 14 charges; regains 2d6 + 4 on a long rest and no longer risks going dark.",
+          "{@b Deepwood Casting.} Adds {@spell wall of thorns} (5), {@spell sunbeam} (6), {@spell fire storm} (7). Cinderheart deals 4d8, and against fiends its damage is radiant.",
+          "{@b Bloom of the Last Green.} Once per day, as an action: a living grove in a 30-ft. radius for 1 minute. Allies inside regain 1d8 hit points at the start of each of your turns; a fiend that starts its turn there takes 2d8 radiant damage.",
+          "{@b Warden's Hold.} Keeper of Fell Beasts affects Intelligence 8 or lower, and two creatures at once."
+        ]
       }
     ]
   };
