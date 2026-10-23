@@ -272,3 +272,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Did:** Sword ruling changed to Eventyr's one-shard version across S11, `campaign-map.js` and `campaign-state.md`. Kreeg rebuilt to CR 22 (342 HP, AC 22, legendary + Dock lair actions, Escape Clause). New original SVG outline maps in `dm-app/art/outlines/` (menagerie, vault, dock) from `dm-app/tools/gen_outlines.py`. Reused painted maps: harbor-map-night, low-lantern, under-the-villa.
 - **Why:** checked against the book: the official adventure never breaks the Sword. The DM picked Eventyr's option: one shard cracked off in Zariel's last battle, and Olanthius keeps it. That puts Kostchtchie's Maw and the Pit of Shummrath back to optional. The DM wanted Kreeg in Arkhan's tier.
 - **Open:** The Menagerie still has no painted map, only the outline.
+
+### 2026-10-23 — S10 travel fix + stat-block page (desktop PC)
+- **Did:** `2041958` Session 10 journey rewritten as "The Flight to the Grave": table ruling, everyone flew overland on flight scrolls with the Lady Vengeance alongside, not up the Styx. River events and the Lulu-stays-dry choice cut; Sibriex stays optional as a gorge fly-by; the Grave's river rules are unchanged. New `dm-app/statblocks.html?s=<id>`: every creature in a session on one printable page, encounter order first, sharing spell-slot state with the main app.
+- **Why:** the DM wanted the primer and the stat blocks side by side at the table. NPCs that have full numbers (the sibriex) show stats on that page.
+- **Open:** VPS not redeployed: SSH host key for the VPS changed after the reinstall; verify the fingerprint before trusting it. Session 11's opening and the Dock road still assume the old route only loosely; recheck after Session 10 is played.

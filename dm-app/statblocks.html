@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Stat Blocks</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Printable, single-column page of every stat block in one session: ?s=<session id> */
+  body.sb-page { display: block; overflow: auto; height: auto; }
+  #sb-wrap { max-width: 860px; margin: 0 auto; padding: 16px 16px 80px; }
+  #sb-wrap > h1 { font-family: Cinzel, serif; margin: 8px 0 4px; }
+  #sb-sub { opacity: .75; margin-bottom: 12px; }
+  #sb-nav { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 0; background: inherit; }
+  #sb-nav a { font-size: 13px; padding: 3px 9px; border: 1px solid currentColor; border-radius: 12px; text-decoration: none; opacity: .85; }
+  #sb-nav a:hover { opacity: 1; }
+  .sb-card { border-top: 2px solid var(--red, #8b1a1a); padding-top: 8px; margin-top: 28px; scroll-margin-top: 56px; }
+  .sb-card .lair-panel { margin-top: 10px; }
+  @media print { #sb-nav { display: none; } .sb-card { break-inside: avoid-page; } }
+</style>
+</head>
+<body class="sb-page">
+  <div id="sb-wrap">
+    <h1 id="sb-title">Stat Blocks</h1>
+    <div id="sb-sub"></div>
+    <nav id="sb-nav"></nav>
+    <div id="sb-list"></div>
+  </div>
+
+  <script src="library/library.js"></script>
+  <script>window.LIBRARY = window.LIBRARY || { maps: [], docs: [] };</script>
+  <script src="js/core.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/statblock.js"></script>
+  <script src="sessions/index.js"></script>
+  <script src="sessions/campaign-ship.js"></script>
+  <script src="sessions/campaign-arcs.js"></script>
+  <script src="sessions/campaign-tower.js"></script>
+  <script src="sessions/campaign-map.js"></script>
+  <script src="media/media.js"></script>
+  <script>window.MEDIA = window.MEDIA || {};</script>
+  <script>
+  (function () {
+    "use strict";
+    var el = window.DMRender.el;
+    var list = window.SESSIONS || [];
+    var id = new URLSearchParams(location.search).get("s") || (list[list.length - 1] || {}).id;
+
+    var s = document.createElement("script");
+    s.src = "sessions/" + id + ".js";
+    s.onerror = function () { document.getElementById("sb-list").textContent = "Could not load session '" + id + "'."; };
+    s.onload = render;
+    document.body.appendChild(s);
+
+    // Encounter order first (the order they hit the table), then any other creature the session defines.
+    function creatureOrder(session) {
+      var seen = {}, out = [];
+      function add(cid) { if (cid && !seen[cid] && session.creatures[cid]) { seen[cid] = 1; out.push(cid); } }
+      (session.scenes || []).forEach(function (sc) {
+        (sc.blocks || []).forEach(function (b) {
+          if (b.t === "encounter") (b.combatants || []).forEach(function (cb) { add(cb.c); });
+        });
+      });
+      Object.keys(session.creatures || {}).forEach(add);
+      return out;
+    }
+
+    function render() {
+      var session = window.SESSION;
+      document.title = "Stat Blocks · " + session.title;
+      document.getElementById("sb-title").textContent = session.title + ": Stat Blocks";
+      document.getElementById("sb-sub").textContent = session.subtitle || "";
+      var nav = document.getElementById("sb-nav");
+      var listEl = document.getElementById("sb-list");
+
+      creatureOrder(session).forEach(function (cid) {
+        var c = session.creatures[cid];
+        var a = el("a", null, c.name);
+        a.href = "#sb-" + cid;
+        nav.appendChild(a);
+
+        var card = el("section", "sb-card");
+        card.id = "sb-" + cid;
+        // _cid/_sessionId: same keys app.js passes, so spell-slot pips stay in sync with the main app.
+        // This page is for fighting, so an npc with real numbers (e.g. the sibriex) still shows its stat block.
+        var shown = Object.assign({ _cid: cid, _sessionId: session.id }, c);
+        if (c.npc && c.ac != null && c.hp != null) shown.npc = false;
+        card.appendChild(window.DMStatblock.renderCreaturePanelBody(shown));
+        if (c.lair && c.lair.text) {
+          var lair = el("div", "lair-panel");
+          lair.appendChild(el("h3", null, "Lair Action"));
+          var p = el("p");
+          p.appendChild(window.DMRender.renderInline(c.lair.text));
+          lair.appendChild(p);
+          card.appendChild(lair);
+        }
+        listEl.appendChild(card);
+      });
+    }
+  })();
+  </script>
+</body>
+</html>
