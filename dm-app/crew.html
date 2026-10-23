@@ -37,6 +37,17 @@
     .crew-sheet { break-after: page; margin: 0; }
     .crew-sheet:last-child { break-after: auto; }
     .statblock { break-inside: auto; }
+    /* Fit a companion on two A4 pages: tighter type, smaller portrait, no web-only links */
+    @page { size: A4; margin: 12mm; }
+    body.crew-page { font-size: 10.5pt; }
+    .crew-sheet .portrait-wrap { min-height: 0; }
+    .crew-sheet .portrait { max-height: 32mm; }
+    .crew-sheet .portrait-placeholder { display: none; }
+    .sb-5etools-link { display: none; }
+    .crew-sheet h2, .crew-sheet h3 { margin: 6pt 0 3pt; }
+    .crew-sheet ol, .crew-sheet ul { margin: 3pt 0; }
+    .crew-sheet li { margin: 1pt 0; }
+    .statblock { padding: 8pt 12pt; margin: 6pt 0; }
   }
 </style>
 </head>

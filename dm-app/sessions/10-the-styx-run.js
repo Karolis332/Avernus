@@ -524,7 +524,7 @@ window.SESSION = {
       "role": "Old Crimson Watch Hellrider on Gondian legs. A shield wall.",
       "inFight": "Stands in front of the weakest character and takes the hits.",
       "behaviour": [
-        "Uses his reaction to protect an adjacent ally (imposes disadvantage on one attack against them).",
+        "Keep the Watch every round: when an ally next to him is hit, he takes the hit instead.",
         "Carries Halvard's last words. If Drenwal goes down, Lucan says them aloud: it gives Drenwal advantage on his next death save.",
         "Will not fight Krull's side if Krull's side is fighting Tiamat. Says so."
       ]
