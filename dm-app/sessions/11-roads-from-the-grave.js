@@ -25,6 +25,226 @@ window.SESSION = {
   ],
 
   creatures: {
+    "wraith": {
+      "name": "Wraith",
+      "kind": "wraith",
+      "role": "Restless dead of the First Charge",
+      "source": {
+        "page": "bestiary",
+        "name": "Wraith",
+        "src": "MM"
+      },
+      "sizeType": "Medium undead, neutral evil",
+      "ac": 13,
+      "hp": 67,
+      "hpFormula": "9d8 + 27",
+      "speed": "0 ft., fly 60 ft. (hover)",
+      "abilities": {
+        "str": 6,
+        "dex": 16,
+        "con": 16,
+        "int": 12,
+        "wis": 14,
+        "cha": 15
+      },
+      "resist": "acid, cold, fire, lightning, thunder; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered",
+      "immune": "necrotic, poison",
+      "condImmune": "charmed, exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained",
+      "senses": "darkvision 60 ft., passive Perception 12",
+      "languages": "the languages it knew in life",
+      "cr": "5",
+      "xp": 1800,
+      "pb": 3,
+      "traits": [
+        {
+          "name": "Incorporeal Movement",
+          "text": "The wraith can move through other creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object."
+        },
+        {
+          "name": "Sunlight Sensitivity",
+          "text": "While in sunlight, the wraith has disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Life Drain",
+          "text": "Melee Weapon Attack: +6 to hit, reach 5 ft., one creature. Hit: 21 (4d8 + 3) necrotic damage. The target must succeed on a DC 14 Constitution saving throw or its hit point maximum is reduced by an amount equal to the damage taken, until it finishes a long rest. The target dies if this reduces its hit point maximum to 0."
+        },
+        {
+          "name": "Create Specter",
+          "text": "The wraith targets a humanoid within 10 feet of it that has been dead for no longer than 1 minute and died violently. The target's spirit rises as a specter under the wraith's control. It can control no more than seven specters at once."
+        }
+      ],
+      "tactics": [
+        "Rises only if the dead are disturbed. Goes for whoever broke the urn or took from a tomb."
+      ]
+    },
+    "specter": {
+      "name": "Specter",
+      "kind": "specter",
+      "role": "Restless dead",
+      "source": {
+        "page": "bestiary",
+        "name": "Specter",
+        "src": "MM"
+      },
+      "sizeType": "Medium undead, chaotic evil",
+      "ac": 12,
+      "hp": 22,
+      "hpFormula": "5d8",
+      "speed": "0 ft., fly 50 ft. (hover)",
+      "abilities": {
+        "str": 1,
+        "dex": 14,
+        "con": 11,
+        "int": 10,
+        "wis": 10,
+        "cha": 11
+      },
+      "resist": "acid, cold, fire, lightning, thunder; bludgeoning, piercing, and slashing from nonmagical attacks",
+      "immune": "necrotic, poison",
+      "condImmune": "charmed, exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained, unconscious",
+      "senses": "darkvision 60 ft., passive Perception 10",
+      "languages": "understands all languages it knew in life but can't speak",
+      "cr": "1",
+      "xp": 200,
+      "pb": 2,
+      "traits": [
+        {
+          "name": "Incorporeal Movement",
+          "text": "The specter can move through other creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object."
+        },
+        {
+          "name": "Sunlight Sensitivity",
+          "text": "While in sunlight, the specter has disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Life Drain",
+          "text": "Melee Spell Attack: +4 to hit, reach 5 ft., one creature. Hit: 10 (3d6) necrotic damage. The target must succeed on a DC 10 Constitution saving throw or its hit point maximum is reduced by an amount equal to the damage taken, until it finishes a long rest."
+        }
+      ]
+    },
+    "ghost": {
+      "name": "Ghost of the First Charge",
+      "kind": "ghost",
+      "role": "A Hellrider who never left. Answers one question, then fades",
+      "source": {
+        "page": "bestiary",
+        "name": "Ghost",
+        "src": "MM"
+      },
+      "npc": true,
+      "sizeType": "Medium undead, lawful good",
+      "ac": 11,
+      "hp": 45,
+      "hpFormula": "10d8",
+      "speed": "0 ft., fly 40 ft. (hover)",
+      "abilities": {
+        "str": 7,
+        "dex": 13,
+        "con": 10,
+        "int": 10,
+        "wis": 12,
+        "cha": 17
+      },
+      "resist": "acid, fire, lightning, thunder; bludgeoning, piercing, and slashing from nonmagical attacks",
+      "immune": "cold, necrotic, poison",
+      "condImmune": "charmed, exhaustion, frightened, grappled, paralyzed, petrified, poisoned, prone, restrained",
+      "senses": "darkvision 60 ft., passive Perception 11",
+      "languages": "Common, Celestial",
+      "cr": "4",
+      "xp": 1100,
+      "pb": 2,
+      "traits": [
+        {
+          "name": "Ethereal Sight",
+          "text": "The ghost can see 60 ft. into the Ethereal Plane when it is on the Material Plane, and vice versa."
+        },
+        {
+          "name": "Incorporeal Movement",
+          "text": "The ghost can move through other creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Withering Touch",
+          "text": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 17 (4d6 + 3) necrotic damage."
+        },
+        {
+          "name": "Etherealness",
+          "text": "The ghost enters the Ethereal Plane from the Material Plane, or vice versa."
+        },
+        {
+          "name": "Horrifying Visage",
+          "text": "Each non-undead creature within 60 ft. that can see the ghost makes a DC 13 Wisdom saving throw or is frightened for 1 minute; failing by 5 or more also ages it 1d4 x 10 years. Repeat the save at the end of each turn. A creature that succeeds is immune for 24 hours. Greater restoration within 24 hours reverses the aging."
+        },
+        {
+          "name": "Possession (Recharge 6)",
+          "text": "One humanoid within 5 ft. makes a DC 13 Charisma saving throw or is possessed until the body drops to 0 hit points, the ghost ends it as a bonus action, or it is turned or forced out (dispel evil and good)."
+        }
+      ],
+      "roleplay": [
+        "Appearance: a pale rider in Hellrider grey, half-transparent, still wearing the wound that killed him.",
+        "Wants: someone to say his name aloud. It is on the wall. He will not tell them which one.",
+        "Knows: the Charge. He will answer one question about it truthfully, then fade."
+      ],
+      "tactics": [
+        "Does not attack unless attacked. If attacked, Horrifying Visage, then Etherealness, and he is gone."
+      ]
+    },
+    "mummy": {
+      "name": "Mummy (The Ones Who Ran)",
+      "kind": "mummy",
+      "role": "Hellriders who fled the Charge, entombed in shame",
+      "source": {
+        "page": "bestiary",
+        "name": "Mummy",
+        "src": "MM"
+      },
+      "sizeType": "Medium undead, lawful evil",
+      "ac": 11,
+      "acNote": "natural armor",
+      "hp": 58,
+      "hpFormula": "9d8 + 18",
+      "speed": "20 ft.",
+      "abilities": {
+        "str": 16,
+        "dex": 8,
+        "con": 15,
+        "int": 6,
+        "wis": 10,
+        "cha": 12
+      },
+      "saves": "Wis +2",
+      "vulnerable": "fire",
+      "resist": "",
+      "immune": "necrotic, poison; bludgeoning, piercing, and slashing from nonmagical attacks",
+      "condImmune": "charmed, exhaustion, frightened, paralyzed, poisoned",
+      "senses": "darkvision 60 ft., passive Perception 10",
+      "languages": "the languages it knew in life",
+      "cr": "3",
+      "xp": 700,
+      "pb": 2,
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The mummy can use its Dreadful Glare and makes one attack with its rotting fist."
+        },
+        {
+          "name": "Rotting Fist",
+          "text": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) bludgeoning damage plus 10 (3d6) necrotic damage. A creature must succeed on a DC 12 Constitution saving throw or be cursed with mummy rot: it can't regain hit points, and its hit point maximum decreases by 10 (3d6) every 24 hours. If this reduces its hit point maximum to 0, it dies and turns to dust. The curse lasts until removed by remove curse or other magic."
+        },
+        {
+          "name": "Dreadful Glare",
+          "text": "The mummy targets one creature it can see within 60 ft. If the target can see it, the target makes a DC 11 Wisdom saving throw or is frightened until the end of the mummy's next turn; failing by 5 or more also paralyzes it for the same duration. A creature that succeeds is immune to the Dreadful Glare of all mummies (but not mummy lords) for 24 hours."
+        }
+      ],
+      "tactics": [
+        "Only if the eastern C6 tomb is opened. If Olanthius is present, they kneel to him instead of attacking."
+      ]
+    },
     "arkhan-the-cruel": Object.assign({}, window.CAMPAIGN.creatures["arkhan-the-cruel"], { tactics: window.CAMPAIGN.endgame.arkhanTactics }),
 
     "uldrak": Object.assign({}, window.CAMPAIGN.creatures.uldrak, {
@@ -341,27 +561,27 @@ window.SESSION = {
       "phase": "The Crypt of the Hellriders",
       "events": [
         {
-          "when": "The Cold Line",
+          "when": "Approach: the Cold Line",
           "tag": "trigger",
           "text": "Devils stop at it and hiss. Asimov goes quiet. {@b Tiamat goes quiet: Pull paused inside.} Lulu brightens; Moonkite's light steadies."
         },
         {
-          "when": "The Door",
+          "when": "C1. Sealed Gates",
           "tag": "choice",
-          "text": "Lulu says \"please\" (opens, no roll); a rider's name spoken with grief (Eldra opens it); watchword \"The sun will hold!\" {@b DC 15 History/Religion}, Drenwal and Veska at advantage; or a bought word."
+          "text": "Pass phrase \"For Glory\" ({@b DC 15 History/Religion}, Drenwal and Veska at advantage, Lucan knows it); Lulu says \"please\" (no roll); a rider's name spoken with grief (Eldra opens it); or a bought word."
         },
         {
-          "when": "The Nave",
+          "when": "C2. Funerary Chambers",
           "tag": "trigger",
           "text": "ELDRA VASH on the older wall: Or'Henn finds it with no roll. Halvard's name in the Crimson Watch alcove: let Drenwal have the moment, then Veska or Lucan speaks."
         },
         {
-          "when": "Checks in the Nave",
+          "when": "C3 / C6 checks",
           "tag": "choice",
-          "text": "{@b DC 15 Investigation:} +1 lance and the Hellrider's Aegis among the tombs (taking them uninvited is a grave insult). {@b DC 13 Religion:} the cold candles light when someone is forgiven."
+          "text": "{@b C3, DC 13 Religion:} the cold candles light when someone is forgiven. {@b C6, DC 15 Perception:} secret doors. West: +1 lance and Hellrider's Aegis (ask first). East: the Ones Who Ran, eight mummies."
         },
         {
-          "when": "Olanthius",
+          "when": "C5. Olanthius",
           "tag": "choice",
           "text": "Eldra's name from someone who knew her = master key (advantage on everything). Off the wall = advantage once. No key: {@b DC 18 Persuasion}, honour not grief. Fail: the Vigil ({@b DC 14 Wis}, two must pass) or the Half-Heart Duel."
         },
@@ -563,76 +783,287 @@ window.SESSION = {
     },
 
     {
-      id: "the-crypt-door",
-      title: "The Crypt of the Hellriders",
-      when: "Only if they take the Crypt road",
-      duration: "20 minutes",
-      blocks: [
-        { t: "p", text: "The Crypt is about a day's flight west of the Grave. It is a piece of Elturel that fell into Avernus with the city and never rotted. The cold inside is not infernal. It is grief that refuses to burn. Devils will not go in. Neither will Zariel." },
-        { t: "note", title: "Running This Branch", text: "This is the quietest place in Avernus, and the saddest. There is only one fight here, and it is optional. Bring Lulu if the players let you: the Crypt is the best thing that can happen to her memory. Read the Nave before the Knight if you can. Drenwal should see his father's order before he hears how it ended." },
-
-        { t: "h", text: "Event: The Cold Line" },
-        { t: "read", text: "The heat stops at a line you can see.\n\nOne step back, the ground still bleeds red and the air still tastes of iron smoke. One step forward, and it is cold: a clean, church-stone cold that has nothing to do with Hell.\n\nAhead, a doorway of grey granite stands upright and whole, as if the city tore this one building loose and set it down gently. Above the door, worn but clear: a rider, a lance, and a rising sun. No fire has touched it. Nothing here wants to." },
-        { t: "img", src: "art/generated/event-crypt-cold-line.webp", caption: "The Cold Line. The dead of the First Charge kneel at the door, still at prayer.", credit: "Generated art (gpt-image-1)." },
-        { t: "list", items: [
-          "{@b Devils cannot cross the line.} Imps that have been following the ship stop at it and hiss.",
-          "{@b Asimov goes quiet.} Inside the Soul Capacitor, his voice fades: the soul-traffic of Avernus cannot reach in here.",
-          "{@b Tiamat goes quiet too.} For as long as Or'Henn is inside the Crypt, there are no visions. Tell his player. It is the first quiet he has had since the Monument. His Pull does not rise and he makes no Pull saves inside; outside the Cold Line it resumes where it was ({@side tiamats-pull|Tiamat's Pull}).",
-          "{@b Dragons can cross the line.} So can Arkhan: a man, not a devil. If his hunt catches the party here, the fight is at the door on the cold side, with no devils in it. Run {@scene arkhans-gambit|Arkhan's Gambit}.",
-          "{@b Celestials are welcome.} Moonkite's light grows steadier. Lulu's glow brightens for the first time since Avernus."
-        ] },
-
-        { t: "h", text: "Event: The Door" },
-        { t: "read", text: "The door has no handle and no lock. It is one slab of granite, ten feet high, and carved into it at the height of a rider's eyes are five words:\n\nSAY THE WORD, AND RIDE IN." },
-        { t: "p", text: "The book's password comes from the Obelisk, and the party does not have it. Any one of these opens the door." },
-        { t: "list", items: [
-          "{@b Lulu.} If she is with them, she puts her trunk on the stone and whispers \"please.\" The door opens. It remembers her. She does not know why. This should be the easiest way in.",
-          "{@b A name of the dead.} The door opens for anyone who speaks the name of a rider of the First Charge with grief in it. If Or'Henn says \"Eldra\" here for any reason (a prayer, a curse, a memory), it opens, and you have just learned something about his teacher.",
-          "{@b The watchword.} The First Charge rode in shouting \"The sun will hold!\" A {@b DC 15 Intelligence (History or Religion)} check remembers it. Drenwal and Veska have advantage.",
-          "{@b A bought word.} The merrenoloth ferryman on the Styx sells it for one soul coin. Or Asimov can take it as the payment for a delivered soul-bounty.",
-          "{@b Force.} A {@b DC 25 Strength} check, {@spell passwall} or {@spell disintegrate}. {@spell Knock} does nothing: the door is not locked, it is waiting. Breaking in costs them: Olanthius knows. Every social check with him starts at disadvantage until someone apologises and he believes it."
-        ] },
-        { t: "p", text: "When they are inside, go to {@scene the-nave-of-names|The Nave of Names}." }
-      ]
-    },
-
-    {
-      id: "the-nave-of-names",
-      title: "The Nave of Names",
-      when: "Only if they enter the Crypt",
-      duration: "20 to 30 minutes",
-      blocks: [
-        { t: "read", text: "A long hall of grey stone, two walls carved from floor to ceiling with names. Thousands of them. The riders of the First Charge, and every Hellrider since who died in Elturel's service.\n\nCold candles stand in rows along the walls. They will not light. The floor is worn smooth in two long grooves, where people knelt.\n\nAt the far end, beyond an arch, something green is glowing." },
-        { t: "img", src: "art/generated/event-crypt-nave-of-names.webp", caption: "The Nave of Names. At the far end, beyond the arch, something green is glowing.", credit: "Generated art (gpt-image-1)." },
-        { t: "p", text: "Lulu goes quiet in here. At the end of the hall she turns toward the arch before anyone else does. She knows the way, and does not know how." },
-
-        { t: "h", text: "Event: Eldra Vash" },
-        { t: "p", text: "Combing the walls for any one name is a {@b DC 12 Intelligence (Investigation)} check. If Or'Henn is looking for his teacher, he finds her without a roll." },
-        { t: "read", text: "Halfway down the older wall, under a hundred years of dust, the carving is deeper and rougher than the rest. Cut fast. Cut grieving.\n\nELDRA VASH.\n\nBeside it, a small badge in the stone: a golden sun, pierced by a sword. And under the name, scratched in by a different, shakier hand, much later:\n\n\"I should have stopped her. O.\"" },
-        { t: "p", text: "Or'Henn has seen that badge before. Every day for sixty years, on a ring on Eldra's hand, while she showed him how to keep fire-moss alive in ash. Ask his player what he does." },
-        { t: "note", title: "DM Only: Who Eldra Was", text: "Eldra Vash rode in the First Charge. The wall says she died there. She did not. She was taken alive, and her fey blood kept her young. Kreeg bought her for his Hell-side estate and set her to keep his garden. She kept it for a century, and she raised Or'Henn. She died in the raid that Urexiel paid for. Olanthius loved her, and has believed for a hundred years that she died in the Charge. Nobody has told him otherwise." },
-
-        { t: "h", text: "Event: The Crimson Watch" },
-        { t: "read", text: "One alcove is set apart from the rest. The stone rider on the tomb inside is unfinished: the sculptor stopped at the shoulders, as if he could not bring himself to carve the face. The red paint on the shield has flaked to the colour of dried blood.\n\nSomeone has left an offering on the plinth: a soldier's ration token, so old it has fused to the stone." },
-        { t: "p", text: "This is the Crimson Watch, the order Drenwal's father served. Its honour roll is carved here, and Drenwal finds his father's name on it: HALVARD, FELL AT THE WALL. Veska knows that is a lie. The cult inside the Watch murdered him. Let Drenwal have the moment before Olanthius tells him how the order ended, and give Veska or Ser Lucan a line if they are here." },
-
-        { t: "h", text: "Checks in the Nave" },
-        { t: "list", items: [
-          "{@b DC 15 Intelligence (Investigation):} among the tombs of the First Charge lie a {@b +1 lance} and a {@b Hellrider's Aegis} (a shield that gives advantage on saving throws against being frightened while in Avernus). Taking either without Olanthius's leave is a grave insult. If they do, he will not give them advantage on anything.",
-          "{@b DC 13 Intelligence (Religion):} the cold candles are a vigil. They light only when someone in the Crypt is forgiven.",
-          "{@b DC 14 Wisdom (Perception):} the green light beyond the arch does not flicker. Whatever is burning there has been burning a long time."
-        ] },
-        { t: "p", text: "When they go through the arch, go to {@scene the-kneeling-knight|The Kneeling Knight}." },
-        { t: "map", id: "crypt-of-the-hellriders-40x30", note: "The Crypt. The Nave of Names runs down the middle; Olanthius kneels at the far end." }
+      "id": "the-crypt-door",
+      "title": "Crypt of the Hellriders",
+      "when": "Only if they take the Crypt road",
+      "duration": "60 to 90 minutes",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "The Crypt of the Hellriders lies about a day's flight west of Uldrak's Grave. It is a piece of Elturel that fell into Avernus with the city and never rotted. Here the Hellriders who died at Zariel's side were laid to rest, and here her general Olanthius has knelt for a hundred years. The cold inside is not infernal. It is grief that refuses to burn. Devils will not go in. Neither will Zariel."
+        },
+        {
+          "t": "note",
+          "title": "Campaign Changes",
+          "text": "In this campaign Olanthius keeps the Sword's missing shard (Eventyr's one-shard option), Eldra Vash's name is on the wall, and Tiamat cannot reach Or'Henn inside: his Pull is paused for as long as he is within the Cold Line ({@side tiamats-pull|Tiamat's Pull})."
+        },
+        {
+          "t": "h",
+          "text": "Approaching the Crypt"
+        },
+        {
+          "t": "p",
+          "text": "When the characters reach the crypt, read:"
+        },
+        {
+          "t": "read",
+          "text": "The heat stops at a line you can see.\n\nOne step back, the ground still bleeds red and the air still tastes of iron smoke. One step forward, and it is cold: a clean, church-stone cold that has nothing to do with Hell.\n\nAhead, a doorway of grey granite stands upright and whole, as if the city tore this one building loose and set it down gently. Above it, worn but clear: a rider, a lance, and a rising sun. Before it, in two long rows, dozens of armoured knights kneel in the frost with their heads bowed. None of them move. None of them have moved in a hundred years."
+        },
+        {
+          "t": "img",
+          "src": "art/generated/event-crypt-cold-line.webp",
+          "caption": "The Cold Line. The dead of the First Charge kneel at the door, still at prayer.",
+          "credit": "Generated art (gpt-image-1)."
+        },
+        {
+          "t": "p",
+          "text": "The kneeling knights are the remains of Hellriders who died outside the crypt. Their armour serves as their caskets, and their bones stay upright inside it as though in prayer. Each wears the faded regalia of Elturel. They are only dead; disturbing them angers the restless dead in area C2."
+        },
+        {
+          "t": "p",
+          "text": "The line marks the edge of the crypt's influence. While inside it:"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b Devils cannot cross.} Imps following the ship stop at the line and hiss.",
+            "{@b Asimov goes quiet} inside the Soul Capacitor: the soul-traffic of Avernus cannot reach in here.",
+            "{@b Tiamat goes quiet.} No visions, no Pull saves and no Pull gains for Or'Henn. Tell his player. It is the first quiet he has had since the Monument.",
+            "{@b Celestials are welcome.} Moonkite's light steadies. Lulu's glow brightens for the first time since Avernus.",
+            "{@b Dragons and mortals can cross.} So can Arkhan, who is a man, not a devil. If his hunt catches the party here, the fight is at the door on the cold side, with no devils in it. Run {@scene arkhans-gambit|Arkhan's Gambit}."
+          ]
+        },
+        {
+          "t": "map",
+          "id": "crypt-of-the-hellriders-40x30",
+          "note": "Map 3.3: Crypt of the Hellriders. 1 square = 5 feet. C1 at the top, C5 and C7 to the east, the two C6 rooms behind secret doors (S)."
+        },
+        {
+          "t": "h",
+          "text": "Encounters in the Crypt"
+        },
+        {
+          "t": "p",
+          "text": "The following descriptions correspond to areas marked on map 3.3. The entire crypt is terribly cold and wreathed in ankle-deep mist. All rooms and passages are 10 feet tall and hewn from solid rock. There is no light inside except what the characters bring, and the green glow from area C5."
+        },
+        {
+          "t": "h",
+          "text": "C1. Sealed Gates"
+        },
+        {
+          "t": "p",
+          "text": "When the characters descend the stairs into the catacombs, read:"
+        },
+        {
+          "t": "read",
+          "text": "A pair of basalt doors block the passage ahead, their surfaces engraved with a relief of a knight locked in combat with a devil. Both wield burning swords.\n\nBeneath the relief, at the height of a rider's eyes, five words are cut into the stone: SAY THE WORD, AND RIDE IN."
+        },
+        {
+          "t": "p",
+          "text": "The doors have no handles, locks or bolts. They are magically locked, hardened and enchanted to resist magic: any spell cast to unlock, damage or reshape them automatically fails. Characters can bypass them with {@spell dimension door} or similar magic, or slip through the cracks between them with {@spell gaseous form}. Otherwise the doors open for any one of the following, spoken within 10 feet of them. They grind open slowly, and close again on their own after 1 hour unless held or wedged."
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b The pass phrase, \"For Glory.\"} It was the battle cry of the First Charge. A successful {@b DC 15 Intelligence (History or Religion)} check recalls it; Drenwal and Veska have advantage, and Ser Lucan simply knows it. It can also be learned from the Obelisk's prisoner, as the book has it.",
+            "{@b Lulu.} If she is with them, she puts her trunk on the stone and whispers \"please.\" The doors open. They remember her. She does not know why. This should be the easiest way in.",
+            "{@b A name of the dead,} spoken with grief, of any rider of the First Charge. If Or'Henn says \"Eldra\" here for any reason (a prayer, a curse, a memory), the doors open, and you have learned something about his teacher.",
+            "{@b A bought word.} The merrenoloth ferryman on the Styx sells the pass phrase for one soul coin, if the party met him."
+          ]
+        },
+        {
+          "t": "p",
+          "text": "If the characters break in by force or trick, Olanthius knows. Every check with him starts at disadvantage until someone apologises and he believes it."
+        },
+        {
+          "t": "h",
+          "text": "C2. Funerary Chambers"
+        },
+        {
+          "t": "p",
+          "text": "There are several funerary chambers in the catacombs. When the characters enter one of these rooms for the first time, read:"
+        },
+        {
+          "t": "read",
+          "text": "Mist curls around your ankles. The walls of this chamber are carved from floor to ceiling with names, thousands of them, cut small and close together like lines in a ledger. Stone urns stand in niches along the walls, their lids sealed with wax gone black with age.\n\nCold candles stand in rows below the names. They will not light. The floor in front of the walls is worn into two smooth grooves, where people knelt."
+        },
+        {
+          "t": "img",
+          "src": "art/generated/event-crypt-nave-of-names.webp",
+          "caption": "A funerary chamber. At the far end, beyond the arch, something green is glowing.",
+          "credit": "Generated art (gpt-image-1)."
+        },
+        {
+          "t": "p",
+          "text": "The names are the riders of the First Charge, and every Hellrider since who died in Elturel's service. The urns hold their ashes. Combing the walls for any one name takes a minute and a successful {@b DC 12 Intelligence (Investigation)} check. Lulu goes quiet in these rooms, and at every junction she turns toward area C5 before anyone else does. She knows the way, and does not know how."
+        },
+        {
+          "t": "h",
+          "text": "Eldra Vash (Northwest Chamber)"
+        },
+        {
+          "t": "p",
+          "text": "If Or'Henn is looking for his teacher, he finds her without a roll. When he does, read:"
+        },
+        {
+          "t": "read",
+          "text": "Halfway down the older wall, under a hundred years of dust, the carving is deeper and rougher than the rest. Cut fast. Cut grieving.\n\nELDRA VASH.\n\nBeside it, a small badge in the stone: a golden sun, pierced by a sword. And under the name, scratched in by a different, shakier hand, much later:\n\n\"I should have stopped her. O.\""
+        },
+        {
+          "t": "p",
+          "text": "Or'Henn has seen that badge before. Every day for sixty years, on a ring on Eldra's hand, while she showed him how to keep fire-moss alive in ash. Ask his player what he does."
+        },
+        {
+          "t": "note",
+          "title": "DM Only: Who Eldra Was",
+          "text": "Eldra Vash rode in the First Charge. The wall says she died there. She did not. She was taken alive, and her fey blood kept her young. Kreeg bought her for his Hell-side estate and set her to keep his garden. She kept it for a century, and she raised Or'Henn. She died in the raid that Urexiel paid for. Olanthius loved her, and has believed for a hundred years that she died in the Charge. Nobody has told him otherwise."
+        },
+        {
+          "t": "h",
+          "text": "The Crimson Watch (Central Chamber)"
+        },
+        {
+          "t": "p",
+          "text": "One alcove in the large central chamber is set apart from the rest. When a character looks into it, read:"
+        },
+        {
+          "t": "read",
+          "text": "The stone rider on the tomb inside is unfinished: the sculptor stopped at the shoulders, as if he could not bring himself to carve the face. The red paint on the shield has flaked to the colour of dried blood.\n\nSomeone has left an offering on the plinth: a soldier's ration token, so old it has fused to the stone."
+        },
+        {
+          "t": "p",
+          "text": "This is the Crimson Watch, the order Drenwal's father served. Its honour roll is carved here, and Drenwal finds his father's name on it: HALVARD, FELL AT THE WALL. Veska knows that is a lie: the cult inside the Watch murdered him. Let Drenwal have the moment before Olanthius tells him how the order ended, and give Veska or Ser Lucan a line. Ser Lucan may find his own name here, among the dead."
+        },
+        {
+          "t": "h",
+          "text": "The Restless Dead"
+        },
+        {
+          "t": "p",
+          "text": "The Hellriders who stayed in Hell when the others fled do not all rest. If anyone breaks an urn, takes anything from a tomb without Olanthius's leave, or disturbs the kneeling knights outside, a {@c wraith|wraith} and four {@c specter|specters} rise from the walls of the nearest funerary chamber and attack. A {@c ghost|ghost} of the First Charge also haunts these rooms. It does not attack unless attacked; it will answer one question about the Charge, then fade, asking only that someone say its name aloud."
+        },
+        {
+          "t": "encounter",
+          "id": "crypt-restless-dead",
+          "title": "The Restless Dead",
+          "combatants": [
+            {
+              "c": "wraith",
+              "n": 1
+            },
+            {
+              "c": "specter",
+              "n": 4
+            }
+          ],
+          "notes": "Only if the dead are disturbed. A level-13 party wins this easily: run it for a round or two as a warning, then let Olanthius's voice from C5 end it: \"Enough.\" The specters sink back into the walls."
+        },
+        {
+          "t": "h",
+          "text": "C3. Prayer Niches"
+        },
+        {
+          "t": "p",
+          "text": "Narrow niches open off the passages here, each just large enough for one person to kneel."
+        },
+        {
+          "t": "read",
+          "text": "A shallow niche holds a single cold candle on a stone shelf, and a worn kneeling-step polished smooth by a great many knees. On the wall above, someone has scratched a tally of days that goes on far longer than anyone should have to count."
+        },
+        {
+          "t": "p",
+          "text": "A successful {@b DC 13 Intelligence (Religion)} check reveals that the cold candles throughout the crypt are a vigil: they light only when someone inside the crypt is forgiven. The tallies are Olanthius's. He counts the days since the Charge."
+        },
+        {
+          "t": "h",
+          "text": "C4. Mist Well"
+        },
+        {
+          "t": "read",
+          "text": "A round stone well sits in the corner of this chamber, its rim carved with riders. The mist that fills the crypt rises from it, slow and cold, and spills over the rim onto the floor."
+        },
+        {
+          "t": "p",
+          "text": "The well is the source of the crypt's cold. A character who looks into it sees, for one heartbeat, the First Charge riding out of Elturel under a clear sky: a {@b DC 14 Wisdom} saving throw, or they are overcome by grief and have disadvantage on their next ability check. Celestials looking in see something else: Lulu sees Yael's face and has to be led away. The well holds no treasure."
+        },
+        {
+          "t": "h",
+          "text": "C5. The Kneeling Knight"
+        },
+        {
+          "t": "p",
+          "text": "Olanthius kneels in the long hall to the east, among the tombs of Zariel's generals. Go to {@scene the-kneeling-knight|C5. The Kneeling Knight}."
+        },
+        {
+          "t": "h",
+          "text": "C6. Hidden Tombs"
+        },
+        {
+          "t": "p",
+          "text": "Two small chambers lie behind secret doors (marked S on the map). A character who searches the walls near one finds its door with a successful {@b DC 15 Wisdom (Perception)} check."
+        },
+        {
+          "t": "h",
+          "text": "Western Tomb: The Last Arms"
+        },
+        {
+          "t": "read",
+          "text": "Behind the secret door is a small, square room, its floor misted white. On a stone bier lie a lance and a shield, laid side by side as if their owner set them down and meant to come back."
+        },
+        {
+          "t": "p",
+          "text": "{@b Treasure.} A {@item +1 lance|DMG} and a {@b Hellrider's Aegis}, a shield that gives advantage on saving throws against being frightened while in Avernus. Taking either without Olanthius's leave is a grave insult: it wakes the restless dead (area C2), and Olanthius will not give the party advantage on anything. Asked properly, he gives them both, to a Hellrider."
+        },
+        {
+          "t": "h",
+          "text": "Eastern Tomb: The Ones Who Ran"
+        },
+        {
+          "t": "read",
+          "text": "This room is sealed with wax and iron, and the mist inside is grey instead of white. Eight figures lie wrapped in grave-cloth on shelves cut into the walls. Their shields have been turned face-down."
+        },
+        {
+          "t": "p",
+          "text": "These are Hellriders who broke and fled at the Charge, and were brought back here in shame. They were never forgiven, and they have not forgotten. Opening the tomb wakes eight {@c mummy|mummies}. If Olanthius is present, they kneel to him instead of attacking, and he says, \"Not even them. Not yet.\""
+        },
+        {
+          "t": "encounter",
+          "id": "crypt-ones-who-ran",
+          "title": "The Ones Who Ran",
+          "combatants": [
+            {
+              "c": "mummy",
+              "n": 8
+            }
+          ],
+          "notes": "Optional. Mummy rot (DC 12 Con) is the real threat: the cursed can't regain hit points until remove curse. Fire is their weakness."
+        },
+        {
+          "t": "h",
+          "text": "C7. Olanthius's Quarters"
+        },
+        {
+          "t": "p",
+          "text": "A secret door at the north end of area C5 leads to this room. Olanthius does not hide it from anyone who asks."
+        },
+        {
+          "t": "read",
+          "text": "A narrow study, as plain as a soldier's tent. A stone desk, a stool, a shelf of books gone soft with damp. On the desk, a stack of letters, all addressed in the same hand, and none of them sealed."
+        },
+        {
+          "t": "p",
+          "text": "The letters are to Eldra, written over a hundred years and never sent. A character who reads one learns that Olanthius loved her and believes she died in the Charge. Reading them without his leave is cruel; telling him they were read is crueller. But if Or'Henn reads one and then tells Olanthius the truth, it counts as the master key in area C5.\n\n{@b Treasure.} On the shelf, a map of Avernus marked in Olanthius's hand with the road to the Bleeding Citadel. He gives it freely to a party he trusts."
+        }
       ]
     },
 
     {
       id: "the-kneeling-knight",
-      title: "The Kneeling Knight",
+      title: "C5. The Kneeling Knight",
       when: "Only if they enter the Crypt",
       duration: "45 to 60 minutes",
       blocks: [
+        { t: "p", text: "This long hall holds the tombs of Zariel's generals, four sealed sarcophagi carved with riders, and one more, open and empty, at the heart of the room. Cold green light fills it. When the characters enter, read:" },
         { t: "read", text: "At the heart of the Crypt, a knight kneels in front of an open stone coffin. There is no name on it. His armour is Hellrider steel gone black, and a cold green fire lives behind his visor.\n\nHe does not turn around.\n\n\"You've come a long way to look at a grave with no one in it,\" he says. His voice comes up out of the green light like something pulled from a deep well. \"That's fitting. I've knelt here a hundred years and found the same.\"\n\nHis gauntlets tighten on the edge of the stone.\n\n\"If you've come to be forgiven for something, you're in the wrong crypt. There's no forgiveness on these walls. Only names. Say your business, or leave me mine.\"" },
         { t: "img", src: "art/generated/event-crypt-kneeling-knight.webp", caption: "Olanthius, at a grave with no one in it.", credit: "Generated art (gpt-image-1)." },
         { t: "p", text: "{@c olanthius|Olanthius} is a guilty witness. A hundred years ago he stood at the gate and watched Yael and Lulu carry the Sword out of Hell, and he let them pass. Then he stayed to guard the road they took, and told himself it was duty. The coffin is his own. He carved it and could not lie down in it, so he buried his honour there instead, and the Sword's missing shard with it." },
