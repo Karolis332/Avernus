@@ -37,7 +37,7 @@ Resolved (DM rulings 2026-10-23):
 - **Proposed links (DM can drop any):** Eldra Vash survived the First Charge as a captive; **Kreeg bought her** for the Ashen Garden; Olanthius loved her and thinks she died in the Charge. Urexiel's ledger line "One gardener, aged. Incidental." is Eldra. The Crypt door opens for Lulu, a First Charge name (Or'Henn saying "Eldra"), the watchword "The sun will hold!", a bought word, or force (force = disadvantage with Olanthius). Kreeg's homebrew **Ledger of Forgetting** can take one old memory (Lulu's) instead of the last 5 hours.
 - **Feonor's road shifts +6 days** (crow on day 4 = her day 10): she waits outside the Menagerie with a map until **day 14**, then is caged. Geas still lapses day 30.
 - **DM recommendation:** Uldrak goes home to Muspelheim after the dragons and returns for the last battle (CR 23 trivialises all three roads).
-- **Still yours to rule:** who broke the Sword (Olanthius doesn't know).
+- **The Sword (2026-10-23):** Eventyr's one-shard version. Olanthius keeps the missing shard; the Maw and the Pit are optional again.
 
 **Session 10: The Styx Run** — DM app: `dm-app/sessions/10-the-styx-run.js` (full session, Session 9 format). The Sibriex has **not** been met yet.
 
@@ -114,22 +114,12 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 ## Active Plot Threads
 
 ### MAIN QUEST
-0. **⚔ THE SWORD IS IN THREE PIECES (ruled 2026-10-11).** The Sword of Zariel is **not in the Citadel**. Its chamber is empty and has been since the flight — the Sword was broken into three shards and hidden in three hard places:
-   | Shard | Where | Keeper |
-   |---|---|---|
-   | **1 — hilt and crossguard** | Crypt of the Hellriders | Olanthius has guarded it since the flight |
-   | **2 — the forte** | Kostchtchie's Maw | frozen into the anchor-ice |
-   | **3 — the point** | Pit of Shummrath | Bel buried it and sat a pit fiend on it |
+0. **⚔ THE SWORD — ONE MISSING SHARD (ruled 2026-10-23, replaces the 2026-10-11 three-shard split).** Checked against the book: the official adventure never breaks the Sword; it waits whole on its dais in the Bleeding Citadel. The DM chose **Eventyr Games' one-shard option**: the Sword waits on its dais **missing one small shard** that cracked off in Zariel's last battle (nobody broke it on purpose). **Olanthius picked it up off the field and keeps it at the Crypt.** The shard has a spark of sentience, pulls toward the Citadel, carries the party into the vision trial, then flies back onto the blade.
+   - **Kostchtchie's Maw and the Pit of Shummrath are optional again** (no shards there). Kostchtchie is Olanthius's book task: free him to distract Zariel.
+   - Without the shard, Lulu's memory alone opens the vision trial and the Sword stays notched (DM's choice what that costs).
+   - **The Fallen Three are unchanged** — they supply the *road to the Citadel* (Haruman's piece held 1/3; Bel's and Olanthius's open).
 
-   **The Fallen Three are unchanged** — they still supply the *road to the Citadel* (Haruman's piece held 1/3, Bel's and Olanthius's open). The Fallen Three find the Citadel; the shards fill it. **Chapter 4 is now the reforging, not the finding.**
-
-   **Knock-ons already applied to the map:** Kostchtchie's Maw and the Pit of Shummrath moved **optional → main path**; the Citadel now requires all three shards; the session estimate rises by ~3 (main path ≈ 14.5, most-likely ≈ 20).
-
-   **⚠ TWO THINGS STILL TO RULE:**
-   - **Kostchtchie's Maw needs a guardian.** As written it was the easiest site on the board — `requires: ["Nothing. A bargain, not a dungeon."]`. A shard cannot sit somewhere free. Cleanest fix: **Kostchtchie has it, knows what it is, and the price is his freedom** — which folds the demon-lord bill the party already owes into the cost of the Sword.
-   - **Who broke the Sword, and why?** Yael and Lulu carried it out; someone took it apart afterward so no single hand could lift it. That someone is unnamed. [TO RULE]
-
-1. **Main Quest:** Find the Bleeding Citadel → **reforge** Zariel's Sword from the three shards → free Elturel. Haruman piece collected (1/3). Olanthius + Bel remaining. Bleeding Citadel manifests every 33 days; next window [TO CONFIRM WITH DM: days remaining after Session 7 elapsed time — the original 17-day clock was set at Session 5/6].
+1. **Main Quest:** Find the Bleeding Citadel → claim Zariel's Sword (bring Olanthius's shard to make it whole) → free Elturel. Haruman piece collected (1/3). Olanthius + Bel remaining. Bleeding Citadel manifests every 33 days; next window [TO CONFIRM WITH DM: days remaining after Session 7 elapsed time — the original 17-day clock was set at Session 5/6].
    - **NEW — the Thavius Kreeg lead:** Or'Henn's former estate-master is **Thavius Kreeg** (the traitor of Elturel), reborn an **amnizu at the Stygian Dock** [D&D CANON]. He signed the pact that damned Elturel — a direct line to the Companion (imprisoned planetar), the Creed Resolute souls, and possibly *breaking the contract*. Or'Henn is the way in; his true name (Contract V coffer) is the leverage. See `npc-reference.md` → Thavius Kreeg. [HOMEBREW link]
 
 ### DRENWAL'S ARC

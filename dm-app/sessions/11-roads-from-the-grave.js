@@ -5,7 +5,7 @@ window.SESSION = {
   id: "11-roads-from-the-grave",
   title: "Roads from the Grave",
   subtitle: "Session 11 · Descent into Avernus",
-  summary: "After the dragons, three roads run out from Uldrak's Grave, and each ends at someone who owes the party an answer. Olanthius kneels in the Crypt of the Hellriders over the first shard of the Sword. Lady Urexiel keeps Or'Henn's staff, Kreeg's box and the ledger of the raid in the Scabrous Menagerie. Thavius Kreeg, the man who sold Elturel, runs the Stygian Dock as an amnizu. The players pick the road. Each branch runs on its own.",
+  summary: "After the dragons, three roads run out from Uldrak's Grave, and each ends at someone who owes the party an answer. Olanthius kneels in the Crypt of the Hellriders over the one shard missing from the Sword. Lady Urexiel keeps Or'Henn's staff, Kreeg's box and the ledger of the raid in the Scabrous Menagerie. Thavius Kreeg, the man who sold Elturel, runs the Stygian Dock as an amnizu. The players pick the road. Each branch runs on its own.",
 
   party: [
     { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding drawn (Tier II). Carries the Shield of the Hidden Lord." },
@@ -81,7 +81,7 @@ window.SESSION = {
     "olanthius": {
       name: "Olanthius",
       kind: "olanthius",
-      role: "Death knight, guilty witness, keeper of the first shard",
+      role: "Death knight, guilty witness, keeper of the Sword's missing shard",
       source: { page: "bestiary", name: "Olanthius", src: "BGDIA" },
       homebrew: "Monster Manual death knight numbers. He fights at half heart: he pulls killing blows, uses Hellfire Orb only as a warning shot, and never strikes a downed character.",
       npc: true,
@@ -121,7 +121,7 @@ window.SESSION = {
         "Appearance: blackened Hellrider plate, a rising sun ground off the breastplate. Green fire in the helm.",
         "Voice: slow and cold, like something pulled up a deep well. He never shouts.",
         "Wants: to stop remembering. He cannot. So he guards.",
-        "Knows: the road to the Bleeding Citadel. Why the Sword was hidden. Where its hilt is. That a small star fell, and Zariel hated it.",
+        "Knows: the road to the Bleeding Citadel. Why the Sword was hidden. Where its missing shard is. That a small star fell, and Zariel hated it.",
         "Sample line: \"If you've come to be forgiven for something, you're in the wrong crypt.\""
       ]
     },
@@ -220,42 +220,58 @@ window.SESSION = {
     "kreeg": {
       name: "Thavius Kreeg",
       kind: "kreeg",
-      role: "Amnizu dockmaster. The man who sold Elturel",
+      role: "Amnizu dockmaster of the Styx. The man who sold Elturel",
       source: { page: "bestiary", name: "Amnizu", src: "MTF" },
-      homebrew: "Amnizu chassis from Mordenkainen's Tome of Foes; check the numbers against your book. Campaign addition: Ledger of Forgetting. Killed in the Nine Hells, he is destroyed for good.",
+      homebrew: "Campaign boss on the amnizu chassis (Mordenkainen's Tome of Foes), raised to CR 22 to stand beside Arkhan. Zariel made him master of the Styx at this Dock, and every soul that passes through his ledger feeds him. Killed in the Nine Hells, he is destroyed for good.",
       npc: true,
       sizeType: "Medium fiend (devil), lawful evil",
-      ac: 21, acNote: "natural armor",
-      hp: 202, hpFormula: "27d8 + 81",
+      ac: 22, acNote: "natural armor",
+      hp: 342, hpFormula: "36d8 + 180",
       speed: "30 ft., fly 40 ft.",
-      abilities: { str: 11, dex: 13, con: 16, int: 20, wis: 12, cha: 18 },
-      saves: "Dex +7, Con +9, Wis +7, Cha +10", skills: "Deception +10, Insight +7, Perception +7",
-      vulnerable: "", resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered", immune: "fire, poison", condImmune: "poisoned",
-      senses: "darkvision 120 ft., passive Perception 17",
+      abilities: { str: 11, dex: 14, con: 20, int: 24, wis: 16, cha: 22 },
+      saves: "Dex +9, Con +12, Wis +10, Cha +13", skills: "Arcana +14, Deception +13, Insight +10, Perception +10, Persuasion +13",
+      vulnerable: "", resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered", immune: "fire, poison", condImmune: "charmed, poisoned",
+      senses: "truesight 60 ft., darkvision 120 ft., passive Perception 20",
       languages: "Common, Infernal, telepathy 1,000 ft.",
-      cr: "18", xp: 20000, pb: 6,
+      cr: "22", xp: 41000, pb: 7,
       traits: [
         { name: "Devil's Sight", text: "Magical darkness doesn't impede his darkvision." },
+        { name: "Legendary Resistance (3/Day)", text: "If he fails a saving throw, he can choose to succeed instead." },
         { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
-        { name: "Innate Spellcasting", text: "Intelligence (spell save DC 19, +11 to hit). At will: {@spell charm person}, {@spell command}. 3/day: {@spell dominate monster}. 1/day: {@spell feeblemind}." },
-        { name: "Ledger of Forgetting", text: "When a creature stunned by his Forgetfulness stays stunned for the full minute, Kreeg can take one memory of his choice instead of the last 5 hours, however old it is. He writes it in his ledger as a single line. Reading that line aloud to the creature gives the memory back. {@spell Greater restoration} does not. Burning the page loses it forever." }
+        { name: "Innate Spellcasting", text: "Intelligence (spell save DC 22, +14 to hit). At will: {@spell charm person}, {@spell command}, {@spell detect thoughts}, {@spell suggestion}. 3/day each: {@spell dominate monster}, {@spell modify memory}. 1/day each: {@spell feeblemind}, {@spell mass suggestion}." },
+        { name: "Ledger of Forgetting", text: "When a creature stunned by his Forgetfulness stays stunned for the full minute, Kreeg can take one memory of his choice instead of the last 5 hours, however old it is. He writes it in his ledger as a single line. Reading that line aloud to the creature gives the memory back. {@spell Greater restoration} does not. Burning the page loses it forever." },
+        { name: "Escape Clause (1/Day)", text: "When he drops to 0 hit points, he drops to 1 instead and vanishes into the ledger room under the tollhouse. Each creature that saw it makes a DC 22 Intelligence saving throw or forgets where he went. Speaking his true name, or {@item dimensional shackles|DMG} on his wrists, stops this." }
       ],
       actions: [
-        { name: "Multiattack", text: "Two Taint attacks, or Poison Mind and one Taint attack." },
-        { name: "Taint", text: "Melee Spell Attack: +11 to hit, reach 5 ft., one target. Hit: 27 (5d10) necrotic." },
-        { name: "Poison Mind", text: "One or two creatures he can see within 60 ft. make a DC 19 Wisdom saving throw. On a failure, each takes 26 (4d12) necrotic and is blinded until the start of his next turn." },
-        { name: "Forgetfulness (Recharge 6)", text: "One creature he can see within 60 ft. makes a DC 18 Intelligence saving throw or is stunned for 1 minute. It repeats the save at the end of each of its turns, ending the effect on a success. If it stays stunned for the full minute, it forgets everything from the last 5 hours." }
+        { name: "Multiattack", text: "He uses Poison Mind, then makes two Taint attacks." },
+        { name: "Taint", text: "Melee Spell Attack: +14 to hit, reach 5 ft., one target. Hit: 33 (6d10) necrotic, and the target can't regain hit points until the start of his next turn." },
+        { name: "Poison Mind", text: "Up to three creatures he can see within 60 ft. make a DC 22 Wisdom saving throw. On a failure, each takes 32 (5d12) necrotic and is blinded until the start of his next turn. On a success, half damage and not blinded." },
+        { name: "Forgetfulness (Recharge 5-6)", text: "One creature he can see within 60 ft. makes a DC 22 Intelligence saving throw or is stunned for 1 minute. It repeats the save at the end of each of its turns, ending the effect on a success. If it stays stunned for the full minute, it forgets everything from the last 5 hours, or he uses his Ledger of Forgetting." }
       ],
-      bonus: [],
+      bonus: [
+        { name: "Dockmaster's Order", text: "One devil on the Dock that can hear his telepathy uses its reaction to move up to its speed and make one attack." }
+      ],
       reactions: [
-        { name: "Instinctive Attraction", text: "When a creature he can see targets him with a spell, the caster makes a DC 19 Wisdom saving throw. On a failure, the spell targets the creature closest to the caster instead, other than Kreeg or the caster. It fails against a caster who can't be charmed." }
+        { name: "Instinctive Attraction", text: "When a creature he can see targets him with a spell, the caster makes a DC 22 Wisdom saving throw. On a failure, the spell targets the creature closest to the caster instead, other than Kreeg or the caster. It fails against a caster who can't be charmed." }
       ],
+      legendary: {
+        count: 3,
+        intro: "Kreeg can take 3 legendary actions, one at a time, at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
+        actions: [
+          { name: "Taint", cost: 1, text: "One Taint attack." },
+          { name: "Command", cost: 1, text: "He casts {@spell command}." },
+          { name: "Poison Mind", cost: 2, text: "He uses Poison Mind." },
+          { name: "Strike from the Record", cost: 3, text: "One creature he can see within 60 ft. makes a DC 22 Charisma saving throw. On a failure it vanishes until the end of its next turn and takes 22 (4d10) psychic. Until it comes back, its allies forget it was ever there: they can't target it with spells or help it. It reappears in the space it left, or the nearest free one." }
+        ]
+      },
+      lair: { initiative: 20, text: "On initiative 20, while he is on the Dock, pick one. {@b The Styx Rises:} a black wave sweeps a 20-ft. stretch of the wharf. Each creature there makes a DC 18 Dexterity saving throw; on a failure the Styx touches it, and it makes a DC 15 Intelligence saving throw or forgets the last day. A creature knocked into the river is targeted by {@spell feeblemind}. {@b The Count:} every lemure on the Dock chants numbers at once. Each creature of his choice makes a DC 18 Wisdom saving throw or has disadvantage on concentration saves and can't take reactions until initiative 20 next round. {@b Barge Chains:} a mooring chain lashes out at one creature within 10 ft. of the edge. DC 18 Strength saving throw, or it is pulled 10 ft. toward the water." },
       tactics: [
-        "He would rather talk, and he would rather you forgot. Charm person and command before anything that hurts.",
+        "He would rather talk, and he would rather you forgot. Charm person, suggestion and command before anything that hurts.",
         "Forgetfulness on whoever is carrying Lulu, or on Lulu herself if he has guessed who she is.",
-        "Dominate monster on Uldrak or the strongest fighter, and turn them on their friends.",
-        "Below 100 hit points he offers terms: his signature, for his life. He means it, this once.",
-        "He never fights near the water's edge. He knows what the Styx does better than anyone."
+        "Dominate monster on Uldrak if he is here, otherwise on the strongest fighter, and turn them on their friends.",
+        "Strike from the Record on the healer, so the party forgets to save whoever is dying.",
+        "Lair actions: The Styx Rises first, while people are still standing near the edge.",
+        "Below 100 hit points he offers terms: his signature, for his life. He means it, this once. At 0 he uses the Escape Clause, and the hunt moves under the tollhouse."
       ],
       description: "A gaunt grey devil in a clerk's black robe, with a long bald skull, small dark wings folded like a coat, and fingers stained black with ink. On one finger, much too small for it now, is a High Overseer's ring with a cracked sun on it.",
       roleplay: [
@@ -318,7 +334,7 @@ window.SESSION = {
 
         { t: "h", text: "Background" },
         { t: "p", text: "The party has freed Uldrak and met Arkhan's dragons at his Grave. Now the map opens. Three people are close, and each one is a door." },
-        { t: "p", text: "{@c olanthius|Olanthius} is a death knight who kneels in the Crypt of the Hellriders. A hundred years ago he watched the paladin Yael and the hollyphant Lulu carry the Sword of Zariel out of Hell, and he did nothing. He knows the road to the Bleeding Citadel. And under his empty coffin lies the first shard of the Sword: the hilt and crossguard." },
+        { t: "p", text: "{@c olanthius|Olanthius} is a death knight who kneels in the Crypt of the Hellriders. A hundred years ago he watched the paladin Yael and the hollyphant Lulu carry the Sword of Zariel out of Hell, and he did nothing. He knows the road to the Bleeding Citadel. And in his empty coffin lies the one piece missing from the Sword: a sliver of the blade that broke off in Zariel's last battle." },
         { t: "p", text: "{@c urexiel|Lady Urexiel} is a yugoloth broker who keeps the Scabrous Menagerie. She paid for the raid that burned the Ashen Garden and killed Or'Henn's household. Her vault holds Cinderbloom, a Green Remnant, her ledger of the raid, and a puzzle box she thinks is a pretty toy. The box is Kreeg's copy of the contract that damned Elturel." },
         { t: "p", text: "{@c kreeg|Thavius Kreeg} sold Elturel to Zariel. Zariel remade him as an amnizu and set him to count souls at the Stygian Dock. He owned the Ashen Garden. Or'Henn served him for sixty years and never saw his face up close. The party worked out who he is in Session 8." },
 
@@ -333,14 +349,14 @@ window.SESSION = {
         ] },
 
         { t: "h", text: "Adventure Hooks" },
-        { t: "p", text: "{@b The Sword.} The Sword of Zariel is in three shards. The first is in the Crypt. Lulu dreams of a cold place and a man at a gate." },
+        { t: "p", text: "{@b The Sword.} The Sword of Zariel waits in the Bleeding Citadel, missing one shard. The shard is in the Crypt. Lulu dreams of a cold place and a man at a gate." },
         { t: "p", text: "{@b The staff.} Feonor's crow named the Menagerie. Urexiel will not sell Cinderbloom to her. Or'Henn has to go himself." },
         { t: "p", text: "{@b The traitor.} Veska has known since Session 8 that the man who sold her city is alive, two days up the Styx. She has not stopped thinking about it." },
 
         { t: "h", text: "Where things stand" },
         { t: "list", items: [
           "The party is 13th level.",
-          "Sword shards held: none. The Fallen Three road: Haruman's piece only.",
+          "The Sword's missing shard: not found yet. The Fallen Three road: Haruman's piece only.",
           "Green Remnants: none of the three.",
           "Or'Henn is still under Tiamat's curse. Her visions come in his sleep.",
           "Feonor is geas-bound to fetch the staff. The geas lapses on day 30.",
@@ -366,7 +382,7 @@ window.SESSION = {
         { t: "read", text: "Or'Henn's pocket is warm where he keeps the ash from Feonor's crow. It has drawn itself into a small arrow, pointing south and east, toward a sound you can almost hear: a long way off, a great many things in cages, all singing." },
         { t: "read", text: "Veska has not looked at the map. She is looking up the Styx, the way you came.\n\n\"He's up there,\" she says. \"Kreeg. Two days. Counting souls on a dock like a clerk.\" She turns her helmet over in her hands. \"I'm not asking. I'm telling you where I'll be looking.\"" },
         { t: "list", items: [
-          "{@b The Crypt of the Hellriders.} About a day west. The first shard of the Sword, and the road to the Citadel. Bring Lulu.",
+          "{@b The Crypt of the Hellriders.} About a day west. The shard missing from the Sword, and the road to the Citadel. Bring Lulu.",
           "{@b The Scabrous Menagerie.} Two to three days south and east. Cinderbloom, Kreeg's box, and the woman who paid for the raid.",
           "{@b The Stygian Dock.} One to two days back up the Styx. Kreeg himself. Do not bring Lulu unprotected."
         ] },
@@ -450,7 +466,7 @@ window.SESSION = {
       duration: "45 to 60 minutes",
       blocks: [
         { t: "read", text: "At the heart of the Crypt, a knight kneels in front of an open stone coffin. There is no name on it. His armour is Hellrider steel gone black, and a cold green fire lives behind his visor.\n\nHe does not turn around.\n\n\"You've come a long way to look at a grave with no one in it,\" he says. His voice comes up out of the green light like something pulled from a deep well. \"That's fitting. I've knelt here a hundred years and found the same.\"\n\nHis gauntlets tighten on the edge of the stone.\n\n\"If you've come to be forgiven for something, you're in the wrong crypt. There's no forgiveness on these walls. Only names. Say your business, or leave me mine.\"" },
-        { t: "p", text: "{@c olanthius|Olanthius} is a guilty witness. A hundred years ago he stood at the gate and watched Yael and Lulu carry the Sword out of Hell, and he let them pass. Then he stayed to guard the road they took, and told himself it was duty. The coffin is his own. He carved it and could not lie down in it, so he buried his honour there instead, and the hilt of the Sword with it." },
+        { t: "p", text: "{@c olanthius|Olanthius} is a guilty witness. A hundred years ago he stood at the gate and watched Yael and Lulu carry the Sword out of Hell, and he let them pass. Then he stayed to guard the road they took, and told himself it was duty. The coffin is his own. He carved it and could not lie down in it, so he buried his honour there instead, and the Sword's missing shard with it." },
 
         { t: "h", text: "How He Opens Up" },
         { t: "list", items: [
@@ -474,7 +490,7 @@ window.SESSION = {
 
         { t: "h", text: "Event: The Shard" },
         { t: "p", text: "When they ask about the Sword, he stands for the first time in a hundred years, and lifts a folded cloak out of the coffin." },
-        { t: "read", text: "Inside the cloak is the hilt of a sword. Gold, gone dark. A crossguard shaped like two spread wings. Where the blade should be there is only a jagged stub, broken off a hand's width from the guard.\n\nIt is still warm.\n\n\"Someone brought it to me in the dark, wrapped in this,\" he says. \"I never saw a face. I have kept it. That is all I have done with my life since: kept it.\"\n\nHe does not hold it out.\n\n\"Yael died to carry that blade out of Hell. You want to carry it back in. Tell me why her death should be wasted.\"" },
+        { t: "read", text: "Inside the cloak is a sliver of bright metal as long as a hand: sharp along one edge, broken jagged along the other. It glows faintly, like a coal that will not go out. If Lulu is near, it hums.\n\n\"It broke off in her last battle, the day she fell,\" he says. \"I picked it up off the field. The rest of the blade went with Yael and the little one. This stayed with me. I have kept it. That is all I have done with my life since: kept it.\"\n\nHe does not hold it out.\n\n\"The Sword is waiting somewhere, missing this. Yael died to carry it out of Hell. You want to make it whole again. Tell me why her death should be wasted.\"" },
         { t: "p", text: "He does not hand it over easily. They have to answer him. Any of these can win it with a {@b DC 15 Charisma (Persuasion)} check, or with no check if they argue it well:" },
         { t: "list", items: [
           "{@b Elturel.} A whole city, sinking. The Sword and the contract together are the only clean way to free it.",
@@ -482,7 +498,7 @@ window.SESSION = {
           "{@b Lulu.} If her memory has fired and she says Yael would want it, he gives it to her with no check at all."
         ] },
         { t: "p", text: "His condition, whatever they say: \"When it is whole, a Hellrider carries it. Not a devil. Not a god. Not a dragon.\" If Or'Henn has any gold scales, Olanthius looks at them and adds: \"Keep that one away from it. Something is looking out of his eye.\"" },
-        { t: "note", title: "Who Broke the Sword", text: "Olanthius does not know who broke the Sword. That question is still yours to answer. He only knows the hilt came to him in the dark, in a Hellrider's cloak." },
+        { t: "note", title: "How the Sword Broke", text: "Nobody broke it on purpose. It cracked in Zariel's last battle, as she fell, and this sliver came away. Yael and Lulu carried the rest to the Bleeding Citadel, where it waits on its dais with a notch in the blade. This is the book's Chapter 4 with Eventyr Games' one-shard option.\n\nThe shard has a small spark of its own and wants to go home. A {@b DC 15 Intelligence (Arcana)} check feels it pulling toward the Citadel. In the Citadel it carries the party into the vision trial, and when the trial ends it flies up and rejoins the blade in a burst of light." },
 
         { t: "h", text: "Event: The Star That Fell" },
         { t: "p", text: "He gives this freely to a keyed party, or on a {@b DC 16 Wisdom (Insight)} check if he has warmed at all." },
@@ -495,14 +511,14 @@ window.SESSION = {
         { t: "h", text: "If the Characters..." },
         { t: "p", text: "{@b ...choose the Vigil,} they keep watch at the coffin through one Avernus night (a long rest) without leaving and without drawing steel. At the end, each makes a {@b DC 14 Wisdom saving throw}. If at least two succeed, he trusts them as if they had the key. The cold candles light, one by one." },
         { t: "p", text: "{@b ...choose the Half-Heart Duel,} he rises and fights at half heart, to see whether they fight with honour. Run the encounter below." },
-        { t: "p", text: "{@b ...attack him outright,} he fights to the end. If he is destroyed, everything he knows dies with him: the road, the reason, and the star. The hilt still lies in the coffin. His sword is a {@b +2 longsword} that sheds cold blue light." },
-        { t: "p", text: "{@b ...just take the hilt,} he does not stop them. He only says, \"Then you are what I was,\" and kneels again. They lose his road and his warmth, and Lulu will not look at them for a day." },
+        { t: "p", text: "{@b ...attack him outright,} he fights to the end. If he is destroyed, everything he knows dies with him: the road, the reason, and the star. The shard still lies in the coffin. His sword is a {@b +2 longsword} that sheds cold blue light." },
+        { t: "p", text: "{@b ...just take the shard,} he does not stop them. He only says, \"Then you are what I was,\" and kneels again. They lose his road and his warmth, and Lulu will not look at them for a day." },
         { t: "encounter", id: "half-heart-duel", title: "The Half-Heart Duel", combatants: [
           { c: "olanthius", n: 1 }
         ], notes: "A test, not a murder. He pulls killing blows and never strikes a downed character. Hellfire Orb only as a warning shot, aimed at empty stone. If they accept a yield and sheathe when he sheathes, he ends it himself and talks as if they had the key." },
 
         { t: "h", text: "Event: Before They Leave" },
-        { t: "p", text: "Whether keyed or won, he can point them at Kostchtchie's Maw, where the second shard is frozen into the anchor-ice: \"You don't befriend the thing in the Maw. You point it.\" If the party is going to the Menagerie next, and he knows what Urexiel did, he asks one thing: \"Bring me her ledger. I want to read the line.\"" },
+        { t: "p", text: "Whether keyed or won, he gives them the last task the book gives him: free Kostchtchie, the demon lord frozen at the Maw, so Zariel looks the other way while they go for the Citadel. \"You don't befriend the thing in the Maw. You point it.\" If the party is going to the Menagerie next, and he knows what Urexiel did, he asks one thing: \"Bring me her ledger. I want to read the line.\"" },
         { t: "choices", prompt: "When they leave the Crypt:", items: [
           { label: "Take another road", goto: "where-we-left-off" },
           { label: "End the session", goto: "ending" }
@@ -538,6 +554,7 @@ window.SESSION = {
           "{@b Her Key.} Tiamat's gift, for one gold scale. Urexiel bows, and hands the staff over. See {@side arc-tiamat|Arc: Or'Henn and Tiamat}.",
           "{@b Sneak in through the Pens.} Three group {@b DC 16 Dexterity (Stealth)} checks. Each failure means a handler patrol finds them."
         ] },
+        { t: "map", src: "art/outlines/menagerie-outline.svg", title: "The Scabrous Menagerie (outline)", note: "DM overview of all four wings, the handlers' round, the Feeding Chutes and Feonor's rock." },
         { t: "choices", prompt: "How do they go in?", items: [
           { label: "As buyers, through the front", goto: "the-trophy-vault" },
           { label: "Through the Pens (a heist, a rescue, or Or'Henn's beasts)", goto: "the-pens" }
@@ -621,7 +638,7 @@ window.SESSION = {
           { c: "urexiel", n: 1 },
           { c: "mezzoloth", n: 2 }
         ], lair: "urexiel", notes: "Use 190 hit points if Veska or Ser Lucan fight. Grapple, then Barb Yank toward a cage. Collector's Verdict every turn. Lair actions on 20: Open a Pen, Feeding Chute, Trophy Light. Below half she falls back to the Killing Floor and opens every cage. If Or'Henn's three beasts get loose, they fight for him." },
-        { t: "map", id: "avernus-encounter-map-40x40", note: "Stand-in for the vault and the Killing Floor. There is no official map of the Menagerie." },
+        { t: "map", src: "art/outlines/vault-outline.svg", title: "Trophy Vault and Killing Floor (outline)", note: "Battle outline, 1 square = 5 ft. Urexiel starts at her desk; she falls back down the corridor to the Killing Floor." },
 
         { t: "h", text: "Event: The Staff in His Hand" },
         { t: "read", text: "It is lighter than you remember. The ember is still dark. But it is warm, and it has always been yours." },
@@ -655,7 +672,9 @@ window.SESSION = {
           "{@b Force.} Three barbed devils on the wharf, and Kreeg in the tollhouse. See the fight in the next scene."
         ] },
         { t: "p", text: "Go to {@scene the-man-who-sold-a-city|The Man Who Sold a City}." },
-        { t: "map", id: "harbor-map-night-25x25", note: "Stand-in for the Stygian Dock. The water is the Styx: anything that falls in is targeted by feeblemind." }
+        { t: "map", src: "art/outlines/dock-outline.svg", title: "The Stygian Dock (outline)", note: "Battle outline, 1 square = 5 ft: the tollhouse, the wharf, three barges and the guard posts." },
+        { t: "map", id: "harbor-map-night-25x25", note: "Painted option for the wharf and the tollhouse. The water is the Styx: anything that falls in is targeted by feeblemind." },
+        { t: "map", id: "low-lantern-40x22", note: "Painted option for the soul barges moored along the wharf." }
       ]
     },
 
@@ -696,13 +715,14 @@ window.SESSION = {
         { t: "h", text: "If the Characters..." },
         { t: "p", text: "{@b ...bargain,} use {@side kreegs-bargains|Kreeg's Bargains}. He keeps the letter of every deal and nothing else." },
         { t: "p", text: "{@b ...use his true name,} he must answer every question truthfully, once each, and cannot use Forgetfulness on whoever holds the name. He hates them for it, quietly, forever." },
-        { t: "p", text: "{@b ...try to take him alive,} it is the best result for Elturel and the hardest. He can fly and he can dominate. They need {@item dimensional shackles|DMG}, his true name, or a grip he cannot break. On the Lady Vengeance he is a prisoner who talks to everyone at night." },
+        { t: "p", text: "{@b ...try to take him alive,} it is the best result for Elturel and the hardest. He can fly, he can dominate, and his Escape Clause pulls him out at 0 hit points. They need {@item dimensional shackles|DMG} or his true name to stop it. On the Lady Vengeance he is a prisoner who talks to everyone at night." },
         { t: "p", text: "{@b ...leave with nothing agreed,} he lets them go. At the door he uses Forgetfulness on the one who heard the most. \"Nothing personal. I just prefer to be a rumour.\"" },
         { t: "p", text: "{@b ...attack him,} run the fight below. Remember: killed here, he is destroyed for good, and the copy can never be signed away." },
         { t: "encounter", id: "dock-fight", title: "The Dock Fight", combatants: [
           { c: "kreeg", n: 1 },
           { c: "barbed-devil", n: 3 }
-        ], notes: "Kreeg stays back and talks while he fights. Charm person and command first. Forgetfulness on Lulu or her carrier. Dominate monster on the strongest fighter. The devils shove people toward the water. Below 100 hit points Kreeg offers his signature for his life, and means it this once. His ledger of taken memories is on the desk: grabbing it is an action." },
+        ], lair: "kreeg", notes: "A deadly fight: CR 22 with legendary and lair actions, plus three guards. Kreeg stays back and talks while he fights. Forgetfulness on Lulu or her carrier. Dominate monster on the strongest fighter. Strike from the Record on the healer. The devils shove people toward the water. Below 100 hit points he offers his signature for his life. At 0 he uses the Escape Clause unless they have his true name or shackles on him. His ledger of taken memories is on the desk: grabbing it is an action." },
+        { t: "map", id: "under-the-villa-65x40", note: "The ledger room under the tollhouse, where the Escape Clause takes him. This is the Vanthampur cellar where Kreeg hid in the book, reused." },
         { t: "choices", prompt: "When they leave the Dock:", items: [
           { label: "Take another road", goto: "where-we-left-off" },
           { label: "End the session", goto: "ending" }
@@ -719,11 +739,11 @@ window.SESSION = {
         { t: "p", text: "End when the road they chose is finished, or at a cliffhanger inside it. Read the outcomes that happened." },
 
         { t: "h", text: "Outcome: They Won the Shard" },
-        { t: "read", text: "The hilt is wrapped in a Hellrider's cloak in the hold, and nobody can sleep near it. It is warm all night, like something breathing." },
-        { t: "p", text: "Sword shards: 1 of 3. The Fallen Three road: 2 of 3 (Haruman and Olanthius). Lulu has her fourth memory. Olanthius may ride again at the very end, if they come back for him." },
+        { t: "read", text: "The shard is wrapped in a Hellrider's cloak in the hold, and nobody can sleep near it. It glows all night, and it hums whenever Lulu walks past." },
+        { t: "p", text: "The Sword's missing shard is theirs. In the Citadel it opens the vision trial and then rejoins the blade. The Fallen Three road: 2 of 3 (Haruman and Olanthius). Lulu has her fourth memory. Olanthius may ride again at the very end, if they come back for him." },
 
         { t: "h", text: "Outcome: Olanthius Was Destroyed" },
-        { t: "p", text: "They have the hilt, but his road, his reason and his star are gone. The way to the Citadel now leans on Bel and on Lulu's memories alone. The cold candles in the Nave never light." },
+        { t: "p", text: "They have the shard, but his road, his reason and his star are gone. The way to the Citadel now leans on Bel and on Lulu's memories alone. The cold candles in the Nave never light." },
 
         { t: "h", text: "Outcome: Cinderbloom Came Home" },
         { t: "read", text: "That night, Or'Henn sleeps with the staff across his knees. Twice, someone on watch sees the dead ember glow, very faintly, as if it is dreaming." },
@@ -748,7 +768,7 @@ window.SESSION = {
         { t: "h", text: "Outcome: Lulu Lost a Memory" },
         { t: "p", text: "If Kreeg wrote one of her memories in his ledger, it is on a single line on one page. Whoever holds that page holds part of the road to the Citadel. If the page burns, the Caged Star needs another way." },
 
-        { t: "note", title: "Remember for Next Time", text: "Write down: the day of Feonor's geas. Or'Henn's gold scales. Contract 1 breach marks. Sword shards held. Green Remnants held. Who has Kreeg's box. Whether Kreeg is alive, and where. Which of Lulu's memories she has. Whether Uldrak is still with them." }
+        { t: "note", title: "Remember for Next Time", text: "Write down: the day of Feonor's geas. Or'Henn's gold scales. Contract 1 breach marks. Whether they hold the shard. Green Remnants held. Who has Kreeg's box. Whether Kreeg is alive, and where. Which of Lulu's memories she has. Whether Uldrak is still with them." }
       ]
     }
   ],
@@ -801,9 +821,9 @@ window.SESSION = {
         { t: "p", text: "The spare control rods and the fortress command cipher are Bel's price for his piece of the road. The party does not know he wants them yet. The Warden still guards the engine-well, Zariel's patrols hunt rod-thieves, and the Rust Queen's crew may be inside first." },
 
         { t: "h", text: "The Pit of Shummrath" },
-        { t: "p", text: "{@b Four to five days north. Omen:} the Styx runs faster and louder, toward a sound like something breathing in a well." },
-        { t: "read", text: "If they have the hilt, it turns in its cloak in the hold, all night, until it points north. In the morning it is still pointing." },
-        { t: "p", text: "The third shard of the Sword, the point, lies at the bottom of the pit. Bel buried it and sat a pit fiend on it. Getting it means damming the Styx with shattersticks from the Firesnake Forge at the Emporium, waiting a day, and fighting a weakened pit fiend. Freeing Shummrath angers Bel." }
+        { t: "p", text: "{@b Four to five days north. Omen:} the Styx runs faster and louder, toward a sound like something breathing at the bottom of a well." },
+        { t: "read", text: "The river bends, and in the middle of the bend the water goes down. Not over a fall. Down: a round hole in the Styx itself, with the black water pouring into it from every side and never filling it.\n\nFrom far below, something very large is laughing." },
+        { t: "p", text: "The pit fiend Shummrath is jailed under the river by Bel. Damming the Styx with shattersticks from the Firesnake Forge at the Emporium, then waiting a day, drains the pit and weakens him. His blood is one of the Blood Pay sources for the Citadel gate. Freeing him angers Bel." }
       ]
     }
   }

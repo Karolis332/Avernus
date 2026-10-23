@@ -23,12 +23,12 @@ window.CAMPAIGN.map = {
     {
       id: "ch3c",
       title: "3c · The Fallen Three & Final Tasks",
-      summary: "The party seeks one of the Fallen Three, and each sets a last task: feed Haruman's body to the sibriex, bring Bel the control rods, or free Kostchtchie for Olanthius. Eventyr can add the Arches of Ulloch as the only door to the Citadel. Gate: a Fallen One names the way. Here: the road needs all three pieces, or Lulu's full memory. Haruman's piece is held. SEPARATELY, the three shards of the Sword itself are hidden at the Crypt, Kostchtchie's Maw and the Pit of Shummrath -- the Fallen Three find the Citadel, the shards fill it."
+      summary: "The party seeks one of the Fallen Three, and each sets a last task: feed Haruman's body to the sibriex, bring Bel the control rods, or free Kostchtchie for Olanthius. Eventyr can add the Arches of Ulloch as the only door to the Citadel. Gate: a Fallen One names the way. Here: the road needs all three pieces, or Lulu's full memory. Haruman's piece is held. The Sword itself waits in the Citadel missing one small shard, which Olanthius keeps at the Crypt (Eventyr's option, ruled 2026-10-23)."
     },
     {
       id: "ch4",
       title: "Chapter 4 · The Sword of Zariel",
-      summary: "Eventyr runs this as one adventuring day: climb the Scab, enter the Bleeding Citadel, survive the Idyllglen dream, claim the Sword. Gate: a worthy hand holds the Sword of Zariel. HERE IT IS BIGGER: the Citadel stands only in a 33-day window, Yael's resting place replaces Idyllglen, and the Sword is NOT in its chamber. It was broken into three shards and hidden at the Crypt, the Maw and the Pit. Chapter 4 is the reforging, not the finding."
+      summary: "Eventyr runs this as one adventuring day: climb the Scab, enter the Bleeding Citadel, survive the Idyllglen dream, claim the Sword. Gate: a worthy hand holds the Sword of Zariel. HERE IT IS BIGGER: the Citadel stands only in a 33-day window, Yael's resting place replaces Idyllglen, and the Sword waits on its dais missing one shard, which cracked off in Zariel's last battle. Olanthius has it. The shard carries the party into the vision trial, then rejoins the blade."
     },
     {
       id: "ch5",
@@ -198,15 +198,15 @@ window.CAMPAIGN.map = {
     {
       id: "pit-of-shummrath", title: "Pit of Shummrath",
       x: 19.5, y: 33.3,
-      stage: "ch3b", path: "main", status: "open",
-      objective: "Dam the Styx over the pit, bleed the pit fiend Shummrath -- and take the third shard of the Sword, which Bel jailed him with and which is why he is still down there.",
+      stage: "ch3b", path: "optional", status: "open",
+      objective: "Dam the Styx over the pit and bleed the pit fiend Shummrath.",
       bloodPrice: "Shattersticks bought at the Emporium, a day of waiting by the dammed river, then a fight with a weakened pit fiend. Bel jailed him, so freeing him angers Bel.",
       blood: 2,
       eventyr: "3b Blood Pay option. The salamanders at the Firesnake Forge sell the explosives.",
       requires: ["Shattersticks from the Firesnake Forge (Wandering Emporium).", "Word of the pit, from Bel's old smiths."],
-      unlocks: ["Sword piece 3 of 3 -- the point.", "Pit fiend blood.", "A freed, furious pit fiend loose on Avernus."],
+      unlocks: ["Pit fiend blood.", "A freed, furious pit fiend loose on Avernus."],
       sessions: 1.5,
-      dmChoices: ["NO LONGER OPTIONAL: a Sword shard is here, so this is main path.", "Not introduced in this campaign yet.", "The jailing reads better with the shard in it: Bel did not imprison Shummrath for rebellion, he imprisoned the thing he had hidden and left a pit fiend sitting on it. Bel knows exactly what is down there, which gives the Forge visit a second layer.", "This site still pays pit fiend blood, so it now does double duty: a shard AND a Blood Pay source."],
+      dmChoices: ["Not introduced in this campaign yet.", "Back to optional on 2026-10-23: the three-shard split was dropped for Eventyr's one-shard version, and no shard is here."],
       alternatives: ["Leave Shummrath jailed, and let Bel know you know. Leverage at the Forge."]
     },
     {
@@ -342,14 +342,14 @@ window.CAMPAIGN.map = {
       id: "crypt-of-the-hellriders", title: "Crypt of the Hellriders",
       x: 22.7, y: 70.5,
       stage: "ch3c", path: "main", status: "open",
-      objective: "Win the third piece of the ROAD from Olanthius, the guilty witness, with Lulu there to hear him -- and take the first SHARD OF THE SWORD, which he has been guarding down here since the flight.",
+      objective: "Win the third piece of the ROAD from Olanthius, the guilty witness, with Lulu there to hear him -- and take the one SHARD missing from the Sword, which cracked off in Zariel's last battle and which he has kept ever since.",
       bloodPrice: "A death knight. Without Eldra's name or signet it is one DC 20 Persuasion, then a fight. Lulu relives the flight from Hell.",
       blood: 2,
       eventyr: "3c, one of the Fallen Three. His final task in Eventyr: free Kostchtchie to distract Zariel.",
       requires: ["The password from the Obelisk, or force, a trick, or a bought word.", "Eldra Vash's signet, or simply her name. Or'Henn knew her."],
-      unlocks: ["Sword piece 1 of 3 -- the hilt and the crossguard.", "Fallen Three: 3 of 3.", "Lulu's Stage 4 memory: the flight, and the raising of the Citadel.", "The Coram clue: he saw the star fall."],
+      unlocks: ["The Sword's missing shard (Eventyr's option): it opens the Citadel's vision trial, then rejoins the blade.", "Olanthius's piece of the Fallen Three road.", "Lulu's Stage 4 memory: the flight, and the raising of the Citadel.", "The Coram clue: he saw the star fall."],
       sessions: 1.5,
-      dmChoices: ["Olanthius is a witness, not the one who BROKE the Sword -- but he is the one who kept a shard. Yael and Lulu carried the Sword out; it was taken apart afterward and scattered.", "He will not hand the shard over easily. Taking it means answering for what the Sword cost Yael.", "He argues against taking the Sword: it would waste Yael's death."],
+      dmChoices: ["Olanthius is a witness, not the one who hid the Sword. Yael and Lulu carried it out; the shard cracked off in Zariel's last battle, and he picked it up off the field.", "He will not hand the shard over easily. Taking it means answering for what the Sword cost Yael.", "He argues against taking the Sword: it would waste Yael's death."],
       alternatives: ["Eventyr's price: free Kostchtchie first.", "Kill him: the road survives, the plain talk does not.", "Skip him: Lulu's memory, finished inside the Citadel, still opens the door."],
       blocks: [
         { t: "h", text: "How to Run It From Here" },
@@ -368,15 +368,15 @@ window.CAMPAIGN.map = {
     {
       id: "kostchtchies-maw", title: "Kostchtchie's Maw",
       x: 93.0, y: 22.8,
-      stage: "ch3c", path: "main", status: "open",
-      objective: "Break the three ice anchors, free Kostchtchie to make war on Zariel -- and cut the second shard of the Sword out of the ice it is frozen into.",
+      stage: "ch3c", path: "optional", status: "open",
+      objective: "Break the three ice anchors and free Kostchtchie to make war on Zariel.",
       bloodPrice: "A demon lord loose and owing nothing. Schedule one bill: a raid on a place they love, a tribute demand, or a grudge against Or'Henn.",
       blood: 3,
       eventyr: "3c final task for Olanthius.",
-      requires: ["Nothing, for the bargain.", "For the shard: something that can work the anchor-ice, and something that can survive what is under it. [DM: THIS SITE NEEDS A REAL GUARDIAN NOW -- see dmChoices.]"],
-      unlocks: ["Sword piece 2 of 3 -- the blade's forte, the half nearest the hand.", "Skip one Citadel-window penalty, or weaken one Zariel encounter.", "Chapter 5, Divided Attention: once a round Zariel loses a Legendary Resistance or a lair action."],
+      requires: ["Nothing. A bargain, not a dungeon."],
+      unlocks: ["Skip one Citadel-window penalty, or weaken one Zariel encounter.", "Chapter 5, Divided Attention: once a round Zariel loses a Legendary Resistance or a lair action."],
       sessions: 1.5,
-      dmChoices: ["NO LONGER OPTIONAL: a Sword shard is here, so this is main path.", "WARNING -- as written this was the easiest site on the board (requires: nothing, a bargain not a dungeon). A Sword shard cannot sit somewhere free. Give the ice a keeper before this is played: Kostchtchie himself wants the shard and will trade it for his freedom, or the anchors are warded and something old is sleeping under them.", "The cleanest version: Kostchtchie HAS the shard, knows what it is, and the price of it is letting him out. That makes the demon lord bill the party already owes into the cost of the Sword."],
+      dmChoices: ["An optional lever. Olanthius asks for it, as in the book, but does not demand it.", "Back to optional on 2026-10-23: the three-shard split was dropped, and no shard is here."],
       alternatives: ["Leave him frozen. No penalty.", "Chapter 5: Kostchtchie is one of Eventyr's demon-lord allies against Zariel."]
     },
     {
@@ -476,14 +476,14 @@ window.CAMPAIGN.map = {
     {
       id: "bleeding-citadel", title: "The Bleeding Citadel",
       stage: "ch4", path: "main", status: "changed",
-      objective: "Reach the Citadel in a 33-day window, get inside, and REFORGE the Sword of Zariel from the three shards. The Sword is not here. Its chamber is empty, and has been since the flight.",
+      objective: "Reach the Citadel in a 33-day window, get inside, and claim the Sword of Zariel. It waits on its dais, missing one shard.",
       bloodPrice: "Blood Pay at the door. A vision trial in the Hall of the Last Charge. Lulu relives Yael's death. Miss the window and Elturel drops a Rung.",
       blood: 3,
       eventyr: "All of Chapter 4: the Scab, the Citadel gate, the Idyllglen dream, the Sword. One adventuring day.",
-      requires: ["All three SHARDS of the Sword (Crypt, Kostchtchie's Maw, Pit of Shummrath). Without them the chamber is just a room.", "The road: all three Fallen Three pieces, or Lulu's final memory.", "A live window. It was 12 days out at the last count."],
-      unlocks: ["The Sword of Zariel, reforged -- the physical lever.", "Lulu's reunion with Yael.", "Lulu's caging-memory, the door to Coram."],
+      requires: ["The shard from the Crypt, ideally. Without it Lulu's memory alone opens the vision trial, and the Sword stays notched (DM's choice what that costs).", "The road: all three Fallen Three pieces, or Lulu's final memory.", "A live window. It was 12 days out at the last count."],
+      unlocks: ["The Sword of Zariel, whole again -- the physical lever.", "Lulu's reunion with Yael.", "Lulu's caging-memory, the door to Coram."],
       sessions: 2.5,
-      dmChoices: ["THE SWORD IS IN THREE PIECES and hidden elsewhere -- the empty chamber is the reveal, and the reforging is the climax of the chapter.", "Who broke it, and why, is still open [TO RULE]: Yael and Lulu carried the Sword out, and someone took it apart afterward so that no one hand could pick it up again. Olanthius kept a shard, Bel buried one under a pit fiend, and one went into the ice at the Maw.", "The interior is this campaign's own: the Plain of Kneeling Penitents, the Wound-Gate, the Hall of the Last Charge, Yael's resting place, the Sword's chamber.", "The gate opens to grief or Blood Pay, never to force."],
+      dmChoices: ["The Sword waits on its dais as in the book, missing one shard (Eventyr's option, ruled 2026-10-23). It cracked off in Zariel's last battle; Olanthius kept it.", "The shard is the conduit for the vision trial. When the trial ends it flies up and rejoins the blade in a burst of light.", "The interior is this campaign's own: the Plain of Kneeling Penitents, the Wound-Gate, the Hall of the Last Charge, Yael's resting place, the Sword's chamber.", "The gate opens to grief or Blood Pay, never to force."],
       alternatives: ["Off-window: hold a vigil at the scar (1d6 each day; 1-2 means a threat finds the camp).", "Run the book's Scab and Idyllglen instead, with the maps below."],
       blocks: [
         { t: "h", text: "How to Run It From Here" },
@@ -493,8 +493,8 @@ window.CAMPAIGN.map = {
           "The Wound-Gate: grief or Blood Pay opens it.",
           "The Hall of the Last Charge: a personal Wisdom trial for each character.",
           "Yael's resting place: Lulu's final memory and the reunion. Give it room.",
-          "The Sword's chamber: EMPTY. Let them see that first, and let it land. Then the shards they are carrying start to pull toward the empty cradle.",
-          "The reforging: lay the three shards in the cradle. A worthiness test, not a crafting check. Sincerity lowers the DC.",
+          "The Sword's chamber: the Sword glowing on its dais, with a notch in the blade. The shard they carry starts to pull toward it.",
+          "The shard carries them into the vision, then flies home onto the blade. Then the worthiness test: \"The hero who becomes one with this blade exists no longer.\" Sincerity lowers the DC.",
           "Before they leave, state the three endings plainly."
         ] },
         { t: "map", id: "the-scab-level-1-30x30", title: "The Scab (book route)" },
@@ -566,7 +566,7 @@ window.CAMPAIGN.map = {
       requires: ["Keep the pin statuses current; the counter does the sum."],
       unlocks: ["A date for the finale."],
       sessions: 0,
-      dmChoices: ["Counted from the state on 2026-10-11, BEFORE the Sword was split into three shards.", "ADD ABOUT 3 SESSIONS: Kostchtchie's Maw (1.5) and the Pit of Shummrath (1.5) moved from optional to main path. Main path is now roughly 14.5 sessions, most-likely roughly 20."],
+      dmChoices: ["Counted from the state on 2026-10-11.", "The three-shard split was dropped on 2026-10-23 for Eventyr's one-shard version (the shard is at the Crypt), so the Maw and the Pit are optional again and the estimate below stands."],
       alternatives: ["See {@side campaign-progression|The Road to the End} for every branch."],
       blocks: [
         { t: "note", title: "The Estimate", text: "Main path: about {@b 11.5 sessions}, session 9 included. That is Arkhan, two visits to Bel with a return run to the wreck for his spare rods and cipher, the Crypt, the Citadel, the climax and the escape, reaching the clean ending by burning Zariel's original contract.\n\nEvery open site: about {@b 25 sessions}. Nobody plays them all: the four blood sources replace each other, and Feonor shortens the staff hunt.\n\nMost likely: {@b about 17 sessions}. That is the main path plus the Menagerie, Vaelisha, Coram and Dumal at the Mirror.\n\nTake 0.5 off if the wreck run is quick or Bel's price is guessed early. Add 1 or 2 for each missed Citadel window they wait out. Bel and the Crypt alone are 4 to 7 days of travel, and the window was 12 days out: plan for a miss." }
