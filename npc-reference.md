@@ -192,3 +192,18 @@
 ### Senna (the third Bhaalspawn sibling) [HOMEBREW]
 - Drenwal & Dumal's hidden **younger sister**, ~6, raised by Harper **Issa**. Mother died before her birth; Halvard hid her name to his last breath.
 - The fulcrum of the **Three Sigils** ("the last one"?), the cult, and Dumal. Red Ruth verified her for Dumal (the Lock of Senna's Hair).
+
+---
+
+## Thavius Kreeg — Or'Henn's Master, the Traitor of Elturel
+
+**[D&D CANON]** Thavius Kreeg was the **High Overseer of Elturel** — its supreme civic-religious leader. Fifty years ago, with the vampire **Ikaia's** undead plague threatening the city, he **secretly signed a pact with Zariel**: the **Companion** (an infernal "second sun" concealing an imprisoned **planetar**) would save Elturel — but after fifty years the city would be dragged to **Avernus** and its **Creed Resolute souls forfeited to Zariel's legions.** He knowingly signed, then fled before the Companion darkened and the city fell. He was first sheltered beneath **Vanthampur Villa** in Baldur's Gate — entangled there with the **Shield of the Hidden Lord (Gargauth)** the party now carries.
+
+**[D&D CANON] His fate is his form.** Slain as a mortal, his soul went to Hell and **Zariel personally remade him into an amnizu** — a **CR 18** Styx-overseer devil, not a lowly lemure — stationed in Avernus at the **Stygian Dock.** An amnizu's signature power is **Forgetfulness** (psychic damage + stun; sustained, it *erases hours of memory*). Killed in the Nine Hells, he is destroyed for good.
+
+**[CAMPAIGN CANON / HOMEBREW] The Or'Henn link (revealed, Session 8).** That amnizu is the **devil-noble who owned the Ashen Garden** — **Or'Henn's estate-master.** Or'Henn served the traitor of Elturel without knowing it (Thavius's Forgetfulness plausibly scrubbed his keepers' — and perhaps his own — memory of his identity). When the Yeenoghu warband razed the estate, **Or'Henn's binding contract to him was voided** — which is why Or'Henn is a free agent. The party **deduced his identity.**
+- **Findable now:** the **Stygian Dock** — a live CR 18 NPC, the man who damned Elturel, reachable in play.
+- **Or'Henn is the way in:** the party's insider on Thavius's manner, estate, wards, and habits.
+- **His true name is in the Contract V coffer** (Orchard of Borrowed Names) — leverage over the amnizu *and* potentially over the Elturel pact. See `orhenn-dm-primer.html` §7.
+- **A font of main-quest intel:** the Companion (imprisoned planetar), the Creed Resolute souls, and a possible thread to breaking the contract / the Bleeding Citadel. Bargain, force (his true name), or expose him.
+- **Beats to play:** **Veska** (Hellrider of Elturel) confronting the traitor; the **Shield/Gargauth** recognizing its Vanthampur associate; and the question of whether Thavius even *remembers* being Thavius.

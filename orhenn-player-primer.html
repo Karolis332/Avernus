@@ -78,7 +78,7 @@
   /* ---------- two-column body ---------- */
   .book{
     position:relative;z-index:1;
-    column-count:2;column-gap:28px;
+    column-count:1;
     font-size:11.4pt;line-height:1.34;
   }
   .book p{margin:0 0 8px;text-align:justify;hyphens:auto;-webkit-hyphens:auto;}
@@ -203,22 +203,15 @@
     table,.statblock,.callout{break-inside:avoid;}
   }
 
-  /* ===== ART FRAME INTEGRATION (real MidJourney page frame via border-image) ===== */
-  .sheet::before,.sheet::after{display:none!important;}   /* drop the CSS-drawn frame */
-  .sheet{
-    max-width:960px;padding:22px 34px;
-    border-style:solid;
-    border-width:150px 112px 140px 112px;
-    -webkit-border-image:url('art/page-bg-player.png') 205 150 190 150 stretch;
-    border-image:url('art/page-bg-player.png') 205 150 190 150 stretch;
-  }
+  /* ===== OPTIONAL ART FRAME — DISABLED: the art/ folder isn't in this repo, so the
+     MidJourney border-image page-frame is turned off and the built-in CSS double-frame
+     (.sheet::before / .sheet::after) is used instead, keeping this file self-contained.
+     To restore the art frame: drop in art/page-bg-player.png and re-add the border-image
+     block (with .sheet::before,.sheet::after{display:none} and border-width:150px...). ===== */
   .chapterband{display:block;width:100%;height:168px;object-fit:cover;object-position:center 44%;
     column-span:all;-webkit-column-span:all;border:2px solid var(--red);border-radius:3px;
     margin:0 0 16px;box-shadow:0 3px 10px rgba(60,30,10,.4);}
-  @media print{
-    .sheet{max-width:none;margin:0;padding:22px 30px;border-width:150px 106px 140px 106px;}
-    html,body{background:#fff;}
-  }
+  @media print{ html,body{background:#fff;} }
 </style>
 </head>
 <body>
@@ -231,11 +224,11 @@
 <div class="sheet">
  <div class="book">
 
-  <img class="chapterband" src="art/header-avernus.png" alt="A charred Avernus estate-garden under a red sky">
+  <img class="chapterband" src="art/header-avernus.png" alt="A charred Avernus estate-garden under a red sky" onerror="this.remove()">
   <div class="titleband">
     <p class="epithet">The Ashen Shepherd</p>
     <h1>Or'Henn</h1>
-    <p class="who">Elderly Red Dragonborn Druid &middot; Circle of Wildfire &middot; Level 11 &middot; native of Avernus</p>
+    <p class="who">Elderly Red Dragonborn Druid &middot; Circle of Wildfire &middot; Level 12 &middot; native of Avernus</p>
   </div>
 
   <!-- ============ 1 — WHO YOU ARE ============ -->
@@ -353,7 +346,7 @@
   <!-- ============ 6 — QUICK REFERENCE ============ -->
   <h2>Quick Reference</h2>
   <table class="quickgrid">
-    <tr><td>Wild Shape</td><td>Bonus Action &middot; Beast &amp; earned-infernal forms <b>CR &le; 2</b> (Circle of Wildfire, L11, DM ruling). Earned forms grant shape + natural attacks only.</td></tr>
+    <tr><td>Wild Shape</td><td>Bonus Action &middot; Beast &amp; earned-infernal forms <b>CR &le; 2</b> (Circle of Wildfire, L12, DM ruling). Earned forms grant shape + natural attacks only.</td></tr>
     <tr><td>Staff save effects</td><td>Cinderheart, Rootwright spells, and Keeper of Fell Beasts all use <b>your spell save DC</b>.</td></tr>
     <tr><td>Cinderbloom bonus</td><td><b>+2 to spell attack rolls</b> while held (and +2 attack/damage as a quarterstaff).</td></tr>
     <tr><td>Charges</td><td>10 total &middot; regain <b>1d6 + 4</b> per long rest (once / 24 hr). Last charge: d20, on a <b>1</b> it goes dark.</td></tr>

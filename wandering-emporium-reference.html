@@ -1,0 +1,2516 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wandering Emporium — Economic &amp; Goods Reference</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#111214; --bg2:#17181b; --panel:#1b1c20; --panel2:#212228; --panel3:#282a31;
+  --border:#2f3037; --border2:#3b3d45;
+  --ink:#dcd8cb; --ink2:#bdb8aa; --muted:#8b8678;
+  --head:#b0472f; --head2:#c66a4c; --accent:#c9a24a;
+  --link:#6fa8cc; --good:#79b579; --warn:#d6a64e; --bad:#cf5b48;
+  --readbg:#1d2024; --readbd:#4a3b2a; --dmbg:#221619; --notebg:#1a1b1f;
+  --serif:'PT Serif','Georgia',serif;
+  --head-f:'Libre Baskerville','Georgia',serif;
+  --mono:'JetBrains Mono','Consolas',monospace;
+  --measure:76ch;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+#prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:60;background:var(--head)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr)}
+nav.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;padding:16px 10px 80px;background:var(--bg2);
+  border-right:1px solid var(--border);scrollbar-width:thin;scrollbar-color:var(--border2) transparent;font-size:13px}
+nav.sidebar::-webkit-scrollbar{width:8px}nav.sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+nav .brand{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:16px;color:var(--head);margin:4px 8px 2px;line-height:1.2}
+nav .sub{color:var(--muted);font-size:11px;margin:0 8px 12px;padding-bottom:12px;border-bottom:1px solid var(--border);font-style:italic}
+.tools{display:flex;gap:6px;margin:0 6px 10px}
+.tools button{flex:1;font-family:var(--serif);font-size:11px;background:var(--panel2);border:1px solid var(--border2);
+  color:var(--ink2);padding:5px;border-radius:3px;cursor:pointer}
+.tools button:hover{background:var(--panel3);color:var(--ink)}
+nav .toc ul{list-style:none;padding-left:0;margin:0}
+nav .toc>ul>li{margin:0}
+nav .toc a{display:block;padding:4px 10px;border-radius:3px;color:var(--ink2);line-height:1.35;border-left:2px solid transparent}
+nav .toc a:hover{background:var(--panel);color:var(--ink);text-decoration:none}
+nav .toc a.active{background:var(--panel2);border-left-color:var(--head);color:var(--head2);font-weight:700}
+nav .toc>ul>li>a{color:var(--ink);font-family:var(--head-f);font-variant:small-caps;font-size:13.5px;letter-spacing:.3px;margin-top:4px}
+nav .toc ul ul a{font-size:12.5px;color:var(--muted);padding-left:22px}
+nav .toc ul ul ul a{padding-left:34px;font-size:12px;opacity:.85}
+/* collapsible */
+nav .toc li.branch{position:relative}
+nav .toc li.branch>a{padding-left:22px}
+nav .toc .tw{position:absolute;left:2px;top:5px;width:15px;height:15px;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;line-height:1;color:var(--muted);cursor:pointer;user-select:none;z-index:2}
+nav .toc .tw:hover{color:var(--head2)}
+nav .toc li.branch.collapsed>ul{display:none}
+
+main{min-width:0}
+.wrap{max-width:960px;padding:0 46px 140px}
+
+/* masthead + chapter nav */
+header.title{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--border);padding:14px 46px 0}
+header.title h1{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:27px;color:var(--head);margin:0 0 2px;letter-spacing:.5px}
+header.title .msub{font-size:12px;color:var(--muted);margin:0 0 10px;font-style:italic}
+.chapnav{display:flex;align-items:center;gap:10px;padding:4px 0 10px}
+.chapnav button,.chapnav .ent{font-family:var(--serif);font-size:12px;background:var(--panel);border:1px solid var(--border2);
+  color:var(--ink2);padding:6px 14px;border-radius:3px;cursor:pointer;white-space:nowrap}
+.chapnav button:hover,.chapnav .ent:hover{background:var(--panel3);color:var(--ink);text-decoration:none}
+.chapnav .cur{flex:1;text-align:center;font-family:var(--head-f);font-variant:small-caps;font-size:14px;letter-spacing:.5px;
+  color:var(--head2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* headings */
+h2,h3,h4{scroll-margin-top:120px}
+.wrap>h1{font-family:var(--head-f);font-variant:small-caps;font-size:24px;color:#fff;background:var(--head);
+  padding:10px 18px;border-radius:3px;margin:56px 0 18px}
+h2{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:26px;color:var(--head);letter-spacing:.4px;
+  margin:52px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--border2)}
+h2.module .mnum{color:var(--muted);font-weight:400;margin-right:12px}
+h3{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:19px;color:var(--head2);margin:30px 0 8px;letter-spacing:.3px}
+h4{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:15px;color:var(--head2);margin:22px 0 6px;letter-spacing:.5px}
+
+/* body */
+.wrap>p,.wrap>ul,.wrap>ol,.wrap>h3,.wrap>h4,.wrap>blockquote{max-width:var(--measure)}
+p{margin:12px 0}
+strong{color:#efe9da;font-weight:700}
+em{color:var(--ink2)}
+ul,ol{margin:12px 0;padding-left:24px}
+li{margin:5px 0}
+li::marker{color:var(--head2)}
+li input[type=checkbox]{margin-right:7px;accent-color:var(--head);vertical-align:-1px}
+hr{border:0;height:1px;background:var(--border2);margin:30px 0;max-width:var(--measure)}
+code{background:var(--panel2);border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-family:var(--mono);font-size:12.5px;color:#c7b98f}
+pre{background:#0d0e10;border:1px solid var(--border);border-left:3px solid var(--head);border-radius:4px;padding:14px 16px;overflow-x:auto;margin:16px 0;max-width:var(--measure)}
+pre code{background:none;border:none;padding:0;color:var(--ink);font-size:12.5px;white-space:pre}
+.dm-inline{color:#e0a99c}
+
+/* callout boxes (5e.tools inset style) */
+blockquote{margin:18px 0;max-width:var(--measure)}
+blockquote p:first-child{margin-top:0}blockquote p:last-child{margin-bottom:0}
+.cotag{display:inline-block;font-family:var(--head-f);font-variant:small-caps;font-size:11px;letter-spacing:.5px;font-weight:700;
+  padding:2px 10px;border-radius:2px;margin-bottom:8px}
+blockquote.read{background:var(--readbg);border:1px solid var(--border2);border-left:4px solid var(--accent);padding:13px 18px;
+  font-style:italic;color:var(--ink);border-radius:2px}
+blockquote.read .cotag{background:var(--accent);color:#1a1408}
+blockquote.dmonly{background:var(--dmbg);border:1px solid #4a2a2a;border-left:4px solid var(--bad);padding:12px 18px;color:#e2c8c1;border-radius:2px}
+blockquote.dmonly .cotag{background:var(--bad);color:#fff}
+blockquote.dmonly strong{color:#f2c0b6}
+blockquote.note{background:var(--notebg);border:1px solid var(--border);border-left:4px solid var(--border2);padding:12px 18px;color:var(--ink2);border-radius:2px}
+
+.admonition{margin:18px 0;border:1px solid var(--border2);border-radius:4px;background:var(--panel);padding:0 0 12px}
+.admonition>.admonition-title{font-family:var(--head-f);font-variant:small-caps;padding:8px 16px;margin:0;background:var(--panel2);border-bottom:1px solid var(--border);color:var(--head2)}
+.admonition>*:not(.admonition-title){padding:0 16px}
+
+/* tables (plain, 5e.tools) */
+table{border-collapse:collapse;width:100%;margin:18px 0;font-size:15px}
+th{font-family:var(--head-f);font-variant:small-caps;color:var(--head);text-align:left;padding:8px 12px;border:1px solid var(--border2);background:var(--panel2);letter-spacing:.3px;font-weight:700}
+td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+tbody tr:nth-child(even){background:var(--panel)}
+table code{font-size:12px}table strong{color:#efe9da}
+
+/* stat block */
+.statblock{background:#f0e6d2;color:#2a1c0e;border:1px solid #c9a96f;border-left:4px solid #7a200d;border-radius:3px;
+  padding:14px 18px;margin:18px 0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
+.statblock .sb-name{font-family:var(--head-f);font-variant:small-caps;color:#7a200d;font-size:20px;font-weight:700}
+.statblock strong{color:#3a1a0c}.statblock a{color:#7a200d}
+
+#totop{position:fixed;right:24px;bottom:24px;z-index:40;width:44px;height:44px;border-radius:50%;background:var(--panel2);
+  border:1px solid var(--border2);color:var(--head2);font-size:19px;cursor:pointer;display:none;align-items:center;justify-content:center}
+#totop:hover{background:var(--head);color:#fff}#totop.show{display:flex}
+
+@media (max-width:1000px){.layout{grid-template-columns:1fr}nav.sidebar{display:none}.wrap,header.title{padding-left:18px;padding-right:18px}}
+@media print{
+  :root{--measure:none}.layout{grid-template-columns:1fr}nav.sidebar,.chapnav,#totop,#prog{display:none}
+  html,body{background:#fff;color:#1a1410;font-size:11pt}
+  header.title{position:static;border:none;padding:0}header.title h1{color:#7a1010}
+  .wrap{max-width:none;padding:0}.wrap>h1{background:#7a1010}
+  h2,h3,h4{color:#7a1010}
+  blockquote.read{background:#f4ecdc;color:#1a1410}blockquote.dmonly{background:#f7eaea;color:#3a1410}blockquote.note{background:#f4f2ec}
+  th{background:#eadfc9;color:#3a2018}tbody tr:nth-child(even){background:#faf6ee}
+  a{color:#1a1410}pre{background:#f2ede2;color:#1a1410}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<span id="top"></span>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="brand">The Wandering Emporium — Economic &amp; Goods Reference</div>
+    <div class="sub">Descent into Avernus</div>
+    <div class="tools"><button id="expandAll">Expand all</button><button id="collapseAll">Collapse all</button></div>
+    <div class="toc"><div class="toc">
+<ul>
+<li><a href="#1-tag-legend">1. Tag legend</a><ul>
+<li><a href="#every-price-and-dc-below-is-homebrew-scaffolding">⚠ EVERY PRICE AND DC BELOW IS [HOMEBREW] SCAFFOLDING</a></li>
+</ul>
+</li>
+<li><a href="#2-the-soul-coin-economy-homebrew-numbers-on-a-dd-canon-frame">2. The soul-coin economy [HOMEBREW numbers on a D&amp;D CANON frame]</a><ul>
+<li><a href="#the-currencies-in-order-of-how-much-the-market-respects-them">The currencies (in order of how much the market respects them)</a></li>
+<li><a href="#the-conversion-set-this-once-tell-the-dm-homebrew">The conversion (set this once, tell the DM) [HOMEBREW]</a></li>
+<li><a href="#the-moral-cost-say-it-once-then-let-it-sit-dd-canon-per-souls-and-celestial-powermd">The moral cost — say it once, then let it sit [D&amp;D CANON, per souls-and-celestial-power.md]</a></li>
+<li><a href="#what-the-party-can-pay-with-this-visit">What the party can pay with, this visit</a></li>
+</ul>
+</li>
+<li><a href="#3-the-haggling-system-homebrew">3. The haggling system [HOMEBREW]</a><ul>
+<li><a href="#the-check">The check</a></li>
+<li><a href="#the-result-bands">The result bands</a></li>
+<li><a href="#attitude-tiers-per-merchant-per-visit">Attitude tiers (per-merchant, per-visit)</a></li>
+<li><a href="#insight-read-the-merchant-before-you-push">Insight — read the merchant before you push</a></li>
+<li><a href="#paying-in-bargains-favors-the-off-ledger-channel-homebrew">Paying in bargains / favors (the off-ledger channel) [HOMEBREW]</a></li>
+</ul>
+</li>
+<li><a href="#4-reading-the-shop-sections">4. Reading the shop sections</a></li>
+<li><a href="#71-infernal-rapture-mahadi-dd-canon">7.1 Infernal Rapture — Mahadi [D&amp;D CANON]</a><ul>
+<li><a href="#menu-food-drink">Menu — food &amp; drink</a></li>
+<li><a href="#spa-bath-pamper">Spa / bath / pamper</a></li>
+<li><a href="#information-pricing-tiers-dd-canon-base-homebrew-tiers">Information pricing tiers [D&amp;D CANON base / HOMEBREW tiers]</a></li>
+<li><a href="#exotic-goods-procurement-dd-canon-commission-rareexoticinfernal-goods-via-his-network">Exotic-goods procurement [D&amp;D CANON — "commission rare/exotic/infernal goods via his network"]</a></li>
+<li><a href="#hospitality-debt-table-dd-canon-engine-homebrew-rates">⚠ Hospitality-debt table [D&amp;D CANON engine, HOMEBREW rates]</a><ul>
+<li><a href="#playing-mahadi-dd-canon-presence-homebrew-voice">Playing Mahadi [D&amp;D CANON presence / HOMEBREW voice]</a></li>
+<li><a href="#bargaining-sample-lines">Bargaining — sample lines</a></li>
+<li><a href="#more-services-prices-homebrew">More services &amp; prices [HOMEBREW]</a></li>
+<li><a href="#signature-item-a-bottled-true-memory-homebrew">⭐ Signature item — A Bottled True Memory [HOMEBREW]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#72-the-firesnake-forge-rassh-dd-canon">7.2 The Firesnake Forge — Rassh [D&amp;D CANON]</a><ul>
+<li><a href="#weapons-armor-stock">Weapons &amp; armor (stock)</a></li>
+<li><a href="#repairs">Repairs</a></li>
+<li><a href="#war-machine-repair-refuel-dd-canon-his-signature-service">War-machine repair &amp; REFUEL [D&amp;D CANON — his signature service]</a><ul>
+<li><a href="#the-lady-vengeance-line-item-campaign-canon-ship-homebrew-price">⭐ THE LADY VENGEANCE — line item [CAMPAIGN CANON ship / HOMEBREW price]</a></li>
+<li><a href="#playing-rassh-dd-canon-creature-homebrew-voice">Playing Rassh [D&amp;D CANON creature / HOMEBREW voice]</a></li>
+<li><a href="#bargaining-sample-lines_1">Bargaining — sample lines</a></li>
+<li><a href="#more-services-prices-homebrew_1">More services &amp; prices [HOMEBREW]</a></li>
+<li><a href="#signature-item-dragon-scale-warplate-campaign-canon-ties-to-the-live-copperchromatic-dragon-threads">⭐ Signature item — Dragon-Scale Warplate [CAMPAIGN CANON — ties to the live copper/chromatic dragon threads]</a></li>
+<li><a href="#shattersticks-homebrew">Shattersticks [HOMEBREW]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#73-burney-the-barber-burney-dd-canon">7.3 Burney the Barber — Burney [D&amp;D CANON]</a><ul>
+<li><a href="#grooming">Grooming</a></li>
+<li><a href="#appearance-alteration-disguise-dd-canon-magically-alter-or-restore-appearance">Appearance alteration / disguise [D&amp;D CANON — "magically alter or restore appearance"]</a></li>
+<li><a href="#discreet-healing-menu-dd-canon-quiet-aid-homebrew-prices">Discreet healing menu [D&amp;D CANON "quiet aid" / HOMEBREW prices]</a><ul>
+<li><a href="#playing-burney-dd-canon-surface-homebrew-voice">Playing Burney [D&amp;D CANON surface / HOMEBREW voice]</a></li>
+<li><a href="#bargaining-sample-lines_2">Bargaining — sample lines</a></li>
+<li><a href="#more-services-prices-homebrew_2">More services &amp; prices [HOMEBREW]</a></li>
+<li><a href="#signature-item-a-face-nobody-in-hell-will-know-deluxe-dd-canon-flavor-homebrew-build">⭐ Signature item — "A Face Nobody in Hell Will Know" (Deluxe) [D&amp;D CANON flavor / HOMEBREW build]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#74-from-here-to-avernus-fhetahla-dd-canon-campaign-canon">7.4 From Here to Avernus — Fhet'Ahla [D&amp;D CANON + CAMPAIGN CANON]</a><ul>
+<li><a href="#soul-coin-loans-dd-canon-service-homebrew-terms">Soul-coin loans [D&amp;D CANON service / HOMEBREW terms]</a></li>
+<li><a href="#exchange-appraisal">Exchange &amp; appraisal</a></li>
+<li><a href="#campaign-canon-contract-notary-fees-the-soul-bounties">[CAMPAIGN CANON] Contract-notary fees — the soul-bounties</a><ul>
+<li><a href="#playing-fhetahla-dd-canon-creature-campaign-homebrew-voice">Playing Fhet'Ahla [D&amp;D CANON creature / CAMPAIGN + HOMEBREW voice]</a></li>
+<li><a href="#bargaining-sample-lines_3">Bargaining — sample lines</a></li>
+<li><a href="#more-services-prices-homebrew_3">More services &amp; prices [HOMEBREW]</a></li>
+<li><a href="#signature-item-the-unredeemed-collateral-campaign-canon-a-defaulted-warlords-forfeit">⭐ Signature item — The Unredeemed Collateral [CAMPAIGN CANON — a defaulted warlord's forfeit]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#75-ichors-aweigh-elliach-dd-canon">7.5 Ichor's Aweigh! — Elliach [D&amp;D CANON]</a><ul>
+<li><a href="#demon-ichor-products">Demon-ichor products</a></li>
+<li><a href="#mutation-boon-table-d10-homebrew-roll-on-drinking-raw-ichor">Mutation / Boon table (d10) [HOMEBREW — roll on drinking raw ichor]</a><ul>
+<li><a href="#playing-elliach-dd-canon-role-homebrew-voice">Playing Elliach [D&amp;D CANON role / HOMEBREW voice]</a></li>
+<li><a href="#bargaining-sample-lines_4">Bargaining — sample lines</a></li>
+<li><a href="#more-services-prices-homebrew_4">More services &amp; prices [HOMEBREW]</a></li>
+<li><a href="#signature-item-the-perfected-strain-elliachs-grail-homebrew">⭐ Signature item — The Perfected Strain ("Elliach's Grail") [HOMEBREW]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#76-zneths-larva-farm-zneth-dd-canon">7.6 Z'neth's Larva Farm — Z'neth [D&amp;D CANON]</a><ul>
+<li><a href="#larvae-buy-sell">Larvae — buy / sell</a></li>
+<li><a href="#soul-good-appraisal-buy-rates-relevant-to-red-ruths-soul-stock">Soul-good appraisal &amp; buy rates [relevant to Red Ruth's soul-stock]</a><ul>
+<li><a href="#playing-zneth-dd-canon-role-homebrew-voice">Playing Z'neth [D&amp;D CANON role / HOMEBREW voice]</a></li>
+<li><a href="#bargaining-sample-lines_5">Bargaining — sample lines</a></li>
+<li><a href="#more-services-prices-homebrew_5">More services &amp; prices [HOMEBREW]</a></li>
+<li><a href="#signature-item-the-coin-of-a-knowing-soul-the-ledger-keeper-homebrew-morally-loaded">⭐ Signature item — The Coin of a Knowing Soul ("The Ledger-Keeper") [HOMEBREW — morally loaded]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#77-the-bone-devil-informant-homebrew">7.7 The Bone Devil Informant [HOMEBREW]</a><ul>
+<li><a href="#information-pricing-tiers">Information pricing tiers</a><ul>
+<li><a href="#playing-the-bone-devil-informant-homebrew">Playing the Bone Devil Informant [HOMEBREW]</a></li>
+<li><a href="#bargaining-sample-lines_6">Bargaining — sample lines</a></li>
+<li><a href="#more-services-prices-homebrew_6">More services &amp; prices [HOMEBREW]</a></li>
+<li><a href="#signature-item-the-sealed-confession-homebrew">⭐ Signature item — The Sealed Confession [HOMEBREW]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#8-quick-prices-cheat-sheet-homebrew">8. Quick Prices — cheat-sheet [HOMEBREW]</a></li>
+<li><a href="#9-running-the-floor">9. Running the floor</a><ul>
+<li><a href="#timekeeping-the-caravans-clock-dd-canon-homebrew">Timekeeping — the caravan's clock [D&amp;D CANON + HOMEBREW]</a></li>
+<li><a href="#how-the-wards-and-truce-feel-to-move-through-dd-canon-homebrew">How the wards and truce feel to move through [D&amp;D CANON + HOMEBREW]</a></li>
+</ul>
+</li>
+<li><a href="#10-whos-here-right-now-clientele-table-homebrew">10. Who's here right now — clientele table [HOMEBREW]</a></li>
+<li><a href="#11-emporium-encounters-events-homebrew">11. Emporium encounters &amp; events [HOMEBREW]</a><ul>
+<li><a href="#complications-d12">Complications (d12)</a></li>
+<li><a href="#opportunities-d12">Opportunities (d12)</a></li>
+<li><a href="#set-piece-social-encounters">Set-piece social encounters</a><ul>
+<li><a href="#set-piece-1-the-creditor-calls-the-debt-homebrew">Set-piece 1 — The creditor calls the debt [HOMEBREW]</a></li>
+<li><a href="#set-piece-2-the-mephistophelian-agent-sniffing-around-homebrew-ties-to-the-mephistopheles-thread">Set-piece 2 — The Mephistophelian agent, sniffing around [HOMEBREW — ties to the Mephistopheles thread]</a></li>
+<li><a href="#set-piece-3-the-truce-baiting-provocation-homebrew-ties-to-last-hill-survivors">Set-piece 3 — The truce-baiting provocation [HOMEBREW — ties to Last-Hill survivors]</a></li>
+<li><a href="#set-piece-4-the-too-good-soul-coin-deal-homebrew">Set-piece 4 — The too-good soul-coin deal [HOMEBREW]</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li><a href="#12-npc-statline-quick-reference">12. NPC statline quick-reference</a><ul>
+<li><a href="#shop-owners-host">Shop owners &amp; host</a></li>
+<li><a href="#likely-floor-npcs-the-enforcement-contingency">Likely floor NPCs &amp; the enforcement contingency</a></li>
+</ul>
+</li>
+<li><a href="#13-dm-tips-for-the-emporium">13. DM tips for the Emporium</a></li>
+</ul>
+</div>
+</div>
+  </nav>
+  <main>
+    <header class="title">
+      <h1>The Wandering Emporium — Economic &amp; Goods Reference</h1>
+      <div class="msub">Descent into Avernus</div>
+      <div class="chapnav">
+        <button id="prevSec">&#8249;&nbsp;Prev</button>
+        <span id="curSec" class="cur"></span>
+        <button id="nextSec">Next&nbsp;&#8250;</button>
+        <a class="ent" href="#top">Entire&nbsp;Tome</a>
+      </div>
+    </header>
+    <div class="wrap">
+      <p><strong>Companion to <code>session-8-wandering-emporium-primer.md</code>.</strong> The primer runs the <em>scene</em> — arrival, Mahadi's welcome, the truce, the recruitment, the bounty board. <strong>This document runs the <em>store</em>.</strong> It is the table-ready economic layer: every shop's full stock and services, prices in soul coins and gold, per-merchant haggle DCs, and the negotiation system that ties them together. Pull it up any time the party is <em>buying, selling, repairing, borrowing, or bargaining</em> at the Emporium — this visit (repair the Lady Vengeance, resupply, gather intel) or any future one. It does <strong>not</strong> restate the five soul-bounties' fine print (that lives in <code>orhenn-dm-primer.html</code> / the primer) and it does <strong>not</strong> re-stat NPCs (see <code>npc-reference.md</code>); it points at both and gets you to a number fast.</p>
+<blockquote class="note">
+<p><strong>How to use it at the table:</strong> find the shop, read the attitude line, hand the party the stock table, take one haggle check against the listed DC, apply the discount band, done. The <strong>Quick Prices cheat-sheet</strong> (§8) is the at-a-glance version when you just need a number <em>now</em>.</p>
+</blockquote>
+<hr />
+<h2 id="1-tag-legend">1. Tag legend</h2>
+<p>Same legend as the primer — this campaign cares which shelf a fact came off.</p>
+<ul>
+<li><strong>[D&amp;D CANON]</strong> — from <em>Baldur's Gate: Descent into Avernus</em> (Ch. 3) or the 5e rules. Exact spellings.</li>
+<li><strong>[CAMPAIGN CANON]</strong> — an established extension of canon <em>for this campaign</em> (e.g. Fhet'Ahla as the charter's notary; the Lady Vengeance as a Gondian-Portyr Hellship). Consistent across our docs.</li>
+<li><strong>[HOMEBREW]</strong> — invented for this table (all the numbers, most stock lists, the haggling system, shattersticks, the ichor table). Not in any book.</li>
+<li><strong>🎲 DIAL</strong> — a knob to turn. Pick to taste; runnable either way.</li>
+</ul>
+<blockquote class="note">
+<h3 id="every-price-and-dc-below-is-homebrew-scaffolding">⚠ EVERY PRICE AND DC BELOW IS [HOMEBREW] SCAFFOLDING</h3>
+<p><strong>D&amp;D fixes none of these numbers.</strong> <em>Descent into Avernus</em> names the six shops and says they trade in soul coins, bargains, and favors — it gives <strong>no price list, no repair cost, no haggle DC.</strong> Everything in the tables below is invented to make the market <em>runnable</em> for a level-11, soul-coin-capable party. Tune freely. Where a table cell is genuinely canon (the fact that Rassh refuels war machines; that Burney can alter appearance; that Fhet'Ahla lends on infernal contracts), the <em>fact</em> is [D&amp;D CANON] but the <em>price</em> is still [HOMEBREW].</p>
+</blockquote>
+<hr />
+<h2 id="2-the-soul-coin-economy-homebrew-numbers-on-a-dd-canon-frame">2. The soul-coin economy [HOMEBREW numbers on a D&amp;D CANON frame]</h2>
+<p>The Emporium is the <strong>one place in Avernus where commerce works</strong> — but it does not run on gold. It runs on souls.</p>
+<h3 id="the-currencies-in-order-of-how-much-the-market-respects-them">The currencies (in order of how much the market respects them)</h3>
+<table>
+<thead>
+<tr>
+<th>Currency</th>
+<th>What it is</th>
+<th>How the Emporium treats it</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Soul coin (SC)</strong></td>
+<td>[D&amp;D CANON] A warm iron coin holding <strong>one real, conscious, suffering damned soul.</strong> The coin of the realm.</td>
+<td><strong>Principal currency.</strong> Everything is priced in SC first.</td>
+</tr>
+<tr>
+<td><strong>Bargains / favors / obligations</strong></td>
+<td>[D&amp;D CANON] A promise, a service owed, a marked debt.</td>
+<td><strong>Prized above coin</strong> for the <em>good</em> stuff. A favor can beat any gold price — but it becomes a <em>debt</em> (→ possibly a Fhet'Ahla contract).</td>
+</tr>
+<tr>
+<td><strong>Gold (gp)</strong></td>
+<td>[D&amp;D CANON] Mostly worthless in Hell; grudgingly spendable <em>only here.</em></td>
+<td><strong>Accepted at a poor rate</strong>, with a sneer and a "mortal surcharge." Never buys premium or soul-goods.</td>
+</tr>
+<tr>
+<td><strong>Soul-goods</strong></td>
+<td>[HOMEBREW] Larvae, soul-stock, heartstones, un-notarized secrets — soul-value in kind.</td>
+<td>Traded like commodities (see Z'neth §7.6, Mahadi §7.1).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="the-conversion-set-this-once-tell-the-dm-homebrew">The conversion (set this once, tell the DM) [HOMEBREW]</h3>
+<blockquote class="note">
+<p><strong>1 SC ≈ 100 gp of infernal purchasing power.</strong></p>
+</blockquote>
+<ul>
+<li>This is a <em>deliberate</em> scaling choice so a soul-coin-capable, level-11 party faces <strong>meaningful</strong> costs — a soul coin should feel like real money, because it <em>is</em> a real soul (see the moral cost below).</li>
+<li><strong>Gold surcharge:</strong> paying in gp costs <strong>~2× the SC-equivalent</strong> (i.e. gold trades at roughly <strong>half value</strong> — call it <strong>~200 gp per 1 SC</strong>), and comes with attitude. Some things (premium services, all soul-goods, Mahadi's best information, war-machine fuel) are <strong>SC-or-bargain only</strong> and <em>cannot be bought with gold at any rate.</em> Those rows are marked <strong>SC/bargain only</strong> in the tables.</li>
+<li><strong>Rounding for play:</strong> when a table lists both, the gp figure already bakes in the surcharge. Use SC when the party pays in coin; use the gp figure when they insist on gold.</li>
+</ul>
+<h3 id="the-moral-cost-say-it-once-then-let-it-sit-dd-canon-per-souls-and-celestial-powermd">The moral cost — say it once, then let it sit [D&amp;D CANON, per <code>souls-and-celestial-power.md</code>]</h3>
+<blockquote class="note">
+<p><strong>Spending a soul coin as <em>payment</em> is not the same as spending gold.</strong></p>
+</blockquote>
+<ul>
+<li><strong>Trading or handing over</strong> a coin: the soul persists, still trapped — <strong>reversible.</strong> (This is how most Emporium purchases work; the coin changes hands, the soul suffers on.)</li>
+<li><strong>Spending a coin as <em>fuel</em></strong> (war-machine fuel, the Soul Coin Overdrive, feeding it to a Gondian core, draining it dry): the soul is <strong>annihilated — true final death, no afterlife, not even <em>Wish</em>.</strong> The Lady Vengeance <em>refuel</em> line (§7.2) is exactly this: every fuel-coin Rassh loads <strong>erases a person forever.</strong></li>
+<li><strong>DM cue:</strong> the merchants don't care. <em>Drenwal</em> should. When the party pays a fuel price in coins, remind them what a coin is. That is the price behind the price.</li>
+</ul>
+<h3 id="what-the-party-can-pay-with-this-visit">What the party can pay with, this visit</h3>
+<p>They arrive holding (per the primer / digest): <strong>loose soul coins</strong>, <strong>Red Ruth's soul-stock</strong>, her <strong>heartstone</strong>, and the <strong>Mordenkainen letter</strong> — plus a party purse of gold that Avernus barely wants. Mahadi covets the last three (leverage/currency; §7.1). Every table below assumes SC as the default and notes when a <strong>bargain</strong> or <strong>soul-good</strong> is the smarter pay.</p>
+<hr />
+<h2 id="3-the-haggling-system-homebrew">3. The haggling system [HOMEBREW]</h2>
+<p>One market, one clean subsystem. Define it here; each shop just supplies a <strong>Haggle DC</strong> and an <strong>Insight DC</strong>.</p>
+<h3 id="the-check">The check</h3>
+<p>When a price is on the table, a player may attempt <strong>one</strong> social check to move it. The player <strong>picks the angle</strong> and rolls that skill vs. the merchant's <strong>Haggle DC</strong>:</p>
+<ul>
+<li><strong>Persuasion</strong> — reason, rapport, repeat-customer goodwill, "Heroes of the Last Hill."</li>
+<li><strong>Intimidation</strong> — leverage, menace (careful: the truce means <em>no violence</em>, so this is pure social pressure; overdo it and attitude drops).</li>
+<li><strong>Deception</strong> — bluff a competing offer, feign disinterest, misrepresent what you carry.</li>
+</ul>
+<p><strong>One serious attempt per item per visit.</strong> A second angle on the same item is at <strong>disadvantage</strong> (they've heard the pitch). Group "help" gives advantage only if a second PC plausibly contributes (a good-cop/bad-cop, a shared history). Party face + one assist is the intended shape.</p>
+<h3 id="the-result-bands">The result bands</h3>
+<table>
+<thead>
+<tr>
+<th>Roll vs. Haggle DC</th>
+<th>Outcome</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Beat DC by 5+</strong></td>
+<td>Best case: <strong>~30% off</strong>, <em>or</em> the listed discount <strong>plus a thrown-in extra</strong> (a minor consumable, a free small service, a scrap of information). Attitude ticks <strong>up</strong>.</td>
+</tr>
+<tr>
+<td><strong>Meet or beat DC</strong></td>
+<td><strong>10–20% off</strong> the listed price (DM picks within the band; use 20% on a clean beat, 10% on a squeaker), <em>or</em> a thrown-in extra of similar value.</td>
+</tr>
+<tr>
+<td><strong>Fail (miss by 1–4)</strong></td>
+<td><strong>Price holds.</strong> No deal sweetener. Merchant's attitude <strong>drops one step</strong> for this visit (see tiers). The offer is still <em>available</em> at list.</td>
+</tr>
+<tr>
+<td><strong>Fail by 5+</strong></td>
+<td><strong>Soured.</strong> The offer may be <strong>withdrawn</strong> for the visit, <em>or</em> the merchant slaps on an <strong>inflated "mortal tax"</strong> (+25% and gp-only). Relationship damaged into the next visit. With Mahadi/Fhet'Ahla, a bad fail can <em>cost a favor</em> to smooth over.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Discounts stack with nothing.</strong> One check, one band. Don't let a party re-roll a room.</li>
+<li><strong>Cap the discount.</strong> The bands above are the ceiling. Some merchants <strong>won't flex past a hard floor</strong> (noted per shop) — beating the DC by 5+ on an inflexible item gets a <em>thrown-in extra</em>, not a bigger cut.</li>
+<li><strong>You barely haggle the apex predators.</strong> <strong>Mahadi</strong> and <strong>Fhet'Ahla</strong> have high DCs <em>and</em> low caps — see their sections. Mahadi in particular treats a haggle as a <em>game he's letting you win</em>; the "discount" is usually a courtesy that deepens the hospitality debt.</li>
+</ul>
+<h3 id="attitude-tiers-per-merchant-per-visit">Attitude tiers (per-merchant, per-visit)</h3>
+<p>Each shop starts at a listed attitude. Haggle results, roleplay, and what the party carries move it. Attitude sets the <em>feel</em> and shifts the effective Haggle DC by ±2.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Behavior</th>
+<th>Effect</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Warm</strong></td>
+<td>Genuinely glad of the custom (Burney's default; any merchant after a great beat).</td>
+<td>Haggle DC <strong>−2</strong>; volunteers a tip or a small favor.</td>
+</tr>
+<tr>
+<td><strong>Cordial</strong></td>
+<td>Professional, transactional. Most merchants' default toward the "Heroes of the Last Hill."</td>
+<td>List prices; DCs as written.</td>
+</tr>
+<tr>
+<td><strong>Wary</strong></td>
+<td>Guarded — a fumbled haggle, an implied threat, or carrying something they want.</td>
+<td>Haggle DC <strong>+2</strong>; gp-only for premium rows.</td>
+</tr>
+<tr>
+<td><strong>Cold</strong></td>
+<td>Insulted or spooked (fail-by-5, truce-breach vibes).</td>
+<td>No haggling; list or <em>mortal-tax</em> prices only; may refuse a sale.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="insight-read-the-merchant-before-you-push">Insight — read the merchant before you push</h3>
+<p>Each shop lists an <strong>Insight DC</strong> to clock its <em>real</em> attitude, its hard limits, and whether it wants something the party has. A success tells the player <strong>where the floor is</strong> (so they know when to stop pushing) and flags any hidden hook. This is the <em>safe</em> way to scout a haggle before committing the check.</p>
+<h3 id="paying-in-bargains-favors-the-off-ledger-channel-homebrew">Paying in bargains / favors (the off-ledger channel) [HOMEBREW]</h3>
+<blockquote class="note">
+<p><strong>A favor can beat any gold price.</strong> It can also beat a soul-coin price — but it is never free.</p>
+</blockquote>
+<ul>
+<li>Offering a <strong>favor, service, or obligation</strong> in place of coin can knock a price down hard (DM's call; often equivalent to a <strong>30%+ discount</strong> or a waived fee) <strong>or</strong> unlock a <strong>SC/bargain-only</strong> item that gold simply can't buy.</li>
+<li>The catch: the favor becomes a <strong>debt</strong>, tracked. Small favors settle in play (deliver a message, certify a thing, spread a rumor). Large ones — anything Mahadi or Fhet'Ahla brokers — should be written down and, if big enough, <strong>notarized into an infernal contract</strong> (→ Fhet'Ahla, §7.4). An unpaid Emporium debt <em>compounds</em> and <em>follows the party.</em></li>
+<li><strong>Mahadi's hospitality is the trap version of this</strong> (§7.1): the "free" thing is a favor <strong>you didn't agree to price</strong>, and he sets the rate later.</li>
+</ul>
+<hr />
+<h2 id="4-reading-the-shop-sections">4. Reading the shop sections</h2>
+<p>Every shop below follows the same shape so you can run any of them cold:</p>
+<ul>
+<li><strong>Proprietor + statline pointer</strong> (CR/type — pull the block from <code>npc-reference.md</code> or 5e.tools if it ever matters; combat is off the table under the truce).</li>
+<li><strong>Attitude &amp; Insight DC</strong> — where they start and what a read reveals.</li>
+<li><strong>Stock / Services table</strong> — columns <strong>Item / Service | Price (SC / gp) | Haggle DC | Notes.</strong></li>
+<li><strong>Flex / won't-flex</strong> — where haggling bites and where the floor is hard.</li>
+<li><strong>Signature hook / quirk</strong> — the one thing that makes the stall memorable.</li>
+</ul>
+<p>Prices assume <strong>Cordial</strong> attitude and SC payment. gp figures include the surcharge. <strong>SC/bargain only</strong> = no gold, ever.</p>
+<hr />
+<h1 id="57-the-shops">5–7. THE SHOPS</h1>
+<p><em>(The six canon establishments + the Bone Devil Informant. Canon spellings throughout.)</em></p>
+<hr />
+<h2 id="71-infernal-rapture-mahadi-dd-canon">7.1 Infernal Rapture — Mahadi [D&amp;D CANON]</h2>
+<p><strong>Proprietor:</strong> <strong>Mahadi</strong>, rakshasa (CR 13; Magic Resistance, Limited Magic Immunity, Innate Spellcasting — see <code>npc-reference.md</code> and the primer's Truce appendix; never needed unless the truce breaks). Restaurant, spa, sanctuary, information hub, and procurement broker — the beating heart of the caravan.</p>
+<p><strong>Attitude:</strong> <strong>Cordial</strong>, warm on the surface (he receives the party as returning "Heroes of the Last Hill"). Genuinely gracious; genuinely calculating. <strong>Insight DC 18</strong> [D&amp;D CANON] — he fears angering Asmodeus, and <em>every kindness is an investment</em>; a success reveals that his "free" offers are priced, just not yet.</p>
+<p><strong>Haggling Mahadi:</strong> you barely do. His Haggle DC is <strong>20</strong> and his <strong>discount cap is 10%</strong> — and even a success he frames as <em>"for you, of course"</em>, i.e. a courtesy that <strong>adds to the hospitality debt</strong> rather than truly saving coin. He will <em>never</em> be intimidated (Intimidation vs. Mahadi is at disadvantage and risks a Wary drop); Persuasion and Deception are the only real angles, and rapport/Red-Ruth-leverage matter more than the die.</p>
+<h3 id="menu-food-drink">Menu — food &amp; drink</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The first course ("on the house")</td>
+<td><strong>Free</strong> — see debt table</td>
+<td>—</td>
+<td>[D&amp;D CANON] The trap. Costs a <em>hospitality debt</em>, not coin.</td>
+</tr>
+<tr>
+<td>Full extraordinary meal (per guest)</td>
+<td>0.1 SC / 20 gp</td>
+<td>20</td>
+<td>Restorative, sublime. A safe, luxurious meal in Hell is itself a rarity.</td>
+</tr>
+<tr>
+<td>Rare infernal vintage (bottle)</td>
+<td>0.5 SC / 100 gp</td>
+<td>20</td>
+<td>Cardamom-and-sulfur; loosens tongues (advantage on the <em>next</em> social check made drunk on it — and impaired).</td>
+</tr>
+<tr>
+<td>Private feast for the whole party</td>
+<td>1 SC / 200 gp</td>
+<td>20</td>
+<td>Includes the sanctuary of a <strong>safe long rest</strong> under truce. Debt-flavored if "gifted."</td>
+</tr>
+</tbody>
+</table>
+<h3 id="spa-bath-pamper">Spa / bath / pamper</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The bath &amp; soak</td>
+<td>0.2 SC / 40 gp</td>
+<td>20</td>
+<td>Removes 1 level of exhaustion; the safe rest that comes with it.</td>
+</tr>
+<tr>
+<td>Full pampering (the "Red Ruth treatment")</td>
+<td>1 SC / 200 gp</td>
+<td>20</td>
+<td>[HOMEBREW tie] The service Ruth traded secrets for. Ends one non-magical malady; a day's genuine ease.</td>
+</tr>
+<tr>
+<td>Sanctuary long rest (per party, under truce)</td>
+<td>0.5 SC / 100 gp</td>
+<td>20</td>
+<td>Guaranteed uninterrupted rest — no random encounter, no ambush. Priceless in Avernus; debt-flavored if free.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="information-pricing-tiers-dd-canon-base-homebrew-tiers">Information pricing tiers [D&amp;D CANON base / HOMEBREW tiers]</h3>
+<p>Mahadi is <em>exceptionally</em> well-informed. Coin buys the ordinary; the <em>good</em> answers cost bargains.</p>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Example question</th>
+<th>Price</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Common</strong></td>
+<td>General Avernus geography, who's who, road conditions</td>
+<td><strong>10 gp per question</strong> [D&amp;D CANON]</td>
+<td>—</td>
+<td>The published rate. Cheap, plentiful, reliable-ish.</td>
+</tr>
+<tr>
+<td><strong>Uncommon</strong></td>
+<td>A warlord's disposition; where a named person was last seen; a bounty's terrain</td>
+<td>0.5 SC / 100 gp</td>
+<td>20</td>
+<td>Or a small favor.</td>
+</tr>
+<tr>
+<td><strong>Rare</strong></td>
+<td>A specific soul-lead; the truth behind a rumor; Bhaalspawn-arc intel (Drenwal/Dumal/Senna)</td>
+<td><strong>1–3 SC or a bargain</strong></td>
+<td>22</td>
+<td><strong>SC/bargain only.</strong> He'd rather be paid in Red Ruth's leftovers than coin (§7.1 gambit).</td>
+</tr>
+<tr>
+<td><strong>Dangerous</strong></td>
+<td>Anything touching an archdevil's business; secrets Asmodeus would want reported</td>
+<td><strong>A named favor + a marked obligation</strong></td>
+<td>—</td>
+<td><strong>SC/bargain only.</strong> He <em>will</em> report the asking upward. Selling it also puts the <em>party</em> on someone's ledger.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="exotic-goods-procurement-dd-canon-commission-rareexoticinfernal-goods-via-his-network">Exotic-goods procurement [D&amp;D CANON — "commission rare/exotic/infernal goods via his network"]</h3>
+<p>Mahadi sources what the market floor can't. Commission it; wait for the caravan's contacts to deliver.</p>
+<table>
+<thead>
+<tr>
+<th>What he can source</th>
+<th>Lead time</th>
+<th>Price / cost</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Mundane resupply in bulk (rations, ammo, oil, rope)</td>
+<td>Same visit</td>
+<td>list + 10%</td>
+<td>18</td>
+<td>Beneath him, but he'll have a stall runner handle it.</td>
+</tr>
+<tr>
+<td>Uncommon magic item / consumable (party's pick, DM-approved)</td>
+<td>1–3 days</td>
+<td>5 SC / 1,000 gp</td>
+<td>20</td>
+<td>Or a favor. He knows a devil who knows a devil.</td>
+</tr>
+<tr>
+<td>Rare magic item / bespoke infernal gear</td>
+<td>1 week+</td>
+<td>15–25 SC <strong>or a significant bargain</strong></td>
+<td>22</td>
+<td><strong>SC/bargain only.</strong> May require an errand as part-payment (a proto-bounty).</td>
+</tr>
+<tr>
+<td>A specific piece of intel-as-object (a letter, a token, a name in writing)</td>
+<td>Varies</td>
+<td><strong>Bargain / favor</strong></td>
+<td>—</td>
+<td><strong>SC/bargain only.</strong> This is how he'd "acquire" the Mordenkainen letter <em>from</em> the party — in reverse.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="hospitality-debt-table-dd-canon-engine-homebrew-rates">⚠ Hospitality-debt table [D&amp;D CANON engine, HOMEBREW rates]</h3>
+<p><strong>Nothing here is free.</strong> Each "on the house" kindness places the recipient in Mahadi's debt; he sets the price later, and each return visit <strong>compounds</strong> it. Track it. Refusing to settle escalates toward an infernal contract.</p>
+<table>
+<thead>
+<tr>
+<th>The "free" thing</th>
+<th>What it actually costs, later</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>The free first course</td>
+<td>A <strong>truthful answer</strong> to one question Mahadi asks (about the party's business, their cargo, their plans).</td>
+</tr>
+<tr>
+<td>A free soak / grooming referral</td>
+<td>A <strong>small service</strong> owed — carry a message, vouch for him, drop a word where he wants it heard.</td>
+</tr>
+<tr>
+<td>A gifted feast / free long rest</td>
+<td>A <strong>named favor "to be called"</strong> — undefined now, defined by Mahadi when convenient. The dangerous one.</td>
+</tr>
+<tr>
+<td>Accepting his "generosity" a <em>second</em> visit</td>
+<td>The prior debt <strong>compounds</strong>: what was a favor becomes a <em>favor plus interest</em> — often the thing he actually wants (Red Ruth's soul-stock, the heartstone, the letter).</td>
+</tr>
+<tr>
+<td>Letting a debt sit across the arc</td>
+<td>It hardens toward a <strong>Fhet'Ahla-notarized obligation</strong> (§7.4). Now it's enforceable. Now it has a default clause.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="playing-mahadi-dd-canon-presence-homebrew-voice">Playing Mahadi [D&amp;D CANON presence / HOMEBREW voice]</h4>
+<ul>
+<li><strong>Presence:</strong> immaculate, unhurried, radiant with hospitality. The <em>hands are clasped backwards</em> — palms facing out, fingers folded the wrong way — and he never hides it, because he never needs to. He remembers every name, every prior order, every debt, and produces them like small gifts: <em>"The heather-and-ash tea again? You have excellent memory. I have a better one."</em></li>
+<li><strong>Voice:</strong> warm, low, faintly musical, with the cadence of a maître d' who has all the time in the underworld. Never raises it. Never cackles. Speaks in courtesies that turn out to be terms. <strong>Catchphrase:</strong> <em>"For you, of course."</em> (Every discount, every kindness, every trap wears it.)</li>
+<li><strong>Delighted by:</strong> being <em>shown</em> something rare — a soul-good, a secret, Red Ruth's leftovers, a name he didn't have. Genuine appreciation of his food and his floor. A guest who plays the game well (he loves a worthy counterparty).</li>
+<li><strong>Irritated by:</strong> vulgarity — threats, raised voices, haggling like a fishwife. He does not scowl; he <em>cools.</em> Insult the hospitality and the warmth stays on his face while it drains from the room.</li>
+<li><strong>The tell:</strong> watch the pen and the smile. When the smile stays but the eyes go <em>still</em> — when he stops volunteering and starts only answering — the mood has turned Wary. When he sets his fingertips together and says <em>"Let us not spoil a lovely evening,"</em> the party has one sentence left before Cold.</li>
+<li><strong>As "Heroes of the Last Hill":</strong> he receives them as honored returning guests — a reserved table, the good vintage, the first course pressed on them before they can decline. The reputation buys warmth and access; it does <strong>not</strong> buy off the debt. He is <em>investing</em> in heroes, and investors expect returns.</li>
+</ul>
+<h4 id="bargaining-sample-lines">Bargaining — sample lines</h4>
+<ul>
+<li><strong>Greeting:</strong> <em>"The Heroes of the Last Hill, returned to my floor. Sit — no, I insist, the good chairs. The first course is already on its way; we can discuss coin once you've eaten. One never bargains hungry."</em></li>
+<li><strong>Meet/beat the DC (10–20% off):</strong> <em>"For you, of course — call it a courtesy between friends. And take the vintage; it pairs with the venison. Consider it... noted, and forgotten."</em> (The discount is real; the "noted" is the hook.)</li>
+<li><strong>Beat by 5+ (best case):</strong> <em>"Ah, you </em>are<em> good. Very well — my best price, and the private room for your rest, gratis. It pleases me to be generous with people who understand the value of a thing. We are going to do </em>such<em> business, you and I."</em></li>
+<li><strong>Fail (price holds):</strong> <em>"A fair try, and I mean that. But this is my price, and my prices are as gracious as I am. Shall we say yes, and move on to pleasanter things?"</em></li>
+<li><strong>Fail by 5+ (soured):</strong> <em>"...I think we have misunderstood one another. The offer stands at the door price — in gold, and with the mortal's surcharge. Do enjoy the rest of your evening."</em> (Warmth on the face; winter in the voice.)</li>
+<li><strong>The hard won't-budge (the debt itself):</strong> <em>"Waive it? My dear, the coin was never the point. The </em>courtesy<em> was extended; the courtesy will be returned. That is not a fee I can discount — it is simply how the world balances. You understand."</em></li>
+<li><strong>Close / walk-away:</strong> <em>"Go with my blessing, and come back soon — you always do. The caravan remembers its friends. And its ledgers."</em></li>
+</ul>
+<h4 id="more-services-prices-homebrew">More services &amp; prices [HOMEBREW]</h4>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The Backwards Feast</strong> (signature seven-course tasting, per guest)</td>
+<td>0.4 SC / 80 gp</td>
+<td>20</td>
+<td>Each course served in reverse order of a mortal life. Restorative as a full meal <em>and</em> grants advantage on the party's next single Insight or Persuasion check while the memory lasts (until next long rest). Debt-flavored if "gifted."</td>
+</tr>
+<tr>
+<td><strong>"Cardamom &amp; Sulfur"</strong> (Mahadi's signature cocktail)</td>
+<td>0.15 SC / 30 gp</td>
+<td>20</td>
+<td>Loosens the drinker's tongue <em>and</em> everyone at the table — advantage on one social check; the drinker is impaired (disadvantage on Wis saves) for the hour.</td>
+</tr>
+<tr>
+<td><strong>The Rakshasa's Repose</strong> (deluxe spa package)</td>
+<td>1.5 SC / 300 gp</td>
+<td>22</td>
+<td>Bath, oils, grooming, a private soak <em>and</em> a sanctuary long rest: removes 1 exhaustion, ends one non-magical malady, and the rest cannot be interrupted. SC-preferred.</td>
+</tr>
+<tr>
+<td><strong>A table held</strong> (standing reservation / safe seat, per visit)</td>
+<td>0.25 SC / 50 gp</td>
+<td>20</td>
+<td>A guaranteed place at his floor kept for you next stop — and word that you are <em>expected</em>, which discourages a rival from moving on you first.</td>
+</tr>
+<tr>
+<td><strong>Discreet procurement of a mortal comfort</strong> (a Baldur's Gate luxury, a letter carried out of Hell, a specific wine)</td>
+<td>1 SC <strong>or a favor</strong></td>
+<td>22</td>
+<td><strong>SC/bargain only.</strong> He can get almost anything mortal into or out of Avernus — for a price he sets later.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="signature-item-a-bottled-true-memory-homebrew">⭐ Signature item — A Bottled True Memory [HOMEBREW]</h4>
+<p>A single perfect memory, drawn whole and unblemished from a soul and sealed in a phial of warm smoked glass that shows the scene playing silently inside. Mahadi keeps a small, exquisite cellar of them — <em>"the vintages that matter,"</em> he calls them. He will part with one only for the right guest, and only for the right price.</p>
+<ul>
+<li><strong>What it is:</strong> a chosen true memory made <em>object.</em> Whose memory, and of what, is the transaction — Mahadi has, or can <em>acquire</em>, a memory relevant to the party's business (a warlord's true face, the last hour of a dead ally, the location seen by a soul now in a coin, the words of a contract as they were truly spoken).</li>
+<li><strong>Rules effect (level 12):</strong> shattering the phial as an action lets one creature <em>live</em> the memory as though present — gaining, at the DM's discretion, a <strong>definitive answer to one question</strong> the memory can address, <strong>or</strong> advantage on all checks against a specific person, place, or contract for the next 24 hours (the party now <em>knows</em> them). A memory of a place functions as a one-use, perfectly reliable <em>scrying</em> of that place as it was. Single use; the memory is consumed.</li>
+<li><strong>Price:</strong> <strong>15 SC, or (far more likely) a bargain</strong> — a named favor to be called, plus something <em>shown</em> to him (Red Ruth's leftovers, a secret, a name for his cellar). <strong>SC/bargain only.</strong> The favor route is how he <em>wants</em> to sell it; the coin price is deliberately steep so the party trades in obligation instead.</li>
+<li><strong>Haggle:</strong> barely (DC 22, cap 10%). You do not talk Mahadi down on a vintage. You can only choose <em>which currency</em> deepens the debt.</li>
+</ul>
+<p><strong>Won't flex on:</strong> the <em>fact</em> of the debt. He'll happily "discount" coin prices as a courtesy (which deepens the debt); he will <strong>not</strong> waive the obligation attached to hospitality. <strong>Signature hook:</strong> the hands clasped backwards, the perfect memory, the bill you didn't know you were signing. The Red Ruth gambit (primer Act 2) is transacted <em>here.</em></p>
+<hr />
+<h2 id="72-the-firesnake-forge-rassh-dd-canon">7.2 The Firesnake Forge — Rassh [D&amp;D CANON]</h2>
+<p><strong>Proprietor:</strong> <strong>Rassh</strong>, salamander smith (CR 5 salamander; the forge is worked by <strong>fire snakes</strong>). Buys and sells weapons and armor, <strong>repairs equipment</strong>, and — canonically — <strong>repairs AND refuels infernal war machines.</strong> The honest transaction on the floor: burns hot, talks little, delivers.</p>
+<p><strong>Attitude:</strong> <strong>Cordial</strong>, blunt. No small talk, no games — a straight trade. <strong>Insight DC 12</strong> (he's the easiest read in the market; a success confirms his prices are firm-but-fair and he genuinely respects competent fighters, which is a small Persuasion angle).</p>
+<p><strong>Haggling Rassh:</strong> Haggle DC <strong>14</strong>, cap <strong>20%</strong>. He respects a good argument and <em>loathes</em> a bluff — <strong>Deception vs. Rassh is at disadvantage</strong> (fire snakes hiss; he knows metal and he knows liars). Persuasion (respect, repeat custom, a warrior's rapport) is the best angle. A thrown-in extra from him is usually <strong>free basic repairs</strong> or a handful of ammunition.</p>
+<h3 id="weapons-armor-stock">Weapons &amp; armor (stock)</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Standard weapon (martial/simple)</td>
+<td>list gp (× surcharge if gp)</td>
+<td>14</td>
+<td>Forge-fresh, Avernus-hardened.</td>
+</tr>
+<tr>
+<td>Standard armor up to plate</td>
+<td>list gp</td>
+<td>14</td>
+<td>Fitted while you soak next door.</td>
+</tr>
+<tr>
+<td>Ammunition (arrows/bolts, ×20)</td>
+<td>0.05 SC / 10 gp</td>
+<td>14</td>
+<td>Bundle discounts easy.</td>
+</tr>
+<tr>
+<td>Silvered weapon</td>
+<td>+0.5 SC / +100 gp over base</td>
+<td>14</td>
+<td>Useful against the Emporium's less-friendly clientele elsewhere.</td>
+</tr>
+<tr>
+<td><strong>+1 weapon or armor</strong> (limited stock)</td>
+<td>8 SC / 1,600 gp</td>
+<td>16</td>
+<td>One or two on hand; more via Mahadi's procurement (§7.1).</td>
+</tr>
+<tr>
+<td><strong>Hellfire brand</strong> (weapon, +1) [HOMEBREW]</td>
+<td>12 SC / SC-preferred</td>
+<td>16</td>
+<td>+1; extra <strong>1d6 fire</strong>; sheds dim light. Salamander-forged; hums when evil is near.</td>
+</tr>
+<tr>
+<td><strong>Firesnake fang dagger</strong> (+1) [HOMEBREW]</td>
+<td>6 SC / 1,200 gp</td>
+<td>15</td>
+<td>+1 dagger; on a hit, <strong>1/day</strong> the blade "spits" for +2d6 fire (no save). Living-metal quirk: warm to the touch.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="repairs">Repairs</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Repair a damaged weapon/armor piece</td>
+<td>0.2 SC / 40 gp</td>
+<td>14</td>
+<td>Same visit. Often thrown in free on a good haggle.</td>
+</tr>
+<tr>
+<td>Restore a badly degraded item (rust, corrosion)</td>
+<td>0.5 SC / 100 gp</td>
+<td>14</td>
+<td>Undoes Rust Queen / acid damage and the like.</td>
+</tr>
+<tr>
+<td>Reforge a broken magic item (structure only)</td>
+<td>2 SC / 400 gp</td>
+<td>16</td>
+<td>Restores the <em>body</em>; won't restore lost enchantment.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="war-machine-repair-refuel-dd-canon-his-signature-service">War-machine repair &amp; REFUEL [D&amp;D CANON — his signature service]</h3>
+<p>This is why the party is here. Rassh services <em>and</em> refuels infernal war machines. <strong>Refueling burns soul coins as fuel — annihilating the souls (see §2 moral cost).</strong></p>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>War-machine field repair (per 50 HP restored)</td>
+<td>1 SC / 200 gp</td>
+<td>15</td>
+<td>Patches, welds, replaced runners.</td>
+</tr>
+<tr>
+<td><strong>Refuel</strong> (soul-coin fuel, per coin loaded)</td>
+<td><strong>1 SC = 1 fuel-coin</strong> [D&amp;D CANON: 1 coin ≈ 24h]</td>
+<td>—</td>
+<td><strong>SC/bargain only. The coins are annihilated as fuel.</strong> Flag the moral cost every time.</td>
+</tr>
+<tr>
+<td>Full mechanical tune / systems check</td>
+<td>2 SC / 400 gp</td>
+<td>15</td>
+<td>Advantage on the machine's next control checks (DM's call).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="the-lady-vengeance-line-item-campaign-canon-ship-homebrew-price">⭐ THE LADY VENGEANCE — line item [CAMPAIGN CANON ship / HOMEBREW price]</h4>
+<p>The beached, scorched Gondian-Portyr Hellship (AC 17, 350 HP, DT 15; one runner buckled, hull scorched — see <code>loot-and-items.md</code>). Rassh can get her <em>moving</em>; a true hull rebuild may still want <strong>Bel's Forge</strong> downstream.</p>
+<table>
+<thead>
+<tr>
+<th>Tier of repair</th>
+<th>Cost</th>
+<th>Time</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Get her running again</strong> (field repair, straighten the runner, seal the hull enough to hover/sail)</td>
+<td><strong>8 SC</strong> <em>or</em> <strong>6 SC + a favor</strong> <em>or</em> a completed bounty</td>
+<td><strong>~2 days</strong> (works through the visit)</td>
+<td>Restores mobility (hover 40 / Styx 60) and combat function. <strong>The big-ticket line of the session.</strong> Haggle DC <strong>16</strong>, cap 20% — the favor route beats any coin price.</td>
+</tr>
+<tr>
+<td><strong>Refuel to sail</strong></td>
+<td><strong>+1 SC per 24h of travel</strong> (fuel-coins, annihilated)</td>
+<td>Included in service time</td>
+<td><strong>SC/bargain only.</strong> The moral cost lands here — remind Drenwal. 🎲 DIAL: the party may argue for the <strong>clean Gondian core</strong> fuel (per <code>npc-reference.md</code> Jeremy) to <em>avoid</em> burning souls.</td>
+</tr>
+<tr>
+<td><strong>Full hull rebuild</strong> (undo the structural damage, not just patch)</td>
+<td><strong>Not available here</strong> — needs <strong>Bel's Forge</strong></td>
+<td>—</td>
+<td>[CAMPAIGN CANON] Rassh will say so plainly. Threads the arc toward Bel (primer Act 6).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="playing-rassh-dd-canon-creature-homebrew-voice">Playing Rassh [D&amp;D CANON creature / HOMEBREW voice]</h4>
+<ul>
+<li><strong>Presence:</strong> a coil of living fire in a serpent's body, twelve feet of red-orange muscle wound around the anvil, forge-heat rolling off him in a wave you feel from across the stall. The fire snakes flow through the coals like apprentices; he speaks around a mouthful of smoke and never stops working while he talks.</li>
+<li><strong>Voice:</strong> a low, dry <em>hiss</em> under every word — the sizzle of quenched metal. Short sentences. No wasted breath. He states, he does not sell. <strong>Catchphrase / tic:</strong> <em>"Metal doesn't lie."</em> (His whole worldview. He respects what holds an edge and distrusts what talks too much.)</li>
+<li><strong>Delighted by:</strong> a well-kept weapon, a warrior who knows their gear, an honest description of what broke and how. Bring him a blade you love and he'll warm to you faster than any coin.</li>
+<li><strong>Irritated by:</strong> haggling by <em>bluff.</em> Fire snakes hiss when they smell a lie; so does he. A padded story about a "competing offer" gets a flat <em>"No,"</em> and the price goes firm. He also has no patience for flinching at the refuel cost — <em>you</em> asked for fire.</li>
+<li><strong>The tell:</strong> he goes quiet and the fire snakes still. When Rassh stops working the metal and <em>looks</em> at you — actually stops the hammer — you have either impressed him or lost him, and the next word tells you which.</li>
+<li><strong>As "Heroes of the Last Hill":</strong> he doesn't gush, but he <em>rates</em> them — soldiers who won a real fight. That respect is worth a genuine small discount and his honest opinion on their gear, freely given. He'll say <em>"You earned the steel. I'll do it right."</em> and mean it.</li>
+</ul>
+<h4 id="bargaining-sample-lines_1">Bargaining — sample lines</h4>
+<ul>
+<li><strong>Greeting:</strong> <em>"You're the ones from the ridge. Good. You'll have broken something worth fixing, then. Show me. Don't tell me — show me."</em></li>
+<li><strong>Meet/beat the DC (10–20% off):</strong> <em>"Fair. You know what the work's worth, which is more than most. Take the price, and I'll re-edge the lot of you for nothing. Warriors should walk out sharp."</em></li>
+<li><strong>Beat by 5+ (best case):</strong> <em>"...Hah. Good argument, no smoke in it. Best price, and a bundle of ammunition on the fire. Don't tell the room I went soft. I didn't. You just weren't wrong."</em></li>
+<li><strong>Fail (price holds):</strong> <em>"No. That's the number. Metal, coal, my time — it costs what it costs. You want it done right or done cheap? Can't have both from me."</em></li>
+<li><strong>Fail by 5+ (soured):</strong> <em>"Don't. I heard the lie before you finished it. The snakes heard it first. Price is the price, and it just went up for the insult. Come back when you're honest."</em></li>
+<li><strong>The hard won't-budge (the refuel rate / annihilation):</strong> <em>"You want the ship to sail, it burns coins. One a day. And a coin's a soul, and it doesn't come back — I won't pretend otherwise and I won't cut the rate. That's not my cruelty. That's just how fire eats. Decide."</em></li>
+<li><strong>Close / walk-away:</strong> <em>"It'll hold. Bring it back when it doesn't. And keep it oiled — I'll know if you didn't."</em></li>
+</ul>
+<h4 id="more-services-prices-homebrew_1">More services &amp; prices [HOMEBREW]</h4>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Adamantine plating service</strong> (reinforce a suit of armor)</td>
+<td>3 SC / 600 gp</td>
+<td>16</td>
+<td>Any critical hit against the wearer becomes a normal hit. Salamander-welded seams; won't crack.</td>
+</tr>
+<tr>
+<td><strong>Firesnake-venom bolts / arrows</strong> (×20)</td>
+<td>0.4 SC / 80 gp</td>
+<td>15</td>
+<td>On a hit, target takes +1d6 fire and is <em>marked</em> — the next attack against it before end of your next turn has advantage.</td>
+</tr>
+<tr>
+<td><strong>Ashfang throwing knives</strong> (set of 6, returning heat)</td>
+<td>1 SC / 200 gp</td>
+<td>15</td>
+<td>+1 thrown daggers; on a hit deal +1d4 fire; a bonus action recalls a thrown blade to hand (it's warm, and it wants to come home).</td>
+</tr>
+<tr>
+<td><strong>Heat-treat a weapon</strong> (temporary flame edge)</td>
+<td>0.2 SC / 40 gp</td>
+<td>14</td>
+<td>For 24 hours the weapon deals +1d4 fire. Cheap, popular before a fight; the honest man's Hellfire brand.</td>
+</tr>
+<tr>
+<td><strong>Salvage &amp; reforge</strong> (turn a broken magic weapon's steel into a new mundane masterwork)</td>
+<td>1.5 SC / 300 gp</td>
+<td>16</td>
+<td>Won't recover the lost enchantment (see reforge, above) — but you keep the <em>good steel</em> as a fine +0 blade instead of scrap.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="signature-item-dragon-scale-warplate-campaign-canon-ties-to-the-live-copperchromatic-dragon-threads">⭐ Signature item — Dragon-Scale Warplate [CAMPAIGN CANON — ties to the live copper/chromatic dragon threads]</h4>
+<p>Rassh's masterwork: a suit of scale-and-plate forged around a single salvaged <strong>dragon scale</strong> the party (or the caravan) brings him. He hammers the scale into the breast of the harness, and the whole suit takes on its temper — color, sheen, and the memory of the wyrm it came from. <em>"Bring me the scale. I'll bring out the dragon."</em></p>
+<ul>
+<li><strong>What it is:</strong> [CAMPAIGN CANON hook] a bespoke suit of <strong>Dragon Scale Mail</strong> (rare), keyed to whatever dragon's scale is supplied — a live campaign thread (a chromatic scale from a battlefield trophy; and, if the DM ever wants to plant it, a <em>copper</em> scale that would quietly delight Burney next door — DM-only). Requires the scale as material, so it can't simply be bought off the shelf.</li>
+<li><strong>Rules effect (level 12):</strong> <strong>+1 AC</strong> (armor is +1); <strong>resistance to the damage type</strong> of the dragon the scale came from; and <strong>advantage on saving throws against the Frightful Presence</strong> of dragons. Attunement.</li>
+<li><strong>Price:</strong> <strong>the scale + 18 SC</strong>, <em>or</em> <strong>the scale + a completed bounty/favor.</strong> SC-preferred; a big-ticket line to rival the Lady Vengeance repair. The scale is the real gate — no scale, no plate.</li>
+<li><strong>Haggle:</strong> DC 16, cap 20% on the <em>labor</em> coin only — he won't discount the craft below cost, and there's no discounting the scale (you either have it or you don't). The favor route beats the coin.</li>
+</ul>
+<p><strong>Won't flex on:</strong> the <strong>refuel</strong> rate or the annihilation cost (fuel is fuel; the souls are real). He'll flex on labor/repair coin, not on materials. <strong>Signature hook:</strong> [HOMEBREW, per the primer's fold-in DIAL] the Forge also stocks <strong>shattersticks</strong> — the homebrew "Salamander Artificer" is folded into Rassh.</p>
+<h4 id="shattersticks-homebrew">Shattersticks [HOMEBREW]</h4>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Shatterstick</strong> (single-use)</td>
+<td>0.5 SC / 100 gp each</td>
+<td>15</td>
+<td>Throw ≤ 60 ft as an action. <strong>5d6 thunder</strong>, 10-ft radius, <strong>DC 15 Dex</strong> save for half. Also cracks stone/doors/war-machine plating. Needed for Shummrath's Pit downstream.</td>
+</tr>
+<tr>
+<td>Shattersticks, bundle of 3</td>
+<td>1.2 SC / 240 gp</td>
+<td>15</td>
+<td>Bulk rate; easy thrown-in extra on a good haggle.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="73-burney-the-barber-burney-dd-canon">7.3 Burney the Barber — Burney [D&amp;D CANON]</h2>
+<p><strong>Proprietor:</strong> <strong>Burney</strong> — presents as a warm, chatty human woman who gives a genuinely good shave. <strong>[DM-ONLY SECRET — do not reveal at the table]</strong> she is an <strong>adult copper dragon</strong> disguised as a human woman, an agent of <strong>Bahamut</strong>, near-impossible for fiends to detect, who may <strong>discreetly aid good-aligned visitors.</strong> She is the one <em>actually kind</em> soul on the floor. <em>Bank the secret; don't spend it.</em> (Pull the adult copper dragon block, CR 14, only in the extraordinarily unlikely event it ever matters.)</p>
+<p><strong>Attitude:</strong> <strong>Warm</strong> by default (the market's outlier — she <em>likes</em> people, especially the good-aligned). <strong>Insight DC 20</strong> — a success reveals only that she is <em>unaccountably genuine</em> and safer than she should be; the dragon truth is not on the table for a normal Insight check. Her warmth gives every haggle here <strong>DC −2</strong> baked in.</p>
+<p><strong>Haggling Burney:</strong> Haggle DC <strong>12</strong> (already low; friendly), cap 20%. She barely haggles because she barely charges — she's likelier to <em>give</em> a good-aligned party a discount unasked, or throw in a discreet healing "on the house, dear." Intimidation is pointless and mildly insulting (Wary drop). Persuasion/rapport is the whole game and it works.</p>
+<h3 id="grooming">Grooming</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Shave, cut, and a hot towel</td>
+<td>0.05 SC / 10 gp</td>
+<td>12</td>
+<td>Removes the road; a small morale lift. Often free for the polite.</td>
+</tr>
+<tr>
+<td>Full grooming &amp; fitting (look the part)</td>
+<td>0.2 SC / 40 gp</td>
+<td>12</td>
+<td>Advantage on the next Charisma check that hinges on <em>presentation</em> (an audience, a parley).</td>
+</tr>
+</tbody>
+</table>
+<h3 id="appearance-alteration-disguise-dd-canon-magically-alter-or-restore-appearance">Appearance alteration / disguise [D&amp;D CANON — "magically alter or restore appearance"]</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Restore appearance (erase scars, aging, war-damage)</td>
+<td>0.5 SC / 100 gp</td>
+<td>12</td>
+<td>Cosmetic magic; genuine, permanent, kind.</td>
+</tr>
+<tr>
+<td><strong>Alter appearance</strong> (a new face, lasting)</td>
+<td>2 SC / 400 gp</td>
+<td>14</td>
+<td>Non-illusory change; you <em>look</em> like someone else. Lasts until she or another such art reverts it. Great for going unrecognized in Hell.</td>
+</tr>
+<tr>
+<td><strong>A face nobody in Hell will know</strong> (deep disguise)</td>
+<td>3 SC <strong>or a kindness</strong></td>
+<td>15</td>
+<td>[D&amp;D CANON flavor, rumor #8] A new identity, near-undetectable by fiends. <strong>She'd waive the coin for the right good-aligned reason.</strong></td>
+</tr>
+</tbody>
+</table>
+<h3 id="discreet-healing-menu-dd-canon-quiet-aid-homebrew-prices">Discreet healing menu [D&amp;D CANON "quiet aid" / HOMEBREW prices]</h3>
+<p>She doesn't advertise it. Offered quietly, sometimes free, to those she reads as good.</p>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Effect</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>A soothing tonic</td>
+<td>Heals <strong>2d4+2</strong> (as a Potion of Healing)</td>
+<td>0.25 SC / 50 gp</td>
+<td>12</td>
+<td>"For the road, dear."</td>
+</tr>
+<tr>
+<td>Restorative treatment</td>
+<td>As <em>lesser restoration</em> (ends one disease/condition)</td>
+<td>0.75 SC / 150 gp</td>
+<td>13</td>
+<td>Quiet, no questions.</td>
+</tr>
+<tr>
+<td>Mending the deep hurt</td>
+<td>As <em>greater restoration</em> (removes a curse/level of exhaustion/reduction)</td>
+<td>2 SC / 400 gp</td>
+<td>15</td>
+<td>She'll do this for a good soul at cost — or free, if the story earns it.</td>
+</tr>
+<tr>
+<td><strong>A quiet word of true kindness</strong></td>
+<td>🎲 DM's discretion — a genuinely helpful nudge, warning, or blessing</td>
+<td><strong>Free</strong></td>
+<td>—</td>
+<td>[DM-only] This is the copper dragon helping. Use <em>sparingly</em>, off-ledger, as a mystery.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="playing-burney-dd-canon-surface-homebrew-voice">Playing Burney [D&amp;D CANON surface / HOMEBREW voice]</h4>
+<ul>
+<li><strong>Presence:</strong> a plump, rosy, comfortable-looking woman of middle years, sleeves rolled, a warm towel always over one arm, a chair that somehow feels safe the moment you sit in it. She works with a straight razor and a genuinely gentle hand, and she <em>hums</em> while she works. The stall smells of soap and warm water — the only clean smell on the floor.</li>
+<li><strong>Voice:</strong> warm, chatty, motherly, unhurried. Calls everyone <em>"dear"</em> and <em>"love"</em> and means it. Asks after you like she remembers — and she does. <strong>Catchphrase:</strong> <em>"There, now. That's better, isn't it?"</em> (Said over a finished shave, a healed scar, a quiet mercy — all the same gentle <em>there, now.</em>)</li>
+<li><strong>Delighted by:</strong> kindness, especially kindness shown to someone who can't repay it. A guest who's gentle with the frightened mortal in the next chair. Small courtesies. She lights up at decency the way Mahadi lights up at leverage.</li>
+<li><strong>Irritated by:</strong> cruelty and swagger. She won't scold — she just <em>cools</em>, goes quiet, and finds she's "all booked up, dear." Threats slide off her like water; she's never once looked afraid, which a sharp PC might, someday, find strange.</li>
+<li><strong>The tell:</strong> the humming. When Burney hums, all is well. When she goes quiet and <em>studies</em> you over the razor — kindly, but seeing something — she's decided something about your heart. (DM-only: that's the dragon looking.)</li>
+<li><strong>As "Heroes of the Last Hill":</strong> she's <em>proud</em> of them, warmly and without agenda — <em>"Heroes, and they came to see old Burney. Sit down, the both of you, you look like you've been through it."</em> The reputation buys the warmest welcome on the floor and, quietly, the benefit of the doubt on whether they're <em>good</em> — which, with Burney, is the only currency that truly matters.</li>
+</ul>
+<h4 id="bargaining-sample-lines_2">Bargaining — sample lines</h4>
+<ul>
+<li><strong>Greeting:</strong> <em>"Well, look at the state of you, dear — sit, sit. Road-dust an inch thick and a face like you haven't slept in a week. We'll fix that. We'll fix all of it. Now, who's first?"</em></li>
+<li><strong>Meet/beat the DC (10–20% off):</strong> <em>"Oh, don't fuss about the coin. Call it less, and I'll throw in a hot towel and something for that nasty cut on your arm — no, no, I saw it, hold still. There."</em></li>
+<li><strong>Beat by 5+ (best case):</strong> <em>"You're good people, I can tell. Keep your coin, most of it — and here, a little tonic for the road, on the house. No, I insist. It's not every day heroes let an old woman fuss over them."</em></li>
+<li><strong>Fail (price holds):</strong> <em>"That's already my kindest price, love — I'd be robbing my own till to go lower, and then how would I keep the soap in? It's a fair number for good work. Shall I begin?"</em> (Even her "no" is warm.)</li>
+<li><strong>Fail by 5+ (soured — reserved for the cruel):</strong> <em>"...Do you know, I find I'm all booked up today. Try one of the other stalls, dear. They'll suit you better."</em> (The one Cold thing she does: quietly withhold her kindness from someone who scares her patrons.)</li>
+<li><strong>The hard won't-budge (she won't aid the cruel):</strong> <em>"I don't do that work for just anyone, love. Not the deep sort. That's for people I can look in the eye. And I don't much like what I see in yours. No charge, no service — off you go."</em></li>
+<li><strong>Close / walk-away:</strong> <em>"There, now — good as new, and better than you came in. Mind how you go out there, dears. It's not kind, this place. You be kind anyway."</em></li>
+</ul>
+<h4 id="more-services-prices-homebrew_2">More services &amp; prices [HOMEBREW]</h4>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The full sit-down</strong> (shave, cut, hot towel, and a listening ear)</td>
+<td>0.1 SC / 20 gp</td>
+<td>12</td>
+<td>Removes the road <em>and</em> a point of stress — the party's next long rest also ends one level of exhaustion (her chair does half the work of a rest). Often free for the kind.</td>
+</tr>
+<tr>
+<td><strong>"Someone respectable"</strong> (disguise package: a Baldur's Gate merchant, a devil's clerk, a nobody)</td>
+<td>1 SC / 200 gp</td>
+<td>13</td>
+<td>A styled, lasting appearance change built to pass in a <em>specific</em> setting — advantage on Deception to pose as that role until reverted.</td>
+</tr>
+<tr>
+<td><strong>A quiet cure</strong> (remove a specific curse she can reach)</td>
+<td>1.5 SC / 300 gp</td>
+<td>14</td>
+<td>As <em>remove curse.</em> Done gently, no questions, no ledger. Free for a good soul the story has earned.</td>
+</tr>
+<tr>
+<td><strong>Waking-ease draught</strong> (calm the frightened)</td>
+<td>0.15 SC / 30 gp</td>
+<td>12</td>
+<td>Ends the <em>frightened</em> condition and grants advantage on the next save against fear. She keeps a shelf of it for the mortals who wander in shaking.</td>
+</tr>
+<tr>
+<td><strong>Match a lost face</strong> (restore someone to how they looked before Hell changed them)</td>
+<td>0.75 SC / 150 gp</td>
+<td>13</td>
+<td>Cosmetic and kind — undo mutation-scarring, ichor-warping, a Fugue-faded face. She does this one nearly at cost; it <em>matters</em> to her.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="signature-item-a-face-nobody-in-hell-will-know-deluxe-dd-canon-flavor-homebrew-build">⭐ Signature item — "A Face Nobody in Hell Will Know" (Deluxe) [D&amp;D CANON flavor / HOMEBREW build]</h4>
+<p>Her masterwork of the trade, and the thing the floor whispers she <em>can</em> do (rumor #8): not a disguise but a <em>new person.</em> A slow, gentle, hours-long working that gives you a wholly new face, voice, and bearing — one that no fiend can see through, and that even <em>scrying</em> slides off of. She does it in the back, with the curtain drawn, and she does it right.</p>
+<ul>
+<li><strong>What it is:</strong> a lasting new identity — appearance and manner remade — built to be <strong>undetectable by fiends.</strong> Divination and truesight that would pierce an illusion find nothing to pierce, because nothing here is illusion; the change is <em>real.</em> Lasts until she (or comparable art) reverts it.</li>
+<li><strong>Rules effect (level 12):</strong> the wearer counts as a different, unremarkable person: <strong>immune to being magically identified or located by fiends</strong> (fiendish <em>scrying</em>, <em>locate creature</em>, and truesight fail to recognize them), and gains advantage on all Deception checks to maintain the false identity. Reverts only by Burney's hand or <em>greater restoration</em>-grade magic.</li>
+<li><strong>Price:</strong> <strong>4 SC — <em>or</em> a kindness.</strong> [DM-only truth: for a genuinely good-aligned party with a good reason, she'll waive the coin entirely and do it <em>for the cause</em>, quietly, asking only that they use it well. She'll never say why she can afford to.] SC/kindness only; gold feels wrong to her for this and she'll gently decline it.</li>
+<li><strong>Haggle:</strong> she barely charges to begin with (DC 15, cap 20%) — and for the right heart, the price isn't coin at all.</li>
+</ul>
+<p><strong>Won't flex on:</strong> nothing, really — she under-charges. She <em>will</em> refuse to help someone she reads as cruel (a Cold-tier refusal). <strong>Signature hook:</strong> the only stall where "free" is <em>actually</em> free and carries no hook — the exact inverse of Mahadi. A careful party may someday wonder <em>why.</em></p>
+<hr />
+<h2 id="74-from-here-to-avernus-fhetahla-dd-canon-campaign-canon">7.4 From Here to Avernus — Fhet'Ahla [D&amp;D CANON + CAMPAIGN CANON]</h2>
+<p><strong>Proprietor:</strong> <strong>Fhet'Ahla</strong>, amnizu (CR 18 amnizu — squat, corpulent, wrinkled; never fought here, he's a banker). Runs an <strong>infernal bank</strong>: a soul-coin moneylender whose loans are secured by <strong>infernal contracts.</strong> <strong>[CAMPAIGN CANON]</strong> he is also <strong>Mahadi's contract-notary</strong> — the seal on the charter's soul-bounty instruments. Meticulous, unhurried, faintly bored by mortals who don't read.</p>
+<p><strong>Attitude:</strong> <strong>Cordial</strong>, professionally cold. He doesn't dislike the party; he simply doesn't care, until they're a <em>counterparty.</em> <strong>Insight DC 16</strong> — a success reveals he is scrupulously <em>fair to the letter</em> and <em>ruthless past it</em>: the trap is never a lie, it's a clause. The rumor "read <em>all</em> of it" (primer rumor #7) is exact.</p>
+<p><strong>Haggling Fhet'Ahla:</strong> Haggle DC <strong>18</strong>, cap <strong>10%</strong>, and he flexes on <strong>fees and rates, never on the <em>terms</em>.</strong> You can talk down an interest point; you cannot talk out a default clause. Intimidation is useless (amnizu; disadvantage, Wary). Deception is <em>dangerous</em> — he reads contracts <em>and</em> people, and a caught bluff sours the desk for the whole visit. Persuasion + actually reading the paper is the only respectable play.</p>
+<h3 id="soul-coin-loans-dd-canon-service-homebrew-terms">Soul-coin loans [D&amp;D CANON service / HOMEBREW terms]</h3>
+<blockquote class="note">
+<p><strong>⚠ Borrow here only if you've read all of it.</strong> Every loan is an infernal contract with a <strong>default clause</strong> that comes for the borrower's soul or service, not just their purse.</p>
+</blockquote>
+<table>
+<thead>
+<tr>
+<th>Loan product</th>
+<th>Principal</th>
+<th>Interest</th>
+<th>Collateral</th>
+<th>Default clause</th>
+<th>Haggle DC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Small line</strong></td>
+<td>up to 5 SC</td>
+<td>+25% due in 30 days</td>
+<td>A named possession or a favor</td>
+<td>On default, collateral forfeits <em>and</em> interest compounds weekly</td>
+<td>18</td>
+</tr>
+<tr>
+<td><strong>Standard loan</strong></td>
+<td>up to 20 SC</td>
+<td>+50% due in 30 days</td>
+<td>Soul-goods, a magic item, or a marked service</td>
+<td>Default → the debt is <strong>worked off in service</strong> (the "shadow works off the debt" warlord — rumor #7)</td>
+<td>18</td>
+</tr>
+<tr>
+<td><strong>Great loan</strong></td>
+<td>20 SC+</td>
+<td>+100% / negotiated</td>
+<td><strong>A soul as surety</strong> (yours or a coin you hold)</td>
+<td>Default → the surety soul is <strong>forfeit to the bank</strong> (and can be spent — annihilated)</td>
+<td>20</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>The infernal catch [D&amp;D CANON]:</strong> these are <em>binding.</em> Asimov can flag the trap if asked (he reads fine print — primer Act 5); otherwise the party signs blind. <strong>DM cue:</strong> never let a loan be a clean gp transaction — it's a contract, and Fhet'Ahla's contracts <em>rot the borrower</em> if unpaid.</li>
+</ul>
+<h3 id="exchange-appraisal">Exchange &amp; appraisal</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Rate</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Exchange gp → SC</td>
+<td>~200 gp per 1 SC (the surcharge; poor rate)</td>
+<td>18</td>
+<td>He barely wants gold either.</td>
+</tr>
+<tr>
+<td>Exchange SC → gp</td>
+<td>~80 gp per 1 SC (he keeps the spread)</td>
+<td>18</td>
+<td>Rarely worth it.</td>
+</tr>
+<tr>
+<td>Appraise a soul-good / magic item</td>
+<td>0.1 SC / 20 gp per item</td>
+<td>16</td>
+<td>Honest to the copper — and he <em>remembers</em> what you showed him.</td>
+</tr>
+<tr>
+<td>Appraise Red Ruth's soul-stock / heartstone</td>
+<td><strong>Free</strong> (he wants to <em>see</em> it)</td>
+<td>—</td>
+<td>[HOMEBREW tie] He'll appraise it gladly — and word reaches Mahadi (§7.1). Careful what you show.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="campaign-canon-contract-notary-fees-the-soul-bounties">[CAMPAIGN CANON] Contract-notary fees — the soul-bounties</h3>
+<p>Fhet'Ahla is the fulcrum of the bounty board (primer Act 5). Nothing binds or voids without his seal. <strong>These are <em>fees</em>, not the bounties' terms — do NOT restate the five bounties' fine print here; see <code>orhenn-dm-primer.html</code> / the primer.</strong></p>
+<table>
+<thead>
+<tr>
+<th>Notary action</th>
+<th>Fee</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Seal a bounty instrument</strong> (notarize: mark-in-ash → countersign → seal)</td>
+<td><strong>0.5 SC per instrument</strong> <em>or</em> the issuer covers it</td>
+<td>The binding step. Until sealed, the party may freely decline. Often the <em>issuer</em> pays this.</td>
+</tr>
+<tr>
+<td><strong>Void a sealed instrument</strong></td>
+<td><strong>2 SC + surrender of the original</strong>, both signatories present</td>
+<td>Backing out is <em>possible</em> but costs — deliberately more than sealing.</td>
+</tr>
+<tr>
+<td><strong>Certify / attest a document</strong> (a writ, a letter, a claim)</td>
+<td>0.25 SC / 50 gp</td>
+<td>E.g. attesting Or'Henn's writ of reclamation (Bounty V payoff) once obtained.</td>
+</tr>
+<tr>
+<td><strong>Register a favor as an enforceable obligation</strong></td>
+<td>0.5 SC</td>
+<td>This is how a "bargain" (§3) becomes a <em>contract.</em> Mahadi routes debts here to harden them.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="playing-fhetahla-dd-canon-creature-campaign-homebrew-voice">Playing Fhet'Ahla [D&amp;D CANON creature / CAMPAIGN + HOMEBREW voice]</h4>
+<ul>
+<li><strong>Presence:</strong> a squat, corpulent, deeply wrinkled devil folded behind a desk that is somehow always tidier than it should be. He does not rise, does not hurry, does not fidget. A pen moves in his fat fingers with unnerving precision; the ledger seems to fill itself. He looks <em>bored</em> — the boredom of something that has read every contract ever written and found them all obvious.</li>
+<li><strong>Voice:</strong> flat, dry, precise, unhurried — a clerk reading terms aloud in a language he finds tedious to explain to children. No menace in the tone at all; the menace is in the <em>clauses.</em> <strong>Catchphrase / tic:</strong> <em>"It is all in the document,"</em> delivered whenever a party objects to something they didn't read.</li>
+<li><strong>Delighted by:</strong> — he isn't, really. The closest he comes to pleasure is a counterparty who <em>reads</em>: someone who catches a clause, asks a sharp question, negotiates a fee like they mean it. He respects literacy the way Rassh respects a good edge.</li>
+<li><strong>Irritated by:</strong> — also rare. But a <em>bluff</em> he catches (Deception) makes his pen pause, and that pause is the coldest thing on the floor. He does not forget it, and the desk turns Wary for the whole visit. He finds threats simply beneath comment.</li>
+<li><strong>The tell:</strong> the pen. While Fhet'Ahla writes, the deal is proceeding as he expects. When the pen <em>stops</em> and he looks up — actually raising those heavy lids — something has surprised or displeased him, and the terms are about to get less generous.</li>
+<li><strong>As "Heroes of the Last Hill":</strong> he is entirely unmoved by their fame; heroism is not a line item. He treats them with scrupulous, chilly courtesy — exactly as fairly, and exactly as ruthlessly, as anyone else. <em>"Your reputation is noted. It does not alter the interest rate."</em> The party earns nothing from him but the truth of the paper — which, from him, is worth having.</li>
+</ul>
+<h4 id="bargaining-sample-lines_3">Bargaining — sample lines</h4>
+<ul>
+<li><strong>Greeting:</strong> <em>"Sit. Or stand; it is immaterial to the interest. You have come to borrow, to exchange, or to notarize. Tell me which, and read what I put before you. All of it. People who do not read are the reason I am wealthy."</em></li>
+<li><strong>Meet/beat the DC (10–20% off):</strong> <em>"A reasonable point. I will reduce the fee — the fee, note, not the term. Half a point off the interest. The default clause remains as written, because the default clause is the reason the interest is as low as it is."</em></li>
+<li><strong>Beat by 5+ (best case):</strong> <em>"...You read it. Good. Very well: the better rate, and I will waive the appraisal fee, since you clearly do not need to be told the value of things. It is refreshing. Do not let it become a habit; I dislike habits."</em></li>
+<li><strong>Fail (price holds):</strong> <em>"No. The fee is the fee, and the fee is fair — I could show you the schedule, but you would only argue with arithmetic. Sign, or do not. The document does not mind either way."</em></li>
+<li><strong>Fail by 5+ (soured):</strong> <em>"That was a lie, and a clumsy one. I read contracts; I read men; you are simpler than both. The desk is closed to you today. Come back when you have something true to say."</em> (The pen goes still.)</li>
+<li><strong>The hard won't-budge (the terms / default clause):</strong> <em>"You wish me to strike the default clause. I will not. A loan without a default clause is a gift, and I do not give gifts. The soul stands as surety, or there is no loan. That is not cruelty. That is the definition of the word 'loan.'"</em></li>
+<li><strong>Close / walk-away:</strong> <em>"Our business concludes. Keep your copy. Read it again on the road — people always find, on the second reading, the thing they signed on the first."</em></li>
+</ul>
+<h4 id="more-services-prices-homebrew_3">More services &amp; prices [HOMEBREW]</h4>
+<table>
+<thead>
+<tr>
+<th>Loan product / service</th>
+<th>Price / terms</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Bridge advance</strong> (very short loan, due at the caravan's <em>next</em> stop)</td>
+<td>up to 3 SC; +15% flat, due next stop</td>
+<td>18</td>
+<td>For a party caught short mid-visit. Cheap interest, brutally short fuse — miss the caravan and it compounds as a Standard loan.</td>
+</tr>
+<tr>
+<td><strong>Line of credit at the floor</strong> (buy now across stalls, settle with him)</td>
+<td>0.5 SC opening fee; he covers up to 10 SC of purchases at +30%</td>
+<td>18</td>
+<td>He fronts the party's shopping and collects one debt. Convenient, and it puts <em>all</em> their obligations on his ledger.</td>
+</tr>
+<tr>
+<td><strong>Escrow a bargain</strong> (hold a favor/item in trust until a condition is met)</td>
+<td>0.5 SC / 100 gp</td>
+<td>16</td>
+<td>Neutral third-party hold for a deal between the party and another patron. He is scrupulously honest — and <em>remembers</em> both sides.</td>
+</tr>
+<tr>
+<td><strong>Notarize a will / claim of ownership</strong></td>
+<td>0.25 SC / 50 gp</td>
+<td>16</td>
+<td>Makes a claim to property (a ship, a trophy, a title) infernally enforceable. Useful for the Lady Vengeance's paperwork.</td>
+</tr>
+<tr>
+<td><strong>Certify a death</strong> (attest a named soul is truly gone / truly bound)</td>
+<td>0.5 SC / 100 gp</td>
+<td>17</td>
+<td>A binding legal fact — e.g. certifying Red Ruth's death for a buyer who won't take the party's word. Word of what you certify travels.</td>
+</tr>
+<tr>
+<td><strong>Buy out another's debt</strong> (assume a third party's obligation)</td>
+<td>face value + 20%</td>
+<td>20</td>
+<td>Purchase someone's contract from him — leverage over that person, and a fresh debt of your own. Morally and mechanically loaded.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="signature-item-the-unredeemed-collateral-campaign-canon-a-defaulted-warlords-forfeit">⭐ Signature item — The Unredeemed Collateral [CAMPAIGN CANON — a defaulted warlord's forfeit]</h4>
+<p>Behind the desk, in a locked strongbox that Fhet'Ahla never mentions unless asked directly, sits a rare magic item held as <strong>unredeemed collateral</strong> — surrendered by a warlord who borrowed against it, defaulted, and is now <em>working off the shadow of the debt</em> (the "shadow works off the debt" borrower, primer rumor #7). The bank owns it outright. The bank will sell it. The bank will not tell you the whole story.</p>
+<ul>
+<li><strong>What it is:</strong> [DM's pick, tied to a live thread] a genuinely useful <strong>rare wondrous item or weapon</strong> at level-11 tuning — e.g. a <em>Cloak of the Bat</em>, a <em>+2 weapon</em>, a <em>Ring of Spell Storing</em>, or a bespoke infernal relic. Whatever it is, it <em>belonged to someone who is still in Hell, still bound, and still remembers losing it.</em></li>
+<li><strong>The complication (the price behind the price):</strong> buying it means the <strong>prior owner's grievance transfers to the buyer.</strong> The defaulted warlord (or their faction) now has a reason to want it — and its new holder — back. Fhet'Ahla discloses this only if asked the right question (or on a <strong>DC 18 Insight</strong> / by asking Asimov to read the contract of forfeiture). <em>"The item is unencumbered. The item's history is not. You asked what I am selling; I am selling the item."</em></li>
+<li><strong>Price:</strong> <strong>12–20 SC</strong> (DM sets to the item), payable in coin — Fhet'Ahla has no romance about bargains, he wants <strong>value</strong>, though he'll take a soul-of-equal-appraised-worth. Rarely offered for a favor; he'd rather have the coin and keep the party <em>owing</em> him separately.</li>
+<li><strong>Haggle:</strong> DC 20, cap 10%, on the <em>price</em> only — never on the disclosure. He will not misrepresent the history if asked plainly; he will simply not volunteer it. Caveat emptor is, to an amnizu, a form of love.</li>
+</ul>
+<p><strong>Won't flex on:</strong> the <em>terms</em> of any contract or the default clauses — ever. Flexes only on fees/interest, and only a little. <strong>Signature hook:</strong> a ledger that writes itself; coins that clink into place; a devil who has never once been <em>wrong about the paperwork.</em></p>
+<hr />
+<h2 id="75-ichors-aweigh-elliach-dd-canon">7.5 Ichor's Aweigh! — Elliach [D&amp;D CANON]</h2>
+<p><strong>Proprietor:</strong> <strong>Elliach</strong>, human mage (use a <strong>mage</strong>, CR 6, if it ever matters — it won't). Buys and sells <strong>demon ichor</strong> — mutagenic, flesh-warping stuff. Drink it, gain a boon; or sprout something. A gamble, sold as opportunity.</p>
+<p><strong>Attitude:</strong> <strong>Cordial</strong>, breezy, salesman-slick — undersells the risk, oversells the wonder. <strong>Insight DC 14</strong> — a success reveals he <em>genuinely doesn't know</em> which way a given dose will turn (the ichor is chaotic; that's not a con, it's the product). Great temptation for <strong>Or'Henn</strong> (already half-warped by Avernus) or any gambler.</p>
+<p><strong>Haggling Elliach:</strong> Haggle DC <strong>13</strong>, cap 20%. Easy to haggle — he wants volume and he <em>loves</em> a repeat customer to study. Deception works (he half-cons himself). A good beat throws in a <strong>free "sampler" vial</strong> (roll on the table below — the hook that keeps them coming back).</p>
+<h3 id="demon-ichor-products">Demon-ichor products</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Raw ichor vial</strong> (unrefined)</td>
+<td>1 SC / 200 gp</td>
+<td>13</td>
+<td>Drink it and <strong>roll on the Mutation/Boon table.</strong> A gamble, every time.</td>
+</tr>
+<tr>
+<td><strong>Sampler vial</strong> (half-dose, weaker)</td>
+<td>0.5 SC / 100 gp</td>
+<td>13</td>
+<td>Roll with <strong>disadvantage</strong> on the boon side / advantage on the mutation side — cheaper, worse odds.</td>
+</tr>
+<tr>
+<td><strong>Refined ichor</strong> (one <em>known</em> effect)</td>
+<td>3 SC / 600 gp</td>
+<td>15</td>
+<td>Elliach has "stabilized" a specific benefit — pick from boons #1–4 below, no mutation risk. <strong>SC-preferred.</strong></td>
+</tr>
+<tr>
+<td><strong>He buys ichor / warped trophies</strong></td>
+<td>pays 0.5 SC per vial-equivalent</td>
+<td>14</td>
+<td>Demons drop ichor (see <code>loot-and-items.md</code>); he's a standing buyer. Sell high after a demon fight.</td>
+</tr>
+<tr>
+<td>Sell him a <em>warped body part / mutation sample</em></td>
+<td>0.25–1 SC (DM's call)</td>
+<td>14</td>
+<td>Ghoulish, lucrative. He's <em>delighted.</em></td>
+</tr>
+</tbody>
+</table>
+<h3 id="mutation-boon-table-d10-homebrew-roll-on-drinking-raw-ichor">Mutation / Boon table (d10) [HOMEBREW — roll on drinking raw ichor]</h3>
+<p>Drink a raw vial → roll d10. Fair warning is <em>not</em> Elliach's business. Effects last <strong>1 hour</strong> unless noted; a <strong>1</strong> is permanent until removed (<em>greater restoration</em> / <em>Tears of the Caged Star</em>).</p>
+<table>
+<thead>
+<tr>
+<th>d10</th>
+<th>Result</th>
+<th>Type</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>Warp:</strong> a lasting mutation — an extra eye, chitin patches, a lashing tail. −2 to a random ability; the tail gives you a grapple option. <em>Permanent</em> until magically removed.</td>
+<td>Mutation</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>Fleshcrawl:</strong> disadvantage on the next 3 saves as your skin <em>reconsiders itself.</em> Nauseating.</td>
+<td>Mutation</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>Ichor-sick:</strong> 2d6 poison damage now; poisoned condition 1 hour.</td>
+<td>Mutation</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Squirm:</strong> speed halved and disadvantage on Dex checks for 1 hour as limbs briefly rebel.</td>
+<td>Mutation</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>Null:</strong> nothing. The ichor was inert. Elliach is <em>fascinated.</em></td>
+<td>Neutral</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Demon-thews:</strong> advantage on Strength checks and Strength saves, 1 hour.</td>
+<td>Boon</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Carapace:</strong> +2 AC (natural armor grows in), 1 hour.</td>
+<td>Boon</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Regenerative:</strong> regain 2d6 HP now, and 5 HP at the start of each of your turns, 1 minute.</td>
+<td>Boon</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Chaos-blooded:</strong> resistance to fire <em>and</em> poison, 1 hour; your unarmed strikes deal +1d6 acid.</td>
+<td>Boon</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Ascendant surge:</strong> one ability score +2 (max 22) and advantage on all checks with it, 1 hour. The good stuff. Elliach will want the sample.</td>
+<td>Boon</td>
+</tr>
+</tbody>
+</table>
+<h4 id="playing-elliach-dd-canon-role-homebrew-voice">Playing Elliach [D&amp;D CANON role / HOMEBREW voice]</h4>
+<ul>
+<li><strong>Presence:</strong> a wiry, bright-eyed human mage in an alchemist's apron stained a hundred colors, sleeves pushed up over forearms that carry a few <em>very</em> interesting scars. Vials clink at his belt. He gestures constantly, holds sample glasses up to the light, and has the restless energy of a man who genuinely cannot wait to see what happens next.</li>
+<li><strong>Voice:</strong> fast, breezy, delighted, salesman-slick — the patter of someone who has talked people into worse ideas and enjoyed every one. Undersells the risk (<em>"a little rough on the tongue"</em>), oversells the wonder (<em>"and then — antlers! or </em>genius<em>! who's to say!"</em>). <strong>Catchphrase:</strong> <em>"Ah, but that's the </em>fun<em> of it, isn't it?"</em> (his answer to every worried question about side effects).</li>
+<li><strong>Delighted by:</strong> a gambler, a repeat customer, and above all a <em>result</em> — someone who drinks and <em>changes.</em> A fresh mutation to study makes his whole day. He'll pay you to let him watch it wear off. Or'Henn is his dream client and he can smell it.</li>
+<li><strong>Irritated by:</strong> — very little, honestly. He half-cons himself, so he doesn't take offense at a con. The one thing that deflates him is a party that won't <em>taste</em> anything: <em>"You came to the ichor stall to buy... rope? For shame."</em></li>
+<li><strong>The tell:</strong> the more nervous the customer <em>should</em> be, the <em>wider</em> Elliach smiles. When he stops talking and just <em>watches</em> you drink — pen already out, notebook open — you are no longer a customer. You are an experiment, and he is thrilled.</li>
+<li><strong>As "Heroes of the Last Hill":</strong> he greets them as <em>ideal</em> subjects — powerful, battle-hard, exactly the constitutions that make ichor <em>interesting.</em> The reputation buys a warm welcome and a free sampler, but be warned: he's flattering them toward the vial. <em>"Heroes! Strong stock, resilient — you'd metabolize a raw dose beautifully. Purely a compliment. Purely."</em></li>
+</ul>
+<h4 id="bargaining-sample-lines_4">Bargaining — sample lines</h4>
+<ul>
+<li><strong>Greeting:</strong> <em>"Friends! You smell that? Sweet, with a little rot underneath — that's </em>possibility<em>, that is. First one's practically a gift for people of your reputation. Who's feeling lucky? Someone's always feeling lucky."</em></li>
+<li><strong>Meet/beat the DC (10–20% off):</strong> <em>"Done, done, sold — and here, a sampler on the house, roll the little bones and see what you get. Repeat customers are my favorite kind of science."</em></li>
+<li><strong>Beat by 5+ (best case):</strong> <em>"Oh, you drive a hard bargain, I </em>love<em> it — fine, my best price, </em>and<em> a stabilized dose so you know exactly what you're getting. That's the deluxe treatment. All I ask is you come tell me how it goes. For the notebook. For posterity."</em></li>
+<li><strong>Fail (price holds):</strong> <em>"Ah, that's already generous, that is — this is </em>refined<em> work, stabilized, no nasty surprises. You're paying for the surprises </em>not<em> to happen. That's worth a coin, surely."</em></li>
+<li><strong>Fail by 5+ (soured):</strong> <em>"Hm. No. You know, I don't think this batch is for you after all — temperamental stuff, wants a customer with the right </em>attitude.<em> Come back when you're feeling more adventurous. And less rude."</em></li>
+<li><strong>The hard won't-budge (the randomness of raw ichor):</strong> <em>"You want me to </em>promise<em> what a raw vial does? Friend, I could no more promise that than promise the weather in Avernus. That's the whole product! If you want a sure thing, buy refined and pay for the certainty. The gamble's the gamble. I won't lie and say otherwise."</em></li>
+<li><strong>Close / walk-away:</strong> <em>"Off you go — and if anything, ah, </em>sprouts<em> in the night, come straight back. I'll want to see it. I'll pay to see it. Bring the tail."</em></li>
+</ul>
+<h4 id="more-services-prices-homebrew_4">More services &amp; prices [HOMEBREW]</h4>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>"Bloodwrath" strain</strong> (refined, aggression)</td>
+<td>3 SC / 600 gp</td>
+<td>15</td>
+<td>Stabilized boon #6 (Demon-thews): advantage on Strength checks/saves for 1 hour, no mutation risk. Elliach's bestseller for front-liners.</td>
+</tr>
+<tr>
+<td><strong>"Ironhide" strain</strong> (refined, defense)</td>
+<td>3 SC / 600 gp</td>
+<td>15</td>
+<td>Stabilized boon #7 (Carapace): +2 AC for 1 hour. Popular before a known fight.</td>
+</tr>
+<tr>
+<td><strong>"Second Skin" strain</strong> (refined, recovery)</td>
+<td>3.5 SC / 700 gp</td>
+<td>15</td>
+<td>Stabilized boon #8 (Regenerative): 2d6 HP now + 5/turn for 1 minute. Slightly pricier — he can barely keep it stable.</td>
+</tr>
+<tr>
+<td><strong>Antitoxin of the flesh</strong> (mutation-reverser, single dose)</td>
+<td>1 SC / 200 gp</td>
+<td>14</td>
+<td>Ends one <em>non-permanent</em> ichor mutation immediately (results 2–4). Won't touch a permanent Warp (result 1). Sold, of course, right next to the raw vials.</td>
+</tr>
+<tr>
+<td><strong>A guided tasting</strong> (Elliach supervises a raw dose)</td>
+<td>0.25 SC / 50 gp on top of the vial</td>
+<td>13</td>
+<td>He watches, takes notes, and can end the effect early with his antitoxin if a <em>bad</em> mutation lands — a safety net for the price of being studied.</td>
+</tr>
+</tbody>
+</table>
+<h4 id="signature-item-the-perfected-strain-elliachs-grail-homebrew">⭐ Signature item — The Perfected Strain ("Elliach's Grail") [HOMEBREW]</h4>
+<p>The one vial in the case that doesn't glimmer with menace — a still, clear, faintly golden ichor Elliach has spent years <em>perfecting.</em> It is a raw ichor's dream outcome (result 10, Ascendant surge) made <strong>permanent, stable, and downside-free.</strong> He'll tell you it's the finest thing he's ever refined. He's right, and he's terrified of how much he's charging, and he wants to watch you drink it more than he wants the coin.</p>
+<ul>
+<li><strong>What it is:</strong> a single dose of stabilized apex ichor that grants a <em>lasting</em> boon with no mutation risk and no expiry — the gambler's grail, the reason people keep drinking the raw stuff hoping to get here for free.</li>
+<li><strong>Rules effect (level 12):</strong> on drinking, choose <strong>one ability score</strong> and raise it <strong>permanently by +1</strong> (to a maximum of 20), <em>or</em> gain a permanent chosen minor mutation-as-boon with <strong>no penalty</strong> — DM's pick from: a prehensile tail (a free grapple option / extra unarmed strike), chitin patches (permanent +1 AC), or demon-adapted blood (permanent resistance to poison). One dose per creature, ever — a second does nothing but make Elliach very interested in why.</li>
+<li><strong>Price:</strong> <strong>20 SC</strong>, SC-strongly-preferred (he'll <em>consider</em> an equal soul-good, never gold). A genuine big-ticket temptation — especially dangling in front of Or'Henn. <strong>SC/bargain only.</strong></li>
+<li><strong>Haggle:</strong> barely (DC 17, cap 20% at the very most). He knows exactly what he has. A great haggle gets you a <strong>free raw sampler</strong> thrown in, never a real cut on the Grail — <em>"the Grail is the Grail, friend."</em></li>
+</ul>
+<p><strong>Won't flex on:</strong> the <em>randomness</em> of raw ichor (it is what it is) — only the refined product is a sure thing, and it costs. <strong>Signature hook:</strong> the sweet-rot smell in glass; a mage who is <em>thrilled</em> by whatever grows on you and will pay to study it.</p>
+<hr />
+<h2 id="76-zneths-larva-farm-zneth-dd-canon">7.6 Z'neth's Larva Farm — Z'neth [D&amp;D CANON]</h2>
+<p><strong>Proprietor:</strong> <strong>Z'neth</strong>, hobgoblin warlord (use a <strong>hobgoblin warlord / captain</strong> block if needed; won't be). <strong>Buys and sells larvae</strong> — the wormlike soul-forms of the damned, raw material of the Hells — and appraises soul-goods. The moral wince of the market: a pen of squirming larvae by the crate.</p>
+<p><strong>Attitude:</strong> <strong>Cordial</strong>, coldly commercial — souls are inventory to him. <strong>Insight DC 15</strong> — a success reveals he is a <strong>shrewd, patient buyer</strong> who'll happily enter a <strong>bidding war</strong> for good soul-stock (relevant to Red Ruth's; §7.1 tie), and that he pays <em>below</em> true value to first-time sellers who don't haggle.</p>
+<p><strong>Haggling Z'neth:</strong> Haggle DC <strong>15</strong>, cap 20% (buying) / he'll raise his <em>buy</em> offer up to 20% on a good sell-side haggle. He respects Intimidation <em>a little</em> (hobgoblin; a warrior's leverage lands) and Deception poorly (he counts everything twice). A thrown-in extra is usually <strong>appraisal for free</strong> or a <strong>lead on who else is buying.</strong></p>
+<h3 id="larvae-buy-sell">Larvae — buy / sell</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Buy a larva</strong> (common damned soul-form)</td>
+<td>0.5 SC / 100 gp each</td>
+<td>15</td>
+<td>The raw material of Hell. What a party <em>does</em> with one is its own moral question. <strong>SC-preferred.</strong></td>
+</tr>
+<tr>
+<td>Buy larvae by the crate (×10)</td>
+<td>4 SC / 800 gp</td>
+<td>15</td>
+<td>Bulk. He'd rather move volume.</td>
+</tr>
+<tr>
+<td><strong>Sell him a larva / soul-form</strong></td>
+<td>he pays 0.3 SC each (0.4 haggled)</td>
+<td>15</td>
+<td>He lowballs first-timers; haggle up.</td>
+</tr>
+<tr>
+<td><strong>Buy a "quality" larva</strong> (a soul with residual power/knowledge)</td>
+<td>2–5 SC <strong>or a bargain</strong></td>
+<td>17</td>
+<td><strong>SC/bargain only.</strong> Rare stock; he'll source on commission.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="soul-good-appraisal-buy-rates-relevant-to-red-ruths-soul-stock">Soul-good appraisal &amp; buy rates [relevant to Red Ruth's soul-stock]</h3>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Rate</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Appraise soul-goods</strong> (soul-stock, a coin, a heartstone)</td>
+<td>0.1 SC / 20 gp per item, or free on a haggle</td>
+<td>15</td>
+<td>Honest weight; then he makes an offer.</td>
+</tr>
+<tr>
+<td><strong>Buy Red Ruth's soul-stock</strong> (per the primer, the party carries it)</td>
+<td>🎲 DM's call — <strong>opening ~3–5 SC</strong>, higher in a bidding war</td>
+<td>17</td>
+<td>[HOMEBREW tie] He is a natural rival buyer if Mahadi's Red Ruth gambit escalates. Playing him against Mahadi can <em>raise the price</em> the party gets — or anger the rakshasa.</td>
+</tr>
+<tr>
+<td><strong>Buy a heartstone</strong></td>
+<td>offers 2–4 SC (he undervalues hag-craft; Mahadi wants it more)</td>
+<td>17</td>
+<td><strong>DM cue:</strong> the heartstone is leverage, not just coin — Mahadi (§7.1) will out-bid on <em>value-to-him.</em></td>
+</tr>
+</tbody>
+</table>
+<h4 id="playing-zneth-dd-canon-role-homebrew-voice">Playing Z'neth [D&amp;D CANON role / HOMEBREW voice]</h4>
+<ul>
+<li><strong>Presence:</strong> a broad, scarred hobgoblin in a stained leather apron, moving between the crates and pens with a stockman's brisk economy. He handles the larvae the way a butcher handles a carcass — without cruelty and without tenderness; they are <em>stock.</em> A tally-slate hangs at his hip and he marks it constantly. The pens <em>squirm</em>, and he doesn't notice the sound anymore.</li>
+<li><strong>Voice:</strong> clipped, martial, transactional — a quartermaster's cadence. States weights, grades, and prices; wastes no words on sentiment because he genuinely feels none about the merchandise. <strong>Catchphrase / tic:</strong> <em>"Sentiment's not on the scale."</em> (His flat answer to anyone who talks about the larvae like people.)</li>
+<li><strong>Delighted by:</strong> — as close as he gets is a good <em>sell:</em> quality stock, a customer who knows grades, a bidding war he can sit back and profit from. He warms, faintly, to a fellow warrior — the hobgoblin in him respects someone who's held a line.</li>
+<li><strong>Irritated by:</strong> squeamishness that wastes his time, and lowball <em>bluffs</em> — he counts everything twice and catches padding fast. Moralizing over the pens gets a shrug: <em>"You're welcome to buy them all and free them. You won't. Next?"</em></li>
+<li><strong>The tell:</strong> the slate. When Z'neth is marking his tally while he talks, the deal's routine. When he <em>stops</em> marking and folds his arms, he's decided you're either a serious buyer worth a real offer — or a time-waster he's about to dismiss. The pause is where the price moves.</li>
+<li><strong>As "Heroes of the Last Hill":</strong> he rates them as <em>soldiers</em>, not saints — a warband that won a hard field, which he can respect and, more usefully, do business with. The reputation buys a straight offer instead of the first-timer lowball, and his professional candor. <em>"You broke a real warband. Fine. Then you'll not waste my time haggling like a farmer. Grades and coin. Let's go."</em></li>
+</ul>
+<h4 id="bargaining-sample-lines_5">Bargaining — sample lines</h4>
+<ul>
+<li><strong>Greeting:</strong> <em>"Buying or selling. Say which. If you're just here to </em>look<em> and feel something about it, the pens are that way and I charge nothing for a conscience. If you're trading — grades and coin, and I'll give you a fair count. Fairer than most give you."</em></li>
+<li><strong>Meet/beat the DC (10–20% off / better sell price):</strong> <em>"...Acceptable. I'll come up two coins on the lot — you know your weights, I'll not insult you with the first-timer's number. And I'll appraise whatever else you're carrying, no charge. Well?"</em></li>
+<li><strong>Beat by 5+ (best case):</strong> <em>"Hah. Hard bargainer. Fine — my best offer, and a name: there's another buyer on the floor circling the same stock. Play us right and you'll do better than either of us wants you to. Consider that a gift from one soldier to another."</em></li>
+<li><strong>Fail (price holds):</strong> <em>"No. That's the number and the number's fair — I pay below sentiment, not below sense. You'll not find a better honest count on this floor. Take it or carry your stock back out."</em></li>
+<li><strong>Fail by 5+ (soured):</strong> <em>"You're padding the count and I've weighed twice. Don't. The offer just dropped, and it'll drop again if you open your mouth. Sell straight or sell elsewhere."</em></li>
+<li><strong>The hard won't-budge (he pays below sentiment):</strong> <em>"You want me to pay what the soul </em>meant to someone.<em> I can't. I pay what it weighs and what it'll fetch. It's a worm in a crate to me, same as the rest. If that turns your stomach — good. It should. But it won't change my number."</em></li>
+<li><strong>Close / walk-away:</strong> <em>"Deal's done. Mark it, tally squares. Come back with stock, not stories. And watch who follows you out — you're carrying something half the floor can smell."</em></li>
+</ul>
+<h4 id="more-services-prices-homebrew_5">More services &amp; prices [HOMEBREW]</h4>
+<table>
+<thead>
+<tr>
+<th>Item / Service</th>
+<th>Price (SC / gp)</th>
+<th>Haggle DC</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Graded larva — "Common"</strong> (standard damned soul-form)</td>
+<td>0.5 SC / 100 gp</td>
+<td>15</td>
+<td>(Baseline; see main table.) He grades all stock; this is the floor grade.</td>
+</tr>
+<tr>
+<td><strong>Graded larva — "Vigorous"</strong> (a strong-willed soul, resists shaping)</td>
+<td>1 SC / 200 gp</td>
+<td>16</td>
+<td>Worth more to a shaper or a diviner; harder to control. He notes which are which.</td>
+</tr>
+<tr>
+<td><strong>Larva husbandry</strong> (hold/feed a soul-form in his pens, per week)</td>
+<td>0.1 SC / 20 gp</td>
+<td>15</td>
+<td>Board a larva you're not ready to use. He'll keep it "healthy," such as that word means here.</td>
+</tr>
+<tr>
+<td><strong>A grade &amp; provenance report</strong> (what a soul-form <em>was</em> in life)</td>
+<td>0.25 SC / 50 gp</td>
+<td>16</td>
+<td>He can read a larva's residue for name, station, manner of death — useful intel dressed as appraisal. Word of what you ask travels.</td>
+</tr>
+<tr>
+<td><strong>Broker a bidding war</strong> (he sets rival buyers against each other on your behalf)</td>
+<td>he takes 15% of the final price</td>
+<td>17</td>
+<td>For a fee, he'll <em>run</em> the auction on your soul-stock — turning the Red Ruth gambit into coin. Playing him this way may still anger Mahadi (§7.1).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="signature-item-the-coin-of-a-knowing-soul-the-ledger-keeper-homebrew-morally-loaded">⭐ Signature item — The Coin of a Knowing Soul ("The Ledger-Keeper") [HOMEBREW — morally loaded]</h4>
+<p>Set apart from the pens, in a warded box Z'neth keeps for <em>quality</em> stock, is a single soul that did not go quiet — a damned bookkeeper, spy, or courtier who spent their life <em>knowing things</em> and remembers them still, screaming, inside a warm iron coin. Z'neth found it worth more intact than melted down. He'll sell it. He does not care what you do with it.</p>
+<ul>
+<li><strong>What it is:</strong> a named soul with residual knowledge — a "quality larva" ascended to a coin, tied to a live campaign lead (a warlord's true weakness; the route past a bounty's terrain; a secret an issuer is hiding; a name Mephistopheles's file is missing). The DM picks whose ledger it kept. It is a <em>person</em>, and it can be spoken with — which is the whole horror.</li>
+<li><strong>Rules effect (level 12):</strong> a creature holding the coin can, once per long rest, spend 10 minutes <em>interrogating</em> the trapped soul (Charisma or Intimidation contest, or roleplay) to extract <strong>one true, specific piece of the knowledge it carried in life</strong> — a lead the party could not otherwise get. The soul bargains, lies by omission, and pleads; it wants release (destruction = annihilation) or restoration (a redemption thread). <strong>The moral weight is the point:</strong> using it well means using a suffering person as a search engine.</li>
+<li><strong>Price:</strong> <strong>6 SC or a significant bargain.</strong> SC/bargain only — Z'neth won't take gold for <em>quality</em> stock. He'll happily broker it to the highest bidder if the party dithers. A rival buyer (Mahadi, a night hag's agent) wants it too, which can drive a bidding war.</li>
+<li><strong>Haggle:</strong> DC 17, cap 20%. He'll flex on price for a serious buyer; he will <em>not</em> pretend the coin is anything but a person, and he'll say so flatly if asked — that candor is his version of an honest scale.</li>
+</ul>
+<p><strong>Won't flex on:</strong> the fact that he pays <em>below</em> sentiment (souls are stock, not people, to Z'neth). <strong>Signature hook:</strong> the crate of squirming larvae; the place the party <em>feels</em> what a soul is worth in Avernus — with Asimov in a box on their hip and Red Ruth's stock in their pack.</p>
+<hr />
+<h2 id="77-the-bone-devil-informant-homebrew">7.7 The Bone Devil Informant [HOMEBREW]</h2>
+<p><strong>Proprietor:</strong> an unnamed <strong>bone devil</strong> (CR 9 bone devil; pull the block only if the truce breaks, which it won't at his stall). The floor's homebrew info-broker — the connective tissue that points the party at <strong>Or'Henn</strong> (primer Act 4) and can confirm Red Ruth rumors on the cheap-but-risky channel.</p>
+<p><strong>Attitude:</strong> <strong>Wary</strong> by default — a fiend who deals in leverage and expects the same. <strong>Insight DC 14</strong> — a success reveals he trades <em>only</em> in things that cost the buyer something (blood, coin, a secret), and that his answers are <em>true but incomplete</em> unless well paid.</p>
+<p><strong>The core mechanic [HOMEBREW, from <code>npc-reference.md</code>]:</strong></p>
+<blockquote class="note">
+<p><strong>DC 16 Persuasion to get a real answer. A soul coin grants advantage on that check.</strong></p>
+<p><em>"Powerful spellcasters know the way — but they'll not lift a finger without blood."</em></p>
+</blockquote>
+<h3 id="information-pricing-tiers">Information pricing tiers</h3>
+<table>
+<thead>
+<tr>
+<th>Tier</th>
+<th>Example</th>
+<th>Price / mechanic</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A rumor</strong></td>
+<td>Which stalls buy what; who's in the market today</td>
+<td>10 gp / a small secret</td>
+<td>Freely bought; he's chatty about trivia.</td>
+</tr>
+<tr>
+<td><strong>A real answer</strong></td>
+<td>Where a person is; the truth behind a rumor; <strong>the Or'Henn pointer</strong></td>
+<td><strong>DC 16 Persuasion</strong> — <em>soul coin = advantage</em></td>
+<td>The core mechanic. Fail → he shrugs and holds it; fail-by-5 → he feeds a <em>bent</em> answer (rumor table has two false ones).</td>
+</tr>
+<tr>
+<td><strong>A confirmed lead</strong></td>
+<td>Confirm Red Ruth is dead / who cleaned out the Brambles</td>
+<td>DC 16 Persuasion <strong>+ a soul coin spent</strong> (not just held)</td>
+<td>Cheaper and riskier than asking Mahadi — but Mahadi may <em>hear</em> the party was asking.</td>
+</tr>
+<tr>
+<td><strong>A dangerous truth</strong></td>
+<td>Anything an archdevil guards</td>
+<td>DC 18 Persuasion + <strong>blood pay</strong> (a pint, à la the Intermediaries)</td>
+<td>He means the "blood" line literally.</td>
+</tr>
+</tbody>
+</table>
+<p><strong>The Or'Henn pointer (primer hook):</strong> on a success, he murmurs that <em>"the estate-keeper who lost his garden to the demons is asking after work, out past the last light"</em> — steering the party to Or'Henn (Act 4).</p>
+<h4 id="playing-the-bone-devil-informant-homebrew">Playing the Bone Devil Informant [HOMEBREW]</h4>
+<ul>
+<li><strong>Presence:</strong> a tall, gaunt, chitinous horror folded into the shadow of a stall it does not seem to own — all angles, dry-clicking joints, and a segmented tail whose stinger tip rests, always, a little too near the customer. It does not lean in. It waits, still as a stick insect, for you to come close enough to whisper.</li>
+<li><strong>Voice:</strong> a dry, clicking rasp, slow and deliberate, every word placed like a chess piece. It speaks in <em>true</em> statements that are shaped like traps — precise, literal, and never quite the whole thing unless you pay for the whole thing. <strong>Catchphrase:</strong> <em>"Truth is cheap. </em>Useful<em> truth costs blood."</em></li>
+<li><strong>Delighted by:</strong> — devils don't delight, but it <em>savors</em> a good transaction: a fat soul coin laid on the ledge, a genuine secret offered in trade, blood freely given. Payment is the closest thing it has to pleasure.</li>
+<li><strong>Irritated by:</strong> hagglers who want the price <em>lowered.</em> It finds this baffling and slightly insulting — the price is the price; it is a devil, not a fishwife. It has no patience for those who want the answer but won't pay the cost. It simply goes silent and lets them leave empty.</li>
+<li><strong>The tell:</strong> the tail. When the stinger is still and low, the deal is proceeding. When it <em>lifts</em> — a slow, deliberate curl — the informant has decided the party is either serious enough to pay in blood, or foolish enough to threaten it. Read the tail, and know which conversation you're in.</li>
+<li><strong>As "Heroes of the Last Hill":</strong> it is <em>unimpressed</em> by reputation and mildly amused that heroes come to it at all — heroes, in its experience, pay poorly and moralize freely. Fame buys nothing here; only coin, secrets, and blood move its tongue. <em>"Heroes. How nice. Heroes bleed the same red as cowards. Shall we?"</em></li>
+</ul>
+<h4 id="bargaining-sample-lines_6">Bargaining — sample lines</h4>
+<ul>
+<li><strong>Greeting (a whisper as they approach):</strong> <em>"You've the look of people who need to know a thing. Everyone who comes to my corner does. I have answers. You have coin, or a secret, or a pint to spare. We'll get along."</em></li>
+<li><strong>Meet/beat the DC (soul coin laid down / good pay):</strong> <em>"Ahh. A warm coin. Now </em>there's<em> a customer. For that, I'll tell you true, and I'll tell you </em>whole<em> — no gaps for you to fall through. Listen close; I say it once."</em></li>
+<li><strong>Beat by 5+ (best case — coin spent + blood):</strong> <em>"Generous. Rare, in a hero. Then take the truth </em>and<em> the thread behind it — the name, the place, and the one thing the asker never thinks to ask. Consider the rest of it a gift. I so seldom get to be generous."</em></li>
+<li><strong>Fail (holds — badly paid):</strong> <em>"...Mm. You've paid for </em>an<em> answer, not a good one. So: technically, the person you seek is 'in Avernus.' That is true. That is all your coin bought. Come back heavier."</em></li>
+<li><strong>Fail by 5+ (soured — a bent answer):</strong> <em>"Of course. The one you want was last seen </em>east, past the boneyards.<em>"</em> (It was west. He feeds one of the rumor table's false leads, smiles with too many teeth, and says nothing more.)</li>
+<li><strong>The hard won't-budge (the DC / the price is the price):</strong> <em>"Lower? You misunderstand the trade, hero. I am not </em>selling<em> to you. You are </em>paying<em> me, and the toll does not bend for a sad story or a hard look. Coin. Secret. Blood. Choose one, or move along and let a paying man through."</em></li>
+<li><strong>Close / walk-away:</strong> <em>"Go, then. Mind the road. And when the cheap answer proves useless — and it will — you know which corner to bleed on next time."</em></li>
+</ul>
+<h4 id="more-services-prices-homebrew_6">More services &amp; prices [HOMEBREW]</h4>
+<table>
+<thead>
+<tr>
+<th>Info package / service</th>
+<th>Price / mechanic</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>A name</strong> (who <em>really</em> runs a thing / who to actually talk to)</td>
+<td>1 soul coin <em>or</em> a pint of blood</td>
+<td>A single true name, given whole. Cheap by his standards; a good opener.</td>
+</tr>
+<tr>
+<td><strong>A sealed map</strong> (a route, a hideout, a bounty's terrain, marked and true)</td>
+<td>2 SC + a pint of blood</td>
+<td>Rolled, waxed, and honest — the blood is what makes it <em>complete</em> rather than "mostly." Needed for reaching some bounty grounds.</td>
+</tr>
+<tr>
+<td><strong>A dossier</strong> (everything he has on one person: habits, weakness, debts)</td>
+<td>3 SC + <strong>blood pay</strong> (2 pints) + DC 18 Persuasion</td>
+<td>Deep intel on a named target. The blood buys the parts he'd otherwise "forget."</td>
+</tr>
+<tr>
+<td><strong>Confirm a death or a lie</strong> (verify a specific claim, true/false, no hedging)</td>
+<td>1 SC <em>spent</em> (annihilated, not held)</td>
+<td>The spent coin buys certainty; a merely-<em>held</em> coin buys a hedge. Riskier and cheaper than asking Mahadi.</td>
+</tr>
+<tr>
+<td><strong>A dangerous truth</strong> (something an archdevil guards)</td>
+<td>DC 18 Persuasion + <strong>blood pay</strong> (a pint) + a soul coin</td>
+<td>He means "blood" literally. Selling it may also put the <em>buyer</em> on someone's ledger (as with Mahadi's "Dangerous" tier).</td>
+</tr>
+</tbody>
+</table>
+<h4 id="signature-item-the-sealed-confession-homebrew">⭐ Signature item — The Sealed Confession [HOMEBREW]</h4>
+<p>The one thing the informant keeps and will not simply <em>tell:</em> a single folded, wax-sealed vellum that it swears holds a <strong>truth an archdevil would kill to bury</strong> — a name in a ledger, the real reason a warlord fell, the location of a thing that was meant to stay lost (DM ties it to the arc's biggest live thread: Mephistopheles's grudge, Bhaalspawn intel, a soul-council secret). It has never opened it. It only sells it. <em>"I don't know what's in it. That's why I've stayed alive to sell it."</em></p>
+<ul>
+<li><strong>What it is:</strong> a sealed, single-use revelation — a game-changing piece of intel the party cannot get anywhere else, delivered as a physical object so the <em>buying</em> is a scene and the <em>reading</em> is a decision.</li>
+<li><strong>Rules effect (level 12):</strong> breaking the seal reveals <strong>one campaign-pivotal truth</strong> in full (DM's choice, keyed to the thread you most want to move) — no roll, no hedge, unambiguous. But the confession is <em>hot:</em> whoever the truth implicates learns it has surfaced (the seal is warded to <em>report</em> when broken), putting a powerful, patient enemy onto the party's trail. Knowing the truth and surviving knowing it are two different prices.</li>
+<li><strong>Price:</strong> <strong>blood pay + soul coins only</strong> — a pint of blood from each PC who wants a share of the knowing, <strong>plus 5 soul coins spent</strong> (annihilated on the ledge as the "seal-fee," which the informant frames as <em>"paying the dead to keep quiet"</em>). <strong>No gold, ever; no ordinary bargain</strong> — this is the one thing even a favor won't buy, because the informant only trusts what hurts to give.</li>
+<li><strong>Haggle:</strong> <strong>none.</strong> <em>"The price is the price, and the price is blood. Devils don't discount the truth. They just charge for it."</em> A failed push here doesn't lower the price — it makes the informant withdraw the offer for the visit.</li>
+</ul>
+<p><strong>Won't flex on:</strong> the DC (he's a devil; the price is the price) — but the <strong>soul-coin-for-advantage</strong> lever is the intended "discount." <strong>Signature hook:</strong> he never lies outright, but a badly-paid answer is <em>technically</em> true and <em>practically</em> useless. Blood always sweetens the deal.</p>
+<hr />
+<h2 id="8-quick-prices-cheat-sheet-homebrew">8. Quick Prices — cheat-sheet [HOMEBREW]</h2>
+<p>The ~20 most likely transactions, at a glance. SC first; gp includes the mortal surcharge; <strong>★</strong> = SC/bargain only.</p>
+<table>
+<thead>
+<tr>
+<th>#</th>
+<th>Item / Service</th>
+<th>Shop</th>
+<th>SC</th>
+<th>gp</th>
+<th>Haggle DC</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>Meal (per guest)</td>
+<td>Infernal Rapture</td>
+<td>0.1</td>
+<td>20</td>
+<td>20</td>
+</tr>
+<tr>
+<td>2</td>
+<td>Bath / soak (−1 exhaustion)</td>
+<td>Infernal Rapture</td>
+<td>0.2</td>
+<td>40</td>
+<td>20</td>
+</tr>
+<tr>
+<td>3</td>
+<td>Sanctuary long rest (party)</td>
+<td>Infernal Rapture</td>
+<td>0.5</td>
+<td>100</td>
+<td>20</td>
+</tr>
+<tr>
+<td>4</td>
+<td>Common question</td>
+<td>Infernal Rapture</td>
+<td>—</td>
+<td>10</td>
+<td>—</td>
+</tr>
+<tr>
+<td>5</td>
+<td>Rare intel / Bhaalspawn lead ★</td>
+<td>Infernal Rapture</td>
+<td>1–3</td>
+<td>★</td>
+<td>22</td>
+</tr>
+<tr>
+<td>6</td>
+<td>Commission uncommon item</td>
+<td>Infernal Rapture</td>
+<td>5</td>
+<td>1,000</td>
+<td>20</td>
+</tr>
+<tr>
+<td>7</td>
+<td>Repair weapon/armor</td>
+<td>Firesnake Forge</td>
+<td>0.2</td>
+<td>40</td>
+<td>14</td>
+</tr>
+<tr>
+<td>8</td>
+<td>+1 weapon or armor</td>
+<td>Firesnake Forge</td>
+<td>8</td>
+<td>1,600</td>
+<td>16</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>Shatterstick</strong> (5d6 thunder, DC 15 Dex)</td>
+<td>Firesnake Forge</td>
+<td>0.5</td>
+<td>100</td>
+<td>15</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>Lady Vengeance — get running</strong></td>
+<td>Firesnake Forge</td>
+<td><strong>8</strong> (or 6 + favor)</td>
+<td>~1,600</td>
+<td>16</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>Lady Vengeance — refuel /24h ★</strong></td>
+<td>Firesnake Forge</td>
+<td><strong>1/day</strong></td>
+<td>★</td>
+<td>—</td>
+</tr>
+<tr>
+<td>12</td>
+<td>Grooming / look the part</td>
+<td>Burney the Barber</td>
+<td>0.2</td>
+<td>40</td>
+<td>12</td>
+</tr>
+<tr>
+<td>13</td>
+<td>Alter appearance (new face)</td>
+<td>Burney the Barber</td>
+<td>2</td>
+<td>400</td>
+<td>14</td>
+</tr>
+<tr>
+<td>14</td>
+<td>Healing tonic (2d4+2)</td>
+<td>Burney the Barber</td>
+<td>0.25</td>
+<td>50</td>
+<td>12</td>
+</tr>
+<tr>
+<td>15</td>
+<td><em>Greater restoration</em></td>
+<td>Burney the Barber</td>
+<td>2</td>
+<td>400</td>
+<td>15</td>
+</tr>
+<tr>
+<td>16</td>
+<td>Standard loan (read the fine print!)</td>
+<td>From Here to Avernus</td>
+<td>up to 20</td>
+<td>—</td>
+<td>18</td>
+</tr>
+<tr>
+<td>17</td>
+<td>Seal a bounty instrument</td>
+<td>From Here to Avernus</td>
+<td>0.5</td>
+<td>—</td>
+<td>—</td>
+</tr>
+<tr>
+<td>18</td>
+<td>Appraise a soul-good / item</td>
+<td>From Here to Avernus</td>
+<td>0.1</td>
+<td>20</td>
+<td>16</td>
+</tr>
+<tr>
+<td>19</td>
+<td>Raw ichor vial (gamble; roll d10)</td>
+<td>Ichor's Aweigh!</td>
+<td>1</td>
+<td>200</td>
+<td>13</td>
+</tr>
+<tr>
+<td>20</td>
+<td>Refined ichor (known boon)</td>
+<td>Ichor's Aweigh!</td>
+<td>3</td>
+<td>600</td>
+<td>15</td>
+</tr>
+<tr>
+<td>21</td>
+<td>Buy a larva</td>
+<td>Z'neth's Larva Farm</td>
+<td>0.5</td>
+<td>100</td>
+<td>15</td>
+</tr>
+<tr>
+<td>22</td>
+<td>Sell Red Ruth's soul-stock ★</td>
+<td>Z'neth's Larva Farm</td>
+<td>~3–5+</td>
+<td>★</td>
+<td>17</td>
+</tr>
+<tr>
+<td>23</td>
+<td>Real answer / lead</td>
+<td>Bone Devil Informant</td>
+<td>DC 16 Persuasion (SC = adv.)</td>
+<td>—</td>
+<td>—</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note">
+<p><strong>Reminder for the DM:</strong> every SC that changes hands is a trapped soul; every SC burned as <em>fuel</em> (line 11) is a soul <em>annihilated.</em> Price the coins; play the cost.</p>
+</blockquote>
+<hr />
+<h2 id="9-running-the-floor">9. Running the floor</h2>
+<p>The Emporium is not a dungeon and it is not a shop with a counter — it's a <em>room full of charming predators</em> the party has to move through with their goals in their pockets and their tempers on a leash. Run it as <strong>open shopping with a pulse</strong>: the party wanders, the DM cuts to whatever stall or face is nearest to their intent, and every few beats you drop a floor event (below) to remind them the room is alive and watching. Keep the camera loose. Let players split up to work different stalls; the floor rewards a party that divides and gossips.</p>
+<p><strong>Pacing the open floor.</strong> Don't roll for every step. Roll (or pick) an encounter/event when: the party lingers, the party <em>asks around</em>, someone flashes coin or a soul-good, or a scene needs a spark. Two to four floor events across a market visit is plenty — this is texture between the set-piece scenes (Mahadi, Or'Henn, the bounties), not a slog of random tables. When in doubt, pull an <strong>Opportunity</strong> to reward initiative and a <strong>Complication</strong> to raise the stakes, and let the rest breathe.</p>
+<h3 id="timekeeping-the-caravans-clock-dd-canon-homebrew">Timekeeping — the caravan's clock [D&amp;D CANON + HOMEBREW]</h3>
+<p><strong>[D&amp;D CANON]</strong> The Wandering Emporium is <em>temporary and mobile.</em> It stops where the paying is good, unfolds off its war machines, does business, then packs itself back onto its wheels <strong>in about an hour</strong> and rolls on to the next patch of Hell. It is never a fixed location; it is a window that closes.</p>
+<p><strong>[HOMEBREW — the visit clock.</strong> Give the party a runway so the market has pressure without a stopwatch. Default: <strong>the Emporium is parked at the Last Hill for roughly 24–36 hours</strong> (one long-rest-plus-a-morning of business). Announce it in-character through the greeter or Mahadi — <em>"We move at the next tide of ash. You have until then."</em></p>
+<p><strong>Departure triggers (it leaves when any one fires):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Trigger</th>
+<th>What it means at the table</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>The clock runs out</strong> (24–36 hrs of business)</td>
+<td>Default. The tents fold; the party gets a "last call" warning ~1 hour out.</td>
+</tr>
+<tr>
+<td><strong>The floor stops paying</strong></td>
+<td>If the crowd thins and no big deals are moving, Mahadi calls it early — the party's window shrinks.</td>
+</tr>
+<tr>
+<td><strong>A bigger power summons it</strong></td>
+<td>🎲 DIAL: Asmodeus, an archdevil, or a warlord with real coin can pull the caravan away <em>now.</em> Good for cutting a session that's dragging.</td>
+</tr>
+<tr>
+<td><strong>The peace is broken badly</strong></td>
+<td>A truce-break severe enough that Mahadi wants the offenders <em>gone</em> can end the party's visit on the spot (expulsion).</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Lingering costs — what it costs to overstay or push the window:</strong></p>
+<ul>
+<li><strong>Hospitality compounds.</strong> [D&amp;D CANON] Every extra "on the house" course, soak, or shave taken while lingering <strong>deepens the debt to Mahadi</strong> (see hospitality-debt engine in the primer). Time spent basking is time spent owing.</li>
+<li><strong>The room learns you.</strong> The longer the party stays, the more the <em>rival buyers, brokers, and old faces</em> clock what they're carrying (Ruth's leftovers, the capacitor, soul-stock). Attention is a lingering cost. Overstay and the Red Ruth bidding war heats up whether they wanted it to or not.</li>
+<li><strong>Miss the window, chase the caravan.</strong> If the party dawdles and the Emporium departs before they finish (repairs, recruiting Or'Henn, sealing a bounty), the unfinished business becomes a <em>travel problem</em> — they must catch the caravan on the road (a Wasteland encounter, d20 result 13) or wait for its next stop, burning days off Asimov's one-week clock. <strong>The visit clock and the Soul Council clock are meant to squeeze each other.</strong></li>
+</ul>
+<h3 id="how-the-wards-and-truce-feel-to-move-through-dd-canon-homebrew">How the wards and truce feel to move through [D&amp;D CANON + HOMEBREW]</h3>
+<p><strong>[D&amp;D CANON]</strong> Violence is forbidden; Mahadi and Asmodeus's backing enforce it. Make the <em>peace itself</em> a sensory thing so players feel the wrongness of a Hell where no one is fighting:</p>
+<ul>
+<li><strong>The hum.</strong> Under the market noise there's a low, warm, tuning-fork hum — the supernatural wards. It's the same note as a soul coin, magnified. Players with a passive ear (or a <strong>DC 12 Perception</strong>) notice it never stops.</li>
+<li><strong>The weight on a raised hand.</strong> [HOMEBREW] When a PC <em>reaches for a weapon or begins a hostile spell</em>, describe the ward pressing back: the air thickens, the hum sharpens to a whine, the nearest devils go still and <em>interested.</em> No mechanic fires yet — it's a felt warning. A <strong>DC 15 Insight</strong> confirms: everyone here will side with the house, instantly, against a peace-breaker. The truce is not politeness. It's physics with teeth.</li>
+<li><strong>Feuds check at the door.</strong> The greeter's "any <em>quarrels</em> today?" is a real ritual. Grudges don't vanish — they're <em>held</em>, pressurized, waiting for the road. Play the room as full of people who would very much like to kill each other and cannot, which is exactly why the smiles are so wide.</li>
+</ul>
+<hr />
+<h2 id="10-whos-here-right-now-clientele-table-homebrew">10. Who's here right now — clientele table [HOMEBREW]</h2>
+<p>Roll <strong>d20</strong> or pick to populate the floor — colorful patrons to bump into, each with a one-line hook. Most are truce-safe texture; several are seeded to the live campaign threads. Reuse freely; a good face can recur.</p>
+<table>
+<thead>
+<tr>
+<th>d20</th>
+<th>Who they are</th>
+<th>Hook</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>A warlord's retinue</strong> — merregons in matched harness, flanking a masked captain buying war-machine parts</td>
+<td>The captain served the front the party <em>broke</em> at the Last Hill and does not yet know their faces. Recognition is one bad word away.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>A soul-coin gambler</strong> — a well-dressed cambion running a shell game with three warm iron coins</td>
+<td>Wins draw a crowd; losses draw worse. Offers to "stake" a PC — a debt dressed as a favor.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>A hungry broker</strong> — a thin imp in an oversized waistcoat, sniffing for who's carrying soul-stock</td>
+<td>Makes the party as sellers of Ruth's leftovers within a minute of eye contact. Runs to a bigger buyer if brushed off.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>A Hellrider deserter</strong> — cloak up, medals filed blank, drinking alone</td>
+<td>Recognizes Drenwal's bearing. Could be a lead on the order, a Bhaal-cult informer, or just a haunted man. <strong>DC 14 Insight</strong> to read which.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>A mortal in over their head</strong> — a Baldur's Gate merchant who signed <em>something</em> and can't leave</td>
+<td>Begs the party to read his contract. It's real, it's binding, and Fhet'Ahla holds the seal. A mirror of the traps the party is about to sign.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>A rival buyer for Ruth's leftovers</strong> — a veiled night hag's agent, unhurried, patient</td>
+<td>Openly outbids Mahadi for the heartstone / soul-stock. Turns the Red Ruth gambit into a <em>bidding war</em> the party can play both sides of.</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>An old face from a past session</strong> — a vendor or patron the party dealt with on their <em>first</em> Emporium visit</td>
+<td>"You again. You still owe me a—" 🎲 DIAL: a small debt, a warm greeting, or a grudge held quiet by the truce.</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>A yugoloth mercenary</strong> — an arcanaloth in a scholar's robe, reading contracts for a fee</td>
+<td>Will appraise any infernal fine print the party shows him — accurately — for a price. A rival channel to Asimov's rules-lawyering.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>A soul-coin debtor</strong> — a chained shade working off a warlord's loan, polishing a war machine</td>
+<td>Whispers what he's overheard while invisible-to-notice. Cheap, frightened, surprisingly well-informed.</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>A wasteland raider band</strong> — Rust Queen scavengers haggling scrap, twitchy under the truce</td>
+<td>They <em>hate</em> being unable to rob the room. Easily baited; a PC who leans on them risks a truce-break that ends <em>the raiders'</em>, not the party's, visit — if the party doesn't swing first.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>A Mephistophelian agent</strong> — a cold-eyed cambion in blue-black livery, asking careful questions</td>
+<td>(See set-piece below.) Mephistopheles's asset Dumal <em>slipped free</em> on the mountaintop and is loose in Avernus; the Archduke is <em>counting who last saw him.</em> This one is counting the party.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>A larva drover</strong> — one of Z'neth's hands, herding a squirming crate to the pens</td>
+<td>Will pay coin for "a soul in good condition." Eyes the capacitor. A wince, a temptation, and a threat all at once.</td>
+</tr>
+<tr>
+<td>13</td>
+<td><strong>A retired oracle's servant</strong> — a mute homunculus wearing Red Ruth's household sigil, lost since her death</td>
+<td>Recognizes what the party carries. Follows them silently. Mahadi will pay to know who it's following.</td>
+</tr>
+<tr>
+<td>14</td>
+<td><strong>A devil noble on holiday</strong> — an amnizu of station being carried on a palanquin, bored and acquisitive</td>
+<td>Might commission the party for a "small errand" on the road — a sixth bounty in all but name, if you want one.</td>
+</tr>
+<tr>
+<td>15</td>
+<td><strong>A Fort Knucklebone runner</strong> — a redcap or kenku who knows <strong>Mad Maggie</strong></td>
+<td>Carries gossip both ways. If the party's close to Maggie, delivers a barbed message about where they're headed and who runs this caravan.</td>
+</tr>
+<tr>
+<td>16</td>
+<td><strong>A Last-Hill survivor</strong> — a maw demon or hobgoblin who <em>fled</em> the battle the party won</td>
+<td>(See set-piece below.) Wants to provoke a swing it can survive — because the <em>party</em> breaking the truce is its revenge.</td>
+</tr>
+<tr>
+<td>17</td>
+<td><strong>A soul-council clerk</strong> — a spindly bone-white devil auditing the capacitor's paperwork from a distance</td>
+<td>Confirms Asimov's one-week clock is real and <em>watched.</em> Unnerving; makes the deadline feel administrated, not abstract.</td>
+</tr>
+<tr>
+<td>18</td>
+<td><strong>A too-generous stranger</strong> — a beautiful, backwards-handed thing offering a soul coin "as a gift"</td>
+<td>(See set-piece below.) Nothing here is free. The gift is the hook.</td>
+</tr>
+<tr>
+<td>19</td>
+<td><strong>A Smiler the Defiler agent</strong> — a masked scout leaving a folded note on a bench, then gone</td>
+<td>Smiler is <em>owed a banishment</em> by the party (thread). The note names a place, a price, and a grudge. He works by proxy; he'd never come in person.</td>
+</tr>
+<tr>
+<td>20</td>
+<td><strong>A grieving buyer at Burney's chair</strong> — someone paying to have a face erased, weeping quietly</td>
+<td>Pure atmosphere and a small mercy. If a PC is kind, Burney (DM-only copper dragon) <em>notices</em> — bank it, don't spend it.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="11-emporium-encounters-events-homebrew">11. Emporium encounters &amp; events [HOMEBREW]</h2>
+<p>Because violence is forbidden, the drama here is <strong>temptation, debt, gossip, and the risk of <em>almost</em> breaking the truce.</strong> Run these two themed <strong>d12s</strong> — pull a <strong>Complication</strong> to raise stakes, an <strong>Opportunity</strong> to reward working the room. Each is truce-safe; the few that flirt with blows note that they resolve via <strong>Mahadi's enforcement, not a fair fight</strong> (full ladder in the primer's TRUCE appendix). Several are seeded to the live threads — mine them.</p>
+<h3 id="complications-d12">Complications (d12)</h3>
+<table>
+<thead>
+<tr>
+<th>d12</th>
+<th>The beat</th>
+<th>How it can resolve / DCs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>A debt is called.</strong> A creditor (Mahadi's clerk, or a past-session lender) presents an old obligation as due <em>now.</em></td>
+<td>Pay in coin, favor, or a marked obligation; or <strong>DC 16 Persuasion</strong> to renegotiate terms. Refusing outright escalates to Fhet'Ahla's desk. (Set-piece 1.)</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>You're recognized.</strong> A Last-Hill survivor (clientele 16) locks eyes and starts loudly narrating what the party did to their warband.</td>
+<td>Social only — the <em>goal</em> is to make a PC swing first. <strong>DC 14 Wis save</strong> to keep cool, or roleplay the restraint. If a PC strikes, Mahadi's enforcement lands on <em>them.</em> (Set-piece 3.)</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>The bidding war opens.</strong> A rival buyer (clientele 6) publicly outbids Mahadi for Ruth's leftovers, forcing the party to choose a side.</td>
+<td>Play both against each other (<strong>DC 15 Deception/Persuasion</strong> to drive the price), pick a buyer, or refuse to sell and make <em>two</em> patient enemies.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>Mephistopheles is counting.</strong> A cold agent (clientele 11) asks the party polite, precise questions about the Last Hill and where Dumal went.</td>
+<td><strong>DC 16 Insight</strong> to clock the livery and the danger; <strong>DC 15 Deception</strong> to deflect. Every honest answer deepens Mephistopheles's ledger against them. (Set-piece 2.)</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>The free gift.</strong> A backwards-handed stranger (clientele 18) presses a soul coin into a PC's hand "as a kindness."</td>
+<td>Accepting opens a hospitality-style debt to Mahadi's network. <strong>DC 18 Insight</strong> to feel the hook. Refusing gracefully costs nothing; refusing <em>rudely</em> costs face.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>A soul the Cleric knows.</strong> In Z'neth's larva pens or a gambler's coin, a soul the party <em>recognizes</em> surfaces.</td>
+<td>No combat solves it. Buy it (soul coins / a favor), leave it, or make a scene — a scene near the pens tempts a truce-break that only ends <em>badly.</em></td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>The overdue tab.</strong> Mahadi's staff gently notes the party's hospitality debt from <em>this</em> and prior visits has compounded.</td>
+<td>Settle now (favor / soul-stock / a lead), or let it ride and let Mahadi's Red Ruth ask arrive with more leverage. Track it.</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Smiler's note.</strong> A masked agent (clientele 19) leaves a folded provocation naming the banishment the party owes Smiler.</td>
+<td>Pure thread-planting. No roll needed to read it; <strong>DC 15 Investigation</strong> to spot the agent before they vanish and get one question.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>A raider tests the truce.</strong> Rust Queen scavengers (clientele 10) crowd a PC, "accidentally" jostling for a reaction.</td>
+<td>The wards hum; the room watches. If the <em>raiders</em> escalate first, enforcement takes <em>them</em> — a lesson the party can just <em>watch</em> if they hold.</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>The clock ticks louder.</strong> A soul-council clerk (clientele 17) reminds the party, coolly, how many days Asimov has left.</td>
+<td>No roll — a pacing beat. Use it when the party is dawdling to make the departure clock and the soul clock bite together.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>A contract clerk mishears.</strong> A stall tries to bind the party to terms they didn't agree to, buried in fast talk.</td>
+<td><strong>DC 15 Investigation</strong> or <strong>ask Asimov</strong> to catch it (mirrors the bounty-trap mechanic); catch it and the clerk retreats, all smiles. Miss it and owe something small but real.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>An old face, a quiet grudge.</strong> A past-session patron (clientele 7) the party wronged is <em>right there</em>, unable to act — and enjoying making them sweat.</td>
+<td>Roleplay. <strong>DC 14 Insight</strong> to gauge how much they know / hold over the party for the road ahead.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="opportunities-d12">Opportunities (d12)</h3>
+<table>
+<thead>
+<tr>
+<th>d12</th>
+<th>The beat</th>
+<th>How it can resolve / DCs</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td><strong>A lead falls out of a conversation.</strong> Someone drops the exact rumor the party needs (tie to the d8 rumor table in the primer).</td>
+<td><strong>DC 13 Insight</strong> to tell true from bent. Working the room <em>should</em> pay in real leads — reward it.</td>
+</tr>
+<tr>
+<td>2</td>
+<td><strong>The pointer to Or'Henn.</strong> The Bone Devil Informant (or a floor whisper) mentions the dispossessed keeper at the edge of the light.</td>
+<td><strong>DC 16 Persuasion</strong> (soul coin = advantage) for the full steer to Or'Henn. The connective tissue into recruitment.</td>
+</tr>
+<tr>
+<td>3</td>
+<td><strong>A rival buyer overpays.</strong> The night hag's agent (clientele 6) offers <em>genuinely</em> good value for a soul-good — better than Mahadi.</td>
+<td>Real gold-in-Hell decision: take the better deal and slight Mahadi, or bank the rakshasa's goodwill. Both have a bill.</td>
+</tr>
+<tr>
+<td>4</td>
+<td><strong>A favor bank opens.</strong> A grateful mortal (clientele 5) or debtor (clientele 9) offers information in exchange for a small kindness.</td>
+<td>No DC — the <em>reward for being decent</em> in a place that punishes it. Pays off later as a road-contact.</td>
+</tr>
+<tr>
+<td>5</td>
+<td><strong>A too-good soul-coin deal.</strong> A gambler or broker floats a trade that's <em>almost</em> too favorable — a fistful of coin for something small.</td>
+<td>(Set-piece 4.) <strong>DC 17 Insight</strong> to find the catch; <strong>ask Asimov</strong> to read it cold. The catch is always there.</td>
+</tr>
+<tr>
+<td>6</td>
+<td><strong>Repair leverage.</strong> Rassh will knock the Lady Vengeance's price down in exchange for a floor favor (settle a scrap dispute, certify some iron).</td>
+<td><strong>DC 14 Persuasion</strong> to open the trade. Ties honest work on the floor to a concrete need.</td>
+</tr>
+<tr>
+<td>7</td>
+<td><strong>Free intel from the wards.</strong> A PC attuned to the hum (clientele/ward flavor) overhears two devils <em>forced</em> to talk civilly, letting slip a secret.</td>
+<td><strong>DC 15 Perception</strong> to catch the thread of it. The truce makes eavesdropping unusually rich — no one dares whisper.</td>
+</tr>
+<tr>
+<td>8</td>
+<td><strong>Burney's quiet kindness.</strong> At the barber's chair, a PC is offered a discreet mend, a restored scar, or a face — no obvious price.</td>
+<td>The one genuinely good deal on the floor (DM-only: copper dragon). Small healing / disguise for a <em>kindness</em>, not a debt.</td>
+</tr>
+<tr>
+<td>9</td>
+<td><strong>A bounty issuer appears in person.</strong> One of the five issuers (Serephine, Vhalzareth, et al.) is on the floor, warmer than their paper.</td>
+<td>A chance to size up an issuer before signing. <strong>DC 15 Insight</strong> to smell that the terms are too smooth. Feeds Act 5.</td>
+</tr>
+<tr>
+<td>10</td>
+<td><strong>A discount for the Heroes of the Last Hill.</strong> A vendor, impressed (or currying favor), offers the party a real deal on their reputation alone.</td>
+<td>Reputation as currency. 🎲 DIAL: genuine goodwill, or bait to get them talking about the front — which Mephistopheles's agent is listening for.</td>
+</tr>
+<tr>
+<td>11</td>
+<td><strong>A road-contact for later.</strong> A traveler (a devil noble, clientele 14; a Maggie runner, clientele 15) offers to be a future fixer.</td>
+<td>Bank a name. Pays off as a lead, a safe-ish stop, or a warning on a later leg.</td>
+</tr>
+<tr>
+<td>12</td>
+<td><strong>Asimov reads the room.</strong> From the capacitor, Asimov flags a <em>specific</em> patron worth talking to — a lead only a dead bounty hunter would know.</td>
+<td>Free steer from the party's own dead man. Use to point them at whichever thread you want moving next.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="set-piece-social-encounters">Set-piece social encounters</h3>
+<p>Three fully written scenes. Run any as a spotlight; all resolve socially, and any flirtation with violence resolves via Mahadi's enforcement, not a fight the party can win.</p>
+<h4 id="set-piece-1-the-creditor-calls-the-debt-homebrew">Set-piece 1 — The creditor calls the debt [HOMEBREW]</h4>
+<p><strong>Who:</strong> <strong>Malfius Nine-Reeds</strong>, Fhet'Ahla's clerk (or Mahadi's smiling steward, if you'd rather keep the notary clean for Act 5), approaches between courses with a slim folio.</p>
+<blockquote class="note">
+<p><em>"A trifle. Truly. But my ledger is a jealous thing, and it says the House extended you a </em>courtesy<em> — a rest, a repair, a first course 'on the house' — and courtesies, like coins, are meant to circulate. I've come to help it circulate. Nothing so vulgar as a demand. Merely... a reminder that a balance exists, and that balances prefer to be settled while the settling is </em>cordial.<em>"</em></p>
+</blockquote>
+<p><strong>The beat:</strong> The debt is real but not yet urgent — it's a <em>lever</em>, not a chokehold. The clerk wants the party to feel the weight of what "free" cost them, and to nudge them toward paying in the coin Mahadi actually wants: a lead on Red Ruth's leftovers.</p>
+<p><strong>How it resolves:</strong>
+- <strong>Pay it plainly</strong> — a soul coin, a favor, a marked obligation. Clean, and the clerk beams.
+- <strong>Renegotiate</strong> — <strong>DC 16 Persuasion</strong> to convert the debt into a <em>service on the road</em> (a bounty, a delivery) rather than immediate payment. Success buys time; the debt follows them.
+- <strong>Deflect toward Ruth</strong> — offer <em>information</em> about Red Ruth's death or effects in lieu of payment. The clerk's pen goes still; suddenly the debt is very forgivable. (This is the gambit closing its jaws softly.)
+- <strong>Refuse cold</strong> — the debt escalates to Fhet'Ahla's desk and becomes a <em>written</em> instrument next visit. Never lethal — it's a rakshasa's patience, not a brawl. But the tab now has teeth.</p>
+<p><strong>Do not</strong> let the debt be waved away for free. The peace, and the hospitality, only mean something if they cost.</p>
+<h4 id="set-piece-2-the-mephistophelian-agent-sniffing-around-homebrew-ties-to-the-mephistopheles-thread">Set-piece 2 — The Mephistophelian agent, sniffing around [HOMEBREW — ties to the Mephistopheles thread]</h4>
+<p><strong>Who:</strong> A cambion in blue-black livery, cold and courteous, who has been <em>watching</em> the party since they arrived. He introduces himself as an "actuary" and asks to buy them a drink.</p>
+<blockquote class="note">
+<p><em>"You were at the Last Hill. No — don't be modest, it's not becoming in heroes. My lord takes an interest in what happened on that mountaintop. A certain... </em>asset<em> of his walked off that mountaintop when he ought to have burned on it. Dumal, I believe he was called. My lord does not misplace an investment — he </em>recovers<em> it, and he is ever so curious where a wounded flame crawls off to."</em> A thin smile. <em>"I'm simply confirming names for the file. Yours, for instance. It's such a small thing, a name."</em></p>
+</blockquote>
+<p><strong>The beat:</strong> Mephistopheles has a <strong>fresh interest</strong> in Dumal's escape (thread) — his asset is loose and wounded — and this agent is here to confirm the party's identities and learn what they know of where Dumal fled. Nothing binds; nothing threatens outright — the truce forbids it. The menace is entirely in the <em>filing.</em></p>
+<p><strong>How it resolves:</strong>
+- <strong>DC 16 Insight</strong> — read the livery and the danger: this is the eighth Hell's cold, and the party is being <em>catalogued</em> for later.
+- <strong>DC 15 Deception</strong> — deflect, downplay their role, or feed him a bent name. Success buys distance; failure means Mephistopheles's ledger gets a clean entry.
+- <strong>Refuse to talk</strong> — perfectly safe (truce), but the <em>refusal itself</em> is data: guilty men go quiet. The agent bows and files that, too.
+- <strong>Threaten him</strong> — the wards hum, the room stills. He <em>wants</em> this; a truce-break by the party is a gift to his lord. Enforcement would land on the <em>PC</em>, not the agent. Play the temptation; make the restraint the player's.</p>
+<p><strong>Leaves behind:</strong> the sense that a very cold, very patient archdevil now knows their names — a thread to pull across the arc.</p>
+<h4 id="set-piece-3-the-truce-baiting-provocation-homebrew-ties-to-last-hill-survivors">Set-piece 3 — The truce-baiting provocation [HOMEBREW — ties to Last-Hill survivors]</h4>
+<p><strong>Who:</strong> A <strong>maw demon or hobgoblin survivor</strong> of the warband the party broke at the Last Hill (clientele 16), who spots them across the floor and starts talking — loudly, for an audience.</p>
+<blockquote class="note">
+<p><em>"There they are! The 'Heroes of the Last Hill.'"</em> Spit on the word. <em>"You want to know what a hero smells like? Ash and cowardice. My brothers are meat on that ridge because of you. Come on, then. Come </em>finish it.<em> You've got the steel on your hip. I can see you want to. Right here. Right now. In front of everyone."</em></p>
+</blockquote>
+<p><strong>The beat:</strong> This is the pressure the whole session is built on. The survivor <em>cannot</em> attack — the truce binds it too — so its revenge is to make <strong>a PC swing first.</strong> If a party member breaks the peace, the survivor gets to watch Mahadi's enforcement fall on the <em>hero</em>, and dies (or doesn't) satisfied. The bait is the point.</p>
+<p><strong>How it resolves:</strong>
+- <strong>Hold the line</strong> — <strong>DC 14 Wisdom save</strong> for a PC riding the battle-high, or simply roleplay the restraint. The wards press; the room leans in; a held temper is a <em>win</em> here.
+- <strong>Answer with words</strong> — insults, cold dismissal, even intimidation are all <em>free</em> (a first verbal offense earns only Mahadi's warm smile). Let players vent verbally; the peace survives words.
+- <strong>Draw a weapon / ready a spell</strong> — the market goes silent, enforcers drift close, <strong>last warning.</strong> The player still has one beat to stand down.
+- <strong>Strike</strong> — the truce breaks <em>on the party.</em> Reach for <strong>expulsion first</strong> (Red Ruth deal poisoned, bounties revoked, Or'Henn recruitment jeopardized, the session's goals gone) — never a free fight, never a fair one. Lethal enforcement only if the table wants that wall (TRUCE appendix). The survivor's revenge is complete either way.</p>
+<p><strong>DM note:</strong> Play the survivor as <em>pathetic and provoking</em>, not threatening. The horror is that the party could ruin everything by being <em>right</em> about wanting to kill it.</p>
+<h4 id="set-piece-4-the-too-good-soul-coin-deal-homebrew">Set-piece 4 — The too-good soul-coin deal [HOMEBREW]</h4>
+<p><strong>Who:</strong> A gambler-broker (clientele 2) or a hungry broker (clientele 3) sidles up with an offer that's <em>almost</em> insulting in its generosity.</p>
+<blockquote class="note">
+<p><em>"You look like people with an eye for value. So: three warm coins — three, feel the heat on them, real as your heartbeat — for that little trinket you're carrying. The heartstone, the soul-flake, the odd bit of Ruth's stock, whatever's lightest in your pack. Three coins for a bauble. Where's the harm? I'm overpaying and we both know it. That's how much I </em>like<em> you."</em></p>
+</blockquote>
+<p><strong>The beat:</strong> The deal is genuinely favorable — which is exactly the problem. Either the broker is a front for a rival buyer (or Mahadi himself, testing what the party will part with), the "coins" carry a rider, or the "bauble" is worth vastly more than the party realizes and the broker knows it.</p>
+<p><strong>How it resolves:</strong>
+- <strong>DC 17 Insight</strong> — the price is <em>too</em> good; someone up the chain wants this badly, and the party is being underpaid for something pivotal (Ruth's leftovers, soul-stock).
+- <strong>Ask Asimov</strong> — from the capacitor, he reads any rider on the coins or the true worth of the good, cold and clear (his rules-lawyer role).
+- <strong>DC 15 Investigation</strong> on the coins — reveals a hidden clause: a mark, a summons, a debt that rides the coin to whoever spends it.
+- <strong>Take the deal blind</strong> — that's the game. Let them. The consequence surfaces later, and Asimov gets to say <em>"you should have asked."</em></p>
+<p><strong>DM note:</strong> Never let a too-good deal be <em>clean.</em> The lesson of this floor is that generosity is the most expensive thing in Hell.</p>
+<hr />
+<h2 id="12-npc-statline-quick-reference">12. NPC statline quick-reference</h2>
+<p>Pointers only — pull full statblocks from your reference of choice (<strong>Monster Manual</strong> / 5e.tools) if numbers are ever needed. Most floor interactions need <em>voice</em>, not initiative; these matter chiefly as color and, in the worst case, as the truce-enforcement wall.</p>
+<h3 id="shop-owners-host">Shop owners &amp; host</h3>
+<table>
+<thead>
+<tr>
+<th>NPC</th>
+<th>Statline base</th>
+<th>CR</th>
+<th>Key traits to remember</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mahadi</strong> (Infernal Rapture)</td>
+<td><strong>Rakshasa</strong></td>
+<td><strong>CR 13</strong></td>
+<td><strong>Magic Resistance</strong> (advantage on saves vs spells); <strong>Limited Magic Immunity</strong> (ignores spells 6th level and lower unless he allows them); illusion + Innate Spellcasting; reads thoughts. Runs the floor and the truce. Gracious host — never cackle.</td>
+</tr>
+<tr>
+<td><strong>Fhet'Ahla</strong> (From Here to Avernus)</td>
+<td><strong>Amnizu</strong></td>
+<td>(per Monster Manual / <em>Descent into Avernus</em>)</td>
+<td>Squat, corpulent devil; the infernal banker and, [CAMPAIGN CANON], the charter's contract-notary. Meticulous, unhurried. Fulcrum of the bounty-sealing. Not a fighter unless the whole floor is.</td>
+</tr>
+<tr>
+<td><strong>Rassh</strong> (The Firesnake Forge)</td>
+<td><strong>Salamander</strong></td>
+<td><strong>CR 5</strong></td>
+<td>Fire-snake staff; Heated Body; forge-hot. Fixes and <strong>refuels</strong> the Lady Vengeance. The honest transaction on the floor — burns hot, talks little, delivers.</td>
+</tr>
+<tr>
+<td><strong>Elliach</strong> (Ichor's Aweigh!)</td>
+<td><strong>Mage</strong> (human)</td>
+<td>(NPC, ~CR 6)</td>
+<td>Spellcaster statline; buys/sells mutagenic demon ichor. Color and temptation, not a combatant.</td>
+</tr>
+<tr>
+<td><strong>Z'neth</strong> (Z'neth's Larva Farm)</td>
+<td><strong>Hobgoblin warlord</strong> (use hobgoblin captain/warlord)</td>
+<td>~CR 1–3</td>
+<td>Buys/sells larvae; appraises soul-goods. The moral wince of the market; a natural buyer if the Red Ruth gambit becomes a bidding war.</td>
+</tr>
+<tr>
+<td><strong>Burney the Barber</strong></td>
+<td><em>"Human woman"</em> — <strong>secretly an adult copper dragon</strong> (Bahamut agent)</td>
+<td><strong>CR 14</strong> (true form)</td>
+<td><strong>DM-ONLY.</strong> Near-impossible for fiends to detect; may discreetly aid good visitors. On the floor she's just a kind barber with quiet healing. Bank the secret; don't spend it.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="likely-floor-npcs-the-enforcement-contingency">Likely floor NPCs &amp; the enforcement contingency</h3>
+<table>
+<thead>
+<tr>
+<th>Role</th>
+<th>Statline</th>
+<th>CR</th>
+<th>Use</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Info-broker</strong></td>
+<td><strong>Bone devil</strong></td>
+<td><strong>CR 9</strong></td>
+<td>The Bone Devil Informant; a Mephistophelian lieutenant; a bounty-hunter captain. Sting + poison. Rumors and leads on the floor; muscle only if the peace breaks.</td>
+</tr>
+<tr>
+<td><strong>Minor agents / messengers</strong></td>
+<td><strong>Imp</strong></td>
+<td><strong>CR 1</strong></td>
+<td>Greeters, Mahadi's stewards, brokers' runners, Smiler's proxies. Waistcoated and courteous. Shapechange, invisibility — good for eavesdroppers and go-betweens.</td>
+</tr>
+<tr>
+<td><strong>Cambion agents</strong></td>
+<td><strong>Cambion</strong></td>
+<td>CR 5</td>
+<td>Mephistophelian actuary, soul-coin gambler, a warlord's captain. Charming, dangerous, bound by the truce.</td>
+</tr>
+<tr>
+<td><strong>Assorted enforcement devils</strong></td>
+<td><strong>Merregon, barbed devil, bone devil, imp, "assorted devils"</strong></td>
+<td>4 / 5 / 9 / 1</td>
+<td>The truce-enforcement wall. If a PC breaks the peace, the <em>whole room</em> turns — treat as a table of assorted devils who all suddenly agree the intruder is the problem. <strong>This is a punishment, not a balanced fight.</strong> Reach for expulsion first (see the primer's TRUCE appendix); go lethal only as a deliberate wall. Pull statblocks from Monster Manual / 5e.tools if it truly comes to blows.</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note">
+<p>Full temperament, info-pricing, and the DC 18 Insight on Mahadi's Asmodeus-fear live in <code>npc-reference.md</code>. The truce-break adjudication ladder and enforcement guidance live in the primer's TRUCE appendix. Don't re-stat — run them.</p>
+</blockquote>
+<hr />
+<h2 id="13-dm-tips-for-the-emporium">13. DM tips for the Emporium</h2>
+<p>A punch-list for keeping the floor sharp:</p>
+<ul>
+<li><strong>Keep Mahadi gracious, never cackling.</strong> The warmth is 100% sincere on the surface; the menace is entirely in what the warmth <em>costs.</em> A rakshasa who twirls a mustache is a wasted rakshasa. The bill is the villainy.</li>
+<li><strong>Make debts feel real.</strong> "On the house" is never free — track every courtesy taken, and let it compound across visits. When a debt is called (Set-piece 1), it should have <em>weight</em>, not be waved off. A debt the party forgets is a debt you're not running.</li>
+<li><strong>Never let a truce-break be free.</strong> The peace only means something if breaking it <em>costs.</em> Reach for expulsion first — poison the deals, revoke the bounties, cost them the session's goals — before you ever reach for a statblock. Lethal enforcement is a wall, not a boss fight, and only if the table wants it.</li>
+<li><strong>The temptation IS the drama.</strong> Most encounters here are social because the pressure is <em>restraint.</em> The Last-Hill survivor (Set-piece 3) exists to make a hero <em>want</em> to swing. Put the choice on the <em>player</em>, then honor whichever way they go.</li>
+<li><strong>Reward working the room with real leads.</strong> A party that gossips, spends soul coins on brokers, and asks around should get <em>true, usable</em> information (the Or'Henn pointer, the rumor table, road-contacts). Don't make initiative feel like flavor — make it pay.</li>
+<li><strong>Weave the live threads in, don't dump them.</strong> Mephistopheles counting the party, Mahadi wanting Ruth's leftovers, Smiler's owed banishment, the soul-council clock — plant one per scene as <em>texture.</em> Let them breathe; collect on them across the arc.</li>
+<li><strong>Let the two clocks squeeze.</strong> The caravan's departure window and Asimov's one-week soul clock are meant to press on each other. If the party dawdles, tick both louder (Complication 10, clientele 17).</li>
+<li><strong>Kindness is the rarest currency.</strong> Burney is the one genuinely good soul on the floor. If a PC is decent in a place that punishes decency, <em>notice</em> it — quietly. It's a small warm mystery to bank, not spend.</li>
+<li><strong>Split the party on purpose.</strong> The floor is one of the few safe places to let PCs wander off alone and work different stalls. Cut between them; let gossip from one table land at another. A divided party on this floor is a <em>feature.</em></li>
+</ul>
+<hr />
+<p><em>The Wandering Emporium reference — companion to <code>session-8-wandering-emporium-primer.md</code> (the session run-sheet) and <code>orhenn-dm-primer.html</code> (the soul-bounty Encumbrances). Canon shop roster, Mahadi, the truce, and soul-coin/contract rules are [D&amp;D CANON] from </em>Baldur's Gate: Descent into Avernus<em> Ch. 3; all prices, DCs, stock lists, and encounter tables are [HOMEBREW] scaffolding tuned for this campaign. Reusable every time the caravan returns.</em></p>
+    </div>
+  </main>
+</div>
+<button id="totop" title="Back to top">&uarr;</button>
+<script>
+var bt=document.getElementById('totop'),pr=document.getElementById('prog');
+addEventListener('scroll',function(){
+  bt.classList.toggle('show',scrollY>500);
+  var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+  pr.style.width=(max>0?(scrollY/max*100):0)+'%';
+});
+document.querySelectorAll('nav .toc li').forEach(function(li){
+  var sub=li.querySelector(':scope > ul');if(!sub)return;
+  li.classList.add('branch','collapsed');
+  var tw=document.createElement('span');tw.className='tw';tw.textContent='+';
+  tw.addEventListener('click',function(e){e.stopPropagation();e.preventDefault();
+    var c=li.classList.toggle('collapsed');tw.textContent=c?'+':'−';});
+  li.insertBefore(tw,li.firstChild);
+});
+function setAll(c){document.querySelectorAll('nav .toc li.branch').forEach(function(li){
+  li.classList.toggle('collapsed',c);var t=li.querySelector(':scope > .tw');if(t)t.textContent=c?'+':'−';});}
+var ea=document.getElementById('expandAll'),ca=document.getElementById('collapseAll');
+if(ea)ea.onclick=function(){setAll(false)};if(ca)ca.onclick=function(){setAll(true)};
+var links={};document.querySelectorAll('nav .toc a').forEach(function(a){
+  var id=a.getAttribute('href');if(id&&id[0]==='#')links[id.slice(1)]=a;});
+var heads=[].slice.call(document.querySelectorAll('.wrap h2,.wrap h3')).filter(function(h){return h.id});
+var spy=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){
+    Object.values(links).forEach(function(a){a.classList.remove('active')});
+    var a=links[e.target.id];if(!a)return;a.classList.add('active');
+    var p=a.closest('li');
+    while(p){if(p.classList.contains('branch')){p.classList.remove('collapsed');
+      var t=p.querySelector(':scope > .tw');if(t)t.textContent='−';}
+      p=p.parentElement?p.parentElement.closest('li'):null;}
+    a.scrollIntoView({block:'nearest'});
+  }});
+},{rootMargin:'-130px 0px -74% 0px',threshold:0});
+heads.forEach(function(h){spy.observe(h)});
+var secs=[].slice.call(document.querySelectorAll('.wrap h2')).filter(function(h){return h.id});
+function curIdx(){var y=scrollY+150,idx=0;secs.forEach(function(h,i){if(h.offsetTop<=y)idx=i});return idx;}
+function go(d){var i=Math.max(0,Math.min(secs.length-1,curIdx()+d));secs[i].scrollIntoView();}
+var pv=document.getElementById('prevSec'),nx=document.getElementById('nextSec'),cs=document.getElementById('curSec');
+if(pv)pv.onclick=function(){go(-1)};if(nx)nx.onclick=function(){go(1)};
+function updNav(){if(!cs)return;var h=secs[curIdx()];if(h)cs.textContent=h.textContent.replace(/\s+/g,' ').trim().slice(0,54);}
+addEventListener('scroll',updNav);updNav();
+document.querySelectorAll('.wrap li,.wrap p').forEach(function(el){
+  var t=(el.textContent||'').trim().toUpperCase();
+  if(t.indexOf('DM ONLY')===0||t.indexOf('DM-ONLY')===0)el.classList.add('dm-inline');
+});
+</script>
+</body>
+</html>

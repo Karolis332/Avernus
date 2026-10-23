@@ -1,0 +1,83 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="1600" viewBox="0 0 1200 1600" role="img" aria-labelledby="title desc">
+  <title id="title">The Last Hill tactical battle map</title>
+  <desc id="desc">A hand-copyable top-down map of the grounded Lady Vengeance fortress, wall breach, slope, mist line, and peak rift.</desc>
+  <defs>
+    <pattern id="grid" width="50" height="50" patternUnits="userSpaceOnUse"><path d="M50 0H0V50" fill="none" stroke="#8d7450" stroke-opacity=".22" stroke-width="1"/></pattern>
+    <pattern id="rock" width="36" height="36" patternUnits="userSpaceOnUse"><path d="M4 28l8-10 7 4 9-13" fill="none" stroke="#806849" stroke-opacity=".18" stroke-width="2"/></pattern>
+    <filter id="shadow"><feDropShadow dx="0" dy="5" stdDeviation="5" flood-opacity=".25"/></filter>
+    <marker id="arrow" markerWidth="10" markerHeight="10" refX="9" refY="3" orient="auto"><path d="M0 0L10 3 0 6z" fill="#8a251d"/></marker>
+    <style>
+      .label{font:700 24px Georgia,serif;letter-spacing:2px;fill:#382718;text-anchor:middle}
+      .small{font:700 18px Georgia,serif;letter-spacing:1px;fill:#5f4028;text-anchor:middle}
+      .note{font:italic 17px Georgia,serif;fill:#664b32;text-anchor:middle}
+      .zone{fill:#e8d3aa;stroke:#533c27;stroke-width:5}
+      .cliff{fill:none;stroke:#4e3928;stroke-width:12;stroke-dasharray:3 12;stroke-linecap:round}
+    </style>
+  </defs>
+  <rect width="1200" height="1600" fill="#f0dfbd"/>
+  <rect x="32" y="32" width="1136" height="1536" rx="18" fill="url(#rock)" stroke="#4f3825" stroke-width="5"/>
+  <text x="600" y="82" class="label" font-size="34">THE LAST HILL</text>
+  <text x="600" y="112" class="note">Mountaintop siege • 1 square = 10 feet</text>
+
+  <!-- summit and cliffs -->
+  <path class="zone" d="M215 180Q600 105 985 180L1050 920Q1030 1010 930 1070L270 1070Q170 1010 150 920Z"/>
+  <path d="M215 180Q600 105 985 180M985 180L1050 920M215 180L150 920" class="cliff"/>
+  <text x="600" y="155" class="small">SHEER CLIFFS — NO LAND APPROACH</text>
+  <text x="1058" y="545" class="small" transform="rotate(90 1058 545)">SHEER CLIFFS</text>
+  <text x="142" y="545" class="small" transform="rotate(-90 142 545)">SHEER CLIFFS</text>
+
+  <!-- peak rift -->
+  <path d="M450 245l72 25 50-38 44 43 66-35 78 31-46 31 54 34-86 8-38 42-58-34-70 25 14-48-80-22 64-28z" fill="#8c3025" fill-opacity=".18" stroke="#8a251d" stroke-width="5"/>
+  <path d="M495 270l55 26 35-34 36 42 61-35-29 49 44 17-66 4-30 30-29-35-56 18 25-37z" fill="none" stroke="#8a251d" stroke-width="4"/>
+  <text x="600" y="220" class="label">PEAK RIFT</text>
+  <text x="600" y="410" class="note">Dumal’s destination • overload detonation point</text>
+
+  <!-- ship -->
+  <g filter="url(#shadow)">
+    <path d="M280 465L340 430H860L920 465 885 685H315Z" fill="#4d3e36" stroke="#211913" stroke-width="7"/>
+    <path d="M330 480H870L850 625H350Z" fill="#c3aa77" stroke="#211913" stroke-width="4"/>
+    <line x1="510" y1="480" x2="495" y2="625" stroke="#574631" stroke-width="4"/>
+    <line x1="690" y1="480" x2="705" y2="625" stroke="#574631" stroke-width="4"/>
+    <text x="600" y="530" class="label">LADY VENGEANCE</text>
+    <text x="600" y="560" class="small">GROUNDED FORT</text>
+    <text x="420" y="602" class="small">HELM</text><text x="600" y="602" class="small">ENGINE</text><text x="785" y="602" class="small">CANNONS</text>
+  </g>
+  <!-- cannon arcs -->
+  <path d="M735 650Q720 790 570 990" fill="none" stroke="#8a251d" stroke-width="5" stroke-dasharray="13 10" marker-end="url(#arrow)"/>
+  <path d="M830 650Q845 810 720 1010" fill="none" stroke="#8a251d" stroke-width="5" stroke-dasharray="13 10" marker-end="url(#arrow)"/>
+  <text x="845" y="795" class="small" transform="rotate(70 845 795)">CANNON ARCS</text>
+
+  <!-- muster yard -->
+  <rect x="270" y="720" width="660" height="245" rx="12" fill="url(#grid)" stroke="#6a5136" stroke-width="3"/>
+  <text x="600" y="790" class="label">MUSTER YARD</text>
+  <text x="600" y="825" class="note">PC redoubt • 80 feet deep</text>
+  <circle cx="370" cy="890" r="28" fill="#7b332b"/><text x="370" y="897" class="small" fill="#fff">V</text>
+  <circle cx="830" cy="890" r="28" fill="#7b332b"/><text x="830" y="897" class="small" fill="#fff">C</text>
+  <text x="370" y="935" class="small">VESKA</text><text x="830" y="935" class="small">CORWIN</text>
+
+  <!-- wall and breach -->
+  <path d="M170 1005H465M735 1005H1030" stroke="#403329" stroke-width="42"/>
+  <path d="M170 1005H465M735 1005H1030" stroke="#a88e61" stroke-width="28" stroke-dasharray="48 8"/>
+  <text x="300" y="990" class="small">THE WALL</text><text x="900" y="990" class="small">THE WALL</text>
+  <path d="M475 980L455 1030M725 980L745 1030" stroke="#8a251d" stroke-width="6"/>
+  <text x="600" y="1000" class="label">40-FT BREACH</text>
+  <circle cx="600" cy="1055" r="32" fill="#654d30" stroke="#2d2116" stroke-width="4"/>
+  <text x="600" y="1063" class="small" fill="#fff">B</text><text x="600" y="1110" class="small">BESS HOLDS HERE</text>
+
+  <!-- slope -->
+  <path d="M270 1070Q350 1155 310 1245Q270 1335 355 1430H845Q930 1335 890 1245Q850 1155 930 1070Z" fill="#d5b77f" stroke="#533c27" stroke-width="5"/>
+  <path d="M350 1115H850M330 1205H870M320 1295H880M340 1385H860" stroke="#7f6742" stroke-width="4" stroke-dasharray="14 10"/>
+  <path d="M400 1420Q800 1345 400 1275Q800 1205 400 1135" fill="none" stroke="#8a251d" stroke-width="6" marker-end="url(#arrow)"/>
+  <text x="600" y="1168" class="label">UPPER SLOPE</text>
+  <text x="600" y="1260" class="note">difficult terrain • cannon kill-zone</text>
+  <text x="600" y="1340" class="label">LOWER SLOPE</text>
+
+  <!-- mist -->
+  <path d="M180 1465Q280 1415 380 1465T580 1465T780 1465T1020 1465V1530H180Z" fill="#8b2c28" fill-opacity=".25" stroke="#7c2722" stroke-width="4"/>
+  <text x="600" y="1505" class="label">MIST LINE — ONLY APPROACH</text>
+
+  <!-- compass -->
+  <g transform="translate(1090 150)"><path d="M0 55V0M0 0l-10 20M0 0l10 20" stroke="#382718" stroke-width="4"/><text x="0" y="-10" class="small">N</text></g>
+  <!-- compact legend -->
+  <g transform="translate(55 1125)"><rect width="185" height="265" rx="10" fill="#f4e7cc" stroke="#533c27" stroke-width="3"/><text x="92" y="32" class="small">COPY KEY</text><text x="92" y="67" class="note">1. oval summit</text><text x="92" y="97" class="note">2. ship crosswise</text><text x="92" y="127" class="note">3. open yard</text><text x="92" y="157" class="note">4. wall + gap</text><text x="92" y="187" class="note">5. zigzag slope</text><text x="92" y="217" class="note">6. mist line</text><text x="92" y="247" class="note">7. rift behind ship</text></g>
+</svg>

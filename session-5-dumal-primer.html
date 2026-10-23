@@ -1,0 +1,1576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 5 — The Flame Ascendant (Dumal)</title>
+<style>
+  :root{
+    --bg:#0d0a0a; --surface:#181311; --surface2:#221a18; --border:#3a2c28;
+    --ink:#e8d8c8; --muted:#9a8a7a; --accent:#c8a464; --silver:#b8c8d8;
+    --blood:#8b1a1a; --rot:#5a4818; --bone:#cdbb9a; --hell:#d04a1a;
+    --good:#5fa860; --warn:#e0a040; --crit:#d24040; --celest:#c0c8e0;
+    --eldath:#7ac4c8;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter','Segoe UI',system-ui,sans-serif;line-height:1.55;font-size:15px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .layout{display:grid;grid-template-columns:260px 1fr;min-height:100vh}
+  nav.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border);padding:20px 16px}
+  nav h1{font-family:'Cinzel','Georgia',serif;font-size:18px;color:var(--accent);margin:0 0 6px;letter-spacing:1px}
+  nav .sub{color:var(--muted);font-size:12px;margin-bottom:18px;font-style:italic}
+  nav ol{list-style:none;padding:0;margin:0;counter-reset:nav}
+  nav ol li{counter-increment:nav;margin-bottom:2px}
+  nav ol li a{display:block;padding:6px 8px;border-radius:4px;color:var(--ink);font-size:13px;border-left:2px solid transparent}
+  nav ol li a:before{content:counter(nav,decimal-leading-zero) " · ";color:var(--muted);font-family:monospace;font-size:11px}
+  nav ol li a:hover{background:var(--surface2);border-left-color:var(--accent);text-decoration:none}
+  nav .navgroup{margin-top:18px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:0 8px 4px}
+
+  main{padding:24px 36px 80px;max-width:980px}
+  header.title{margin-bottom:32px;padding-bottom:18px;border-bottom:1px solid var(--border)}
+  header.title h1{font-family:'Cinzel','Georgia',serif;font-size:36px;color:var(--accent);margin:0 0 4px;letter-spacing:2px}
+  header.title .meta{color:var(--muted);font-size:14px;font-style:italic}
+
+  /* Trackers */
+  .trackers{position:sticky;top:0;z-index:50;background:var(--bg);padding:12px 0;margin-bottom:24px;border-bottom:1px solid var(--border)}
+  .tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:14px}
+  .tracker{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 12px}
+  .tracker .label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+  .tracker .label button{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:10px;padding:1px 5px;border-radius:3px;cursor:pointer}
+  .tracker .label button:hover{color:var(--accent);border-color:var(--accent)}
+  .meter{width:100%;height:24px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;position:relative;overflow:hidden}
+  .meter .fill{height:100%;transition:width 0.3s}
+  .meter.bhaal .fill{background:linear-gradient(90deg,var(--blood),var(--crit))}
+  .meter.gargauth .fill{background:linear-gradient(90deg,var(--rot),var(--warn))}
+  .meter.eldath .fill{background:linear-gradient(90deg,var(--eldath),var(--good))}
+  .meter .text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;color:var(--ink);text-shadow:0 0 3px black,0 0 6px black}
+  .meter-controls{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+  .meter-controls button{flex:1;min-width:36px;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px 4px;border-radius:3px;cursor:pointer;font-size:11px;font-family:inherit}
+  .meter-controls button:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+  .meter.bhaal .threshold{position:absolute;top:0;bottom:0;width:1px;background:rgba(255,255,255,0.3);pointer-events:none}
+  .meter .threshold-label{position:absolute;top:-14px;font-size:9px;color:var(--muted);transform:translateX(-50%)}
+
+  .round-counter{display:flex;align-items:center;gap:6px}
+  .round-counter button{background:var(--surface2);border:1px solid var(--border);color:var(--ink);width:28px;height:28px;border-radius:4px;cursor:pointer;font-size:14px}
+  .round-counter button:hover{background:var(--accent);color:var(--bg)}
+  .round-counter .num{font-size:20px;font-family:'Cinzel',serif;color:var(--accent);min-width:36px;text-align:center}
+
+  .hp-bar{width:100%;height:18px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;position:relative;overflow:hidden;cursor:pointer}
+  .hp-bar .fill{height:100%;background:linear-gradient(90deg,var(--blood),var(--hell));transition:width 0.3s}
+  .hp-bar .text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;color:var(--ink);text-shadow:0 0 3px black}
+
+  .status-pill{display:inline-block;padding:2px 8px;border-radius:3px;font-size:11px;font-weight:bold;text-transform:uppercase;letter-spacing:1px}
+  .status-pill.warn{background:var(--warn);color:var(--bg)}
+  .status-pill.crit{background:var(--crit);color:var(--ink)}
+  .status-pill.good{background:var(--good);color:var(--bg)}
+
+  /* Sections */
+  section{margin-bottom:40px;scroll-margin-top:200px}
+  section > h2{font-family:'Cinzel',serif;font-size:24px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:8px;margin:32px 0 16px;letter-spacing:1px}
+  section > h3{font-family:'Cinzel',serif;font-size:18px;color:var(--bone);margin:24px 0 10px}
+  section h4{font-size:14px;color:var(--accent);margin:18px 0 6px;text-transform:uppercase;letter-spacing:1px}
+
+  blockquote.read{background:var(--surface);border-left:4px solid var(--accent);padding:14px 18px;margin:14px 0;font-style:italic;color:var(--bone);border-radius:0 4px 4px 0;white-space:pre-wrap}
+  blockquote.read em{color:var(--accent);font-style:normal;font-weight:600}
+
+  blockquote.dialogue{background:var(--surface2);border-left:4px solid var(--blood);padding:10px 16px;margin:10px 0 10px 20px;font-style:italic;color:var(--ink);border-radius:0 4px 4px 0;white-space:pre-wrap}
+  blockquote.dialogue.aurora{border-left-color:var(--celest)}
+  blockquote.dialogue.lulu{border-left-color:var(--eldath)}
+  blockquote.dialogue strong{color:var(--accent);font-style:normal}
+
+  .callout{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--warn);padding:12px 16px;margin:14px 0;border-radius:0 4px 4px 0}
+  .callout.danger{border-left-color:var(--crit)}
+  .callout.good{border-left-color:var(--good)}
+  .callout.info{border-left-color:var(--celest)}
+  .callout.bhaal{border-left-color:var(--blood)}
+  .callout strong:first-child{color:var(--accent);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+
+  table{width:100%;border-collapse:collapse;margin:14px 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;font-size:13px}
+  th{background:var(--surface2);color:var(--accent);font-family:'Cinzel',serif;text-align:left;padding:8px 10px;font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+  td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--surface2)}
+
+  /* Stat blocks */
+  .statblock{background:#f4ecdc;color:#1a1410;border:2px solid var(--bone);border-radius:6px;padding:18px 22px;margin:18px 0;font-family:'Bookman','Garamond',serif;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+  .statblock h3{font-family:'Cinzel',serif;color:var(--blood);margin:0 0 4px;font-size:22px;letter-spacing:1px}
+  .statblock .subtitle{font-style:italic;color:#3a2018;margin-bottom:8px;font-size:13px}
+  .statblock hr{border:none;border-top:2px solid var(--blood);margin:8px 0}
+  .statblock .ability{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;text-align:center;padding:8px 0;font-size:12px}
+  .statblock .ability div span{display:block;font-weight:bold;color:var(--blood)}
+  .statblock p{margin:6px 0;font-size:13px}
+  .statblock .trait,.statblock .action{margin:6px 0}
+  .statblock .trait strong,.statblock .action strong{color:var(--blood);font-style:italic}
+  .statblock .lr-track{background:var(--accent);color:var(--bg);padding:2px 8px;border-radius:3px;font-size:11px;font-weight:bold;display:inline-block}
+
+  /* Act containers */
+  .act{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:20px 24px;margin:18px 0;border-top:4px solid var(--accent)}
+  .act.act-1{border-top-color:var(--bone)}
+  .act.act-2{border-top-color:var(--warn)}
+  .act.act-3{border-top-color:var(--blood)}
+  .act.act-4{border-top-color:var(--crit)}
+  .act.act-5{border-top-color:var(--celest)}
+  .act h2{margin-top:0}
+  .act .act-meta{color:var(--muted);font-size:12px;margin-bottom:12px;text-transform:uppercase;letter-spacing:1.5px}
+
+  /* Letter handout */
+  .handout{background:#e8d8b0;color:#1a1410;border:1px solid #8a7048;border-radius:4px;padding:20px 24px;margin:18px 0;font-family:'Cormorant Garamond','Garamond',serif;font-size:16px;line-height:1.7;box-shadow:0 6px 20px rgba(0,0,0,0.5),inset 0 0 30px rgba(120,80,30,0.15);font-style:italic;position:relative}
+  .handout:before{content:'';position:absolute;top:0;left:0;right:0;bottom:0;background:radial-gradient(circle at 20% 30%,rgba(140,90,40,0.08),transparent 40%),radial-gradient(circle at 80% 70%,rgba(140,90,40,0.08),transparent 40%);pointer-events:none;border-radius:4px}
+  .handout p{margin:8px 0;position:relative}
+  .handout .signature{text-align:right;margin-top:14px;font-weight:600;font-style:normal}
+  .handout .seal{color:#7a3018;font-weight:600;font-style:normal}
+
+  /* Collapsibles */
+  details{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin:10px 0;padding:0}
+  details summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--accent);user-select:none;list-style:none;display:flex;justify-content:space-between;align-items:center}
+  details summary:before{content:"▶";font-size:10px;margin-right:8px;transition:transform 0.2s}
+  details[open] summary:before{transform:rotate(90deg)}
+  details summary::-webkit-details-marker{display:none}
+  details > *:not(summary){padding:0 16px 14px}
+
+  details.spoiler{border-left:4px solid var(--crit)}
+  details.spoiler summary{color:var(--crit)}
+  details.lore{border-left:4px solid var(--celest)}
+  details.lore summary{color:var(--celest)}
+  details.combat{border-left:4px solid var(--blood)}
+  details.combat summary{color:var(--blood)}
+
+  /* Lists */
+  ul.tight,ol.tight{margin:6px 0;padding-left:22px}
+  ul.tight li,ol.tight li{margin:3px 0}
+
+  .pill{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1px 8px;font-size:11px;color:var(--muted);margin-right:4px}
+  .pill.crit{background:var(--blood);color:white;border-color:var(--blood)}
+  .pill.good{background:var(--good);color:var(--bg);border-color:var(--good)}
+  .pill.warn{background:var(--warn);color:var(--bg);border-color:var(--warn)}
+  .pill.celest{background:var(--celest);color:var(--bg);border-color:var(--celest)}
+
+  /* Choice cards */
+  .choice-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:14px;margin:14px 0}
+  .choice{background:var(--surface2);border:1px solid var(--border);border-left:4px solid var(--accent);border-radius:4px;padding:14px}
+  .choice h4{margin-top:0;color:var(--accent)}
+
+  /* Beat headers */
+  .beat-header{display:flex;align-items:baseline;gap:10px;margin-top:20px;padding-bottom:6px;border-bottom:1px solid var(--border)}
+  .beat-header .beat-num{font-family:'Cinzel',serif;color:var(--accent);font-size:13px;letter-spacing:2px;text-transform:uppercase}
+  .beat-header h3{margin:0;font-size:18px}
+
+  /* Scene images */
+  .scene-img{margin:14px 0;border:1px solid var(--border);border-radius:6px;overflow:hidden;background:#000;cursor:zoom-in;transition:transform 0.2s,box-shadow 0.2s;position:relative}
+  .scene-img:hover{transform:translateY(-2px);box-shadow:0 6px 20px rgba(0,0,0,0.5);border-color:var(--accent)}
+  .scene-img img{width:100%;display:block}
+  .scene-img .cap{padding:6px 12px;background:var(--surface2);border-top:1px solid var(--border);font-size:11px;color:var(--muted);font-style:italic}
+  .scene-img.spoiler-img{border-color:var(--crit);position:relative}
+  .scene-img.spoiler-img:before{content:'DM ONLY — DO NOT SHOW';position:absolute;top:8px;left:8px;background:var(--crit);color:var(--ink);padding:3px 8px;font-size:10px;font-weight:bold;letter-spacing:1px;border-radius:3px;z-index:2;text-transform:uppercase}
+  .scene-row{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin:14px 0}
+  @media (max-width:700px){.scene-row{grid-template-columns:1fr}}
+
+  /* Lightbox */
+  .lightbox{display:none;position:fixed;inset:0;background:rgba(0,0,0,0.95);z-index:200;align-items:center;justify-content:center;padding:20px;cursor:zoom-out}
+  .lightbox.active{display:flex}
+  .lightbox img{max-width:96vw;max-height:92vh;border:2px solid var(--accent);box-shadow:0 0 40px rgba(200,164,100,0.3)}
+  .lightbox .lb-close{position:absolute;top:20px;right:24px;color:var(--ink);font-size:32px;cursor:pointer;background:rgba(0,0,0,0.6);border:none;font-family:inherit;line-height:1;padding:4px 12px;border-radius:4px}
+
+  /* Inline links/code */
+  code{background:var(--surface2);border:1px solid var(--border);padding:1px 5px;border-radius:3px;font-size:12px;color:var(--accent);font-family:'Consolas','Monaco',monospace}
+
+  .num-edit{background:var(--bg);border:1px solid var(--border);color:var(--accent);font-family:'Cinzel',serif;font-size:14px;font-weight:bold;text-align:center;border-radius:3px;padding:2px 4px;width:54px;margin-left:6px}
+  .num-edit:focus{outline:none;border-color:var(--accent);background:var(--surface2)}
+  .num-edit-small{width:38px;font-size:13px}
+
+  /* DM cue */
+  .dm-cue{background:rgba(208,74,26,0.08);border-left:3px solid var(--hell);padding:10px 14px;margin:10px 0;font-size:13px;border-radius:0 4px 4px 0}
+  .dm-cue strong{color:var(--hell);text-transform:uppercase;font-size:11px;letter-spacing:1.5px;display:block;margin-bottom:4px}
+
+  /* Print */
+  @media print {
+    nav.sidebar,.trackers{display:none}
+    .layout{grid-template-columns:1fr}
+    main{max-width:100%;padding:10px}
+    section{break-inside:avoid}
+    .statblock{break-inside:avoid;background:white;color:black}
+    body{background:white;color:black}
+    .handout{background:white;color:black;border:1px dashed #888;box-shadow:none}
+  }
+
+  @media (max-width: 900px){
+    .layout{grid-template-columns:1fr}
+    nav.sidebar{position:relative;height:auto}
+    main{padding:16px}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <h1>DUMAL</h1>
+  <div class="sub">Session 5 — The Flame Ascendant</div>
+
+  <div class="navgroup">Trackers</div>
+  <ol>
+    <li><a href="#trackers">Live Trackers</a></li>
+  </ol>
+
+  <div class="navgroup">Session</div>
+  <ol>
+    <li><a href="#thesis">Design Thesis</a></li>
+    <li><a href="#starting">Starting State</a></li>
+    <li><a href="#influence">Influence v2</a></li>
+    <li><a href="#pacing">Pacing</a></li>
+  </ol>
+
+  <div class="navgroup">Play</div>
+  <ol>
+    <li><a href="#cold-open">Cold Open</a></li>
+    <li><a href="#act-1">Act 1 — Departure</a></li>
+    <li><a href="#act-2">Act 2 — Approach</a></li>
+    <li><a href="#act-3">Act 3 — First Cut</a></li>
+    <li><a href="#act-4">Act 4 — Second Cut</a></li>
+    <li><a href="#act-5">Act 5 — Cliffhanger</a></li>
+  </ol>
+
+  <div class="navgroup">Combat</div>
+  <ol>
+    <li><a href="#sb-dumal">Dumal</a></li>
+    <li><a href="#sb-bonedevil">Bone Devil</a></li>
+    <li><a href="#sb-cultist">Cult Fanatic ×3</a></li>
+    <li><a href="#sb-vix">Vix the Imp</a></li>
+  </ol>
+
+  <div class="navgroup">Lore</div>
+  <ol>
+    <li><a href="#lore-cult">Hellrider Cult</a></li>
+    <li><a href="#lore-mother">Mother — Vyssa</a></li>
+    <li><a href="#lore-father">Father — Halvard</a></li>
+    <li><a href="#lore-senna">Senna</a></li>
+    <li><a href="#lore-eldath">Eldath</a></li>
+  </ol>
+
+  <div class="navgroup">Reference</div>
+  <ol>
+    <li><a href="#skills">Skill DCs</a></li>
+    <li><a href="#xp">XP &amp; Rewards</a></li>
+    <li><a href="#soundtrack">Soundtrack</a></li>
+    <li><a href="#checklist">DM Checklist</a></li>
+    <li><a href="#consequences">Seeds &amp; Consequences</a></li>
+    <li><a href="#arc">Full Arc S5–S9</a></li>
+    <li><a href="#encounters">Random Encounters</a></li>
+    <li><a href="#protocol">Mid-Session Protocol</a></li>
+    <li><a href="#open5e">Open5e Quick Refs</a></li>
+    <li><a href="#dm-appendix">DM-Only Appendix</a></li>
+  </ol>
+</nav>
+
+<main>
+
+<header class="title">
+  <h1>The Flame Ascendant</h1>
+  <div class="meta">Session 5 · 3 PCs Level 11 (Drenwal · Aurora · Asimov) · Target ≈5 hours · Two scenes of dialogue per scene of combat</div>
+</header>
+
+<!-- =================== TRACKERS =================== -->
+<section id="trackers" class="trackers">
+  <div class="tracker-grid">
+    <div class="tracker" style="grid-column:span 2">
+      <div class="label">
+        <span>Bhaal's Claim
+          <input type="number" id="bhaal-input" class="num-edit" min="0" max="100" onchange="setBhaal(this.value)" />
+          / 100
+        </span>
+        <button onclick="resetBhaal()">reset 50</button>
+      </div>
+      <div class="meter bhaal">
+        <div class="fill" id="bhaal-fill" style="width:50%"></div>
+        <div class="text" id="bhaal-text">50 / 100</div>
+      </div>
+      <div class="meter-controls">
+        <button onclick="addBhaal(-5)">−5</button>
+        <button onclick="addBhaal(-3)">−3</button>
+        <button onclick="addBhaal(-2)">−2</button>
+        <button onclick="addBhaal(2)">+2</button>
+        <button onclick="addBhaal(3)">+3</button>
+        <button onclick="addBhaal(5)">+5</button>
+        <button onclick="addBhaal(8)">+8</button>
+        <button onclick="addBhaal(15)">+15</button>
+      </div>
+    </div>
+
+    <div class="tracker" style="grid-column:span 2">
+      <div class="label">
+        <span>Gargauth's Bargain
+          <input type="number" id="garg-input" class="num-edit" min="0" max="100" onchange="setGarg(this.value)" />
+          / 100
+        </span>
+        <button onclick="resetGarg()">reset 35</button>
+      </div>
+      <div class="meter gargauth">
+        <div class="fill" id="garg-fill" style="width:35%"></div>
+        <div class="text" id="garg-text">35 / 100</div>
+      </div>
+      <div class="meter-controls">
+        <button onclick="addGarg(-5)">−5</button>
+        <button onclick="addGarg(-3)">−3</button>
+        <button onclick="addGarg(2)">+2</button>
+        <button onclick="addGarg(3)">+3</button>
+        <button onclick="addGarg(5)">+5</button>
+        <button onclick="addGarg(25)">+25</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label">
+        <span>Eldath (3rd Deity)
+          <input type="number" id="eldath-input" class="num-edit num-edit-small" min="0" max="100" onchange="setEldath(this.value)" />
+        </span>
+        <button onclick="resetEldath()">reset</button>
+      </div>
+      <div class="meter eldath">
+        <div class="fill" id="eldath-fill" style="width:5%"></div>
+        <div class="text" id="eldath-text">5 / 100</div>
+      </div>
+      <div class="meter-controls">
+        <button onclick="addEldath(3)">+3</button>
+        <button onclick="addEldath(5)">+5</button>
+        <button onclick="addEldath(10)">+10</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Round</span><button onclick="setRound(1)">reset</button></div>
+      <div class="round-counter">
+        <button onclick="changeRound(-1)">−</button>
+        <input type="number" id="round-input" class="num-edit" min="1" max="99" value="1" onchange="setRound(this.value)" />
+        <button onclick="changeRound(1)">+</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Aurora Status</span></div>
+      <div style="display:flex;gap:6px;flex-wrap:wrap;font-size:11px">
+        <span class="status-pill warn">STR 3</span>
+        <span class="status-pill crit">No spells &ge; 1st</span>
+        <span class="status-pill crit">Ring SPENT</span>
+      </div>
+      <div style="font-size:10px;color:var(--muted);margin-top:6px">3 in-game days · d4=2 days for spells</div>
+    </div>
+
+    <div class="tracker">
+      <div class="label">
+        <span>Hunger (days since kill)
+          <input type="number" id="hunger-input" class="num-edit num-edit-small" min="0" max="99" value="5" onchange="setHunger(this.value)" />
+        </span>
+        <button onclick="setHunger(5)">reset</button>
+      </div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px"><span id="hunger-warn">⚠ 3+ days: DC 15 WIS or Bhaal +5</span></div>
+    </div>
+
+    <div class="tracker" style="grid-column:span 2">
+      <div class="label">
+        <span>Dumal HP
+          <input type="number" id="dumal-hp-input" class="num-edit" min="0" onchange="setDumalHP(this.value)" />
+          / 220 <span style="color:var(--muted);font-size:10px">(combat only)</span>
+        </span>
+        <button onclick="resetDumalHP()">reset 220</button>
+      </div>
+      <div class="hp-bar"><div class="fill" id="dumal-hp-fill" style="width:100%"></div><div class="text" id="dumal-hp-text">220 / 220</div></div>
+      <div style="display:flex;gap:6px;margin-top:6px;font-size:11px">
+        <button onclick="dmgDumal(10)" style="flex:1;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px;border-radius:3px;cursor:pointer">−10</button>
+        <button onclick="dmgDumal(25)" style="flex:1;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px;border-radius:3px;cursor:pointer">−25</button>
+        <button onclick="dmgDumal(50)" style="flex:1;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px;border-radius:3px;cursor:pointer">−50</button>
+        <button onclick="healDumal(20)" style="flex:1;background:var(--surface2);color:var(--good);border:1px solid var(--good);padding:3px;border-radius:3px;cursor:pointer">+20 (kill heal)</button>
+        <button onclick="dumalFlee()" style="flex:1;background:var(--blood);color:var(--ink);border:1px solid var(--blood);padding:3px;border-radius:3px;cursor:pointer">flee @ 25%</button>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- =================== TRACKER THRESHOLDS (non-sticky) =================== -->
+<section id="threshold-legend">
+  <details>
+    <summary>Tracker Thresholds — what happens at what number</summary>
+    <ul class="tight">
+      <li><strong>25:</strong> Flavor only — dreams, whispers, dual-vision moments</li>
+      <li><strong>50:</strong> Mechanical penalty. Bhaal: disadvantage on Insight vs helpless targets. Gargauth: WIS DC 12 when entering contracts.</li>
+      <li><strong>75:</strong> Involuntary acts. Bhaal: symbol auto-carves in next humanoid kill. Gargauth: Shield activates without command.</li>
+      <li><strong>100:</strong> Claimed. Owning deity controls the rebirth narratively.</li>
+      <li><strong>Eldath 30+:</strong> Third-deity intervention becomes possible at rebirth ritual.</li>
+    </ul>
+  </details>
+</section>
+
+<!-- =================== THESIS =================== -->
+<section id="thesis">
+  <h2>Design Thesis</h2>
+  <blockquote class="read">Bitter Breath was a problem with a body. Dumal is a problem with a <em>face.</em></blockquote>
+  <p>This session is structured around <strong>one extended dialogue scene</strong> with the brother who became what Drenwal is trying not to become. Combat is the punctuation, not the sentence.</p>
+
+  <p>Three things make it land:</p>
+  <ol class="tight">
+    <li><strong>Dumal does not want Drenwal dead.</strong> He wants Drenwal home. The threat of violence is real, but it is <em>strategic</em> violence — a tool to bend Drenwal, not break him. The party can survive without a single sword swing if they play it right.</li>
+    <li><strong>Dumal knows things.</strong> Their mother's death. Their father's death. A third sibling. The Hellrider order's secret. The lie inside Mordenkainen's cure. Hand these out as leverage, not exposition.</li>
+    <li><strong>Aurora is now a <em>problem.</em></strong> Word of the Wish at the Palace has already reached Hell. Dumal addresses her directly. Asimov, too. Nobody is just background tonight.</li>
+  </ol>
+
+  <div class="callout"><strong>Win State</strong>Drenwal walks away changed. Aurora walks away marked. Asimov walks away owed a debt. Bhaal/Gargauth meters update visibly. <em>The party did not lose anyone — but they will not be the same party next session.</em></div>
+</section>
+
+<!-- =================== STARTING STATE =================== -->
+<section id="starting">
+  <h2>Starting State (Session 4 Recap)</h2>
+
+  <h3>What happened at the Palace of Gore</h3>
+  <ul class="tight">
+    <li><strong>Bitter Breath defeated</strong> — not killed, <strong>reverted.</strong> Aurora used a Ring of Wishes (1 charge, now <span class="pill crit">SPENT</span>) and willed his power back <em>whence it came.</em> He died of old age on the throne room floor as a mortal man. The ring is now an inert silver band — useless.</li>
+    <li><strong>Moonkite freed and bonded</strong> to Aurora as her mount — cascading Wish effect.</li>
+    <li><strong>Moonbow of Celestial Warding</strong> fusion happened. Aurora's +2 longbow + Wand of Celestial Warding became one weapon.</li>
+    <li><strong>Haruman of the Crimson Legion killed</strong> by the party (prior session). 1/3 Fallen Three done.</li>
+    <li><strong>Smiler the Defiler — deal made.</strong> Party agreed to <strong>banish him to his realm</strong> in exchange for his help. <span class="pill warn">DEBT UNPAID.</span></li>
+    <li><strong>Captain Grozz killed</strong> in the boss fight.</li>
+    <li><strong>No loot from Bitter Breath.</strong> His power, weapons, soul coins, Bhaal-marked gear — all dissolved with him when the Wish reverted his existence.</li>
+  </ul>
+
+  <h3>Aurora's Wish Stress (Homebrew — locked in at S4)</h3>
+  <div class="callout danger"><strong>3 In-Game Days</strong>
+    <ul class="tight">
+      <li><strong>STR reduced to 3.</strong> -4 to STR checks/saves/Athletics. Carry capacity ~30 lbs.</li>
+      <li><strong>Cannot cast spells of 1st level or higher</strong> for d4 = <strong>2 days</strong> (pre-rolled).</li>
+      <li><strong>Wish is GONE.</strong> Ring had 1 charge. Inert silver band now.</li>
+      <li><strong>Side effect:</strong> When she casts any divination or summoning while in this state, the Moonkite <em>appears</em> — even if not summoned. The celestial sees through her.</li>
+    </ul>
+  </div>
+  <details class="lore"><summary>RAW comparison (SRD 2024)</summary>
+    <p>SRD Wish: STR 3 for <strong>2d4 days</strong> (not 3); each spell cast until next long rest costs <strong>1d10 necrotic per spell level</strong>; 33% chance she can never cast Wish again (irrelevant — ring is one-charge). Our homebrew is gentler on damage but harsher on spell access. <strong>If Aurora's player asks for RAW: switch to RAW for the spell-cost mechanic and roll 2d4 for days. Either choice is defensible — pick one and don't switch mid-session.</strong></p>
+    <p><a href="https://open5e.com/spells/wish" target="_blank">https://open5e.com/spells/wish</a></p>
+  </details>
+
+  <h3>The Bhaal Carving at the Palace Exit</h3>
+  <p>When the party leaves the Palace, the carved Bhaal symbol at the exit is <strong>fresh.</strong> The blood is still tacky. Dumal was here. He watched. He left this for them deliberately — a calling card.</p>
+</section>
+
+<!-- =================== INFLUENCE v2 =================== -->
+<section id="influence">
+  <h2>Bhaal / Gargauth Influence — System v2</h2>
+  <p style="color:var(--muted);font-size:13px">Replaces the old 0–6 tick system. Two parallel meters 0–100. <strong>Visible to player.</strong> Use the tracker buttons above to log shifts live.</p>
+
+  <h3>Meters at Session Start</h3>
+  <ul class="tight">
+    <li><strong>Bhaal's Claim: 50</strong> (carryover — base 30 + 5 each for Bloodbath kill, Bhaal hijack of Divine Intervention, Mordenkainen revealing Bhaal-blood truth, Dumal's carving at Palace exit)</li>
+    <li><strong>Gargauth's Bargain: 35</strong> (base 20 + Shield use sessions + "I could catch you when you fall" offer)</li>
+    <li><strong>Eldath, the Quiet One: 5</strong> (free starting from Lulu's vouch — she's a hollyphant)</li>
+  </ul>
+
+  <h3>Bhaal's Claim ↑</h3>
+  <table>
+    <tr><th>Action</th><th>Tick</th></tr>
+    <tr><td>Cruel kill on humanoid (called shot, finisher on surrendered, ritual murder)</td><td><strong>+5</strong></td></tr>
+    <tr><td>Critical-hit kill</td><td><strong>+2</strong></td></tr>
+    <tr><td>3+ days without a kill (Hunger)</td><td><strong>+3/day</strong>, DC 15 WIS to cap at +5</td></tr>
+    <tr><td>Accept Bhaal-aligned power (hijacked DI, Bhaal-marked weapon, dream "advice")</td><td><strong>+10</strong></td></tr>
+    <tr><td>Witness Bhaal symbol / receive Bhaal dream / hear Dumal's voice</td><td><strong>+1 to +5</strong></td></tr>
+    <tr><td>Dumal makes physical contact with Drenwal</td><td><strong>+8</strong></td></tr>
+    <tr><td>Drenwal kills someone Dumal pointed at</td><td><strong>+15</strong></td></tr>
+  </table>
+
+  <h3>Gargauth's Bargain ↑</h3>
+  <table>
+    <tr><th>Action</th><th>Tick</th></tr>
+    <tr><td>Use Shield offensively</td><td><strong>+3 per session</strong></td></tr>
+    <tr><td>Accept Gargauth's whispered advice in-narration</td><td><strong>+5</strong></td></tr>
+    <tr><td>Make ANY bargain or contract (party-wide trigger, Drenwal-witnessed)</td><td><strong>+5</strong></td></tr>
+    <tr><td>Ask Gargauth a direct question</td><td><strong>+2</strong></td></tr>
+    <tr><td>Cast Light-domain spell flavored with Shield-imagery</td><td><strong>+1</strong></td></tr>
+    <tr><td>Accept Gargauth's offer to "catch the soul"</td><td><strong>+25</strong> (one-time, massive)</td></tr>
+  </table>
+
+  <h3>Both Meters ↓ (these matter)</h3>
+  <table>
+    <tr><th>Action</th><th>Tick</th></tr>
+    <tr><td>Devotional act to a third deity (overt prayer, public service in a god's name, channel Light AND name source)</td><td><strong>−5 from highest</strong></td></tr>
+    <tr><td>Refuse offered power with overt narration</td><td><strong>−3 from offerer</strong></td></tr>
+    <tr><td>Spare or heal an enemy Drenwal could have killed</td><td><strong>−2 Bhaal</strong></td></tr>
+    <tr><td>Personal cost paid for a virtuous outcome</td><td><strong>−3 from highest</strong></td></tr>
+    <tr><td>Speak truth about his Bhaal blood to a non-party NPC</td><td><strong>−5 from Bhaal</strong></td></tr>
+    <tr><td>Lulu interceding (1×/session max)</td><td><strong>−2 from highest</strong></td></tr>
+  </table>
+
+  <h3>The Cure Pressure (the actual question)</h3>
+  <div class="callout info">When Drenwal dies and is reborn:
+    <ul class="tight">
+      <li>The <strong>highest</strong> meter wins by default.</li>
+      <li>A <strong>third deity</strong> can intervene IF Drenwal has ≥ <strong>30 devotional points</strong> with them.</li>
+      <li><strong>Lulu's god</strong> = free 5 devotional points (Lulu vouches by existing).</li>
+      <li><strong>The Moonkite's patron god</strong> = another candidate (Session 6+ thread).</li>
+    </ul>
+    <p style="margin-top:8px"><strong>Track devotional points visibly. Three columns on your DM screen: Bhaal / Gargauth / Eldath.</strong></p>
+  </div>
+
+  <details class="lore"><summary>Why v2 is better than the old 0–6 system</summary>
+    <ul class="tight">
+      <li>Specific actions tick specific amounts (no DM guessing)</li>
+      <li>Player can SEE the meters, so they can play toward outcomes</li>
+      <li>Reductions are possible (old system only went up)</li>
+      <li>Multiple deities competing creates a real strategic choice</li>
+      <li>The "third option" requires sustained narrative work, not a single moment</li>
+    </ul>
+  </details>
+</section>
+
+<!-- =================== PACING =================== -->
+<section id="pacing">
+  <h2>Pacing — 5 Hours</h2>
+  <table>
+    <tr><th>Block</th><th>Time</th><th>Content</th></tr>
+    <tr><td>Cold Open + Palace aftermath</td><td>30 min</td><td>Body of the mortal man, Moonkite bonding, Aurora's STR 3 reveal, Bhaal carving at exit</td></tr>
+    <tr><td>Act 1 — The Departure</td><td>45 min</td><td>Choices about the body, Smiler debt, direction to head, smog thinning</td></tr>
+    <tr><td>Act 2 — The Approach</td><td>45 min</td><td>Travel, whisper-fog, Vix the herald, Lulu reacts to celestial scent</td></tr>
+    <tr><td>Act 3 — Dumal Arrives (First Cut)</td><td>1h 15min</td><td>Standoff, opening dialogue, family reveal, the Offer</td></tr>
+    <tr><td>Act 4 — The Second Cut</td><td>1h</td><td>Either negotiation deepens into revelations, or it tips into a tactical fight</td></tr>
+    <tr><td>Act 5 — The Cliffhanger</td><td>15 min</td><td>Dumal departs (alive). What he leaves behind. Fallen Three teaser.</td></tr>
+  </table>
+</section>
+
+<!-- =================== COLD OPEN =================== -->
+<section id="cold-open">
+  <h2>Cold Open</h2>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-01-throne-room-a.webp')">
+    <img src="Images/session-5/scene-01-throne-room-a.webp" alt="Throne Room Aftermath">
+    <div class="cap">Scene 1 — Throne Room Aftermath. Use the <code>-a</code> through <code>-d</code> variants in <code>Images/session-5/</code> to swap.</div>
+  </div>
+
+  <blockquote class="read">The throne room of the Palace of Gore is suddenly very quiet.
+
+Above you, the iron cage that held the Moonkite hangs open — its bars peeled back like the petals of a flower. The Moonkite itself is on the floor, head down, ribs heaving. Silver light leaks from cracks in its skin and pools beneath it, slow as honey. Its wing twitches, then folds. It is <em>alive.</em>
+
+Five feet from it, on the floor: an old man. Eighty, maybe ninety years old. White hair like wet straw. Skin like rice paper. He is naked under the velvet robe someone — <em>something</em> — once draped on his devil-self, and the robe is now too big for the shrunken body inside it. His eyes are open and unblinking and <em>brown.</em> Not yellow. Brown.
+
+He is not breathing.
+
+The veins on Aurora's hand — the hand still wearing the Ring of Three Wishes — are silver. Not bruised silver. <em>Lit</em> silver. Like the Moonkite is leaking out of her fingers too.
+
+Drenwal — your Shield is <em>humming.</em> Not whispering. Humming. The kind of hum a thing makes when it's seen something <em>interesting.</em>
+
+Outside, somewhere up the gore-blood tunnels — <em>bone, settling.</em> The Palace shifting around the death of its master. Or something walking.</blockquote>
+
+  <div class="dm-cue"><strong>Tracker updates at scene start (announce visibly)</strong>
+    Bhaal's Claim: <strong>50</strong> (carving pre-loads) · Gargauth's Bargain: <strong>35</strong> · Eldath: <strong>5</strong> (Lulu's vouch) · Aurora STR <strong>3</strong> (3 days) · Aurora spells: <strong>none above cantrip</strong> for d4=2 days · Ring of Wishes: <strong>SPENT</strong>
+  </div>
+</section>
+
+<!-- =================== ACT 1 =================== -->
+<section id="act-1" class="act act-1">
+  <h2>Act 1 — The Departure <span class="pill warn">PLAYED</span></h2>
+  <div class="act-meta">45 minutes · Choices · Smog clears · Return to the Lady Vengeance</div>
+
+  <div class="beat-header"><span class="beat-num">Beat 1.1</span><h3>The Body <span class="pill warn">PLAYED</span></h3></div>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-11-aldwin-body-a.webp')">
+    <img src="Images/session-5/scene-11-aldwin-body-a.webp" alt="The mortal man's body">
+    <div class="cap">Scene 11 — The mortal man who was Bitter Breath.</div>
+  </div>
+
+  <p>The mortal man's body is on the floor. <strong>The party searched him — nothing on him. No items, no marks, no identifying objects.</strong> Just a dead old man in a robe that doesn't fit. Whoever he was, the Wish took it with him.</p>
+
+  <div class="callout bhaal"><strong>Drenwal Insight DC 13</strong><em>This man's path could be your path. Old. Spent. Free. If your cure works the way Mordenkainen described, this is the shape of you on the other side — and he didn't even leave a name behind.</em></div>
+
+  <h4>What the party did with the body</h4>
+  <p style="color:var(--muted);font-size:13px"><em>(Resolve as it played at the table — the choice has already been made by the time you're reading this.)</em></p>
+  <table>
+    <tr><th>Choice</th><th>Consequence (apply retroactively if needed)</th></tr>
+    <tr><td>Left it</td><td>Dumal will desecrate it (off-screen). <strong>+3 Bhaal</strong> if Drenwal allowed it.</td></tr>
+    <tr><td>Burned it</td><td>Clean closure. <strong>−2 from highest.</strong> Aurora could use a Moonbow shot to ignite — symbolic.</td></tr>
+    <tr><td>Carried it back to the ship</td><td><strong>−4 from highest</strong> if they did this. <span class="pill">Plot seed:</span> the body becomes a question — who was he? A future investigation hook.</td></tr>
+  </table>
+
+  <div class="beat-header"><span class="beat-num">Beat 1.2</span><h3>The Moonkite Stands</h3></div>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-02-moonkite-a.webp')">
+    <img src="Images/session-5/scene-02-moonkite-a.webp" alt="The Moonkite">
+    <div class="cap">Scene 2 — The Moonkite stands. Bond complete.</div>
+  </div>
+
+  <p>The Moonkite raises its head. It is the size of a small horse, antlered, with feathered wings and feline grace. Its eyes meet Aurora's. There is <strong>no speech</strong> — the bond is older than language.</p>
+
+  <h4>Aurora gains</h4>
+  <ul class="tight">
+    <li><strong>The Moonkite as mount</strong> (statblock TBD by DM — Pegasus chassis + celestial features works)</li>
+    <li>A passive sense of when <strong>celestial magic is being cast within 1 mile</strong></li>
+    <li>A weight in her chest she'll come to understand as <em>responsibility.</em> Not a debuff. A presence.</li>
+  </ul>
+
+  <div class="callout info"><strong>Aurora's RP-only choice</strong>What does she name it? The name matters — it's the first time she's named a thing that wasn't hers to name.</div>
+
+  <div class="beat-header"><span class="beat-num">Beat 1.3</span><h3>The Carving</h3></div>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-03-carving-a.webp')">
+    <img src="Images/session-5/scene-03-carving-a.webp" alt="Bhaal carving: He misses you">
+    <div class="cap">Scene 3 — The carving at the Palace exit.</div>
+  </div>
+
+  <blockquote class="read">The carving is on the inside of the gate — <em>facing the throne room they just left.</em> Not facing out. It was carved for the master of the Palace. It was carved for Bitter Breath, by someone who walked past the cage every time he visited.
+
+The Bhaal symbol. A circle of blood, with a downward dagger inside it. The blood is <em>still wet.</em> Wet for hours, maybe a day.
+
+Below the symbol, in a different blood — finer, careful, calligraphic — three words:
+
+<em>"He misses you."</em></blockquote>
+
+  <div class="callout bhaal"><strong>Drenwal — Passive (no roll)</strong>That's Dumal's handwriting. You remember it from letters. From childhood. From the wall above your shared bed when he was nine.</div>
+
+  <p><strong>Tracker:</strong> Bhaal's Claim <strong>+5</strong> (already pre-loaded; apply now if not).</p>
+
+  <div class="beat-header"><span class="beat-num">Beat 1.4</span><h3>Departure — Back to the Lady Vengeance <span class="pill warn">PLAYED</span></h3></div>
+  <p>The party made it out of the Palace of Gore and <strong>back to the Lady Vengeance.</strong> The ship is intact and afloat on the sluggish river of blood. The gore-smog has thinned but not vanished. Birds (or things that resemble birds) circle high above. Nothing is attacking. Everything is <em>watching.</em></p>
+
+  <table>
+    <tr><th>Route from here</th><th>Outcome</th></tr>
+    <tr><td><strong>South by river — towards Olanthius's wandering ground</strong></td><td>Dumal intercepts en route. <span class="pill">Default path.</span></td></tr>
+    <tr><td><strong>East — towards Bel's Forge</strong></td><td>Dumal intercepts at a riverside shrine. Same encounter, different deck-side terrain.</td></tr>
+    <tr><td><strong>Tie up and rest at the Palace mooring</strong></td><td>Dumal walks down to the dock to find them. Tightest engagement range.</td></tr>
+  </table>
+
+  <div class="callout"><strong>All rivers lead to Dumal</strong>In all cases, Dumal arrives in Act 3. The terrain decoration around the ship changes; the meeting does not.</div>
+</section>
+
+<!-- =================== ACT 2 =================== -->
+<section id="act-2" class="act act-2">
+  <h2>Act 2 — The Approach</h2>
+  <div class="act-meta">45 minutes · Travel · The Herald arrives</div>
+
+  <div class="beat-header"><span class="beat-num">Beat 2.1</span><h3>Aurora's Mount Test</h3></div>
+  <p>About 30 minutes out, Aurora attempts to mount the Moonkite. The first attempt:</p>
+  <p><strong>Aurora rolls STR (Athletics) at -4 (STR 3). DC 5 to mount.</strong></p>
+  <ul class="tight">
+    <li><strong>Success:</strong> She gets on. The Moonkite kneels for her. Beautiful moment.</li>
+    <li><strong>Failure:</strong> She slides off. The Moonkite waits patiently. Asimov has to boost her up. <em>She is the Wish-wielder, and she cannot get on her own mount.</em> Lean into the irony.</li>
+  </ul>
+
+  <div class="beat-header"><span class="beat-num">Beat 2.2</span><h3>Lulu's First Sniff</h3></div>
+  <p>Lulu — riding on someone's shoulder or trotting alongside — stops. Looks south. Her trunk lifts.</p>
+
+  <blockquote class="dialogue lulu"><strong>Lulu:</strong> "That. That smell."
+
+(Lulu's voice is warm, child-soft, slightly slurred from millennia of damage.)
+
+"That's not... that's not a devil. That's something else. That's a <em>brother.</em> A brother who chose. A brother who was loved and chose anyway."
+
+<em>She looks at Drenwal. She is suddenly, completely lucid for the first time in weeks.</em>
+
+"I am so sorry, little flame. I am so sorry."</blockquote>
+
+  <p><strong>Bhaal influence (Lulu effect):</strong> <strong>−2 from highest meter</strong> (one-time, per session).</p>
+
+  <div style="background:linear-gradient(90deg,var(--accent),var(--hell));color:var(--bg);padding:14px 20px;margin:24px 0;border-radius:6px;text-align:center;font-family:'Cinzel',serif;font-size:18px;letter-spacing:3px;font-weight:bold;box-shadow:0 4px 16px rgba(208,74,26,0.4)">▶ RESUME HERE — VIX ARRIVES ◀</div>
+
+  <div class="beat-header"><span class="beat-num">Beat 2.3</span><h3>The Herald — Vix the Imp <span class="pill warn">CURRENT SCENE</span></h3></div>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-04-vix-a.webp')">
+    <img src="Images/session-5/scene-04-vix-a.webp" alt="Vix the imp herald">
+    <div class="cap">Scene 4 — Vix the imp, with a small black parley flag.</div>
+  </div>
+
+  <p>The Lady Vengeance has been on the move (or moored, if they chose to rest). A single <strong>imp</strong> descends from the smog and lands on the deck rail — or a nearby piling if they tied up — twenty feet from where the party stands. Holding a small black flag — plain, no sigil. <strong>A parley flag.</strong></p>
+
+  <blockquote class="dialogue"><strong>Vix:</strong> <em>(clearing throat, too polite)</em>
+
+"With the deepest respect of His Ascendancy, Dumal of Elturel, called the Flame, this herald requests parley with the company of Drenwal of Elturel and his honoured companions. His Ascendancy will arrive within the hour. He requests that no spells be cast at him during the approach. He asks for nothing else."
+
+<em>The imp pauses. Then, brightly:</em>
+
+"He also asks that the lady with the Wish ring not make any more of those, please. He'd consider it a personal kindness."
+
+<em>It bows. Then it stays there, on the post, waiting for a reply. It does not leave until one is given.</em></blockquote>
+
+  <div class="callout info"><strong>Vix Fact File</strong>The imp's name is Vix. He's been Dumal's herald for six years. He likes biscuits. (Polite. Won't attack unless cornered.)</div>
+
+  <h4>Player responses</h4>
+  <table>
+    <tr><th>Response</th><th>Consequence</th></tr>
+    <tr><td>Accept parley</td><td>Imp bows, vanishes. Dumal arrives in 45 minutes.</td></tr>
+    <tr><td>Refuse parley</td><td>Imp shrugs: <em>"He'll come anyway, but he'll be cross."</em> Vanishes. Dumal arrives in 20 minutes, hostile from the start (-1 to all his peace-options).</td></tr>
+    <tr><td>Kill the imp</td><td>Dumal arrives in 10 minutes, <strong>furious.</strong> Breaks parley before it begins. Initiative rolled the moment he's in sight. <span class="pill crit">WORST PATH.</span></td></tr>
+  </table>
+
+  <div class="beat-header"><span class="beat-num">Beat 2.4</span><h3>Drenwal's Hunger Check</h3></div>
+  <p>It has been <strong>5 in-game days</strong> since Drenwal's last kill (Bloodbath two sessions ago doesn't count — Asimov's Rasheem consumed him).</p>
+
+  <p><strong>DC 15 WIS save:</strong></p>
+  <ul class="tight">
+    <li><strong>Success:</strong> Hunger held in check. Tracker: Bhaal <strong>+3</strong> (capped instead of full +5).</li>
+    <li><strong>Failure:</strong> Tracker: Bhaal <strong>+8</strong> (full hit). Dreams that night are worse. He wakes seeing red.</li>
+  </ul>
+
+  <div class="callout danger"><strong>The Hunger Trap</strong>Drenwal can voluntarily kill something to relieve Hunger — anything large enough. But every voluntary kill is <strong>+5 Bhaal.</strong> Feeding Hunger is fast but ticks the meter. Resisting is hard but might reach a threshold via dream-witness instead.</div>
+</section>
+
+<!-- =================== ACT 3 =================== -->
+<section id="act-3" class="act act-3">
+  <h2>Act 3 — Dumal Arrives — The First Cut</h2>
+  <div class="act-meta">1 hour 15 minutes · Standoff · Family reveal · The Offer</div>
+
+  <div class="beat-header"><span class="beat-num">Beat 3.1</span><h3>The Approach</h3></div>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-05-dumal-arrives-a.webp')">
+    <img src="Images/session-5/scene-05-dumal-arrives-a.webp" alt="Dumal emerges from smog">
+    <div class="cap">Scene 5 — Dumal walks out of the smog itself.</div>
+  </div>
+
+  <p>Dumal does not come down a road. He walks <em>out of the smog itself</em> — like the smog parts for him. Behind him, four shadowy shapes follow at a respectful distance: three <strong>Bhaal cultists</strong> (Cult Fanatic) and one <strong>Bone Devil</strong> bodyguard.</p>
+
+  <blockquote class="read">He is tall — taller than Drenwal remembered. Hellrider plate, but corrupted — the steel has <em>veins</em> of red-glowing rune-work, like cooling magma. The lance on his back is a <em>Bhaal-marked weapon</em> — its blade is grey-black, perpetually wet-looking. At his hip: a small <em>bone-handled shortsword</em> — the ritual blade.
+
+His face is the worst part. It is Drenwal's face. Older — five years older — leaner, scarred along the jaw, but unmistakably <em>the same blood.</em> Same eyes. Same set of the mouth. He smiles, and it is Drenwal's smile from when Drenwal was a child.
+
+He stops thirty feet out. He holds up both hands, palms open. Empty.
+
+<em>"Little brother. You look terrible. Have they been feeding you?"</em></blockquote>
+
+  <div class="beat-header"><span class="beat-num">Beat 3.2</span><h3>Sample Dialogue</h3></div>
+  <p style="color:var(--muted);font-size:13px">Use what fits, improvise the rest. Dumal must be <strong>charming, articulate, sad.</strong> Charismatic cult-leader who actually loves his brother. Not cackling villain.</p>
+
+  <h4>Opening (after Drenwal speaks first, whatever he says)</h4>
+  <blockquote class="dialogue"><strong>Dumal:</strong> "I know. I know. We have <em>much</em> to say to each other and I am keeping you. Let me offer some preliminaries.
+
+One — I am not here to fight you. Not today. I am keeping my hands where you can see them. If you attack me, I will defend myself, but I will not begin.
+
+Two — your companions are welcome to listen. I will not speak around them. The Wish-wielder, especially. She and I will have words. Yes, lady, <em>you.</em> Hello."
+
+<em>He nods at Aurora. Direct. Polite. Not threatening.</em>
+
+"And the rogue with the lamp. Hello, friend. We have not met. Your master is going to eat you eventually — you know that, yes? He won't be subtle. Lamps are <em>patient.</em> I would offer counsel, but you have not asked, so I will not."
+
+<em>He looks back at Drenwal.</em>
+
+"Three — I have spent six years preparing to see you again. The first half of those years I spent learning to <em>speak.</em> I want you to know I am choosing every word. So listen carefully."</blockquote>
+
+  <h4>The Childhood Name</h4>
+  <blockquote class="dialogue">"Den. May I call you that? I always did. Mother used to scold me — she said it was a <em>foolish</em> name for a <em>Hellrider's</em> son. She was wrong about a great many things, but she had pretty hands. Do you remember her hands? I do."</blockquote>
+  <p style="font-size:13px;color:var(--muted)">This is the moment Drenwal realizes Dumal knows everything Drenwal half-remembers and more. The audience should feel the air leave the room.</p>
+
+  <h4>First Reveal — Mother</h4>
+  <blockquote class="dialogue">"She did not die of the wasting sickness. I want you to know that. I learned this later — much later. I would not have believed it if Bhaal himself had not whispered it to me, and even then I held it for years before I accepted it.
+
+She was <em>one of us</em>, Den. A Bhaalspawn. Like me. Like you. She knew it. She had known her whole life. And when she had us — when she saw what we were going to be — she made a choice. She poisoned herself. <em>Slowly.</em> Years. So that we would think it was illness.
+
+She thought she could <em>starve the line out of us by dying early.</em> She thought if she did not feed Bhaal's claim by living for him, he would <em>forget us.</em>
+
+<em>(He laughs, very softly.)</em>
+
+She was wrong. But she was <em>brave.</em> I want you to know she was brave."</blockquote>
+
+  <h4>Second Reveal — Father</h4>
+  <blockquote class="dialogue">"Father did not die at the Wall, either. The Hellrider order knew what we were. They had known about Mother. They watched her for forty years and they watched us from the cradle. There was a <em>cult</em> inside the order, Den. Bhaal-sworn. They had been there for generations. <em>Hellriders by day, knife-priests by night.</em>
+
+One of them killed Father in his sleep, the night before the Descent. Slit his throat with a ritual blade. <em>(He touches the bone-handled shortsword at his hip.)</em> This one, actually. It was passed to me. I was — <em>flattered.</em> Now I know better.
+
+Mordenkainen knows all of this. He has known for sixty years. <em>Ask him.</em> Ask him why he did not tell you when he had you in his tower."</blockquote>
+
+  <h4>Third Reveal — The Sister</h4>
+  <blockquote class="dialogue">"There is one more of us. Did you know? Of course you did not know. Mother died before she was born. Father never spoke her name — to his last breath, he was protecting her.
+
+She is <em>alive.</em> She is <em>young.</em> She is being raised in a place where Bhaal cannot find her yet — but Bhaal is patient and the place is not perfect. <em>I</em> know where she is. I have not gone for her. I am waiting.
+
+<em>(A pause. He watches Drenwal's face.)</em>
+
+If you come home, brother, you and I will go to her <em>together.</em> We will protect her. Not Bhaal — <em>we.</em> The two of us, between her and the world, the way it was <em>supposed</em> to be.
+
+If you do not come home... I will go for her <em>alone.</em> And what becomes of her then — well. That is on your conscience."</blockquote>
+
+  <h4>Aurora — Direct Address</h4>
+  <blockquote class="dialogue aurora">"Lady Wish-wielder. I will not pretend I am not afraid of you. I am. You did something at the Palace that gods notice. Several gods have already noticed. Be very, very careful what you do next.
+
+I will offer you one piece of free counsel — <em>Wish does not work on me.</em> Not in the way it worked on the devil. I am <em>not</em> a devil. I am a <em>man who said yes.</em> There is nothing to revert me to. The man I was <em>chose this.</em> You can kill me with the ring, but you cannot <em>undo</em> me. Do not try. It will cost you more than you can afford.
+
+Also — your mount is beautiful. Truly. Please tell it I said so. It has nothing to fear from me."</blockquote>
+
+  <h4>Asimov — Direct Address</h4>
+  <blockquote class="dialogue"><em>(He squints, then smiles.)</em>
+
+"Asimov. <em>Asimov.</em> Are you the Asimov who took the Vortigern bounty in the Material six years ago? I read about it. You went <em>under</em> their guildhouse. I respect that.
+
+Your lamp is a tool of the Outer Planes. <em>(Pause.)</em> That's a polite way of saying it. The less polite way is that your genie is using you as a <em>cup,</em> and one day it will tip the cup over. But that is your business.
+
+I will not contract you. Bhaal does not contract. <em>(Smiles.)</em> Bhaal <em>claims.</em>"</blockquote>
+
+  <h4>The Mordenkainen Accusation</h4>
+  <blockquote class="dialogue">"Did Mordenkainen tell you, Den — that the <em>only</em> way to be reborn out from under Bhaal's claim is in the eyes of a god who has never known of you?
+
+That is what he said, yes? <em>Die and be reborn in the eyes of another god.</em> He wrapped it pretty.
+
+Here is what he <em>didn't</em> say.
+
+<em>Every</em> god in this firmament knows about us. Bhaal has <em>bragged.</em> Bhaal makes a <em>point</em> of bragging. The pantheon has read our names. There is no god who has not heard of Drenwal of Elturel, the Hellrider Bhaalspawn who walks in Light. <em>They all know.</em>
+
+Which means the <em>only</em> god who can claim you in rebirth is the one who has <em>already</em> claimed you. Mordenkainen knew. He sent you on this errand to give you <em>something to do</em> — because he believes you are already lost and he is <em>kind enough</em> not to say so.
+
+Or — and this is the version I prefer — he is <em>lying.</em> He wants you to fail and fall into Bhaal's hands so the <em>third option</em> — a small god, an obscure god, a god who has <em>not</em> heard — has time to be <em>found and bargained with.</em> By him. Mordenkainen is <em>building</em> a god, Den. A god for <em>you.</em> And he has not told you because he needs you to keep moving while he works.
+
+Either way: you are being <em>handled.</em> Bhaal does not handle. Bhaal <em>waits.</em>
+
+Come home."</blockquote>
+
+  <h4>The Offer (the main one)</h4>
+  <blockquote class="dialogue"><strong>Dumal:</strong> "Here is what I am asking. Not demanding. <em>Asking.</em>
+
+Come with me. Now. I will take you to her — to our sister. We will go <em>together.</em> You will not have to fight a single battle. Bhaal will hold his hand from you for a year. <em>He has agreed.</em> I asked.
+
+One year. Walk with me. Meet her. See what you think when you have <em>seen her.</em>
+
+If at the end of the year you wish to come back to your companions, you may. I will let you. Bhaal will let you. You will keep everything you have learned. You will lose nothing.
+
+Or —
+
+If you say no — I leave. I leave today. I do not threaten you. I do not bring the wrath. I will <em>go for her alone.</em> And what she becomes when only I am raising her — <em>(a slow, deliberate smile)</em> — is what she becomes."</blockquote>
+
+  <div class="beat-header"><span class="beat-num">Beat 3.3</span><h3>The Crisis Point</h3></div>
+  <p>The moment of greatest tension. Drenwal's player must decide.</p>
+
+  <table>
+    <tr><th>Drenwal's Choice</th><th>What Happens</th></tr>
+    <tr><td><strong>Accept the deal — go with Dumal for a year</strong></td><td>Drenwal leaves the party. <strong>Bhaal +25</strong> (massive). Aurora and Asimov continue without him for a session arc. <span class="pill crit">DM: this is a real option, not a fakeout. Don't railroad against it.</span> Becomes Drenwal's player's solo arc until next session — or co-DM with them.</td></tr>
+    <tr><td><strong>Refuse, ask for time</strong></td><td>Dumal nods. <em>"Time is what I have been giving you, Den. Take more. But know I will not ask twice. The next time we speak, it will be because she is in danger."</em> He withdraws. <strong>No combat. Gargauth +5, Bhaal −3.</strong></td></tr>
+    <tr><td><strong>Refuse, demand the sister's location</strong></td><td>Dumal: <em>"No. That would be cheap. You earn her by coming home, or you lose her by staying."</em> Combat may trigger if Drenwal pushes.</td></tr>
+    <tr><td><strong>Refuse and attack</strong></td><td>Initiative. See Act 4 combat path.</td></tr>
+    <tr><td><strong>Aurora threatens / bluffs Wish</strong></td><td>Dumal smiles. He uses his Bhaal-Sight to <em>see</em> the dead ring on her hand. <em>"That ring is empty, lady. I can taste it from here. Spent at the Palace. You wanted me to fear it — I do not. I respect what you did. But I am not bluffable."</em> Bluff costs Aurora <strong>2d6 narrative HP.</strong></td></tr>
+    <tr><td><strong>Asimov tries Soul Capacitor</strong></td><td>Auto-fail. Dumal is Bhaal-anchored — no soul to extract while Bhaal holds him. <strong>Rasheem speaks</strong> (audible to all): <em>"Hands off, hunter. That one's not yours. That one's not anyone's but his god's."</em></td></tr>
+    <tr><td><strong>Drenwal asks the sister's name</strong></td><td><em>"Her name is Senna. She is six."</em> <strong>Bhaal +2</strong> for accepting personal info.</td></tr>
+    <tr><td><strong>Drenwal asks about Mordenkainen</strong></td><td>Dumal repeats the accusation more bluntly. Mordenkainen has been to Avernus <strong>seven times</strong> in the past decade hunting for an unclaimed god. Names her: <em>"Eldath. The Quiet One. They called her Mother of the Waters once, when there were still waters that wanted a mother. Her faith was peace, and peace did not survive the Sundering, let alone Avernus. Two old women keep her last shrine in a village called Tarsweald, beside a spring she once blessed. Mordenkainen has visited them four times this year. Ask him."</em> <span class="pill celest">Plot seed.</span></td></tr>
+  </table>
+</section>
+
+<!-- =================== ACT 4 =================== -->
+<section id="act-4" class="act act-4">
+  <h2>Act 4 — The Second Cut</h2>
+  <div class="act-meta">1 hour · Either negotiation deepens OR combat tips</div>
+
+  <h3>If the Conversation Continues (Negotiation Path)</h3>
+  <p>Dumal will offer:</p>
+  <ul class="tight">
+    <li><strong>Olanthius's current location</strong> — to the hour. He's in the <strong>Shattered Cathedral,</strong> three days' ride south. Given freely. <em>"He is suffering. Take that from him. He earned the rest."</em></li>
+    <li><strong>The Blood Pay timing.</strong> Citadel manifests on a specific tide of the Styx, every 33 days. Next: <strong>17 days.</strong> They have a deadline.</li>
+    <li><strong>NOT Senna's location.</strong> Ever. Not bargained, not threatened.</li>
+  </ul>
+
+  <div class="callout info"><strong>Trade currency</strong>Dumal accepts <em>information about Mordenkainen</em> (anything party knows about the real tower, the simulacrum, what he said) in exchange for two pieces of his own info. Mordenkainen-intel is rare in Hell.</div>
+
+  <h3>If Combat Triggers (the Tactical Fight)</h3>
+  <p>Roll initiative. See Dumal's statblock below. <strong>He does NOT fight to the death.</strong></p>
+
+  <h4>Dumal's combat doctrine</h4>
+  <ul class="tight">
+    <li><strong>Round 1:</strong> Cultists and Bone Devil engage. Dumal walks slowly forward.</li>
+    <li><strong>Round 2:</strong> Dumal arrives. Targets <em>Drenwal first.</em> Uses Bhaal-Marked Strike for massive damage + lingering sigil.</li>
+    <li><strong>Round 3+:</strong> Dumal seeks to <strong>ritual-kill the Cult Fanatics himself</strong> — single attack, his own side, to demonstrate Bhaal's hunger. Theatrical. Drenwal sees it.</li>
+    <li><strong>At 25% HP:</strong> Dumal disengages. Bone Devil covers. Throws <strong>Bhaal Smoke</strong> (20ft cube, opaque, 2 rounds invisible inside). Gone.</li>
+  </ul>
+
+  <blockquote class="dialogue"><strong>Final line as he disengages:</strong> "Heal him, Wish-wielder. He is going to need it. So is your Quiet One."</blockquote>
+
+  <div class="callout danger"><strong>If Drenwal lands the killing blow on a downed Dumal</strong>Dumal does not die. Bhaal extracts him at 0 HP (column of red light, screaming faces, gone). Tracker: <strong>Bhaal +15</strong> (Bhaal "saved" his pet — debt owed).</div>
+
+  <h3>Aurora's Wish — Not An Option</h3>
+  <p>Aurora's ring is <strong>empty.</strong> If she pretends otherwise, Dumal calls the bluff instantly (see Act 3 table). She has no Wish access this session.</p>
+
+  <h4>What she DOES have</h4>
+  <ul class="tight">
+    <li>Moonbow of Celestial Warding (primary weapon now)</li>
+    <li>Her warlock spell suite (when the d4-day spell-block expires)</li>
+    <li>The Moonkite as battlefield-control (mount with celestial presence)</li>
+    <li>Her wits — and the fact that Dumal <em>respects</em> her for the Palace</li>
+  </ul>
+
+  <div class="callout good"><strong>Optional Last-Ditch Save</strong>If Aurora wants a "Wish-tier" play this session: the <strong>Moonkite can channel a one-time divine intervention</strong> from its lost patron, but only with a hard sacrifice (a memory, a year of life, the Moonkite's ability to fly for a week — DM-negotiated). Effect: stun Dumal 1 round, force him to break contact, or interrupt Bhaal-Marked Strike. <strong>Cost is paid permanently.</strong> Don't offer unless the table feels stuck.</div>
+</section>
+
+<!-- =================== ACT 5 =================== -->
+<section id="act-5" class="act act-5">
+  <h2>Act 5 — The Cliffhanger</h2>
+  <div class="act-meta">15 minutes · Dumal departs alive · Loot drop · Final beat</div>
+
+  <div class="beat-header"><span class="beat-num">Beat 5.1</span><h3>Dumal Departs</h3></div>
+  <p>Whatever the outcome — accept, refuse-with-time, refuse-and-fight — <strong>Dumal leaves alive this session.</strong></p>
+
+  <blockquote class="read">Dumal raises a hand in farewell. It is the same hand he used to wave with as a child, before he knew what he was. He does not look back as he walks into the smog.
+
+Just before he is gone, he calls over his shoulder, almost cheerful:
+
+<em>"I will see you within the moon, Den. With <em>love,</em> brother. Try not to die before then. It would be… disappointing."</em>
+
+<em>And he is gone.</em></blockquote>
+
+  <div class="beat-header"><span class="beat-num">Beat 5.2</span><h3>What He Left Behind</h3></div>
+  <div class="scene-row">
+    <div class="scene-img" onclick="openLightbox('Images/session-5/scene-08-map-a.webp')">
+      <img src="Images/session-5/scene-08-map-a.webp" alt="Dumal's map">
+      <div class="cap">Scene 8 — The hand-drawn map.</div>
+    </div>
+    <div class="scene-img" onclick="openLightbox('Images/session-5/scene-09-bone-dagger-a.webp')">
+      <img src="Images/session-5/scene-09-bone-dagger-a.webp" alt="Bone-handled shortsword">
+      <div class="cap">Scene 9 — The bone-handled shortsword.</div>
+    </div>
+  </div>
+
+  <p>After Dumal departs, the party finds — <strong>pinned to the Lady Vengeance's mast (or a deck timber, if no mast)</strong> by the bone-handled shortsword from his hip — a folded parchment. A small, hand-drawn map. He left it on their ship while they argued with him. None of them saw it happen.</p>
+
+  <p>The map shows:</p>
+  <ul class="tight">
+    <li>A circle in the south labeled <strong>"Olanthius — Shattered Cathedral. Alone. Easy."</strong></li>
+    <li>A circle in the east labeled <strong>"Bel — Forge. Hard. Watch your tongue."</strong></li>
+    <li>A circle in the far north labeled <strong>"Bleeding Citadel — manifests in 17 days. Be there or wait another month."</strong></li>
+    <li>A small mark in the west labeled simply <strong>"Her."</strong> No further detail.</li>
+  </ul>
+
+  <div class="callout"><strong>Dumal has given them the map.</strong>Free intel. <em>He wants them to choose.</em></div>
+
+  <h4>The Bone-Handled Shortsword</h4>
+  <p>Left as a gift, or a challenge. Now the party's. DM call: cursed, attuned to Bhaal, or just a knife? <strong>Suggestion:</strong> Bhaal-marked dagger, +1, +1d6 necrotic.</p>
+
+  <table>
+    <tr><th>State</th><th>Bhaal Tick</th><th>Effect</th></tr>
+    <tr><td>Carrying unattuned (in pack, not on belt)</td><td><strong>0</strong></td><td>Inert.</td></tr>
+    <tr><td>Carrying on person (belt, sheath)</td><td><strong>+1/session</strong></td><td>Whisper-dreams flavor only.</td></tr>
+    <tr><td>Attuned (uses 1 of 3 slots)</td><td><strong>+5 immediate, +1/session</strong></td><td>+1 / 1d6 necrotic. Drenwal hears Dumal's voice during long rests.</td></tr>
+    <tr><td>Destroyed (forge, holy ground, Eldath shrine ideal)</td><td><strong>−10 Bhaal</strong></td><td>Permanent plot beat.</td></tr>
+    <tr><td>Cleansed via Remove Curse (3rd lvl)</td><td><strong>−3 Bhaal</strong></td><td>Becomes mundane +1 dagger. Drenwal must cast or witness. <a href="https://open5e.com/spells/srd-2024_remove-curse" target="_blank">SRD link</a></td></tr>
+  </table>
+
+  <div class="beat-header"><span class="beat-num">Beat 5.3</span><h3>Tracker Update — Announce Visibly</h3></div>
+  <p>Update both meters based on Drenwal's choices. Sample math if he refused with time, didn't accept any contract, and refused the dagger:</p>
+
+  <ul class="tight">
+    <li><strong>Bhaal's Claim:</strong> 50 → +5 Dumal contact, +3 witness, +3 5-day hunger, −3 refusal narration, −3 asking imp's name, −2 Lulu = <strong>53</strong></li>
+    <li><strong>Gargauth's Bargain:</strong> 35 → +3 Shield humming, +5 direct question, −3 refused whisper = <strong>40</strong> (or whatever the math gives you)</li>
+  </ul>
+
+  <div class="callout good"><strong>Announce the numbers.</strong>Let the player see them. <em>The visibility IS the system.</em></div>
+
+  <div class="beat-header"><span class="beat-num">Beat 5.4</span><h3>The Final Beat</h3></div>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-14-star-a.webp')">
+    <img src="Images/session-5/scene-14-star-a.webp" alt="A single star">
+    <div class="cap">Scene 14 — The Star. End of session.</div>
+  </div>
+
+  <blockquote class="read">The smog is thinning. Somewhere overhead, behind the gore-clouds, a <em>star</em> is visible. One. The first time in weeks.
+
+The Moonkite is looking at it. Aurora is looking at it. The Moonkite makes a low sound — not a call. A <em>welcome.</em>
+
+Drenwal looks at the map in his hand and the bone dagger driven into the deck at his feet and the place inside himself where his Hunger lives.
+
+Asimov breaks the silence: <em>"...so. Who's Senna?"</em>
+
+<em>END SESSION.</em></blockquote>
+</section>
+
+<!-- =================== DUMAL STATBLOCK =================== -->
+<section id="sb-dumal">
+  <h2>Dumal — Statblock</h2>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-06-dumal-portrait-a.webp')">
+    <img src="Images/session-5/scene-06-dumal-portrait-a.webp" alt="Dumal portrait">
+    <div class="cap">Scene 6 — Dumal of Elturel, the Flame Ascendant.</div>
+  </div>
+
+  <div class="statblock">
+    <h3>Dumal of Elturel, the Flame Ascendant</h3>
+    <div class="subtitle">Medium humanoid (Bhaalspawn), neutral evil</div>
+    <hr>
+    <p><strong>Armor Class</strong> 19 (Bhaal-corrupted plate, +1)</p>
+    <p><strong>Hit Points</strong> 220 (24d8 + 96)</p>
+    <p><strong>Speed</strong> 30 ft</p>
+    <hr>
+    <div class="ability">
+      <div><span>STR</span>20 (+5)</div>
+      <div><span>DEX</span>16 (+3)</div>
+      <div><span>CON</span>18 (+4)</div>
+      <div><span>INT</span>14 (+2)</div>
+      <div><span>WIS</span>16 (+3)</div>
+      <div><span>CHA</span>18 (+4)</div>
+    </div>
+    <hr>
+    <p><strong>Saving Throws</strong> STR +9, CON +8, WIS +7, CHA +8</p>
+    <p><strong>Skills</strong> Athletics +9, Insight +7, Intimidation +8, Perception +7, Religion +6</p>
+    <p><strong>Damage Resistances</strong> necrotic, fire; bludgeoning, piercing, slashing from nonmagical weapons</p>
+    <p><strong>Damage Immunities</strong> poison</p>
+    <p><strong>Condition Immunities</strong> charmed, exhaustion, frightened, poisoned</p>
+    <p><strong>Senses</strong> truesight 60 ft, passive Perception 17</p>
+    <p><strong>Languages</strong> Common, Infernal, Abyssal</p>
+    <p><strong>Challenge</strong> 13 (10,000 XP) · <span class="lr-track">Legendary Resistance 2/day</span></p>
+    <hr>
+    <p class="trait"><strong>Bhaal's Anchor.</strong> Wish, Plane Shift, Banishment, and other reality-altering spells targeting Dumal fail unless they roll above a DC 20 caster-ability check. Bhaal holds his soul.</p>
+    <p class="trait"><strong>Bhaal Sight.</strong> Auto-detects any creature with the "Bhaalspawn" descriptor within 1 mile. Knows their current emotional state.</p>
+    <p class="trait"><strong>Hunger Pact.</strong> Does not need to eat, sleep, or breathe. When he kills a humanoid, he heals 20 HP.</p>
+    <p class="trait"><strong>Magic Resistance.</strong> Advantage on saves against spells and magical effects.</p>
+    <p class="trait"><strong>Legendary Resistance (2/day).</strong> If Dumal fails a save, he can choose to succeed instead.</p>
+    <hr>
+    <p><strong>Actions</strong></p>
+    <p class="action"><strong>Multiattack.</strong> Three attacks: two with Lance of Bhaal and one with Ritual Dagger (or a Bhaal-Marked Strike instead of his second Lance attack once per turn).</p>
+    <p class="action"><strong>Lance of Bhaal.</strong> Melee Weapon Attack: +10 to hit, reach 10 ft, one target. Hit: 11 (1d12 + 5) piercing + 9 (2d8) necrotic. If target drops to 0 HP, Dumal regains 20 HP.</p>
+    <p class="action"><strong>Ritual Dagger.</strong> Melee Weapon Attack: +9 to hit, reach 5 ft, one target. Hit: 7 (1d6 + 4) piercing + 4 (1d8) necrotic. On crit against a Humanoid, carves a Bhaal symbol into them (permanent unless removed by Remove Curse).</p>
+    <p class="action"><strong>Bhaal-Marked Strike (Recharge 5–6).</strong> Replaces one Lance attack. As Lance of Bhaal, but on hit, target must succeed on DC 16 CON save or take additional 27 (6d8) necrotic + gain <strong>Bhaal Mark</strong>: disadvantage on all saves against Bhaal-aligned effects for 24 hours. <em>Drenwal automatically fails this save (Bhaal blood resonance) — play this for the horror, not the damage.</em></p>
+    <p class="action"><strong>Bhaal Smoke (1/day).</strong> Exhales 20-ft cube of opaque, sentient red smoke. Creatures inside are heavily obscured to those outside. Dumal can move through it without obstruction. Lasts 2 rounds.</p>
+    <hr>
+    <p><strong>Bonus Actions</strong></p>
+    <p class="action"><strong>Bhaal's Whisper.</strong> Speaks a single sentence to a target within 60 ft. DC 16 WIS save or be <strong>frightened</strong> of Dumal for 1 round. <em>Drenwal auto-fails unless he spent the prior round actively praying to a non-Bhaal deity.</em></p>
+    <hr>
+    <p><strong>Legendary Actions (3/turn)</strong></p>
+    <p class="action"><strong>Step (1 action).</strong> Move up to half speed.</p>
+    <p class="action"><strong>Bhaal's Hand (2 actions).</strong> A spectral red hand emerges from the ground within 30 ft and attacks: +9 to hit, 9 (2d8) necrotic, target is grappled (escape DC 17).</p>
+    <p class="action"><strong>Sibling Strike (3 actions, only against Drenwal).</strong> One Lance attack with advantage. On hit, Drenwal saves DC 16 WIS or <em>hears Dumal's voice in his head</em> for 1 hour after combat — Dumal narrates Drenwal's actions in real-time, mockingly. Roleplay-only effect, no mechanical penalty. <strong>Bhaal +5 if it lands.</strong></p>
+  </div>
+</section>
+
+<!-- =================== SUPPORTING CAST =================== -->
+<section id="sb-bonedevil">
+  <h2>Supporting Cast (Combat)</h2>
+
+  <h3>Bone Devil (SRD 2024)</h3>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-13-bone-devil-a.webp')">
+    <img src="Images/session-5/scene-13-bone-devil-a.webp" alt="Bone Devil token">
+    <div class="cap">Scene 13 — Bone Devil bodyguard. <a href="https://open5e.com/monsters/bone-devil" target="_blank">open5e</a></div>
+  </div>
+
+  <div class="statblock">
+    <h3>Bone Devil</h3>
+    <div class="subtitle">Large fiend (devil), lawful evil · CR 9</div>
+    <hr>
+    <p><strong>AC</strong> 19 · <strong>HP</strong> 142 · <strong>Speed</strong> 40 ft, fly 40 ft</p>
+    <div class="ability">
+      <div><span>STR</span>18 (+4)</div>
+      <div><span>DEX</span>16 (+3)</div>
+      <div><span>CON</span>18 (+4)</div>
+      <div><span>INT</span>13 (+1)</div>
+      <div><span>WIS</span>14 (+2)</div>
+      <div><span>CHA</span>16 (+3)</div>
+    </div>
+    <p><strong>Saves</strong> INT +5, WIS +6, CHA +7 · <strong>Senses</strong> darkvision 120 ft · <strong>Languages</strong> Infernal, telepathy 120 ft</p>
+    <p><strong>Damage resistances</strong> cold; B/P/S from non-silvered nonmagical · <strong>Immunities</strong> fire, poison · <strong>Condition imm.</strong> poisoned</p>
+    <hr>
+    <p class="trait"><strong>Devil's Sight + Magic Resistance.</strong></p>
+    <p class="action"><strong>Multiattack.</strong> 2 claws + 1 sting.</p>
+    <p class="action"><strong>Claw.</strong> +8 to hit, reach 10 ft, 8 (1d8+4) slashing.</p>
+    <p class="action"><strong>Sting.</strong> +8 to hit, reach 10 ft, 13 (2d8+4) piercing + 17 (5d6) poison; DC 14 CON or poisoned 1 min (save at end of each turn).</p>
+    <hr>
+    <p><em><strong>Tactic:</strong> Flies above the dialogue scene during Act 3 (silent overhead). Bodyguards Dumal in combat. Targets the highest-damage party member. <strong>Use the vertical axis.</strong></em></p>
+  </div>
+</section>
+
+<section id="sb-cultist">
+  <h3>Bhaal Cultists ×3 (Cult Fanatic — SRD 2024)</h3>
+  <div class="scene-img" onclick="openLightbox('Images/session-5/scene-12-cultist-a.webp')">
+    <img src="Images/session-5/scene-12-cultist-a.webp" alt="Bhaal Cultist token">
+    <div class="cap">Scene 12 — Bhaal Cultist token. <a href="https://open5e.com/monsters/cult-fanatic" target="_blank">open5e</a></div>
+  </div>
+
+  <div class="statblock">
+    <h3>Cult Fanatic ×3 (Bhaal-sworn)</h3>
+    <div class="subtitle">Medium humanoid, any non-good alignment · CR 2 each</div>
+    <hr>
+    <p><strong>AC</strong> 13 · <strong>HP</strong> 22 (corrected from prior 33 — RAW is 22) · <strong>Speed</strong> 30 ft</p>
+    <div class="ability">
+      <div><span>STR</span>11 (+0)</div>
+      <div><span>DEX</span>14 (+2)</div>
+      <div><span>CON</span>12 (+1)</div>
+      <div><span>INT</span>10 (+0)</div>
+      <div><span>WIS</span>13 (+1)</div>
+      <div><span>CHA</span>14 (+2)</div>
+    </div>
+    <hr>
+    <p class="trait"><strong>Dark Devotion.</strong> Advantage vs charm/fright.</p>
+    <p class="trait"><strong>Spellcasting (4th-level cleric, DC 11, +3 to hit).</strong></p>
+    <p>Cantrips: Light, Sacred Flame, Thaumaturgy<br>
+    1st (4 slots): Command, <strong>Inflict Wounds</strong> (2d10 necrotic touch), Shield of Faith<br>
+    2nd (3 slots): <strong>Hold Person</strong> (DC 11 WIS, paralyzed), <strong>Spiritual Weapon</strong> (1d8+2 force, BA)</p>
+    <hr>
+    <p class="action"><strong>Multiattack.</strong> 2 dagger attacks.</p>
+    <p class="action"><strong>Dagger.</strong> +4 to hit, reach 5 ft or 20/60 ft, 4 (1d4+2) piercing.</p>
+    <hr>
+    <p><em><strong>Tactic:</strong> Two stay back: Spiritual Weapon + Hold Person. One charges Drenwal with ritual dagger. <strong>Dumal will kill these himself in Round 3</strong> for theatrical effect if combat is going his way.</em></p>
+  </div>
+</section>
+
+<section id="sb-vix">
+  <h3>Vix the Imp (SRD 2024)</h3>
+  <div class="statblock">
+    <h3>Vix — Dumal's Herald</h3>
+    <div class="subtitle">Tiny fiend (devil, shapechanger), lawful evil · CR 1 · <a href="https://open5e.com/monsters/imp" target="_blank">open5e</a></div>
+    <hr>
+    <p><strong>AC</strong> 13 · <strong>HP</strong> 10 · <strong>Speed</strong> 20 ft, fly 40 ft</p>
+    <hr>
+    <p class="action"><strong>Sting.</strong> +5 to hit, 1d4+3 piercing + DC 11 CON or 3d6 poison.</p>
+    <p class="trait"><strong>Invisibility (at will)</strong> until it attacks.</p>
+    <p class="trait"><strong>Shapechanger:</strong> rat / raven / spider forms.</p>
+    <hr>
+    <p><em>Polite. Won't attack unless cornered. Has biscuits in his pouch (irrelevant flavor). <strong>If killed: triggers Dumal's furious-arrival path. Don't kill the imp.</strong></em></p>
+  </div>
+</section>
+
+<!-- =================== LORE =================== -->
+<section id="lore-cult">
+  <h2>Lore (DM Use — Dumal Can Reveal If Pressed)</h2>
+
+  <details class="lore" open id="lore-cult-d"><summary>The Hellrider Cult of Bhaal</summary>
+    <ul class="tight">
+      <li>Founded ~120 years ago, post-Descent of Elturel preparation</li>
+      <li>13 members at peak, dormant within the order</li>
+      <li>Recognized each other by <strong>scarred forearms with a single small cut on the right pinky tendon</strong></li>
+      <li>Father (Drenwal's father) was killed by them</li>
+      <li>Destroyed during the Descent — Zariel's forces did not distinguish</li>
+      <li>Dumal believes himself the <strong>last</strong> of this lineage outside Bhaal's direct service</li>
+    </ul>
+  </details>
+</section>
+
+<section id="lore-mother">
+  <details class="lore"><summary>Mother — Vyssa Ardent</summary>
+    <ul class="tight">
+      <li>Bhaalspawn, knew it from age 9</li>
+      <li>Married a Hellrider to <strong>die in service to the Light</strong> — suicide-by-religious-life</li>
+      <li>Had two children anyway (it surprised her — Bhaal "permitted" it for his own reasons)</li>
+      <li>Slow-poisoned herself with elven nightroot for 4 years, starting when Drenwal was 6</li>
+      <li>Died when Drenwal was 10. Drenwal believes wasting sickness.</li>
+      <li>Buried in Elturel — her grave, now in Hell, may be findable</li>
+    </ul>
+  </details>
+</section>
+
+<section id="lore-father">
+  <details class="lore"><summary>Father — Ser Halvard of Elturel</summary>
+    <ul class="tight">
+      <li>Senior Hellrider, decorated, devoted to the Morninglord</li>
+      <li><strong>Did NOT know about Mother's nature</strong></li>
+      <li>Killed in his sleep the night before the Descent by the cult, with the ritual shortsword Dumal now carries</li>
+      <li>Dumal claims the killer was a man Halvard had broken bread with for thirty years</li>
+      <li>Drenwal was 18 when this happened. Believed his father died in the Descent.</li>
+    </ul>
+  </details>
+</section>
+
+<section id="lore-senna">
+  <details class="lore"><summary>Senna — the Sister</summary>
+    <ul class="tight">
+      <li>Born to Mother in secret, smuggled out of Elturel by <strong>a Harper named Issa</strong> before Mother's death</li>
+      <li>Currently 6 years old</li>
+      <li>Living in a small farmhouse on <strong>the southern Sword Coast</strong>, raised by Issa as her own daughter</li>
+      <li>Issa does NOT know what Senna is — paid to raise "a noble child in hiding"</li>
+      <li>Dumal has known Senna's location for <strong>two years</strong> and has not approached her — he is waiting for Drenwal</li>
+      <li><strong>If Drenwal asks: how do you know about her?</strong> <em>"Bhaal told me. He likes to talk about family."</em></li>
+      <li>Senna has not shown any signs yet. She is six. It typically begins at <strong>nine.</strong></li>
+    </ul>
+  </details>
+</section>
+
+<section id="lore-eldath">
+  <details class="lore"><summary>Eldath — The Quiet One, Mother of the Waters</summary>
+    <ul class="tight">
+      <li><strong>Demipower</strong> of the Faerûnian pantheon — neutral good (some sources lawful good). Faded since the Time of Troubles; once a greater power.</li>
+      <li><strong>Domains:</strong> peace, quiet places, springs, pools, waterfalls, druid groves, refuge for the hunted. Spell domains: Peace, Life, Nature.</li>
+      <li><strong>Symbol:</strong> a waterfall pouring into a still pool.</li>
+      <li><strong>Doctrine:</strong> non-violence absolute. Her clerics ("the Eldathyn," traditionally women) take a vow against bloodshed. <em>No spell cast in her name may directly harm.</em></li>
+      <li><strong>Worship:</strong> silence, libations to a spring, planting of trees, sheltering of fugitives. No sacrifice, no song, no fire.</li>
+      <li><strong>Temples:</strong> almost none remain. Mostly tiny roadside shrines at natural springs in groves. Most priestesses are solitary or in pairs.</li>
+      <li><strong>Our campaign:</strong> last shrine sits beside a blessed spring outside <strong>Tarsweald</strong> in the Western Heartlands. Two priestesses keep it: <strong>Old Mara</strong> (70s) and her niece <strong>Tessa</strong> (20s).</li>
+      <li><strong>Mordenkainen has visited them four times in the past year</strong> (per Dumal's intel).</li>
+      <li><strong>Why she works as the third option:</strong> Bhaal has nothing to brag about to a goddess of peace. Her faith has shrunk so far she barely registers in the divine politic. A Bhaalspawn reborn under <em>her</em> gaze is the maximum theological statement — and the maximum insult to Bhaal.</li>
+      <li><strong>If Mordenkainen is brokering Drenwal's rebirth: Eldath is the candidate.</strong></li>
+    </ul>
+  </details>
+</section>
+
+<!-- =================== SKILL DCs =================== -->
+<section id="skills">
+  <h2>Skill Check Quick Reference</h2>
+  <table>
+    <tr><th>Check</th><th>DC</th><th>Notes</th></tr>
+    <tr><td>Identify the mortal man's noble sigil</td><td>INT (History) 14</td><td>House Ardentwine of Elturel</td></tr>
+    <tr><td>Read Bhaal carving meaning</td><td>WIS (Religion) 13</td><td>Bhaal symbol + Dumal's signature</td></tr>
+    <tr><td>Insight on Dumal during dialogue</td><td>WIS (Insight) 18</td><td>He is honest — all revelations TRUE — but shading WHY</td></tr>
+    <tr><td>Recognize Dumal's handwriting</td><td>passive (Drenwal only)</td><td>auto-success</td></tr>
+    <tr><td>Track Senna's location via the map</td><td>WIS (Survival) 22</td><td>impossible without more info</td></tr>
+    <tr><td>Identify the bone-handled shortsword</td><td>INT (Arcana) 16</td><td>Bhaal-marked, +1, +1d6 necrotic, ticks Bhaal on attune</td></tr>
+    <tr><td>Detect Wish backlash on Aurora</td><td>WIS (Medicine) 14</td><td>tells you about STR debuff, not spell-block</td></tr>
+    <tr><td>Hunger save (Drenwal)</td><td>WIS save 15</td><td>held at +3 instead of +5</td></tr>
+    <tr><td>Resist Dumal's Bhaal Whisper</td><td>WIS save 16</td><td>Drenwal auto-fails unless praying overtly</td></tr>
+  </table>
+</section>
+
+<!-- =================== XP =================== -->
+<section id="xp">
+  <h2>XP &amp; Rewards</h2>
+  <table>
+    <tr><th>Source</th><th>XP</th></tr>
+    <tr><td>Dumal departed without combat (peace path)</td><td>5,000 (story)</td></tr>
+    <tr><td>Dumal departed at low HP (combat, no kill)</td><td>7,500</td></tr>
+    <tr><td>Dumal "killed" (Bhaal extraction)</td><td>10,000</td></tr>
+    <tr><td>Bone Devil killed</td><td>5,000</td></tr>
+    <tr><td>Cult Fanatics killed (3)</td><td>450 each = 1,350</td></tr>
+    <tr><td><strong>Major lore beat:</strong> family revelations accepted</td><td>2,000 (milestone)</td></tr>
+    <tr><td><strong>Drenwal makes overt act of faith to non-Bhaal/Gargauth god</strong></td><td>1,500</td></tr>
+  </table>
+
+  <h4>Treasure</h4>
+  <ul class="tight">
+    <li><strong>Dumal's map</strong> — free intel (Olanthius, Bel, Citadel timing, Senna existence)</li>
+    <li><strong>Bone-handled shortsword</strong> (Bhaal-marked dagger, +1, +1d6 necrotic; cursed in the sense that attunement = +5 Bhaal immediately)</li>
+  </ul>
+</section>
+
+<!-- =================== SOUNDTRACK =================== -->
+<section id="soundtrack">
+  <h2>Soundtrack Cues</h2>
+  <table>
+    <tr><th>Moment</th><th>Track</th></tr>
+    <tr><td>Cold open (Palace aftermath)</td><td>Tabletop Audio — "Sundered Hall" / Adrian von Ziegler — "Mourning"</td></tr>
+    <tr><td>Aurora's mount moment</td><td>Peter Gundry — "Celestial Flight" / Two Steps From Hell — "Star Sky" (low)</td></tr>
+    <tr><td>Lulu's lucid moment</td><td>Peter Gundry — "Whispers of the Past"</td></tr>
+    <tr><td>Vix the herald</td><td>Michael Ghelfi — "Devilish Negotiations" (light, theatrical)</td></tr>
+    <tr><td>Dumal's approach</td><td>Two Steps From Hell — "Protectors of the Earth" / Audiomachine — "The Witness"</td></tr>
+    <tr><td>Dumal's dialogue (long scene)</td><td>Adrian von Ziegler — "Fall of the Druid" (slow, melancholy, no percussion) → low loop</td></tr>
+    <tr><td>Family reveals</td><td><strong>Drop music entirely</strong> for 30 seconds when Mother is revealed. Silence is the score.</td></tr>
+    <tr><td>Sister reveal</td><td>Peter Gundry — "Music for a Dying Star"</td></tr>
+    <tr><td>Combat (if triggered)</td><td>Two Steps From Hell — "Heart of Courage" / "Blackheart"</td></tr>
+    <tr><td>Dumal departs</td><td>Hidden Citizens — "Fall in Line" (instrumental) / Audiomachine — "Reverie"</td></tr>
+    <tr><td>Final beat (the star, the map)</td><td>Adrian von Ziegler — "Spirit of the Forest"</td></tr>
+  </table>
+</section>
+
+<!-- =================== CHECKLIST =================== -->
+<section id="checklist">
+  <h2>DM Prep Checklist</h2>
+  <ul class="tight">
+    <li>☐ Print <strong>Dumal's map</strong> — small piece of parchment, hand-drawn in pencil</li>
+    <li>☐ Prepare <strong>three tracker visuals</strong> (Bhaal / Gargauth / Eldath) — player must see them</li>
+    <li>☐ Decide if the bone dagger is a real item kept (cursed mechanic) or a one-session prop</li>
+    <li>☐ Pre-roll Aurora's d4 for spell-loss duration</li>
+    <li>☐ Pre-decide your Eldath shrine location (Tarsweald default — match to your campaign map)</li>
+    <li>☐ <strong>Practice Dumal's voice</strong> — charming, articulate, unmistakably the brother. Not a cackling villain. Think charismatic cult-leader who actually loves his brother.</li>
+    <li>☐ Pre-roll Hunger save for Drenwal — drop the result mid-scene without breaking flow</li>
+    <li>☐ Soft music loop ready for the dialogue scene (Act 3 is 75 minutes of talking — music must not fight you)</li>
+  </ul>
+</section>
+
+<!-- =================== CONSEQUENCES =================== -->
+<section id="consequences">
+  <h2>Consequences / Seeds for Session 6+</h2>
+  <table>
+    <tr><th>Choice This Session</th><th>Seed for Next</th></tr>
+    <tr><td>Drenwal accepted Dumal's offer</td><td>Solo arc for one session, then Drenwal returns <em>changed</em> — or doesn't return</td></tr>
+    <tr><td>Drenwal refused with time</td><td>Olanthius next session, with a Bhaal-aligned encounter en route (Dumal sending mid-tier minions)</td></tr>
+    <tr><td>Drenwal attacked Dumal</td><td>Open war with Bhaal. Increased random encounters. Dumal returns with reinforcements at the Bleeding Citadel.</td></tr>
+    <tr><td>Senna mentioned by Dumal</td><td>Aurora or Asimov may want to find her before Dumal does — side quest opens</td></tr>
+    <tr><td>Mordenkainen accusation processed</td><td>Drenwal may seek to confront Mordenkainen — opens a "second tower" detour</td></tr>
+    <tr><td>Tarsweald named</td><td>Eldath pilgrimage option — route to the "third deity" cure</td></tr>
+    <tr><td>Bone dagger taken</td><td>Slow corruption arc OR purification quest (destroy at a Eldath shrine?)</td></tr>
+  </table>
+
+  <div class="callout danger"><strong>Smiler Banishment Debt — Owed</strong>Aurora has no Wish. Banishment options (SRD 2024 verified):
+    <ul class="tight">
+      <li><strong>(a) Banishment scroll</strong> (4th lvl, CHA DC by caster, 1 min concentration — fiend transported to home plane). <a href="https://open5e.com/spells/srd-2024_banishment" target="_blank">open5e</a></li>
+      <li><strong>(b) Plane Shift scroll</strong> (7th lvl, touch, 250+ gp forked rod attuned to Smiler's home plane; unwilling fiend gets CHA save). <a href="https://open5e.com/spells/srd-2024_plane-shift" target="_blank">open5e</a></li>
+      <li><strong>(c) Hire an NPC archmage</strong> (Mahadi's Wandering Emporium has brokers — 500–2000 gp)</li>
+      <li><strong>(d) Planar gate ritual</strong> (3-day prep, requires Bhaal-incompatible holy site — Eldath's shrine at Tarsweald works)</li>
+    </ul>
+    <strong>Cleanest path: a Banishment scroll Drenwal can cast (he's a Cleric, on his list).</strong>
+  </div>
+</section>
+
+<!-- =================== FULL ARC =================== -->
+<section id="arc">
+  <h2>Dumal — The Full Arc (Sessions 5–9+)</h2>
+  <p style="color:var(--muted);font-size:13px">A four-encounter escalation. Dumal is the <em>slow-burn</em> antagonist of the rest of the campaign — every meeting raises the stakes, reveals more, and tightens the noose on Drenwal's cure window.</p>
+
+  <details class="combat" open><summary>Act I — "The Visit" (Session 5, this primer)</summary>
+    <p><strong>Where:</strong> Just outside the Palace of Gore, in the thinning gore-smog.<br>
+    <strong>What:</strong> Family lore dump. The Offer. The Map. The Letter. The Dagger.<br>
+    <strong>Stakes:</strong> Personal. Lore reveal #1 — Mother, Father, Senna, Mordenkainen.<br>
+    <strong>Dumal's posture:</strong> Charming, brotherly, sad. He misses Drenwal.<br>
+    <strong>Outcome lock:</strong> Dumal departs alive. Drenwal has not yet decided.</p>
+  </details>
+
+  <details class="combat"><summary>Act II — "The Tax" (Session 6 or 7 — between Olanthius and Bel)</summary>
+    <p><strong>Where:</strong> A devil-controlled toll bridge, caravan halt, or roadside chapel rest.<br>
+    <strong>What:</strong> Dumal sends <strong>a delegation</strong> — not Dumal. Three Bhaal cultists (one a zealot with Hold Person + self-mutilation tricks) and a single <strong>Ascendant Bhaalspawn aspirant</strong> (CR 6, weaker Dumal-clone). Collecting <strong>the tax of witness</strong> — Bhaal demands Drenwal <em>watch</em> them ritual-murder one captive.</p>
+    <table>
+      <tr><th>Choice</th><th>Result</th></tr>
+      <tr><td>Allow it</td><td><strong>Bhaal +12.</strong> Permanent dream-link with Dumal.</td></tr>
+      <tr><td>Refuse and fight</td><td>Combat. Brutal. Aspirant has <strong>Hunger Field</strong> (20ft, DC 14 WIS or compelled to attack wounded ally).</td></tr>
+      <tr><td>Refuse without fighting</td><td><strong>Bhaal −5.</strong> Cultists withdraw mocking. They return.</td></tr>
+    </table>
+    <p><strong>Lore reveal #2:</strong> The aspirant carries a <strong>letter from Senna</strong>. Hand-drawn in crayon. <em>"Dear Brother Drenwal — Uncle Dumal says you are a hero. He says you are coming to see me soon. I am six. I have a cat named Cricket. Please come. — Senna."</em></p>
+    <p><strong>Twist:</strong> The aspirant is a former Hellrider friend of Drenwal's. Drenwal recognizes him in combat. <em>"...Geir? Geir, you cannot — gods, what did they do to you?"</em> His mouth is sewn shut.</p>
+  </details>
+
+  <details class="combat"><summary>Act III — "The Sister at the Door" (Session 8, near the Bleeding Citadel)</summary>
+    <p><strong>Where:</strong> Roadside, or inside Bleeding Citadel approach.<br>
+    <strong>What:</strong> Dumal arrives in person. <strong>He has Senna with him.</strong> A six-year-old girl, holding his hand, scared but not crying. Told her brothers are coming to live with her.</p>
+    <blockquote class="dialogue">"Den. I lied last time. I said I would not bring her. I lied because you were not ready. <em>Look at her, Den. Look at her face.</em> This is what we are protecting. This is who you are going to walk past, if you stay with these people."
+
+<em>Senna waves shyly. She does not understand any of this. She thinks Drenwal is a knight in a story.</em></blockquote>
+    <table>
+      <tr><th>Choice</th><th>Result</th></tr>
+      <tr><td>Take Senna from Dumal</td><td>Combat OR high-stakes social roll (DC 22 CHA vs Dumal's resistance). If successful, Senna is yours — Bhaal turns full attention on the party. Permanent random Bhaal encounter chance ×3.</td></tr>
+      <tr><td>Walk away from Senna</td><td><strong>Bhaal +30.</strong> Drenwal dreams of her face every night. −1 to all WIS saves until resolved.</td></tr>
+      <tr><td>Strike a temporary deal</td><td>Senna stays with Issa. Dumal agrees to 1-year truce <em>if</em> Drenwal accomplishes one task: kill Olanthius, destroy Eldath's shrine, or sign a small contract.</td></tr>
+    </table>
+    <p><strong>Lore reveal #3:</strong> Senna is <strong>already showing signs.</strong> She bites her thumb until it bleeds when thinking. <em>"It is small. It is starting. Imagine her at nine. Imagine her at fifteen, alone with the Harpers who do not know what she is."</em></p>
+    <p><strong>Twist:</strong> Issa the Harper is <em>present.</em> Hidden nearby with a Harper contingent. She has figured out what Senna is. <strong>A three-way standoff.</strong></p>
+  </details>
+
+  <details class="combat"><summary>Act IV — "The Choice at the Crossing" (Session 9+, climactic)</summary>
+    <p><strong>Where:</strong> At the moment of Drenwal's cure ritual — most likely Tarsweald, at Eldath's roadside shrine.<br>
+    <strong>What:</strong> Dumal arrives at the <em>exact moment of the rebirth window.</em> Two ways:</p>
+    <ul class="tight">
+      <li><strong>He participates in the ritual</strong> — offers to be one of the four witnesses required for the deity's claim. Accept = Bhaal foothold inside the ritual. Refuse = he attacks.</li>
+      <li><strong>He attacks to stop the ritual</strong> — Bhaal commanded him. Brother vs brother on the holy ground of a forgotten goddess.</li>
+    </ul>
+    <p><strong>The fight:</strong> Dumal at FULL power. Lair actions if at Eldath's shrine. Bhaal legendary intervention — narrative god-roll 1×/round.</p>
+    <table>
+      <tr><th>Outcome</th><th>Result</th></tr>
+      <tr><td>Drenwal dies, Eldath catches him</td><td>Returns <em>human.</em> Bhaal claim broken. Dumal flees back to Bhaal marked as failure.</td></tr>
+      <tr><td>Drenwal dies, Bhaal catches him</td><td>Returns <em>Bhaalspawn ascendant</em> like Dumal. Becomes NPC. New PC needed.</td></tr>
+      <tr><td>Drenwal kills Dumal mid-ritual</td><td>Eldath refuses the broken soul. Drenwal becomes hybrid — neither god holds him. <em>Free</em> in the dangerous sense.</td></tr>
+      <tr><td>Drenwal SAVES Dumal mid-ritual</td><td>Eldath catches BOTH brothers. Two reborn humans. Bhaal furious. <strong>The redemption ending.</strong></td></tr>
+      <tr><td>The party fails</td><td>Bhaal claims Drenwal. Campaign pivot to "save Drenwal from his god."</td></tr>
+    </table>
+  </details>
+
+  <h4>Tracker Goals Across the Arc</h4>
+  <ul class="tight">
+    <li><strong>Session 5 end:</strong> Both meters ~50-55. Trackers visible. Player invested.</li>
+    <li><strong>Session 6-7 end:</strong> Spread. Play well → Bhaal 50-60, Gargauth + Eldath climb. Play poorly → Bhaal 70+.</li>
+    <li><strong>Session 8 end:</strong> Decision crystallized. Player should know which deity to catch Drenwal.</li>
+    <li><strong>Session 9+ ritual:</strong> The math IS the climax. Highest meter wins. Third deity = upset victory.</li>
+  </ul>
+</section>
+
+<!-- =================== RANDOM ENCOUNTERS =================== -->
+<section id="encounters">
+  <h2>Avernus Random Encounter Table — d20</h2>
+  <p style="color:var(--muted);font-size:13px">Roll every 4 hours of travel. Reroll duplicates within a session. <strong>★</strong> = deeply Avernus-flavored — use to remind players they are in <em>Hell.</em></p>
+
+  <details><summary>Show full table (20 entries)</summary>
+    <table>
+      <tr><th>d20</th><th>Encounter</th><th>Hook / Notes</th></tr>
+      <tr><td>1</td><td>★ Soul Wagon convoy</td><td>3 cages on wheels, lemure-pulled. Devil tax collector. One soul calls a PC by name (someone they failed to save). CR 5 teamster if combat.</td></tr>
+      <tr><td>2</td><td>★ Flesh-architect at work</td><td>Bone devil-class fiend reassembling fallen Avernus soldiers. Pays 3 soul coins for fresh body parts.</td></tr>
+      <tr><td>3</td><td>★ Lemure puddle</td><td>Road dissolves into 60ft pool. DEX DC 13 or sink. 12 lemures slowly forming. CR 2 each.</td></tr>
+      <tr><td>4</td><td>★ The Imp Tax Collector</td><td>Polite imp. Toll is one negative emotion in a jar. Pay → Bhaal −2, Gargauth +2 (contract). Refuse → IOU complicates future social roll.</td></tr>
+      <tr><td>5</td><td>★ Pact-broker on a stump</td><td>Mortal man in velvet, small writing desk. Offers each PC one wish for "anything you can spare." Faustian horror. Aurora will WANT this.</td></tr>
+      <tr><td>6</td><td>Erinyes patrol (1 + 2 chain devils)</td><td>Zariel patrol. Let pass if shown Zariel-aligned token. Otherwise CR 12+ combat.</td></tr>
+      <tr><td>7</td><td>★ Ghost of a Hellrider</td><td>Spectral knight asks: <em>"Has the city been freed yet?"</em> Drenwal recognizes him. Eldath +5 if Drenwal kneels and prays.</td></tr>
+      <tr><td>8</td><td>★ Two pit fiends dueling distant</td><td>Blood War-tier fight from 1 mile away. NO combat. Pure environmental storytelling.</td></tr>
+      <tr><td>9</td><td>★ Memory Rust</td><td>Red lichen patch. WIS DC 14 or forget one personal memory. Some Bhaalspawn dreams stored here. Dumal has been here.</td></tr>
+      <tr><td>10</td><td>Hellwasp swarm</td><td>3 swarms CR 1/2. Simple combat. Drains resources.</td></tr>
+      <tr><td>11</td><td>★ Bhaal-marked altar at ruin</td><td>Stone altar carved with Bhaal symbol. Recent blood. Touch → Bhaal +5 + vision of Dumal's last kill. Destroy → Bhaal −5, Eldath +3.</td></tr>
+      <tr><td>12</td><td>★ The Auction</td><td>Bone devil auctioning a captive <strong>lillend</strong> (CR 7, celestial). 5 soul coins starting bid. Save it → +5 Eldath devotional. <strong>Major Eldath seed.</strong></td></tr>
+      <tr><td>13</td><td>★ Mortzengersturm Detour</td><td>Official module deranged owlbear-collector. Could net exotic mount (flying owlbear).</td></tr>
+      <tr><td>14</td><td>★ Smiler's lieutenant arrives</td><td><em>"Boss wanted to remind you: his banishment is owed."</em> Yes-soon = no consequence. No/forgot = Smiler ambushes within 2 sessions.</td></tr>
+      <tr><td>15</td><td>★ The Sane Madman</td><td>Mortal in salt circle. Knows <strong>one true secret</strong> per session. Major lore-drop NPC. <strong>Use sparingly.</strong></td></tr>
+      <tr><td>16</td><td>★ Hag's offer</td><td>Night hag weaving. Dream-bargain — 1 memory / 1 year / 1 secret for a TRUE dream of someone loved. Aurora tempted. Drenwal sees Senna. Asimov sees Rasheem's real face.</td></tr>
+      <tr><td>17</td><td>Roving devil patrol</td><td>3 bearded devils, 1 barbed devil. Bhaal-marked weapon on the leader.</td></tr>
+      <tr><td>18</td><td>★ A Bleeding Tree</td><td>Massive twisted tree, bark = open wound. CON DC 12 or 2d6 necrotic + memory of Hellrider who died here. <strong>Drenwal may receive memory of his father.</strong> Once-per-campaign.</td></tr>
+      <tr><td>19</td><td>★ Lost celestial</td><td>Wounded <strong>deva</strong> (CR 10) hiding. Aid → feather gift (1-shot Sanctuary). Drenwal aids → <strong>+10 Eldath devotional.</strong> Confirms Bleeding Citadel manifestation in 17 days.</td></tr>
+      <tr><td>20</td><td>★ Mordenkainen's Messenger</td><td>Pseudodragon in tiny vest delivers note: <em>"Be at Tarsweald in 15 days. Bring nothing of Bhaal's making. — M."</em> Eldath cure pitch arrives. <strong>Save for a moment when party most needs a thread.</strong></td></tr>
+    </table>
+  </details>
+
+  <h4>Encounter Pacing Rule of Thumb</h4>
+  <ul class="tight">
+    <li><strong>First long-rest stretch (Sessions 5-6):</strong> Roll twice per day-of-travel. Throw at least one ★ encounter.</li>
+    <li><strong>Sessions 7-8:</strong> Roll once. Save ★ slots for Dumal-relevant beats.</li>
+    <li><strong>Climactic session (Act IV):</strong> No random encounters. Everything is intentional.</li>
+  </ul>
+</section>
+
+<!-- =================== PROTOCOL =================== -->
+<section id="protocol">
+  <h2>Mid-Session Request Protocol</h2>
+  <p style="color:var(--muted);font-size:13px">When the table is live and you need <em>fast</em> help, paste prompts in this format:</p>
+
+  <table>
+    <tr><th>You say</th><th>What you get</th></tr>
+    <tr><td><code>quick statblock: &lt;creature&gt; for level 11, CR ~&lt;n&gt;, theme &lt;bhaal/celestial/elemental&gt;</code></td><td>AC, HP, attacks, 1-2 traits, 1-2 actions in &lt;30s</td></tr>
+    <tr><td><code>dumal line: he's just been told &lt;X&gt;. give me 2 in-character responses, one cold one warm.</code></td><td>2-3 lines ready to read</td></tr>
+    <tr><td><code>bhaal lore: how would dumal know that &lt;X&gt;?</code></td><td>Plausible in-fiction reason in 2-3 sentences</td></tr>
+    <tr><td><code>what does &lt;location&gt; look like in avernus? party approaching, 1 paragraph read-aloud.</code></td><td>Sensory read-aloud, no mechanics</td></tr>
+    <tr><td><code>ruling: aurora wants to &lt;X&gt;. is it possible, what's the cost?</code></td><td>Yes/no/conditional + fair cost</td></tr>
+    <tr><td><code>tracker: drenwal just &lt;X&gt;. how much does it shift?</code></td><td>Exact numbers from v2 system</td></tr>
+  </table>
+
+  <div class="callout info"><strong>To brief mid-session</strong>Just type what happened. Don't worry about format — dump it raw.</div>
+</section>
+
+<!-- =================== OPEN5E =================== -->
+<section id="open5e">
+  <h2>Open5e Canonical References (SRD 2024)</h2>
+  <p style="color:var(--muted);font-size:13px">All non-homebrew statblocks and spell mechanics reference the SRD 2024 dataset. Live queries during the session via <code>mcp__open5e__get</code> / <code>search</code> / <code>rag_search</code>.</p>
+
+  <h3>Creatures Used This Session</h3>
+  <table>
+    <tr><th>Creature</th><th>AC</th><th>HP</th><th>CR</th><th>Speed</th><th>Open5e</th></tr>
+    <tr><td>Bone Devil (Dumal's bodyguard)</td><td>19</td><td>142</td><td>9</td><td>40, fly 40</td><td><a href="https://open5e.com/monsters/bone-devil" target="_blank">link</a></td></tr>
+    <tr><td>Cult Fanatic ×3</td><td>13</td><td><strong>22</strong></td><td>2</td><td>30</td><td><a href="https://open5e.com/monsters/cult-fanatic" target="_blank">link</a></td></tr>
+    <tr><td>Imp (Vix)</td><td>13</td><td>10</td><td>1</td><td>20, fly 40</td><td><a href="https://open5e.com/monsters/imp" target="_blank">link</a></td></tr>
+    <tr><td>Deva (encounter #19)</td><td>17</td><td>136</td><td>10</td><td>30, fly 90</td><td><a href="https://open5e.com/monsters/deva" target="_blank">link</a></td></tr>
+    <tr><td>Night Hag (encounter #16)</td><td>17</td><td>112</td><td>5</td><td>30</td><td><a href="https://open5e.com/monsters/night-hag" target="_blank">link</a></td></tr>
+    <tr><td>Erinyes (encounter #6)</td><td>18</td><td>153</td><td>12</td><td>30, fly 60</td><td><a href="https://open5e.com/monsters/erinyes" target="_blank">link</a></td></tr>
+    <tr><td>Chain Devil (encounter #6)</td><td>16</td><td>85</td><td>11</td><td>30</td><td><a href="https://open5e.com/monsters/chain-devil" target="_blank">link</a></td></tr>
+    <tr><td>Lemure (encounter #3)</td><td>7</td><td>13</td><td>0</td><td>15</td><td><a href="https://open5e.com/monsters/lemure" target="_blank">link</a></td></tr>
+    <tr><td>Pit Fiend (encounter #8 — distant)</td><td>19</td><td>300</td><td>20</td><td>30, fly 60</td><td><a href="https://open5e.com/monsters/pit-fiend" target="_blank">link</a></td></tr>
+  </table>
+
+  <h3>Spells with RAW Relevance</h3>
+  <table>
+    <tr><th>Spell</th><th>Lvl</th><th>Save</th><th>Key Note</th></tr>
+    <tr><td><a href="https://open5e.com/spells/wish" target="_blank">Wish</a></td><td>9</td><td>—</td><td>STR 3 for <strong>2d4 days</strong> (RAW), 1d10 necrotic per spell lvl until LR, 33% never again. See Aurora cost (homebrew above).</td></tr>
+    <tr><td><a href="https://open5e.com/spells/srd-2024_banishment" target="_blank">Banishment</a></td><td>4</td><td>CHA</td><td>Fiend home-planed if 1 min. Concentration. <strong>Primary mechanism to clear Smiler debt.</strong></td></tr>
+    <tr><td><a href="https://open5e.com/spells/srd-2024_plane-shift" target="_blank">Plane Shift</a></td><td>7</td><td>CHA (unwilling)</td><td>250+ gp forked rod. Touch. <strong>Alternative Smiler banishment.</strong></td></tr>
+    <tr><td><a href="https://open5e.com/spells/srd-2024_hold-person" target="_blank">Hold Person</a></td><td>2</td><td>WIS</td><td>Paralyzed, 1-min concentration. Cult Fanatic DC 11.</td></tr>
+    <tr><td><a href="https://open5e.com/spells/srd-2024_inflict-wounds" target="_blank">Inflict Wounds</a></td><td>1</td><td>—</td><td>Touch, 2d10 necrotic. Cult Fanatic uses.</td></tr>
+    <tr><td><a href="https://open5e.com/spells/srd-2024_spiritual-weapon" target="_blank">Spiritual Weapon</a></td><td>2</td><td>—</td><td>BA, 1d8+mod force, 60 ft. Cult Fanatic.</td></tr>
+    <tr><td><a href="https://open5e.com/spells/srd-2024_sanctuary" target="_blank">Sanctuary</a></td><td>1</td><td>WIS</td><td>Attackers retarget. Deva-feather one-shot option.</td></tr>
+    <tr><td><a href="https://open5e.com/spells/srd-2024_remove-curse" target="_blank">Remove Curse</a></td><td>3</td><td>—</td><td>Ends curses. <strong>Required to remove Bhaal-mark carved by Dumal's Ritual Dagger.</strong></td></tr>
+  </table>
+
+  <details><summary>Live-query commands at table</summary>
+    <p>Spell slug format: <code>srd-2024_&lt;spell-name&gt;</code> (e.g. <code>srd-2024_banishment</code>). Monster slugs are plain (e.g. <code>bone-devil</code>).</p>
+    <pre style="background:var(--surface2);padding:10px;border-radius:4px;color:var(--ink);font-size:12px;overflow-x:auto">mcp__open5e__get          { resource_type: "monsters", slug: "bone-devil" }
+mcp__open5e__search       { query: "&lt;term&gt;", resource_type: "spells"|"monsters" }
+mcp__open5e__rag_search   { query: "wish spell exact text", mode: "hybrid" }
+mcp__open5e__list         { resource_type: "monsters", cr: 12, type: "Fiend" }</pre>
+  </details>
+</section>
+
+<!-- =================== DM APPENDIX =================== -->
+<section id="dm-appendix">
+  <h2>DM-Only Appendix — Future-Session Foreshadow</h2>
+  <div class="callout danger"><strong>DO NOT show this image in Session 5.</strong>This belongs to Session 6 or 7, when Dumal hands over the crayon letter from Senna. The visual surprise IS the punch.</div>
+
+  <details class="spoiler"><summary>Reveal Senna (Session 6/7 ONLY)</summary>
+    <div class="scene-img spoiler-img" onclick="openLightbox('Images/session-5/scene-10-senna-a.webp')">
+      <img src="Images/session-5/scene-10-senna-a.webp" alt="Senna">
+      <div class="cap">Scene 10 — Senna. The art-style break (warm green-gold instead of red/grey) is the visual cue when you finally drop it on the table: <em>this is what the brothers are fighting over.</em></div>
+    </div>
+  </details>
+
+  <p style="text-align:center;color:var(--muted);font-style:italic;margin-top:40px">Good luck. Watch their faces when he says Senna's name.</p>
+</section>
+
+</main>
+</div>
+
+<script>
+// ====== State + persistence ======
+const STATE = {
+  bhaal: 50,
+  garg: 35,
+  eldath: 5,
+  round: 1,
+  hunger: 5,
+  dumalHP: 220
+};
+const MAX_DUMAL = 220;
+
+function saveState(){ try{localStorage.setItem('s5-dumal-state',JSON.stringify(STATE));}catch(e){} }
+function loadState(){
+  try{
+    const s = localStorage.getItem('s5-dumal-state');
+    if(s) Object.assign(STATE, JSON.parse(s));
+  }catch(e){}
+}
+
+// ====== Renderers ======
+function clamp(n,lo,hi){return Math.max(lo,Math.min(hi,n));}
+
+function renderMeter(prefix, value){
+  const fill = document.getElementById(prefix+'-fill');
+  const text = document.getElementById(prefix+'-text');
+  const input = document.getElementById(prefix+'-input');
+  if(fill) fill.style.width = clamp(value,0,100)+'%';
+  if(text) text.textContent = value+' / 100';
+  if(input && document.activeElement !== input) input.value = value;
+}
+
+function renderHunger(){
+  const i = document.getElementById('hunger-input');
+  if(i && document.activeElement !== i) i.value = STATE.hunger;
+  const w = document.getElementById('hunger-warn');
+  if(STATE.hunger >= 3){
+    w.innerHTML = '<span style="color:var(--crit)">⚠ '+STATE.hunger+' days: DC 15 WIS or Bhaal +5</span>';
+  } else {
+    w.innerHTML = '<span style="color:var(--good)">Hunger contained ('+STATE.hunger+'d)</span>';
+  }
+}
+
+function renderRound(){
+  const i = document.getElementById('round-input');
+  if(i && document.activeElement !== i) i.value = STATE.round;
+}
+
+function renderDumalHP(){
+  const pct = Math.max(0,(STATE.dumalHP/MAX_DUMAL)*100);
+  const fill = document.getElementById('dumal-hp-fill');
+  const text = document.getElementById('dumal-hp-text');
+  const input = document.getElementById('dumal-hp-input');
+  if(fill) fill.style.width = pct+'%';
+  if(text) text.textContent = STATE.dumalHP+' / '+MAX_DUMAL;
+  if(input && document.activeElement !== input) input.value = STATE.dumalHP;
+  if(fill){
+    if(pct > 50) fill.style.background = 'linear-gradient(90deg,var(--blood),var(--hell))';
+    else if(pct > 25) fill.style.background = 'linear-gradient(90deg,var(--warn),var(--hell))';
+    else fill.style.background = 'linear-gradient(90deg,var(--crit),var(--blood))';
+  }
+}
+
+function renderAll(){
+  renderMeter('bhaal', STATE.bhaal);
+  renderMeter('garg', STATE.garg);
+  renderMeter('eldath', STATE.eldath);
+  renderRound();
+  renderHunger();
+  renderDumalHP();
+  saveState();
+}
+
+// ====== Actions ======
+function setBhaal(v){const n=parseInt(v); if(!isNaN(n)) STATE.bhaal=clamp(n,0,100); renderAll();}
+function setGarg(v){const n=parseInt(v); if(!isNaN(n)) STATE.garg=clamp(n,0,100); renderAll();}
+function setEldath(v){const n=parseInt(v); if(!isNaN(n)) STATE.eldath=clamp(n,0,100); renderAll();}
+function addBhaal(d){STATE.bhaal=clamp(STATE.bhaal+d,0,100); renderAll();}
+function addGarg(d){STATE.garg=clamp(STATE.garg+d,0,100); renderAll();}
+function addEldath(d){STATE.eldath=clamp(STATE.eldath+d,0,100); renderAll();}
+function resetBhaal(){STATE.bhaal=50; renderAll();}
+function resetGarg(){STATE.garg=35; renderAll();}
+function resetEldath(){STATE.eldath=5; renderAll();}
+
+function setRound(v){const n=parseInt(v); if(!isNaN(n)&&n>=1) STATE.round=n; renderAll();}
+function changeRound(d){STATE.round=Math.max(1,STATE.round+d); renderAll();}
+
+function setHunger(v){const n=parseInt(v); if(!isNaN(n)&&n>=0) STATE.hunger=n; renderAll();}
+
+function setDumalHP(v){const n=parseInt(v); if(!isNaN(n)) STATE.dumalHP=clamp(n,0,MAX_DUMAL); renderAll();}
+function dmgDumal(d){STATE.dumalHP=Math.max(0,STATE.dumalHP-d); renderAll();}
+function healDumal(d){STATE.dumalHP=Math.min(MAX_DUMAL,STATE.dumalHP+d); renderAll();}
+function resetDumalHP(){STATE.dumalHP=MAX_DUMAL; renderAll();}
+function dumalFlee(){STATE.dumalHP=Math.round(MAX_DUMAL*0.25); renderAll(); alert('Dumal at 25% — disengages with Bone Devil cover, throws Bhaal Smoke (20ft cube, 2 rounds), gone.\n\nFinal line: "Heal him, Wish-wielder. He is going to need it. So is your Quiet One."');}
+
+// ====== Lightbox ======
+function openLightbox(src){
+  let lb = document.getElementById('lightbox');
+  if(!lb){
+    lb = document.createElement('div');
+    lb.id = 'lightbox';
+    lb.className = 'lightbox';
+    lb.innerHTML = '<button class="lb-close" onclick="closeLightbox()">×</button><img id="lb-img" src="" alt="">';
+    lb.addEventListener('click', e => { if(e.target===lb || e.target.id==='lb-img') closeLightbox(); });
+    document.body.appendChild(lb);
+  }
+  document.getElementById('lb-img').src = src;
+  lb.classList.add('active');
+}
+function closeLightbox(){
+  const lb = document.getElementById('lightbox');
+  if(lb) lb.classList.remove('active');
+}
+document.addEventListener('keydown', e => { if(e.key==='Escape') closeLightbox(); });
+
+// ====== Init ======
+loadState();
+renderAll();
+</script>
+</body>
+</html>

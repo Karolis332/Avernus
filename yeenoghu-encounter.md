@@ -8,7 +8,7 @@
 
 ## ▶ The one-breath summary
 
-> They freed the unicorn, the dao left, and the fog tore open. **Dumal walked out riding Yeenoghu — the demon lord of slaughter — chained by a soul he sold to Mephistopheles and the authority of his father Bhaal.** You can't kill a demon lord at level 11. You don't have to. **Break the leash and the two titans turn on each other** — or **scuttle the Lady Vengeance and rip the Weave open** to hurl Yeenoghu back to the Abyss for a century. Either way, the brother showed Drenwal exactly what total surrender to power costs.
+> The celestial captive escaped, the dao left, and the fog tore open. **Dumal walked out riding Yeenoghu — the demon lord of slaughter — chained by a soul he sold to Mephistopheles and the authority of his father Bhaal.** You can't kill a demon lord at level 11. You don't have to. **Break the leash and the two titans turn on each other** — or **scuttle the Lady Vengeance and rip the Weave open** to hurl Yeenoghu back to the Abyss for a century. Either way, the brother showed Drenwal exactly what total surrender to power costs.
 
 **This is a vehicle/siege set-piece, not a stand-up fight.** The party's power tonight is the **ship and the leash**, not their HP bars.
 
@@ -31,10 +31,9 @@ A mortal-ascendant does **not** master a demon lord. Dumal isn't mastering one �
 
 ## ▶ Where we are {#where-we-are}
 
-- **Freed the unicorn** [done] — a fiend-hating **radiant artillery piece** is loose on the field. *This is the party's celestial weapon against the leash.* See [Unicorn](#unicorn).
 - **Ralzala the dao left** [done] — she gave the **letter to Bel** and earth-glided off. Not in this fight. *(If she instead took the Shield/bolted differently at your table, adjust — doesn't change the beat.)*
 - **Dumal erupts from the fog astride Yeenoghu** [now] — Gargantuan, three-headed, reeking of carrion.
-- **Assets in play:** the **Lady Vengeance** (arcane cannons, Aether Harpoon, weave engine), **Veska** the Hellrider (freed from the Palace of Gore), **Jeremy** the Gondian mechanic, **Lulu** the hollyphant, the freed **unicorn**.
+- **Assets in play:** the **Lady Vengeance** (arcane cannons, Aether Harpoon, weave engine), **Veska** and **Corwin** the Hellriders, the **Gish**, **Jeremy** the Gondian mechanic, and **Lulu** the hollyphant.
 - **Meters carry forward:** Bhaal **50** / Gargauth **35** (+ Coram thread). New **Mephistopheles** thread opens tonight.
 
 > ✓ **Resolved at your table:**
@@ -45,7 +44,7 @@ A mortal-ascendant does **not** master a demon lord. Dumal isn't mastering one �
 
 ## ▶ Design thesis — three ways to win, none of them "deal 333 damage"
 
-You **cannot** grind Yeenoghu's 333 HP. Tell the players this through the fiction early (the unicorn's beam barely scorches him; Lulu *knows* what he is). Give them **three outs** and let them improvise across all of them:
+You **cannot** grind Yeenoghu's 333 HP. Tell the players this through the fiction early (the cannons barely scorch him; Lulu *knows* what he is). Give them **three outs** and let them improvise across all of them:
 
 | # | The out | How | Cost / Risk |
 |---|---|---|---|
@@ -68,12 +67,11 @@ You **cannot** grind Yeenoghu's 333 HP. Tell the players this through the fictio
 | **Chain of Bhaal-and-Cania** | **The leash — the weak point** | 18 | 300 Integrity · Strain 200 | — | — | [HOMEBREW] → [block](#chain) |
 | **Lady Vengeance** | The party's gun platform | 17 | 350 | — | fly (fast) | Gondian/Baldurian warship → [block](#ship) |
 | **Gnoll boarders** ×4–8 | Adds / ship pressure | 15 | 22 | 1/2 | 30 | `gnoll` ✓ (SRD) |
-| **Unicorn (freed)** | Radiant wildcard vs fiends | 12 | 67 | 5 | 50 | `unicorn` ✓ → [wildcard](#unicorn) |
 | **Veska, Hellrider** | Party ally — frighten-anchor & fiend-striker | 18 | 112 | ~8 | 30 | [HOMEBREW NPC] → [block](#veska) |
 
 *\*Don't track Yeenoghu's full HP while leashed — see [dual-mode](#yeenoghu). The party's damage goes into the **Chain** and **Dumal**, not the demon lord.*
 
-**Live lookups:** `mcp__open5e__get { resource_type:"monsters", slug:"gnoll" }` · `slug:"unicorn"`. Yeenoghu & the Flail are **non-SRD** (404 confirmed) — block below is MToF-canon, table-tuned.
+**Reference note:** the gnoll uses its standard 5e chassis. Yeenoghu and the Flail are non-SRD; the supplied block is source-based and table-tuned.
 
 ---
 
@@ -89,12 +87,12 @@ Read the cliffhanger. Yeenoghu rises out of the fog: **Huge in the book — run 
 
 - **Dumal** opens. Bonus action **Reins of Slaughter** → points Yeenoghu at the highest-damage PC or the ship. Yeenoghu takes **one** flail attack (leashed throttle). Dumal himself acts on Drenwal (Bhaal's Whisper / Lance).
 - **The Warden of Cania** drops from the smog and makes straight for the **ship** — the one enemy a grounded Yeenoghu can't reach. It strafes the gunners and **interposes for the Chain.** Killing or displacing it is the party's mid-fight objective. → [block](#warden)
-- **The unicorn** (if steered, DC 12) fires its beam — and it **barely marks Yeenoghu** (he shrugs radiant): *telegraph that the demon is unkillable, but the **chain** flares and screams when the beam crosses it.* **This is your tutorial: aim at the chain.**
+- **The first force-cannon shot** barely marks Yeenoghu, but the **Chain flares and screams** where the bolt crosses it. **This is your tutorial: aim at the chain.**
 - **Lulu** (DM voice): *"You can't kill the Beast of Butchery, child. But that chain — that's devil-work on demon-flesh. It hates itself. Break the chain and let them tear each other apart."*
 
 ### Rounds 2–4 — the grind on the leash / the ship dance
 
-- Party splits into **ship roles** ([Lady Vengeance](#ship)) and **leash-cutters.** Cannons (force) + unicorn/Moonbow/Drenwal radiance pour into the **Chain**; **Leash Strain** climbs.
+- Party splits into **ship roles** ([Lady Vengeance](#ship)) and **leash-cutters.** Cannons, the Gish, Moonbow, and Drenwal's radiance pour into the **Chain**; **Leash Strain** climbs.
 - **Yeenoghu is grounded (Speed 50, no fly).** A fast-flying ship can kite him; his only reach to the air is **Hurl Flail (60 ft)** and Dumal's spells. **Reward smart positioning** — staying 70+ ft up and raining cannon fire is the correct read.
 - Each time Dumal takes damage, **concentration save on the Reins** (DC 10 or ½ damage). Break it → Yeenoghu acts on his *own* hunger for a round (still leashed, but wild) and **Strain +15**.
 - **Strain milestones** ([Chain](#chain)): at **100**, Yeenoghu lashes a free flail at **Dumal** (telegraph!). At **160**, his aura flares against the rider (LOUD telegraph — *get airborne*). At **200 / Integrity 0**, **the leash shatters.**
@@ -148,15 +146,38 @@ The chain detonates in red-and-blue light. Yeenoghu throws his head back and **s
 ### Dumal, the Flame Ascendant — Mephistopheles-Pledged {#dumal}
 *[HOMEBREW boss, upgraded from the S5/S6 CR 13 block] · Medium humanoid (Bhaalspawn), neutral evil · CR ~15*
 
-Carry the existing Dumal block ([S6 primer](#) — AC 19→**20**, HP 220→**240**, Lance of Bhaal, Ritual Dagger, Bhaal-Marked Strike, Bhaal's Whisper, Bhaal's Anchor, truesight). **Layer the pledge on top:**
+- **AC** 20 · **HP** 240 · **Speed** 40 ft. · **Pre-rolled Initiative 18** *(d20 14 + DEX 4)*
+- **STR** 22 (+6) · **DEX** 18 (+4) · **CON** 24 (+7) · **INT** 14 (+2) · **WIS** 18 (+4) · **CHA** 20 (+5)
+- **Saves** STR +11, DEX +9, CON +12, WIS +9, CHA +10 · **Skills** Athletics +11, Insight +9, Intimidation +10, Perception +9
+- **Resist** cold, necrotic; nonmagical physical · **Immune** fire, poison; charmed, frightened, poisoned · **Truesight** 120 ft.
 
-- **Mephistopheles' Mantle.** Fire **immunity** (was resistance). His Lance now adds **+7 (2d6) hellfire** that **ignores fire resistance/immunity** (Mephistophelean hellfire).
-- **Hellfire Pillar (1/fight).** A 20-ft-radius column erupts at a point ≤120 ft: DC 18 DEX, **28 (8d6) fire** (half on save), **ignores fire resistance.** Bel's gift made murder.
-- **Reins of Slaughter (bonus action, concentration).** Dumal commands Yeenoghu: choose a target ≤120 ft; Yeenoghu makes its leashed flail attack against it. **Maintaining the Reins is concentration** — when Dumal takes damage, **CON save (DC 10 or ½ dmg)** or the Reins slip (Yeenoghu wilds out + **Chain Strain +15**).
-- **Soul-Sold (the cost, shown).** Dumal spent himself to hold the chain: **Legendary Resistance only 1/day** now, and **Bhaal's Anchor DC drops to 16** (he's spread too thin). Roleplay: *"Den" surfaces in flickers and drowns again.* Play the man who has almost nothing left.
-- **Retreat.** At ≤60 HP (25%), **Bhaal Smoke → vanish** — *if the leash still holds.* If the leash broke first, Yeenoghu is on him and he may not get the chance (the Dial).
+**Traits**
+- **Magic Resistance.** Advantage on saves against spells and magical effects.
+- **Legendary Resistance (1/Day).** Dumal can turn one failed save into a success.
+- **Bhaal's Anchor.** Forced teleportation or banishment requires a successful **DC 16 spellcasting ability check**.
+- **Mephistopheles' Mantle.** Dumal's hellfire ignores fire resistance and immunity.
+- **Soul-Sold.** Dumal cannot regain hit points while maintaining the Reins.
 
-> **Dumal's doctrine:** Round 1 point Yeenoghu at the ship/biggest threat, Whisper on Drenwal. Rounds 2–3 Hellfire Pillar on the leash-cutters, Lance on Drenwal, keep the Reins up. **He never expects them to attack the chain** — when Strain hits 50 and Yeenoghu turns its head toward *him*, play **dawning fear**: *"No — no, not yet, I'm not finished with him—"*
+**Actions**
+- **Multiattack.** Dumal makes **two** weapon attacks, using Lance of Bhaal, Blood-Spear, or Ritual Dagger in any combination.
+- **Lance of Bhaal.** *Melee Weapon Attack:* +11 to hit, reach 10 ft; **13 (1d12+6) piercing + 13 (3d8) necrotic + 7 (2d6) hellfire**.
+- **Blood-Spear.** *Ranged Weapon Attack:* +11 to hit, range **120/360 ft**; **13 (2d6+6) piercing + 9 (2d8) necrotic**. The spear forms from Dumal's blood and vanishes after impact. On a hit, the target **cannot regain hit points until the start of Dumal's next turn**.
+- **Ritual Dagger.** *Melee Weapon Attack:* +11 to hit, reach 5 ft; **9 (1d6+6) piercing + 9 (2d8) necrotic**.
+- **Bhaal-Marked Strike (Recharge 5–6).** Make one Lance or Blood-Spear attack. On a hit, DC 18 CON or take **18 (4d8) extra necrotic** and suffer disadvantage on the next save against Dumal before the end of the target's next turn.
+- **Bhaal's Whisper.** One creature within 60 ft makes a **DC 18 WIS** save or is frightened until the end of its next turn. In this encounter it is an **action**, allowing Reins to remain the bonus action.
+- **Hellfire Pillar (1/Fight).** Point within 120 ft, 20-ft radius; DC 18 DEX, **28 (8d6) hellfire**, half on success. It ignores fire resistance and immunity.
+- **Bhaal Smoke (1/Day).** A 30-ft cube of screaming red smoke becomes heavily obscured for 2 rounds. If Dumal has 60 HP or fewer and the leash still holds, he can vanish through it at the end of his turn.
+
+**Bonus Action — Reins of Slaughter (Concentration).** Choose a target within 120 ft; Yeenoghu makes its one leashed flail attack against that target. Whenever Dumal takes damage, he makes a concentration save; on a failure, **Chain Strain +15** and Yeenoghu chooses its own target until Dumal re-establishes the Reins.
+
+**Reaction — Murderous Riposte.** When a creature within 10 ft hits Dumal with a melee attack, Dumal makes one Lance of Bhaal attack against it.
+
+**Tactics**
+- **Round 1:** bonus action Reins on the forward defender; action Bhaal's Whisper on Drenwal.
+- **Round 2:** Reins again; use **two Blood-Spears** against a cannon gunner, airborne archer, or healer.
+- **Round 3:** Reins, then Hellfire Pillar on the densest cluster that does not catch the Warden.
+- **Round 4+:** Blood-Spear leash-cutters from range. At 60 HP or fewer, use Bhaal Smoke if the leash still holds.
+- **Strain 200:** the Reins end immediately. Yeenoghu attacks Dumal before Dumal resumes this script.
 
 ### Warden of Cania — armored bone devil (Dumal's bodyguard) {#warden}
 *[NON-SRD: bone devil chassis (`bone-devil` ✓ CR 9), Cania-forged upgrade] · Large fiend (devil), lawful evil · CR 12*
@@ -164,6 +185,7 @@ Carry the existing Dumal block ([S6 primer](#) — AC 19→**20**, HP 220→**24
 Dumal's pledge bought him an escort from the Eighth Hell — a bone devil re-forged in the ice-foundries of **Cania**, plated in frost-rimed black infernal steel. **It is the only thing on Dumal's side that can reach the flying ship**, and its job is to keep the party's radiance off the Chain.
 
 - **AC** 21 (Cania plate + natural) · **HP** 189 (18d10+90) · **Speed** 40 ft., **fly 40 ft. (hover)**
+- **Pre-rolled Initiative** **16** *(d20 13 + DEX 3)*
 - **STR** 18(+4) · **DEX** 16(+3) · **CON** 20(+5) · **INT** 13(+1) · **WIS** 14(+2) · **CHA** 16(+3)
 - **Saves** CON +9, WIS +6, CHA +7 · **Skills** Deception +7, Insight +6
 - **Resist** nonmagical phys (non-silvered) · **Immune** cold, fire, poison; poisoned, frightened · **Devil's Sight**, truesight 30 ft., darkvision 120 ft. · telepathy 120 ft.
@@ -179,6 +201,35 @@ Dumal's pledge bought him an escort from the Eighth Hell — a bone devil re-for
 
 > **Warden doctrine:** never leaves the Chain's side unless the ship comes into boarding range — then it flies up to strafe gunners with Hurl Hoarfrost and shove boarders off the deck. It interposes for the Chain every round it can. **Make killing it the party's mid-fight objective.**
 
+**Tactics**
+- **Round 1:** remain within 10 ft of Dumal and the Chain; reserve Interposition for the largest force or radiant hit.
+- **Round 2:** Hurl Hoarfrost at the cannon crew if recharged; otherwise Multiattack the nearest leash-cutter.
+- **Round 3+:** protect the Chain above all else. It only boards the fort if it can still return to Interposition range.
+- **At Strain 160:** become desperate and body-block the Chain. It does not retreat unless Dumal orders it.
+
+### Bone Devil Bodyguard — standard reserve {#bone-devil}
+*[STANDARD 5e BONE DEVIL CHASSIS · optional reserve bodyguard; do not add it unless a second guard is established at the table]*
+
+- **AC** 19 · **HP** 142 · **Speed** 40 ft., fly 40 ft.
+- **Pre-rolled Initiative** **12** *(d20 9 + DEX 3)*
+- **STR** 18 (+4) · **DEX** 16 (+3) · **CON** 18 (+4) · **INT** 13 (+1) · **WIS** 14 (+2) · **CHA** 16 (+3)
+- **Saves** INT +5, WIS +6, CHA +7 · **Resist** cold; nonmagical physical damage from nonsilvered attacks
+- **Immune** fire, poison; poisoned · **Senses** darkvision 120 ft., Devil's Sight · **Languages** Infernal, telepathy 120 ft.
+- **Magic Resistance.** Advantage on saves against spells and magical effects.
+
+**Actions**
+- **Multiattack.** Two Claw attacks and one Sting attack.
+- **Claw.** +8 to hit, reach 10 ft; **8 (1d8+4) slashing**.
+- **Sting.** +8 to hit, reach 10 ft; **13 (2d8+4) piercing + 17 (5d6) poison**; DC 14 CON or poisoned for 1 minute, repeating the save at the end of each turn.
+
+**Tactics**
+- **Opening:** fly above the breach and threaten whichever PC dealt the most damage last round.
+- **Priority:** protect Dumal, then disrupt the cannon crew. It does **not** possess Warden's Interposition.
+- **Focus:** claw a standing target and sting a durable front-liner; avoid focusing a downed or badly wounded PC.
+- **Morale:** when the Chain breaks, it abandons Dumal and retreats toward Cania unless prevented.
+
+> **Difficulty warning:** Warden + standard bone devil together add a full CR 9 combatant. For the intended three-PC fight, use **only the Warden** unless the party has substantial extra allies or is overwhelming the encounter.
+
 ### The Chain of Bhaal-and-Cania — THE LEASH {#chain}
 *[HOMEBREW object — the real target of the fight]*
 
@@ -186,9 +237,9 @@ A coiling construct of red murder-light and blue hellfire, throat-to-heart betwe
 
 - **AC** 18 · **Integrity** 300 *(backstop — Strain is the real kill-switch)* · **Resist** nonmagical & physical damage (½)
 - **VULNERABLE — the contradiction:** **radiant, force,** and **banishment/abjuration** deal **double** and add **+6 Strain** on top of damage.
-  - Sources: the **unicorn beam**, Aurora's **Moonbow** (radiant/Banishment), **Lulu**, Drenwal's **Channel Divinity / Radiance of the Dawn**, the ship's **arcane cannons** (force), Asimov's **psychic-force**, Veska's **blessed lance** (magical + radiant vs fiends).
+  - Sources: Aurora's **Moonbow** (radiant/Banishment), **Lulu**, Drenwal's **Channel Divinity / Radiance of the Dawn**, the ship's **arcane cannons** (force), the Gish, Asimov's **psychic-force**, and the Hellriders' blessed weapons.
 
-**Leash Strain track (0 → 200).** *(Balance-corrected — see [the combat reference card](#refcard); the original 90/100 values pop the leash in Round 1.)* Add Strain from: damage to the Chain (1 Strain per 8 dmg), every radiant/force/banishment hit (+6), breaking Dumal's Reins concentration (+15), the Aether Harpoon biting the chain (+15), the unicorn beam crossing it (+10).
+**Leash Strain track (0 → 200).** Add Strain from: damage to the Chain (1 Strain per 8 dmg), every radiant/force/banishment hit (+6), breaking Dumal's Reins concentration (+15), and the Aether Harpoon biting the chain (+15).
 
 | Strain | Event (telegraph it) |
 |---|---|
@@ -206,17 +257,32 @@ A coiling construct of red murder-light and blue hellfire, throat-to-heart betwe
 - **🜂 Arcane Weave Engine.** The engine **stores spell energy to fuel the ship** — charged by consumed spell scrolls, and it can also burn **soul coins** as raw fuel (that stored charge is what makes the [scuttle](#scuttle) detonation so violent). **Scroll Consumption:** feed it a **spell scroll of 2nd level or lower** and apply that scroll's effect to the **ship** (action; scroll consumed). Staples: **Fly** (*this is how she stays aloft*), **Blur** (disadvantage on attacks vs the ship), **Shield** (+5 AC, reaction), **Misty Step** (60-ft blink to reposition/escape a strike), **Web / Grease** (drop on the boarding gnolls), **Gust of Wind** (blow back the smog & the fly-cloud). **This is the engine Jeremy overloads to scuttle.**
 - **Aether Harpoon (action — harpooner).** +9, range 120 ft. Vs **Yeenoghu**: DC 22 STR (~30% to hold). Vs the **Chain**: auto-tethers taut → **+15 Strain** and cannons get advantage next round.
 - **Soul Coin Overdrive.** Burn 1 soul coin → **+60 ft fly speed** + one extra cannon broadside this round; also powers the **post-scuttle escape**.
-- **Crew positions:** **Pilot** · **Gunner** (cannons) · **Harpooner** · **Engineer** (Jeremy — scroll-feed & the overload). Lulu/Veska/unicorn cover boarders.
+- **Crew positions:** **Pilot** · **Gunner** (cannons) · **Harpooner** · **Engineer** (Jeremy — scroll-feed & the overload). Lulu, the Hellriders, and the Gish cover boarders.
 
-### Gnoll boarders — `gnoll` ✓ (SRD)
-- **AC** 15 · **HP** 22 · **CR** 1/2 · Bite/Spear +4 (1d6+2) · **Rampage** (drop a foe → bonus move + bite).
-- Yeenoghu's presence maddens local gnolls; **4–8 leap onto the deck** over rounds 2–4 to pull the party off the cannons. *Pure pressure — clear them or lose a gun.* (Add a **Flind** or **Gnoll Fang of Yeenoghu** as a mini-boss if your table wants more bite — non-SRD, build from Volo/MToF.)
+### Gnoll Boarding Waves {#gnolls}
+*[STANDARD 5e GNOLL CHASSIS · Medium humanoid (gnoll), chaotic evil · CR 1/2 each]*
 
-### Unicorn (freed) — the radiant wildcard {#unicorn}
-`unicorn` ✓ · AC 12 · HP 67 · CR 5 · **fiend-hating.**
-- Each round it targets a **fiend** with its horn (Yeenoghu or Dumal). A PC can steer the lens/aim it (**DC 12**) to fire deliberately: **2d8+9 radiant** — **and it adds +10 Strain whenever the beam crosses the Chain.** *Mercy in Round 1 becomes the leash-cutter in Round 3.*
+- **AC** 15 (hide armor, shield) · **HP** 22 each · **Speed** 30 ft.
+- **Wave 1 pre-rolled Initiative:** **14** *(d20 13 + DEX 1)*
+- **Wave 2 pre-rolled Initiative:** **9** *(d20 8 + DEX 1)*
+- **STR** 14 (+2) · **DEX** 12 (+1) · **CON** 11 (+0) · **INT** 6 (−2) · **WIS** 10 (+0) · **CHA** 7 (−2)
+- **Senses** darkvision 60 ft., passive Perception 10 · **Languages** Gnoll
 
----
+**Trait — Rampage.** When a gnoll reduces a creature to 0 HP with a melee attack on its turn, it can use a bonus action to move up to half its speed and make a Bite attack. **Do not trigger Rampage from destroying an object or automaton.**
+
+**Actions**
+- **Bite.** +4 to hit, reach 5 ft; **4 (1d4+2) piercing**.
+- **Spear.** +4 to hit, reach 5 ft or range 20/60; **5 (1d6+2) piercing**, or **6 (1d8+2)** with two hands.
+- **Longbow.** +3 to hit, range 150/600; **5 (1d8+1) piercing**.
+
+**Wave tactics**
+- **Wave 1 — Round 2, 2–4 gnolls:** rush the cannon deck. One grapples or shoves a gunner; the others attack the cannon crew or occupy stations. They do not waste attacks on the ship’s hull.
+- **Wave 2 — Round 3, remaining gnolls:** reinforce whichever station is closest to being disabled. If no station is exposed, throw spears at Jeremy or the Gish.
+- **Target priority:** active gunner → engineer/Jeremy → isolated wounded combatant. They avoid Bess unless trapped at the breach.
+- **Morale:** when the Chain shatters, half frenzy toward the nearest creature and half flee down-slope. Remove fleeing gnolls from initiative.
+- **Fast handling:** use average damage, one initiative per wave, and one shared pool of **22 HP per gnoll**. Automatons remove one gnoll from the wave each Fort turn instead of rolling attacks.
+
+> **Difficulty dial:** default **4 total gnolls** for three PCs. Use **6** if allies are dominating; use **8 only** if the party is fresh and the Warden is falling too quickly. Do not add a flind to this version.
 
 ### Veska, Hellrider of Elturel — party ally {#veska}
 *[HOMEBREW NPC ally · Medium humanoid (human), lawful good · ~CR 8 · freed from the Palace of Gore. If Veska is a PC, run the player's sheet — this is the fallback.]*
@@ -243,6 +309,63 @@ A surviving knight of the **Hellriders**, the devil-fighting order of Elturel th
 
 > **Veska & Dumal:** she clocks the corrupted Hellrider plate instantly. Hand her a line when he rides out — the order's grief made voice: *"You wore the grey. You swore the oath I swore. And you put a demon lord on a leash and called it strength."* Her presence makes Dumal's fall land on someone besides his brother.
 
+**Tactics**
+- **Opening:** hold the left side of the breach and keep Drenwal or the most exposed PC within her Oath aura.
+- **Each round:** use two Blessed Lance attacks against the Chain or Warden; use Hellrider's Charge when a mount and clear lane make it practical.
+- **Reaction:** Shield the Fallen protects a wounded PC, not an automaton or the hull.
+- **At Strain 160:** move toward the evacuation route and carry a downed ally out if the leash breaks.
+
+### The Gish — Palace of Gore spellblade {#gish}
+*[CAMPAIGN HOMEBREW ally using the canon githyanki gish archetype · Medium humanoid (gith), lawful evil · table-tuned ~CR 8]*
+
+- **AC** 18 (half plate) · **HP** 110 (13d8+52) · **Speed** 30 ft.
+- **STR** 16 (+3) · **DEX** 16 (+3) · **CON** 18 (+4) · **INT** 18 (+4) · **WIS** 13 (+1) · **CHA** 12 (+1)
+- **Saves** CON +7, INT +7, WIS +4 · **Skills** Arcana +7, Athletics +6, Perception +4
+- **Resist** psychic · **Languages** Gith, broken Common
+
+**Traits**
+- **Githyanki Psionics.** Spellcasting ability is Intelligence (save **DC 15**, +7 to hit). At will: *mage hand* (invisible). 3/day each: *misty step, jump*. 1/day each: *nondetection, plane shift* (self only; unavailable while the planar leash is active).
+- **War Magic.** After casting a spell, the Gish can make one Silver Greatsword attack as a bonus action.
+- **Chain-Cutter.** Once per turn when the Gish hits the Chain, the hit deals an extra **7 (2d6) force** and adds **+8 Strain total instead of the normal hit contribution**. This is campaign encounter tech, not a canon githyanki feature.
+
+**Actions**
+- **Multiattack.** Two Silver Greatsword attacks.
+- **Silver Greatsword.** +7 to hit, reach 5 ft; **10 (2d6+3) slashing + 9 (2d8) psychic**.
+- **Force Lance (Recharge 5–6).** 60-ft line, 5 ft wide; DC 15 DEX, **28 (8d6) force**, half on success. Against the Chain, resolve one hit and apply Chain-Cutter.
+
+**Reaction — Psionic Parry.** Add **+3 AC** against one melee attack that would hit.
+
+**Tactics**
+- **Opening:** *Misty step* to an angle the Warden cannot interpose from; strike the Chain, then use cover.
+- **Each round:** prioritize the **Chain**, not Yeenoghu. Use Force Lance only when it can also clear gnolls or bypass the Warden.
+- **If engaged:** Psionic Parry, then disengage by *misty step*. The Gish is a cutter, not a front-line tank.
+- **At Strain 160:** fall back toward Bess or the evacuation route. Do not remain beside Yeenoghu when the leash breaks.
+
+### Corwin — Hellrider of the Bone Brambles {#corwin}
+*[CAMPAIGN HOMEBREW NPC ally · Medium humanoid (human), lawful good · table-tuned ~CR 7]*
+
+- **AC** 19 (plate + shield) · **HP** 102 (12d8+48) · **Speed** 30 ft. (or mounted)
+- **STR** 18 (+4) · **DEX** 10 (+0) · **CON** 18 (+4) · **INT** 11 (+0) · **WIS** 15 (+2) · **CHA** 14 (+2)
+- **Saves** STR +7, CON +7, WIS +5 · **Skills** Athletics +7, Insight +5, Perception +5, Survival +5
+
+**Traits**
+- **Hellrider's Oath.** Corwin is immune to frightened; allies within 10 ft have **advantage on saves against frightened**.
+- **Hold the Line.** Hostile creatures provoke an opportunity attack from Corwin when they enter his reach. On a hit, their speed becomes 0 for the rest of the turn.
+- **Devil-Bane Arms.** Corwin's weapons are magical and silvered.
+
+**Actions**
+- **Multiattack.** Two Sunbright Spear attacks.
+- **Sunbright Spear.** +7 to hit, reach 10 ft or range 20/60; **8 (1d8+4) piercing + 7 (2d6) radiant against fiends**.
+- **Brace the Breach (Recharge 5–6).** Corwin and allies of his choice within 10 ft gain **+2 AC** and cannot be pushed or knocked prone until the start of his next turn.
+
+**Reaction — Interposing Shield.** When an ally within 5 ft is hit, Corwin grants that ally **+3 AC** against the triggering attack, potentially turning it into a miss.
+
+**Tactics**
+- **Opening:** plant at the right side of the 40-ft breach while Veska covers the left; keep the PCs inside one fear-anchor aura.
+- **Each round:** spear the nearest fiend or Chain segment while reserving his reaction for a vulnerable PC or Jeremy.
+- **When Yeenoghu reaches the Wall:** use Brace the Breach and Hold the Line to buy one round; Corwin does not chase down-slope.
+- **At Strain 160:** call the retreat and become the rear guard. If Bess withdraws, Corwin withdraws with her rather than dying in place.
+
 ---
 
 ## ▶ The break-free 3-way fight — running it {#threeway}
@@ -259,7 +382,7 @@ When the leash shatters, this is the spectacle the whole night was built toward.
 - **Bombard Yeenoghu** while he's busy with Dumal — chip the demon, risk drawing his eye.
 - **Claim the kill on Dumal yourselves** instead of letting Yeenoghu do it — *very different meter & emotional outcome* (the brother dies by your hand, not the god-beast's).
 - **Scuttle** to banish Yeenoghu *and* catch Dumal in the blast.
-- **Save someone** — a downed PC, Jeremy, the unicorn.
+- **Save someone** — a downed PC, Jeremy, a Hellrider, or the Gish.
 
 ---
 
@@ -274,7 +397,7 @@ Jeremy (Gondian gnome — the artificers who **built the Hellships** [CANON]) ca
 - **Weave Rupture — the demon-lord answer.** The blast tears the local Weave open: a **banishment-grade pulse.** Yeenoghu (and any bound/leashed fiend in radius) makes **DC 22 CHA or is banished** — his Avernus avatar destroyed, hurled to the Abyss to **reform over 100 years** [CANON: a demon lord "killed" off the Abyss reforms there in a century]. **The Chain shatters automatically.** Dumal, if caught, eats the blast and may be flung/banished too.
 - **Cost.** The ship is **gone** — transport and a character in her own right. **Jeremy lives only if evacuated.**
 
-**Escape outs (set at least one up, or it's a sacrifice play):** Soul Coin Overdrive ejection burst · the **Moonkite** ferrying riders · the **unicorn** carrying the wounded · Aurora's **Misty Escape** · **Veska's steed** carrying a rider clear. *If no out is arranged, someone may have to ride her down — player's choice, never forced.*
+**Escape outs (set at least one up, or it's a sacrifice play):** Soul Coin Overdrive ejection burst · the **Moonkite** ferrying riders · Aurora's **Misty Escape** · a **Hellrider steed** carrying a rider clear. *If no out is arranged, someone may have to ride her down — player's choice, never forced.*
 
 > **Why this isn't a cheap "I win":** it **costs the ship**, needs **3 rounds under fire**, and only **banishes** (never kills) Yeenoghu. It's a desperate trade, and it should feel like one.
 
@@ -295,7 +418,7 @@ Jeremy (Gondian gnome — the artificers who **built the Hellships** [CANON]) ca
 
 | Trigger | Meter | Δ |
 |---|---|---|
-| Break the leash with **celestial/radiant** (unicorn/Moonbow/Lulu/Drenwal) | Gargauth −3 · Coram +5 | light unmade a devil's chain |
+| Break the leash with **celestial/radiant** power (Moonbow/Lulu/Drenwal/Hellriders) | Gargauth −3 · Coram +5 | light unmade a devil's chain |
 | **Scuttle the ship** to banish Yeenoghu (selfless sacrifice) | Coram **+8** · Bhaal −5 | a third power *notices* the mercy in the ruin |
 | Drenwal **rages / kills inside the slaughter-aura** | Bhaal **+8** | Yeenoghu's hunger feeds the Claim |
 | Let **Yeenoghu** kill Dumal | Bhaal **−20** | god drops a failed instrument |
@@ -319,7 +442,6 @@ Dumal's pledge means **Cania now has a stake in this party.** Seed it tonight:
 - Yeenoghu: **banished (100 yr)** / **recalled** / still loose (if they fled fast).
 - Dumal: **escaped** / **slain by Yeenoghu** / **slain by party** (Dial).
 - **Lady Vengeance:** intact / **scuttled (lost)** — if lost, next session opens *grounded* in Avernus. Big logistical consequence; Jeremy's status.
-- Unicorn: flew free (future ally) / fell.
 - Meters ticked; **Mephistopheles thread opened.**
 - The letter to Bel: still in hand (Bel's Forge still ahead, or behind you — adjust).
 
@@ -621,9 +743,9 @@ Same logic as the Session 5 bible — re-roll toward grit, never toward polish:
 ## ▶ DM combat reference card {#refcard}
 
 ### Balance audit — the one fix that matters
-**The original Chain numbers (Integrity 90 / Strain 100 / +10 per hit / +1 per 5 dmg) shatter the leash at the end of Round 1 by ~3×** — a full-party volley dumps ~117 Strain and ~300 Integrity damage in a single round, handing the party an *unleashed CR 24* right after they've spent their alpha strike on the Chain. TPK setup, not a 4-round set-piece. **Corrected values (already applied to the [Chain block](#chain)):** Integrity **300** (backstop only), Strain ceiling **200**, **+6** per radiant/force/banishment hit, **+1 per 8** Integrity damage, milestones **100 / 160 / 200**. With realistic *split* fire (≈2 cannons + unicorn + 1 striker on the Chain while the rest handle Yeenoghu / the Warden / gnolls) the leash now breaks **Round 4–5.** Two locks that keep the unleash from being a wipe: **Yeenoghu has no fly in BOTH modes** (canon — a grounded demon lord cannot chase the airborne ship), and **telegraph the shatter at Strain 160** so everyone can climb. The unleash becomes a *get-airborne sprint*, not a TPK.
+**The original Chain numbers (Integrity 90 / Strain 100 / +10 per hit / +1 per 5 dmg) shatter the leash at the end of Round 1 by ~3×.** Corrected values: Integrity **300**, Strain ceiling **200**, **+6** per radiant/force/banishment hit, and **+1 per 8** Integrity damage. With two cannons, the Gish, and one striker on the Chain, it should break around **Round 4–5**. Telegraph Strain 160 clearly.
 
-> **Survivability (leashed, ~4 rounds):** sustained incoming ≈ 55/round vs ~40 healing (Drenwal + Lulu + unicorn) across ~335 front-line HP + the 350-HP ship — net ~15/round, fine. Expect **one knockdown** on the R3 spike (Yeenoghu flail + Dumal's Hellfire Pillar + Warden Hoarfrost on one body ≈ 80). That's drama, not a wipe. **Warden** (189 HP, AC 21) dies to focused cannon fire in ~1.5 rounds — its job is the once-per-round Interposition *tax*, not a sponge; don't buff it. **Scuttle:** Jeremy's engine room (AC 17 / 60 HP) survives the 3-round prime *if* the party screens 3+ gnolls away from it.
+> **Survivability (leashed, ~4 rounds):** without celestial artillery, healing is lower; let Lulu prioritize emergency healing and avoid stacking the Round 3 spike onto an already wounded PC. The Warden remains an Interposition tax, not a sponge.
 
 ### Suggested initiative order
 1. **Lady Vengeance gunners** (cannons top-of-round — highest impact)
@@ -635,14 +757,14 @@ Same logic as the Session 5 bible — re-roll toward grit, never toward polish:
 7. **Yeenoghu (leashed)** (one flail, frighten)
 8. **Drenwal** (heal *after* seeing the round's damage)
 9. **Gnolls** (R2–R4)
-10. **Unicorn / Lulu** (support, beam-cross the Chain)
+10. **Lulu** (support and emergency healing)
 
 ### Round-by-round villain script
 - **R1 — establish the wall.** Warden positions within 10 ft of the Chain, **holds Interposition** for the biggest incoming hit. Yeenoghu: flail the nearest striker (frighten DC 20), no legendary actions. Dumal: maintain Reins, drop a control/force effect on the deck. No gnolls yet.
 - **R2 — pressure the healer.** Yeenoghu: flail **Drenwal** (tax the heal economy). Dumal: ranged force at Aurora/Moonkite (knock the flyer). **2–4 gnolls board.** Warden: Hoarfrost the gunners if recharged, else hold redirect.
 - **R3 — the spike.** Dumal: **Hellfire Pillar** (8d6, ignores fire resist) on the densest cluster — spend it here. Yeenoghu: flail the lowest PC. **Remaining gnolls land** (up to 8). *Watch the "too hard" dial if a PC is about to die unfairly.*
 - **R4 — the break approaches.** Strain crosses **160** → **narrate the chain shrieking, Lulu screams the warning.** Dumal at ≤60 HP tries **Bhaal Smoke retreat** — *only works if the leash still holds.*
-- **R5 / SHATTER (Strain 200 or Integrity 0).** **UNLEASHED.** Yeenoghu's first action: turn on **DUMAL**, Multiattack (240 HP → dead in 1–2 rounds). Unleash window **1d4+1 rounds**, **grounded** — party objective flips to **ESCAPE** (climb, Overdrive +60 ft, Misty Step up, Moonkite swoop, unicorn Teleport 1/day/1 mile). Anyone still adjacent to the wreck eats a ~80 multiattack.
+- **R5 / SHATTER (Strain 200 or Integrity 0).** **UNLEASHED.** Yeenoghu's first action: turn on **DUMAL**. The party objective flips to **ESCAPE** using Bess, the Moonkite, Misty Step, or Hellrider steeds.
 
 ### Leash-Strain tracker
 ```
@@ -652,7 +774,6 @@ STRAIN  ░░░░░░░░░░░░░░░░░░░░  / 200     
 [ ]  +1  per 8 raw damage to Chain Integrity
 [ ] +15  break Dumal's Reins concentration (CON DC 10)
 [ ] +15  Aether Harpoon bites the Chain
-[ ] +10  per unicorn beam crossing the Chain
 
 MILESTONES
 [ ] 100  ► Yeenoghu free-swings at DUMAL (telegraph — he's slipping the leash)
@@ -694,8 +815,8 @@ A pass over this encounter against the 7-step boss-design checklist. **✓** = a
 7. **Aftermath beyond gold** ➕ — see **rewards & world-reaction** below.
 
 ### ➕ Battlefield states (step 3) — the field mutates each phase
-- **Opening — the Demon Zapper wreck & gore-plain.** The unicorn's torn cage, the dao's collapsed tunnel, open red flat. *Lady Vengeance* overhead. (Map A.)
-- **Mid — smog & swarm.** Yeenoghu's carrion-fly cloud thickens (lightly obscured); gnolls boil up and board; the unicorn's radiance carves a clean-air pocket; bone-stone is difficult footing. (Map B.)
+- **Opening — the Demon Zapper wreck & gore-plain.** The dao's collapsed tunnel and open red flat. *Lady Vengeance* overhead. (Map A.)
+- **Mid — smog & swarm.** Yeenoghu's carrion-fly cloud thickens (lightly obscured); gnolls boil up and board; bone-stone is difficult footing. (Map B.)
 - **Strain ≥160 — the leash flares.** Red-and-cobalt light floods the field, the fly-drone cuts out, the demon's attention visibly swings to Dumal. *The telegraph the whole table feels.*
 - **UNLEASH — the rift forms.** A forming Abyssal tear warps the ground; the gnoll-rising aura turns the slain into more gnolls; the field becomes a **"get airborne or die" zone.** (Map C.)
 - **Scuttle — white annihilation.** The weave-rupture bleaches everything; after: scorched glass, falling ash, the single star.
@@ -724,7 +845,6 @@ A pass over this encounter against the 7-step boss-design checklist. **✓** = a
 ### ➕ Aftermath — rewards beyond gold (step 7)
 - **A Bleeding-Citadel component:** Yeenoghu's ichor / a flail-shard / the cooled leash-slag — top-tier *demon-lord blood* Blood-Pay material. Ties straight into the main quest clock.
 - **Mephistopheles' ledger (new thread):** the party cost Cania its asset → an archdevil now holds an *interest* in them — a future boon-or-bounty.
-- **The freed unicorn** → a celestial ally and a possible *"untouched god's" witness* for Drenwal's rebirth-cure.
 - **Reputation:** *the crew that banished a demon lord in Avernus.* Bel respects it; the Wandering Emporium hears of it; gnoll-warbands fear the ship. A working legend-name: **"the Leash-Breakers."**
 - **Personal fallout (Drenwal):** the brother's fate seeds the **Senna** arc — dead (cult/Mephistopheles fallout) or alive (more dangerous, more breakable).
 - **The cost:** if they scuttled, they're **grounded in Avernus** without the *Lady Vengeance* — the next session opens on that problem.

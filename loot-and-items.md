@@ -25,7 +25,7 @@
 - Wondrous, Evolving, requires attunement by Soulknife Rogue
 - Brass genie lamp with crystalline psionic channels. Grows from completed bounties.
 - **Base:** Links to soul knife, +1 attack/damage. Captures soul fragments of slain creatures.
-- **Storage:** Half proficiency bonus (rounded down) souls. Currently 2 at level 11.
+- **Storage:** Half proficiency bonus (rounded down) souls. Currently 2 at level 12.
 - **Tiers unlock via bounty contracts from Rasheem (genie fence):**
   - Minor Souls (CR 1-4) — base, always available
   - Medium Souls (CR 5-10) — **UNLOCKED (Bloodbath bounty)**
@@ -81,6 +81,26 @@ Each creature has unique trophies and usable items. Key examples:
 - Devils drop infernal contracts, soul coin fragments, flame-touched weapons
 - Demons drop ichor, corruption shards, chaotic essence
 - Undead drop memory fragments, spectral chains, grave dust
+
+### Monster Harvesting [HOMEBREW]
+
+One carve attempt per component: **Survival/Medicine** (physical parts) or **Arcana** (infernal reagents), ~10 min each. Fail = wasted; **fail by 5+ on a venom gland** = self-dose (save vs. the venom).
+
+**[D&D CANON] Fiends killed in Avernus are destroyed for good — and the corpse stays.** A devil killed on the Material Plane is banished away to re-form; one killed here in the Nine Hells is *gone*, body intact and harvestable. **[HOMEBREW]** it sublimates into sulfurous smoke over ~1 hr — carve soft parts (venom, essence) promptly; bone keeps a day. (Demon bodies leave ichor; devil bodies leave brimstone.)
+
+#### Bone Devil (osyluth, CR 9)
+
+| Component | Check | Yield | Use / value |
+|---|---|---|---|
+| **Venom gland** (tail) | Med/Surv **DC 14** | **3–5 doses Bone Devil Venom** | Coat weapon (bonus action): next hit **+2d6 poison**, **DC 14 Con or poisoned 1 hr**. ~0.25 SC/dose. *(matches `encounter-appendix.md`)* |
+| **Stinger** (bone spike) | Survival **DC 13** | 1 barbed spike | Rassh forges a **+1 "sting" dagger/spear** with a venom channel (holds 1 ready dose). ~6–8 SC labor. |
+| **Skeletal plates** | Survival **DC 15** | 2–3 units hellforged bone | Crafting stock → bone-weave armor / weapon hafts (Rassh). ~1 SC/unit. |
+| **Skull & horns** | Survival **DC 12** | trophy / focus | Infernal arcane focus (unsettles lesser fiends); trophy. ~0.5 SC. |
+| **Brimstone essence** | Arcana **DC 15** | 1 vial infernal reagent | Component for infernal/contract magic; Fhet'Ahla or a mage buys it. ~1 SC. |
+
+**Carried loot:** 1–3 soul coins · an **infernal warrant/orders/sealed contract** (names, a target, a debt — blackmail or intel) · a **legion signet/rank token** · *(officer variant)* a map or ledger (temp Avernus map, +2 navigation).
+
+**Sell/craft:** at the Emporium (`wandering-emporium-reference.md`) — **Rassh** buys/forges bone & stinger; **Fhet'Ahla** appraises essence/contracts. Bone devils are *devils*, so no demon ichor for Elliach. **Keep the venom** — coating weapons usually beats the sale.
 
 ## Wild Magic Apples (d8)
 

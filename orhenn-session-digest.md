@@ -6,7 +6,7 @@ Consolidated output of the working session (2026-07-19). Everything generated fo
 
 ## 1. Campaign state changes
 
-- **The party destroyed Yeenoghu's avatar and beat Dumal** in the Session-7 Demon Zapper climax. Dumal is **alive**: he escaped through the black smoke and is bound for the Mirror of Mephistar. The Dumal arc is **open**. (Drenwal, the Light Cleric / Bhaalspawn, had his own brother "Den" beaten and watched him get away — RP fallout to seed.)
+- **The party broke Yeenoghu's vanguard and wounded Dumal** in the Session-7 Demon Zapper climax; Dumal broke free and escaped, wounded and unaided, so his arc stays open. (Drenwal, the Light Cleric / Bhaalspawn, wounded but could not stop his own brother "Den" — RP fallout to seed.)
 - **Asimov — the party's fallen Soulknife (Mikas's original PC) — DIED to Yeenoghu in the Session-7 climax;** his soul was captured in the **soul capacitor**. The party seeks a **patron** for him at the **Wandering Emporium** (Mahadi's market). From the capacitor, Asimov's soul relays Emporium jobs — reframed as **soul-bounties** — to **Or'Henn**, the party's new PC. **Continuity:** the party already knew Asimov (their own dead); **Or'Henn is the fresh recruit and never met Asimov in life** — they meet him at the Emporium as a **post-ravager refugee** (supplies, shelter, word of other estates). The same **Yeenoghu** front that killed Asimov razed Or'Henn's estate — a shared grievance.
 - **Soul capacitor & the Soul Council (the engine):** the capacitor is a bounty-hunter's soul-vessel run by the **Soul Council**. Asimov's soul occupies it now **in place of Rasheem**, the **previous occupant** who **gave Asimov his bounties** when Asimov was the living hunter. The role passes down a chain — the trapped soul feeds bounties to a living hunter; when that hunter dies they replace the occupant (Asimov died to Yeenoghu → now holds the vessel, not Rasheem → now relays to the party as Rasheem once did to him). The Council has given Asimov **one week to find another bounty hunter** — the ticking clock behind recruiting Or'Henn/the party and the soul-bounties he relays.
 - **Player Mikas** (who ran Asimov) is bringing in a new character: **Or'Henn**, an elderly Red Dragonborn druid.
@@ -20,7 +20,7 @@ Consolidated output of the working session (2026-07-19). Everything generated fo
 
 **Backstory (revised per review):** Or'Henn was hatched in the **Ashen Garden**, a chartered enclave of living retainers attached to the estate of an Avernian noble. The household preserved mortal gardeners, handlers, and scribes because living hands could cultivate things that Hell can corrupt but not create. His predecessor — an enslaved druid taken from the Material Plane — taught him to drive roots through iron, bone, and ash, and left him **Cinderbloom, the badge of the estate's chief keeper and the key to its menagerie wards**. When a **Yeenoghu-aligned warband** (a vanguard, not the demon lord himself — demons reform in the Abyss) breached the estate, Or'Henn fled without the staff. **He retained his druidic magic**, but lost his office, his authority over the surviving beasts, and any lawful claim to the Ashen Garden. He now intends to recover Cinderbloom, settle or weaponize the estate's remaining obligations, and establish a domain of his own. (The staff is his *title and inheritance*, not his class sheet — this preserves his agency.)
 
-**Build (locked):** **Circle of Wildfire** druid, Level 11 (matches the ember theme). Wild Shape cap set by DM ruling to **CR 2** (RAW Wildfire caps at CR 1); non-Beast forms must be earned individually (physical shape + natural attacks only).
+**Build (locked):** **Circle of Wildfire** druid, Level 12 (matches the ember theme). Wild Shape cap set by DM ruling to **CR 2** (RAW Wildfire caps at CR 1); non-Beast forms must be earned individually (physical shape + natural attacks only).
 
 **Open plot hooks:**
 1. Recover the lost staff (Cinderbloom) — breadcrumb trail in the contracts below.
@@ -83,9 +83,9 @@ Contracts 1 → 3 → 5 form the staff-recovery questline:
 
 ---
 
-## 5. Infernal Wild Shape Codex (Druid 11)
+## 5. Infernal Wild Shape Codex (Druid 12)
 
-Rules: **Circle of Wildfire** L11 → Wild Shape as a bonus action (2024). RAW caps a non-Moon druid at CR 1 Beasts; by DM ruling Or'Henn may take **Beast and earned-infernal forms of CR ≤ 2** (Monstrosity/Fiend/Elemental marked DM — unlocked individually, physical shape + natural attacks only). **CR 3 forms (Tier IV) are locked/aspirational.** Links go to 5e.tools.
+Rules: **Circle of Wildfire** L12 → Wild Shape as a bonus action (2024). RAW caps a non-Moon druid at CR 1 Beasts; by DM ruling Or'Henn may take **Beast and earned-infernal forms of CR ≤ 2** (Monstrosity/Fiend/Elemental marked DM — unlocked individually, physical shape + natural attacks only). **CR 3 forms (Tier IV) are locked/aspirational.** Links go to 5e.tools.
 
 **Tier I — Scouts & Saboteurs (CR 1/8–1/2):** Abyssal Chicken (Fiend, 1/8, BGDIA, DM), Stirge (Beast, 1/8, B), Dretch (Fiend, 1/4, DM), Cockatrice (Monstrosity, 1/2, DM — petrify), Nupperibo (Fiend, 1/2, BGDIA, DM — blindsight/fearless), Rust Monster (Monstrosity, 1/2, DM — corrode metal), Magma Mephit (Elemental, 1/2, DM — fireproof flyer).
 

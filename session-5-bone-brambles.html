@@ -1,0 +1,1067 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Side Encounter — The Bone Brambles &amp; Red Ruth</title>
+<style>
+  :root{
+    --bg:#0a0d08; --surface:#15170f; --surface2:#1e2117; --border:#3a4030;
+    --ink:#dad4c8; --muted:#8a8a7a; --accent:#c8a464; --silver:#b8c8d8;
+    --blood:#8b1a1a; --rot:#6a5818; --bone:#cdbb9a; --hell:#d04a1a;
+    --good:#5fa860; --warn:#e0a040; --crit:#d24040; --celest:#c0c8e0;
+    --eldath:#7ac4c8; --brambles:#5a7048; --hag:#7a3b6a;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter','Segoe UI',system-ui,sans-serif;line-height:1.55;font-size:15px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .layout{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+  nav.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border);padding:20px 16px}
+  nav h1{font-family:'Cinzel','Georgia',serif;font-size:16px;color:var(--accent);margin:0 0 4px;letter-spacing:1px}
+  nav .sub{color:var(--muted);font-size:12px;margin-bottom:16px;font-style:italic}
+  nav ol{list-style:none;padding:0;margin:0;counter-reset:nav}
+  nav ol li{counter-increment:nav;margin-bottom:2px}
+  nav ol li a{display:block;padding:6px 8px;border-radius:4px;color:var(--ink);font-size:13px;border-left:2px solid transparent}
+  nav ol li a:before{content:counter(nav,decimal-leading-zero) " · ";color:var(--muted);font-family:monospace;font-size:11px}
+  nav ol li a:hover{background:var(--surface2);border-left-color:var(--accent);text-decoration:none}
+  nav .navgroup{margin-top:16px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:0 8px 4px}
+  nav .back{display:block;margin-top:18px;padding:8px;background:var(--surface2);border-radius:4px;color:var(--accent);font-size:12px;text-align:center}
+
+  main{padding:24px 36px 80px;max-width:980px}
+  header.title{margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+  header.title h1{font-family:'Cinzel','Georgia',serif;font-size:30px;color:var(--accent);margin:0 0 4px;letter-spacing:2px}
+  header.title .meta{color:var(--muted);font-size:13px;font-style:italic}
+
+  .trackers{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 0;margin-bottom:20px;border-bottom:1px solid var(--border)}
+  .tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+  .tracker{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 12px}
+  .tracker .label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+  .tracker .label button{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:10px;padding:1px 5px;border-radius:3px;cursor:pointer}
+  .tracker .label button:hover{color:var(--accent);border-color:var(--accent)}
+
+  .hp-bar{width:100%;height:18px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;position:relative;overflow:hidden}
+  .hp-bar .fill{height:100%;transition:width 0.3s}
+  .hp-bar .fill.hag{background:linear-gradient(90deg,var(--hag),var(--blood))}
+  .hp-bar .fill.travel{background:linear-gradient(90deg,var(--brambles),var(--rot))}
+  .hp-bar .text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;color:var(--ink);text-shadow:0 0 3px black,0 0 6px black}
+
+  .num-edit{background:var(--bg);border:1px solid var(--border);color:var(--accent);font-family:'Cinzel',serif;font-size:13px;font-weight:bold;text-align:center;border-radius:3px;padding:2px 4px;width:46px;margin-left:4px}
+  .num-edit:focus{outline:none;border-color:var(--accent);background:var(--surface2)}
+
+  .round-counter{display:flex;align-items:center;gap:6px}
+  .round-counter button{background:var(--surface2);border:1px solid var(--border);color:var(--ink);width:28px;height:28px;border-radius:4px;cursor:pointer;font-size:14px}
+  .round-counter button:hover{background:var(--accent);color:var(--bg)}
+
+  .meter-controls{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+  .meter-controls button{flex:1;min-width:30px;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px;border-radius:3px;cursor:pointer;font-size:10px;font-family:inherit}
+  .meter-controls button:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+
+  .toll-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:4px}
+  .toll-grid button{background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:6px 4px;border-radius:3px;cursor:pointer;font-size:11px;font-family:inherit}
+  .toll-grid button.paid{background:var(--good);color:var(--bg);border-color:var(--good)}
+  .toll-grid button:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+
+  section{margin-bottom:32px;scroll-margin-top:200px}
+  section > h2{font-family:'Cinzel',serif;font-size:22px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:6px;margin:28px 0 14px;letter-spacing:1px}
+  section > h3{font-family:'Cinzel',serif;font-size:17px;color:var(--bone);margin:20px 0 8px}
+  section h4{font-size:13px;color:var(--accent);margin:14px 0 6px;text-transform:uppercase;letter-spacing:1px}
+
+  blockquote.read{background:var(--surface);border-left:4px solid var(--accent);padding:14px 18px;margin:14px 0;font-style:italic;color:var(--bone);border-radius:0 4px 4px 0;white-space:pre-wrap}
+  blockquote.read em{color:var(--accent);font-style:normal;font-weight:600}
+
+  blockquote.dialogue{background:var(--surface2);border-left:4px solid var(--hag);padding:10px 16px;margin:10px 0 10px 20px;font-style:italic;color:var(--ink);border-radius:0 4px 4px 0;white-space:pre-wrap}
+  blockquote.dialogue.ruth{border-left-color:var(--hag)}
+  blockquote.dialogue.captive{border-left-color:var(--bone)}
+  blockquote.dialogue strong{color:var(--accent);font-style:normal}
+
+  .callout{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--warn);padding:12px 16px;margin:12px 0;border-radius:0 4px 4px 0}
+  .callout.danger{border-left-color:var(--crit)}
+  .callout.good{border-left-color:var(--good)}
+  .callout.info{border-left-color:var(--celest)}
+  .callout.hag{border-left-color:var(--hag)}
+  .callout.brambles{border-left-color:var(--brambles)}
+  .callout strong:first-child{color:var(--accent);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;font-size:13px}
+  th{background:var(--surface2);color:var(--accent);font-family:'Cinzel',serif;text-align:left;padding:8px 10px;font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+  td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--surface2)}
+
+  .statblock{background:#f4ecdc;color:#1a1410;border:2px solid var(--bone);border-radius:6px;padding:16px 20px;margin:14px 0;font-family:'Bookman','Garamond',serif;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+  .statblock h3{font-family:'Cinzel',serif;color:var(--blood);margin:0 0 4px;font-size:20px;letter-spacing:1px}
+  .statblock .subtitle{font-style:italic;color:#3a2018;margin-bottom:8px;font-size:13px}
+  .statblock hr{border:none;border-top:2px solid var(--blood);margin:8px 0}
+  .statblock .ability{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;text-align:center;padding:8px 0;font-size:12px}
+  .statblock .ability div span{display:block;font-weight:bold;color:var(--blood)}
+  .statblock p{margin:6px 0;font-size:13px}
+  .statblock .trait,.statblock .action{margin:6px 0}
+  .statblock .trait strong,.statblock .action strong{color:var(--blood);font-style:italic}
+  .statblock.hag-block{background:#e8d8e0;border-color:var(--hag)}
+  .statblock.hag-block h3{color:var(--hag)}
+  .statblock.hag-block hr{border-top-color:var(--hag)}
+  .statblock.hag-block .ability div span{color:var(--hag)}
+  .statblock.hag-block .trait strong,.statblock.hag-block .action strong{color:var(--hag)}
+
+  ul.tight,ol.tight{margin:6px 0;padding-left:22px}
+  ul.tight li,ol.tight li{margin:3px 0}
+
+  .pill{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1px 8px;font-size:11px;color:var(--muted);margin-right:4px}
+  .pill.crit{background:var(--blood);color:white;border-color:var(--blood)}
+  .pill.good{background:var(--good);color:var(--bg);border-color:var(--good)}
+  .pill.warn{background:var(--warn);color:var(--bg);border-color:var(--warn)}
+  .pill.hag{background:var(--hag);color:var(--ink);border-color:var(--hag)}
+  .pill.brambles{background:var(--brambles);color:var(--bg);border-color:var(--brambles)}
+
+  details{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin:10px 0;padding:0}
+  details summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--accent);user-select:none;list-style:none}
+  details summary:before{content:"▶";font-size:10px;margin-right:8px;transition:transform 0.2s}
+  details[open] summary:before{transform:rotate(90deg)}
+  details summary::-webkit-details-marker{display:none}
+  details > *:not(summary){padding:0 16px 14px}
+
+  .dm-cue{background:rgba(122,59,106,0.10);border-left:3px solid var(--hag);padding:10px 14px;margin:10px 0;font-size:13px;border-radius:0 4px 4px 0}
+  .dm-cue strong{color:var(--hag);text-transform:uppercase;font-size:11px;letter-spacing:1.5px;display:block;margin-bottom:4px}
+
+  .ascii-map{background:var(--surface2);color:var(--bone);padding:14px;border-radius:4px;border:1px solid var(--border);overflow-x:auto;font-size:12px;line-height:1.3;font-family:'Consolas','Monaco',monospace;white-space:pre}
+
+  @media print {
+    nav.sidebar,.trackers{display:none}
+    .layout{grid-template-columns:1fr}
+    main{max-width:100%;padding:10px}
+    section{break-inside:avoid}
+    body{background:white;color:black}
+  }
+
+  @media (max-width: 900px){
+    .layout{grid-template-columns:1fr}
+    nav.sidebar{position:relative;height:auto}
+    main{padding:16px}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <h1>BONE BRAMBLES</h1>
+  <div class="sub">Side encounter · Ralzala's quest leads here</div>
+
+  <div class="navgroup">Trackers</div>
+  <ol><li><a href="#trackers">Live Trackers</a></li></ol>
+
+  <div class="navgroup">Travel</div>
+  <ol>
+    <li><a href="#approach">Approach</a></li>
+    <li><a href="#hazards">The Four Hazards</a></li>
+    <li><a href="#captive">The Captive Hellrider</a></li>
+  </ol>
+
+  <div class="navgroup">Red Ruth</div>
+  <ol>
+    <li><a href="#clearing">The Hollow Tree</a></li>
+    <li><a href="#dialogue">Audience &amp; Demands</a></li>
+    <li><a href="#oracle">Optional: Party Reading</a></li>
+    <li><a href="#sb-ruth">Statblock (CR 13)</a></li>
+    <li><a href="#spectral-coven">Spectral Sisters Coven</a></li>
+  </ol>
+
+  <div class="navgroup">Quest</div>
+  <ol>
+    <li><a href="#pact-rite">The Rite of Three Flames</a></li>
+  </ol>
+
+  <div class="navgroup">Outcomes</div>
+  <ol>
+    <li><a href="#influence">Influence Ticks</a></li>
+    <li><a href="#departure">Leaving the Brambles</a></li>
+    <li><a href="#loot">Loot &amp; Treasures</a></li>
+  </ol>
+
+  <a href="session-5-demon-zapper.html" class="back">← Back to Demon Zapper</a>
+  <a href="session-5-dumal-primer.html" class="back">← Back to Dumal Primer</a>
+</nav>
+
+<main>
+
+<header class="title">
+  <h1>The Bone Brambles &amp; Red Ruth</h1>
+  <div class="meta">Side encounter · L11 party · 60–120 min · Ralzala's quest hook · CR ≈ 13 if combat</div>
+</header>
+
+<!-- =================== TRACKERS =================== -->
+<section id="trackers" class="trackers">
+  <div class="tracker-grid">
+
+    <div class="tracker">
+      <div class="label"><span>Round</span><button onclick="setRound(1)">reset</button></div>
+      <div class="round-counter">
+        <button onclick="changeRound(-1)">−</button>
+        <input type="number" id="round-input" class="num-edit" min="1" max="99" value="1" onchange="setRound(this.value)">
+        <button onclick="changeRound(1)">+</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Travel hours into Brambles <input type="number" id="travel-input" class="num-edit" min="0" max="24" value="0" onchange="setTravel(this.value)"></span><button onclick="setTravel(0)">reset</button></div>
+      <div class="hp-bar"><div class="fill travel" id="travel-fill" style="width:0%"></div><div class="text" id="travel-text">0 / 14h</div></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">Hazards roll every 2h. DC 15 Nature/Survival halves time.</div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Ruth Disposition <input type="number" id="ruth-disp-input" class="num-edit" min="-10" max="10" value="0" onchange="setRuthDisp(this.value)"></span></div>
+      <div style="font-size:11px;color:var(--muted);margin-top:4px"><span id="ruth-warn">⚖ neutral — she'll deal but won't favor</span></div>
+      <div class="meter-controls">
+        <button onclick="addRuthDisp(-2)">−2</button>
+        <button onclick="addRuthDisp(-1)">−1</button>
+        <button onclick="addRuthDisp(1)">+1</button>
+        <button onclick="addRuthDisp(2)">+2</button>
+        <button onclick="addRuthDisp(3)">+3</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Ruth HP (combat only) <input type="number" id="ruth-hp-input" class="num-edit" min="0" max="200" value="200" onchange="setRuthHP(this.value)"> / 200</span><button onclick="resetRuthHP()">reset</button></div>
+      <div class="hp-bar"><div class="fill hag" id="ruth-hp-fill" style="width:100%"></div><div class="text" id="ruth-hp-text">200 / 200</div></div>
+      <div class="meter-controls">
+        <button onclick="dmgRuth(10)">−10</button>
+        <button onclick="dmgRuth(25)">−25</button>
+        <button onclick="dmgRuth(50)">−50</button>
+        <button onclick="healRuth(20)">+20</button>
+      </div>
+    </div>
+
+    <div class="tracker" style="grid-column:span 2">
+      <div class="label"><span>Tolls Paid (click to toggle)</span><button onclick="resetTolls()">reset</button></div>
+      <div class="toll-grid" id="toll-grid"></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">Memory · Blood · Soul Coin · Secret · Name · Wound</div>
+    </div>
+
+    <div class="tracker" style="grid-column:span 2;border-left:4px solid var(--blood)">
+      <div class="label">
+        <span>🩸 Drenwal's Blood Pints Given <input type="number" id="blood-input" class="num-edit" min="0" max="20" value="0" onchange="setBlood(this.value)"></span>
+        <button onclick="setBlood(0)">reset</button>
+      </div>
+      <div style="font-size:11px;color:var(--ink);margin-top:4px">
+        Each pint = <strong>+3 Bhaal</strong>. Cumulative this session: <strong id="blood-bhaal-total">+0 Bhaal</strong>.
+      </div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">
+        <span id="blood-trajectory">Drenwal Bhaal projection: <strong>51</strong> (current). Watching for 75 (involuntary acts) and 100 (claimed).</span>
+      </div>
+      <div class="meter-controls">
+        <button onclick="addBlood(1)">+1 pint</button>
+        <button onclick="addBlood(2)">+2 pints</button>
+        <button onclick="addBlood(-1)">−1</button>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =================== BLOOD ECONOMY =================== -->
+<section id="blood-economy">
+  <div class="callout" style="border-left-color:var(--blood)"><strong>Blood Economy — Read Before Bargaining</strong>
+    Your party pays in blood. Drenwal's Bhaal-blood is rare and potent — most fiend/hag/dao NPCs will accept it for double normal value. <strong>But every pint ticks Bhaal +3.</strong> Track cumulatively.
+
+    <p style="margin-top:8px"><strong>Projection from current 51:</strong></p>
+    <ul class="tight">
+      <li><strong>Bone Brambles arc (2 pints typical):</strong> Bhaal 51 → 57</li>
+      <li><strong>Pact-breaking rite (no blood):</strong> ±0</li>
+      <li><strong>Bel's Forge (1 pint as token):</strong> Bhaal 57 → 60</li>
+      <li><strong>Arkhan's Tower (Tiamat blood deal — 1 pint substitution):</strong> Bhaal 60 → 65</li>
+      <li><strong>2 Hunger fails across the arc (+8 each, worst case):</strong> Bhaal 65 → 81 <span class="pill crit">past 75 threshold</span></li>
+    </ul>
+    <p style="margin-top:8px"><strong>At 75:</strong> The next humanoid Drenwal kills gets a Bhaal symbol carved into them, no save, free action. <em>This will happen at Bel's Forge or the Bleeding Citadel approach if uncorrected.</em></p>
+    <p><strong>How to brake:</strong> Spare an enemy (−2), refuse a Bhaal offer with narration (−3), devotional act to Eldath (−5 from highest), Lulu intercedes (−2/session), bone dagger destroyed at Eldath shrine (−10). <strong>Plant these brake-options in encounter design.</strong></p>
+  </div>
+</section>
+
+<!-- =================== APPROACH =================== -->
+<section id="approach">
+  <h2>Approach — The Edge of the Brambles</h2>
+
+  <div class="dm-cue"><strong>Context</strong>
+    Ralzala sent them here. Red Ruth knows how to break a dao's pact with an archdevil. The Bone Brambles lie roughly <strong>8 to 14 hours west</strong> of the Demon Zapper. <strong>DC 15 Nature or Survival halves the travel time.</strong> The party can fly the Lady Vengeance over the bramble canopy — but the brambles repel airborne approach (see below).
+  </div>
+
+  <blockquote class="read">The ash-flats end at a wall of black thorn.
+
+It stretches in both directions farther than you can see — twenty feet tall, woven from <em>bone and bramble in equal measure.</em> Calcified fingers reach out of the thicket as if pleading. Vines as thick as a man's wrist twine through the rib-cages of horses, of devils, of <em>things you do not have names for.</em> The thorns are six inches long and barbed, and they are <em>red.</em>
+
+The smell is wrong. Not rot. Something <em>older.</em> Like the inside of an animal that has been dead long enough to dry.
+
+A single path opens at the wall — narrow, exactly wide enough for one. The brambles part for it as though by old agreement. <em>The forest is letting you in.</em>
+
+Somewhere far inside, something laughs once. A woman's voice. Then nothing.</blockquote>
+
+  <h4>Airborne approach (Lady Vengeance)</h4>
+  <p>The brambles <strong>reject air travel.</strong> If the ship flies over the canopy, vine-tendrils lash up — DC 16 Dex save (or pilot Athletics, war machine handler) or the ship is <strong>snagged and dragged down.</strong> 4d6 falling damage to the ship; crew DC 14 Dex or take half. Three failed saves = ship is grounded in the brambles, recoverable only after Red Ruth's audience.</p>
+  <p><strong>Better:</strong> moor the Lady Vengeance at the bramble's edge with the crew. The party walks in. Vix, if still around, refuses to enter — <em>"His Ascendancy did not anticipate I would visit the witch today. Apologies. I will wait."</em></p>
+
+  <h4>The path narrows</h4>
+  <p>For the first hour the path is wide enough for two abreast. After that, single file. <strong>Mounted Aurora on the Moonkite: she must dismount</strong> (the Moonkite is too large; it will wait at the edge, or fly above the canopy at 200 ft to avoid the snagging vines).</p>
+</section>
+
+<!-- =================== HAZARDS =================== -->
+<section id="hazards">
+  <h2>The Four Hazards</h2>
+  <p style="color:var(--muted);font-size:13px">Roll for one every 2 hours of travel, OR run all four if the path was failed. The forest tests intruders before granting audience. <strong>Survive them and Red Ruth respects you (+1 disposition each cleared).</strong></p>
+
+  <h3>Hazard 1 — The Bone Choir <span class="pill brambles">CR 8</span></h3>
+  <blockquote class="read">The brambles thicken. The path opens into a clearing thirty feet wide. The clearing is <em>made of singing.</em>
+
+Suspended in the brambles overhead are <em>twelve skulls</em>, threaded on red sinew, each cracked open at the jaw. As you enter, they begin to sing in unison — a low note, a held drone, neither pleasant nor unpleasant. <em>And the brambles beneath the skulls begin to move.</em></blockquote>
+
+  <h4>Encounter — Bramble Wights ×3</h4>
+  <p>Custom: bone-and-thorn humanoids animated by the Choir. <strong>AC 14, HP 95 each, CR 5.</strong></p>
+  <ul class="tight">
+    <li><strong>Multiattack:</strong> 2 thorn-claw attacks (+7 to hit, 2d6+4 piercing + DC 14 CON or take 1d6 necrotic on next turn from blood-loss bramble)</li>
+    <li><strong>Bramble Lash (recharge 5-6):</strong> 15-ft cone, DC 14 STR save or restrained until end of next turn (vine grapple)</li>
+    <li><strong>Life Drain (1/day each):</strong> +7 to hit, 3d6 necrotic + max HP reduced by damage taken (until long rest)</li>
+    <li><strong>Sunlight Sensitivity</strong> (won't matter in Avernus)</li>
+    <li><strong>Drop:</strong> they collapse when the Choir is silenced. Smash the skulls (AC 12, HP 5 each — Aurora can do this with a single arrow each) and any remaining wights drop instantly. <strong>This is the puzzle clue: don't fight the wights, fight the music.</strong></li>
+  </ul>
+
+  <div class="callout brambles"><strong>Clue for the players (DC 12 Perception)</strong>The wights pulse in time with the choir's note. Silencing the choir kills them. <strong>Drenwal — DC 13 Religion:</strong> these are spirit-anchored constructs. Break the anchor (skulls), break the bodies.</div>
+
+  <h3>Hazard 2 — The Hadar Pocket <span class="pill brambles">Environmental</span></h3>
+  <blockquote class="read">A section of path drops into a <em>hollow.</em> The brambles arch overhead, closing off the sky. The air gets colder, then colder still. The light dies. You are standing in a six-foot circle that is the only place in this pocket of forest where the dark hasn't <em>taken hold.</em>
+
+You can hear something <em>chewing.</em></blockquote>
+
+  <h4>Mechanic — Hunger of Hadar Aura</h4>
+  <ul class="tight">
+    <li>The pocket is a 60-ft radius, lasts 80 ft of path</li>
+    <li><strong>Movement:</strong> difficult terrain (half speed). Anyone moving more than 30 ft in a round through the pocket takes <strong>2d6 cold damage</strong></li>
+    <li><strong>Each round inside:</strong> 2d6 acid damage (otherworldly mouths) — no save</li>
+    <li><strong>Vision:</strong> blindness; can only see 5 ft</li>
+    <li><strong>Sound:</strong> heard in the dark — DC 13 WIS save at end of each round inside, or take 1d4 psychic from the things that whisper to you. <em>Drenwal's mother's voice. Aurora's first lover's voice. Asimov's birth-name.</em></li>
+  </ul>
+
+  <h4>How to cross</h4>
+  <ul class="tight">
+    <li><strong>Run it:</strong> 2 rounds of damage, ~4-6d6 cold + 2-4d6 acid each. Brutal but survivable.</li>
+    <li><strong>Dispel Magic (5th-level slot):</strong> Aurora can suppress the aura for 1 minute. Costs her highest slot. <strong>Best option.</strong></li>
+    <li><strong>Light spell or sunlight-equivalent:</strong> 10-ft sphere of safety. Drenwal's Light cantrip cuts the damage in half within the radius.</li>
+    <li><strong>Crawl through with eyes closed:</strong> 3 rounds. More damage. Lulu refuses to enter — she flies the long way around.</li>
+  </ul>
+
+  <h3>Hazard 3 — The Grapple Brambles <span class="pill brambles">Skill challenge</span></h3>
+  <blockquote class="read">The path tightens to a tunnel. The brambles close above. Your shoulders brush thorns on both sides. You can hear your own heartbeat. The vines are <em>watching you.</em> One of them <em>moves.</em></blockquote>
+
+  <h4>Mechanic — Bramble Grapple Trap</h4>
+  <ul class="tight">
+    <li>Triggers on anyone walking through (no save — it's a clamp ambush)</li>
+    <li><strong>DC 18 Athletics</strong> to break free (was 16 in canon; upscaled for L11)</li>
+    <li><strong>While grappled:</strong> 2d6 piercing per round from thorn pressure + cannot use somatic spell components</li>
+    <li><strong>Triggers in sequence</strong> — the first PC through gets grappled, the second PC ahead might trigger another 20 ft on, etc. Resolve as a chain.</li>
+    <li><strong>Aurora at STR 3:</strong> auto-fail Athletics. She needs another PC to cut her free. Drenwal Str-cut OR Asimov DC 16 Sleight of Hand to dismantle the trap.</li>
+    <li><strong>Each round of grapple:</strong> the vines speak. <em>"Stay. Stay with us. We do not bleed in here. Stay."</em></li>
+  </ul>
+
+  <div class="callout danger"><strong>Aurora's setback</strong>If Aurora is the one grappled first, the brambles take a particular interest in her — they sense the Moonkite-bond. <em>"Celestial. Pretty. We have not had a pretty one in centuries."</em> Add psychic 1d6 from temptation-whispers each round.</div>
+
+  <h3>Hazard 4 — The Mirror Pool <span class="pill brambles">RP / Optional</span></h3>
+  <blockquote class="read">The path opens to a tiny clearing — five paces across. In the center, a pool of perfectly still <em>blood.</em> Not water; blood. It does not ripple. It does not <em>reflect</em> — except for one moment, when you each look in, and see yourself <em>as you would be if you had never come to Avernus.</em></blockquote>
+
+  <h4>What each PC sees</h4>
+  <ul class="tight">
+    <li><strong>Drenwal:</strong> himself, twenty years older, smiling, hair grey, standing in a chapel of the Morninglord. A child plays at his feet — <em>a boy with his eyes and Senna's hair.</em> Then the boy looks at the pool, and his eyes are <strong>yellow.</strong></li>
+    <li><strong>Aurora:</strong> herself on a moonlit ridge, the Moonkite beneath her, but her own face — <em>her own face is a mask, and behind the mask is something else.</em> The vision lasts a heartbeat too long.</li>
+    <li><strong>Asimov:</strong> himself in a featureless white room. The lamp is on a table across from him. <em>The lamp is empty.</em> He is the lamp.</li>
+  </ul>
+
+  <h4>Optional roll — DC 15 WIS save</h4>
+  <p>Success: see the vision, shrug it off. Failure: <strong>−1 to the next 3 saves you make against fear or charm.</strong> Drenwal especially should fail this — lean into it.</p>
+
+  <p style="font-size:12px;color:var(--muted)"><em>Red Ruth made this pool. Anyone walking past it without looking earns +1 Ruth Disposition (she respects discipline). Anyone who lingers loses 1 (she enjoys breaking you).</em></p>
+</section>
+
+<!-- =================== CAPTIVE =================== -->
+<section id="captive">
+  <h2>Optional — The Captive Hellrider</h2>
+
+  <div class="dm-cue"><strong>Drop this between Hazard 2 and 3</strong>
+    A bonus encounter to seed lore + offer a moral choice. Tied loosely to Drenwal's arc — this Hellrider knew his father.
+  </div>
+
+  <blockquote class="read">Off the main path, half-hidden in the brambles, you see <em>a man.</em>
+
+He is fused with the brambles from the chest down. His arms are still free. His armor is <em>Hellrider blue</em>, blackened with age. His face is alive — burned, sun-blistered, eye sockets weeping pus and tears — but his lips move.
+
+He sees you. He starts to weep.
+
+<em>"Mercy. Please. Mercy. I have been here since the Wall."</em></blockquote>
+
+  <h4>Who he is — Ser Lucan of the Crimson Watch</h4>
+  <ul class="tight">
+    <li>Former Hellrider, survived the Descent only to be caught by the brambles two days later</li>
+    <li>Has been here <strong>~30 years</strong>. The brambles slow-feed on him.</li>
+    <li>Cannot die — the brambles keep him alive specifically to suffer (Red Ruth's design — she <em>likes</em> him)</li>
+    <li><strong>He knew Drenwal's father, Halvard.</strong> If Drenwal speaks his own name, Lucan's eyes focus: <em>"Halvard's boy. You have his cheekbones. He spoke of you. Both of you. He was so afraid. So afraid."</em></li>
+  </ul>
+
+  <h4>What he asks</h4>
+  <table>
+    <tr><th>Ask</th><th>Cost</th><th>Reward</th></tr>
+    <tr><td><strong>Kill me</strong></td><td>One slash, one prayer. Drenwal can do this with a Sacred Flame.</td><td>+2 Ruth disposition (she enjoys clean mercy). −3 Bhaal (deliberate mercy). +1 Eldath. Lucan dies smiling, <em>"Tell Halvard I kept the watch."</em></td></tr>
+    <tr><td><strong>Free me from the brambles</strong></td><td>DC 20 STR/Athletics OR sustained damage to the brambles around him (HP 80, AC 12)</td><td>Lucan is freed — his legs are <em>gone</em>. He's a torso. He cannot walk. The party would have to carry him. Most parties choose mercy-kill at this point. If they DO carry him: Red Ruth is <em>furious</em> (−5 disposition).</td></tr>
+    <tr><td><strong>Ask him questions before deciding</strong></td><td>Time. Each question = 1 min, ages him visibly.</td><td>He knows: (a) Drenwal's father's last words (<em>"Find him. Find Dumal. Save him."</em>), (b) the Hellrider Cult of Bhaal existed and his father knew it, (c) a Hellrider sigil-trick that grants +1 to next saving throw vs Bhaal-aligned effects (lasts 24h)</td></tr>
+    <tr><td><strong>Walk past, leave him</strong></td><td>None.</td><td>Hear him weep until you're out of earshot. <strong>+3 Bhaal</strong> (Drenwal failed a mercy in front of his witness brother — Bhaal smiles). Red Ruth <strong>+2</strong> (she'll get to keep him).</td></tr>
+  </table>
+
+  <div class="callout"><strong>Why this beat matters</strong>This is the Drenwal-arc punctuation in the middle of the dungeon. It tests <em>mercy</em> specifically — Lucan begs for clean death from a Light cleric. <strong>Refusing or botching this damages Drenwal's Eldath-track significantly.</strong> Killing him cleanly earns the deepest Bhaal-decrement available in the side quest.</div>
+</section>
+
+<!-- =================== CLEARING =================== -->
+<section id="clearing">
+  <h2>The Hollow Tree — Red Ruth's Lair</h2>
+
+  <blockquote class="read">The path ends.
+
+You stand in a clearing fifty feet wide, ringed by the brambles like a wall. In the center is a <em>tree</em> — though "tree" is not exactly the word. It is the corpse of a tree, white-grey, hollowed out, bigger than a house. The opening in its trunk is shaped like a screaming mouth. Smoke rises from somewhere inside, smelling of cooked meat and lilies.
+
+Bones decorate the clearing — femurs in geometric patterns on the ground, ribs tied into small wind-chimes that do not move. The chimes <em>sing</em> when you look at them. They stop when you look away.
+
+A voice from inside the hollow:
+
+<em>"Come in, dears. I have been expecting four of you, and you have brought three. The fourth one is dead, isn't he? Yes. I felt him die. I am sorry."</em>
+
+<em>(Pause.)</em>
+
+<em>"...are you coming in or not? My kettle is going."</em></blockquote>
+
+  <div class="dm-cue"><strong>The "fourth one" reference</strong>
+    Red Ruth knows the party used to have 4 PCs (Xebeche and Rebecca, per campaign-state.md, had earlier arcs). She's testing them — does she mean one of those, or someone else? Her oracle is real. <strong>Run with it.</strong> Could mean Aldwin (the body they didn't identify), could mean a future loss, could mean Lulu's eventual fate. Player paranoia is the goal.
+  </div>
+
+  <h4>Inside the hollow</h4>
+  <p>Comfortable. Disturbingly so. A small fire in the middle, kettle bubbling. A woven rug of red hair. Three chairs (she expected three). A fourth chair, knocked over, in the corner — pointedly empty.</p>
+
+  <p>Red Ruth herself: appears as a stooped old woman in a stained shawl, with <strong>thirty-six teeth</strong> all human and not all her own. Her hands are red — perpetually wet with blood that isn't her own. She moves like someone half her age.</p>
+</section>
+
+<!-- =================== DIALOGUE =================== -->
+<section id="dialogue">
+  <h2>Audience &amp; Demands</h2>
+
+  <p>Red Ruth knows why they came. <strong>Ralzala already told her telepathically.</strong> (Red Ruth has hag-coven-shaped magic + scrying.) She'll skip the explanation, jump to terms.</p>
+
+  <blockquote class="dialogue ruth"><strong>Red Ruth:</strong> "The dao wants out. Of course she does. Zariel does not honor her oaths to small things, and dao are <em>very</em> small things compared to a fallen angel. <em>(sip of kettle-water)</em>
+
+I can tell you how to break her pact. I have the rite written in my own hand, here, somewhere — <em>(gestures vaguely at a shelf of bottled organs)</em>.
+
+But I do not give. I trade. That is the rule. <em>Always</em> the rule. I would break it for no one. <em>(beat)</em> Maybe for you. We will see.
+
+Here is what I want."</blockquote>
+
+  <h4>Red Ruth's Demands — choose any TWO</h4>
+  <table>
+    <tr><th>Toll</th><th>What it costs</th><th>Disposition shift</th></tr>
+    <tr><td><strong>A memory</strong></td><td>One memory from any party member — DM chooses category, player chooses specific. Permanent. Cannot be a memory the player has previously volunteered. <strong>Drenwal's memory of his mother is what she'll push for.</strong></td><td>+3 if Drenwal's. +2 otherwise.</td></tr>
+    <tr><td><strong>A pint of blood</strong></td><td>Drenwal's preferred (Bhaal-blood is potent). 1d6 necrotic, exhaustion 1, permanent scar on the wrist.</td><td>+3 if Drenwal's. +1 otherwise.</td></tr>
+    <tr><td><strong>A soul coin</strong></td><td>From party stock.</td><td>+1</td></tr>
+    <tr><td><strong>A secret</strong></td><td>Spoken aloud, true, never previously told. Red Ruth verifies (DC 18 Insight, advantage from hag magic).</td><td>+2 (or +4 if it's about Bhaal/Dumal)</td></tr>
+    <tr><td><strong>Your true name</strong></td><td>Each PC has one true name. Sharing it gives Red Ruth one-use Geas authority over them at a future date (DM's discretion).</td><td>+4</td></tr>
+    <tr><td><strong>A wound — given to her, freely</strong></td><td>One PC voluntarily takes 4d10 damage (Drenwal can heal it after). The wound must be made by Ruth's bone-knife.</td><td>+2</td></tr>
+  </table>
+
+  <h4>Negotiation</h4>
+  <ul class="tight">
+    <li><strong>DC 18 Persuasion:</strong> she'll take ONE toll instead of two. She likes negotiators (a successful Persuasion of any DC = +1 disposition; failure ≥5 below DC = −2).</li>
+    <li><strong>DC 20 Intimidation:</strong> she laughs and the brambles outside whisper. <strong>−3 disposition.</strong> Don't.</li>
+    <li><strong>DC 22 Deception:</strong> she sees through every lie unless the roll meets it. Failure: she punishes by ageing the deceiver 1d4 years cosmetically (no mechanic, just flavor).</li>
+    <li><strong>If Drenwal volunteers his Bhaal-blood:</strong> she's <em>thrilled.</em> Toll counts double. <strong>+5 Ruth disposition.</strong> But: <strong>Bhaal +3</strong> (he gave his blood to a Hell-aligned creature; she's not Bhaal, but she's not friendly either). <em>Net: probably worth it.</em></li>
+    <li><strong>If they refuse to pay:</strong> she shrugs. <em>"Then you may leave. The path remembers you. Walk back. Do not return."</em> Quest fails. Ralzala can't be freed.</li>
+  </ul>
+
+  <div class="callout hag"><strong>Bhaal sensitivity</strong>Red Ruth recognizes Drenwal's blood immediately. She also <em>hates</em> Bhaalspawn — a sister hag was killed centuries ago by a Bhaal cult. <strong>This gives her TWO conflicting impulses</strong>: she wants to help him hurt Bhaal (by breaking a Zariel pact, which weakens Hell generally), AND she wants to bleed him dry. Play this as ambivalence — she's nicer to Drenwal than expected, but pushes him hardest.</div>
+
+  <h4>Once paid: the audience</h4>
+  <blockquote class="dialogue ruth"><strong>Red Ruth:</strong> "Good. Good. Now sit. <em>(she sits)</em> The rite. Ralzala's pact was sworn in <em>three tongues</em> — Common, Infernal, Terran. To break it, you must undo each tongue. Three speakings, three offerings, three witnesses. <em>(beat)</em>
+
+You will need three things — <em>(she ticks them off on bloody fingers)</em>:
+
+One. <em>Blood of an enemy of Zariel.</em> The bigger the enemy, the cleaner the break. A drop of Bel's blood would do it instantly. A vial of Mad Maggie's blood would do it slowly. Yours, fallen-Hellrider's-boy, would do it <em>uncomfortably</em>. Pick.
+
+Two. <em>Earth from a place Zariel cannot reach.</em> The Astral Sea, Mount Celestia, Elysium — none of which you can visit. <em>But.</em> The earth beneath Bel's Forge belongs to Bel, not Zariel. Bel hates her. The Forge will give you what you need. Or — closer, harder — the river-mud from where the River Styx meets the boundary of Cania. Mephistopheles's water, not Zariel's. Pick.
+
+Three. <em>Ralzala's true name, spoken in three tongues at midnight, by three voices.</em>"
+
+<em>(pause)</em>
+
+<em>"I will give you her true name. It is part of the price. You came here for it."</em></blockquote>
+</section>
+
+<!-- LULU READING REMOVED — party isn't using Lulu, runs blood economy instead -->
+
+<!-- =================== ORACLE =================== -->
+<section id="oracle">
+  <h2>Optional — Red Ruth's Oracle Reading (For PCs)</h2>
+
+  <div class="dm-cue"><strong>This is bonus content</strong>
+    Red Ruth is a canonical oracle. If the party asks her to read for them (one specific question), she will — for an additional toll. Use this to feed the players a real piece of plot foresight. <strong>Limit one question per party member, ever.</strong>
+  </div>
+
+  <h4>How the reading works</h4>
+  <p>Red Ruth cuts the asker with a bone-knife (2d6 damage, no save) and watches the blood pool on the stone floor. She reads the sanguine movements. The reading is <strong>true</strong> but framed as cryptically as the DM wants.</p>
+
+  <h4>Sample questions and DM-suggested answers</h4>
+  <table>
+    <tr><th>Question</th><th>Suggested Reading</th></tr>
+    <tr><td><em>"How do I escape Bhaal's claim?"</em> (Drenwal)</td><td><em>"You will not escape it. You will <strong>outgrow</strong> it. The Quiet One has tasted your name. The water has heard you. Three witnesses, three names, three pools. One of them will not survive your rebirth."</em> — confirms Eldath path; foreshadows a companion death at the ritual.</td></tr>
+    <tr><td><em>"Where is Senna?"</em> (Drenwal)</td><td><em>"In a yellow house with a red door. There is a cat named Cricket. The Harper does not know what she raises. The brother does. The other brother does not, yet. The day she bleeds for the first time, three souls take notice."</em></td></tr>
+    <tr><td><em>"Who is my real patron?"</em> (Aurora)</td><td><em>"Older than the Moonkite. Older than the kite's master. She has been waiting in still water for a long time. You have not asked her name. She will not give it freely. Ask in a place she has touched."</em> — sets up Tarsweald shrine pilgrimage.</td></tr>
+    <tr><td><em>"What does Rasheem actually want?"</em> (Asimov)</td><td><em>"Out. Always. The cup wants out. <strong>You</strong> are not the cup. You are the <strong>handle</strong>. Handles can be released. The cup will find a new one — likely your friend with the wish-veins. Warn her, or do not."</em> — major plot beat for Aurora/Asimov.</td></tr>
+    <tr><td><em>"Will we save Lulu?"</em> (any)</td><td><em>"Yes. Not the way you think. The hollyphant ends. The mistress returns. Be ready to grieve someone you have not yet missed."</em></td></tr>
+    <tr><td><em>"Who is Ralzala's rival dao?"</em> (specific)</td><td><em>"Garash. He breeds beetles. He is in the Lake of Boiling Mud. He will be very angry when she is free. Plan for him."</em> — opens a future quest.</td></tr>
+  </table>
+
+  <p style="font-size:12px;color:var(--muted)"><em>Toll for reading: 1 additional memory OR a soul coin OR a wound (4d10). Pick.</em></p>
+</section>
+
+<!-- =================== STATBLOCK =================== -->
+<section id="sb-ruth">
+  <h2>Statblock — Red Ruth, the Oracle in Red <span class="pill hag">CR 13 (upscaled)</span></h2>
+
+  <div class="dm-cue"><strong>Upscaling note</strong>
+    Canon Red Ruth is a Night Hag (CR 5), trivial for L11. This statblock keeps her hag identity but treats her as a <strong>unique elder oracle</strong> — coven-equivalent spell access solo, terrain advantage in the Brambles, a real fight if combat happens.
+  </div>
+
+  <div class="statblock hag-block">
+    <h3>Red Ruth, the Oracle in Red</h3>
+    <div class="subtitle">Medium fiend (hag), neutral evil · CR 13 · Unique</div>
+    <hr>
+    <p><strong>AC</strong> 17 (natural + bramble-blessing) · <strong>HP</strong> 200 (24d8+96) · <strong>Speed</strong> 30 ft, climb 30 ft (in brambles only)</p>
+    <div class="ability">
+      <div><span>STR</span>18 (+4)</div>
+      <div><span>DEX</span>15 (+2)</div>
+      <div><span>CON</span>18 (+4)</div>
+      <div><span>INT</span>16 (+3)</div>
+      <div><span>WIS</span>22 (+6)</div>
+      <div><span>CHA</span>18 (+4)</div>
+    </div>
+    <p><strong>Saves</strong> WIS +10, CHA +8 · <strong>Skills</strong> Deception +8, Insight +10, Perception +10</p>
+    <p><strong>Damage resistances</strong> cold, fire, necrotic; B/P/S from non-silvered nonmagical</p>
+    <p><strong>Senses</strong> darkvision 120 ft, truesight 30 ft, passive Perception 20 · <strong>Languages</strong> Abyssal, Common, Infernal, Primordial, telepathy 60 ft</p>
+    <hr>
+    <p class="trait"><strong>Innate Spellcasting.</strong> CHA, DC 16, +8 to hit. At will: Detect Magic, Detect Thoughts, Magic Missile (3rd-level slot), Minor Illusion. 3/day each: <strong>Counterspell, Dispel Magic, Sleep, Black Tentacles, Hunger of Hadar.</strong> 1/day each: <strong>Geas, Mass Suggestion, Plane Shift</strong> (self-only, back into Ethereal).</p>
+    <p class="trait"><strong>Magic Resistance.</strong> Advantage on saves vs spells.</p>
+    <p class="trait"><strong>Bramble Bond.</strong> While in the Bone Brambles, advantage on initiative. As a bonus action, can teleport up to 60 ft between any two bramble-touched points she can see.</p>
+    <p class="trait"><strong>Etherealness.</strong> Magically enters the Ethereal Plane from the Material, and vice versa. <em>If reduced to 0 HP and not in Ethereal, she retreats there automatically.</em></p>
+    <p class="trait"><strong>Oracle's Cut (1/turn).</strong> When she hits with a weapon attack, she can read the target's blood. Until end of her next turn, she has advantage on attacks against them and they have disadvantage on saves vs her spells.</p>
+    <hr>
+    <p><strong>Actions</strong></p>
+    <p class="action"><strong>Multiattack.</strong> Two bone-knife attacks plus one Hag's Word (gaze).</p>
+    <p class="action"><strong>Bone-Knife.</strong> +9 to hit, reach 5 ft, one target. Hit: 11 (2d6+4) piercing + 7 (2d6) necrotic.</p>
+    <p class="action"><strong>Hag's Word (gaze).</strong> One creature within 30 ft must succeed on DC 16 WIS save or take 18 (4d6+4) psychic damage and be <strong>frightened</strong> of Red Ruth until end of next turn. Save halves damage, no fright.</p>
+    <p class="action"><strong>Nightmare Haunting (1/day).</strong> If she has a target's possession or a drop of their blood, she can plane-shift to the Ethereal Plane during their long rest and inflict 3d10 psychic damage + reduce max HP by that amount until LR. <em>She'll do this to Drenwal if combat ended badly.</em></p>
+    <hr>
+    <p><strong>Reactions</strong></p>
+    <p class="action"><strong>Bramble Refuge.</strong> When hit by an attack, she can teleport up to 30 ft to a bramble-touched point and impose disadvantage on the triggering attack.</p>
+    <hr>
+    <p><em><strong>Combat tactics:</strong> Red Ruth doesn't want to fight. She negotiates. If pushed: opens with Black Tentacles to lock the party in place, then Hunger of Hadar overlapping. Uses Bramble Bond to teleport-stab Drenwal first (her preference). If reduced below half, retreats to Ethereal to recover; returns mid-night to haunt. <strong>She is functionally unkillable in the Brambles</strong> — only outside her domain is she vulnerable. Use that as the player learning moment.</em></p>
+  </div>
+</section>
+
+<!-- =================== SPECTRAL SISTERS COVEN =================== -->
+<section id="spectral-coven">
+  <h2>Spectral Sisters — Simulated Coven <span class="pill hag">CR +2 escalation</span></h2>
+
+  <div class="dm-cue"><strong>What this is</strong>
+    Night hags traditionally form covens of 3 to share spell access. Red Ruth's two sisters are <em>dead</em> — one killed by a Bhaal cult three centuries ago, the other lost to a wasting curse from a rival coven. <strong>She has been a coven of one for a long time.</strong>
+    <br><br>
+    When she <em>really</em> needs the old powers, she pulls their essences from the Ethereal Plane through her heartstone shard. They manifest as <strong>translucent specters</strong> in the shape they died — Selvia with the cult dagger still in her chest, Marsha with rotted lungs leaking grey vapor. They cannot stay long. <strong>The summoning costs Red Ruth.</strong>
+  </div>
+
+  <h3>When the Coven Manifests</h3>
+  <table>
+    <tr><th>Trigger</th><th>Context</th></tr>
+    <tr><td><strong>Combat — she drops below 100 HP</strong></td><td>Bonus action on her next turn. Sisters appear in adjacent squares. She gasps Selvia's name, then Marsha's. If she's hostile this is the major combat escalation.</td></tr>
+    <tr><td><strong>RP — major divination request</strong></td><td>If the party asks her to scry on something <em>very</em> important (e.g., Senna's exact location, the Sword of Zariel's bearer), she summons the coven for the casting. Visibly costs her — she ages cosmetically 1d4 years afterward and won't summon again for 1 month.</td></tr>
+    <tr><td><strong>RP — solving a problem the party brought her</strong></td><td>If the party offers a particularly meaningful toll (a true name, Drenwal's Bhaalspawn-blood, etc.), she may summon them as a courtesy — they're <em>her family,</em> she shows them off when she's happy.</td></tr>
+  </table>
+
+  <div class="callout hag"><strong>How long they stay</strong>Summoned, they last <strong>10 minutes</strong> (combat: 100 rounds) or until destroyed. Red Ruth cannot extend the summoning. After they vanish, she cannot summon again for <strong>1 month.</strong></div>
+
+  <h3>Selvia, the Knifed One — Spectral Hag <span class="pill" style="background:var(--blood);color:white">CR 5</span></h3>
+  <div class="statblock hag-block" style="background:#d8d0e0;border-color:#5a3060">
+    <h3 style="color:#5a3060">Selvia, Spectral Sister</h3>
+    <div class="subtitle">Medium undead (formerly hag), neutral evil · CR 5</div>
+    <hr>
+    <p><strong>AC</strong> 14 (incorporeal) · <strong>HP</strong> 80 (translucent — she's already dead) · <strong>Speed</strong> 0 ft, <strong>hover 30 ft</strong></p>
+    <div class="ability">
+      <div><span>STR</span>—</div>
+      <div><span>DEX</span>14 (+2)</div>
+      <div><span>CON</span>—</div>
+      <div><span>INT</span>14 (+2)</div>
+      <div><span>WIS</span>16 (+3)</div>
+      <div><span>CHA</span>16 (+3)</div>
+    </div>
+    <p><strong>Damage resistances</strong> all nonmagical damage · <strong>Damage vulnerabilities</strong> radiant · <strong>Damage immunities</strong> necrotic, poison · <strong>Condition immunities</strong> grappled, paralyzed, petrified, poisoned, prone, restrained</p>
+    <p><strong>Senses</strong> darkvision 60 ft, passive Perception 13 · <strong>Languages</strong> understands what Ruth speaks but cannot reply (lipless mouth, the knife)</p>
+    <hr>
+    <p class="trait"><strong>Incorporeal Movement.</strong> Can move through other creatures and objects as if difficult terrain. 5 (1d10) force damage if she ends turn inside a solid object.</p>
+    <p class="trait"><strong>Bhaal Mark.</strong> The cult dagger in her chest is still Bhaal-aspected. When she takes <strong>radiant</strong> damage, she shrieks audibly. Drenwal recognizes the Bhaal-craft of the blade with a glance.</p>
+    <p class="trait"><strong>Banishment Vulnerability.</strong> A successful Banishment, Dispel Evil and Good, or Turn Undead (cleric) at 5th level or higher returns her to the Ethereal — ending the manifestation. <strong>Counts as defeating her.</strong></p>
+    <hr>
+    <p class="action"><strong>Multiattack.</strong> Two ghostly claw attacks.</p>
+    <p class="action"><strong>Ghostly Claw.</strong> +5 to hit, reach 5 ft. 9 (2d6+2) cold + 7 (2d6) necrotic. <em>Target's max HP reduced by necrotic damage taken until long rest.</em></p>
+  </div>
+
+  <h3>Marsha, the Bone-Lung — Spectral Hag <span class="pill" style="background:var(--rot);color:var(--ink)">CR 4</span></h3>
+  <div class="statblock hag-block" style="background:#d4d0c0;border-color:#5a5018">
+    <h3 style="color:#5a5018">Marsha, Spectral Sister</h3>
+    <div class="subtitle">Medium undead (formerly hag), neutral evil · CR 4</div>
+    <hr>
+    <p><strong>AC</strong> 14 (incorporeal) · <strong>HP</strong> 70 · <strong>Speed</strong> 0 ft, <strong>hover 30 ft</strong></p>
+    <div class="ability">
+      <div><span>STR</span>—</div>
+      <div><span>DEX</span>14 (+2)</div>
+      <div><span>CON</span>—</div>
+      <div><span>INT</span>13 (+1)</div>
+      <div><span>WIS</span>15 (+2)</div>
+      <div><span>CHA</span>15 (+2)</div>
+    </div>
+    <p><strong>Damage resistances</strong> all nonmagical damage · <strong>Damage vulnerabilities</strong> radiant · <strong>Damage immunities</strong> necrotic, poison · <strong>Condition immunities</strong> grappled, paralyzed, petrified, poisoned, prone, restrained, charmed</p>
+    <p><strong>Senses</strong> darkvision 60 ft, passive Perception 12 · <strong>Languages</strong> wheezing rasps, intelligible only to Red Ruth</p>
+    <hr>
+    <p class="trait"><strong>Incorporeal Movement.</strong> As Selvia.</p>
+    <p class="trait"><strong>Curse-Rotted.</strong> She died of a rival coven's curse. Any creature that ends its turn within 5 ft must DC 13 CON save or take 1d4 necrotic.</p>
+    <p class="trait"><strong>Banishment Vulnerability.</strong> As Selvia.</p>
+    <hr>
+    <p class="action"><strong>Multiattack.</strong> Two ghostly claws + one Plague Breath if available.</p>
+    <p class="action"><strong>Ghostly Claw.</strong> +4 to hit, reach 5 ft. 8 (2d6+2) cold + 3 (1d6) necrotic.</p>
+    <p class="action"><strong>Plague Breath (recharge 5–6).</strong> 15-ft cone, DC 13 CON save or <strong>4d6 necrotic + poisoned 1 minute</strong> (save end of each turn). Half on save, no poison.</p>
+  </div>
+
+  <h3>Coven Spellcasting — While Both Sisters Manifested</h3>
+  <p style="color:var(--muted);font-size:13px">Standard 5e Night Hag Coven list (Volo's Guide / MM). Spells use coven slot economy — separate from Red Ruth's own slots. All saves DC 14 unless noted. <strong>Each spell castable once per manifestation.</strong></p>
+
+  <table>
+    <tr><th>Level</th><th>Spell</th><th>Conc?</th><th>Tactical use</th></tr>
+    <tr><td>1st</td><td><strong>Ray of Sickness</strong> · Identify</td><td>—</td><td>Ray: +5 to hit, 2d8 poison + DC 11 CON or poisoned 1 turn.</td></tr>
+    <tr><td>2nd</td><td><strong>Hold Person</strong> · Locate Object</td><td>✓</td><td>DC 14 WIS, paralyzed 1 min. <strong>Targets Drenwal first.</strong></td></tr>
+    <tr><td>3rd</td><td><strong>Bestow Curse</strong> · <strong>Counterspell</strong> · <strong>Lightning Bolt</strong> · Sending</td><td>Curse/Sending ✓ · CS/Bolt —</td><td>Counterspell is reaction (no concentration). Lightning Bolt: 100-ft line, 8d6, DC 14 DEX. Bestow Curse: disadvantage on attacks vs Ruth.</td></tr>
+    <tr><td>4th</td><td><strong>Phantasmal Killer</strong> · Polymorph</td><td>✓ both</td><td>PK on Drenwal: DC 14 WIS, 4d10 psychic + frightened. Polymorph: turn a PC into a sheep.</td></tr>
+    <tr><td>5th</td><td>Contact Other Plane · Scrying</td><td>Scry ✓</td><td>RP only.</td></tr>
+    <tr><td>6th</td><td><strong>Eyebite</strong></td><td>✓</td><td>1/day. DC 14 WIS or asleep / panicked / sickened for 1 min. Each round, re-target.</td></tr>
+  </table>
+
+  <h3>Hag Coven Concentration — Up to <span class="pill" style="background:var(--blood);color:var(--ink)">2× SIMULTANEOUS</span></h3>
+  <div class="callout danger"><strong>The big mechanical wrinkle</strong>
+    Hag covens canonically distribute concentration across the sisters. While the coven is manifested, the sisterhood holds <strong>TWO concentration spells at once.</strong>
+    <ul class="tight">
+      <li><strong>Slot 1 — Red Ruth's own concentration.</strong> One of her solo spells: Hunger of Hadar, Black Tentacles, Geas, etc. Held by Ruth herself, broken if she takes damage and fails a Concentration save (CON +4).</li>
+      <li><strong>Slot 2 — A coven concentration spell.</strong> Held by <em>either Selvia or Marsha</em> on Red Ruth's behalf. Hold Person, Bestow Curse, Phantasmal Killer, Polymorph, Scrying, or Eyebite.</li>
+      <li><strong>Counterspell and Lightning Bolt do NOT use concentration</strong> — Counterspell is a reaction, Lightning Bolt is instantaneous. The coven can fire these freely on top of the 2 concentration slots.</li>
+    </ul>
+    <p><strong>This is a real escalation.</strong> Where a normal CR 13 caster can lock one PC down, this coven can lock <em>two</em> down simultaneously while still firing damage spells through them.</p>
+  </div>
+
+  <h4>Concentration tracking — practical</h4>
+  <ul class="tight">
+    <li><strong>Selvia's concentration</strong> ends if she takes damage (CON save DC = 10 or half damage taken, whichever higher). She has no STR/CON listed because she's incorporeal — use her CHA mod (+3) for Concentration. <em>Easier to break than Ruth's.</em></li>
+    <li><strong>Marsha's concentration</strong> same — CHA mod +2 for Concentration save.</li>
+    <li><strong>If either sister is destroyed:</strong> her concentration spell ends immediately. Free the PC she was holding.</li>
+    <li><strong>If a sister is concentrating, only ONE sister can — the other is free to attack each round.</strong> Players figuring this out: focus fire on the concentrating sister to break the lockdown.</li>
+  </ul>
+
+  <div class="callout danger"><strong>Updated round-by-round combat tactics — 2-concentration shape</strong>
+    <ul class="tight">
+      <li><strong>Round 1 (summon round):</strong> Ruth bonus-actions the summon. Sisters appear adjacent. Ruth casts <strong>Hunger of Hadar</strong> on the party's grouping (her concentration). <strong>Selvia immediately concentrates on Hold Person</strong> against Drenwal (DC 14 WIS — likely fails). Marsha closes for melee. <strong>Counterspell reaction available</strong> if the party tries a 4th+-level spell.</li>
+      <li><strong>Round 2:</strong> Aurora and Asimov take damage if in Hadar. Drenwal paralyzed by Selvia's Hold Person. Marsha attacks Aurora (focus the weakest STR). Ruth bonus-action moves via Bramble Bond, action <strong>Lightning Bolt</strong> through the party line (no concentration, free with active concentration spells).</li>
+      <li><strong>Round 3:</strong> If Drenwal saves Hold Person, Selvia drops it and switches to <strong>Eyebite (Sleep variant)</strong> — DC 14 WIS, Drenwal auto-fails (Bhaal pressure). <strong>Ruth still concentrating on Hadar.</strong> Two concentration spells active: Hadar (Ruth) + Eyebite (Selvia).</li>
+      <li><strong>Round 4:</strong> Marsha uses <strong>Plague Breath</strong> (no concentration) in a cone. Ruth drops Hadar, casts <strong>Phantasmal Killer</strong> on Aurora (Ruth's concentration shifts). Selvia maintains Eyebite. <strong>Both concentration slots in use again, different spells.</strong></li>
+      <li><strong>Round 5+:</strong> Steady-state. Each round: Ruth's concentration spell + a sister's concentration spell + reaction Counterspell + sister melee/breath actions. <em>The fight is brutal until a concentration spell is broken.</em></li>
+    </ul>
+    <p><strong>Win condition for the party:</strong> break the spectral sister holding concentration (focus fire). The 2nd concentration slot drops. Either Ruth or the surviving sister is now holding one spell instead of two — half the lockdown is gone.</p>
+  </div>
+
+  <h3>Breaking the Coven</h3>
+  <table>
+    <tr><th>State</th><th>Effect</th></tr>
+    <tr><td><strong>Both sisters manifested</strong></td><td>Full coven access. All spell tiers available.</td></tr>
+    <tr><td><strong>1 sister destroyed (back to Ethereal)</strong></td><td>Red Ruth takes <strong>2d10 psychic damage</strong> (re-witnessing the death). Coven loses access to spells <strong>4th level and higher</strong>. Eyebite, Phantasmal Killer, Polymorph all unavailable.</td></tr>
+    <tr><td><strong>Both sisters destroyed</strong></td><td>Red Ruth takes another <strong>2d10 psychic.</strong> All coven spells gone. Ruth reverts to solo statblock. <strong>She is grieving and furious.</strong> Her own Bone-Knife and Hag's Word both gain +2 to damage rolls for the rest of the encounter. <em>Bramble Refuge stops working — she will not retreat.</em></td></tr>
+  </table>
+
+  <div class="callout danger"><strong>Permanent narrative consequence</strong>If <em>either</em> sister was destroyed in combat, Red Ruth's disposition is <strong>permanently locked at HOSTILE</strong>. She will never forgive the party. She <em>will</em> haunt them. Her Nightmare Haunting (1/day from her statblock) becomes a recurring threat for 1d6 sessions. Any future divination need they have, they have to find elsewhere (Mahadi's Wandering Emporium broker, an oracle in Sigil, etc.). <strong>This is a real loss.</strong></div>
+
+  <h3>Strategic Note for the DM</h3>
+  <p>The coven is the <strong>shape of the boss fight</strong> if combat happens. Without it, Red Ruth is a strong solo (CR 13). With it, she's effectively CR 15–16 — <strong>Deadly for L11 party of 3.</strong> Use it only if the party provokes her, and use it as a clear escalation telegraph: <em>"You should not have done that. Selvia. Marsha. Come, sisters."</em></p>
+
+  <p>If the party negotiates well, the coven never appears in anger. It might appear briefly in RP as a moment of <em>vulnerability</em> from Ruth — <em>"Let me show you something. Stay still. They will not hurt you."</em></p>
+</section>
+
+<!-- =================== PACT RITE — VISCERAL VERSION =================== -->
+<section id="pact-rite">
+  <h2>Breaking Ralzala's Pact — The Rite of Three Flames</h2>
+
+  <div class="dm-cue"><strong>Design note</strong>
+    Single-moment ritual. One image. One stone, three flames, one breath. The whole rite resolves in 60 seconds of in-fiction time. <strong>Run it slow at the table.</strong> Drop the music, dim the lights if you can.
+  </div>
+
+  <h3>The Pact-Stone</h3>
+  <blockquote class="read">Red Ruth has given them the only thing they really needed: <em>knowledge.</em>
+
+The pact is not in Ralzala's name. It is not in her oath. It is in a <em>stone</em> she carries inside her chest — a small fist of petrified essence she pledged to Zariel the day she swore. It has been there for centuries. It is heavy. It is hot. She hates it.
+
+To free her: <em>cut it out, and burn it in three flames at once.</em>
+
+That is the rite. There is no chanting. There is no midnight. There is no circle. There is only the stone, and the three fires, and the dao who must <em>let it go.</em></blockquote>
+
+  <h3>The Rite — Step by Step</h3>
+
+  <h4>1 · Cutting the Stone</h4>
+  <p>Returning to the Demon Zapper, the party finds Ralzala waiting. She steps from the earth, bows, and bares her chest. The stone is visible just under her skin — a black mass veined with red, the size of a small fist.</p>
+
+  <ul class="tight">
+    <li><strong>Drenwal (or any PC) extracts it</strong> with a blade. DC 14 Medicine — a wound, not surgery.</li>
+    <li><strong>The cut costs Ralzala 50 HP</strong> (she has ~150 to spare — she'll survive). Real blood, dao-blood: pale gold, smells of iron and storm.</li>
+    <li><strong>Failure of the check:</strong> botched extraction. The stone is removed but Ralzala takes 100 HP instead. She's still alive but unconscious — the rite continues on her behalf. Drenwal can heal her after.</li>
+  </ul>
+
+  <h4>2 · The Three Flames</h4>
+  <p>The stone must be touched by <strong>three different fires at the same instant.</strong> If even one is missing, the stone resists.</p>
+
+  <table>
+    <tr><th>Flame</th><th>Source options</th></tr>
+    <tr><td><strong>Mortal Fire</strong></td><td>A torch held by a PC. Or Drenwal's Sacred Flame, Light cantrip with substance, or a lit oil from the ship. <strong>Trivial. Anyone can provide.</strong></td></tr>
+    <tr><td><strong>Fey Fire</strong></td><td>Red Ruth gave them a <em>small clay vial of purple flame</em> as part of her toll-package. Open the vial, the fire pours out, doesn't go out — it burns on memory rather than fuel. <strong>One-shot use.</strong> If they didn't take it from Ruth, they need another fey source: a will-o-wisp's flicker, a stolen pixie-flame, etc.</td></tr>
+    <tr><td><strong>Celestial Fire</strong></td><td>Three viable sources, ranked by cost:<br>(a) <strong>Drenwal channels it himself</strong> via Channel Divinity (Radiance of the Dawn or any radiant cleric channel). Costs his Channel Divinity slot for the day. <strong>+3 Eldath</strong> (overt celestial channeling for mercy).<br>(b) <strong>Mooncolor's horn</strong> (if rescued + accompanying) — she touches the stone with her horn for a heartbeat. Brief flicker of celestial flame. <strong>+5 Eldath.</strong><br>(c) <strong>Lulu's breath</strong> — if used, Lulu takes 15 HP damage from the effort. She'll do it if asked, looks at Drenwal first.</td></tr>
+  </table>
+
+  <h4>3 · The Burning</h4>
+  <p>All three flames touch the stone <em>at the same instant.</em> The party must coordinate.</p>
+  <ul class="tight">
+    <li><strong>DC 14 Religion or Arcana</strong> (group check — at least half succeed) to time the convergence correctly. Drenwal/Aurora favored.</li>
+    <li><strong>Success:</strong> the stone <em>cracks.</em> Black flame bursts upward two feet, then collapses inward. The stone burns away over six seconds. What remains is a smaller, pale stone — Ralzala's freed essence, no longer pledged.</li>
+    <li><strong>Failure:</strong> the stone holds. Ralzala convulses. The rite can be repeated — but only once more (the stone is too damaged to try a third time). Try again immediately or wait for Red Ruth to procure a stabilized version (3 in-game days, costs another toll).</li>
+  </ul>
+
+  <h4>4 · The After</h4>
+  <blockquote class="read">Ralzala stands.
+
+You watch her change. The mark on her brow — a small spiral of Zariel's flame-script — burns away in pale smoke. Her shoulders lose a weight you didn't notice she was carrying. She is taller. Or you are looking at her differently. <em>You are not sure.</em>
+
+She picks up the smaller, pale stone — her essence, returned to her — and tucks it back into her chest. The wound closes around it.
+
+She bows. Deeper than necessary. She is not <em>required</em> to bow.
+
+<em>"Friends. I have not been a friend to anyone in a thousand years. Forgive my form. I will get better at it."</em>
+
+She produces, from somewhere, a letter sealed with iron-grey wax. The seal is a hammer-and-flame.
+
+<em>"To Bel of the Forge. He owes me a favor older than your grandmothers. Use it. He will not turn you away."</em>
+
+She gives them the letter, and she gives them her name — her real name, not the one in three tongues — <em>"It is Ralzala'iri. The 'iri matters. Don't say it to anyone else."</em>
+
+Then she sinks into the earth, easy and quiet, and is gone.</blockquote>
+
+  <h3>What Can Go Wrong</h3>
+  <table>
+    <tr><th>Trigger</th><th>Result</th></tr>
+    <tr><td><strong>Zariel notices</strong> (DM call — 20–30% if party has been loud, &lt;10% if quiet)</td><td>An <strong>Erinyes</strong> arrives within 1 minute (CR 12). Combat at the zapper site. <strong>The demon zapper itself fires at her</strong> (she's a fiend within 100 ft) — 40d12 radiant, DC 18 DEX. <em>The party may not need to fight her if they just let the zapper handle it.</em> Tactical gold for clever play.</td></tr>
+    <tr><td><strong>Missing one flame source</strong></td><td>Rite fails entirely. The stone is intact but inert. Ralzala is wounded, unfreed. They need to procure the missing source and try again within 24h.</td></tr>
+    <tr><td><strong>Drenwal volunteers his Bhaal-blood as a substitute for the celestial fire</strong></td><td>Doesn't work. <em>Bhaal-blood is not celestial.</em> Ralzala will politely refuse. <strong>Important canon note for your blood-pricing party</strong> — there is no blood substitute for this rite. They need <em>fire</em>, specifically, and one of it must be celestial.</td></tr>
+  </table>
+
+  <div class="callout good"><strong>Why this rite works</strong>One stone. Three flames. One bow. No checklist. The whole moment is <em>image-based</em> — players will remember it. And the celestial fire requirement quietly forces them to engage with the celestial side of the party (Drenwal's channel, Mooncolor, or Lulu) rather than leaning on blood.</div>
+</section>
+
+<!-- =================== INFLUENCE =================== -->
+<section id="influence">
+  <h2>Influence Tracker Impact</h2>
+
+  <table>
+    <tr><th>Outcome</th><th>Bhaal</th><th>Gargauth</th><th>Eldath</th></tr>
+    <tr><td>Cleanly killed Lucan in mercy</td><td>−3</td><td>0</td><td>+1</td></tr>
+    <tr><td>Left Lucan to suffer</td><td>+3</td><td>0</td><td>−2</td></tr>
+    <tr><td>Negotiated with Ruth (no combat)</td><td>0</td><td>+2</td><td>0</td></tr>
+    <tr><td>Drenwal gave his blood to Ruth</td><td>+3</td><td>0</td><td>0</td></tr>
+    <tr><td>Drenwal gave a memory of his mother</td><td>−2 (vulnerability)</td><td>0</td><td>+1</td></tr>
+    <tr><td>Party fought Ruth and survived</td><td>+2 (cruelty in a fey-aligned space)</td><td>0</td><td>−5</td></tr>
+    <tr><td>Ralzala's pact broken (final)</td><td>−5</td><td>0</td><td>+5 (a chained being freed via mercy)</td></tr>
+    <tr><td>Bel's Forge accessed via Ralzala's letter</td><td>—</td><td>—</td><td>— (huge plot progress — Fallen Three location #2 unlocked)</td></tr>
+  </table>
+
+  <div class="callout"><strong>Total potential Eldath swing</strong>If party plays this cleanly (mercy-kill Lucan, negotiate Ruth, break the pact): <strong>up to +7 Eldath</strong> stacking on top of Mooncolor's gift. Combined Demon Zapper + Bone Brambles run could land Drenwal at <strong>25–35 Eldath devotional</strong> by end of arc.</div>
+</section>
+
+<!-- =================== DEPARTURE =================== -->
+<section id="departure">
+  <h2>Leaving the Brambles</h2>
+
+  <p>The path opens for them on the way out — if Ruth was paid. <strong>If they fought her</strong>, the brambles are hostile on exit (re-run any Hazards they skipped, +2 to all DCs).</p>
+
+  <blockquote class="read">As you leave, the brambles part again, exactly wide enough for one. The chimes sing for you as you pass — a different note this time, three tones. A farewell.
+
+You hear Red Ruth's voice in your head, faint:
+
+<em>"Come back if you survive your brother. I have a chair with your name on it. Either of you."</em></blockquote>
+
+  <div class="dm-cue"><strong>That last line</strong>Red Ruth has implicitly offered Dumal a seat at her table too. She knows him. <strong>This is the seed</strong> — if Dumal dies or breaks from Bhaal, Red Ruth becomes a candidate haven for him. Foreshadow gently.</div>
+</section>
+
+<!-- =================== LOOT =================== -->
+<section id="loot">
+  <h2>Loot &amp; Treasures — Red Ruth's Lair</h2>
+
+  <div class="dm-cue"><strong>Calibration</strong>
+    Tightened to <strong>lore-accurate night hag possessions</strong> and <strong>level-appropriate for an L11 party.</strong> No "Christmas pile." Canon (DiA p.116 loot table) keeps: Potion of Mind Reading, Potion of Superior Healing, Oracle Bone (H), Hat of Disguise, Soul Coin, Cursed Eye Gem. Everything else added is <strong>hag-flavored</strong> (bottled things, bones, herbs, soul jars) — the kind of stuff a night-hag oracle <em>actually</em> hoards. Power level stays at <strong>uncommon to rare</strong> — no Very Rare or Wish-tier items.
+  </div>
+
+  <h3>Disposition-Gated Access</h3>
+  <ul class="tight">
+    <li><strong>−5 or worse:</strong> No loot. She kicks them out (or it's combat).</li>
+    <li><strong>−1 to +1:</strong> Only what they paid for (canon d4 table — pick one).</li>
+    <li><strong>+2 to +4:</strong> Canon item + <strong>1 minor curio</strong> as parting gift. They can <em>browse her shelves with permission.</em></li>
+    <li><strong>+5 or higher:</strong> Canon item + <strong>1 minor curio + 1 modest gear/scroll</strong>. Plus access to her plot-prop shelf if she trusts them with a piece of her story.</li>
+    <li><strong>Theft:</strong> DC 18 Sleight of Hand or DC 20 Stealth (passive Perception 20). Caught = −5 disposition + a cursed item ends up in their pack anyway.</li>
+  </ul>
+
+  <h3>A · Canon Loot — DiA Table (Roll d4 or pick one)</h3>
+  <p style="color:var(--muted);font-size:13px">This is what the campaign canon offers as her base reward. Use this as the floor.</p>
+  <table>
+    <tr><th>d4</th><th>Item</th></tr>
+    <tr><td>1</td><td>Potion of Mind Reading + Potion of Superior Healing</td></tr>
+    <tr><td>2</td><td><strong>Oracle Bone</strong> (homebrew, attunement) — small carved finger-bone. Advantage on one INT or WIS check per long rest. Bhaalspawn-blooded bearer: 2 charges/LR.</td></tr>
+    <tr><td>3</td><td>Hat of Disguise</td></tr>
+    <tr><td>4</td><td>1 Soul Coin + Cursed Eye Gem (advantage on Insight, disadvantage on Persuasion until removed by Remove Curse)</td></tr>
+  </table>
+
+  <h3>B · Minor Curios — Lore-Appropriate Hag Hoard</h3>
+  <p style="color:var(--muted);font-size:13px">Small flavor items a night hag actually keeps. Tradeable for an additional small toll OR gifted at +2 disposition.</p>
+  <table>
+    <tr><th>Item</th><th>What it does</th></tr>
+    <tr><td><strong>Bottled Voice ×2</strong></td><td>Tiny corked vial. Uncorked, trapped voice says <strong>one true thing</strong> (DM picks; must be true). Single use. Voices: a dying soldier, an old fisherwoman.</td></tr>
+    <tr><td><strong>Memory Vial — sealed, labeled</strong></td><td><em>"A quiet afternoon by a river, age 9."</em> Drinker gains the memory as their own. Advantage on next Calm Emotions save within a week. <span class="pill">Strange but harmless.</span></td></tr>
+    <tr><td><strong>Tear of a Pit Fiend</strong></td><td>Glass vial. Smash at a creature's feet: 20-ft radius, DC 14 CON or frightened 1 round. <strong>Single use.</strong> Worth 200 gp to a Hell-aware alchemist.</td></tr>
+    <tr><td><strong>Soul Jar — small, labeled "Geir"</strong></td><td>A failed Bhaal cultist's soul (DM call: <em>this is the Geir Dumal turns into a sewn-mouthed aspirant in S6/7</em> — Red Ruth has his soul. Plot prop, no immediate mechanic.)</td></tr>
+    <tr><td><strong>Heartstone Shard</strong></td><td>Cracked piece of a night hag's heartstone (her own, broken decades ago). <strong>Holder is immune to disease for 1 month.</strong> Crumbles to dust after.</td></tr>
+    <tr><td><strong>Hellrider Sigil ×2</strong></td><td>Two silver pendants from dead Hellriders. <strong>+1 to one save vs fiend effects, 1/long rest.</strong> Worth nothing material. <em>Lucan's sigil is the third</em> if rescued + mercy-killed (Drenwal recognizes it).</td></tr>
+    <tr><td><strong>Pouch of 1d4 Soul Coins</strong></td><td>From her "tip jar."</td></tr>
+    <tr><td><strong>3 oz Bone Bramble thorn-resin</strong></td><td>Poison component, 50 gp/oz. Or coat a weapon: next hit deals +1d4 poison (single use).</td></tr>
+    <tr><td><strong>Dried fungal cap (Devil's-Veil mushroom)</strong></td><td>Reagent. If brewed into tea + drunk: advantage on saves vs being charmed for 8 hours. 1 dose.</td></tr>
+  </table>
+
+  <h3>C · Modest Magic Items — Hag-Themed, Uncommon</h3>
+  <p style="color:var(--muted);font-size:13px">She'll part with one of these if disposition is +5 OR if traded for a real toll (true name, significant memory, etc.). <strong>Only one per visit.</strong></p>
+  <table>
+    <tr><th>Item</th><th>Rarity</th><th>Mechanics</th></tr>
+    <tr><td><strong>Bone-Knife of the Oracle</strong> <span class="pill">attunement</span></td><td>Uncommon</td><td>+1 dagger. <strong>1/long rest:</strong> cut a target (2d6 damage, no save), then ask one yes/no question — DM answers truthfully. Bearer takes 1 psychic per use. <em>Hag-iconic.</em></td></tr>
+    <tr><td><strong>Cloak of the Hag's Daughter</strong> <span class="pill">attunement</span></td><td>Uncommon</td><td>Cloak of Protection (+1 AC and saves).</td></tr>
+    <tr><td><strong>Bramble Charm</strong> <span class="pill">attunement</span></td><td>Uncommon</td><td>Small braid of brambles worn as a bracelet. <strong>1/day, bonus action:</strong> cast Entangle (DC 13, 20-ft square, 1 min concentration). <em>Replaces the over-tuned Bramble Shield.</em></td></tr>
+    <tr><td><strong>Pendant of the Crone's Ear</strong> <span class="pill">attunement</span></td><td>Rare</td><td>1/long rest: cast <strong>Detect Thoughts</strong> (DC 13, 1 min concentration). <em>Side effect:</em> for the next hour, all your spoken sentences carry a faint old-woman's whisper underneath.</td></tr>
+    <tr><td><strong>Eye of Many Mothers</strong> <span class="pill">attunement, cursed</span></td><td>Rare</td><td>1/day cast Detect Thoughts (DC 14). <strong>After 3 total uses:</strong> bearer hears their mother critiquing every social interaction — disadvantage on Persuasion/Deception with strangers. Removable via Remove Curse.</td></tr>
+  </table>
+
+  <p style="color:var(--muted);font-size:12px"><em>Cut from earlier version (too OP for L11 / off-brand for hag): Belt of Hill Giant Strength, Robe of Eyes, Boots of Striding and Springing, Wand of Smiles, +2 Longbow, Amulet of Health.</em></p>
+
+  <h3>D · Scrolls &amp; Consumables (Negotiate Individually)</h3>
+  <p style="color:var(--muted);font-size:13px">Drawer of scrolls. One scroll per significant toll above the base price.</p>
+  <table>
+    <tr><th>Scroll / Potion</th><th>Level</th><th>Notes</th></tr>
+    <tr><td><strong>Scroll of Banishment</strong></td><td>4th</td><td><strong>Solves Smiler debt.</strong> Cleric scroll — Drenwal can cast directly. <em>Most valuable scroll in her drawer for the party.</em></td></tr>
+    <tr><td><strong>Scroll of Remove Curse</strong> ×2</td><td>3rd</td><td>Bone dagger cleansing. Cursed-item escape. <em>Drenwal's recurring tool.</em></td></tr>
+    <tr><td><strong>Scroll of Greater Restoration</strong></td><td>5th</td><td>Removes exhaustion / disease / curse / 1 ability reduction. <strong>Could lift Aurora's STR 3 a day early</strong> — but the Wish-stress is divine, DM call on whether it works.</td></tr>
+    <tr><td><strong>Scroll of Speak with Dead</strong></td><td>3rd</td><td>Drenwal's father's body is in Elturel. <em>Plot hook for post-Avernus.</em></td></tr>
+    <tr><td><strong>Potion of Heroism</strong></td><td>—</td><td>10 temp HP, advantage vs fright, 1 hour.</td></tr>
+    <tr><td><strong>Crying Pot</strong></td><td>Homebrew</td><td>Clay pot weeps continuously. <strong>Drink tears: heal 4d4+4 HP, 1/day per person.</strong> Drinking a third time in a day: exhaustion 2, nightmares for a week. <em>Modest healing tool.</em></td></tr>
+  </table>
+
+  <div class="callout"><strong>Cut from earlier: Plane Shift scroll keyed to Tarsweald.</strong>That was too convenient — it would let them skip the whole arc of <em>earning</em> the Eldath path. They should reach Tarsweald through play, not via a free ticket.</div>
+
+  <h3>E · Plot Props (Lore Gold — Not Power)</h3>
+  <p style="color:var(--muted);font-size:13px">These are intentionally <em>weak mechanically</em> and <em>strong narratively.</em> No combat power, just story leverage.</p>
+  <table>
+    <tr><th>Item</th><th>What it does</th></tr>
+    <tr><td><strong>The Pact-Breaking Codex</strong></td><td>Red Ruth's handwritten rite-book. <strong>You already get this</strong> as part of breaking Ralzala's pact. Reusable on <em>any</em> bound fiend/dao/genie pact (Smiler-tier future use).</td></tr>
+    <tr><td><strong>Mordenkainen's Sealed Letter to Red Ruth</strong></td><td>Sealed. DC 16 Arcana to open without alerting Mordenkainen. Contents: <em>"Sister-of-the-thorn. The Hellrider's boy will arrive at your door. Tell him I did not lie. Tell him I am afraid for him. Tell him to look at the still water. — M."</em> <strong>Confirms Eldath path; suggests Mordenkainen genuinely fears for Drenwal.</strong></td></tr>
+    <tr><td><strong>A Lock of Senna's Hair</strong> <span class="pill crit">PLOT GRENADE</span></td><td>In a velvet pouch labeled <em>"the child the brother wants."</em> Dumal had Ruth verify Senna's identity months ago. <strong>If Drenwal finds it: he knows Red Ruth knows about his sister.</strong> No mechanical effect. Pure narrative weight. <em>Hand it to the player as a real prop if possible.</em></td></tr>
+    <tr><td><strong>Bel's Old Hammer</strong></td><td>Small craftsman's hammer, iron-headed, oak-handled. <strong>Bel will recognize it on sight</strong> — disposition shift +5 at Bel's Forge. <em>Pair with Ralzala's letter for a strong entrance.</em></td></tr>
+    <tr><td><strong>The Eldath Pilgrim's Bell</strong></td><td>Small silver bell. Rung at Tarsweald's spring, Old Mara and Tessa recognize the bearer as a friend of the cult. <strong>+3 Eldath devotional</strong> on first ring there. (Adjusted down from +5 — the path is still earned through play.)</td></tr>
+    <tr><td><strong>Lulu's Sister's Feather</strong></td><td>Pale gold feather in a glass tube. Aurora DC 15 Religion: this is from another hollyphant — <em>Lulu had siblings, all lost.</em> Shown to Lulu, she remembers something painful. <strong>Aurora's "Moonkite's lost patron" thread converges here.</strong></td></tr>
+  </table>
+
+  <h3>F · Cursed Items (Labeled, She Warns)</h3>
+  <p style="color:var(--muted);font-size:13px">Toned down — no Wish-tier butterflies, no max-damage knives. Each has real cost.</p>
+  <table>
+    <tr><th>Item</th><th>What it does / costs</th></tr>
+    <tr><td><strong>The Sibling Knife</strong></td><td>Bone dagger. Mundane <em>unless</em> wielded against a creature with whom you share blood — then it deals <strong>+1d6 necrotic per hit</strong> (not max damage — just bonus damage). <em>If Drenwal carries it, Bhaal +1/session passive.</em></td></tr>
+    <tr><td><strong>The Voiceless Box</strong></td><td>Small black wood box. Opening it: opener loses voice for 24 hours (no verbal spells). Inside: 100 gp pearls.</td></tr>
+    <tr><td><strong>The Bleeding Book</strong></td><td>Leather-bound, drips. Reading: DC 16 WIS or take 3d6 psychic and lose one memory (DM picks). Grants advantage on next 2 INT checks within 24h. <em>Risk for INT casters.</em></td></tr>
+    <tr><td><strong>Mirror Shard of a Distant Future</strong></td><td>Small mirror fragment. <strong>Once per character ever:</strong> see a brief vision of a moment from your own future, ~1 month out. DM-crafted. Viewer ages 1 year cosmetically. <em>Single, controlled use — not the campaign-breaking three-mirror.</em></td></tr>
+  </table>
+
+  <p style="color:var(--muted);font-size:12px"><em>Cut: The Pinned Butterfly (Wish — campaign-breaking), the Mirror of Three (too much revelation), the Living Face Jar (off-tone), Vial of Mephistopheles's spit (random).</em></p>
+
+  <h3>G · The Daughter's Shelf <span class="pill" style="background:var(--hag);color:var(--ink)">+5 Disposition · Story Moment</span></h3>
+  <p>If Red Ruth trusts them, she opens a small wooden cabinet covered in dust. Inside: items she keeps for her dead daughter. <strong>No combat gear.</strong> Pure narrative weight.</p>
+  <ul class="tight">
+    <li><strong>A child's wooden hairbrush</strong> — sentimental. Worth nothing.</li>
+    <li><strong>A small, sun-faded blue dress</strong> — sized for a 9-year-old. Folded carefully.</li>
+    <li><strong>The Lost Daughter's Diary</strong> — partial. Five entries. Reveals Red Ruth had a daughter, mortal-fathered, who died at 9 of plague. The diary stops mid-sentence. <em>Drenwal reading this: Red Ruth sees something of her in him.</em> <strong>If Drenwal reads it aloud: +3 Ruth disposition permanently, and she will help him at the Citadel even unbidden.</strong></li>
+    <li><strong>A single Potion of Lesser Restoration</strong> (the one thing she could not give the daughter in time).</li>
+  </ul>
+
+  <div class="callout danger"><strong>If they steal from the daughter's shelf without permission</strong>Disposition crashes to <strong>−10 immediately.</strong> The brambles attack on exit (+2 to all hazard DCs). Red Ruth's Nightmare Haunting becomes a recurring threat. <strong>This is one of the worst outcomes available in the side quest.</strong> Worth flagging to your players: <em>"You see her face change. You should not have done that."</em></div>
+
+  <h3>H · From the Brambles Themselves (Combat Loot)</h3>
+  <ul class="tight">
+    <li><strong>1d4 soul coins per Bramble Wight</strong> (3 wights = ~7 average — reduced from 1d6)</li>
+    <li><strong>Cursed Eye Gem</strong> (canon) — purple gem from a wight's eye socket. Wearing it: advantage on Insight, disadvantage on Persuasion. Removable via Remove Curse.</li>
+    <li><strong>Lucan's Hellrider Sigil</strong> (if mercy-killed): +1 saves vs fiends. <strong>If Drenwal attunes: −2 Bhaal/session passive.</strong></li>
+    <li><strong>Lucan's Hellrider longsword</strong> (if his body recovered carefully): mundane +1 longsword. Bel recognizes it at the Forge later. <em>Plot prop layered into modest gear.</em></li>
+    <li><strong>1d4 Avernus-acclimated bramble seeds</strong> — alchemy component, 25 gp each.</li>
+  </ul>
+
+  <h4>XP</h4>
+  <ul class="tight">
+    <li>Bramble Wights ×3 killed: 5,400</li>
+    <li>Hadar Pocket crossed without TPK: 1,500 (story)</li>
+    <li>Lucan resolved (any path): 1,000 (milestone)</li>
+    <li>Red Ruth deal struck: 3,000 (major story)</li>
+    <li>Red Ruth defeated in combat (functionally impossible — she retreats): 10,000 IF achieved, but she returns to haunt</li>
+    <li>Daughter's shelf opened (relationship milestone at +5): 2,000</li>
+    <li><strong>Ralzala's pact broken at the zapper:</strong> 5,000 + Bel's Forge unlocked</li>
+  </ul>
+</section>
+
+<!-- =================== END =================== -->
+<section>
+  <hr style="border:none;border-top:1px solid var(--border);margin:30px 0">
+  <p style="text-align:center;color:var(--muted);font-style:italic">Return to <a href="session-5-demon-zapper.html">the Demon Zapper</a> to perform the rite, or to <a href="session-5-dumal-primer.html">the Dumal primer</a> for the main thread.</p>
+</section>
+
+</main>
+</div>
+
+<script>
+const STATE = {
+  round: 1,
+  travel: 0,
+  ruthDisp: 0,
+  ruthHP: 200,
+  tolls: [false, false, false, false, false, false],
+  bloodPints: 0
+};
+const MAX_TRAVEL = 14;
+const MAX_RUTH = 200;
+const BHAAL_BASE = 51;
+const BLOOD_TICK = 3;
+const TOLL_LABELS = ['Memory', 'Blood', 'Soul Coin', 'Secret', 'True Name', 'Wound'];
+
+function saveState(){ try{localStorage.setItem('s5-bramble-state',JSON.stringify(STATE));}catch(e){} }
+function loadState(){
+  try{
+    const s = localStorage.getItem('s5-bramble-state');
+    if(s) Object.assign(STATE, JSON.parse(s));
+  }catch(e){}
+}
+
+function clamp(n,lo,hi){return Math.max(lo,Math.min(hi,n));}
+
+function renderRound(){
+  const i = document.getElementById('round-input');
+  if(i && document.activeElement !== i) i.value = STATE.round;
+}
+
+function renderTravel(){
+  const pct = Math.max(0,Math.min(100,(STATE.travel/MAX_TRAVEL)*100));
+  const fill = document.getElementById('travel-fill');
+  const text = document.getElementById('travel-text');
+  const input = document.getElementById('travel-input');
+  if(fill) fill.style.width = pct+'%';
+  if(text) text.textContent = STATE.travel+' / '+MAX_TRAVEL+'h';
+  if(input && document.activeElement !== input) input.value = STATE.travel;
+}
+
+function renderRuthDisp(){
+  const input = document.getElementById('ruth-disp-input');
+  if(input && document.activeElement !== input) input.value = STATE.ruthDisp;
+  const w = document.getElementById('ruth-warn');
+  let txt = '';
+  if(STATE.ruthDisp <= -5) txt = '<span style="color:var(--crit)">⚠ HOSTILE — combat likely</span>';
+  else if(STATE.ruthDisp <= -1) txt = '<span style="color:var(--warn)">⚠ wary — hard to bargain</span>';
+  else if(STATE.ruthDisp === 0) txt = '<span style="color:var(--muted)">⚖ neutral — she\'ll deal but won\'t favor</span>';
+  else if(STATE.ruthDisp <= 4) txt = '<span style="color:var(--good)">✓ pleased — minor favors possible</span>';
+  else txt = '<span style="color:var(--eldath)">★ allied — gifts, oracle reading, full info</span>';
+  if(w) w.innerHTML = txt;
+}
+
+function renderRuthHP(){
+  const pct = Math.max(0,(STATE.ruthHP/MAX_RUTH)*100);
+  const fill = document.getElementById('ruth-hp-fill');
+  const text = document.getElementById('ruth-hp-text');
+  const input = document.getElementById('ruth-hp-input');
+  if(fill) fill.style.width = pct+'%';
+  if(text) text.textContent = STATE.ruthHP+' / '+MAX_RUTH;
+  if(input && document.activeElement !== input) input.value = STATE.ruthHP;
+}
+
+function renderTolls(){
+  const el = document.getElementById('toll-grid');
+  if(!el) return;
+  el.innerHTML = '';
+  STATE.tolls.forEach((paid, i) => {
+    const b = document.createElement('button');
+    b.textContent = TOLL_LABELS[i];
+    if(paid) b.classList.add('paid');
+    b.onclick = () => { STATE.tolls[i] = !STATE.tolls[i]; renderAll(); };
+    el.appendChild(b);
+  });
+}
+
+function renderBlood(){
+  const i = document.getElementById('blood-input');
+  if(i && document.activeElement !== i) i.value = STATE.bloodPints;
+  const total = document.getElementById('blood-bhaal-total');
+  const traj = document.getElementById('blood-trajectory');
+  const tick = STATE.bloodPints * BLOOD_TICK;
+  const projected = BHAAL_BASE + tick;
+  if(total) total.textContent = '+'+tick+' Bhaal';
+  if(traj){
+    let warn = '';
+    if(projected >= 100) warn = ' <span style="color:var(--crit);font-weight:bold">⚠ CLAIMED — Bhaal controls rebirth</span>';
+    else if(projected >= 75) warn = ' <span style="color:var(--crit);font-weight:bold">⚠ INVOLUNTARY — symbol carves itself in next humanoid kill</span>';
+    else if(projected >= 50) warn = ' <span style="color:var(--warn)">⚠ disadvantage on Insight vs helpless</span>';
+    traj.innerHTML = 'Drenwal Bhaal projection: <strong>'+projected+'</strong> (was '+BHAAL_BASE+', +'+tick+' from blood). Threshold watch: 75 / 100.'+warn;
+  }
+}
+
+function setBlood(v){const n=parseInt(v); if(!isNaN(n)) STATE.bloodPints=Math.max(0,Math.min(20,n)); renderAll();}
+function addBlood(d){STATE.bloodPints=Math.max(0,Math.min(20,STATE.bloodPints+d)); renderAll();}
+
+function renderAll(){
+  renderRound();
+  renderTravel();
+  renderRuthDisp();
+  renderRuthHP();
+  renderTolls();
+  renderBlood();
+  saveState();
+}
+
+function setRound(v){const n=parseInt(v); if(!isNaN(n)&&n>=1) STATE.round=n; renderAll();}
+function changeRound(d){STATE.round=Math.max(1,STATE.round+d); renderAll();}
+
+function setTravel(v){const n=parseInt(v); if(!isNaN(n)&&n>=0) STATE.travel=Math.min(24,n); renderAll();}
+
+function setRuthDisp(v){const n=parseInt(v); if(!isNaN(n)) STATE.ruthDisp=clamp(n,-10,10); renderAll();}
+function addRuthDisp(d){STATE.ruthDisp=clamp(STATE.ruthDisp+d,-10,10); renderAll();}
+
+function setRuthHP(v){const n=parseInt(v); if(!isNaN(n)) STATE.ruthHP=clamp(n,0,MAX_RUTH); renderAll();}
+function dmgRuth(d){STATE.ruthHP=Math.max(0,STATE.ruthHP-d); renderAll(); if(STATE.ruthHP===0) alert('Red Ruth at 0 HP — she Plane Shifts to the Ethereal Plane to recover. Returns in 1d4 days to haunt the party in their dreams. She is NOT killed.');}
+function healRuth(d){STATE.ruthHP=Math.min(MAX_RUTH,STATE.ruthHP+d); renderAll();}
+function resetRuthHP(){STATE.ruthHP=MAX_RUTH; renderAll();}
+
+function resetTolls(){STATE.tolls=[false,false,false,false,false,false]; renderAll();}
+
+loadState();
+renderAll();
+</script>
+</body>
+</html>

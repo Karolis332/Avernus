@@ -1,0 +1,942 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session 8 Primer — The Wandering Emporium</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:ital,wght@0,400;0,700;1,400&family=PT+Serif:ital,wght@0,400;0,700;1,400;1,700&family=JetBrains+Mono&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#111214; --bg2:#17181b; --panel:#1b1c20; --panel2:#212228; --panel3:#282a31;
+  --border:#2f3037; --border2:#3b3d45;
+  --ink:#dcd8cb; --ink2:#bdb8aa; --muted:#8b8678;
+  --head:#b0472f; --head2:#c66a4c; --accent:#c9a24a;
+  --link:#6fa8cc; --good:#79b579; --warn:#d6a64e; --bad:#cf5b48;
+  --readbg:#1d2024; --readbd:#4a3b2a; --dmbg:#221619; --notebg:#1a1b1f;
+  --serif:'PT Serif','Georgia',serif;
+  --head-f:'Libre Baskerville','Georgia',serif;
+  --mono:'JetBrains Mono','Consolas',monospace;
+  --measure:76ch;
+}
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--serif);font-size:17px;line-height:1.62;
+  -webkit-font-smoothing:antialiased}
+a{color:var(--link);text-decoration:none}
+a:hover{text-decoration:underline}
+#prog{position:fixed;top:0;left:0;height:2px;width:0;z-index:60;background:var(--head)}
+
+/* layout */
+.layout{display:grid;grid-template-columns:300px minmax(0,1fr)}
+nav.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;padding:16px 10px 80px;background:var(--bg2);
+  border-right:1px solid var(--border);scrollbar-width:thin;scrollbar-color:var(--border2) transparent;font-size:13px}
+nav.sidebar::-webkit-scrollbar{width:8px}nav.sidebar::-webkit-scrollbar-thumb{background:var(--border2);border-radius:4px}
+nav .brand{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:16px;color:var(--head);margin:4px 8px 2px;line-height:1.2}
+nav .sub{color:var(--muted);font-size:11px;margin:0 8px 12px;padding-bottom:12px;border-bottom:1px solid var(--border);font-style:italic}
+.tools{display:flex;gap:6px;margin:0 6px 10px}
+.tools button{flex:1;font-family:var(--serif);font-size:11px;background:var(--panel2);border:1px solid var(--border2);
+  color:var(--ink2);padding:5px;border-radius:3px;cursor:pointer}
+.tools button:hover{background:var(--panel3);color:var(--ink)}
+nav .toc ul{list-style:none;padding-left:0;margin:0}
+nav .toc>ul>li{margin:0}
+nav .toc a{display:block;padding:4px 10px;border-radius:3px;color:var(--ink2);line-height:1.35;border-left:2px solid transparent}
+nav .toc a:hover{background:var(--panel);color:var(--ink);text-decoration:none}
+nav .toc a.active{background:var(--panel2);border-left-color:var(--head);color:var(--head2);font-weight:700}
+nav .toc>ul>li>a{color:var(--ink);font-family:var(--head-f);font-variant:small-caps;font-size:13.5px;letter-spacing:.3px;margin-top:4px}
+nav .toc ul ul a{font-size:12.5px;color:var(--muted);padding-left:22px}
+nav .toc ul ul ul a{padding-left:34px;font-size:12px;opacity:.85}
+/* collapsible */
+nav .toc li.branch{position:relative}
+nav .toc li.branch>a{padding-left:22px}
+nav .toc .tw{position:absolute;left:2px;top:5px;width:15px;height:15px;display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--mono);font-size:12px;line-height:1;color:var(--muted);cursor:pointer;user-select:none;z-index:2}
+nav .toc .tw:hover{color:var(--head2)}
+nav .toc li.branch.collapsed>ul{display:none}
+
+main{min-width:0}
+.wrap{max-width:960px;padding:0 46px 140px}
+
+/* masthead + chapter nav */
+header.title{position:sticky;top:0;z-index:30;background:var(--bg);border-bottom:1px solid var(--border);padding:14px 46px 0}
+header.title h1{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:27px;color:var(--head);margin:0 0 2px;letter-spacing:.5px}
+header.title .msub{font-size:12px;color:var(--muted);margin:0 0 10px;font-style:italic}
+.chapnav{display:flex;align-items:center;gap:10px;padding:4px 0 10px}
+.chapnav button,.chapnav .ent{font-family:var(--serif);font-size:12px;background:var(--panel);border:1px solid var(--border2);
+  color:var(--ink2);padding:6px 14px;border-radius:3px;cursor:pointer;white-space:nowrap}
+.chapnav button:hover,.chapnav .ent:hover{background:var(--panel3);color:var(--ink);text-decoration:none}
+.chapnav .cur{flex:1;text-align:center;font-family:var(--head-f);font-variant:small-caps;font-size:14px;letter-spacing:.5px;
+  color:var(--head2);overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* headings */
+h2,h3,h4{scroll-margin-top:120px}
+.wrap>h1{font-family:var(--head-f);font-variant:small-caps;font-size:24px;color:#fff;background:var(--head);
+  padding:10px 18px;border-radius:3px;margin:56px 0 18px}
+h2{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:26px;color:var(--head);letter-spacing:.4px;
+  margin:52px 0 12px;padding-bottom:7px;border-bottom:2px solid var(--border2)}
+h2.module .mnum{color:var(--muted);font-weight:400;margin-right:12px}
+h3{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:19px;color:var(--head2);margin:30px 0 8px;letter-spacing:.3px}
+h4{font-family:var(--head-f);font-weight:700;font-variant:small-caps;font-size:15px;color:var(--head2);margin:22px 0 6px;letter-spacing:.5px}
+
+/* body */
+.wrap>p,.wrap>ul,.wrap>ol,.wrap>h3,.wrap>h4,.wrap>blockquote{max-width:var(--measure)}
+p{margin:12px 0}
+strong{color:#efe9da;font-weight:700}
+em{color:var(--ink2)}
+ul,ol{margin:12px 0;padding-left:24px}
+li{margin:5px 0}
+li::marker{color:var(--head2)}
+li input[type=checkbox]{margin-right:7px;accent-color:var(--head);vertical-align:-1px}
+hr{border:0;height:1px;background:var(--border2);margin:30px 0;max-width:var(--measure)}
+code{background:var(--panel2);border:1px solid var(--border);border-radius:3px;padding:1px 5px;font-family:var(--mono);font-size:12.5px;color:#c7b98f}
+pre{background:#0d0e10;border:1px solid var(--border);border-left:3px solid var(--head);border-radius:4px;padding:14px 16px;overflow-x:auto;margin:16px 0;max-width:var(--measure)}
+pre code{background:none;border:none;padding:0;color:var(--ink);font-size:12.5px;white-space:pre}
+.dm-inline{color:#e0a99c}
+
+/* callout boxes (5e.tools inset style) */
+blockquote{margin:18px 0;max-width:var(--measure)}
+blockquote p:first-child{margin-top:0}blockquote p:last-child{margin-bottom:0}
+.cotag{display:inline-block;font-family:var(--head-f);font-variant:small-caps;font-size:11px;letter-spacing:.5px;font-weight:700;
+  padding:2px 10px;border-radius:2px;margin-bottom:8px}
+blockquote.read{background:var(--readbg);border:1px solid var(--border2);border-left:4px solid var(--accent);padding:13px 18px;
+  font-style:italic;color:var(--ink);border-radius:2px}
+blockquote.read .cotag{background:var(--accent);color:#1a1408}
+blockquote.dmonly{background:var(--dmbg);border:1px solid #4a2a2a;border-left:4px solid var(--bad);padding:12px 18px;color:#e2c8c1;border-radius:2px}
+blockquote.dmonly .cotag{background:var(--bad);color:#fff}
+blockquote.dmonly strong{color:#f2c0b6}
+blockquote.note{background:var(--notebg);border:1px solid var(--border);border-left:4px solid var(--border2);padding:12px 18px;color:var(--ink2);border-radius:2px}
+
+.admonition{margin:18px 0;border:1px solid var(--border2);border-radius:4px;background:var(--panel);padding:0 0 12px}
+.admonition>.admonition-title{font-family:var(--head-f);font-variant:small-caps;padding:8px 16px;margin:0;background:var(--panel2);border-bottom:1px solid var(--border);color:var(--head2)}
+.admonition>*:not(.admonition-title){padding:0 16px}
+
+/* tables (plain, 5e.tools) */
+table{border-collapse:collapse;width:100%;margin:18px 0;font-size:15px}
+th{font-family:var(--head-f);font-variant:small-caps;color:var(--head);text-align:left;padding:8px 12px;border:1px solid var(--border2);background:var(--panel2);letter-spacing:.3px;font-weight:700}
+td{padding:8px 12px;border:1px solid var(--border);vertical-align:top}
+tbody tr:nth-child(even){background:var(--panel)}
+table code{font-size:12px}table strong{color:#efe9da}
+
+/* stat block */
+.statblock{background:#f0e6d2;color:#2a1c0e;border:1px solid #c9a96f;border-left:4px solid #7a200d;border-radius:3px;
+  padding:14px 18px;margin:18px 0;font-family:var(--serif);font-size:14.5px;line-height:1.5}
+.statblock .sb-name{font-family:var(--head-f);font-variant:small-caps;color:#7a200d;font-size:20px;font-weight:700}
+.statblock strong{color:#3a1a0c}.statblock a{color:#7a200d}
+
+#totop{position:fixed;right:24px;bottom:24px;z-index:40;width:44px;height:44px;border-radius:50%;background:var(--panel2);
+  border:1px solid var(--border2);color:var(--head2);font-size:19px;cursor:pointer;display:none;align-items:center;justify-content:center}
+#totop:hover{background:var(--head);color:#fff}#totop.show{display:flex}
+
+@media (max-width:1000px){.layout{grid-template-columns:1fr}nav.sidebar{display:none}.wrap,header.title{padding-left:18px;padding-right:18px}}
+@media print{
+  :root{--measure:none}.layout{grid-template-columns:1fr}nav.sidebar,.chapnav,#totop,#prog{display:none}
+  html,body{background:#fff;color:#1a1410;font-size:11pt}
+  header.title{position:static;border:none;padding:0}header.title h1{color:#7a1010}
+  .wrap{max-width:none;padding:0}.wrap>h1{background:#7a1010}
+  h2,h3,h4{color:#7a1010}
+  blockquote.read{background:#f4ecdc;color:#1a1410}blockquote.dmonly{background:#f7eaea;color:#3a1410}blockquote.note{background:#f4f2ec}
+  th{background:#eadfc9;color:#3a2018}tbody tr:nth-child(even){background:#faf6ee}
+  a{color:#1a1410}pre{background:#f2ede2;color:#1a1410}
+}
+</style>
+</head>
+<body>
+<div id="prog"></div>
+<span id="top"></span>
+<div class="layout">
+  <nav class="sidebar">
+    <div class="brand">Session 8 Primer — The Wandering Emporium</div>
+    <div class="sub">Descent into Avernus</div>
+    <div class="tools"><button id="expandAll">Expand all</button><button id="collapseAll">Collapse all</button></div>
+    <div class="toc"><div class="toc">
+<ul>
+<li><a href="#dm-summary-what-this-session-is">DM SUMMARY — WHAT THIS SESSION IS</a></li>
+<li><a href="#tag-legend">TAG LEGEND</a></li>
+<li><a href="#one-breath-summary">ONE-BREATH SUMMARY</a></li>
+<li><a href="#pacing-46-hours">PACING (4–6 hours)</a></li>
+<li><a href="#cold-open-the-clock-starts-20-min">COLD OPEN — THE CLOCK STARTS (20 min)</a></li>
+<li><a href="#act-1-arrival-at-the-emporium-35-min">ACT 1 — ARRIVAL AT THE EMPORIUM (35 min)</a><ul>
+<li><a href="#the-approach">The approach</a></li>
+</ul>
+</li>
+<li><a href="#act-2-infernal-rapture-mahadi-50-min">ACT 2 — INFERNAL RAPTURE: MAHADI (50 min)</a><ul>
+<li><a href="#mahadis-welcome-returning-guests">Mahadi's welcome — returning guests</a></li>
+<li><a href="#the-truce-still-holds-a-reminder-not-a-first-lesson">The truce still holds (a reminder, not a first lesson)</a></li>
+<li><a href="#mahadis-live-angle-the-red-ruth-gambit-homebrew">Mahadi's live angle — the Red Ruth gambit [HOMEBREW]</a></li>
+</ul>
+</li>
+<li><a href="#act-3-the-emporium-full-directory-things-to-do-6070-min">ACT 3 — THE EMPORIUM: FULL DIRECTORY &amp; THINGS TO DO (60–70 min)</a><ul>
+<li><a href="#at-a-glance-the-whole-floor">At a glance — the whole floor</a></li>
+<li><a href="#infernal-rapture-mahadi-rakshasa-dd-canon">Infernal Rapture — Mahadi (rakshasa) [D&amp;D CANON]</a></li>
+<li><a href="#fhetahla-from-here-to-avernus-dd-canon">Fhet'Ahla — "From Here to Avernus" [D&amp;D CANON]</a></li>
+<li><a href="#rassh-the-firesnake-forge-dd-canon">Rassh — "The Firesnake Forge" [D&amp;D CANON]</a></li>
+<li><a href="#elliach-ichors-aweigh-dd-canon">Elliach — "Ichor's Aweigh!" [D&amp;D CANON]</a></li>
+<li><a href="#zneths-larva-farm-dd-canon">Z'neth's Larva Farm [D&amp;D CANON]</a></li>
+<li><a href="#burney-the-barber-dd-canon">Burney the Barber [D&amp;D CANON]</a></li>
+<li><a href="#the-bone-devil-informant-homebrew">The Bone Devil Informant [HOMEBREW]</a></li>
+<li><a href="#things-to-do-beyond-buying-the-activities-menu">Things to do (beyond buying) — the activities menu</a></li>
+<li><a href="#rumor-table-d8-homebrew-campaign-seeded">Rumor table (d8) [HOMEBREW — campaign-seeded]</a></li>
+</ul>
+</li>
+<li><a href="#act-4-recruiting-orhenn-55-min">ACT 4 — RECRUITING OR'HENN (55 min)</a><ul>
+<li><a href="#orhenns-introduction-the-refugee-at-the-edge-of-the-light">Or'Henn's introduction — the refugee at the edge of the light</a></li>
+<li><a href="#the-handoff-asimov-names-the-candidate">The handoff — Asimov names the candidate</a></li>
+</ul>
+</li>
+<li><a href="#act-5-the-soul-bounties-contract-board-55-min">ACT 5 — THE SOUL-BOUNTIES / CONTRACT BOARD (55 min)</a><ul>
+<li><a href="#how-theyre-presented">How they're presented</a></li>
+<li><a href="#asimov-is-your-encumbrance-early-warning-system">Asimov is your Encumbrance early-warning system</a></li>
+<li><a href="#the-recovery-breadcrumb-i-iii-v">The recovery breadcrumb (I → III → V)</a></li>
+</ul>
+</li>
+<li><a href="#act-6-wind-down-20-min">ACT 6 — WIND-DOWN (20 min)</a><ul>
+<li><a href="#pick-the-first-bounty">Pick the first bounty</a></li>
+<li><a href="#cliffhangers-parting-gambits">Cliffhangers &amp; parting gambits</a></li>
+<li><a href="#next-destination">Next destination</a></li>
+</ul>
+</li>
+<li><a href="#appendix-a-npc-quick-reference">APPENDIX A — NPC QUICK-REFERENCE</a><ul>
+<li><a href="#canon-emporium-vendors-host-use-these-exact-spellings-dd-canon">Canon Emporium vendors &amp; host — use these EXACT spellings [D&amp;D CANON]</a></li>
+<li><a href="#homebrew-npcs-on-the-floor-issuers-homebrew">Homebrew NPCs on the floor / issuers [HOMEBREW]</a></li>
+</ul>
+</li>
+<li><a href="#appendix-b-truce-if-the-players-break-the-peace">APPENDIX B — TRUCE: IF THE PLAYERS BREAK THE PEACE ⚔️</a></li>
+<li><a href="#appendix-c-the-five-soul-bounties-quick-reference-no-trap-spoilers">APPENDIX C — THE FIVE SOUL-BOUNTIES (quick-reference — NO trap spoilers)</a></li>
+<li><a href="#appendix-d-session-checklist">APPENDIX D — SESSION CHECKLIST</a><ul>
+<li><a href="#before-play">Before play</a></li>
+<li><a href="#during-play">During play</a></li>
+<li><a href="#after-play">After play</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+  </nav>
+  <main>
+    <header class="title">
+      <h1>Session 8 Primer — The Wandering Emporium</h1>
+      <div class="msub">Descent into Avernus</div>
+      <div class="chapnav">
+        <button id="prevSec">&#8249;&nbsp;Prev</button>
+        <span id="curSec" class="cur"></span>
+        <button id="nextSec">Next&nbsp;&#8250;</button>
+        <a class="ent" href="#top">Entire&nbsp;Tome</a>
+      </div>
+    </header>
+    <div class="wrap">
+      <p><strong>Date:</strong> TBD
+<strong>Party:</strong> Drenwal (Light Cleric, Bhaalspawn), Aurora (Archfey Warlock, Moonkite-bonded), + <strong>NEW PC: Or'Henn the Ashen Shepherd</strong> (Circle of Wildfire druid, Level 12, elderly Red Dragonborn, native to Avernus). Asimov is present <em>as a voice</em> — his soul rides the <strong>Soul Capacitor</strong> now.
+<strong>Target length:</strong> 4–6 hours
+<strong>Tone:</strong> A held breath after a battle. Neutral ground in Hell — a bazaar where the knives are metaphors and the smiles are worse. This is a <em>recruitment-and-shopping</em> session, not a dungeon: the pressure is a ticking clock and a room full of charming predators, not a hit-point bar. One combat is <em>possible</em> (only if a PC breaks the truce), but the design assumes zero swings.</p>
+<hr />
+<h2 id="dm-summary-what-this-session-is">DM SUMMARY — WHAT THIS SESSION IS</h2>
+<p><strong>Starting point:</strong> The party has just won at the Last Hill (Session 7 — Yeenoghu's avatar banished; Drenwal wounded his brother "Den," who broke free and escaped, wounded and unaided). The Lady Vengeance is beached and damaged there. <strong>Asimov died to Yeenoghu</strong> and his soul is now in the <strong>Soul Capacitor</strong>, governed by the <strong>Soul Council</strong>, which has given him <strong>ONE WEEK</strong> to find a new <em>living</em> bounty hunter or the vessel's arrangement collapses. That clock is the engine of the session.</p>
+<p><strong>What the party wants:</strong> Reach the <strong>Wandering Emporium</strong>, recruit a living hunter for the capacitor before the week runs out, and collect the leads Asimov can relay. The hunter they find is <strong>Or'Henn</strong> — a post-ravager refugee whose garden-estate was razed by the <em>same</em> Yeenoghu-aligned front the party just broke. Shared grievance, ready-made buy-in.</p>
+<p><strong>What actually happens:</strong> The party <em>returns</em> to the Emporium — familiar ground, a host they've dealt with before — now arriving as the <strong>Heroes of the Last Hill</strong>. Mahadi receives them, the market is open to them, they work the shops and the floor, they meet and recruit <strong>Or'Henn</strong>, and Asimov + Fhet'Ahla lay out the <strong>five soul-bounties</strong> as <em>proposed instruments</em>. The session ends with the party picking their first bounty and pointing at the next destination.</p>
+<p><strong>⚠ CONTINUITY — this is a RETURN visit.</strong> The party has <strong>already been to the Wandering Emporium and met Mahadi.</strong> Do <em>not</em> run this as a first discovery. They know the caravan, the truce rule, and the tiger-faced host; Mahadi knows <em>them</em> (and has an eye on Red Ruth's leftovers, which they carry). Play arrival as <strong>recognition, not wonder</strong> — the genuinely new elements this session are the <strong>one-week clock</strong>, the <strong>full run of the market</strong> (see <em>The Emporium — Full Directory</em> below), and <strong>recruiting Or'Henn</strong>. The truce and Mahadi beats below are written as <em>reminders</em>, not introductions.</p>
+<p><strong>Companion documents (cross-reference, do not restate):</strong></p>
+<table>
+<thead>
+<tr>
+<th>Document</th>
+<th>What it holds</th>
+<th>Use it for</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>orhenn-dm-primer.html</code></td>
+<td><strong>DM-EYES-ONLY.</strong> Or'Henn's true backstory, the full <strong>Encumbrances</strong> (contract traps), the NPC betrayal angles, the recovery-arc structure, Wild Shape rulings.</td>
+<td>Every deep trap mechanic. <strong>This primer defers ALL fine-print to it.</strong></td>
+</tr>
+<tr>
+<td><code>orhenn-cinderbloom-and-contracts.html</code></td>
+<td><strong>Player-facing.</strong> The Cinderbloom item card + the 5 soul-bounty cards (print, one per page). The <code>catch</code> on each card is hidden from players by design.</td>
+<td>Hand the cards. Point players here for the <em>Consideration</em>; the <em>Encumbrance</em> stays behind the DM screen.</td>
+</tr>
+<tr>
+<td><code>orhenn-wildshape-codex.html</code></td>
+<td>Or'Henn's Wild Shape form list + rulings (Beast + earned-infernal, CR ≤ 2).</td>
+<td>Mikas's spotlight; what Or'Henn can turn into.</td>
+</tr>
+<tr>
+<td><code>npc-reference.md</code></td>
+<td>Mahadi ↔ Red Ruth homebrew thread; Mad Maggie / Fort Knucklebone; the Bone Devil Informant.</td>
+<td>Mahadi's live angle this session; the info-broker.</td>
+</tr>
+<tr>
+<td><code>orhenn-session-digest.md</code></td>
+<td>Authoritative current campaign state.</td>
+<td>Continuity source of truth.</td>
+</tr>
+<tr>
+<td><code>wandering-emporium-reference.md</code></td>
+<td><strong>The store.</strong> Full shop stocks, soul-coin/gp prices, per-merchant haggle DCs, the haggling system, and Emporium random-encounter + clientele tables.</td>
+<td>Running any buying/selling/repair/haggling + floor encounters. This primer is the <em>scene</em>; that doc is the <em>store</em>.</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note">
+<p><strong>Do NOT print <code>orhenn-dm-primer.html</code> for the table.</strong> It states every trap openly. The players earn the Encumbrances by asking Asimov, rolling Investigation, or getting burned.</p>
+</blockquote>
+<hr />
+<h2 id="tag-legend">TAG LEGEND</h2>
+<p>Tags mark where each fact comes from — this campaign cares about the distinction between what's in the book and what we bolted on.</p>
+<ul>
+<li><strong>[D&amp;D CANON]</strong> — straight from <em>Baldur's Gate: Descent into Avernus</em> (Ch. 3) or the 5e rules. Use the exact spellings.</li>
+<li><strong>[CAMPAIGN CANON]</strong> — an established extension of canon <em>for this campaign</em> (e.g. Fhet'Ahla as the charter's notary). Consistent across our docs.</li>
+<li><strong>[HOMEBREW]</strong> — invented for this table (the 5 contract issuers, the soul-bounty framing, the Red Ruth thread). Not in any book.</li>
+<li><strong>⚔️</strong> — combat is on the table here (this session, only if the truce breaks).</li>
+<li><strong>🎲 DIAL</strong> — a DM choice / knob to turn. Pick to taste; keep it runnable either way.</li>
+</ul>
+<hr />
+<h2 id="one-breath-summary">ONE-BREATH SUMMARY</h2>
+<p>A week to save a soul, spent in the one place in Hell where you're not allowed to draw steel: the party rolls the wounded Lady Vengeance's survivors into the Wandering Emporium, dines at a rakshasa's table under a truce, shops a bazaar of soul-coin merchants, recruits a dispossessed old dragonborn who hates the same demons they just killed — and walks out holding five infernal contracts, none of them signed yet, every one with a hook.</p>
+<hr />
+<h2 id="pacing-46-hours">PACING (4–6 hours)</h2>
+<table>
+<thead>
+<tr>
+<th>Block</th>
+<th>Time</th>
+<th>Content</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Cold open — the clock starts</strong></td>
+<td>20 min</td>
+<td>Aftermath of the Last Hill. The capacitor warms; Asimov's voice; the Soul Council's one-week deadline stated aloud. The Emporium's lanterns on the horizon.</td>
+</tr>
+<tr>
+<td><strong>Act 1 — Arrival (a return)</strong></td>
+<td>20 min</td>
+<td>Recognition, not wonder. The caravan they know; a greeter who knows <em>them</em>. Truce reminder.</td>
+</tr>
+<tr>
+<td><strong>Act 2 — Infernal Rapture (Mahadi)</strong></td>
+<td>45 min</td>
+<td>Mahadi welcomes returning guests. Truce <strong>reminder</strong>. His charm-and-menace. He presses his <strong>Red Ruth angle</strong>.</td>
+</tr>
+<tr>
+<td><strong>Act 3 — The Emporium: full directory</strong></td>
+<td>60–70 min</td>
+<td>Work the whole market: all 6 canon shops + services + rumors. Repair the ship (Rassh), shop, gather leads.</td>
+</tr>
+<tr>
+<td><strong>Act 4 — Recruiting Or'Henn</strong></td>
+<td>55 min</td>
+<td><strong>Mikas's spotlight entrance.</strong> The refugee; the shared-Yeenoghu grievance; Asimov names him the candidate; the emotional + mechanical handoff.</td>
+</tr>
+<tr>
+<td><strong>Act 5 — The Soul-Bounties</strong></td>
+<td>55 min</td>
+<td>Asimov + Fhet'Ahla present the 5 <strong>proposed instruments</strong>. The mark-in-ash → countersign → seal mechanic. The recovery breadcrumb (I → III → V). Cards go on the table.</td>
+</tr>
+<tr>
+<td><strong>Act 6 — Wind-down</strong></td>
+<td>20 min</td>
+<td>Pick the first bounty. Cliffhangers, Mahadi's parting gambit, the next destination.</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h2 id="cold-open-the-clock-starts-20-min">COLD OPEN — THE CLOCK STARTS (20 min)</h2>
+<p>Read aloud:</p>
+<blockquote class="note">
+<p>The Last Hill is quiet now. Yeenoghu's vanguard is meat and ash; Dumal is gone — you wounded him and he fled, bleeding, into the ash; not dead, not caught; the sky over the ridge has gone from wound-red to the dull rust of ordinary Avernus. Behind you the <strong>Lady Vengeance</strong> lists in the black soil, one runner buckled, hull scorched, going nowhere without a forge and a week.</p>
+<p>And in the pack at Drenwal's hip, the <strong>Soul Capacitor</strong> — the iron-and-brass vessel that once held Rasheem and now holds <em>your own dead</em> — grows <strong>warm</strong>. Not hot. Warm, like a hand on your shoulder.</p>
+<p><em>"...okay. Ow. Yes. I'm here. I'm — this is deeply undignified."</em> The voice is Asimov's, threaded through the tick of settling metal. <em>"So. Good news, bad news. Good news: I can hear the Council in here, and they've made me an offer. Bad news: they've also started a clock."</em></p>
+<p><em>"They gave me a week. Seven days to find another living bounty hunter to feed, or this whole arrangement — me, the vessel, the leads — comes apart, and I go wherever Rasheem went before me. I'd rather not find out where that is."</em></p>
+<p>Far out across the plain, low on the horizon, a <em>familiar</em> string of lights is moving — torches, lanterns, brazier-glow, a whole <em>caravan</em> crawling on wheels the size of houses. You have walked that market before. <strong>The Wandering Emporium.</strong> Mahadi's caravan has found the Last Hill — or been drawn to it.</p>
+</blockquote>
+<p><strong>DM notes:</strong>
+- <strong>[CAMPAIGN CANON]</strong> The capacitor / Soul Council chain is established in <code>orhenn-dm-primer.html §6(d)</code> and the digest. Beat to land here: Asimov now occupies the vessel <em>in place of Rasheem</em> (who once fed Asimov his bounties); the role passes down the chain when a hunter dies. <strong>The one-week deadline is the whole reason to hurry.</strong> [D&amp;D CANON] soul coins are iron, warm to the touch, and let the holder speak with the soul inside — lean on that texture; the capacitor reads like a bigger cousin of a soul coin.
+- <strong>The party knows Asimov</strong> (he was theirs). They will feel the death. Give Aurora and Drenwal a moment. Then let the clock cut it short — grief is a luxury with a deadline.
+- <strong>They know this place.</strong> The party has visited the Emporium and dealt with <strong>Mahadi</strong> before — no need to re-introduce either. What's <em>new</em> is why they're hurrying (the clock) and who they'll leave with (Or'Henn). 🎲 Optional color: the caravan turning up right after the Last Hill can be plain luck — or Mahadi steering toward the fresh "Heroes of the Last Hill" (and toward Red Ruth's leftovers; see Act 2). <strong>[D&amp;D CANON]</strong> aside: <strong>Mad Maggie</strong> (Fort Knucklebone) and Mahadi were once lovers who parted badly — if the party is close to Maggie, she has sharp opinions about where they're headed.</p>
+<hr />
+<h2 id="act-1-arrival-at-the-emporium-35-min">ACT 1 — ARRIVAL AT THE EMPORIUM (35 min)</h2>
+<h3 id="the-approach">The approach</h3>
+<p>Read aloud:</p>
+<blockquote class="note">
+<p>Up close, the <strong>Wandering Emporium</strong> is not a town — it's a <em>machine that decided to sell things.</em> A caravan of <strong>infernal war machines</strong>, each hauling a stall or a tent lashed to its back: a devil's-ride dragging a barbershop, a demon-grinder turned rolling forge, a soul-fueled crawler stacked with cages. When it stops, the tents <em>unfold</em> off the machines and root into the ash; when it's time to move, the whole market packs itself back onto its wheels in an hour and rolls to the next patch of Hell that can pay.</p>
+<p>The smells hit before the gate: roasting meat and rendered fat and something floral over the top of it; hot brass, quenched steel, singed hair; the sweet-rot of demon ichor in glass; and under all of it the low warm hum of soul coins by the crateful. Devils haggle beside warlords. A hobgoblin general shares a bench with a thing made of chains. Nobody is fighting. <strong>Nobody is fighting</strong> — and the wrongness of that, in Avernus, is its own kind of loud.</p>
+<p>At the caravan's edge, a courteous imp in a waistcoat is already walking out to meet you — by name, arms wide. You're expected. You're <em>remembered</em>. Here, that is not entirely a comfort.</p>
+</blockquote>
+<p><strong>DM notes:</strong>
+- <strong>[D&amp;D CANON]</strong> The Emporium sells food, lodging, repairs, grooming, supplies, information, and <em>stranger</em> services to devils, warlords, and travelers. It roams Avernus and operates <strong>with Asmodeus's approval</strong>.
+- <strong>The Lady Vengeance angle:</strong> the party needs <em>repairs</em> (Act 3, Rassh) as much as a hunter. That's their honest cover story and their honest need — good reason to be here beyond recruiting.
+- <strong>The greeter:</strong> the same sort of low-level imp or minor devil that escorts guests to Mahadi — this time welcoming the party back as returning patrons. He still performs the ritual: names, business, and — smiling — whether they're "carrying any <em>quarrels</em> today, so we can check them at the door." A familiar formality; play it light.</p>
+<hr />
+<h2 id="act-2-infernal-rapture-mahadi-50-min">ACT 2 — INFERNAL RAPTURE: MAHADI (50 min)</h2>
+<h3 id="mahadis-welcome-returning-guests">Mahadi's welcome — returning guests</h3>
+<p>Read aloud:</p>
+<blockquote class="note">
+<p><strong>Infernal Rapture</strong> is the beating heart of the caravan — half restaurant, half spa, wholly a trap you'd walk into gladly, and you've walked into it before. Silk the color of arterial blood. Low couches. Steam scented with cardamom and sulfur. A long table already set, as though your seats were reserved. They were.</p>
+<p>The host rises to meet you — and you know him at once: the <strong>tiger's face</strong> where a man's should be, the gold eyes, the hands clasped in welcome that sit <strong>backwards</strong> on his wrists, the robe worth more than most warlords' hoards. <strong>Mahadi.</strong> He remembers you, of course. Mahadi remembers everyone — every name, every preference, every debt of courtesy left unpaid.</p>
+<p><em>"Heroes of the Last Hill. Yes — word travels, even here, especially here. You broke a demon lord's little garden party. Sit. </em><em>Sit.</em><em> You are hungry, you are grieving, you are down a ship and, I hear, down a friend."</em> His gaze rests, exactly, on the warm iron vessel at Drenwal's hip. <em>"The Emporium can help with two of those. Perhaps three. Everything here is for sale, and the first course — the first course is on the house."</em></p>
+</blockquote>
+<p><strong>DM notes — running Mahadi [D&amp;D CANON]:</strong>
+- He is a <strong>rakshasa</strong>: courteous, charming, attentive, <em>generous on the surface</em> — calculating, self-interested, and exploitative beneath. Play the warmth 100% sincere on the outside. The menace is in what the warmth <em>costs</em>.
+- He runs <strong>Infernal Rapture</strong> (restaurant + spa) and pays in soul coins and bargains. He wants <strong>profitable bargains, relationships, influence, information, and souls.</strong> He is an <strong>agent of Asmodeus</strong> and reports valuable intel upward; he respects the infernal hierarchy and will never openly defy a bigger power.
+- <strong>THE "ON THE HOUSE" TRAP [D&amp;D CANON]:</strong> accepting his hospitality — the free course, the free spa treatment, the free grooming — can create <em>dangerous obligations</em>. Nothing binds mechanically here (that's Fhet'Ahla's job), but a debt of <em>courtesy</em> is real currency to a rakshasa. <strong>DC 18 Insight</strong> (<code>npc-reference.md</code>): he fears angering Asmodeus, and every kindness is an investment. Let a careful player feel the hook without spelling it out.
+- <strong>Info pricing [D&amp;D CANON / campaign]:</strong> ~10 gp per question for general Avernus knowledge; the <em>good</em> answers cost bargains, not coins.</p>
+<h3 id="the-truce-still-holds-a-reminder-not-a-first-lesson">The truce still holds (a reminder, not a first lesson)</h3>
+<p>They know the rule — but a gracious host says it once more, lightly, so no one pretends otherwise:</p>
+<blockquote class="note">
+<p><em>"You know the house rule, so I'll not belabor it: </em><em>leave your feud at the door.</em><em> No Blood War, no warband grudge, no old score under my roof — not for anyone, and </em>especially<em> not for heroes fresh off a kill. Break Asmodeus's peace and I decide what becomes of you. I am </em>very<em> generous, and I am </em>very<em> creative, and today I am in </em>such<em> a good mood. Don't spoil it."</em></p>
+</blockquote>
+<p><strong>THE TRUCE RULE (adjudication) [D&amp;D CANON]:</strong></p>
+<table>
+<thead>
+<tr>
+<th>The player does...</th>
+<th>Mahadi's response</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Threatens, insults, intimidates (words only)</td>
+<td>Nothing yet. He <em>smiles.</em> A warning, delivered warmly. First offense is free — barely.</td>
+</tr>
+<tr>
+<td>Draws a weapon / readies a hostile spell but does not use it</td>
+<td>Firm warning. The market goes quiet. Guards (see below) drift closer. <strong>This is the last warning.</strong></td>
+</tr>
+<tr>
+<td><strong>Actually attacks a guest or vendor</strong></td>
+<td>The truce is broken. <strong>Mahadi acts by his own authority and Asmodeus's backing:</strong> peace-breakers are punished, <strong>expelled, or killed at his discretion.</strong> See the <strong>TRUCE box</strong> appendix for the full adjudication + ⚔️ enforcement.</td>
+</tr>
+<tr>
+<td>Defends against someone <em>else</em> who broke the truce</td>
+<td>Mahadi's enforcers handle the aggressor; a PC defending themselves is fine, but <em>finishing</em> a downed aggressor inside the market is itself a breach.</td>
+</tr>
+</tbody>
+</table>
+<ul>
+<li><strong>Why this still matters:</strong> they know the rule — but they've just come off a battle high, walking into a room that may hold fiends <em>from the very front they just broke</em>. <strong>The temptation to swing is the point.</strong> The rule is already on record, so when a player is tempted, the restraint on the line is the <em>player's</em>, not yours. The mechanics live in the <strong>TRUCE appendix</strong>; you shouldn't need them.</li>
+<li>Keep the enforcement threat <em>credible but off-screen</em> unless triggered — see the appendix box for the ⚔️ statline pointer.</li>
+</ul>
+<h3 id="mahadis-live-angle-the-red-ruth-gambit-homebrew">Mahadi's live angle — the Red Ruth gambit [HOMEBREW]</h3>
+<p>This is Mahadi's <em>reason to court the party</em> this session. From <code>npc-reference.md</code>:</p>
+<ul>
+<li><strong>[HOMEBREW]</strong> Red Ruth was Mahadi's <strong>oracle-on-retainer</strong> — he pampered her (the canon spa/makeover treatment) in exchange for secrets. <strong>She's dead now, and the PARTY holds her leftovers:</strong> her <strong>Bhaalspawn knowledge</strong> (Drenwal / Dumal / Senna), her <strong>soul-stock</strong>, the <strong>Mordenkainen letter</strong>, and her <strong>heartstone</strong>.</li>
+<li>Mahadi <em>wants all of it.</em> He will bargain, flatter, and scheme to buy, trade, or quietly lift Ruth's leavings — offering Bhaalspawn-arc intel, Emporium services, or a "favor to be named" in exchange. He will <strong>never</strong> overtly defy a bigger power to get them, but he is patient and he is a rakshasa; expect a soft approach now and pressure later.</li>
+</ul>
+<p><strong>How to run it this session:</strong> don't make it the main course. Mahadi <em>notices</em> the heartstone / the letter / the grief around Asimov, name-drops <strong>Red Ruth</strong> ("a dear associate of mine, recently... <em>retired</em>"), and floats the first offer. It's a slow-burn thread — plant it, let it breathe, collect on it across the arc. 🎲 DIAL: how much does Mahadi already know he's holding? Default: he knows Ruth is dead and suspects these particular travelers cleaned out her Brambles — a suspicion he'll pay to confirm.</p>
+<blockquote class="note">
+<p><strong>Cross-reference:</strong> Mahadi's temperament, info-pricing, and the Asmodeus-fear Insight DC live in <code>npc-reference.md</code> → <em>Wandering Emporium → Mahadi</em>. Don't re-stat him; run him.</p>
+</blockquote>
+<hr />
+<h2 id="act-3-the-emporium-full-directory-things-to-do-6070-min">ACT 3 — THE EMPORIUM: FULL DIRECTORY &amp; THINGS TO DO (60–70 min)</h2>
+<p>They know the market — so <em>let them work it.</em> This is the complete run of the Wandering Emporium: <strong>exactly six canon establishments</strong> (that's the whole published set — anything else you add is [HOMEBREW]), plus the homebrew stalls this campaign has planted. The party has real needs today — <strong>repair the Lady Vengeance, resupply, gather intel, and find a hunter</strong> — so give them room to shop and scheme. Hit three or four stalls for a lively floor; the rest is there if they wander.</p>
+<blockquote class="note">
+<p><strong>📖 Full stocks, prices, haggle DCs &amp; floor encounters:</strong> this section runs the <em>scene</em>; for complete stock lists, soul-coin/gp prices, per-merchant negotiation DCs, the haggling subsystem, and the Emporium random-encounter + clientele tables, open the companion <strong><code>wandering-emporium-reference.md</code></strong> (rendered: <code>wandering-emporium-reference.html</code>).</p>
+</blockquote>
+<p><strong>[D&amp;D CANON] Payment &amp; the golden rule of this market:</strong> the Emporium runs on <strong>soul coins</strong> and on <strong>bargains, favors, and obligations</strong> — <em>not</em> gold. Coin buys the ordinary; the <em>good</em> stuff costs a deal. And <strong>nothing here is truly free:</strong> Mahadi's "on the house" hospitality is a <em>debt</em>, and every return visit that accepts his generosity <strong>compounds</strong> what the party owes him. Track it.</p>
+<h3 id="at-a-glance-the-whole-floor">At a glance — the whole floor</h3>
+<table>
+<thead>
+<tr>
+<th>Establishment</th>
+<th>Proprietor (type)</th>
+<th>What you can do here</th>
+<th>Pay in</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Infernal Rapture</strong></td>
+<td><strong>Mahadi</strong> (rakshasa)</td>
+<td>Dine, bathe &amp; spa, rest under sanctuary, buy information, commission exotic/rare goods via his network</td>
+<td>Soul coins; <strong>bargains &amp; "hospitality debt"</strong></td>
+</tr>
+<tr>
+<td><strong>The Firesnake Forge</strong></td>
+<td><strong>Rassh</strong> (salamander)</td>
+<td>Buy weapons/armor, repair gear, <strong>repair &amp; REFUEL the Lady Vengeance</strong></td>
+<td>Soul coins; a favor</td>
+</tr>
+<tr>
+<td><strong>Burney the Barber</strong></td>
+<td><strong>Burney</strong> (a "human woman" — secretly a copper dragon)</td>
+<td>Grooming; <strong>magically alter or restore appearance</strong>; quiet aid / a little healing</td>
+<td>Soul coins; a kindness</td>
+</tr>
+<tr>
+<td><strong>From Here to Avernus</strong></td>
+<td><strong>Fhet'Ahla</strong> (amnizu)</td>
+<td>Borrow soul coins; infernal finance; <strong>[CAMPAIGN CANON] notarize &amp; seal the soul-bounties</strong></td>
+<td>Soul coins + collateral; a signature</td>
+</tr>
+<tr>
+<td><strong>Ichor's Aweigh!</strong></td>
+<td><strong>Elliach</strong> (human mage)</td>
+<td>Buy/sell <strong>demon ichor</strong> (mutagenic gamble)</td>
+<td>Soul coins</td>
+</tr>
+<tr>
+<td><strong>Z'neth's Larva Farm</strong></td>
+<td><strong>Z'neth</strong> (hobgoblin)</td>
+<td>Buy/sell <strong>larvae</strong>; appraise soul-goods</td>
+<td>Soul coins</td>
+</tr>
+<tr>
+<td><em>The Bone Devil Informant</em> [HOMEBREW]</td>
+<td>bone devil</td>
+<td>Rumors &amp; leads (points them at Or'Henn)</td>
+<td>Coin; a soul coin buys advantage</td>
+</tr>
+</tbody>
+</table>
+<hr />
+<h3 id="infernal-rapture-mahadi-rakshasa-dd-canon">Infernal Rapture — Mahadi (rakshasa) [D&amp;D CANON]</h3>
+<ul>
+<li><strong>The heart of the caravan</strong> — restaurant + spa + sanctuary, and Mahadi's parlor (you ran his welcome in Act 2). Here the party can <strong>dine</strong> (extraordinary food and drink), <strong>bathe and be pampered</strong>, <strong>rest in comfort under the truce</strong>, <strong>buy information</strong> (Mahadi is exceptionally well-informed), and <strong>commission exotic, rare, or infernal goods</strong> through his network — subject to price and a favor.</li>
+<li><strong>⚠ The hospitality-debt engine [D&amp;D CANON]:</strong> the free first course, the free soak, the "please, be my guest" — all <strong>place the recipient in Mahadi's debt.</strong> He calls it in later as a service or favor; refusing can escalate to an infernal contract, and <strong>each repeat visit compounds it.</strong> As returning patrons, <strong>the party may already owe him</strong> — decide what (if anything) is on the tab from last time. This is where the <strong>Red Ruth gambit</strong> (Act 2) is transacted.</li>
+</ul>
+<h3 id="fhetahla-from-here-to-avernus-dd-canon">Fhet'Ahla — "From Here to Avernus" [D&amp;D CANON]</h3>
+<ul>
+<li><strong>What:</strong> an <strong>amnizu</strong> (that squat, corpulent, wrinkled devil) who runs an <strong>infernal bank</strong> — a soul-coin moneylender whose loans are secured by <strong>infernal contracts.</strong></li>
+<li><strong>Run him as:</strong> meticulous, unhurried, faintly bored by mortals who don't read. Coins clink; a ledger writes itself.</li>
+<li><strong>[CAMPAIGN CANON] His campaign role:</strong> Fhet'Ahla is <strong>Mahadi's contract-NOTARY</strong> — the seal on the charter's soul-bounty <em>instruments</em>. Nothing binds or voids without him. This is a natural extension of his real canon role: a canon amnizu whose banking business already runs on infernal contracts, notarizing the Emporium's charter fits him like a glove. <strong>He is the fulcrum of Act 5</strong> — the party will be back at his desk. Foreshadow him here.</li>
+</ul>
+<h3 id="rassh-the-firesnake-forge-dd-canon">Rassh — "The Firesnake Forge" [D&amp;D CANON]</h3>
+<ul>
+<li><strong>What:</strong> a <strong>salamander</strong> smith whose forge is staffed by <strong>fire snakes.</strong> Buys and sells weapons and armor, <strong>repairs equipment</strong>, and — <strong>canonically — repairs AND refuels infernal war machines.</strong></li>
+<li><strong>This is where the Lady Vengeance gets fixed [D&amp;D CANON].</strong> Rassh can service and <strong>refuel</strong> the Hellship (soul-coin fuel) and get her moving again — though a <em>full</em> rebuild of the buckled hull may still want Bel's Forge downstream. Give the party a price — soul coins, a favor, or a bounty completed. He's the honest transaction on the floor: burns hot, talks little, delivers.</li>
+<li><strong>🎲 DIAL — the homebrew salamander:</strong> <code>npc-reference.md</code> has a <strong>"Salamander Artificer"</strong> who sells <strong>shattersticks</strong> (5d6 thunder, DC 15 Dex, 10-ft radius). <strong>Recommended: fold that vendor into Rassh</strong> — the Firesnake Forge also stocks shattersticks. (Alternative: keep them as two separate salamander stalls. Note your choice for consistency.) This primer assumes the fold-in.</li>
+<li><strong>Separately:</strong> <strong>Serephine Coal-Tongue</strong> [HOMEBREW] — the salamander smith of the <em>Gilded Crucible</em>, issuer of Bounty II — is a <strong>different</strong> salamander, met via her contract (Act 5), not the same stall as Rassh. Keep them distinct.</li>
+</ul>
+<h3 id="elliach-ichors-aweigh-dd-canon">Elliach — "Ichor's Aweigh!" [D&amp;D CANON]</h3>
+<ul>
+<li><strong>What:</strong> a <strong>human mage</strong> who buys and sells <strong>demon ichor</strong> — mutagenic, flesh-warping stuff. Drink it and you <em>might</em> gain a boon; you might sprout something.</li>
+<li><strong>Color and temptation.</strong> Great flavor for Or'Henn (a druid who already lives half-warped by Avernus) or for any player who likes a gamble. Keep the effects table vague and dangerous; this is atmosphere, not a required purchase.</li>
+</ul>
+<h3 id="zneths-larva-farm-dd-canon">Z'neth's Larva Farm [D&amp;D CANON]</h3>
+<ul>
+<li><strong>Vendor: Z'neth</strong>, a <strong>hobgoblin warlord</strong> who <strong>buys and sells larvae</strong> — the wormlike soul-forms of the damned, raw material of the Hells.</li>
+<li><strong>The moral wince of the market.</strong> A pen of squirming larvae for sale by the crate. This is where the party <em>feels</em> what a soul is worth in Avernus — relevant, given they're carrying Asimov and Ruth's soul-stock. Z'neth will happily appraise soul-goods; <strong>[HOMEBREW tie]</strong> he's a natural buyer if Mahadi's Red Ruth gambit escalates into a bidding situation.</li>
+</ul>
+<h3 id="burney-the-barber-dd-canon">Burney the Barber [D&amp;D CANON]</h3>
+<ul>
+<li><strong>What:</strong> a barbershop / grooming stall. Warm, chatty, gives a genuinely good shave — and her treatments can <strong>magically alter or restore a patron's appearance</strong> (a new face, an erased scar, a disguise). Some quiet <strong>healing / restoration</strong> is available here too, though she doesn't advertise it.</li>
+<li><strong>The secret (DM only, fun):</strong> "Burney" is an <strong>adult copper dragon disguised as a human woman</strong>, an agent of <strong>Bahamut</strong>, <strong>near-impossible for fiends to detect</strong>, who may <strong>discreetly aid good-aligned visitors.</strong> <strong>The party won't know this</strong> unless the campaign opens that door someday. For now she's the one <em>actually kind</em> soul on the floor — a small, warm mystery. Bank it; don't spend it.</li>
+</ul>
+<h3 id="the-bone-devil-informant-homebrew">The Bone Devil Informant [HOMEBREW]</h3>
+<ul>
+<li>From <code>npc-reference.md</code> — the homebrew <strong>info-broker</strong> on the floor.</li>
+<li><strong>DC 16 Persuasion</strong> to get a real answer; a <strong>soul coin grants advantage.</strong><blockquote class="note">
+<p><em>"Powerful spellcasters know the way — but they'll not lift a finger without blood."</em></p>
+</blockquote>
+</li>
+<li><strong>Use him as the connective tissue:</strong> he's the one who'll murmur that "the estate-keeper who lost his garden to the demons is asking after work," pointing the party toward <strong>Or'Henn</strong> (Act 4). He can also confirm rumors about Red Ruth's death for a price — a cheaper, riskier channel than Mahadi.</li>
+</ul>
+<h3 id="things-to-do-beyond-buying-the-activities-menu">Things to do (beyond buying) — the activities menu</h3>
+<p>Use these to fill open table-time; the tag tells you what's canon vs. a table-add.</p>
+<ul>
+<li><strong>Rest &amp; recover</strong> [D&amp;D CANON] — dine, bathe, and take sanctuary at Infernal Rapture. <em>Costs a hospitality debt if taken "on the house."</em> A safe long rest in Hell is itself a luxury.</li>
+<li><strong>Repair &amp; refuel</strong> [D&amp;D CANON] — the Lady Vengeance and any battered gear at the Firesnake Forge (Rassh).</li>
+<li><strong>Change your face / mend</strong> [D&amp;D CANON] — Burney: a disguise, a restored appearance, a discreet healing.</li>
+<li><strong>Money &amp; contracts</strong> [D&amp;D CANON + CAMPAIGN CANON] — borrow soul coins from Fhet'Ahla (dangerous — infernal collateral), or have him <strong>seal the soul-bounties</strong> (Act 5).</li>
+<li><strong>Buy strange things</strong> [D&amp;D CANON] — demon ichor (Elliach), larvae (Z'neth), or commission something rare through Mahadi.</li>
+<li><strong>Learn things</strong> [D&amp;D CANON] — work the room. Mahadi, the Bone Devil Informant, the guards, and the Emporium's mixed clientele all trade in rumor. Roll or pick from the table below.</li>
+<li><strong>Optional / table-add</strong> [HOMEBREW — not canon; add only if you want it]: a gambling pit, a fighting-pit or performance, a hireling/guide broker. The book names none of these — drop one in only if your table wants the color.</li>
+</ul>
+<h3 id="rumor-table-d8-homebrew-campaign-seeded">Rumor table (d8) [HOMEBREW — campaign-seeded]</h3>
+<p>What the party can overhear or buy on the floor. Most are true; a couple are bent.</p>
+<table>
+<thead>
+<tr>
+<th>d8</th>
+<th>Rumor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>1</td>
+<td>"An old dragonborn keeper's been asking after work at the edge of the light — lost his garden to the same demons that fed the hyena-god." <em>(True — that's Or'Henn; the hook into Act 4.)</em></td>
+</tr>
+<tr>
+<td>2</td>
+<td>"The barlgura <strong>Kharzug the Root-Eater</strong> was last seen dragging plunder toward the <strong>Weeping Furrow.</strong>" <em>(True — Bounty I's payoff.)</em></td>
+</tr>
+<tr>
+<td>3</td>
+<td>"<strong>Lady Urexiel</strong>, Keeper of the Scabrous Menagerie, has taken new <em>tribute</em> lately — a burning stick, they say." <em>(True — the staff's destination.)</em></td>
+</tr>
+<tr>
+<td>4</td>
+<td>"Red Ruth of the Bone Brambles is dead, and <strong>Mahadi's</strong> been in a foul, acquisitive mood ever since." <em>(True — Mahadi's gambit.)</em></td>
+</tr>
+<tr>
+<td>5</td>
+<td>"The cold in the eighth Hell is stirring. <strong>Mephistopheles</strong> lost something on that mountaintop and he's counting who owes him." <em>(True-ish — the new thread.)</em></td>
+</tr>
+<tr>
+<td>6</td>
+<td>"<strong>Bel</strong> is buying adamantine control rods off anyone who can pull them from the Wrecked Flying Fortress." <em>(True — the next arc.)</em></td>
+</tr>
+<tr>
+<td>7</td>
+<td>"Never take a loan from the amnizu unless you've read <em>all</em> of it. A warlord signed last month and now his shadow works off the debt." <em>(True — a Fhet'Ahla warning.)</em></td>
+</tr>
+<tr>
+<td>8</td>
+<td>"Burney the Barber can give you a face nobody in Hell will know." <em>(True — and truer than they realize.)</em></td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note">
+<p><strong>This is the complete canon shop list — six.</strong> Do NOT invent additional <em>canon</em> vendors; anything past the six above is [HOMEBREW] or unnamed color. Full NPC quick-reference with spellings + tags is in <strong>Appendix A</strong>.</p>
+</blockquote>
+<hr />
+<h2 id="act-4-recruiting-orhenn-55-min">ACT 4 — RECRUITING OR'HENN (55 min)</h2>
+<p><strong>This is Mikas's spotlight.</strong> He just lost Asimov; give the new character a real entrance. The order that works: the party is <em>looking</em> for a hunter (the clock) → the Bone Devil Informant (or Asimov himself) points them at a refugee → they meet Or'Henn → the grievance clicks → Asimov confirms the fit → handoff.</p>
+<h3 id="orhenns-introduction-the-refugee-at-the-edge-of-the-light">Or'Henn's introduction — the refugee at the edge of the light</h3>
+<p>Read aloud (Mikas, this is your cue):</p>
+<blockquote class="note">
+<p>Past the last bright stall, where the caravan's lantern-light thins into ash-dark, a figure sits apart on an overturned crate. <strong>An elderly Red Dragonborn</strong> — deep crimson scales gone matte with age, horns chipped, fine cracks at the muzzle. One eye is scarred pale grey and blind; the other is calm and gold. His armor is a strange craft of leather and bark and ashwood bound in blackened iron, with small red blossoms — <em>living</em> ones — growing at the shoulder. Across his knees rests a round ashwood shield bearing an engraved crest you don't recognize, the sigil of some devil noble house.</p>
+<p>He is not begging. He is not haggling. He is watching the market the way a man watches a house that used to be his. When he speaks, his voice is dry and unhurried, and entirely at home in Hell.</p>
+<p><em>"You have the smell of the Last Hill on you. That warband — the one that fed the hyena-god — I know its work. It came through a garden once. My garden. Sit, if you like. It seems we hate the same dead things."</em></p>
+</blockquote>
+<p><strong>DM notes — who Or'Henn is [HOMEBREW]:</strong>
+- <strong>The pitch (from the digest / DM primer):</strong> Or'Henn is a <strong>dispossessed <em>keeper</em>, not a wanderer.</strong> He was the chief living retainer of an Avernian devil noble's garden-estate — the <strong>Ashen Garden</strong> — where the household kept living gardeners because <em>Hell can corrupt life but not create it.</em> A <strong>Yeenoghu-aligned warband</strong> (a <strong>vanguard</strong>, not the demon lord — demons reform in the Abyss) razed the estate; he fled without his staff of office, <strong>Cinderbloom</strong>, and lost his <em>title, authority, and lawful claim</em> — <strong>but kept all his druid magic.</strong> He is here as a <strong>post-ravager refugee</strong>: seeking supplies, shelter, and word of other estates. <strong>He never met Asimov in life.</strong>
+- <strong>THE SHARED GRIEVANCE — the hook that sells the recruitment:</strong> the warband that razed his estate is <strong>the same demonic front the party just broke at the Last Hill.</strong> [strongly recommended per <code>orhenn-dm-primer.html §1</code>]. The party's victory <em>is</em> his revenge-by-proxy; his loss <em>is</em> their war's collateral. Play the recognition as a real, quiet click. Instant buy-in without railroading.
+- <strong>Load-bearing framing — do NOT play him as a nerfed druid.</strong> Cinderbloom is his <em>badge and inheritance</em>, not his class sheet. Wild Shape, spellcasting, Circle of Wildfire features are all his, always. What he lost is <em>standing</em>, not spells. (See <code>orhenn-dm-primer.html §6(c)</code>.)
+- <strong>Voice:</strong> patient, proprietary, comfortable with infernal legalism. A <em>native</em> of Avernus, not a horrified tourist. He wants to recover Cinderbloom and rebuild a domain of his own.</p>
+<h3 id="the-handoff-asimov-names-the-candidate">The handoff — Asimov names the candidate</h3>
+<p>Once Or'Henn and the party are talking, the capacitor warms again:</p>
+<blockquote class="note">
+<p><em>"...him,"</em> Asimov says, from the iron. <em>"The Council's rules don't care whether I</em> like <em>a hunter — they care whether one will</em> work. <em>And this one's already halfway into a hunt he doesn't know he's on. Old man — can you hear me?"</em></p>
+<p>The vessel pulses. Or'Henn's gold eye narrows at it, unsurprised. In Avernus, a talking box is Tuesday.</p>
+<p><em>"I'm dead,"</em> Asimov goes on. <em>"I hunt from in here now, and I've got leads I can't chase myself. You've got a staff to get back and no lawful way to do it. I've got a bank full of contracts and one week to hand my leads to someone with a pulse. That's not a coincidence, that's a</em> market. <em>So. Interested?"</em></p>
+</blockquote>
+<p><strong>DM notes — the mechanical + emotional handoff:</strong>
+- <strong>Mechanical:</strong> Or'Henn becoming the capacitor's living hunter is what <strong>resets the Soul Council's clock</strong> and keeps Asimov's arrangement (and the leads) alive. This is the party's win condition for the session.
+- <strong>Emotional:</strong> for <strong>Mikas</strong>, this is the through-line — his <em>old</em> character (Asimov) literally hands the torch to his <em>new</em> one (Or'Henn). Two of his characters in one scene, one dead and relaying, one alive and taking up the work. Give it weight; let him play both sides of the beat if he wants.
+- <strong>Continuity guardrail:</strong> the party knew Asimov; <strong>Or'Henn did not.</strong> Or'Henn's rapport is with the <em>party</em> and the <em>grievance</em>, not with the dead man in the box. He takes the job because it serves <em>his</em> goal (Cinderbloom), which the leads happen to advance.
+- <strong>Wild Shape / Cinderbloom mechanics:</strong> point Mikas to <code>orhenn-wildshape-codex.html</code> and the Cinderbloom card in <code>orhenn-cinderbloom-and-contracts.html</code>. Don't re-stat here.</p>
+<hr />
+<h2 id="act-5-the-soul-bounties-contract-board-55-min">ACT 5 — THE SOUL-BOUNTIES / CONTRACT BOARD (55 min)</h2>
+<p>With Or'Henn aboard, Asimov can finally do his job: relay the Emporium's leads as <strong>soul-bounties.</strong> This is where the recovery arc quietly begins.</p>
+<h3 id="how-theyre-presented">How they're presented</h3>
+<p>Read aloud:</p>
+<blockquote class="note">
+<p>The capacitor grows warm. Asimov's voice arrives beneath a murmur of turning pages, clinking coins, and distant screams:</p>
+<p><em>"Good news: the Emporium has leads. Bad news: every lead has read the fine print."</em></p>
+</blockquote>
+<p>Then bring the party to <strong>Fhet'Ahla's desk</strong> (or have Fhet'Ahla's clerk, <strong>Malfius Nine-Reeds</strong> [HOMEBREW], attend them). Asimov relays five bounties; Fhet'Ahla lays the <em>instruments</em> on the desk.</p>
+<p><strong>THE BINDING MECHANIC — say this at the table [CAMPAIGN CANON]:</strong></p>
+<p>Each of the five is a <strong>proposed instrument.</strong> It binds <strong>nothing</strong> until <strong>three</strong> things happen, in order:</p>
+<ol>
+<li><strong>Or'Henn marks it in ash</strong> (his signature — the estate-keeper's mark),</li>
+<li><strong>the issuer countersigns,</strong> and</li>
+<li><strong>Fhet'Ahla affixes the seal of the charter</strong> (the notarization).</li>
+</ol>
+<p>Until Fhet'Ahla seals it, the party can freely <strong>decline.</strong> Once sealed, they're hooked. Each instrument is <strong>voidable only by both signatories, before Fhet'Ahla, on surrender of the original and payment of his fee</strong> — so backing out is possible, but it costs.</p>
+<ul>
+<li><strong>[CAMPAIGN CANON]</strong> Fhet'Ahla-as-notary is the canon amnizu's contract-banking role, extended to seal the charter's instruments. Malfius Nine-Reeds is his <strong>clerk</strong>, not a second amnizu.</li>
+<li><strong>[HOMEBREW]</strong> The five <strong>issuers</strong> — Procurator Vhalzareth, Serephine Coal-Tongue, Pellucid Jax, Mistress Nymira Quill, Advocate Malfius Nine-Reeds — are homebrew. 🎲 DIAL: run them <strong>in person</strong> at the Emporium (colorful cameos), or as <strong>sealed instruments delivered to the desk</strong> (their agents present the terms). Either is fine; pick per your energy. Mixed is good — e.g. Serephine appears; the Chancery's Vhalzareth is a paper.</li>
+</ul>
+<h3 id="asimov-is-your-encumbrance-early-warning-system">Asimov is your Encumbrance early-warning system</h3>
+<p><strong>[CAMPAIGN CANON — <code>orhenn-dm-primer.html §6(d)</code>]</strong> From inside the vessel, Asimov can <strong>read infernal fine print.</strong> Mechanically he's the party's rules-lawyer against the traps: if the players <em>ask him</em> to check a contract, let him flag the danger. If they don't ask, let them sign blind — that's the game.</p>
+<p><strong>On the player cards, the trap is deliberately hidden</strong> — the <code>catch</code> on each card in <code>orhenn-cinderbloom-and-contracts.html</code> renders as <em>"Fine print — infernal terms, set too small to read at a glance. (DC 15 Investigation, or ask Asimov, to reveal the catch.)"</em> So the reveal paths are: <strong>DC 15 Investigation</strong>, <strong>ask Asimov</strong>, or later <strong>Bounty IV</strong> (which reads any contract's exact text).</p>
+<blockquote class="note">
+<p><strong>DEFER TO THE DM PRIMER.</strong> The full <strong>Encumbrances</strong> (what each trap actually does) are stated openly in <code>orhenn-dm-primer.html §3</code>. <strong>Do not restate them at the table or in front of players.</strong> This primer gives you the one-line <em>Consideration</em> only (appendix). When a player triggers a reveal, read the Encumbrance from the DM primer.</p>
+</blockquote>
+<h3 id="the-recovery-breadcrumb-i-iii-v">The recovery breadcrumb (I → III → V)</h3>
+<p><strong>[HOMEBREW]</strong> Three of the five bounties form the Cinderbloom staff-recovery questline. The other two (<strong>II</strong>, <strong>IV</strong>) are optional side-deals (gear; Asimov's benefit). The chain (full version in <code>orhenn-dm-primer.html §2</code>):</p>
+<blockquote class="note">
+<p><strong>estate boundary seal (I) → salvage manifest → the barlgura Kharzug the Root-Eater → the Weeping Furrow trench → the staff given as tribute to Lady Urexiel, Keeper of the Scabrous Menagerie (the boss).</strong></p>
+</blockquote>
+<ul>
+<li><strong>Bounty I</strong> = the <strong>lead</strong> (names Kharzug + the Weeping Furrow).</li>
+<li><strong>Bounty III</strong> = the <strong>tracker</strong> (Morrow's collar holds an ashwood-flake compass that points at the staff for 1 hour).</li>
+<li><strong>Bounty V</strong> = the <strong>legal crowbar</strong> (a writ of reclamation naming Cinderbloom Or'Henn's property; confirms it went to Lady Urexiel).</li>
+</ul>
+<p>Run them <strong>I → III → V</strong> for a clean three-beat chase to a boss (Urexiel). You don't need the party to grasp the chain now — just get the cards into their hands and let Bounty I read like the obvious first move.</p>
+<blockquote class="note">
+<p><strong>Cards on the table:</strong> hand the five bounty cards from <code>orhenn-cinderbloom-and-contracts.html</code> (print one per page). Point players there for the <em>Consideration</em> (reward). The <em>Encumbrance</em> stays behind your screen (<code>orhenn-dm-primer.html</code>).</p>
+</blockquote>
+<hr />
+<h2 id="act-6-wind-down-20-min">ACT 6 — WIND-DOWN (20 min)</h2>
+<h3 id="pick-the-first-bounty">Pick the first bounty</h3>
+<p>Steer gently toward <strong>Bounty I — The Gardener's Due</strong> as the natural opener (it's the lead that unlocks the chase and it sends them back to Or'Henn's estate — thematically perfect for the new PC's first outing). But let the party choose. If they want gear first (II) or to help Asimov first (IV), that's valid — the arc bends, it doesn't break.</p>
+<ul>
+<li><strong>Do they SIGN anything this session?</strong> 🎲 DIAL. Cleanest: they <strong>accept Bounty I</strong> and let Fhet'Ahla seal it, feeling the weight of a <em>first</em> infernal signature — but hold the rest unsigned. Or they take all five as <em>proposals</em> and sign nothing yet, deciding on the road. Either keeps the traps live.</li>
+</ul>
+<h3 id="cliffhangers-parting-gambits">Cliffhangers &amp; parting gambits</h3>
+<p>Read aloud (Mahadi, as they leave):</p>
+<blockquote class="note">
+<p>Mahadi walks you to the edge of his light, hands clasped the wrong way, entirely at ease.</p>
+<p><em>"A pleasure. Truly. Come back when the old man has his staff — I do so love a reunion."</em> A pause, warm as the spa steam. <em>"Oh — and do give my regards to the memory of dear </em><em>Red Ruth</em><em>. Such a loss. If you should happen to have come into any of her... effects... I would pay handsomely, and discreetly, and I would consider it a personal kindness."</em> His gold eyes rest, one beat too long, on the pack where the heartstone rides. <em>"But that is a conversation for another course. Safe travels. Leave your feud at the door on your way out, too."</em></p>
+</blockquote>
+<ul>
+<li><strong>Mahadi's gambit lands as a hook, not a demand</strong> — the Red Ruth thread [HOMEBREW] is now open and will pull the party back to the Emporium (or bring Mahadi to them).</li>
+<li><strong>Asimov's clock is RESET</strong> — Or'Henn is the hunter; the week is bought. But the <em>bounties</em> now carry their own clocks (Bounty I's breach-marks; the general sense that infernal deals rot if left).</li>
+<li><strong>Burney the Barber</strong> waves goodbye. (DM: bank the copper-dragon secret. Someday.)</li>
+</ul>
+<h3 id="next-destination">Next destination</h3>
+<ul>
+<li><strong>Bounty I</strong> sends the party back toward <strong>Or'Henn's ruined estate</strong> to recover the boundary seal — the first beat of the recovery arc.</li>
+<li>Downstream, the arc threads to <strong>Bel's Forge</strong> (<code>session-6-bels-forge-primer.md</code>) — the war machine in Bounty V is Forge-made, and the Lady Vengeance's real repair may need Bel's industry. Use the staff-recovery chase as the connective tissue.</li>
+<li><strong>[HOMEBREW / plot]</strong> the <strong>Mother Ash capstone</strong> (upgrading Cinderbloom to legendary) waits <em>after</em> the staff is recovered — do not open it yet (<code>orhenn-dm-primer.html §4</code>).</li>
+</ul>
+<p>End on Or'Henn, marking Bounty I in ash, or choosing not to — and the caravan's lanterns rolling on into the dark behind them.</p>
+<p><strong>END SESSION.</strong></p>
+<hr />
+<h1 id="appendices">APPENDICES</h1>
+<h2 id="appendix-a-npc-quick-reference">APPENDIX A — NPC QUICK-REFERENCE</h2>
+<h3 id="canon-emporium-vendors-host-use-these-exact-spellings-dd-canon">Canon Emporium vendors &amp; host — use these EXACT spellings [D&amp;D CANON]</h3>
+<table>
+<thead>
+<tr>
+<th>NPC</th>
+<th>Type</th>
+<th>Stall / role</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Mahadi</strong></td>
+<td>Rakshasa (tiger-face, reversed hands)</td>
+<td><strong>Infernal Rapture</strong> — restaurant &amp; spa; host &amp; truce-keeper</td>
+<td>Charming/exploitative; agent of Asmodeus; wants bargains, influence, souls. "On the house" = obligation. <strong>[HOMEBREW angle:]</strong> wants Red Ruth's leftovers (see below). DC 18 Insight: fears Asmodeus.</td>
+</tr>
+<tr>
+<td><strong>Fhet'Ahla</strong></td>
+<td>Amnizu</td>
+<td><strong>"From Here to Avernus"</strong> — soul-coin bank; loans on infernal contracts</td>
+<td><strong>[CAMPAIGN CANON]</strong> also the charter's <strong>contract-notary</strong> — seals/voids every soul-bounty instrument. Fulcrum of Act 5.</td>
+</tr>
+<tr>
+<td><strong>Rassh</strong></td>
+<td>Salamander (fire-snake staff)</td>
+<td><strong>"The Firesnake Forge"</strong> — weapons/armor, gear repair, <strong>war-machine repair + REFUEL</strong></td>
+<td>Fixes &amp; refuels the Lady Vengeance. 🎲 DIAL: also stocks <strong>shattersticks</strong> (folds in the homebrew "Salamander Artificer").</td>
+</tr>
+<tr>
+<td><strong>Elliach</strong></td>
+<td>Human mage</td>
+<td><strong>"Ichor's Aweigh!"</strong> — buys/sells demon <strong>ichor</strong> (mutagenic)</td>
+<td>Temptation/color. Vague, dangerous effects.</td>
+</tr>
+<tr>
+<td><strong>Z'neth</strong></td>
+<td>Hobgoblin warlord</td>
+<td><strong>Z'neth's Larva Farm</strong> — buys/sells <strong>larvae</strong> (soul-forms)</td>
+<td>The moral wince of the market; appraises soul-goods.</td>
+</tr>
+<tr>
+<td><strong>Burney the Barber</strong></td>
+<td>"Human woman" — secretly an adult <strong>copper dragon</strong> (Bahamut agent)</td>
+<td>Grooming; <strong>magically alter/restore appearance</strong>; quiet healing</td>
+<td><strong>DM-only secret</strong>; near-undetectable by fiends. The one kind soul on the floor. Don't spend it.</td>
+</tr>
+</tbody>
+</table>
+<h3 id="homebrew-npcs-on-the-floor-issuers-homebrew">Homebrew NPCs on the floor / issuers [HOMEBREW]</h3>
+<table>
+<thead>
+<tr>
+<th>NPC</th>
+<th>Role</th>
+<th>Notes</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Or'Henn the Ashen Shepherd</strong></td>
+<td>The recruit / <strong>new PC</strong></td>
+<td>Elderly Red Dragonborn, Circle of Wildfire druid L12. Dispossessed keeper of the Ashen Garden. Shares the party's Yeenoghu grievance. Keeps all druid magic; lost only his <em>standing</em>.</td>
+</tr>
+<tr>
+<td><strong>The Bone Devil Informant</strong></td>
+<td>Info-broker</td>
+<td>DC 16 Persuasion (soul coin = advantage). Points the party at Or'Henn; confirms Red Ruth rumors for a price.</td>
+</tr>
+<tr>
+<td><strong>Procurator Vhalzareth</strong></td>
+<td>Issuer, <strong>Bounty I</strong></td>
+<td>Estate-Reclamation Advocate, Third Infernal Chancery. Wants Or'Henn on the hook as "acting groundskeeper."</td>
+</tr>
+<tr>
+<td><strong>Serephine Coal-Tongue</strong></td>
+<td>Issuer, <strong>Bounty II</strong></td>
+<td>Salamander smith of the <em>Gilded Crucible</em> — <strong>distinct from Rassh.</strong> Wants a neutral party to "certify" a rival's iron defective.</td>
+</tr>
+<tr>
+<td><strong>Pellucid Jax</strong></td>
+<td>Issuer, <strong>Bounty III</strong></td>
+<td>Infernal beast broker, <em>Jax's Immaculate Menagerie</em>. Offloading a lethal hound ("Morrow").</td>
+</tr>
+<tr>
+<td><strong>Mistress Nymira Quill</strong></td>
+<td>Issuer, <strong>Bounty IV</strong></td>
+<td>Night hag, broker of posthumous opportunities. Sells Asimov an hour of embodiment.</td>
+</tr>
+<tr>
+<td><strong>Advocate Malfius Nine-Reeds</strong></td>
+<td>Issuer, <strong>Bounty V</strong> + Fhet'Ahla's <strong>clerk</strong></td>
+<td>Lesser counsel under Fhet'Ahla (NOT a second amnizu). Curtained stall, no visible entrance.</td>
+</tr>
+</tbody>
+</table>
+<p><em>Full motives &amp; betrayal angles for the issuers: <code>orhenn-dm-primer.html §5</code>. Do not restate at the table.</em></p>
+<hr />
+<h2 id="appendix-b-truce-if-the-players-break-the-peace">APPENDIX B — TRUCE: IF THE PLAYERS BREAK THE PEACE ⚔️</h2>
+<p><strong>[D&amp;D CANON]</strong> Violence is forbidden inside the Emporium. Guests leave feuds at the door. Mahadi enforces the truce <strong>by his own authority and Asmodeus's backing.</strong> Peace-breakers are <strong>punished, expelled, or killed at his discretion.</strong> Adjudicate like this:</p>
+<p><strong>Escalation ladder:</strong>
+1. <strong>Hostile words only</strong> → a warm smile and a warning. Free (barely).
+2. <strong>Weapon drawn / spell readied, not used</strong> → last warning; the market falls silent; enforcers close in.
+3. <strong>First strike lands</strong> → <strong>truce broken.</strong> Mahadi acts.</p>
+<p><strong>When the truce breaks — Mahadi's options (pick by tone &amp; severity):</strong>
+- <strong>Expulsion:</strong> the offender (and possibly the party) is <em>removed</em> — bounties revoked, the Red Ruth deal poisoned, hospitality withdrawn. <strong>The cheapest lesson.</strong> Strongly prefer this for a first, hot-headed swing — it <em>costs the party the session's goals</em> without a TPK.
+- <strong>Punishment / price:</strong> Mahadi extracts a <em>fee</em> for the breach — a soul coin, a favor, a marked obligation. Fits his rakshasa nature better than a brawl.
+- <strong>⚔️ Lethal enforcement (last resort):</strong> if a PC pushes it, Mahadi does not fight fair or alone. A <strong>rakshasa</strong> is CR 13 (Magic Resistance; <strong>Limited Magic Immunity</strong> — ignores spells 6th level and lower unless he chooses otherwise; illusion + Innate Spellcasting), and the market's guests / bouncers back him — treat as a table full of assorted devils who all suddenly agree the intruder is the problem. <strong>Pull the rakshasa (Monster Manual, CR 13) and assorted devil statblocks from your reference of choice (5e.tools / Monster Manual) if it actually comes to blows.</strong> This is a <em>punishment</em>, not a balanced encounter; the message is "you cannot win here."</p>
+<p><strong>DM guidance:</strong> the <strong>best</strong> outcome is that no one swings — the <em>temptation</em> is the drama. If a player does break it, reach for <strong>expulsion first.</strong> Only go lethal if the table wants the consequence and understands it's a wall, not a boss. Never let a truce-break be <em>free</em>; the peace only means something if breaking it costs.</p>
+<hr />
+<h2 id="appendix-c-the-five-soul-bounties-quick-reference-no-trap-spoilers">APPENDIX C — THE FIVE SOUL-BOUNTIES (quick-reference — NO trap spoilers)</h2>
+<p>One line each. <strong>Consideration (reward) only</strong> — the <strong>Encumbrance</strong> for every one lives in <code>orhenn-dm-primer.html §3</code>; reveal it only on DC 15 Investigation, on asking Asimov, or via Bounty IV. Full player cards: <code>orhenn-cinderbloom-and-contracts.html</code>.</p>
+<table>
+<thead>
+<tr>
+<th>No.</th>
+<th>Title</th>
+<th>Issuer</th>
+<th>What it gets you (Consideration)</th>
+<th>Arc role</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>I</strong></td>
+<td>The Gardener's Due</td>
+<td>Procurator Vhalzareth</td>
+<td>Recover the estate's brass boundary seal → a <strong>salvage manifest</strong> naming <strong>Kharzug the Root-Eater</strong> + the <strong>Weeping Furrow</strong> (three signs).</td>
+<td><strong>LEAD</strong> → staff chase</td>
+</tr>
+<tr>
+<td><strong>II</strong></td>
+<td>A Measure of Honest Fire</td>
+<td>Serephine Coal-Tongue</td>
+<td>Mark a rival's grave-cold iron with druidic flame → a <strong>+1 brass sheath</strong> on a weapon/focus, <strong>or</strong> three <strong>cinderseed ampoules</strong>.</td>
+<td>Side-deal (gear)</td>
+</tr>
+<tr>
+<td><strong>III</strong></td>
+<td>The Hound That Remembers</td>
+<td>Pellucid Jax</td>
+<td>Capture the hell hound <strong>"Morrow"</strong> alive → its collar holds an <strong>ashwood-flake compass</strong> that points at the staff (1 hr).</td>
+<td><strong>TRACKER</strong> → staff chase</td>
+</tr>
+<tr>
+<td><strong>IV</strong></td>
+<td>Articles of Temporary Embodiment</td>
+<td>Mistress Nymira Quill</td>
+<td>Obtain a regretful soul's warm shadow → <strong>Asimov manifests 1 hour</strong>, reads one contract's exact text + one hidden clause of his own confinement.</td>
+<td>Side-deal (Asimov / rules-lawyer)</td>
+</tr>
+<tr>
+<td><strong>V</strong></td>
+<td>The Orchard of Borrowed Names</td>
+<td>Advocate Malfius Nine-Reeds</td>
+<td>Retrieve a coffer from an iron-tree grove → a <strong>writ of reclamation</strong> naming Cinderbloom Or'Henn's property; attests it went to <strong>Lady Urexiel</strong>.</td>
+<td><strong>CROWBAR</strong> → staff chase (boss)</td>
+</tr>
+</tbody>
+</table>
+<blockquote class="note">
+<p><strong>Recovery arc:</strong> run <strong>I → III → V</strong> for a clean three-beat chase to <strong>Lady Urexiel, Keeper of the Scabrous Menagerie</strong> (the boss). Structure &amp; pacing: <code>orhenn-dm-primer.html §2</code>.</p>
+</blockquote>
+<hr />
+<h2 id="appendix-d-session-checklist">APPENDIX D — SESSION CHECKLIST</h2>
+<h3 id="before-play">Before play</h3>
+<ul>
+<li>[ ] Print the <strong>5 soul-bounty cards</strong> + the <strong>Cinderbloom item card</strong> from <code>orhenn-cinderbloom-and-contracts.html</code> (one per page; the <code>catch</code> is hidden on purpose).</li>
+<li>[ ] Have <code>orhenn-dm-primer.html</code> <strong>open behind the screen</strong> — you'll read Encumbrances from §3 and issuer motives from §5 on reveal. <strong>Do not print it for the table.</strong></li>
+<li>[ ] Have <code>orhenn-wildshape-codex.html</code> ready for Mikas (Or'Henn's forms).</li>
+<li>[ ] Skim <code>npc-reference.md</code> → Mahadi (temperament, DC 18 Insight, Red Ruth thread) + the Bone Devil Informant line.</li>
+<li>[ ] Have <strong><code>wandering-emporium-reference.md</code></strong> (or its HTML) open for <strong>shop stocks, prices, haggle DCs, and the Emporium encounter/clientele tables</strong> — everything for running the market floor.</li>
+<li>[ ] Decide 🎲 DIALs: (a) does <strong>Maggie</strong> name the Emporium? (b) issuers <strong>in person</strong> vs <strong>on paper</strong>? (c) fold the shatterstick-artificer into <strong>Rassh</strong> (default: yes)? (d) does the party <strong>sign</strong> anything this session or hold all five as proposals?</li>
+<li>[ ] Practice <strong>Mahadi's</strong> voice — gracious host, never a cackling villain. The menace is the <em>bill</em>.</li>
+<li>[ ] Decide how much Mahadi already knows he's holding re: <strong>Red Ruth's</strong> leftovers.</li>
+<li>[ ] Have the <strong>rakshasa</strong> (CR 13) + assorted <strong>devil</strong> statblocks handy (5e.tools / Monster Manual) <em>only in case</em> the truce breaks (Appendix B).</li>
+</ul>
+<h3 id="during-play">During play</h3>
+<ul>
+<li>[ ] Cold open: state the <strong>Soul Council's one-week clock</strong> out loud.</li>
+<li>[ ] Establish the <strong>TRUCE RULE</strong> in-character, early, once — before any temptation arises.</li>
+<li>[ ] Give <strong>Mikas / Or'Henn</strong> a real spotlight entrance (Act 4).</li>
+<li>[ ] Land the <strong>shared-Yeenoghu grievance</strong> as the recruitment hook.</li>
+<li>[ ] Say the <strong>binding mechanic</strong> at the table (mark-in-ash → countersign → Fhet'Ahla's seal).</li>
+<li>[ ] Keep Encumbrances <strong>behind the screen</strong> unless a reveal path fires (Investigation / ask Asimov / Bounty IV).</li>
+<li>[ ] Plant <strong>Mahadi's Red Ruth gambit</strong> — plant, don't resolve.</li>
+<li>[ ] End with a <strong>first bounty chosen</strong> and the <strong>next destination</strong> pointed at (the ruined estate → Bel's Forge downstream).</li>
+</ul>
+<h3 id="after-play">After play</h3>
+<ul>
+<li>[ ] <strong>Update <code>campaign-state.md</code></strong> (another agent is rewriting it now — coordinate; note: Or'Henn recruited, capacitor clock reset, which bounties taken/signed, Mahadi's Red Ruth thread opened).</li>
+<li>[ ] Record which bounties were <strong>taken</strong> and which (if any) were <strong>sealed</strong> by Fhet'Ahla.</li>
+<li>[ ] Note the state of the <strong>Lady Vengeance repair</strong> (Rassh's price / progress).</li>
+<li>[ ] Log the <strong>Red Ruth</strong> negotiation state (what Mahadi offered; what the party revealed).</li>
+<li>[ ] If any DIALs were resolved (issuers, Maggie, signing), record them so the next primer stays consistent.</li>
+<li>[ ] Prep the <strong>Bounty I</strong> outing (return to Or'Henn's estate; boundary seal) for next session.</li>
+</ul>
+<hr />
+<p><em>Sources of truth: <code>orhenn-session-digest.md</code> (current state), <code>orhenn-cinderbloom-and-contracts.html</code> (canonical player cards), <code>orhenn-dm-primer.html</code> (canonical Encumbrances &amp; issuer motives — DM-only), <code>npc-reference.md</code> (Mahadi / Red Ruth / Bone Devil Informant). Canon vendor names &amp; the Emporium's rules are [D&amp;D CANON] from</em> Baldur's Gate: Descent into Avernus <em>Ch. 3. This primer cross-references those documents and does not duplicate their fine print; where anything conflicts, the HTML cards and the DM primer win.</em></p>
+    </div>
+  </main>
+</div>
+<button id="totop" title="Back to top">&uarr;</button>
+<script>
+var bt=document.getElementById('totop'),pr=document.getElementById('prog');
+addEventListener('scroll',function(){
+  bt.classList.toggle('show',scrollY>500);
+  var h=document.documentElement,max=h.scrollHeight-h.clientHeight;
+  pr.style.width=(max>0?(scrollY/max*100):0)+'%';
+});
+document.querySelectorAll('nav .toc li').forEach(function(li){
+  var sub=li.querySelector(':scope > ul');if(!sub)return;
+  li.classList.add('branch','collapsed');
+  var tw=document.createElement('span');tw.className='tw';tw.textContent='+';
+  tw.addEventListener('click',function(e){e.stopPropagation();e.preventDefault();
+    var c=li.classList.toggle('collapsed');tw.textContent=c?'+':'−';});
+  li.insertBefore(tw,li.firstChild);
+});
+function setAll(c){document.querySelectorAll('nav .toc li.branch').forEach(function(li){
+  li.classList.toggle('collapsed',c);var t=li.querySelector(':scope > .tw');if(t)t.textContent=c?'+':'−';});}
+var ea=document.getElementById('expandAll'),ca=document.getElementById('collapseAll');
+if(ea)ea.onclick=function(){setAll(false)};if(ca)ca.onclick=function(){setAll(true)};
+var links={};document.querySelectorAll('nav .toc a').forEach(function(a){
+  var id=a.getAttribute('href');if(id&&id[0]==='#')links[id.slice(1)]=a;});
+var heads=[].slice.call(document.querySelectorAll('.wrap h2,.wrap h3')).filter(function(h){return h.id});
+var spy=new IntersectionObserver(function(es){
+  es.forEach(function(e){if(e.isIntersecting){
+    Object.values(links).forEach(function(a){a.classList.remove('active')});
+    var a=links[e.target.id];if(!a)return;a.classList.add('active');
+    var p=a.closest('li');
+    while(p){if(p.classList.contains('branch')){p.classList.remove('collapsed');
+      var t=p.querySelector(':scope > .tw');if(t)t.textContent='−';}
+      p=p.parentElement?p.parentElement.closest('li'):null;}
+    a.scrollIntoView({block:'nearest'});
+  }});
+},{rootMargin:'-130px 0px -74% 0px',threshold:0});
+heads.forEach(function(h){spy.observe(h)});
+var secs=[].slice.call(document.querySelectorAll('.wrap h2')).filter(function(h){return h.id});
+function curIdx(){var y=scrollY+150,idx=0;secs.forEach(function(h,i){if(h.offsetTop<=y)idx=i});return idx;}
+function go(d){var i=Math.max(0,Math.min(secs.length-1,curIdx()+d));secs[i].scrollIntoView();}
+var pv=document.getElementById('prevSec'),nx=document.getElementById('nextSec'),cs=document.getElementById('curSec');
+if(pv)pv.onclick=function(){go(-1)};if(nx)nx.onclick=function(){go(1)};
+function updNav(){if(!cs)return;var h=secs[curIdx()];if(h)cs.textContent=h.textContent.replace(/\s+/g,' ').trim().slice(0,54);}
+addEventListener('scroll',updNav);updNav();
+document.querySelectorAll('.wrap li,.wrap p').forEach(function(el){
+  var t=(el.textContent||'').trim().toUpperCase();
+  if(t.indexOf('DM ONLY')===0||t.indexOf('DM-ONLY')===0)el.classList.add('dm-inline');
+});
+</script>
+</body>
+</html>

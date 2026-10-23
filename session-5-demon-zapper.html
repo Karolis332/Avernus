@@ -1,0 +1,715 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Side Encounter — The Demon Zapper</title>
+<style>
+  :root{
+    --bg:#0d0a0a; --surface:#181311; --surface2:#221a18; --border:#3a2c28;
+    --ink:#e8d8c8; --muted:#9a8a7a; --accent:#c8a464; --silver:#b8c8d8;
+    --blood:#8b1a1a; --rot:#5a4818; --bone:#cdbb9a; --hell:#d04a1a;
+    --good:#5fa860; --warn:#e0a040; --crit:#d24040; --celest:#c0c8e0;
+    --eldath:#7ac4c8; --unicorn:#e8e0f0;
+  }
+  *{box-sizing:border-box}
+  html,body{margin:0;padding:0;background:var(--bg);color:var(--ink);font-family:'Inter','Segoe UI',system-ui,sans-serif;line-height:1.55;font-size:15px}
+  a{color:var(--accent);text-decoration:none}
+  a:hover{text-decoration:underline}
+
+  .layout{display:grid;grid-template-columns:240px 1fr;min-height:100vh}
+  nav.sidebar{position:sticky;top:0;height:100vh;overflow-y:auto;background:var(--surface);border-right:1px solid var(--border);padding:20px 16px}
+  nav h1{font-family:'Cinzel','Georgia',serif;font-size:16px;color:var(--accent);margin:0 0 4px;letter-spacing:1px}
+  nav .sub{color:var(--muted);font-size:12px;margin-bottom:16px;font-style:italic}
+  nav ol{list-style:none;padding:0;margin:0;counter-reset:nav}
+  nav ol li{counter-increment:nav;margin-bottom:2px}
+  nav ol li a{display:block;padding:6px 8px;border-radius:4px;color:var(--ink);font-size:13px;border-left:2px solid transparent}
+  nav ol li a:before{content:counter(nav,decimal-leading-zero) " · ";color:var(--muted);font-family:monospace;font-size:11px}
+  nav ol li a:hover{background:var(--surface2);border-left-color:var(--accent);text-decoration:none}
+  nav .navgroup{margin-top:16px;font-size:11px;color:var(--muted);text-transform:uppercase;letter-spacing:1.5px;padding:0 8px 4px}
+  nav .back{display:block;margin-top:18px;padding:8px;background:var(--surface2);border-radius:4px;color:var(--accent);font-size:12px;text-align:center}
+
+  main{padding:24px 36px 80px;max-width:980px}
+  header.title{margin-bottom:24px;padding-bottom:14px;border-bottom:1px solid var(--border)}
+  header.title h1{font-family:'Cinzel','Georgia',serif;font-size:30px;color:var(--accent);margin:0 0 4px;letter-spacing:2px}
+  header.title .meta{color:var(--muted);font-size:13px;font-style:italic}
+
+  .trackers{position:sticky;top:0;z-index:50;background:var(--bg);padding:10px 0;margin-bottom:20px;border-bottom:1px solid var(--border)}
+  .tracker-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(180px,1fr));gap:12px}
+  .tracker{background:var(--surface);border:1px solid var(--border);border-radius:6px;padding:10px 12px}
+  .tracker .label{font-size:10px;text-transform:uppercase;letter-spacing:1.5px;color:var(--muted);margin-bottom:6px;display:flex;justify-content:space-between;align-items:center}
+  .tracker .label button{background:transparent;border:1px solid var(--border);color:var(--muted);font-size:10px;padding:1px 5px;border-radius:3px;cursor:pointer}
+  .tracker .label button:hover{color:var(--accent);border-color:var(--accent)}
+
+  .hp-bar{width:100%;height:18px;background:var(--surface2);border:1px solid var(--border);border-radius:3px;position:relative;overflow:hidden}
+  .hp-bar .fill{height:100%;transition:width 0.3s}
+  .hp-bar .fill.devil{background:linear-gradient(90deg,var(--blood),var(--hell))}
+  .hp-bar .fill.unicorn{background:linear-gradient(90deg,var(--unicorn),var(--celest))}
+  .hp-bar .text{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;font-size:11px;font-weight:bold;color:var(--ink);text-shadow:0 0 3px black,0 0 6px black}
+
+  .num-edit{background:var(--bg);border:1px solid var(--border);color:var(--accent);font-family:'Cinzel',serif;font-size:13px;font-weight:bold;text-align:center;border-radius:3px;padding:2px 4px;width:46px;margin-left:4px}
+  .num-edit:focus{outline:none;border-color:var(--accent);background:var(--surface2)}
+
+  .round-counter{display:flex;align-items:center;gap:6px}
+  .round-counter button{background:var(--surface2);border:1px solid var(--border);color:var(--ink);width:28px;height:28px;border-radius:4px;cursor:pointer;font-size:14px}
+  .round-counter button:hover{background:var(--accent);color:var(--bg)}
+
+  .spire-tokens{display:flex;gap:6px;flex-wrap:wrap}
+  .spire-token{width:32px;height:32px;border-radius:6px;background:var(--warn);border:2px solid var(--border);cursor:pointer;display:flex;align-items:center;justify-content:center;font-weight:bold;font-size:13px;color:var(--bg);transition:all 0.2s}
+  .spire-token.disabled{background:var(--good);color:var(--bg)}
+  .spire-token.destroyed{background:var(--surface2);color:var(--muted);border-color:var(--crit)}
+  .spire-token.destroyed:after{content:'✕';font-size:18px}
+
+  .meter-controls{display:flex;gap:4px;margin-top:6px;flex-wrap:wrap}
+  .meter-controls button{flex:1;min-width:30px;background:var(--surface2);color:var(--ink);border:1px solid var(--border);padding:3px;border-radius:3px;cursor:pointer;font-size:10px;font-family:inherit}
+  .meter-controls button:hover{background:var(--accent);color:var(--bg);border-color:var(--accent)}
+
+  section{margin-bottom:32px;scroll-margin-top:180px}
+  section > h2{font-family:'Cinzel',serif;font-size:22px;color:var(--accent);border-bottom:1px solid var(--border);padding-bottom:6px;margin:28px 0 14px;letter-spacing:1px}
+  section > h3{font-family:'Cinzel',serif;font-size:17px;color:var(--bone);margin:20px 0 8px}
+  section h4{font-size:13px;color:var(--accent);margin:14px 0 6px;text-transform:uppercase;letter-spacing:1px}
+
+  blockquote.read{background:var(--surface);border-left:4px solid var(--accent);padding:14px 18px;margin:14px 0;font-style:italic;color:var(--bone);border-radius:0 4px 4px 0;white-space:pre-wrap}
+  blockquote.read em{color:var(--accent);font-style:normal;font-weight:600}
+
+  blockquote.dialogue{background:var(--surface2);border-left:4px solid var(--blood);padding:10px 16px;margin:10px 0 10px 20px;font-style:italic;color:var(--ink);border-radius:0 4px 4px 0;white-space:pre-wrap}
+  blockquote.dialogue.unicorn{border-left-color:var(--unicorn)}
+  blockquote.dialogue.vix{border-left-color:var(--celest)}
+  blockquote.dialogue.dumal{border-left-color:var(--blood)}
+  blockquote.dialogue strong{color:var(--accent);font-style:normal}
+
+  .callout{background:var(--surface);border:1px solid var(--border);border-left:4px solid var(--warn);padding:12px 16px;margin:12px 0;border-radius:0 4px 4px 0}
+  .callout.danger{border-left-color:var(--crit)}
+  .callout.good{border-left-color:var(--good)}
+  .callout.info{border-left-color:var(--celest)}
+  .callout.eldath{border-left-color:var(--eldath)}
+  .callout strong:first-child{color:var(--accent);display:block;margin-bottom:4px;text-transform:uppercase;letter-spacing:1px;font-size:12px}
+
+  table{width:100%;border-collapse:collapse;margin:12px 0;background:var(--surface);border:1px solid var(--border);border-radius:4px;overflow:hidden;font-size:13px}
+  th{background:var(--surface2);color:var(--accent);font-family:'Cinzel',serif;text-align:left;padding:8px 10px;font-size:12px;text-transform:uppercase;letter-spacing:1px;border-bottom:1px solid var(--border)}
+  td{padding:8px 10px;border-bottom:1px solid var(--border);vertical-align:top}
+  tr:last-child td{border-bottom:none}
+  tr:hover td{background:var(--surface2)}
+
+  .statblock{background:#f4ecdc;color:#1a1410;border:2px solid var(--bone);border-radius:6px;padding:16px 20px;margin:14px 0;font-family:'Bookman','Garamond',serif;box-shadow:0 4px 12px rgba(0,0,0,0.4)}
+  .statblock h3{font-family:'Cinzel',serif;color:var(--blood);margin:0 0 4px;font-size:20px;letter-spacing:1px}
+  .statblock .subtitle{font-style:italic;color:#3a2018;margin-bottom:8px;font-size:13px}
+  .statblock hr{border:none;border-top:2px solid var(--blood);margin:8px 0}
+  .statblock .ability{display:grid;grid-template-columns:repeat(6,1fr);gap:8px;text-align:center;padding:8px 0;font-size:12px}
+  .statblock .ability div span{display:block;font-weight:bold;color:var(--blood)}
+  .statblock p{margin:6px 0;font-size:13px}
+  .statblock .trait,.statblock .action{margin:6px 0}
+  .statblock .trait strong,.statblock .action strong{color:var(--blood);font-style:italic}
+  .statblock.celestial{background:#eef2f8;border-color:var(--celest)}
+  .statblock.celestial h3{color:#3050a0}
+  .statblock.celestial .trait strong,.statblock.celestial .action strong{color:#3050a0}
+  .statblock.celestial hr{border-top-color:#3050a0}
+  .statblock.celestial .ability div span{color:#3050a0}
+
+  ul.tight,ol.tight{margin:6px 0;padding-left:22px}
+  ul.tight li,ol.tight li{margin:3px 0}
+
+  .pill{display:inline-block;background:var(--surface2);border:1px solid var(--border);border-radius:10px;padding:1px 8px;font-size:11px;color:var(--muted);margin-right:4px}
+  .pill.crit{background:var(--blood);color:white;border-color:var(--blood)}
+  .pill.good{background:var(--good);color:var(--bg);border-color:var(--good)}
+  .pill.warn{background:var(--warn);color:var(--bg);border-color:var(--warn)}
+  .pill.eldath{background:var(--eldath);color:var(--bg);border-color:var(--eldath)}
+
+  details{background:var(--surface);border:1px solid var(--border);border-radius:4px;margin:10px 0;padding:0}
+  details summary{cursor:pointer;padding:10px 14px;font-weight:600;color:var(--accent);user-select:none;list-style:none}
+  details summary:before{content:"▶";font-size:10px;margin-right:8px;transition:transform 0.2s}
+  details[open] summary:before{transform:rotate(90deg)}
+  details summary::-webkit-details-marker{display:none}
+  details > *:not(summary){padding:0 16px 14px}
+
+  .dm-cue{background:rgba(208,74,26,0.08);border-left:3px solid var(--hell);padding:10px 14px;margin:10px 0;font-size:13px;border-radius:0 4px 4px 0}
+  .dm-cue strong{color:var(--hell);text-transform:uppercase;font-size:11px;letter-spacing:1.5px;display:block;margin-bottom:4px}
+
+  .ascii-map{background:var(--surface2);color:var(--bone);padding:14px;border-radius:4px;border:1px solid var(--border);overflow-x:auto;font-size:12px;line-height:1.3;font-family:'Consolas','Monaco',monospace;white-space:pre}
+
+  @media print {
+    nav.sidebar,.trackers{display:none}
+    .layout{grid-template-columns:1fr}
+    main{max-width:100%;padding:10px}
+    section{break-inside:avoid}
+    body{background:white;color:black}
+  }
+
+  @media (max-width: 900px){
+    .layout{grid-template-columns:1fr}
+    nav.sidebar{position:relative;height:auto}
+    main{padding:16px}
+  }
+</style>
+</head>
+<body>
+<div class="layout">
+<nav class="sidebar">
+  <h1>DEMON ZAPPER</h1>
+  <div class="sub">Side encounter · Session 5 detour</div>
+
+  <div class="navgroup">Trackers</div>
+  <ol><li><a href="#trackers">Live Trackers</a></li></ol>
+
+  <div class="navgroup">Scene</div>
+  <ol>
+    <li><a href="#cold-open">Cold Open</a></li>
+    <li><a href="#layout-map">Layout</a></li>
+    <li><a href="#vix">Vix's Question</a></li>
+  </ol>
+
+  <div class="navgroup">Resolution</div>
+  <ol>
+    <li><a href="#approach">Approach Paths</a></li>
+    <li><a href="#disable">The Puzzle (3 Locks)</a></li>
+    <li><a href="#combat">If Combat</a></li>
+    <li><a href="#rescue">After the Rescue</a></li>
+  </ol>
+
+  <div class="navgroup">Stat Blocks</div>
+  <ol>
+    <li><a href="#sb-barbed">Barbed Devil ×2</a></li>
+    <li><a href="#sb-unicorn">Anlein the Unicorn</a></li>
+  </ol>
+
+  <div class="navgroup">Outcomes</div>
+  <ol>
+    <li><a href="#influence">Influence Ticks</a></li>
+    <li><a href="#dumal">Dumal Arrives</a></li>
+    <li><a href="#loot">Loot &amp; Gifts</a></li>
+  </ol>
+
+  <a href="session-5-dumal-primer.html" class="back">← Back to Dumal Primer</a>
+</nav>
+
+<main>
+
+<header class="title">
+  <h1>The Demon Zapper</h1>
+  <div class="meta">Mid-Session 5 detour · L11 party · 30–60 min · CR ≈ 10 if combat (Hard)</div>
+</header>
+
+<!-- =================== TRACKERS =================== -->
+<section id="trackers" class="trackers">
+  <div class="tracker-grid">
+
+    <div class="tracker">
+      <div class="label"><span>Round</span><button onclick="setRound(1)">reset</button></div>
+      <div class="round-counter">
+        <button onclick="changeRound(-1)">−</button>
+        <input type="number" id="round-input" class="num-edit" min="1" max="99" value="1" onchange="setRound(this.value)">
+        <button onclick="changeRound(1)">+</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Unicorn HP <input type="number" id="unicorn-hp-input" class="num-edit" min="0" max="67" onchange="setUnicornHP(this.value)"> / 67</span><button onclick="resetUnicorn()">reset</button></div>
+      <div class="hp-bar"><div class="fill unicorn" id="unicorn-hp-fill" style="width:100%"></div><div class="text" id="unicorn-hp-text">67 / 67</div></div>
+      <div class="meter-controls">
+        <button onclick="dmgUnicorn(5)">−5</button>
+        <button onclick="dmgUnicorn(10)">−10</button>
+        <button onclick="healUnicorn(10)">+10</button>
+        <button onclick="healUnicorn(30)">+30 (Heal Touch)</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Barbed Devil A <input type="number" id="bd1-input" class="num-edit" min="0" max="110" onchange="setBD1(this.value)"> / 110</span><button onclick="resetBD1()">reset</button></div>
+      <div class="hp-bar"><div class="fill devil" id="bd1-fill" style="width:100%"></div><div class="text" id="bd1-text">110 / 110</div></div>
+      <div class="meter-controls">
+        <button onclick="dmgBD1(10)">−10</button>
+        <button onclick="dmgBD1(25)">−25</button>
+        <button onclick="dmgBD1(50)">−50</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Barbed Devil B <input type="number" id="bd2-input" class="num-edit" min="0" max="110" onchange="setBD2(this.value)"> / 110</span><button onclick="resetBD2()">reset</button></div>
+      <div class="hp-bar"><div class="fill devil" id="bd2-fill" style="width:100%"></div><div class="text" id="bd2-text">110 / 110</div></div>
+      <div class="meter-controls">
+        <button onclick="dmgBD2(10)">−10</button>
+        <button onclick="dmgBD2(25)">−25</button>
+        <button onclick="dmgBD2(50)">−50</button>
+      </div>
+    </div>
+
+    <div class="tracker">
+      <div class="label"><span>Spires (click: live / disabled / destroyed)</span><button onclick="resetSpires()">reset</button></div>
+      <div class="spire-tokens" id="spire-tokens"></div>
+      <div style="font-size:10px;color:var(--muted);margin-top:4px">2 disabled OR 2 destroyed → cage collapses, unicorn free.</div>
+    </div>
+
+  </div>
+</section>
+
+<!-- =================== COLD OPEN =================== -->
+<section id="cold-open">
+  <h2>Cold Open — The Detour</h2>
+
+  <div class="dm-cue"><strong>Where this fits</strong>
+    The party has chosen to detour from Vix's parley invitation to rescue the trapped unicorn at the Demon Zapper landmark. They've burned 20–45 minutes of travel time to reach the site. <strong>Vix has not yet vanished</strong> — he's tagging along, polite and curious, perched somewhere visible. He has not yet reported back to Dumal.
+  </div>
+
+  <blockquote class="read">The wind off the wastes carries the smell of ozone — not the lightning kind. The sharp <em>celestial</em> kind, like a temple after rain. It does not belong in Avernus, and that is how you know you're close.
+
+You see the device before you see the road.
+
+Four iron-and-bone spires stand in a square fifty feet across, each two stories tall, lashed with copper wire and red-orange runes that pulse like a slow heartbeat. Between them, suspended on chains: an iron cage. Inside the cage —
+
+A unicorn. Silver-white. Its mane is half torn out. A harness of black iron pierces the base of its horn and feeds back down its neck. The horn glows. The spires glow with it. Beneath the cage: an iron crucible the size of a barrel, half-full of a substance that looks like liquid starlight — sluggish, dimming.
+
+Two <em>barbed devils</em> stand at opposite spires. One is sharpening its claws on the iron. The other looks bored.
+
+The unicorn sees you. <em>Its eyes are still its own.</em></blockquote>
+</section>
+
+<!-- =================== LAYOUT =================== -->
+<section id="layout-map">
+  <h2>Layout</h2>
+  <pre class="ascii-map">         N
+         ↑
+    [S1]·······[S2]
+     ·  ⌜═══⌝  ·
+     ·  ║ U ║  ·       S1–S4 = Spires (AC 15, HP 30 each)
+     ·  ║   ║  ·       U = Unicorn cage (suspended)
+     ·  ⌞═══⌟  ·       BD = Barbed Devil
+     ·    ▽    ·       ▽ = Iron crucible (the "battery")
+    [S4]·······[S3]
+     BD       BD
+         ↓
+         S
+         (party approach default — open ground)</pre>
+
+  <h4>Terrain notes</h4>
+  <ul class="tight">
+    <li><strong>The square is 50 ft wide.</strong> Spires at the corners. Cage centered. Crucible under the cage.</li>
+    <li>The cage is <strong>20 ft up</strong>, suspended by 4 chains running diagonally to the spire tops.</li>
+    <li>Each spire's runes pulse on a 6-second beat. <strong>Round-by-round, the unicorn loses 2 HP</strong> from the harness while the device is active. <em>This is the timer.</em></li>
+    <li>The unicorn enters the encounter at <strong>40/67 HP</strong> (already wounded). 20 rounds before death if nothing changes.</li>
+    <li>Open ground for 200 ft around. No cover. Devils have line of sight on anyone approaching unless stealthed.</li>
+  </ul>
+
+  <div class="callout danger"><strong>Death Clock</strong>The unicorn dies if HP hits 0. <strong>Each round of inaction = −2 HP.</strong> If the spires are pushed harder (devils overload the device, see Combat), it goes to −5/round.</div>
+</section>
+
+<!-- =================== VIX =================== -->
+<section id="vix">
+  <h2>Vix's Question</h2>
+  <p>Before they engage, Vix — still perched on the Lady Vengeance's rail, or on a rock 30 ft behind the party — clears his throat. <strong>He needs to know whether to report this to Dumal.</strong></p>
+
+  <blockquote class="dialogue vix"><strong>Vix:</strong> "Pardon. Pardon. I am not — I am not <em>commanding</em> anything. I have no authority. I am only the herald. But His Ascendancy did request an hour, and you are clearly… <em>busy</em>. May I report what you are doing? He prefers honesty. He says it makes things easier later."</blockquote>
+
+  <h4>Player options for Vix</h4>
+  <table>
+    <tr><th>Approach</th><th>Result</th></tr>
+    <tr><td>"Tell him the truth — we're saving a unicorn."</td><td>Vix bows, vanishes. <strong>30 minutes later</strong> reappears: <em>"His Ascendancy says: 'Then save it. I will find you after. He honors that.'"</em> Party gets the rescue uninterrupted. <strong>Bhaal −2</strong> (Drenwal chose mercy publicly).</td></tr>
+    <tr><td>"Tell him we'll meet him after."</td><td>Vix bows uneasily. Dumal arrives in <strong>20 minutes</strong>, mid-encounter. Hostile peace-options.</td></tr>
+    <tr><td>Lie to Vix (DC 18 Deception)</td><td>Success: Dumal delayed. Failure: he arrives furious mid-encounter (10 min).</td></tr>
+    <tr><td>Kill Vix</td><td><span class="pill crit">WORST PATH.</span> Dumal arrives in 8 minutes, initiative on sight. Adds 4 imps to his retinue.</td></tr>
+    <tr><td>Send Vix away firmly without insult</td><td>Vix bows, vanishes. Dumal arrives in 30 min, neutral.</td></tr>
+  </table>
+
+  <div class="callout info"><strong>Vix as ally-shaped tool</strong>If the party asks Vix to help (DC 17 Persuasion or 15 with a bribe of biscuits/soul coin), he agrees to <em>distract one barbed devil for one round</em> with invisibility shenanigans. He won't fight. <em>"I have not survived this long by being brave, friends."</em></div>
+</section>
+
+<!-- =================== APPROACH =================== -->
+<section id="approach">
+  <h2>Approach Paths</h2>
+
+  <table>
+    <tr><th>Path</th><th>Mechanic</th><th>Outcome</th></tr>
+    <tr><td><strong>Stealth + Disable</strong></td><td>Group DC 15 Stealth (-5 if Aurora's STR debuff hampers crawling) → DC 16 Arcana</td><td><strong>Best outcome.</strong> Spires power down silently. Devils notice the silence at end of round 1 (Perception DC 14). Unicorn collapses, conscious. No combat unless devils close range.</td></tr>
+    <tr><td><strong>Negotiate</strong></td><td>DC 22 Persuasion (Hard — they're devils on duty)</td><td>Won't work straight. Bribe of 5 soul coins or a captive humanoid drops to DC 18. <strong>+5 Gargauth</strong> for the contract. Devils leave; spires remain — still need to disable.</td></tr>
+    <tr><td><strong>Smash &amp; Grab</strong></td><td>Destroy 2 spires (AC 15, HP 30 each) — loud</td><td>Devils engage instantly. <strong>Cage collapses</strong> the moment second spire falls. Unicorn lands prone (5 ft fall, no damage; cage breaks fall).</td></tr>
+    <tr><td><strong>Full Combat</strong></td><td>Roll initiative on sight</td><td>2 Barbed Devils + the device draining unicorn. Hard fight for 3 PCs at L11. See Combat section.</td></tr>
+    <tr><td><strong>Ranged disable from cover</strong></td><td>Aurora longbow: target the chains (AC 13, HP 10) at 120 ft</td><td>Cutting 2 chains drops the cage. Devils respond round 1. <strong>Risk: unicorn takes 1d10 fall damage.</strong></td></tr>
+    <tr><td><strong>Leave it</strong></td><td>—</td><td>Walk away. The unicorn dies eventually. <strong>+5 Bhaal</strong> (cruelty by inaction, Drenwal witnessed it). Vix reports neutral.</td></tr>
+  </table>
+</section>
+
+<!-- =================== PUZZLE =================== -->
+<section id="disable">
+  <h2>The Cage Puzzle — Three Locks</h2>
+
+  <div class="callout info"><strong>How to run this</strong>The puzzle has <strong>three independent locks</strong>. Each one spotlights a different PC. They can be worked in parallel (one PC per lock) or serially. <strong>The unicorn loses 2 HP per round while ANY spire is still active</strong> — this is the timer. Total puzzle time at 3 PCs working parallel: ~3–5 rounds.</div>
+
+  <h3>Lock 1 — The Rhythm of the Spires <span class="pill warn">DEX / Arcana spotlight</span></h3>
+  <p>The four spires pulse <strong>clockwise, in sequence,</strong> on a six-second beat. At any moment, one spire's rune is <em>bright</em> (hot, lethal to touch) and the other three are <em>dim</em> (vulnerable). The pattern is observable.</p>
+
+  <pre class="ascii-map">  Beat 1:  [BRIGHT]  [dim]      Beat 3:  [dim]    [dim]
+           [dim]     [dim]               [dim]    [BRIGHT]
+
+  Beat 2:  [dim]     [BRIGHT]   Beat 4:  [dim]    [dim]
+           [dim]     [dim]               [BRIGHT] [dim]</pre>
+
+  <h4>How to find the pattern</h4>
+  <ul class="tight">
+    <li><strong>DC 12 Perception</strong> — notice the runes light in sequence, not all at once</li>
+    <li><strong>DC 14 Arcana</strong> — recognize this as a <em>binding circle</em>; it must be broken at <strong>opposite corners</strong> (diagonal pair: 1+3 OR 2+4), not adjacent. Breaking adjacents allows the circle to re-route through the other diagonal.</li>
+    <li><strong>DC 13 Investigation on a spire</strong> — the rune is a temporary etching that fades briefly between pulses; touch must land in the dark moment</li>
+  </ul>
+
+  <h4>Disabling a spire</h4>
+  <p>Action on your turn. Player declares <em>which spire</em> AND <em>which initiative count</em> they touch it (timing-as-mechanic — this is the puzzle, not just a roll).</p>
+  <table>
+    <tr><th>State of rune when touched</th><th>Result</th></tr>
+    <tr><td><strong>Dim</strong> (correct timing)</td><td>DC 13 Sleight of Hand OR Arcana. Success: spire goes dark. Failure: nothing happens, try next round.</td></tr>
+    <tr><td><strong>Bright</strong> (mistimed)</td><td>Backlash: <strong>2d6 radiant</strong> to the toucher. The device pulses harder — unicorn loses <strong>4 HP</strong> that round instead of 2. No skill check.</td></tr>
+  </table>
+
+  <div class="callout danger"><strong>Lock 1 solved when:</strong> two <strong>opposite</strong> spires (diagonal pair) are disabled. The pulsing stops. Cage chains slacken but do not release — the harness still holds.</div>
+
+  <h3>Lock 2 — Calming the Unicorn <span class="pill celest">CHA / Animal Handling spotlight</span></h3>
+  <p>Even with all spires dead, the iron harness pierces the unicorn's horn with three barbs. <strong>Yanking it would tear the horn out and kill her.</strong> She must be calmed first — she has been in the cage <em>forty-one years</em>, and the last thing that approached her was a barbed devil.</p>
+
+  <h4>The calm check</h4>
+  <ul class="tight">
+    <li><strong>DC 15 Persuasion / Animal Handling / Performance (singing).</strong></li>
+    <li><strong>Aurora has advantage</strong> if she shows the Moonkite — the celestials recognize each other.</li>
+    <li><strong>Drenwal has DISADVANTAGE</strong> — he reeks of Bhaal to celestial senses. <em>Anlein's eyes go wide when he approaches.</em> This is a tragic narrative beat; lean into it.</li>
+    <li><strong>Asimov has DISADVANTAGE</strong> — the Soul Capacitor / Rasheem is fiend-aligned. Anlein flinches from the lamp.</li>
+    <li><strong>Lulu can intercede</strong> (1×/session). Automatic success on calming + costs Drenwal's "Lulu intercession" slot for the session (already <strong>−2 from highest meter</strong> per the v2 rules).</li>
+  </ul>
+
+  <p>Failure of the calm check: the unicorn thrashes. <strong>Anyone touching her takes 2 (1d4) damage from the horn</strong> on her next reaction. Retry next round; calm DC drops by 1 each failed attempt (she's exhausted).</p>
+
+  <h3>Lock 3 — Removing the Harness <span class="pill good">WIS / Medicine spotlight</span></h3>
+  <p>Once she is calm, the harness can be removed. Three barbs are embedded along the horn base. Each must come out cleanly.</p>
+
+  <table>
+    <tr><th>Approach</th><th>Check</th><th>On failure</th></tr>
+    <tr><td>Surgical — pull each barb individually</td><td><strong>DC 14 Medicine</strong> (3 successes needed, one per barb)</td><td>Each fail: unicorn takes 1d6 damage and you must recalm (DC 13, drops 1 per fail).</td></tr>
+    <tr><td>Sleight of Hand — quick release</td><td><strong>DC 16 Sleight of Hand</strong> (one check, all-or-nothing)</td><td>Critical fail: 2d10 to unicorn + 1d8/round bleed for 3 rounds.</td></tr>
+    <tr><td>Magic — Heal, Lesser Restoration, Cure Wounds 3rd+</td><td>No check. Costs a spell slot 3rd or higher.</td><td>No failure mode. Cleanest path. <strong>Drenwal's option.</strong></td></tr>
+    <tr><td>Anlein removes it herself</td><td>Only possible <em>after</em> Lock 1 is solved AND she is calm. She will try if asked, DC 12 CON save (she's hurt). Failure → 1d6 self-damage.</td><td>—</td></tr>
+  </table>
+
+  <div class="callout good"><strong>Lock 3 solved = full release.</strong>The cage opens. The harness comes off. Anlein steps free, shakily. <strong>Move to "After the Rescue" section.</strong></div>
+
+  <h3>Time Pressure — The Drain Clock</h3>
+  <p>The device draws on Anlein every round until <em>all</em> spires are dark OR the harness is off, <em>whichever comes first</em>. <strong>Show the tracker bar to the players from minute one</strong> — make the timer visible.</p>
+
+  <ul class="tight">
+    <li><strong>Any active spire:</strong> unicorn loses <strong>2 HP/round.</strong></li>
+    <li><strong>Mistimed touch (Bright rune):</strong> <strong>4 HP that round.</strong></li>
+    <li><strong>Devil "Overload" action (Round 3+ if losing combat):</strong> <strong>5 HP/round.</strong></li>
+    <li><strong>Failed calm + flailing:</strong> no additional HP loss, but the harness can't be removed until calmed.</li>
+  </ul>
+
+  <p>Anlein enters the encounter at <strong>40/67 HP.</strong> Math: she has roughly <strong>20 rounds</strong> of grace under normal drain. Overload cuts that to ~8 rounds. <em>Make the player feel the count.</em></p>
+
+  <h3>Bypass / Brute Force Options</h3>
+  <p>If the puzzle's not landing, or the players go destructive:</p>
+
+  <table>
+    <tr><th>Bypass</th><th>Mechanic</th><th>Cost</th></tr>
+    <tr><td><strong>Destroy two opposite spires</strong></td><td>AC 15, HP 30, vuln. thunder/force. Loud — devils engage immediately.</td><td>Cage drops on Anlein. <strong>1d6 fall damage</strong> if not caught (Athletics DC 12 to ease her down). Harness still on — Lock 3 still required.</td></tr>
+    <tr><td><strong>Destroy the crucible</strong></td><td>AC 17, HP 60, vuln. thunder.</td><td>Massive feedback: all 4 spires explode (4d6 force, 20 ft radius, DEX DC 15 half). Anlein saves DEX DC 15 w/ advantage from Magic Resistance. <strong>This can kill her.</strong></td></tr>
+    <tr><td><strong>Cut all 4 chains</strong></td><td>AC 13, HP 10 each. Aurora longbow at 120 ft.</td><td>Cage drops 20 ft. Anlein takes <strong>2d6 fall damage</strong> unless caught. Harness still on.</td></tr>
+    <tr><td><strong>Counterspell the device</strong></td><td>The pulse is a 5th-level effect — DC 15 caster check on Counterspell. Suppresses it for 1 minute.</td><td>Buys time to work Locks 2 + 3 without the drain. Doesn't disable permanently.</td></tr>
+  </table>
+
+  <div class="callout"><strong>Celestial Bonus (if they ask)</strong>Channeling Sacred Flame, Guiding Bolt, or any radiant spell <em>through</em> the crucible adds +1d8 radiant to the cast — but each such cast <strong>doubles the round's drain</strong> on Anlein. <em>Bad trade. Tell them only if they specifically ask.</em></div>
+</section>
+
+<!-- =================== COMBAT =================== -->
+<section id="combat">
+  <h2>If Combat Triggers</h2>
+
+  <h4>Initiative order suggestion</h4>
+  <ol class="tight">
+    <li>Barbed Devil A — INIT 17 (DEX +3)</li>
+    <li>Barbed Devil B — INIT 16</li>
+    <li>Party (roll normally)</li>
+    <li>The Device (no init — operates at end of round, drains unicorn 2 HP)</li>
+  </ol>
+
+  <h4>Barbed Devil tactics</h4>
+  <ul class="tight">
+    <li><strong>Round 1:</strong> One climbs its spire (climb 30 ft, Athletics), starts lobbing Hurl Flame from elevated cover (+5 to hit, 3d6 fire, range 150 ft). The other engages the closest melee threat.</li>
+    <li><strong>Round 2:</strong> If a spire goes dark, the climbing devil drops to defend it (free action via Barbed Hide — it's reckless and just <em>falls</em>, 2d6 self-damage, doesn't care).</li>
+    <li><strong>Round 3+:</strong> If reduced below half HP, both devils target the unicorn directly — they're trying to <em>break it on purpose</em> to deny the rescue. <em>"If we cannot keep, we burn."</em> One Hurl Flame at the unicorn per round.</li>
+    <li><strong>Barbed Hide trigger:</strong> Anyone melee-attacking a barbed devil takes 1d10 piercing reactively. Aurora at STR 3 — strongly disincentivize melee.</li>
+  </ul>
+
+  <div class="callout danger"><strong>The Device as Hostile Object</strong>While both devils live and at least one spire is active, the device draws 2 HP from the unicorn at end of round. <strong>If devils declare "Overload" (action, both must agree, can't move that turn)</strong>, the draw goes to <strong>5 HP/round</strong> until the device is destroyed or a devil dies. They'll do this at Round 3+ if losing.</div>
+
+  <h4>Encounter Math</h4>
+  <ul class="tight">
+    <li>2 Barbed Devils @ CR 5 = 3,600 XP (Hard for L11 party of 3)</li>
+    <li>Add device drain = Deadly if combat extends past Round 4</li>
+    <li><strong>Solution shape:</strong> 1 PC disables spires, 2 PCs hold the devils. Asplit is faster than attrition.</li>
+  </ul>
+</section>
+
+<!-- =================== RESCUE =================== -->
+<section id="rescue">
+  <h2>After the Rescue</h2>
+
+  <blockquote class="read">The cage clatters open. The harness slides off the horn — its iron blackened where the spike pierced. The unicorn stands shakily on the ash-flat ground. It is taller than you remembered unicorns being. Its breath smells like cold mountain water.
+
+It walks, slowly, to whoever broke the device. It lowers its head. The horn touches that person's chest, light as a finger.
+
+The voice is in their head. Not loud. <em>Old.</em>
+
+"I have been here forty-one years. You are the first who tried."</blockquote>
+
+  <blockquote class="dialogue unicorn"><strong>Anlein:</strong> "I am called <em>Anlein</em> in the speech of my grove. <em>Quiet Spring.</em> I was taken from a roadside chapel in the Western Heartlands. My priestess prayed to the river. The river answered with you.
+
+I cannot stay. The devils know my horn now. They will hunt me here. I have one gift to give before I plane-step home. Choose carefully. I will offer only one."</blockquote>
+
+  <h3>The Unicorn's Three Gifts (player picks one)</h3>
+  <div class="callout eldath"><strong>All three options. Pick ONE.</strong></div>
+
+  <table>
+    <tr><th>Gift</th><th>Mechanical</th><th>Strategic</th></tr>
+    <tr><td><strong>(A) Plane Shift One</strong></td><td>Anlein casts Plane Shift, sending one willing creature anywhere on any plane (touch, 1 person). Spends 1d6 hours preparing.</td><td><strong>This is your Smiler banishment.</strong> Send Smiler to his Feywild home plane — the debt clears. Or use it for any one-way transport.</td></tr>
+    <tr><td><strong>(B) Full Heal + Curse-Break</strong></td><td>Healing Touch on entire party (3d8+10 each, 1/long-rest spent). <strong>AND removes one curse</strong> — including the Bhaal-mark on the bone dagger, restoring it to mundane +1.</td><td>Most immediate utility. Drenwal can carry the dagger clean. <strong>−3 Bhaal</strong> on top of healing.</td></tr>
+    <tr><td><strong>(C) Eldath's Vouch</strong> <span class="pill eldath">recommended for arc</span></td><td>Anlein speaks Drenwal's name into the Quiet Spring back home — celestial-to-celestial vouching. <strong>Eldath gains +15 devotional.</strong></td><td><strong>Largest single Eldath jump available.</strong> Combined with Lulu's +5 and other ticks, Drenwal can hit the 30-point threshold for third-deity intervention <em>this session.</em></td></tr>
+  </table>
+
+  <div class="callout info"><strong>If they push for two gifts</strong>Anlein refuses. Politely. <em>"I am not free yet — only escaped. I have one breath of magic before I cross the planes. One. Choose, friend."</em> Pushing harder = <strong>−3 Eldath</strong> (greed). Accepting graciously = <strong>+2 Eldath</strong> (humility).</div>
+
+  <h4>Departure</h4>
+  <p>Whichever gift she gives, Anlein casts the spell, looks once at Drenwal — <em>"Walk in the spring's shadow, brother of a wolf"</em> — and Plane Shifts away. She is gone in a flash of pale water-light. The crucible's last contents evaporate as a faint blue mist.</p>
+
+  <div class="dm-cue"><strong>Aurora moment</strong>
+    Aurora's Moonkite reacts to Anlein's departure — bows its head, tracks the direction the unicorn went. They are celestials of similar octave. <strong>If Aurora asks the Moonkite about it</strong>: she gets a wordless impression of <em>kinship</em>. <em>The Moonkite knew Anlein, somewhere. Long ago.</em> Seed for Moonkite-patron investigation.
+  </div>
+</section>
+
+<!-- =================== BARBED DEVIL STATBLOCK =================== -->
+<section id="sb-barbed">
+  <h2>Stat Blocks</h2>
+
+  <h3>Barbed Devil ×2</h3>
+  <div class="statblock">
+    <h3>Barbed Devil</h3>
+    <div class="subtitle">Medium fiend (devil), lawful evil · CR 5 · <a href="https://open5e.com/monsters/barbed-devil" target="_blank">open5e</a></div>
+    <hr>
+    <p><strong>AC</strong> 15 (natural) · <strong>HP</strong> 110 (13d8+52) · <strong>Speed</strong> 30 ft</p>
+    <div class="ability">
+      <div><span>STR</span>16 (+3)</div>
+      <div><span>DEX</span>17 (+3)</div>
+      <div><span>CON</span>18 (+4)</div>
+      <div><span>INT</span>12 (+1)</div>
+      <div><span>WIS</span>14 (+2)</div>
+      <div><span>CHA</span>14 (+2)</div>
+    </div>
+    <p><strong>Saves</strong> STR +6, CON +7, WIS +5, CHA +5 · <strong>Skills</strong> Deception +5, Insight +5, Perception +8</p>
+    <p><strong>Damage resistances</strong> cold; B/P/S from non-silvered nonmagical · <strong>Immunities</strong> fire, poison · <strong>Condition imm.</strong> poisoned</p>
+    <p><strong>Senses</strong> darkvision 120 ft, passive Perception 18 · <strong>Languages</strong> Infernal, telepathy 120 ft</p>
+    <hr>
+    <p class="trait"><strong>Barbed Hide.</strong> A creature that grapples or hits with melee within 5 ft takes 5 (1d10) piercing.</p>
+    <p class="trait"><strong>Devil's Sight + Magic Resistance.</strong></p>
+    <hr>
+    <p><strong>Actions</strong></p>
+    <p class="action"><strong>Multiattack.</strong> 2 claws + 1 tail (or Hurl Flame in place of one claw).</p>
+    <p class="action"><strong>Claw.</strong> +6 to hit, reach 5 ft. 6 (1d6+3) piercing.</p>
+    <p class="action"><strong>Tail.</strong> +6 to hit, reach 5 ft. 10 (2d6+3) piercing.</p>
+    <p class="action"><strong>Hurl Flame.</strong> Ranged spell attack, +5 to hit, range 150 ft. 10 (3d6) fire. <em>If target is a flammable object that isn't being worn or carried, also ignites.</em></p>
+  </div>
+</section>
+
+<!-- =================== UNICORN STATBLOCK =================== -->
+<section id="sb-unicorn">
+  <h3>Anlein the Unicorn</h3>
+  <div class="statblock celestial">
+    <h3>Anlein, Unicorn of Quiet Spring</h3>
+    <div class="subtitle">Large celestial, lawful good · CR 5 · <a href="https://open5e.com/monsters/unicorn" target="_blank">open5e</a></div>
+    <hr>
+    <p><strong>AC</strong> 12 · <strong>HP</strong> 67 (9d10+18) <span style="font-size:11px;color:#3a2018">[start the encounter at <strong>40/67</strong> — already drained]</span> · <strong>Speed</strong> 50 ft</p>
+    <div class="ability">
+      <div><span>STR</span>18 (+4)</div>
+      <div><span>DEX</span>14 (+2)</div>
+      <div><span>CON</span>15 (+2)</div>
+      <div><span>INT</span>11 (+0)</div>
+      <div><span>WIS</span>17 (+3)</div>
+      <div><span>CHA</span>16 (+3)</div>
+    </div>
+    <p><strong>Damage immunities</strong> poison · <strong>Condition imm.</strong> charmed, paralyzed, poisoned</p>
+    <p><strong>Senses</strong> darkvision 60 ft, passive Perception 13 · <strong>Languages</strong> Celestial, Elvish, Sylvan, telepathy 60 ft</p>
+    <hr>
+    <p class="trait"><strong>Charge.</strong> Move 20+ ft straight, then hit with horn → +9 piercing damage; target DC 15 STR or knocked prone. <em>Not relevant in the cage. Becomes relevant if Anlein joins a brief fight after release.</em></p>
+    <p class="trait"><strong>Magic Resistance.</strong> Advantage on saves vs spells and magical effects.</p>
+    <p class="trait"><strong>Magic Weapons.</strong> Attacks count as magical.</p>
+    <hr>
+    <p><strong>Actions</strong></p>
+    <p class="action"><strong>Multiattack.</strong> Hooves + horn.</p>
+    <p class="action"><strong>Hooves.</strong> +7 to hit, 11 (2d6+4) bludgeoning.</p>
+    <p class="action"><strong>Horn.</strong> +7 to hit, 8 (1d8+4) piercing.</p>
+    <p class="action"><strong>Healing Touch (3/day).</strong> Touch heals 11 (2d8+2) HP <em>and</em> ends one disease or poison.</p>
+    <p class="action"><strong>Teleport (1/day).</strong> Magically teleports up to 1 mile to an unoccupied space it can see.</p>
+    <hr>
+    <p><strong>Spellcasting (innate, CHA, no components)</strong></p>
+    <p>At will: Detect Evil and Good, Druidcraft, Pass without Trace<br>
+    1/day each: Calm Emotions, Dispel Evil and Good, Entangle, Word of Recall</p>
+    <p style="font-size:12px;color:#3a2018"><em>For our purposes: also able to cast <strong>Plane Shift</strong> as a one-time outbound spell after release — this is the "gift" mechanic, not standard SRD.</em></p>
+  </div>
+</section>
+
+<!-- =================== INFLUENCE =================== -->
+<section id="influence">
+  <h2>Influence Tracker Impact</h2>
+  <p>Apply these to the main primer's tracker bar at end of encounter:</p>
+
+  <table>
+    <tr><th>Outcome</th><th>Bhaal</th><th>Gargauth</th><th>Eldath</th></tr>
+    <tr><td>Rescue cleanly, gift refused</td><td>−3</td><td>0</td><td>+5</td></tr>
+    <tr><td>Rescue cleanly, gift accepted (any)</td><td>−5</td><td>0</td><td>+10 to +15 (see gift)</td></tr>
+    <tr><td>Rescue + accept Eldath's Vouch (C)</td><td>−5</td><td>0</td><td>+15 <span class="pill eldath">arc-shifting</span></td></tr>
+    <tr><td>Sacrifice the unicorn to Arkhan later</td><td>+12</td><td>+5</td><td>−all current</td></tr>
+    <tr><td>Leave it</td><td>+5</td><td>0</td><td>0 (or −3 if at 5+)</td></tr>
+    <tr><td>Kill the unicorn directly</td><td>+15</td><td>0</td><td>−all current, permanent</td></tr>
+    <tr><td>Negotiate with devils, take bribe path</td><td>+3</td><td>+5</td><td>+5 (if unicorn survives)</td></tr>
+  </table>
+
+  <div class="callout eldath"><strong>The Eldath threshold this can break</strong>If the party takes <strong>Gift C (Eldath's Vouch)</strong>:
+    <ul class="tight">
+      <li>Current Eldath starts at 5 (Lulu's vouch)</li>
+      <li>+15 from Anlein → <strong>20</strong></li>
+      <li>If Drenwal also publicly prayed/credited Eldath during the rescue: +5 → <strong>25</strong></li>
+      <li>The 30-point threshold for third-deity rebirth intervention is reachable <em>before Dumal even speaks.</em></li>
+    </ul>
+    This re-weights the entire Session 5 conversation. Dumal's "you cannot reach the third option in time" speech becomes <em>wrong</em>. He won't like that.
+  </div>
+</section>
+
+<!-- =================== DUMAL ARRIVES =================== -->
+<section id="dumal">
+  <h2>Dumal Arrives Mid/Post-Encounter</h2>
+
+  <p>Depending on the Vix decision, Dumal shows up at one of three moments:</p>
+
+  <table>
+    <tr><th>Timing</th><th>Trigger</th><th>What he does</th></tr>
+    <tr><td><strong>Mid-combat (round 4–6)</strong></td><td>If Vix was killed or lied to</td><td>Walks into the fight. Does not engage devils (they're not his). Watches. <em>"Continue. I am curious."</em> If Drenwal is in danger, Dumal subtly nudges a devil to attack a different PC instead — Bhaal +5 (he <em>protected</em> his brother, indebting Drenwal).</td></tr>
+    <tr><td><strong>Immediately post-rescue</strong></td><td>If Vix delivered "20 min" message</td><td>Arrives as Anlein is preparing to depart. Sees the unicorn. <em>"Beautiful. They never can stay near me, can they."</em> The unicorn bolts faster. Dumal does not pursue. <strong>+2 Bhaal</strong> (Drenwal witnesses something flee from his brother — preview of self).</td></tr>
+    <tr><td><strong>30+ min later</strong></td><td>If Vix delivered honest "after the unicorn" message</td><td>Arrives at the cleared site. <em>"You chose well. I would have done the same, once."</em> Dumal-dialogue (Act 3 of main primer) proceeds with <strong>extra respect for the party</strong>: -2 to all his hostile-tier numbers. He will offer one additional piece of intel for free (DM call: Olanthius weakness, or Senna's exact location).</td></tr>
+  </table>
+
+  <div class="callout danger"><strong>If Anlein is still present when Dumal arrives</strong>The unicorn <em>recognizes</em> what Dumal is. Two possible reactions:
+    <ul class="tight">
+      <li><strong>Standard:</strong> Bolts immediately, Plane Shift cast in panic. The gift, if not given yet, is wasted. <strong>−3 Eldath.</strong></li>
+      <li><strong>If Anlein has already given a gift:</strong> She turns to Drenwal. <em>"This is your brother? I am sorry, friend. He cannot be saved as you were. The river does not flow that direction."</em> Then plane-steps. <strong>Drenwal hears this as a knife.</strong></li>
+    </ul>
+  </div>
+</section>
+
+<!-- =================== LOOT =================== -->
+<section id="loot">
+  <h2>Loot &amp; Gifts Summary</h2>
+  <ul class="tight">
+    <li><strong>Anlein's gift</strong> — one of (A) Plane Shift, (B) Heal + Curse-Break, (C) Eldath's Vouch (+15 devotional)</li>
+    <li><strong>From the dead devils:</strong> 2 Soul Coins (1 per body). Their barbed hides are worth 50 gp each as armor reinforcement to a smith.</li>
+    <li><strong>From the crucible (if not destroyed):</strong> The remaining celestial residue can be bottled (DC 14 Arcana to siphon, requires a glass vessel). <strong>One-use:</strong> coat a weapon for 1 minute → adds 1d8 radiant per hit. Or drink it for advantage on the next save vs a fiend-aligned effect within 24 hours. <strong>Single charge.</strong></li>
+    <li><strong>The harness</strong> — black iron, the kind that bound the unicorn. Worth nothing materially. <strong>If carried:</strong> a token of guilt. Drenwal touching it during a long rest = vivid dream of being the one in the cage. <span class="pill">Plot prop.</span></li>
+    <li><strong>The four spire-runes</strong> — if salvaged (DC 16 Arcana), each can fuel a fiend-arcane circle for 1 hour. Worth 25 gp to a Hellrider scholar or 50 gp to a fiend dealer.</li>
+  </ul>
+
+  <h4>XP</h4>
+  <ul class="tight">
+    <li>Barbed Devils killed (2): 1,800 each = <strong>3,600</strong></li>
+    <li>Rescue without combat: <strong>2,000</strong> (story award)</li>
+    <li>Eldath's Vouch accepted: <strong>500</strong> (milestone)</li>
+    <li>Sparing the devils (negotiation path): <strong>−1 Bhaal</strong> on top of any XP</li>
+  </ul>
+</section>
+
+<!-- =================== END =================== -->
+<section>
+  <hr style="border:none;border-top:1px solid var(--border);margin:30px 0">
+  <p style="text-align:center;color:var(--muted);font-style:italic">Return to <a href="session-5-dumal-primer.html">the Dumal primer</a> when ready to resume the main thread.</p>
+</section>
+
+</main>
+</div>
+
+<script>
+const STATE = {
+  round: 1,
+  unicornHP: 40,
+  bd1: 110,
+  bd2: 110,
+  spires: [0, 0, 0, 0]
+};
+const MAX_UNICORN = 67;
+const MAX_BD = 110;
+
+function saveState(){ try{localStorage.setItem('s5-dz-state',JSON.stringify(STATE));}catch(e){} }
+function loadState(){
+  try{
+    const s = localStorage.getItem('s5-dz-state');
+    if(s) Object.assign(STATE, JSON.parse(s));
+  }catch(e){}
+}
+
+function clamp(n,lo,hi){return Math.max(lo,Math.min(hi,n));}
+
+function renderRound(){
+  const i = document.getElementById('round-input');
+  if(i && document.activeElement !== i) i.value = STATE.round;
+}
+
+function renderHP(prefix, value, max){
+  const pct = Math.max(0,(value/max)*100);
+  const fill = document.getElementById(prefix+'-fill');
+  const text = document.getElementById(prefix+'-text');
+  const input = document.getElementById(prefix+'-input');
+  if(fill) fill.style.width = pct+'%';
+  if(text) text.textContent = value+' / '+max;
+  if(input && document.activeElement !== input) input.value = value;
+}
+
+function renderSpires(){
+  const el = document.getElementById('spire-tokens');
+  if(!el) return;
+  el.innerHTML = '';
+  STATE.spires.forEach((status, i) => {
+    const t = document.createElement('div');
+    t.className = 'spire-token';
+    if(status === 1) t.classList.add('disabled');
+    if(status === 2) t.classList.add('destroyed');
+    if(status === 0) t.textContent = (i+1);
+    else if(status === 1) t.textContent = '·';
+    else t.textContent = '';
+    t.onclick = () => {
+      STATE.spires[i] = (STATE.spires[i] + 1) % 3;
+      renderAll();
+    };
+    el.appendChild(t);
+  });
+}
+
+function renderAll(){
+  renderRound();
+  renderHP('unicorn-hp', STATE.unicornHP, MAX_UNICORN);
+  renderHP('bd1', STATE.bd1, MAX_BD);
+  renderHP('bd2', STATE.bd2, MAX_BD);
+  renderSpires();
+  saveState();
+}
+
+function setRound(v){const n=parseInt(v); if(!isNaN(n)&&n>=1) STATE.round=n; renderAll();}
+function changeRound(d){STATE.round=Math.max(1,STATE.round+d); renderAll();}
+
+function setUnicornHP(v){const n=parseInt(v); if(!isNaN(n)) STATE.unicornHP=clamp(n,0,MAX_UNICORN); renderAll();}
+function dmgUnicorn(d){STATE.unicornHP=Math.max(0,STATE.unicornHP-d); renderAll(); if(STATE.unicornHP===0) alert('⚠ Anlein has died. Eldath: −15 permanent. Heavy narrative consequence.');}
+function healUnicorn(d){STATE.unicornHP=Math.min(MAX_UNICORN,STATE.unicornHP+d); renderAll();}
+function resetUnicorn(){STATE.unicornHP=40; renderAll();}
+
+function setBD1(v){const n=parseInt(v); if(!isNaN(n)) STATE.bd1=clamp(n,0,MAX_BD); renderAll();}
+function dmgBD1(d){STATE.bd1=Math.max(0,STATE.bd1-d); renderAll();}
+function resetBD1(){STATE.bd1=MAX_BD; renderAll();}
+
+function setBD2(v){const n=parseInt(v); if(!isNaN(n)) STATE.bd2=clamp(n,0,MAX_BD); renderAll();}
+function dmgBD2(d){STATE.bd2=Math.max(0,STATE.bd2-d); renderAll();}
+function resetBD2(){STATE.bd2=MAX_BD; renderAll();}
+
+function resetSpires(){STATE.spires=[0,0,0,0]; renderAll();}
+
+loadState();
+renderAll();
+</script>
+</body>
+</html>

@@ -21,8 +21,10 @@ Cult lore. The same ritual that forged **Dumal the Flame Ascendant.**
 | Step | Sigil | Cost | = Sigil evolution tier |
 |---|---|---|---|
 | 1 — Leash | first sigil *(done)* | discipline | Tier I (Kept Watch) |
-| 2 — Binding | second sigil drawn **in another Bhaalspawn's blood** | a sibling's blood (Dumal's or Senna's) | Tier II |
-| 3 — Mastery | **kill the last living Bhaalspawn** | a kinslaying | Tier III |
+| 2 — Binding | second sigil drawn **in another Bhaalspawn's blood** *(DONE — Session 9)* | **paid in Dumal's blood**, taken when Drenwal wounded him at the Last Hill | Tier II |
+| 3 — Mastery | **kill the last living Bhaalspawn** *(ALL THAT REMAINS)* | a kinslaying | Tier III |
+
+> **STATUS (Session 9):** Drenwal is **Tier II**. He chose the power road over the mercy road without the table necessarily registering that these two cures *compete* — and this is the ritual that forged Dumal. Dumal's own stated want is "Drenwal home, beside him, **the Three Sigils finished**," so step two served his brother's plan as much as his own. The three Open Decisions below are no longer hypothetical; lock them before step 3 comes up.
 
 - **Siblings:** Drenwal, **Dumal**, **Senna**. To become sole master, both others must go — one bleeds (Step 2), one is killed last (Step 3).
 - **The horror:** "the last one" may be **Senna** (the innocent child) → kinslaying = the deepest act of Bhaal. The Bhaalspawn saga's oldest law (kin kill kin) dressed as salvation.
