@@ -573,6 +573,7 @@ window.SESSION = {
 
         { t: "h", text: "Event: The Cold Line" },
         { t: "read", text: "The heat stops at a line you can see.\n\nOne step back, the ground still bleeds red and the air still tastes of iron smoke. One step forward, and it is cold: a clean, church-stone cold that has nothing to do with Hell.\n\nAhead, a doorway of grey granite stands upright and whole, as if the city tore this one building loose and set it down gently. Above the door, worn but clear: a rider, a lance, and a rising sun. No fire has touched it. Nothing here wants to." },
+        { t: "img", src: "art/generated/event-crypt-cold-line.webp", caption: "The Cold Line. The dead of the First Charge kneel at the door, still at prayer.", credit: "Generated art (gpt-image-1)." },
         { t: "list", items: [
           "{@b Devils cannot cross the line.} Imps that have been following the ship stop at it and hiss.",
           "{@b Asimov goes quiet.} Inside the Soul Capacitor, his voice fades: the soul-traffic of Avernus cannot reach in here.",
@@ -602,6 +603,7 @@ window.SESSION = {
       duration: "20 to 30 minutes",
       blocks: [
         { t: "read", text: "A long hall of grey stone, two walls carved from floor to ceiling with names. Thousands of them. The riders of the First Charge, and every Hellrider since who died in Elturel's service.\n\nCold candles stand in rows along the walls. They will not light. The floor is worn smooth in two long grooves, where people knelt.\n\nAt the far end, beyond an arch, something green is glowing." },
+        { t: "img", src: "art/generated/event-crypt-nave-of-names.webp", caption: "The Nave of Names. At the far end, beyond the arch, something green is glowing.", credit: "Generated art (gpt-image-1)." },
         { t: "p", text: "Lulu goes quiet in here. At the end of the hall she turns toward the arch before anyone else does. She knows the way, and does not know how." },
 
         { t: "h", text: "Event: Eldra Vash" },
@@ -632,6 +634,7 @@ window.SESSION = {
       duration: "45 to 60 minutes",
       blocks: [
         { t: "read", text: "At the heart of the Crypt, a knight kneels in front of an open stone coffin. There is no name on it. His armour is Hellrider steel gone black, and a cold green fire lives behind his visor.\n\nHe does not turn around.\n\n\"You've come a long way to look at a grave with no one in it,\" he says. His voice comes up out of the green light like something pulled from a deep well. \"That's fitting. I've knelt here a hundred years and found the same.\"\n\nHis gauntlets tighten on the edge of the stone.\n\n\"If you've come to be forgiven for something, you're in the wrong crypt. There's no forgiveness on these walls. Only names. Say your business, or leave me mine.\"" },
+        { t: "img", src: "art/generated/event-crypt-kneeling-knight.webp", caption: "Olanthius, at a grave with no one in it.", credit: "Generated art (gpt-image-1)." },
         { t: "p", text: "{@c olanthius|Olanthius} is a guilty witness. A hundred years ago he stood at the gate and watched Yael and Lulu carry the Sword out of Hell, and he let them pass. Then he stayed to guard the road they took, and told himself it was duty. The coffin is his own. He carved it and could not lie down in it, so he buried his honour there instead, and the Sword's missing shard with it." },
 
         { t: "h", text: "How He Opens Up" },
