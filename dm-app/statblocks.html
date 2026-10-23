@@ -102,6 +102,7 @@
   <script src="sessions/campaign-tower.js"></script>
   <script src="sessions/campaign-map.js"></script>
   <script src="sessions/campaign-crew.js" onerror="/* optional: crew creatures */"></script>
+  <script src="sessions/campaign-endgame.js" onerror="/* optional: endgame scenes */"></script>
   <script src="media/media.js"></script>
   <script>window.MEDIA = window.MEDIA || {};</script>
   <script>
@@ -132,6 +133,13 @@
       while ((m = re.exec(text))) {
         if (!session.creatures[m[1]] && camp[m[1]]) session.creatures[m[1]] = camp[m[1]];
       }
+      // Encounter combatants defined only in the campaign layer (e.g. the tower dragons in a Session 11 Gambit)
+      (session.scenes || []).forEach(function (sc) {
+        (sc.blocks || []).forEach(function (b) {
+          if (b.t !== "encounter") return;
+          (b.combatants || []).forEach(function (cb) { if (!session.creatures[cb.c] && camp[cb.c]) session.creatures[cb.c] = camp[cb.c]; });
+        });
+      });
     }
 
     // Encounter order first (the order they hit the table), then any other creature the session defines.
@@ -211,11 +219,7 @@
       var pickKey = "dmapp:sb-encounter:" + session.id;
       var best = -1;
       try { var saved = localStorage.getItem(pickKey); encs.forEach(function (e, i) { if (e.block.id === saved) best = i; }); } catch (e) { /* storage blocked */ }
-      if (best < 0) {
-        var most = 0;
-        encs.forEach(function (e) { most = Math.max(most, (e.block.combatants || []).length); });
-        encs.forEach(function (e, i) { if (best < 0 && (e.block.combatants || []).length >= Math.min(3, most)) best = i; });
-      }
+      // Otherwise the first encounter in story order: the next fight the table reaches. The pick is remembered.
       if (best < 0) best = 0;
       if (encs.length > 1) {
         var pick = el("div");

@@ -10,7 +10,7 @@ window.SESSION = {
   party: [
     { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding drawn (Tier II). Carries the Shield of the Hidden Lord." },
     { id: "aurora", name: "Aurora", note: "Archfey Warlock 13 (Mystic Arcanum 7th). Rides the celestial Moonkite." },
-    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. Tiamat's curse: count his gold scales. Carries the Soul Capacitor." }
+    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. Tiamat's curse: carry his Pull number over from Session 10 (see Tiamat's Pull). Cinderbloom in hand, ember dark. Carries the Soul Capacitor." }
   ],
 
   allies: [
@@ -20,43 +20,39 @@ window.SESSION = {
     { id: "lulu", name: "Lulu", note: "Hollyphant. Wanted at the Crypt. In danger at the Dock." },
     { id: "moonkite", name: "Moonkite", note: "Celestial mount, Aurora's companion" },
     { id: "lady-vengeance", name: "Lady Vengeance (Colico Jack)", note: "AC 17 · HP 350 · DT 15" },
-    { id: "uldrak", name: "Uldrak", note: "Only if he survived Session 10 and chose to stay." },
-    { id: "feonor", name: "Feonor", note: "Geas-bound. Waiting at the Menagerie, or caged in it." }
+    { id: "uldrak", name: "Uldrak", note: "Away at Bel's Forge, buying a weapon that can kill Tiamat. Returns when she rises, or when the orb is used and the party is losing." },
+    { id: "feonor", name: "Feonor", note: "Free of the geas: she stole Cinderbloom and brought it. Stays only if asked nicely; leaves when Tiamat rises." }
   ],
 
   creatures: {
+    "arkhan-the-cruel": Object.assign({}, window.CAMPAIGN.creatures["arkhan-the-cruel"], { tactics: window.CAMPAIGN.endgame.arkhanTactics }),
 
     "uldrak": Object.assign({}, window.CAMPAIGN.creatures.uldrak, {
+      role: "Empyrean, away at Bel's Forge. Comes back when Tiamat rises",
       tactics: [
-        "Session 11. Only if he stayed. He is CR 23: any fight here ends in two rounds if he swings. Use him as a voice, not a sword.",
-        "At the Crypt, he stays outside the door, bowed: \"That is a grave for knights. I am too big to be polite in it.\"",
-        "At the Menagerie, Urexiel offers everything in her vault for him. He laughs so hard the cages shake.",
-        "At the Dock, the devils scatter. Kreeg talks at once, and lies twice as carefully.",
+        "Not on these roads. He left the Grave for Bel's Forge to buy a blade that can kill Tiamat ({@side uldraks-errand|Uldrak's Errand}).",
+        "Returns at the start of round 3 of {@scene tiamat-reborn|Tiamat Reborn}, or the moment the orb is used while the party is losing.",
+        "At the Crypt, if he is somehow here, he stays outside the door, bowed: \"That is a grave for knights. I am too big to be polite in it.\"",
         "At will: {@spell greater restoration}. It gives back a memory the Styx took, but not one Kreeg wrote into his ledger."
       ]
     }),
 
-    "feonor": {
-      name: "Feonor",
-      kind: "feonor",
-      role: "Geas-bound archmage, sent to fetch Or'Henn's staff",
-      description: "A tall, thin woman with milky-white eyes and ash in her hair, carrying a parasol of bone and skin that has been badly mended. She looks like she has not slept since the harpoon.",
+    "feonor": Object.assign({}, window.CAMPAIGN.creatures.feonor, {
+      role: "Archmage, free of the geas. Brought Cinderbloom to the Grave; here only if asked nicely",
+      npc: false,
       roleplay: [
-        "Appearance: willowy human archmage in scorched necromancer's robes. Her mended parasol is her pride.",
-        "Voice: whispers in short sentences, broken by long sighs.",
-        "Wants: out of the geas, and out of Avernus without crawling back to Mahadi.",
-        "Knows: the Pens, the handlers' rounds, the vault door, and Urexiel's price. She has drawn a map.",
-        "Sample line: \"Your staff is behind three hundred cages and one very polite monster. You're welcome.\"",
-        "The gap she has found: the geas says bring the staff. It says nothing about the box."
+        "Appearance: willowy human archmage in scorched robes, one sleeve gone and the arm under it still bandaged. Her mended parasol is her pride.",
+        "Voice: short sentences, long sighs. Furious, and very tired.",
+        "Wants: out of Avernus without crawling back to Mahadi. Passage home on the Lady Vengeance would buy her for the rest of the campaign.",
+        "Knows: the Menagerie's layout and the handlers' round. She has been in that vault once and will not go back in.",
+        "Sample line: \"I have done what you made me do. Ask nicely, druid, and I will burn one thing for you before I go. One.\""
       ],
-      source: { page: "bestiary", name: "Feonor", src: "BGDIA" },
-      npc: true,
       tactics: [
-        "Does what the geas says and not one inch more. She will not fight Urexiel for them.",
-        "If no one has offered her anything, she pockets Kreeg's box in the vault and sells it to Mahadi later.",
-        "If someone offers her passage home on the Lady Vengeance, she means it when she says yes."
+        "At the Crypt: stays on the ship outside the Cold Line. \"I have had enough of graves.\"",
+        "If Arkhan comes: counterspells the Hand of Vecna once, with relish, then fights from range behind Lucan or inside Lulu's aura.",
+        "Leaves by misty step and fly the moment Tiamat rises, unless someone gives her a very good reason."
       ]
-    },
+    }),
 
     "lulu": {
       name: "Lulu",
@@ -320,6 +316,169 @@ window.SESSION = {
     }
   },
 
+  timeline: [
+    {
+      "phase": "All Session",
+      "events": [
+        {
+          "when": "Start",
+          "tag": "trigger",
+          "text": "Or'Henn's {@b Pull} carries over from Session 10. Say the number. Rules: {@side tiamats-pull|Tiamat's Pull}."
+        },
+        {
+          "when": "First sight of each chromatic dragon",
+          "tag": "trigger",
+          "text": "Pull {@b +1}. While one is in sight, he makes the Pull save at the start of each of his turns."
+        },
+        {
+          "when": "Arkhan's hunt lands",
+          "tag": "trigger",
+          "text": "Add Arkhan and the surviving tower dragons to the tracker. Run {@scene arkhans-gambit|Arkhan's Gambit}. At the Crypt the fight is at the door, cold side, no devils."
+        }
+      ]
+    },
+    {
+      "phase": "The Crypt of the Hellriders",
+      "events": [
+        {
+          "when": "The Cold Line",
+          "tag": "trigger",
+          "text": "Devils stop at it and hiss. Asimov goes quiet. {@b Tiamat goes quiet: Pull paused inside.} Lulu brightens; Moonkite's light steadies."
+        },
+        {
+          "when": "The Door",
+          "tag": "choice",
+          "text": "Lulu says \"please\" (opens, no roll); a rider's name spoken with grief (Eldra opens it); watchword \"The sun will hold!\" {@b DC 15 History/Religion}, Drenwal and Veska at advantage; or a bought word."
+        },
+        {
+          "when": "The Nave",
+          "tag": "trigger",
+          "text": "ELDRA VASH on the older wall: Or'Henn finds it with no roll. Halvard's name in the Crimson Watch alcove: let Drenwal have the moment, then Veska or Lucan speaks."
+        },
+        {
+          "when": "Checks in the Nave",
+          "tag": "choice",
+          "text": "{@b DC 15 Investigation:} +1 lance and the Hellrider's Aegis among the tombs (taking them uninvited is a grave insult). {@b DC 13 Religion:} the cold candles light when someone is forgiven."
+        },
+        {
+          "when": "Olanthius",
+          "tag": "choice",
+          "text": "Eldra's name from someone who knew her = master key (advantage on everything). Off the wall = advantage once. No key: {@b DC 18 Persuasion}, honour not grief. Fail: the Vigil ({@b DC 14 Wis}, two must pass) or the Half-Heart Duel."
+        },
+        {
+          "when": "He names Yael or the gate",
+          "tag": "trigger",
+          "text": "{@b Lulu Remembers}: her fourth memory. From now on she knows the road to the Bleeding Citadel. Mark it."
+        },
+        {
+          "when": "The Shard",
+          "tag": "choice",
+          "text": "{@b DC 15 Persuasion} (Elturel, an oath, or Lulu's word: no check if her memory fired). His condition: a Hellrider carries the whole Sword. He warns them to keep Or'Henn's gold eye away from it."
+        },
+        {
+          "when": "The Star That Fell",
+          "tag": "trigger",
+          "text": "Freely to a keyed party, else {@b DC 16 Insight}. Moonkite looks away. First hard sign of the Caged Star; do not name it yet."
+        },
+        {
+          "when": "Half-Heart Duel",
+          "tag": "every-turn",
+          "text": "Compelled duel on whoever struck first. Hold person on anyone who hits a downed or kneeling foe. He ends it himself if they fight with honour."
+        },
+        {
+          "when": "Before They Leave",
+          "tag": "trigger",
+          "text": "He gives the Kostchtchie task (\"You don't befriend the thing in the Maw. You point it.\") and asks for Urexiel's ledger."
+        }
+      ]
+    }
+  ].concat(window.CAMPAIGN.endgame.timeline),
+
+  companions: [
+    {
+      "id": "veska",
+      "creature": "veska",
+      "name": "Veska",
+      "role": "Hellrider of Elturel. This is her order's crypt.",
+      "inFight": "Half-Heart Duel: she will not strike Olanthius. She holds the line beside Drenwal and calls the yield. Against Arkhan she fights as in Session 10.",
+      "behaviour": [
+        "Takes her helmet off at the Cold Line and does not put it back on inside.",
+        "Finds names she knew on the wall. Give her one: the rider who trained her.",
+        "Speaks to Olanthius as a Hellrider to a Hellrider: advantage on the first Persuasion check if she makes it.",
+        "If Drenwal reads HALVARD, FELL AT THE WALL, she tells him the truth there, in front of the stone."
+      ]
+    },
+    {
+      "id": "ser-lucan",
+      "creature": "ser-lucan",
+      "name": "Ser Lucan the Reforged",
+      "role": "Old Crimson Watch. The order thought him dead: his name may be on the wall.",
+      "inFight": "Will not draw steel in the Crypt unless Olanthius draws first. Keep the Watch on whoever the compelled duel lands on.",
+      "behaviour": [
+        "Finds his own name carved among the dead and says nothing for a long while.",
+        "Knows the watchword. He says \"The sun will hold\" at the door if no one else does, and it costs him to say it.",
+        "When Olanthius tells how the Watch ended, Lucan confirms it. He was there."
+      ]
+    },
+    {
+      "id": "lulu",
+      "creature": "lulu",
+      "name": "Lulu",
+      "role": "Hollyphant. The Crypt remembers her.",
+      "inFight": "Stays out of the duel. Aura over the wounded; cure wounds on whoever Olanthius drops.",
+      "behaviour": [
+        "Opens the door with \"please\". She does not know why it works.",
+        "Goes to the arch before anyone else. She knows the way and does not know how.",
+        "{@b Lulu Remembers} fires the first time Olanthius names Yael or the gate. Do not miss it.",
+        "If she is handed the shard, it hums in her trunk."
+      ]
+    },
+    {
+      "id": "moonkite",
+      "creature": "moonkite",
+      "name": "Moonkite",
+      "role": "Celestial mount. Welcome here.",
+      "inFight": "Carries Aurora clear, then Shimmering Shield on whoever is lowest.",
+      "behaviour": [
+        "Its light grows steadier inside the Cold Line.",
+        "At The Star That Fell it flickers and turns its head away. It will not say why."
+      ]
+    },
+    {
+      "id": "feonor",
+      "creature": "feonor",
+      "name": "Feonor",
+      "role": "Free of the geas. Aboard only if asked nicely.",
+      "inFight": "Counterspells Arkhan's Hand of Vecna once. Fireball and cone of cold from range. Leaves when Tiamat rises.",
+      "behaviour": [
+        "Stays on the ship outside the Cold Line: \"I have had enough of graves.\"",
+        "Urexiel's hunters are following the staff. Feonor knows it and says so."
+      ]
+    },
+    {
+      "id": "lady-vengeance",
+      "creature": "lady-vengeance",
+      "name": "The Lady Vengeance (Colico Jack)",
+      "role": "Parked at the Cold Line. Jack keeps the engines warm.",
+      "inFight": "If Arkhan's hunt lands here, she is the biggest target on the field. Round 1 breath goes at her.",
+      "behaviour": [
+        "Jack will not cross the line. \"Ships don't go in churches.\"",
+        "Jeremy keeps Maintain Core going every round regardless (+10 vs DC 15)."
+      ]
+    },
+    {
+      "id": "uldrak",
+      "creature": "uldrak",
+      "name": "Uldrak (returning)",
+      "role": "Away at Bel's Forge. Returns when Tiamat rises.",
+      "inFight": "Arrives at the start of round 3 of Tiamat Reborn, or when the orb is used and the party is losing. Goes straight for Tiamat.",
+      "behaviour": [
+        "With Gnashing Hunger: {@side uldraks-errand|Uldrak's Errand}.",
+        "Grabs Arkhan (contested Athletics) rather than let him teleport away."
+      ]
+    }
+  ],
+
   scenes: [
 
     {
@@ -330,18 +489,18 @@ window.SESSION = {
       banner: "art/official/lulu.webp",
       blocks: [
         { t: "p", text: "This session is designed for the three 13th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with Veska, Ser Lucan, Jeremy, Lulu and Moonkite, and Colico Jack at the helm of the Lady Vengeance. It runs about four to five hours. It is a choice of roads. Three places lie within a few days of Uldrak's Grave, and each one holds someone who knows something the party needs. Expect them to finish one road tonight, maybe two." },
-        { t: "note", title: "Check Session 10 Before You Start", text: "Write these down before play. Several scenes change because of them.\n\n{@b Is Uldrak alive, and does he stay?}\n{@b Did they catch a dragon alive,} or bring a carcass?\n{@b Who holds the orb of dragonkind:} the party, or Krull?\n{@b Did the curse jump?} If it did, use your own notes from last session's ending first.\n{@b How many gold scales} does Or'Henn have?\n{@b Did anyone touch the Styx,} and what did they forget?\n{@b What day of Feonor's geas is it?} The crow came on day 4." },
+        { t: "note", title: "Check Session 10 Before You Start", text: "Write these down before play. Several scenes change because of them.\n\n{@b Or'Henn's Pull number} from Session 10.\n{@b Did they catch a dragon alive,} or bring a carcass?\n{@b Who holds the orb of dragonkind:} the party, or Krull?\n{@b Did the curse jump?} If it did, use your own notes from last session's ending first.\n{@b How many gold scales} does Or'Henn have?\n{@b Did anyone touch the Styx,} and what did they forget?\n{@b Did they fight the dragons at the Grave,} or fly before calling?" },
 
         { t: "h", text: "Background" },
-        { t: "p", text: "The party has freed Uldrak and met Arkhan's dragons at his Grave. Now the map opens. Three people are close, and each one is a door." },
+        { t: "p", text: "The party has freed Uldrak, taken his orb as payment for the vial, and watched him walk off to buy a god-killing blade. Arkhan's dragons are hunting them. Now the map opens. Three people are close, and each one is a door." },
         { t: "p", text: "{@c olanthius|Olanthius} is a death knight who kneels in the Crypt of the Hellriders. A hundred years ago he watched the paladin Yael and the hollyphant Lulu carry the Sword of Zariel out of Hell, and he did nothing. He knows the road to the Bleeding Citadel. And in his empty coffin lies the one piece missing from the Sword: a sliver of the blade that broke off in Zariel's last battle." },
-        { t: "p", text: "{@c urexiel|Lady Urexiel} is a yugoloth broker who keeps the Scabrous Menagerie. She paid for the raid that burned the Ashen Garden and killed Or'Henn's household. Her vault holds Cinderbloom, a Green Remnant, her ledger of the raid, and a puzzle box she thinks is a pretty toy. The box is Kreeg's copy of the contract that damned Elturel." },
+        { t: "p", text: "{@c urexiel|Lady Urexiel} is a yugoloth broker who keeps the Scabrous Menagerie. She paid for the raid that burned the Ashen Garden and killed Or'Henn's household. Her vault held Cinderbloom until Feonor stole it in Session 10; it still holds a Green Remnant, her ledger of the raid, and a puzzle box she thinks is a pretty toy. The box is Kreeg's copy of the contract that damned Elturel." },
         { t: "p", text: "{@c kreeg|Thavius Kreeg} sold Elturel to Zariel. Zariel remade him as an amnizu and set him to count souls at the Stygian Dock. He owned the Ashen Garden. Or'Henn served him for sixty years and never saw his face up close. The party worked out who he is in Session 8." },
 
         { t: "h", text: "Overview" },
         { t: "p", text: "This session has a shared opening, three branches and a shared ending. Run only the branch the players choose. If they finish one early, go back to Where We Left Off and let them pick again." },
         { t: "list", items: [
-          "{@b Where We Left Off} (15 minutes). The morning after the dragons. Three roads, and the people who point down them.",
+          "{@b Where We Left Off} (15 minutes). At the Grave, with or without a dragon fight behind them. Three roads, and the people who point down them.",
           "{@b The Crypt of the Hellriders} (about 2 hours). The Door, the Nave of Names, and the Kneeling Knight.",
           "{@b The Scabrous Menagerie} (about 2 to 3 hours). The Singing Aisle, the Pens, and the Trophy Vault.",
           "{@b The Stygian Dock} (about 1 to 2 hours). The Dock, and the Man Who Sold a City.",
@@ -350,7 +509,7 @@ window.SESSION = {
 
         { t: "h", text: "Adventure Hooks" },
         { t: "p", text: "{@b The Sword.} The Sword of Zariel waits in the Bleeding Citadel, missing one shard. The shard is in the Crypt. Lulu dreams of a cold place and a man at a gate." },
-        { t: "p", text: "{@b The staff.} Feonor's crow named the Menagerie. Urexiel will not sell Cinderbloom to her. Or'Henn has to go himself." },
+        { t: "p", text: "{@b The staff.} Table ruling: Feonor stole Cinderbloom from the vault and brought it to the Grave. Or'Henn has it, ember dark. Its brass plate is a tracking sigil, so Urexiel's hunters are on the party's trail." },
         { t: "p", text: "{@b The traitor.} Veska has known since Session 8 that the man who sold her city is alive, two days up the Styx. She has not stopped thinking about it." },
 
         { t: "h", text: "Where things stand" },
@@ -359,7 +518,7 @@ window.SESSION = {
           "The Sword's missing shard: not found yet. The Fallen Three road: Haruman's piece only.",
           "Green Remnants: none of the three.",
           "Or'Henn is still under Tiamat's curse. Her visions come in his sleep.",
-          "Feonor is geas-bound to fetch the staff. The geas lapses on day 30.",
+          "Feonor's geas is fulfilled. She is free, and stays only if asked nicely.",
           "Elturel still hangs on its chains, sinking toward the Styx.",
           "Lulu's memory is needed to free the Caged Star, which is where Drenwal's rebirth happens. The party does not know that."
         ] },
@@ -373,21 +532,27 @@ window.SESSION = {
       when: "",
       duration: "15 minutes",
       blocks: [
-        { t: "p", text: "The session opens at Uldrak's Grave, the morning after the dragons. Change the read-aloud box to fit how the fight ended." },
-        { t: "read", text: "The smoke is still going up from the Grave when the red sky turns to morning. The ash is black and glassy where the dragon fire hit it, and it cracks under your boots like thin ice.\n\nUldrak sits on the crossguard of his own sword, looking out at the waste with his chin on his fist. He has not stopped smiling since yesterday.\n\nOn the deck of the Lady Vengeance, Colico Jack has the charts out, weighted down with a wrench and a cold cup of something. He taps the map three times.\n\n\"Right,\" he says. \"Where now?\"" },
+        { t: "p", text: "The session opens at Uldrak's Grave. Table ruling: the party is flying for the Crypt of the Hellriders. Use whichever read-aloud fits: they fought the dragons at the Grave, or they lifted off before calling them." },
+        { t: "note", title: "Carry Over From Session 10", text: "Or'Henn's {@b Pull} number, as it stood ({@side tiamats-pull|Tiamat's Pull}). The orb of dragonkind, and who carries it. Cinderbloom in Or'Henn's hand, ember dark. Uldrak away. Feonor free, aboard only if asked nicely." },
+        { t: "h", text: "If They Fought the Dragons" },
+        { t: "read", text: "The smoke is still going up from the Grave when the red sky turns to morning. The ash is black and glassy where the dragon fire hit it, and it cracks under your boots like thin ice.\n\nThe sword stands alone in the ash. Uldrak is a day gone toward Bel's Forge, and the ground has finally stopped shaking.\n\nOn the deck of the Lady Vengeance, Colico Jack has the charts out, weighted down with a wrench and a cold cup of something. He taps the map three times.\n\n\"Right,\" he says. \"Where now?\"" },
+        { t: "h", text: "If They Never Called Them" },
+        { t: "read", text: "The orb rides in the hold, wrapped in three cloaks, and everyone on deck knows exactly where it is.\n\nBehind you, the sword at the Grave shrinks into the haze. Nobody has said the word \"dragon\" since you lifted off.\n\nColico Jack has the charts out, weighted down with a wrench and a cold cup of something. He taps the map three times.\n\n\"Right,\" he says. \"Where now? And how fast?\"" },
 
         { t: "h", text: "Event: Three Roads" },
         { t: "p", text: "Let each road come from someone at the table. Read the three short boxes one after another, then let the players argue." },
         { t: "read", text: "Lulu is sitting very still on the rail. \"There's a cold place,\" she says, quietly. \"West of here, a day, maybe. I dreamed it. There was a man at a gate, and he didn't stop us. I don't know who 'us' is.\"" },
-        { t: "read", text: "Or'Henn's pocket is warm where he keeps the ash from Feonor's crow. It has drawn itself into a small arrow, pointing south and east, toward a sound you can almost hear: a long way off, a great many things in cages, all singing." },
+        { t: "read", text: "The brass plate screwed into Cinderbloom's heel is warm in Or'Henn's hand. PROPERTY OF THE SCABROUS MENAGERIE. South and east, a long way off, something is counting its losses, and a great many things in cages are singing about it." },
         { t: "read", text: "Veska has not looked at the map. She is looking up the Styx, the way you came.\n\n\"He's up there,\" she says. \"Kreeg. Two days. Counting souls on a dock like a clerk.\" She turns her helmet over in her hands. \"I'm not asking. I'm telling you where I'll be looking.\"" },
         { t: "list", items: [
           "{@b The Crypt of the Hellriders.} About a day west. The shard missing from the Sword, and the road to the Citadel. Bring Lulu.",
-          "{@b The Scabrous Menagerie.} Two to three days south and east. Cinderbloom, Kreeg's box, and the woman who paid for the raid.",
+          "{@b The Scabrous Menagerie.} Two to three days south and east. The Green Remnant, Or'Henn's three beasts, Kreeg's box, and the woman who paid for the raid. She wants her staff back.",
           "{@b The Stygian Dock.} One to two days back up the Styx. Kreeg himself. Do not bring Lulu unprotected."
         ] },
-        { t: "note", title: "DM Recommendation: Uldrak Goes Home", text: "Uldrak is CR 23. With him beside them, nothing on these three roads is dangerous. Recommended: after the dragons he leaves for Muspelheim to tell his father what he has done, and promises to come back for the last battle. \"When you go up against her, call me. I will hear.\" If the table begs, he stays for one road. His tactics say what changes at each site." },
-        { t: "note", title: "If They Caught a Dragon", text: "A chained dragon in tow makes the Menagerie the obvious road: Urexiel will trade Cinderbloom for it. Every night it is in tow, roll once on the Small Visions table in {@side arc-tiamat|Arc: Or'Henn and Tiamat}. If it is Vermilius, it talks to Or'Henn every night, kindly." },
+        { t: "note", title: "They Chose the Crypt", text: "Table ruling: the party is going to the Crypt first. Run the three boxes anyway, so the other roads are on the table for later, then go straight to {@scene the-crypt-door|The Crypt of the Hellriders}." },
+        { t: "note", title: "Uldrak Is Away", text: "He gave them the orb as payment for the vial and walked off toward Bel's Forge to buy a weapon that can kill Tiamat. He is not on these roads. He comes back when Tiamat rises, or when the orb is used and the party is losing. {@side uldraks-errand|Uldrak's Errand}." },
+        { t: "note", title: "Arkhan's Hunt", text: "Arkhan is coming with every dragon he has. If the dragons were fought at the Grave, he catches up in a day or two, on his own choice of ground. If they were never called, the hunt finds the party on this road: at the Crypt, outside the Cold Line; at the Menagerie, in the Singing Aisle; at the Dock, on Kreeg's wharf. Add Arkhan and the surviving tower dragons to the tracker and run {@scene arkhans-gambit|Arkhan's Gambit}. Or'Henn's Pull rises by 1 the first time he sees each chromatic dragon on this road, and he makes his Pull save at the start of each of his turns while one is in sight." },
+        { t: "note", title: "If They Caught a Dragon", text: "A chained dragon in tow makes the Menagerie the obvious road: Urexiel will trade the Green Remnant and the three beasts for it, and forgive the theft of the staff. Every night it is in tow, roll once on the Small Visions table in {@side arc-tiamat|Arc: Or'Henn and Tiamat}. If it is Vermilius, it talks to Or'Henn every night, kindly." },
         { t: "choices", prompt: "Where do they go?", items: [
           { label: "The Crypt of the Hellriders", goto: "the-crypt-door" },
           { label: "The Scabrous Menagerie", goto: "the-singing-aisle" },
@@ -411,7 +576,8 @@ window.SESSION = {
         { t: "list", items: [
           "{@b Devils cannot cross the line.} Imps that have been following the ship stop at it and hiss.",
           "{@b Asimov goes quiet.} Inside the Soul Capacitor, his voice fades: the soul-traffic of Avernus cannot reach in here.",
-          "{@b Tiamat goes quiet too.} For as long as Or'Henn is inside the Crypt, there are no visions. Tell his player. It is the first quiet he has had since the Monument.",
+          "{@b Tiamat goes quiet too.} For as long as Or'Henn is inside the Crypt, there are no visions. Tell his player. It is the first quiet he has had since the Monument. His Pull does not rise and he makes no Pull saves inside; outside the Cold Line it resumes where it was ({@side tiamats-pull|Tiamat's Pull}).",
+          "{@b Dragons can cross the line.} So can Arkhan: a man, not a devil. If his hunt catches the party here, the fight is at the door on the cold side, with no devils in it. Run {@scene arkhans-gambit|Arkhan's Gambit}.",
           "{@b Celestials are welcome.} Moonkite's light grows steadier. Lulu's glow brightens for the first time since Avernus."
         ] },
 
@@ -534,7 +700,7 @@ window.SESSION = {
       banner: "art/official/feonor.webp",
       blocks: [
         { t: "p", text: "The Menagerie is two to three days from the Grave. The omen on the way: a long way off, a great many things in cages, all singing. It is the convergence of the campaign. Cinderbloom, Kreeg's box, a Green Remnant, the ledger of the raid and Or'Henn's three lost beasts are all here, whatever reason brought the party." },
-        { t: "note", title: "Count the Days First", text: "Feonor's crow came on day 4, which was day 10 on her own road. So add 6 to every day on her table in {@side arc-orhenn|Arc: Or'Henn and Cinderbloom}.\n\n{@b Before day 14:} she is waiting outside the Menagerie, with a map. Run Event: Feonor at the Edge.\n{@b Day 14 or later:} she tried to steal the staff alone and was caught. She is in a cage in the Pens.\n{@b Day 30:} the geas lapses." },
+        { t: "note", title: "Count the Days First", text: "Table ruling (Session 10): Feonor already stole the staff and brought it to the party; her geas is fulfilled. Skip Event: Feonor at the Edge and Event: Feonor's Cage. If she came along, she waits on the ship: she has been in this building once and will not go back in." },
 
         { t: "h", text: "Event: Feonor at the Edge" },
         { t: "read", text: "She is sitting on a rock at the top of the last rise, under her parasol, which has been mended with what looks like fishing line and spite. She does not get up.\n\n\"You took your time.\" A sigh. \"Your staff is behind three hundred cages and one very polite monster.\"\n\nShe holds out a folded sheet of skin. On it, in neat brown ink, is a map: aisles, gates, a vault, and a dotted line marked 'handlers, every ten minutes.'\n\n\"You're welcome,\" says Feonor." },
@@ -602,6 +768,7 @@ window.SESSION = {
       when: "Only if they reach the Menagerie's vault",
       duration: "60 to 90 minutes",
       blocks: [
+        { t: "note", title: "Table Ruling: The Staff Is Gone", text: "Feonor stole Cinderbloom in Session 10 and the party has it. Every bargain below that names the staff is now about the Green Remnant, the three beasts, the ledger, or Urexiel's forgiveness for the theft. Her first demand: the staff back, or its price, one soul coin for every day it has been missing. She knows exactly who has it: the brass plate told her." },
         { t: "read", text: "She does not stand up. She is arranging something behind glass with a jeweller's patience, and she speaks without turning around.\n\n\"You came up the singing aisle and you're still on your feet, so you're not stock. That leaves two kinds of guest.\"\n\nNow she turns, and her smile is a merchant's smile: warm, total, and entirely for sale.\n\n\"Buyers. Or the beginnings of a very fine new exhibit. I do love a matched set.\"\n\nHer eyes settle on Or'Henn, and something crosses her face. Not fear. The look of a collector who has seen this piece in a catalogue.\n\n\"You. I know your crest.\"" },
         { t: "p", text: "{@c urexiel|Lady Urexiel} deals before she fights. She has no grudge against the party. The Ashen Garden was a job. That is what makes the ledger so terrible." },
 
@@ -641,6 +808,7 @@ window.SESSION = {
         { t: "map", src: "art/outlines/vault-outline.svg", title: "Trophy Vault and Killing Floor (outline)", note: "Battle outline, 1 square = 5 ft. Urexiel starts at her desk; she falls back down the corridor to the Killing Floor." },
 
         { t: "h", text: "Event: The Staff in His Hand" },
+        { t: "note", title: "Already Happened", text: "Or'Henn took the staff from Feonor at the Grave in Session 10. The ember still will not light until Vaelisha. Skip the box below unless the players want to replay the moment." },
         { t: "read", text: "It is lighter than you remember. The ember is still dark. But it is warm, and it has always been yours." },
         { t: "p", text: "Cinderbloom is home, but it is not whole. Its ember will not light until the rite at Vaelisha, the Mother Ash, with three Green Remnants. The bell-jar shoot is the first." },
         { t: "choices", prompt: "When they leave the Menagerie:", items: [
@@ -730,6 +898,9 @@ window.SESSION = {
       ]
     },
 
+    Object.assign({}, window.CAMPAIGN.scenes["arkhans-gambit"], { when: "If Arkhan's hunt catches them on this road" }),
+    Object.assign({}, window.CAMPAIGN.scenes["tiamat-reborn"], { when: "If Arkhan finishes the Offering" }),
+
     {
       id: "ending",
       title: "Ending the Session",
@@ -768,7 +939,7 @@ window.SESSION = {
         { t: "h", text: "Outcome: Lulu Lost a Memory" },
         { t: "p", text: "If Kreeg wrote one of her memories in his ledger, it is on a single line on one page. Whoever holds that page holds part of the road to the Citadel. If the page burns, the Caged Star needs another way." },
 
-        { t: "note", title: "Remember for Next Time", text: "Write down: the day of Feonor's geas. Or'Henn's gold scales. Contract 1 breach marks. Whether they hold the shard. Green Remnants held. Who has Kreeg's box. Whether Kreeg is alive, and where. Which of Lulu's memories she has. Whether Uldrak is still with them." }
+        { t: "note", title: "Remember for Next Time", text: "Write down: Or'Henn's Pull and gold scales. Contract 1 breach marks. Whether they hold the shard. Green Remnants held. Who has Kreeg's box. Whether Kreeg is alive, and where. Which of Lulu's memories she has. Whether Uldrak has come back, and what he owes Bel." }
       ]
     }
   ],
