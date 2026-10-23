@@ -994,6 +994,42 @@ window.SESSION = {
         },
         {
           "t": "h",
+          "text": "Encounter: Knock at the Gates"
+        },
+        {
+          "t": "p",
+          "text": "Arkhan's hunt at the foot of the stair, inside the Cold Line. Full scene: {@scene knock-at-the-gates|Knock at the Gates}."
+        },
+        {
+          "t": "encounter",
+          "id": "knock-at-the-gates",
+          "title": "Knock at the Gates",
+          "combatants": [
+            {
+              "c": "arkhan-the-cruel",
+              "n": 1
+            },
+            {
+              "c": "krull",
+              "n": 1
+            },
+            {
+              "c": "praxamor",
+              "n": 1
+            },
+            {
+              "c": "obatala",
+              "n": 1
+            },
+            {
+              "c": "mirelle",
+              "n": 1
+            }
+          ],
+          "notes": "Same fight as the Knock at the Gates scene (shared tracker). Flash, Obatala and Vermilius stay outside the Cold Line and only breathe down the stairwell. Krull casts from Obatala at the top of the stair. Olanthius opens the gates at the end of round 3."
+        },
+        {
+          "t": "h",
           "text": "C2. Funerary Chambers"
         },
         {
@@ -1037,7 +1073,7 @@ window.SESSION = {
         },
         {
           "t": "h",
-          "text": "The Restless Dead"
+          "text": "Encounter: The Restless Dead"
         },
         {
           "t": "p",
@@ -1069,6 +1105,10 @@ window.SESSION = {
         },
         {
           "t": "p",
+          "text": "{@b No encounter.}"
+        },
+        {
+          "t": "p",
           "text": "Narrow niches open off the passages here, each just large enough for one person to kneel."
         },
         {
@@ -1082,6 +1122,10 @@ window.SESSION = {
         {
           "t": "h",
           "text": "C4. Mist Well"
+        },
+        {
+          "t": "p",
+          "text": "{@b No encounter.} The well itself is the hazard (DC 14 Wisdom, below)."
         },
         {
           "t": "read",
@@ -1098,6 +1142,26 @@ window.SESSION = {
         {
           "t": "p",
           "text": "Olanthius kneels in the long hall to the east, among the tombs of Zariel's generals. Go to {@scene the-kneeling-knight|C5. The Kneeling Knight}."
+        },
+        {
+          "t": "h",
+          "text": "Encounter: The Half-Heart Duel"
+        },
+        {
+          "t": "p",
+          "text": "Only if no one has read his journal, if the talk fails, or if they ask to prove themselves. He is CR 20."
+        },
+        {
+          "t": "encounter",
+          "id": "half-heart-duel",
+          "title": "The Half-Heart Duel",
+          "combatants": [
+            {
+              "c": "olanthius",
+              "n": 1
+            }
+          ],
+          "notes": "A test, not a murder. He pulls killing blows and never strikes a downed character. Hellfire Orb only as a warning shot, aimed at empty stone. If they accept a yield and sheathe when he sheathes, he ends it himself and talks as if they had read the journal."
         },
         {
           "t": "h",
@@ -1121,7 +1185,7 @@ window.SESSION = {
         },
         {
           "t": "h",
-          "text": "Eastern Tomb: The Ones Who Ran"
+          "text": "Eastern Tomb: The Ones Who Ran (Encounter)"
         },
         {
           "t": "read",
@@ -1150,6 +1214,10 @@ window.SESSION = {
         {
           "t": "h",
           "text": "C7. Olanthius's Quarters"
+        },
+        {
+          "t": "p",
+          "text": "{@b No encounter.}"
         },
         {
           "t": "p",

@@ -206,7 +206,10 @@
       var body = document.getElementById("sb-init-body");
       var encs = [];
       (session.scenes || []).forEach(function (sc) {
-        (sc.blocks || []).forEach(function (b) { if (b.t === "encounter") encs.push({ block: b, scene: sc }); });
+        (sc.blocks || []).forEach(function (b) {
+          // the Crypt repeats some fights under their area headings: same id, same tracker, list once
+          if (b.t === "encounter" && !encs.some(function (e) { return e.block.id === b.id; })) encs.push({ block: b, scene: sc });
+        });
       });
       if (!encs.length) { body.appendChild(el("p", null, "No encounters in this session.")); return; }
       var holder = el("div");
