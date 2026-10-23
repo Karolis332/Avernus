@@ -1,4 +1,4 @@
-# Checkpoint · C:\Users\QuLeR\DnD · 2026-10-11T07:32:43.651Z · session 18e09db2 · ctx ≈ 362k
+# Checkpoint · C:\Users\kpaul\DnD · 2026-10-11T07:32:43.651Z · session 18e09db2 · ctx ≈ 362k
 
 ## Prompts
 - https://www.youtube.com/watch?v=4C1q3IEPLsE https://www.youtube.com/shorts/WoZjye5cYZ4 these 2 videos are out of touch compeltely
@@ -11,16 +11,16 @@
 - is there a map of where the fight happens? the monument etc?
 
 ## Files touched
-C:\Users\QuLeR\DnD\session-9-arkhans-tower-primer.md
-C:\Users\QuLeR\DnD\dm-app\SESSION-FORMAT.md
-C:\Users\QuLeR\DnD\dm-app\docs\PRD-primer-tool.md
-C:\Users\QuLeR\.claude-alt\projects\C--Users-QuLeR-DnD\memory\dm-prep-format.md
-C:\Users\QuLeR\DnD\descent-into-avernus-primer.md
-C:\Users\QuLeR\.claude-alt\projects\C--Users-QuLeR-DnD\memory\dm-app-hosting.md
-C:\Users\QuLeR\.claude-alt\projects\C--Users-QuLeR-DnD\memory\MEMORY.md
-C:\Users\QuLeR\DnD\CLAUDE.md
-C:\Users\QuLeR\DnD\dm-app\media\media.js
-C:\Users\QuLeR\DnD\dm-app\sessions\09-arkhans-tower.js
+C:\Users\kpaul\DnD\session-9-arkhans-tower-primer.md
+C:\Users\kpaul\DnD\dm-app\SESSION-FORMAT.md
+C:\Users\kpaul\DnD\dm-app\docs\PRD-primer-tool.md
+C:\Users\kpaul\.claude-alt\projects\C--Users-kpaul-DnD\memory\dm-prep-format.md
+C:\Users\kpaul\DnD\descent-into-avernus-primer.md
+C:\Users\kpaul\.claude-alt\projects\C--Users-kpaul-DnD\memory\dm-app-hosting.md
+C:\Users\kpaul\.claude-alt\projects\C--Users-kpaul-DnD\memory\MEMORY.md
+C:\Users\kpaul\DnD\CLAUDE.md
+C:\Users\kpaul\DnD\dm-app\media\media.js
+C:\Users\kpaul\DnD\dm-app\sessions\09-arkhans-tower.js
 
 ## Agents
 ship-designer

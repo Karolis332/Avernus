@@ -8,7 +8,7 @@ originSessionId: a0bd81dc-048b-472b-b63a-21b316075977
 
 **Active session prep:** Session 5 — *The Flame Ascendant (Dumal)* for the Descent into Avernus campaign.
 
-**Files (all at `C:\Users\QuLeR\DnD\`, committed and pushed to `origin/main`):**
+**Files (all at `C:\Users\kpaul\DnD\`, committed and pushed to `origin/main`):**
 - `session-5-dumal-primer.md` — primary primer, ~1027 lines. **Latest commit `45397df` (2026-05-16): Open5e MCP integration — canonical statblocks + spell RAW + Smiler banishment paths.** Prior commit `aafbd68`.
 - `campaign-state.md` — updated with Session 4 outcomes and v2 influence tracker.
 - `session-4-bitter-breath-primer.md` / `.html` — prior session prep (completed).
@@ -85,8 +85,8 @@ When the user pastes templates like `quick statblock: ...`, `dumal line: ...`, `
 
 ## Open5e MCP server (LIVE and integrated as of 2026-05-16)
 
-- Installed globally via npm (`mnehmos.open5e.mcp`) at `C:\Users\QuLeR\AppData\Roaming\npm\`
-- Registered to Claude Code MCP config (`C:\Users\QuLeR\.claude.json`, project scope)
+- Installed globally via npm (`mnehmos.open5e.mcp`) at `C:\Users\kpaul\AppData\Roaming\npm\`
+- Registered to Claude Code MCP config (`C:\Users\kpaul\.claude.json`, project scope)
 - **Health-check passed:** 348ms latency, 0.1.0
 - **Integrated into the primer:** section `OPEN5E CANONICAL REFERENCES` near the top has 11 creature URLs + 8 spell RAW + live-query cheatsheet. See commit `45397df`.
 - **Slug conventions discovered:**
@@ -106,7 +106,7 @@ When the user pastes templates like `quick statblock: ...`, `dumal line: ...`, `
 
 ## DM_Tools (DM helper desktop app) — install attempted, failed
 
-- Cloned to `C:\Users\QuLeR\tools\DM_Tools\`
+- Cloned to `C:\Users\kpaul\tools\DM_Tools\`
 - `npm install` failed (node-sass deprecated, incompatible with Node v22)
 - Not worth fixing — Open5e MCP covers the same data without the GUI
 - If user wants to fix: swap node-sass → sass in package.json, or use nvm to switch to Node 16

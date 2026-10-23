@@ -10,4 +10,4 @@ Last logged session: 2025-02-15 (Session 1).
 
 **Why:** Active long-running game — file edits, statblocks, primers, and printable handouts are all tied to in-progress sessions.
 
-**How to apply:** When editing files under `C:\Users\QuLeR\DnD\`, treat session-primer-*.md, encounter-*.md, and characters/*.html as live working documents the player/DM will print or share next session. Don't refactor unless asked. Check `sessions/` and `campaign-state.md` for what's currently happening.
+**How to apply:** When editing files under `C:\Users\kpaul\DnD\`, treat session-primer-*.md, encounter-*.md, and characters/*.html as live working documents the player/DM will print or share next session. Don't refactor unless asked. Check `sessions/` and `campaign-state.md` for what's currently happening.

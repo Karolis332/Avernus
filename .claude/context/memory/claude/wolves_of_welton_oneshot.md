@@ -6,12 +6,12 @@ originSessionId: a0bd81dc-048b-472b-b63a-21b316075977
 ---
 Oneshot primer set built 2026-05-15, committed to repo (commit c7a386c, pushed to origin/main).
 
-**Files (all in `C:\Users\QuLeR\DnD\`):**
+**Files (all in `C:\Users\kpaul\DnD\`):**
 - `wolves-of-welton-primer.md` — full DM primer, 6 scenes, NPCs, statblocks, skill DCs, XP, tuning, chaos branches. Includes a "Level-2 Tuned Statblocks" appendix.
 - `wolves-of-welton-primer.html` — interactive HTML version with live trackers (round, wolves-killed counter, peace trigger, Flame/Bolt HP bars, initiative tracker, council vote tally, soundtrack-cue YouTube-search buttons, floating DC quickref). Mirrors all primer content + has a "★ Lvl-2 Tuned" statblock section.
 - `wolves-of-welton-soundtrack.md` — 22 cues mapped to every scene beat with primary+2 backup tracks each (Tabletop Audio, Michael Ghelfi, Adrian von Ziegler, Peter Gundry, Two Steps From Hell). Hard-cut moments flagged.
 
-**Source PDF:** `C:\Users\QuLeR\Downloads\5E_Wolves_Of_Welton.pdf`
+**Source PDF:** `C:\Users\kpaul\Downloads\5E_Wolves_Of_Welton.pdf`
 
 **Key design notes (do not re-derive):**
 - **The reveal:** wolves are sapient. Caused by a Wild Magic Surge from Welton's missing sorcerer Alexi Merriksonn, which dumped his intellect + elemental power into the pack.
@@ -27,4 +27,4 @@ Oneshot primer set built 2026-05-15, committed to repo (commit c7a386c, pushed t
 
 **Why:** Karolis wants to be able to ask any future Claude session for context on this oneshot mid-prep or mid-game without re-explaining. Files are in the public repo (https://github.com/Karolis332/Avernus.git) so cross-session access is via `git pull` or by reading the files directly.
 
-**How to apply:** When Karolis mentions Wolves of Welton, Welton, Bolt, Flame, Featherock, Tillus Merrion, Father Merriksonn, or Alexi Merriksonn — load the relevant primer file from `C:\Users\QuLeR\DnD\` before answering. Do not re-derive design rationale; it's already in the primer.
+**How to apply:** When Karolis mentions Wolves of Welton, Welton, Bolt, Flame, Featherock, Tillus Merrion, Father Merriksonn, or Alexi Merriksonn — load the relevant primer file from `C:\Users\kpaul\DnD\` before answering. Do not re-derive design rationale; it's already in the primer.

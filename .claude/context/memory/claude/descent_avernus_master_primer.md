@@ -8,7 +8,7 @@ metadata:
   modified: 2026-07-25T13:41:14.820Z
 ---
 
-**Files:** `C:\Users\QuLeR\DnD\descent-into-avernus-primer.md` (source) + `descent-into-avernus-primer.html` (styled reader). Rendered by `build_primer_html.py`. **Pushed to `github.com/Karolis332/Avernus` (branch main)** — pull on any device.
+**Files:** `C:\Users\kpaul\DnD\descent-into-avernus-primer.md` (source) + `descent-into-avernus-primer.html` (styled reader). Rendered by `build_primer_html.py`. **Pushed to `github.com/Karolis332/Avernus` (branch main)** — pull on any device.
 
 **What it is:** a LIVING sandbox primer for the whole campaign, **re-chaptered to mirror the real DiA adventure** with the homebrew woven in.
 

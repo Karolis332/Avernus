@@ -11,7 +11,7 @@ Follows [[session_handoff_dumal_session5]]. **OUTCOME (Session 7, 2026-07-19): t
 
 Prior live cliffhanger (now resolved): party freed the Demon Zapper unicorn, the dao (Ralzala) left, and **Dumal walked out of the fog riding Yeenoghu** (Gargantuan mount). This encounter was that fight.
 
-**Primer:** `C:\Users\QuLeR\DnD\yeenoghu-encounter.md` (self-contained). Renders to styled HTML via `primer-view.html` + a local `python -m http.server 8137` (loads the .md with marked.js; NOT standalone yet — offered to bake a standalone .html / PDF booklet).
+**Primer:** `C:\Users\kpaul\DnD\yeenoghu-encounter.md` (self-contained). Renders to styled HTML via `primer-view.html` + a local `python -m http.server 8137` (loads the .md with marked.js; NOT standalone yet — offered to bake a standalone .html / PDF booklet).
 
 **The hook (lore-audited as sound):** Dumal controls Yeenoghu via a leash — the **Chain of Bhaal-and-Cania**: Bhaal's authority over slaughter = the *grip*; **Mephistopheles' binding** = the *chain* (Dumal sold his entire soul to Mephistopheles for it). Unstable because a LE devil's chain on a CE demon is a Blood War contradiction → the break-free mechanic.
 

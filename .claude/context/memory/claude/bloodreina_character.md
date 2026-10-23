@@ -8,9 +8,9 @@ Bloodreina ("Octavia of the Sky People") is Akvilė's player character. Build: *
 
 Lore is heavily The 100 / Wonkru themed — Trigedasleng phrases ("Yu gonplei ste odon", "Omon gon oson", "Jus drein jus daun"), bunker arc, Conclave, Indra mentor, brother Lincoln. Signature: blood-red war-paint band across the eyes.
 
-Canonical character booklet: `C:\Users\QuLeR\DnD\characters\bloodreina.html` — 34-page printable booklet (cover, welcome, voice, one-page char sheet, levels I-XX progression, item mgmt, session notes, NPC tracker, barbarian combat flow, dice cheat sheet).
+Canonical character booklet: `C:\Users\kpaul\DnD\characters\bloodreina.html` — 34-page printable booklet (cover, welcome, voice, one-page char sheet, levels I-XX progression, item mgmt, session notes, NPC tracker, barbarian combat flow, dice cheat sheet).
 
-Build bundle at `C:\Users\QuLeR\DnD\bloodreina-bundle\` contains the rendered `Bloodreina.pdf`, blank universal D&D 5e sheet PDF, and portrait PNG, zipped as `Bloodreina-Bundle.zip`.
+Build bundle at `C:\Users\kpaul\DnD\bloodreina-bundle\` contains the rendered `Bloodreina.pdf`, blank universal D&D 5e sheet PDF, and portrait PNG, zipped as `Bloodreina-Bundle.zip`.
 
 **Why:** Booklet was hand-crafted with specific tone ("Strong Hearts", "Bloodreina nou stedaun") for first-time-player Akvilė. Any edits should preserve voice and the four core rules: *Speak as her. When she's angry, you Rage. She does not fall. Rage. Reckless. Swing. Survive.*
 

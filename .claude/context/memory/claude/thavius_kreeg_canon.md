@@ -8,6 +8,8 @@ metadata:
   modified: 2026-07-25T12:58:33.288Z
 ---
 
+**LOCATION SUPERSEDED (2026-10-23):** Session 8 as played made Kreeg an **amnizu at the Stygian Dock** (CR 18, Forgetfulness). The "Vessper Hain at the Emporium" plan below is dead; the copy-box, living-signatory and Urexiel-paymaster mechanics still hold. Session 11 (`dm-app/sessions/11-roads-from-the-grave.js`) builds the Dock on this.
+
 Karolis directive (2026-07-25). **Thavius Kreeg** (canon DiA High Overseer who sold Elturel to Zariel) is the **estate-keeper Or'Henn served.** The **Ashen Garden** — Or'Henn's razed home — is Kreeg's private Avernian estate.
 
 **Kreeg is ALIVE.** He fled the Ashen Garden through a pre-paid infernal bolthole when the raid razed it, and now hides at the **Wandering Emporium** as **"Vessper Hain,"** a stooped soul-coin appraiser paying **Mahadi** for anonymity. Bind: **Zariel wants his soul** (his safe-passage letter expired when Elturel fell).
