@@ -385,6 +385,15 @@ window.SESSION = {
           "{@b His sword arm.} He came to Avernus to kill Tiamat. Her dragons are a down payment. If the party proposes calling Arkhan's dragons, he is delighted: \"Call them. Call all of them. I would like to be big at someone.\"",
           "{@b The orb.} He pulls it from his pommel and gives it to them. He once offered it to Arkhan in trade for the vial; it means nothing to him. See {@side using-the-orb|Using the Orb} for what that costs. Tiamat hears it change hands."
         ] },
+        { t: "h", text: "Event: Uldrak Goes" },
+        { t: "p", text: "Table ruling: Uldrak does not stay. Once he has paid what he owes, he leaves to find a weapon that can kill dragons, because he knows exactly what comes next." },
+        { t: "read", text: "Uldrak looks up at the sky for a long time. Then he looks at you.\n\n\"You stole from Arkhan,\" he says. \"And now you have freed the one creature in Avernus his queen hates more than you. He will not send one dragon after you. He will send all of them, and he will ride the last one himself.\"\n\nHe lifts his sword, and frowns at it, the way a man frowns at a tool that has gone blunt.\n\n\"This killed giants. It will not kill five dragons and their master. I need something better, and I know where to look.\" He grins. \"Do not die before I come back. I would take it personally.\"\n\nHe turns, and walks into the waste, and the ground shakes a little with every step until he is gone." },
+        { t: "list", items: [
+          "{@b He is not in the dragon fight.} Remove him from The Call and Wings Over the Grave. Breath weapons that the primer aims at Uldrak go at the Lady Vengeance instead.",
+          "{@b He still pays first:} the blood, the greater restoration and the orb all happen before he goes.",
+          "{@b Arkhan is coming whether they call or not.} If the party does not use the orb, the dragons find them anyway, within a day or two, on Arkhan's terms instead of theirs.",
+          "{@b The weapon} is a DM's choice, and the hook for his return. See {@side uldraks-errand|Uldrak's Errand}."
+        ] },
         { t: "note", title: "DM's Choice: The Solar's Helmet", text: "The campaign map flags Uldrak's gargantuan helmet as a possible home for the Solar's Helmet, half of Drenwal's rebirth prerequisite. If you want it here, he took it from a fallen solar on his way in, three thousand years ago, and it has lain buried under the sword ever since. If not, he has never seen one." },
 
         { t: "h", text: "Checks at the Sword" },
@@ -465,12 +474,12 @@ window.SESSION = {
       when: "Only if they call the dragons",
       duration: "20 to 30 minutes",
       blocks: [
-        { t: "p", text: "The plan: use the {@item Orb of Dragonkind|DMG} in Uldrak's pommel to call Arkhan's dragons here, and kill them with an empyrean on their side. It is a good plan. It is also the most dangerous thing they could do with Tiamat's mark still on Or'Henn, and the dragon trapped inside the orb knows it." },
+        { t: "p", text: "The plan was to use the {@item Orb of Dragonkind|DMG} from Uldrak's pommel to call Arkhan's dragons here and kill them with an empyrean on their side. Uldrak has gone, so it is now a much worse plan, and the alternative is waiting for Arkhan to choose the ground. It is also the most dangerous thing they could do with Tiamat's mark still on Or'Henn, and the dragon trapped inside the orb knows it." },
         { t: "note", title: "Running This Scene", text: "Give the party real time to prepare before the call. Answer their questions honestly. Every good answer here is a dragon that dies easier later. Then read the call, and move straight to the fight." },
 
         { t: "h", text: "Who Holds the Orb" },
         { t: "list", items: [
-          "{@b Uldrak, if he stays for the fight.} He gave the orb away, but its magic still answers to him at once, with no check.",
+          "{@b Uldrak is gone} (table ruling): he left to find a weapon. Nobody here controls the orb for free.",
           "{@b A character.} They must attune to it first (a short rest), then use an action and make a {@b DC 15 Charisma check}. On a success they control the orb. On a failure they are charmed by it for as long as they stay attuned, and it casts {@spell suggestion} on them at will (DC 18). The dragon inside wants Tiamat worshipped. Its first suggestion, to anyone near Or'Henn: \"Let the druid ask for help. It is only kind.\"",
           "{@b Or'Henn himself.} Tiamat wants it in his hands. Allow it. If he fails the check, the orb and the curse want the same thing, and the suggestion is aimed at him: \"Ask the red one. It will help you.\" Enforce it."
         ] },
@@ -643,6 +652,17 @@ window.SESSION = {
   ],
 
   side: {
+    "uldraks-errand": {
+      title: "Uldrak's Errand",
+      blocks: [
+        { t: "p", text: "Uldrak has gone to find a weapon that can kill dragons, because he believes Arkhan will hunt the party with every dragon he has. He is right." },
+        { t: "note", title: "DM's Choice: Which Weapon", text: "Not yet ruled. Pick one before he comes back. When he returns, he arrives in the middle of the fight that matters most, which is most likely Arkhan's hunt." },
+        { t: "list", items: [
+          "{@b When he comes back:} he is the cavalry. Uldrak is CR 23; give him a big entrance, then let the party finish the fight.",
+          "{@b If they need him sooner:} the orb's magic still answers to him. He hears it if it is used, wherever he is, and knows it means they are in trouble."
+        ] }
+      ]
+    },
 
     "what-the-sibriex-offers": {
       title: "What the Sibriex Offers",
