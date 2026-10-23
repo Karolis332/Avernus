@@ -680,7 +680,7 @@ window.SESSION = {
         {
           "when": "C1. Sealed Gates",
           "tag": "choice",
-          "text": "Pass phrase \"For Glory\" ({@b DC 15 History/Religion}, Drenwal and Veska at advantage, Lucan knows it); Lulu says \"please\" (no roll); a rider's name spoken with grief (Eldra opens it); or a bought word."
+          "text": "Pass phrase \"For Glory\" ({@b DC 15 History/Religion}, Drenwal and Veska at advantage, Lucan knows it); Lulu says \"please\" (no roll); Drenwal speaks his father's name, Halvard, with grief; or a bought word."
         },
       {"when": "Knock cast", "tag": "trigger", "text": "The spell fails; the bang carries. Arkhan's hunt arrives. Ship gone: no cannons. Go to {@scene knock-at-the-gates|Knock at the Gates}."},
       {"when": "Knock, round 1", "tag": "round", "text": "Arkhan comes halfway down the stair and asks once. Refused: Flash breathes down the stairwell (DC 21 Dex)."},
@@ -689,7 +689,7 @@ window.SESSION = {
         {
           "when": "C2. Funerary Chambers",
           "tag": "trigger",
-          "text": "Eldra's sun-and-sword badge on the older wall: Or'Henn knows it from her ring (no roll), and her name is beside it. He never knew she was a Hellrider. Halvard's name in the Crimson Watch alcove: let Drenwal have the moment, then Veska or Lucan speaks."
+          "text": "Crimson Watch alcove (central chamber): HALVARD, FELL AT THE WALL, and under it \"I carved what the dead told me. O.\" Drenwal finds it with no roll. Veska knows it is a lie. Lucan finds his own name."
         },
       {"when": "Feonor arrives", "tag": "choice", "text": "Invisible, by fly, past the dragons: {@scene feonor-brings-the-staff|Feonor Brings the Staff}. Ember relights in Or'Henn's hand with 1d6 charges; geas ends. Green flare = the ship comes."},
         {
@@ -700,7 +700,7 @@ window.SESSION = {
         {
           "when": "C5. Olanthius",
           "tag": "choice",
-          "text": "Eldra's name from someone who knew her = master key (advantage on everything). Off the wall = advantage once. No key: {@b DC 18 Persuasion}, honour not grief. Fail: the Vigil ({@b DC 14 Wis}, two must pass) or the Half-Heart Duel."
+          "text": "{@b Master key: Drenwal tells him the truth about Halvard} (murdered by the Bhaal cult inside the Watch): advantage on everything, shard with no check. A Hellrider's oath or the Crimson Watch's name = advantage once. No key: {@b DC 18 Persuasion}, honour not grief. Fail: the Vigil ({@b DC 14 Wis}, two must pass) or the Half-Heart Duel."
         },
         {
           "when": "He names Yael or the gate",
@@ -725,7 +725,7 @@ window.SESSION = {
         {
           "when": "Before They Leave",
           "tag": "trigger",
-          "text": "He gives the Kostchtchie task (\"You don't befriend the thing in the Maw. You point it.\") and asks for Urexiel's ledger."
+          "text": "He gives the Kostchtchie task (\"You don't befriend the thing in the Maw. You point it.\") and asks Drenwal for the names of the cult that murdered Halvard."
         }
       ]
     }
@@ -912,7 +912,7 @@ window.SESSION = {
         {
           "t": "note",
           "title": "Campaign Changes",
-          "text": "In this campaign Olanthius keeps the Sword's missing shard (Eventyr's one-shard option), Eldra Vash's name is on the wall, and Tiamat cannot reach Or'Henn inside: his Pull is paused for as long as he is within the Cold Line ({@side tiamats-pull|Tiamat's Pull})."
+          "text": "In this campaign Olanthius keeps the Sword's missing shard (Eventyr's one-shard option), Drenwal's father Halvard is on the Crimson Watch's honour roll, and Drenwal is the key to Olanthius. Tiamat cannot reach Or'Henn inside: his Pull is paused for as long as he is within the Cold Line ({@side tiamats-pull|Tiamat's Pull})."
         },
         {
           "t": "h",
@@ -984,7 +984,7 @@ window.SESSION = {
           "items": [
             "{@b The pass phrase, \"For Glory.\"} It was the battle cry of the First Charge. A successful {@b DC 15 Intelligence (History or Religion)} check recalls it; Drenwal and Veska have advantage, and Ser Lucan simply knows it. It can also be learned from the Obelisk's prisoner, as the book has it.",
             "{@b Lulu.} If she is with them, she puts her trunk on the stone and whispers \"please.\" The doors open. They remember her. She does not know why. This should be the easiest way in.",
-            "{@b A name of the dead,} spoken with grief, of any rider of the First Charge. If Or'Henn says \"Eldra\" here for any reason (a prayer, a curse, a memory), the doors open, and you have learned something about his teacher.",
+            "{@b A name of the dead,} spoken with grief, of any Hellrider who died in Elturel's service. If Drenwal says his father's name, Halvard, here for any reason (a prayer, a curse, a memory), the doors open.",
             "{@b A bought word.} The merrenoloth ferryman on the Styx sells the pass phrase for one soul coin, if the party met him."
           ]
         },
@@ -1016,27 +1016,6 @@ window.SESSION = {
         },
         {
           "t": "h",
-          "text": "Eldra Vash (Northwest Chamber)"
-        },
-        {
-          "t": "p",
-          "text": "Or'Henn does not know Eldra was a Hellrider, so he is not looking for her. What catches him is a badge. The first time he enters this chamber, read:"
-        },
-        {
-          "t": "read",
-          "text": "Halfway down the older wall, under a hundred years of dust, a small badge is cut into the stone: a golden sun, pierced by a sword. You have seen it before. You have seen it every day of your life.\n\nBeside it, the carving is deeper and rougher than the rest. Cut fast. Cut grieving.\n\nELDRA VASH.\n\nAnd under the name, scratched in by a different, shakier hand, much later:\n\n\"I should have stopped her. O.\""
-        },
-        {
-          "t": "p",
-          "text": "Or'Henn has seen that badge before. Every day for sixty years, on a ring on Eldra's hand, while she showed him how to keep fire-moss alive in ash. He spots it on the wall with no roll, and the name beside it is hers. This is how he learns she rode with the Hellriders: she never told him. Ask his player what he does."
-        },
-        {
-          "t": "note",
-          "title": "DM Only: Who Eldra Was",
-          "text": "Eldra Vash rode in the First Charge. The wall says she died there. She did not. She was taken alive, and her fey blood kept her young. Kreeg bought her for his Hell-side estate and set her to keep his garden. She kept it for a century, and she raised Or'Henn. She died in the raid that Urexiel paid for. Olanthius loved her, and has believed for a hundred years that she died in the Charge. Nobody has told him otherwise."
-        },
-        {
-          "t": "h",
           "text": "The Crimson Watch (Central Chamber)"
         },
         {
@@ -1045,11 +1024,16 @@ window.SESSION = {
         },
         {
           "t": "read",
-          "text": "The stone rider on the tomb inside is unfinished: the sculptor stopped at the shoulders, as if he could not bring himself to carve the face. The red paint on the shield has flaked to the colour of dried blood.\n\nSomeone has left an offering on the plinth: a soldier's ration token, so old it has fused to the stone."
+          "text": "The stone rider on the tomb inside is unfinished: the sculptor stopped at the shoulders, as if he could not bring himself to carve the face. The red paint on the shield has flaked to the colour of dried blood. Above it, the honour roll of the Crimson Watch runs up the wall, and the newest names at the bottom are the freshest cuts in the whole crypt.\n\nNear the bottom, one name: HALVARD, FELL AT THE WALL.\n\nAnd under it, scratched in by a different, shakier hand:\n\n\"I carved what the dead told me. O.\""
         },
         {
           "t": "p",
-          "text": "This is the Crimson Watch, the order Drenwal's father served. Its honour roll is carved here, and Drenwal finds his father's name on it: HALVARD, FELL AT THE WALL. Veska knows that is a lie: the cult inside the Watch murdered him. Let Drenwal have the moment before Olanthius tells him how the order ended, and give Veska or Ser Lucan a line. Ser Lucan may find his own name here, among the dead."
+          "text": "This is the Crimson Watch, the order Drenwal's father served. Drenwal finds his father's name with no roll. Veska knows the line is a lie: the Bhaal cult inside the Watch murdered Halvard. Let Drenwal have the moment, and give Veska or Ser Lucan a line. Ser Lucan finds his own name here too, among the dead, though he is standing in front of it.",
+        },
+        {
+          "t": "note",
+          "title": "DM Only: Who Carves the Names",
+          "text": "Olanthius does. The dead of Elturel pass through Avernus, and the Hellriders among them stop at the Cold Line to give him their names and how they fell. He carves each one himself. Halvard's spirit, or someone wearing his name, told him \"the wall.\" That was the cult's story. Olanthius has carved a lie into the one honest wall in Hell, and does not know it. When Drenwal tells him the truth, that is the master key in area C5."
         },
         {
           "t": "h",
@@ -1177,7 +1161,7 @@ window.SESSION = {
         },
         {
           "t": "p",
-          "text": "The letters are to Eldra, written over a hundred years and never sent. A character who reads one learns that Olanthius loved her and believes she died in the Charge. Reading them without his leave is cruel; telling him they were read is crueller. But if Or'Henn reads one and then tells Olanthius the truth, it counts as the master key in area C5.\n\n{@b Treasure.} On the shelf, a map of Avernus marked in Olanthius's hand with the road to the Bleeding Citadel. He gives it freely to a party he trusts."
+          "text": "The letters are to Zariel, written over a hundred years and never sent. Every one begins \"My lady\" and none of them ask her to come back. A character who reads one learns that Olanthius still loves the angel she was, and hates what she became. Reading them without his leave is cruel; telling him they were read is crueller.\n\n{@b Treasure.} On the shelf, a map of Avernus marked in Olanthius's hand with the road to the Bleeding Citadel. He gives it freely to a party he trusts."
         }
       ]
     },
@@ -1423,18 +1407,19 @@ window.SESSION = {
 
         { t: "h", text: "How He Opens Up" },
         { t: "list", items: [
-          "{@b Eldra's name, from someone who knew her.} This is the master key. Advantage on every social check with him, and he speaks plainly. Run Event: Her Name.",
-          "{@b Eldra's name read off the wall,} by strangers: advantage on the first check only.",
+          "{@b Drenwal's truth about his father.} This is the master key. If Drenwal tells him that Halvard did not fall at the wall, that the Bhaal cult inside the Crimson Watch murdered him, the party has advantage on every social check with Olanthius, he speaks plainly, and he gives the shard without a check. Run Event: His Name.",
+          "{@b A Hellrider's oath, or the Crimson Watch's name,} from Veska, Ser Lucan or Drenwal: advantage on the first check only.",
           "{@b No key:} one {@b DC 18 Charisma (Persuasion)} check with a real appeal to duty or honour. Grief-baiting fails and hardens him. On a success he gives the road and the reason, coldly.",
           "{@b If they fail, or ask to prove themselves,} he offers a trial: the Vigil or the Half-Heart Duel (below).",
           "{@b If they broke the door,} everything starts at disadvantage until someone apologises and he believes it."
         ] },
 
-        { t: "h", text: "Event: Her Name" },
-        { t: "read", text: "At the name, the green fire in the visor gutters. For one moment it is not a death knight's flame at all, but something smaller and older: a man's grief, with a man's face behind it.\n\n\"Where did you hear that name?\"\n\nIt is not a question. It is a wound.\n\n\"She wore the sun and sword into the Charge. I told her the sun would hold. I told her Zariel would hold.\" The great black shape bows until his brow nearly touches the stone. \"I have guarded a road for a hundred years so I would not have to remember the face of the woman who rode it first.\"" },
-        { t: "p", text: "Now Or'Henn can tell him the truth: Eldra did not die in the Charge. She lived a hundred years in a garden in Hell, and she taught a red dragonborn boy to make things grow. Let the player say it." },
-        { t: "read", text: "He is very still for a long time.\n\n\"She lived,\" he says at last. \"A hundred years. And I knelt here, mourning her, a day's ride away.\"\n\nThe green fire steadies. It is a different colour now, closer to blue.\n\n\"How did she die?\"" },
-        { t: "p", text: "If they tell him about the raid, he asks who paid for it. If they know Urexiel's name, he repeats it once, to remember it. If they do not, he says: \"Find out. Then come back and tell me.\" From here on he answers anything, plainly." },
+        { t: "h", text: "Event: His Name" },
+        { t: "p", text: "Run this when Drenwal names his father, or asks about the Crimson Watch's roll." },
+        { t: "read", text: "At the name, the green fire in the visor gutters.\n\n\"Halvard,\" he says. \"I carved that name. The dead came to the line and told me how he fell, and I cut it into the stone with my own hand. Fell at the wall.\" The great black helm turns toward Drenwal. \"You have his jaw.\"" },
+        { t: "p", text: "Now Drenwal can tell him the truth: Halvard did not fall at the wall. The Bhaal cult hollowing out the Crimson Watch murdered him, and the story of the wall was theirs. Let the player say it." },
+        { t: "read", text: "He is very still for a long time.\n\n\"Then I have carved a lie,\" he says at last, \"into the only honest wall in Hell.\"\n\nThe green fire steadies. It is a different colour now, closer to blue.\n\n\"Who?\"" },
+        { t: "p", text: "If Drenwal names the cult, or Dumal, Olanthius repeats the name once, to remember it. \"Find them. Then come back and tell me, and I will carve the truth.\" From here on he answers anything, plainly, and the shard is Drenwal's for the asking. If Drenwal comes back with the truth later, the cold candles in the Crimson Watch alcove light." },
 
         { t: "h", text: "Event: Lulu Remembers" },
         { t: "p", text: "This fires the first time Olanthius names Yael or the gate while Lulu is present, key or no key. It is the strongest reason to bring her. Do not miss it." },
@@ -1471,7 +1456,7 @@ window.SESSION = {
         ], notes: "A test, not a murder. He pulls killing blows and never strikes a downed character. Hellfire Orb only as a warning shot, aimed at empty stone. If they accept a yield and sheathe when he sheathes, he ends it himself and talks as if they had the key." },
 
         { t: "h", text: "Event: Before They Leave" },
-        { t: "p", text: "Whether keyed or won, he gives them the last task the book gives him: free Kostchtchie, the demon lord frozen at the Maw, so Zariel looks the other way while they go for the Citadel. \"You don't befriend the thing in the Maw. You point it.\" If the party is going to the Menagerie next, and he knows what Urexiel did, he asks one thing: \"Bring me her ledger. I want to read the line.\"" },
+        { t: "p", text: "Whether keyed or won, he gives them the last task the book gives him: free Kostchtchie, the demon lord frozen at the Maw, so Zariel looks the other way while they go for the Citadel. \"You don't befriend the thing in the Maw. You point it.\" If Drenwal told him the truth about Halvard, he asks one thing: \"Bring me their names. All of them. I have a wall to correct.\"" },
         { t: "choices", prompt: "When they leave the Crypt:", items: [
           { label: "Take another road", goto: "where-we-left-off" },
           { label: "End the session", goto: "ending" }
@@ -1651,7 +1636,7 @@ window.SESSION = {
           "{@b The Companion,} the second sun over Elturel, was a planetar in chains. It still is.",
           "{@b The Creed Resolute} is the clause that binds the souls of the faithful. Every soul in Elturel who swore the Creed belongs to Zariel when the city touches the Styx.",
           "{@b The copy.} There were two copies of the contract. Zariel holds the original. His own copy was in a box in his house, and a yugoloth's raid took it. He does not know which yugoloth.",
-          "{@b Eldra.} His service records list her: \"Acquired, First Charge. Kept for the garden.\" He bought her. He says it the way he would say he bought a chair."
+          "{@b Eldra.} His service records list her: \"Acquired, Material Plane. Druid. Kept for the garden.\" He bought her. He says it the way he would say he bought a chair."
         ] },
         { t: "p", text: "What he wants, and what he will trade for it, is in {@side kreegs-bargains|Kreeg's Bargains}." },
 
