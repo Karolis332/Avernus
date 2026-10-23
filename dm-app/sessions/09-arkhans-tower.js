@@ -5,9 +5,9 @@ window.SESSION = {
   summary: "The party flies to Arkhan's Tower for the vial of Tiamat's blood. The tower's dragons attack on the way in. Krull brings them to Arkhan, who names his price: a good creature's death. If they refuse and push their luck, Arkhan fights them, and they have to run for the ship.",
 
   party: [
-    { id: "drenwal", name: "Drenwal", note: "Light Cleric 12. Carries the Shield of the Hidden Lord, with Gargauth trapped inside." },
-    { id: "aurora", name: "Aurora", note: "Level 12 (class not yet ruled). Rides the celestial Moonkite." },
-    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 12. Carries the Soul Capacitor." }
+    { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding drawn (Tier II of the Three Sigils); only the kinslaying remains. Carries the Shield of the Hidden Lord, with Gargauth trapped inside." },
+    { id: "aurora", name: "Aurora", note: "Level 13 (class not yet ruled -- campaign-state.md has her as Archfey Warlock). Rides the celestial Moonkite." },
+    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. Afflicted with Tiamat's curse. Carries the Soul Capacitor." }
   ],
 
   allies: [
@@ -659,7 +659,7 @@ window.SESSION = {
       duration: "5 minutes (read before play)",
       banner: "art/official/arkhan-the-cruel.webp",
       blocks: [
-        { t: "p", text: "This session is designed for the three 12th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with their allies Veska, Ser Lucan, Jeremy and Lulu. It runs about four to five hours. It is a social session between two hard fights: a real aerial battle with four adult dragons on the way in, and, if the characters wrong Arkhan, a showdown they are not meant to win." },
+        { t: "p", text: "This session is designed for the three 13th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with their allies Veska, Ser Lucan, Jeremy and Lulu. It runs about four to five hours. It is a social session between two hard fights: a real aerial battle with four adult dragons on the way in, and, if the characters wrong Arkhan, a showdown they are not meant to win." },
         { t: "note", title: "Tell the Players Before You Start", text: "Say this out of character, before the first scene: \"Arkhan's Tower is the most dangerous place you have been. If you pick a fight here, characters can die, and stay dead. Talking, paying, or running are all valid plans.\"" },
         { t: "h", text: "Background" },
         { t: "p", text: "{@c arkhan-the-cruel|Arkhan the Cruel} is a dragonborn paladin and the most devoted champion of Tiamat, the five-headed dragon queen. Tiamat is trapped in Avernus. Arkhan has sworn to set her free." },
@@ -784,6 +784,7 @@ window.SESSION = {
 
         { t: "h", text: "Event: The Dragons Dive" },
         { t: "read", text: "The white dragon at the top of the tower throws back his head and roars. The sound hits the ship like a wave. Your teeth ache. The deck boards hum under your feet.\n\nFour shapes drop from the four lower spires: black, blue, green and red. They fall like stones. Then their wings snap open with a crack you feel in your chest. They do not call out. They do not ask who you are. They dive straight at your ship.\n\nThe black one comes first, jaws open, acid hanging from its teeth in long strings. Where it grabs the rail, the wood smokes and bubbles. The stink is unbearable: rotten eggs, swamp mud and burning flesh." },
+        { t: "img", src: "art/generated/event-dragons-attack.webp", caption: "Four shapes drop from the four lower spires, and dive.", credit: "Generated art (gpt-image-1)." },
         { t: "p", text: "The four dragons are {@c skarrix|Slarkas} (black), {@c vhennic|Vistalancer} (blue), {@c mirelle|Vermilius} (green) and {@c praxamor|Flash} (red). Roll initiative." },
         { t: "h", text: "How the Dragons Fight" },
         { t: "steps", items: [
@@ -818,6 +819,7 @@ window.SESSION = {
         ], notes: "Real fight against four adults. End it the moment one dragon drops, the party is clearly losing, or round 4 ends. Then Krull lands." },
         { t: "h", text: "Event: The Second Roar" },
         { t: "read", text: "A second roar shakes the sky, deeper than the first. The white dragon is diving, straight down from the top of the tower, faster than anything that big should move.\n\nOn his back, small and still, sits a figure in ceremonial armour." },
+        { t: "img", src: "art/generated/event-obatala-dives.webp", caption: "The second roar: Obatala comes down out of the sky, with Krull on his back.", credit: "Generated art (gpt-image-1)." },
         { t: "p", text: "Go to {@scene krull-arrives|Krull Arrives}." }
       ]
     },
