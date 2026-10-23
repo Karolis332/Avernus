@@ -198,18 +198,19 @@ window.SESSION = {
         { t: "note", title: "Tell the Players Before You Start", text: "Say this out of character, before the first scene: \"The Styx steals memories. Anything that touches the water can lose who it is. And calling five dragons to you is the most dangerous plan you have ever made. Characters can die here, and stay dead.\"" },
 
         { t: "h", text: "Background" },
-        { t: "p", text: "Last session the party stole a vial of Tiamat's living blood from {@c arkhan-the-cruel|Arkhan the Cruel} at the Monument to Tiamat, and escaped by {@spell word of recall}. Drenwal's sanctuary is the statue of St. Cuthbert on the Lady Vengeance, so the spell carried all three of them straight back to their own deck. Nobody was left behind." },
+        { t: "p", text: "Last session the party stole a vial of Tiamat's living blood from {@c arkhan-the-cruel|Arkhan the Cruel} at the Monument to Tiamat, and escaped by {@spell word of recall} before anyone could fight. Drenwal's sanctuary is the statue of St. Cuthbert on the Lady Vengeance, so the spell carried all three of them straight back to their own deck. Nobody was left behind." },
         { t: "p", text: "They mean to spend the vial at Uldrak's Grave. {@c uldrak-devil|Uldrak} is an empyrean, a son of the fire giant god Surtur. Three thousand years ago he came to Avernus to kill Tiamat. She turned him into a spined devil instead. Her blood, spilled on the ground of Avernus, breaks that curse." },
-        { t: "p", text: "The vial is also the only safe cure for the curse Tiamat laid on Or'Henn at the Monument. That curse pushes him to ask a dragon for help. When he does, it jumps into the dragon, and when the dragon dies, Tiamat comes through. The players do not know the vial could save him. The {@c sibriex|sibriex} will tell them if they stop to listen. So will the vial itself." },
+        { t: "p", text: "The vial is also the only safe cure for the curse Tiamat laid on Or'Henn at the Monument. That curse pushes him to ask a dragon for help. If a dragon takes it from him, Tiamat wakes in her true form. She is already speaking to him in visions. The players do not know the vial could save him. The {@c sibriex|sibriex} will tell them if they stop to listen. So will the vial itself." },
         { t: "p", text: "Set in the pommel of Uldrak's sword is an {@item Orb of Dragonkind|DMG}. It calls evil dragons. The party's plan is to free Uldrak, then use the orb to call Arkhan's dragons to the Grave and kill them with an empyrean on their side." },
 
         { t: "h", text: "Overview" },
-        { t: "p", text: "This session has eight scenes and takes about four to five hours to play. The Sibriex happens only if they stop at the gorge. The Call and Wings Over the Grave happen only if they call the dragons, which is their plan. The Ending always runs." },
+        { t: "p", text: "This session has nine scenes and takes about four to five hours to play. The Sibriex happens only if they stop at the gorge. The Dragon Queen's Garden is for Or'Henn alone. The Call and Wings Over the Grave happen only if they call the dragons, which is their plan. The Ending always runs." },
         { t: "list", items: [
           "{@b Where We Left Off} (5 minutes). Word of Recall drops the party at the foot of St. Cuthbert's statue on their own deck, with the vial.",
           "{@b The Styx Run} (20 to 30 minutes). Down to the river and along it, with Arkhan's dragons hunting somewhere behind. Lulu must stay dry.",
           "{@b The Sibriex} (35 to 50 minutes). Optional. A chained flesh-sculptor smells Or'Henn's curse and explains it for free.",
-          "{@b Uldrak's Grave} (30 to 45 minutes). The vial is poured, and an empyrean stands up out of the ash.",
+          "{@b Uldrak's Grave} (30 to 45 minutes). The vial is poured, an empyrean stands up out of the ash, and he gives them the orb.",
+          "{@b The Dragon Queen's Garden} (20 to 30 minutes). Or'Henn only. Tiamat comes to him in a vision with an offer that sounds like help.",
           "{@b The Call} (20 to 30 minutes). Setting the trap, then calling the dragons with the orb.",
           "{@b Wings Over the Grave} (90 to 120 minutes). Five dragons in four waves, and Krull with an offer.",
           "{@b Ending the Session} (10 minutes). What it cost, and who comes back for revenge."
@@ -230,7 +231,8 @@ window.SESSION = {
           "The Gith monk is dead. His journal is aboard.",
           "Colico Jack flies the Lady Vengeance. Jeremy runs her Planar Core.",
           "Elturel still hangs in the sky on its chains, sinking toward the Styx.",
-          "Krull: this session assumes he is alive and still serves Arkhan. If he died at the Monument, Obatala comes alone and there is no offer."
+          "Krull is alive. There was no fight at the Monument: the party stole the vial and left by Word of Recall at once.",
+          "Or'Henn is seeing Tiamat's visions. See {@side arc-tiamat|Arc: Or'Henn and Tiamat}."
         ] },
         { t: "note", title: "Running This Session", text: "Read the brown boxes in order and you can run most of the session from them. The DM text around each box tells you what to do next. Side paths (the links that open on the right) hold the extra detail: the sibriex's offers, using the orb, Krull's offer, and what happens if the curse jumps. Open them only when the table goes there." }
       ]
@@ -362,7 +364,7 @@ window.SESSION = {
       duration: "30 to 45 minutes",
       blocks: [
         { t: "p", text: "Uldrak's Grave is not a grave. It is a place name. {@c uldrak-devil|Uldrak} is an empyrean, a son of the fire giant god Surtur, who came to Avernus three thousand years ago to kill Tiamat. She made him small instead: a spined devil, sitting on the sword he can no longer lift. Her blood spilled on the ground of Avernus breaks the curse, and the party is carrying it. If the players arrive expecting a corpse, correct them." },
-        { t: "note", title: "What the Vial Really Costs", text: "The vial is the only safe cure for Or'Henn's curse (Arkhan: \"it breaks curses that she laid\"). Pouring it here spends it. Or'Henn's curse keeps running: it pushes him to ask a dragon for help, jumps to that dragon, and when the dragon dies, Tiamat comes through. Later this session they plan to call five dragons. Do not explain any of this. Show it in the fiction (Event: The Mark Leans), then let them choose." },
+        { t: "note", title: "What the Vial Really Costs", text: "The vial is the only safe cure for Or'Henn's curse (Arkhan: \"it breaks curses that she laid\"). Pouring it here spends it. Or'Henn's curse keeps running: it pushes him to ask a dragon for help, and if a dragon takes it, Tiamat wakes in her true form. Later this session they plan to call five dragons. Do not explain any of this. Show it in the fiction (Event: The Mark Leans), then let them choose." },
 
         { t: "h", text: "Event: The Sword in the Waste" },
         { t: "read", text: "The river bends, and something stands up out of the plain ahead that is not a tower.\n\nIt is a sword. Its blade is buried in the red earth to the crossguard, and the hilt alone rises higher than your mast, wrapped in leather that rotted away a thousand years ago and left only the bronze wire beneath. Set in the pommel, high above, is a crystal globe the size of a man's head. Mist turns slowly inside it.\n\nOn the crossguard sits a devil. A small, ugly, quilled thing, the kind that runs errands in Hell. It does not fly at the ship. It does not hide.\n\nIt watches you come with its chin in its hand, the way an old man watches a road.\n\nWhen the ship is close enough to hear, it says, in a voice like a key scraping in a lock: \"You have her blood with you. I could smell it from the last bend. Come down. Please. I have not said please in a very long time.\"" },
@@ -388,7 +390,7 @@ window.SESSION = {
           "{@b A gallon of his blood,} drawn at once into whatever they hand him. Empyrean blood is Blood Pay: a powerful creature's blood for the Intermediaries. He pays this first, so the party keeps it even if he falls later.",
           "{@b Greater restoration, at will,} on anyone the Styx touched on the way here ({@spell greater restoration}). Their memories come back.",
           "{@b His sword arm.} He came to Avernus to kill Tiamat. Her dragons are a down payment. If the party proposes calling Arkhan's dragons, he is delighted: \"Call them. Call all of them. I would like to be big at someone.\"",
-          "{@b The orb, afterwards.} He once offered it to Arkhan in trade for the vial. It means nothing to him. If they want it when this is over, it is theirs. See {@side using-the-orb|Using the Orb} for what that costs."
+          "{@b The orb.} He pulls it from his pommel and gives it to them. He once offered it to Arkhan in trade for the vial; it means nothing to him. See {@side using-the-orb|Using the Orb} for what that costs. Tiamat hears it change hands."
         ] },
         { t: "note", title: "DM's Choice: The Solar's Helmet", text: "The campaign map flags Uldrak's gargantuan helmet as a possible home for the Solar's Helmet, half of Drenwal's rebirth prerequisite. If you want it here, he took it from a fallen solar on his way in, three thousand years ago, and it has lain buried under the sword ever since. If not, he has never seen one." },
 
@@ -413,6 +415,53 @@ window.SESSION = {
     },
 
     {
+      id: "the-dragon-queens-garden",
+      title: "The Dragon Queen's Garden",
+      when: "Only for Or'Henn: the first night after Uldrak's Grave, or the first time he touches the orb",
+      duration: "20 to 30 minutes",
+      blocks: [
+        { t: "p", text: "Tiamat heard the orb. She knows the party has it now, and she knows they mean to call her children. So she comes to Or'Henn in a vision, to make him an offer that sounds like help. This is the first time she speaks to him directly. Run it at the table, with everyone watching: the other players see what his body does while he is gone." },
+        { t: "note", title: "Running This Scene", text: "Read {@side arc-tiamat|Arc: Or'Henn and Tiamat} once before the session. It has the five heads, their gifts, the gold scales and the small visions. Tiamat never lies to him here. Everything she says is true, and that is the danger." },
+
+        { t: "h", text: "Event: The Garden Remembered" },
+        { t: "read", text: "You are standing in the Ashen Garden.\n\nNot the ruin. The garden, the way it was on a good morning sixty years ago: ash-roses open along the wall, fire-moss glowing in the beds, the old brass gate warm in a sun that Avernus does not have. Somewhere behind the hedges, Eldra is humming. Somewhere, a gardener is laughing.\n\nYour staff is in your hand. Cinderbloom. Its ember is lit.\n\nYou know at once that none of it is real. You also know, with your whole heart, that you do not want to leave." },
+        { t: "p", text: "Let Or'Henn's player walk around. Anything he looks for is there. Anyone he calls for does not answer. The humming always comes from the next row over." },
+
+        { t: "h", text: "Event: The Sky Changes Colour" },
+        { t: "read", text: "The light changes. It goes red, then blue, then green, then black, then white, like a lantern turned slowly behind coloured glass.\n\nThen she looks down at you over the garden wall.\n\nFive heads, each one bigger than the house, each one a different colour, scales like stained glass with fire behind it. They do not crush the hedges. They do not need to. They look at you, all five at once, with an enormous, patient fondness.\n\n\"There you are,\" says the red head. \"My little gardener.\"\n\n\"You poured my blood out for a stranger,\" says the green. \"It would have saved you.\"\n\n\"It was beautiful,\" says the blue. \"I would have done the same.\"" },
+        { t: "p", text: "She is Tiamat, and she is gloriously, unmistakably a dragon. Or'Henn is a red dragonborn, and something old in his blood knows her. Tell his player that plainly: his body wants to bow. He does not have to." },
+
+        { t: "h", text: "Event: Her Offer" },
+        { t: "read", text: "\"You mean to call my children,\" says the red head. \"With a wizard's glass. Five of them, angry, in one place, all around you.\"\n\nThe white head says nothing. It only smiles.\n\n\"Let me make it safe for you,\" says the blue. \"For one day, none of them will hurt you. They will come close to you and they will talk instead. You would like that. You have so many questions.\"\n\n\"All you have to say,\" says the red, \"is yes.\"" },
+        { t: "p", text: "This is the blue head's gift, {@b Her Law}: for one day, no chromatic dragon will harm Or'Henn until he harms one first. It is real. It is also the most dangerous thing she could give him before a dragon fight. Every dragon will come close to talk to him, and {@c mirelle|Vermilius} will offer him help. If he says yes, one red scale on the back of his hand turns gold." },
+
+        { t: "h", text: "Event: The Question" },
+        { t: "p", text: "Whatever he answers, she asks him one question before he wakes. Write his answer down. It shapes every vision after this one." },
+        { t: "read", text: "\"Who made you?\" asks the red head, gently. \"Not your gardener. Not the devils. Think, little red. Who made you?\"" },
+        { t: "p", text: "There is no right answer. Pride, defiance, Eldra, his own two hands: whatever he says, she smiles and says, \"We will talk again.\"" },
+
+        { t: "h", text: "What the Others See" },
+        { t: "list", items: [
+          "His body goes still. His gold eye opens and glows like a coal, staring at nothing.",
+          "The hellflowers on his armour turn, all together, toward the orb, wherever it is.",
+          "The orb grows warm in whoever's hands it is.",
+          "He speaks Draconic in his sleep, in a voice that is not quite his own. A character who knows Draconic hears \"Yes, grandmother\" or \"No,\" whichever he answers.",
+          "Shaking him awake ends the vision at once, before her offer is answered. That is a choice the other players can make. Let them."
+        ] },
+
+        { t: "h", text: "If Or'Henn..." },
+        { t: "p", text: "{@b ...says yes,} he wakes with one gold scale on the hand that reached for her, and Her Law is on him for one day. Run the dragon fight with it." },
+        { t: "p", text: "{@b ...says no,} he wakes with the smell of the garden still in his nose, and nothing else. The next vision will come sooner." },
+        { t: "p", text: "{@b ...tries to bargain,} she listens with real interest. She will trade the gift for something of his instead: a true answer to her question, a promise to visit the Monument, or his true name. She will not lift the curse tonight. \"That is not a gift. That is a price.\"" },
+        { t: "p", text: "{@b ...asks her for help,} the curse does not move: she laid it, and it wants a mortal dragon. But she hears him ask, and she remembers it." },
+
+        { t: "h", text: "Event: Waking" },
+        { t: "read", text: "You wake with a jerk, on the deck, in the dark, with the smell of roses in your nose. Your hand is hot.\n\nThe Avernus night is the same as it was. Elturel hangs on its chains. The Styx moves below, slow and black.\n\nAnd from the orb, very softly, someone is humming the tune Eldra used to hum." },
+        { t: "p", text: "When they are ready to call the dragons, go to {@scene the-call|The Call}." }
+      ]
+    },
+
+    {
       id: "the-call",
       title: "The Call",
       when: "Only if they call the dragons",
@@ -423,9 +472,9 @@ window.SESSION = {
 
         { t: "h", text: "Who Holds the Orb" },
         { t: "list", items: [
-          "{@b Uldrak.} The safe choice. Its magic has always answered to him; in devil form he was simply too small for it to obey. Restored, he takes control at once, with no check.",
+          "{@b Uldrak, if he stays for the fight.} He gave the orb away, but its magic still answers to him at once, with no check.",
           "{@b A character.} They must attune to it first (a short rest), then use an action and make a {@b DC 15 Charisma check}. On a success they control the orb. On a failure they are charmed by it for as long as they stay attuned, and it casts {@spell suggestion} on them at will (DC 18). The dragon inside wants Tiamat worshipped. Its first suggestion, to anyone near Or'Henn: \"Let the druid ask for help. It is only kind.\"",
-          "{@b Or'Henn himself.} Allow it. If he fails the check, the orb and the curse want the same thing, and the suggestion is aimed at him: \"Ask the red one. It will help you.\" Enforce it."
+          "{@b Or'Henn himself.} Tiamat wants it in his hands. Allow it. If he fails the check, the orb and the curse want the same thing, and the suggestion is aimed at him: \"Ask the red one. It will help you.\" Enforce it."
         ] },
 
         { t: "h", text: "Preparing the Ground" },
@@ -493,7 +542,7 @@ window.SESSION = {
         { t: "p", text: "The orb is what they came for. Every dragon wants it out of the holder's hands. Breath cannot harm it. If the holder goes down, the nearest dragon lands to take it in its jaws, and Krull wants it most of all. If Uldrak holds it, he cannot be disarmed of it while he stands." },
 
         { t: "h", text: "Or'Henn's Mark" },
-        { t: "p", text: "The first time a dragon comes within 30 ft. of Or'Henn, and again whenever he drops below half his hit points, he feels the mark lean toward it, the way it leaned toward the vial. Say so. If he asks a dragon for help, or says yes to Vermilius, the curse jumps. Open {@side if-the-curse-jumps|If the Curse Jumps}." },
+        { t: "p", text: "The first time a dragon comes within 30 ft. of Or'Henn, and again whenever he drops below half his hit points, he feels the mark lean toward it, the way it leaned toward the vial. Say so. If he asks a dragon for help, or says yes to Vermilius, the curse jumps. Open {@side if-the-curse-jumps|If the Curse Jumps}. If he took {@b Her Law} in the vision, no dragon harms him until he harms one. They crowd around him to talk instead, which puts every dragon's mouth right next to his ear." },
 
         { t: "h", text: "The River Rule" },
         { t: "list", items: [
@@ -573,7 +622,7 @@ window.SESSION = {
         { t: "p", text: "{@b Campaign change:} a coup is coming at Arkhan's Tower. Next time the party sees the tower, Krull is either running it or dead." },
 
         { t: "h", text: "Outcome: The Curse Jumped" },
-        { t: "p", text: "Or'Henn is free. If the marked dragon is still alive, it dies at the next dawn, and Tiamat comes through then. If it already died, she has come. See {@side if-the-curse-jumps|If the Curse Jumps}. Either way the endgame has changed: the campaign map's Chapter 5 option, Tiamat breaks Elturel's chains for a price, is now on the table whether the party wants it or not." },
+        { t: "p", text: "Or'Henn is free. If the marked dragon is still alive, it burns out at the next dawn, and Tiamat wakes in her true form then. If it already died, she is awake. See {@side if-the-curse-jumps|If the Curse Jumps}. Either way the endgame has changed: the campaign map's Chapter 5 option, Tiamat breaks Elturel's chains for a price, is now on the table whether the party wants it or not." },
 
         { t: "h", text: "Outcome: They Let Uldrak Go Without Calling" },
         { t: "read", text: "Uldrak looks at the orb, and at the sky, and shrugs his enormous shoulders.\n\n\"Another day,\" he says. \"I have had a great many of them.\"" },
@@ -671,7 +720,7 @@ window.SESSION = {
     "if-the-curse-jumps": {
       title: "If the Curse Jumps",
       blocks: [
-        { t: "p", text: "Tiamat's mark on Or'Henn is a delivery system, not a wound. It pushes him to ask a dragon for help. When he does, it jumps into that dragon. When that dragon dies, the sacrifice is complete, and Tiamat comes through. Full background: {@side arc-orhenn|Or'Henn's arc}." },
+        { t: "p", text: "Tiamat's mark on Or'Henn is a delivery system, not a wound. It pushes him to ask a dragon for help. When he does, it jumps into that dragon, and the dragon becomes the door. It burns out from the inside, and when it is gone, Tiamat wakes in her true form. Full background: {@side arc-tiamat|Arc: Or'Henn and Tiamat}." },
 
         { t: "h", text: "What Counts as Asking" },
         { t: "list", items: [
@@ -688,7 +737,7 @@ window.SESSION = {
         { t: "list", items: [
           "{@b Or'Henn is free.} Fully. The mark is gone.",
           "{@b The marked dragon is doomed.} It stops fighting for itself. It will not flee. If nobody kills it, the mark burns it from the inside at the next dawn.",
-          "{@b The moment it dies, Tiamat comes through.} Whoever kills it. Uldrak, eager to kill dragons, will kill it unless someone stops him. Tell the players he is about to.",
+          "{@b The moment it dies, Tiamat wakes in her true form.} Whoever kills it. Uldrak, eager to kill dragons, will kill it unless someone stops him. Tell the players he is about to.",
           "{@b They can try to keep it alive.} Capture it, chain it, hold it with {@spell hold monster} until dawn. It will not stop the dawn. It buys them hours to decide where they want Tiamat to arrive."
         ] },
 

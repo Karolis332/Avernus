@@ -252,3 +252,13 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
   - DM's choices still open: one vial or two curses; the Solar's Helmet under the sword; whether Krull survived Session 9.
   - No art yet for Uldrak or the Styx (generating it costs money; ask first).
   - Krull's stat block links to the Session 9-only `raise-the-dead` panel; in Session 10 that link does nothing.
+
+### 2026-10-23 — Or'Henn × Tiamat visions arc
+- **Did:**
+  - New campaign side `arc-tiamat` in `dm-app/sessions/campaign-arcs.js`: the five heads, each with one gift; gold scales 1–5 with escalating costs; a d8 Small Visions table; the orb-cage loophole.
+  - New Session 10 scene `the-dragon-queens-garden`: Tiamat meets Or'Henn in the restored Ashen Garden and offers Her Law right before the dragon call.
+  - Curse wording fixed everywhere to the DM's version: a dragon taking it wakes Tiamat in her true form.
+- **Why:** DM rulings. There was no fight at the Monument (Word of Recall at once; Krull alive). Uldrak is restored and gave the party the orb. One vial, one curse. Or'Henn sees Tiamat's visions. Tiamat never lies to him; the danger is that every gift is true.
+- **Open:**
+  - Does Uldrak stay for the dragon fight? The encounter assumes yes.
+  - The orb-cage loophole is a DM's choice; don't hint at it until Small Vision 2 comes up.

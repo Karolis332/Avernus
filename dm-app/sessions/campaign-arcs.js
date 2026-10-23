@@ -252,7 +252,7 @@ Object.assign(window.CAMPAIGN.side, {
   "arc-orhenn": {
     title: "Arc: Or'Henn and Cinderbloom",
     blocks: [
-      { t: "note", title: "Session 9: Tiamat's Curse", text: "Or'Henn is cursed. It is not an affliction, it is a delivery mechanism: it pressures him into ASKING A DRAGON FOR HELP, transfers to that dragon, sacrifices the dragon, and summons Tiamat. Doing nothing is not safety -- it is a clock.\n\nThis is Arkhan's win condition delivered by proxy. Freeing Tiamat is his whole purpose, and he told the party what the blood does for free because he wanted them to want it.\n\nTwo cures compete. The stolen vial breaks curses she laid (safe, but spends the vial, which the party means to pour out at Uldrak's Grave). The dragon-transfer clears Or'Henn and summons her -- and the map already lists that as a Chapter 5 option: Tiamat breaks Elturel's chains, for a price.\n\nLikeliest dragon asked: Obatala. Krull is the only friendly face at that tower." },
+      { t: "note", title: "Session 9: Tiamat's Curse", text: "Or'Henn is cursed. It is not an affliction, it is a delivery mechanism: it pressures him into ASKING A DRAGON FOR HELP, and if a dragon takes it, Tiamat wakes in her true form. Her visions, gifts and gold scales: {@side arc-tiamat|Arc: Or'Henn and Tiamat}. Doing nothing is not safety -- it is a clock.\n\nThis is Arkhan's win condition delivered by proxy. Freeing Tiamat is his whole purpose, and he told the party what the blood does for free because he wanted them to want it.\n\nTwo cures compete. The stolen vial breaks curses she laid (safe, but spends the vial, which the party means to pour out at Uldrak's Grave). The dragon-transfer clears Or'Henn and summons her -- and the map already lists that as a Chapter 5 option: Tiamat breaks Elturel's chains, for a price.\n\nLikeliest dragon asked: Obatala. Krull is the only friendly face at that tower." },
       { t: "p", text: "Or'Henn's staff, Cinderbloom, is the badge of his old office and the key to his lost garden's beasts. A Yeenoghu warband carried it off when it burned the Ashen Garden. Now it lies in a vault. {@c feonor|Feonor}, the archmage Or'Henn beat and bound with a {@spell geas}, is on the trail. The arc ends at Vaelisha, the Mother Ash, where the staff wakes as Cinderbloom Rekindled." },
       { t: "h", text: "Where Cinderbloom Is" },
       { t: "p", text: "In the Trophy Vault of the Scabrous Menagerie, kept by Lady Urexiel. The barlgura Kharzug handed it up the chain as tribute. It lies on velvet, its ember dark, like a saint's bone." },
@@ -341,6 +341,68 @@ Object.assign(window.CAMPAIGN.side, {
   },
 
   // ---------------------------------------------------------------------------
+  "arc-tiamat": {
+    title: "Arc: Or'Henn and Tiamat",
+    blocks: [
+      { t: "p", text: "Tiamat's curse sits in Or'Henn like a seed. If a dragon takes it from him, Tiamat wakes in her true form. She cannot make him ask a dragon for help. She can only make asking feel like the kindest, safest, most sensible thing in the world, and she has all the time there is. So she visits him in visions." },
+      { t: "note", title: "Running Her", text: "Tiamat never lies to Or'Henn. She does not need to. She picks true things and shows them to him at the worst possible moment. Play her warm, proud and patient, like a grandmother who owns the house. Five heads, five voices, and they finish each other's sentences. Only the white head ever threatens." },
+
+      { t: "h", text: "Why a Dragonborn" },
+      { t: "p", text: "Or'Henn is a red dragonborn, born in Avernus. To Tiamat that makes him family who wandered off. In her telling, every red scale on him is a promise her red children made to the world, and she has come to collect. Arkhan is a dragonborn too. Arkhan cut off his own hand for her, and then lost her blood to a gardener. She has noticed. She is thinking about a new favourite, and she lets Or'Henn see her thinking about it." },
+
+      { t: "h", text: "What She Wants" },
+      { t: "list", items: [
+        "{@b A dragon to take the curse.} That is the whole of it. Every vision bends toward one moment: Or'Henn asking a dragon for help.",
+        "{@b The orb.} Uldrak gave the party an orb of dragonkind, and it calls evil dragons. She heard it once. She would like Or'Henn to use it.",
+        "{@b A new champion,} if Or'Henn is willing. She never says it plainly. She says: \"Arkhan is tired.\""
+      ] },
+
+      { t: "h", text: "The Five Heads" },
+      { t: "p", text: "In each vision one head does most of the talking: choose one, or roll on the Small Visions table to see which way her attention leans. Each head speaks to a different part of him, and each has one gift. The gifts are real, and every gift costs a gold scale (below)." },
+      { t: "list", items: [
+        "{@b The red head: kin.} It speaks to his blood and his pride. \"Who made you, little red? Not the devils. Not your gardener. Me.\" {@b Gift: Her Fire.} Once, his breath weapon becomes a red dragon's: a 60-foot cone, DC 18 Dexterity saving throw, 63 (18d6) fire damage, half on a success.",
+        "{@b The blue head: order.} It speaks to the keeper in him, and promises a garden no raid can burn: all of Avernus green again, once she is awake. {@b Gift: Her Law.} For one day, no chromatic dragon will harm him until he harms one first. They come close and talk instead.",
+        "{@b The green head: secrets.} It speaks to what he does not know. Greens lie, but this one does not need to. {@b Gift: Her Truth.} One true answer to any question about his household, his old master or the raid. If he asks who owned the Ashen Garden, this is how the Kreeg reveal can land early. Only give it if you want it now.",
+        "{@b The black head: grief.} It speaks to the dead. It shows him the night the Ashen Garden burned, and Eldra's grave. {@b Gift: Her Mourning.} He hears Eldra's voice once, saying the one thing he most needed to hear. Decide what that is with his player.",
+        "{@b The white head: hunger.} The only head that threatens. It shows him his future: on his knees in front of a dragon, begging, because the curse has grown until asking is not a choice. {@b Gift: Her Hunger.} The next time he drops to 0 hit points, he drops to 1 instead."
+      ] },
+
+      { t: "h", text: "The Gold Scales" },
+      { t: "p", text: "Each gift he accepts turns one red scale on his body to gold, starting on the hand that reached for her. Everyone can see them. {@spell Remove curse} and {@spell greater restoration} do not touch them." },
+      { t: "list", items: [
+        "{@b 1 scale:} his molten-gold eye burns brighter whenever she is near. Visions now come awake as well as asleep.",
+        "{@b 2 scales:} chromatic dragons know him on sight as hers. They talk before they bite. Metallic dragons will not deal with him.",
+        "{@b 3 scales:} he understands her voice in everything draconic: dragons, kobolds, the orb. Arkhan hears of him, and is jealous.",
+        "{@b 4 scales:} she sees through his gold eye while he sleeps. Anything the party plans in front of him while he sleeps, she knows.",
+        "{@b 5 scales:} he is hers. The next time a chromatic dragon offers him help, he cannot refuse, and the curse goes."
+      ] },
+      { t: "note", title: "Refusing Her", text: "Refusing costs nothing in the moment. She is never angry. She says, \"Then we will talk again.\" But after each refusal the next vision comes sooner, and the white head says more." },
+
+      { t: "h", text: "Small Visions" },
+      { t: "p", text: "Roll when Or'Henn rolls a natural 1 on a Wisdom saving throw, when he first sees a dragon in a scene, or whenever the table goes quiet and you want the curse in the room. Each one lasts a heartbeat and only he sees it." },
+      { t: "table", caption: "Small Visions (d8)", head: ["d8", "Or'Henn sees..."], rows: [
+        ["1", "Every flower on his armour turns its head toward the nearest dragon, all at once. (Red head.)"],
+        ["2", "A whisper in Draconic from the orb: his name, the one Eldra gave him. (The orb. This one opens the loophole below.)"],
+        ["3", "His reflection in water or metal has five heads, for one heartbeat. (All five.)"],
+        ["4", "The ash at his feet draws the shape of a garden path, leading east. (Blue head.)"],
+        ["5", "He tastes rain. There is no rain in Avernus. (Black head.)"],
+        ["6", "Arkhan's voice, far off, praying. It stops, as if Arkhan heard him listening. (Green head.)"],
+        ["7", "His gold eye goes hot, and for a moment he sees through a dragon's eyes, flying very high. (White head.)"],
+        ["8", "All five voices together, gently: \"Ask.\""]
+      ] },
+
+      { t: "note", title: "DM's Choice: The Dragon in the Orb", text: "An orb of dragonkind holds the essence of an evil dragon. The players may realise it: the curse wants a dragon, and there is one in the glass. If Or'Henn asks the dragon in the orb for help, decide what happens.\n\nRecommended: it works, and the orb becomes a cage. The curse leaves him. Tiamat wakes halfway, inside the glass, and cannot get out. The orb turns gold and warm, and from then on she can speak to anyone who holds it. It never calls dragons again, except ones that come to kneel. Arkhan would burn Avernus to own it. Destroying it ({@spell disintegrate}, or one good hit from a +3 weapon) ends the curse forever.\n\nLet them find the loophole themselves. Do not hint at it until Small Vision 2 has come up." },
+
+      { t: "h", text: "Other Ways to End the Curse" },
+      { t: "list", items: [
+        "{@b Her blood.} Spent on Uldrak.",
+        "{@b Her word.} She laid it, so she can lift it. Her price: Or'Henn kneels at the Monument as her champion, in Arkhan's place.",
+        "{@b A wish.} {@spell Wish} removes it, and the caster feels her look straight at them, once.",
+        "{@b The dragon in the orb.} See above."
+      ] }
+    ]
+  },
+
   "arc-moonkite": {
     title: "Arc: Aurora and Moonkite",
     blocks: [
