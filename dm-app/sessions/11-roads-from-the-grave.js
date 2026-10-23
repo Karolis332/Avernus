@@ -700,10 +700,10 @@ window.SESSION = {
         {
           "when": "C5. Olanthius",
           "tag": "choice",
-          "text": "{@b Master key: Drenwal tells him the truth about Halvard} (murdered by the Bhaal cult inside the Watch): advantage on everything, shard with no check. A Hellrider's oath or the Crimson Watch's name = advantage once. No key: {@b DC 18 Persuasion}, honour not grief. Fail: the Vigil ({@b DC 14 Wis}, two must pass) or the Half-Heart Duel."
+          "text": "{@b Book key: someone has read his journal (C7)}; without it he fights. {@b Campaign bonus: Drenwal tells him the truth about Halvard} (murdered by the Bhaal cult inside the Watch): advantage on everything, shard with no check. A Hellrider's oath or the Crimson Watch's name = advantage once. No key: {@b DC 18 Persuasion}, honour not grief. Fail: the Vigil ({@b DC 14 Wis}, two must pass) or the Half-Heart Duel."
         },
         {
-          "when": "He names Yael or the gate",
+          "when": "He names Yael",
           "tag": "trigger",
           "text": "{@b Lulu Remembers}: her fourth memory. From now on she knows the road to the Bleeding Citadel. Mark it."
         },
@@ -1157,11 +1157,11 @@ window.SESSION = {
         },
         {
           "t": "read",
-          "text": "A narrow study, as plain as a soldier's tent. A stone desk, a stool, a shelf of books gone soft with damp. On the desk, a stack of letters, all addressed in the same hand, and none of them sealed."
+          "text": "A narrow study, as plain as a soldier's tent. A stone desk, a stool, a shelf of books gone soft with damp. On the desk lies a single journal bound in cracked red leather, open, a pen laid across it as if its writer has only stepped away."
         },
         {
           "t": "p",
-          "text": "The letters are to Zariel, written over a hundred years and never sent. Every one begins \"My lady\" and none of them ask her to come back. A character who reads one learns that Olanthius still loves the angel she was, and hates what she became. Reading them without his leave is cruel; telling him they were read is crueller.\n\n{@b Treasure.} On the shelf, a map of Avernus marked in Olanthius's hand with the road to the Bleeding Citadel. He gives it freely to a party he trusts."
+          "text": "This is {@b Olanthius's journal}, and it is the key to the whole crypt: as in the book, he will not parley with anyone who has not read it. It is his account of the Hellriders' charge into Avernus, Zariel's fall, his own death and unwilling return, and a hundred years of shame. Reading it takes about ten minutes. A character who reads it understands that he hates Zariel, mourns Yael, and wants Zariel distracted so the Sword can be reached.\n\n{@b Treasure.} On the shelf, a map of Avernus marked in Olanthius's hand with the road to the Bleeding Citadel. He gives it freely to a party he trusts."
         }
       ]
     },
@@ -1179,7 +1179,7 @@ window.SESSION = {
         {
           "t": "note",
           "title": "Who Is Here",
-          "text": "The Lady Vengeance has flown off to hide, with Colico Jack, Jeremy and Feonor aboard. At the gates are Drenwal, Aurora (with Moonkite), Or'Henn, Veska, Ser Lucan and Lulu. There are no cannons in this fight."
+          "text": "The Lady Vengeance has flown off to hide, with Colico Jack and Jeremy aboard. Feonor is not with them: she is still on her way with the staff. At the gates are Drenwal, Aurora (with Moonkite), Or'Henn, Veska, Ser Lucan and Lulu. There are no cannons in this fight."
         },
         {
           "t": "p",
@@ -1403,13 +1403,14 @@ window.SESSION = {
         { t: "p", text: "This long hall holds the tombs of Zariel's generals, four sealed sarcophagi carved with riders, and one more, open and empty, at the heart of the room. Cold green light fills it. When the characters enter, read:" },
         { t: "read", text: "At the heart of the Crypt, a knight kneels in front of an open stone coffin. There is no name on it. His armour is Hellrider steel gone black, and a cold green fire lives behind his visor.\n\nHe does not turn around.\n\n\"You've come a long way to look at a grave with no one in it,\" he says. His voice comes up out of the green light like something pulled from a deep well. \"That's fitting. I've knelt here a hundred years and found the same.\"\n\nHis gauntlets tighten on the edge of the stone.\n\n\"If you've come to be forgiven for something, you're in the wrong crypt. There's no forgiveness on these walls. Only names. Say your business, or leave me mine.\"" },
         { t: "img", src: "art/generated/event-crypt-kneeling-knight.webp", caption: "Olanthius, at a grave with no one in it.", credit: "Generated art (gpt-image-1)." },
-        { t: "p", text: "{@c olanthius|Olanthius} is a guilty witness. A hundred years ago he stood at the gate and watched Yael and Lulu carry the Sword out of Hell, and he let them pass. Then he stayed to guard the road they took, and told himself it was duty. The coffin is his own. He carved it and could not lie down in it, so he buried his honour there instead, and the Sword's missing shard with it." },
+        { t: "p", text: "{@c olanthius|Olanthius} was one of Zariel's generals, with Haruman and Yael. When Zariel fell, he would not serve her tyranny; she raised him as a death knight to bind him to her, and he despises her still. He knows where Yael hid the Sword of Zariel: the Bleeding Citadel. The coffin is his own. He carved it and could not lie down in it, so he keeps the Sword's missing shard in it instead." },
 
         { t: "h", text: "How He Opens Up" },
         { t: "list", items: [
-          "{@b Drenwal's truth about his father.} This is the master key. If Drenwal tells him that Halvard did not fall at the wall, that the Bhaal cult inside the Crimson Watch murdered him, the party has advantage on every social check with Olanthius, he speaks plainly, and he gives the shard without a check. Run Event: His Name.",
+          "{@b His journal (the book's key).} As in the book, Olanthius will not parley with anyone who has not read his journal, which lies on the desk in area C7. If no one has, he rises and fights: run the Half-Heart Duel. If someone has, he talks.",
+          "{@b Drenwal's truth about his father (campaign bonus).} On top of the journal. If Drenwal tells him that Halvard did not fall at the wall, that the Bhaal cult inside the Crimson Watch murdered him, the party has advantage on every social check with Olanthius, he speaks plainly, and he gives the shard without a check. Run Event: His Name.",
           "{@b A Hellrider's oath, or the Crimson Watch's name,} from Veska, Ser Lucan or Drenwal: advantage on the first check only.",
-          "{@b No key:} one {@b DC 18 Charisma (Persuasion)} check with a real appeal to duty or honour. Grief-baiting fails and hardens him. On a success he gives the road and the reason, coldly.",
+          "{@b Journal read, but no other key:} one {@b DC 18 Charisma (Persuasion)} check with a real appeal to duty or honour, to win the shard. Grief-baiting fails and hardens him. He gives the road to the Citadel either way, coldly, once they have freed Kostchtchie.",
           "{@b If they fail, or ask to prove themselves,} he offers a trial: the Vigil or the Half-Heart Duel (below).",
           "{@b If they broke the door,} everything starts at disadvantage until someone apologises and he believes it."
         ] },
@@ -1422,13 +1423,13 @@ window.SESSION = {
         { t: "p", text: "If Drenwal names the cult, or Dumal, Olanthius repeats the name once, to remember it. \"Find them. Then come back and tell me, and I will carve the truth.\" From here on he answers anything, plainly, and the shard is Drenwal's for the asking. If Drenwal comes back with the truth later, the cold candles in the Crimson Watch alcove light." },
 
         { t: "h", text: "Event: Lulu Remembers" },
-        { t: "p", text: "This fires the first time Olanthius names Yael or the gate while Lulu is present, key or no key. It is the strongest reason to bring her. Do not miss it." },
-        { t: "read", text: "The little hollyphant goes very still. Her trunk lowers. And when she speaks, it is not her usual bright voice. It is something old, and cracked open.\n\n\"You. You were at the gate. You stood in the red light and you let us pass. Yael said your name. She said, 'He won't stop us, he hasn't the heart left to stop anything,' and she was crying when she said it.\"\n\nLulu is shaking.\n\n\"I remember the weight of it. The Sword. It was so heavy, and Yael's hands were burning, and I said I'd carry the memory so she wouldn't have to. And I did. I took all of it, and I made myself forget, so no one could ever pull the road out of me.\"" },
+        { t: "p", text: "This fires the first time Olanthius names Yael while Lulu is present, key or no key. It is the strongest reason to bring her. Do not miss it." },
+        { t: "read", text: "The little hollyphant goes very still. Her trunk lowers. And when she speaks, it is not her usual bright voice. It is something old, and cracked open.\n\n\"You. You were there. You rode at her right hand, and Haruman at her left, and Yael said you were the best of them. When she fell, Yael said your name. She said, 'He will not follow her. He has too much heart for that,' and she was crying when she said it.\"\n\nLulu is shaking.\n\n\"I remember the weight of it. The Sword. It was so heavy, and Yael's hands were burning, and I said I'd carry the memory so she wouldn't have to. And I did. We hid it where she would never find it. I took all of it, and I made myself forget, so no one could ever pull the road out of me.\"" },
         { t: "p", text: "This is Lulu's fourth memory: the flight from Hell, and the raising of the Citadel. From now on she knows the shape of the road to the Bleeding Citadel. Mark it." },
 
         { t: "h", text: "Event: The Shard" },
         { t: "p", text: "When they ask about the Sword, he stands for the first time in a hundred years, and lifts a folded cloak out of the coffin." },
-        { t: "read", text: "Inside the cloak is a sliver of bright metal as long as a hand: sharp along one edge, broken jagged along the other. It glows faintly, like a coal that will not go out. If Lulu is near, it hums.\n\n\"It broke off in her last battle, the day she fell,\" he says. \"I picked it up off the field. The rest of the blade went with Yael and the little one. This stayed with me. I have kept it. That is all I have done with my life since: kept it.\"\n\nHe does not hold it out.\n\n\"The Sword is waiting somewhere, missing this. Yael died to carry it out of Hell. You want to make it whole again. Tell me why her death should be wasted.\"" },
+        { t: "read", text: "Inside the cloak is a sliver of bright metal as long as a hand: sharp along one edge, broken jagged along the other. It glows faintly, like a coal that will not go out. If Lulu is near, it hums.\n\n\"It broke off in her last battle, the day she fell,\" he says. \"I picked it up off the field. The rest of the blade went with Yael and the little one. This stayed with me. I have kept it. That is all I have done with my life since: kept it.\"\n\nHe does not hold it out.\n\n\"The Sword is waiting, missing this. Yael gave her life to hide it from Zariel. You want to make it whole again. Tell me why her death should be wasted.\"" },
         { t: "p", text: "He does not hand it over easily. They have to answer him. Any of these can win it with a {@b DC 15 Charisma (Persuasion)} check, or with no check if they argue it well:" },
         { t: "list", items: [
           "{@b Elturel.} A whole city, sinking. The Sword and the contract together are the only clean way to free it.",
@@ -1442,6 +1443,9 @@ window.SESSION = {
         { t: "p", text: "He gives this freely to a keyed party, or on a {@b DC 16 Wisdom (Insight)} check if he has warmed at all." },
         { t: "read", text: "\"There is one more thing, and I don't have a name for it. Near the end, after Zariel fell, a star came down. Not a devil's fire. A small light, gentle. The kind of thing that stops to help a dying man it has no reason to help.\n\nZariel hated it. I never saw her hate anything the way she hated that little falling mercy. She bleeds it still. Where her blood falls, they say, the mercy grows back. I don't know what it is. I know she would unmake the world to be rid of it.\"" },
         { t: "p", text: "Moonkite's light flickers, and it turns its head away. It will not say why. This is the party's first hard sign that the Caged Star is real. Do not give it a name yet." },
+
+        { t: "h", text: "Event: Yael" },
+        { t: "p", text: "Olanthius mourns Yael's final passing. If the party tells him her ghost guards the Sword, or later returns from the Bleeding Citadel, he kneels for a long time. He swears fealty to any character attuned to the Sword of Zariel, and from then on he can join them against Zariel." },
 
         { t: "h", text: "Event: How the Watch Ended" },
         { t: "p", text: "If Drenwal asks about the Crimson Watch, Olanthius tells him plainly: after the Charge, the Watch was hollowed out from inside by a cult of Bhaal. Good riders died for an order that was already rotten. He says it as a fact, not an accusation. Drenwal may take it either way." },
