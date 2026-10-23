@@ -14,11 +14,14 @@
   .crew-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; font-size: 14px; }
   .crew-controls button { font: inherit; padding: 4px 12px; cursor: pointer; border: 1px solid var(--red, #8b1a1a); background: var(--parchment-dark, #e6d3ad); border-radius: 4px; }
   .crew-sheet { margin-bottom: 32px; }
-  .crew-head { display: grid; grid-template-columns: 1fr 200px; gap: 16px; align-items: start; }
+  .crew-head { display: grid; grid-template-columns: 1fr auto; gap: 16px; align-items: center; }
   .crew-head h1 { font-family: Cinzel, serif; margin: 0 0 4px; }
   .crew-role { font-style: italic; opacity: .85; }
-  .crew-head .portrait-wrap { min-height: 160px; }
-  .crew-head .portrait { max-height: 220px; }
+  /* Portrait: framed and centred on its own, no grey slot around it */
+  .crew-head .portrait-wrap { width: auto; min-height: 0; background: none; justify-content: center; align-items: center; overflow: visible; }
+  .crew-head .portrait { width: auto; max-width: 200px; max-height: 240px; border: 3px double var(--red, #8b1a1a); border-radius: 4px; }
+  /* Sheets are for players: the DM's build notes stay in the app */
+  .crew-sheet .sb-homebrew { display: none; }
   .crew-hp { display: flex; flex-wrap: wrap; gap: 14px; margin: 14px 0; padding: 10px 14px; border: 3px double var(--red, #8b1a1a); border-radius: 4px; background: var(--sb-bg, rgba(0,0,0,.03)); }
   .crew-box { display: flex; flex-direction: column; align-items: center; font-family: Cinzel, serif; font-size: 13px; }
   .crew-box .write { width: 110px; height: 58px; border: 2px solid var(--ink, #2a1a10); border-radius: 4px; background: #fff8; margin-top: 4px; font-size: 26px; display: flex; align-items: center; justify-content: center; }
@@ -40,8 +43,7 @@
     /* Fit a companion on two A4 pages: tighter type, smaller portrait, no web-only links */
     @page { size: A4; margin: 12mm; }
     body.crew-page { font-size: 10.5pt; }
-    .crew-sheet .portrait-wrap { min-height: 0; }
-    .crew-sheet .portrait { max-height: 32mm; }
+    .crew-sheet .portrait { max-height: 42mm; max-width: 40mm; }
     .crew-sheet .portrait-placeholder { display: none; }
     .sb-5etools-link { display: none; }
     .crew-sheet h2, .crew-sheet h3 { margin: 6pt 0 3pt; }
@@ -153,9 +155,9 @@
       }
       sheet.appendChild(hp);
 
-      var guide = c.playerGuide && c.playerGuide.length ? c.playerGuide : (c.tactics || []);
+      var guide = c.strategy && c.strategy.length ? c.strategy : (c.tactics || []);
       if (guide.length) {
-        sheet.appendChild(el("h2", null, "How to play me"));
+        sheet.appendChild(el("h2", null, "Strategy"));
         var ol = el("ol", "crew-guide");
         guide.forEach(function (g) { var li = el("li"); li.appendChild(window.DMRender.renderInline(g)); ol.appendChild(li); });
         sheet.appendChild(ol);
@@ -165,7 +167,7 @@
       sheet.appendChild(window.DMStatblock.renderStatblock(c));
 
       if (cp && cp.behaviour && cp.behaviour.length) {
-        sheet.appendChild(el("h2", null, "How I behave"));
+        sheet.appendChild(el("h2", null, "Behaviour"));
         var ul = el("ul");
         cp.behaviour.forEach(function (b) { var li = el("li"); li.appendChild(window.DMRender.renderInline(b)); ul.appendChild(li); });
         sheet.appendChild(ul);

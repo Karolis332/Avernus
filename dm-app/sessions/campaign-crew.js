@@ -1,5 +1,6 @@
 // Crew companions the DM hands to players to run in a fight (one each).
-// Each is built on an official chassis, named in `homebrew`, tuned to roughly a level 9-10 character.
+// Each is built on an official chassis, named in `homebrew` (shown in the app, hidden on player sheets),
+// tuned to roughly a level 9-10 character. `strategy` is what crew.html prints for the player.
 // Adds to window.CAMPAIGN.creatures; load after campaign-map.js and before any session file.
 (function () {
   "use strict";
@@ -39,13 +40,13 @@
       { name: "Parry", text: "Veska adds 3 to her AC against one melee attack that would hit her. She must see the attacker and be holding a melee weapon." },
       { name: "Shield the Fallen", text: "When an ally she can see within 5 ft. takes damage, she takes half of it instead." }
     ],
-    playerGuide: [
-      "Stay next to Drenwal or whoever is most exposed. Your aura stops fear: frightened allies near you get advantage.",
-      "Your turn: Multiattack with the lance (reach 10 ft.). Against fiends, add 2d6 radiant every hit.",
-      "Hellrider's Charge whenever you can run 20 ft. straight at something first. Roll a d6 at the start of each turn: on a 5-6 it is back.",
-      "Leadership once per rest, early in the fight: everyone near you adds a d4.",
-      "Reactions: Parry (+3 AC) for yourself, or Shield the Fallen (take half) for a friend. Only one per round, so choose.",
-      "Never flee. A Hellrider does not run from Hell."
+    strategy: [
+      "{@b Position:} front line beside Drenwal or the most exposed ally. Her 10-ft. fear aura is the party's answer to dragon Frightful Presence.",
+      "{@b Opening:} Leadership in round 1 so every ally in 30 ft. adds a d4 to attacks and saves for the minute.",
+      "{@b Offence:} two Blessed Lance attacks a turn from 10 ft. away, +2d6 radiant against fiends (Arkhan's cronies, abishai). Lead with Hellrider's Charge whenever a 20-ft. straight run is open (recharge 5-6).",
+      "{@b Defence:} Parry (+3 AC) against a melee hit on herself, or Shield the Fallen to take half the damage meant for a wounded ally within 5 ft. One reaction per round.",
+      "{@b Priority targets:} whatever is attacking Drenwal; then anything frightened allies can't reach.",
+      "{@b Never retreats.} If an ally is frightened in a breath line, she spends her action dragging them out of it."
     ],
     tactics: [
       "Anchors the line beside Drenwal. Charges whatever is attacking him.",
@@ -84,13 +85,12 @@
     reactions: [
       { name: "Keep the Watch", text: "When a creature he can see within 5 ft. of him is hit by an attack, Lucan becomes the target instead and takes the hit." }
     ],
-    playerGuide: [
-      "Your job is to be hit instead of your friends. Stand next to the most fragile person on the field (or the gun crew).",
-      "Keep the Watch: when someone next to you is hit, you take it instead. Use it every round.",
-      "Your turn: two longsword attacks, each with 1d8 radiant on top.",
-      "Iron Charge to knock a big thing prone or break up a crowd. Roll a d6 at the start of each turn: on a 5-6 it is back.",
-      "You can't be knocked prone or slowed, and the first time you hit 0 HP you stay up at 1. Be brave with it.",
-      "If Drenwal goes down, say Halvard's last words out loud: Drenwal gets advantage on his next death save."
+    strategy: [
+      "{@b Position:} beside the most fragile ally or the gun crew on deck, never more than 5 ft. away.",
+      "{@b Core tactic:} Keep the Watch every round. When an adjacent ally is hit, Lucan takes the hit instead.",
+      "{@b Offence:} two longsword attacks a turn, each +1d8 radiant. Iron Charge (recharge 5-6) to knock a Large or bigger enemy prone, or to break a crowd off a downed ally.",
+      "{@b Durability:} can't be knocked prone or slowed, and stays up at 1 HP the first time he drops. Plays boldly because of it.",
+      "{@b Fallback:} if Drenwal goes down, Lucan speaks Halvard's last words. Drenwal gains advantage on his next death save."
     ],
     tactics: [
       "Stands in front of the weakest character and takes the hits.",
@@ -125,13 +125,12 @@
       { name: "Tusks", text: "Melee Weapon Attack: +3 to hit, reach 5 ft., one target. Hit: 3 (1d6) piercing damage." },
       { name: "Trumpet (3/Day)", text: "A trumpet blast heard 600 ft. away, and a 30-ft. cone of energy, her choice. Blasting: DC 14 Constitution save, 17 (5d6) thunder damage and deafened for 1 minute on a failure, half and not deafened on a success. Sparkles: DC 14 Constitution save, 22 (4d8 + 4) radiant damage on a failure, half on a success." }
     ],
-    playerGuide: [
-      "You are the healer and the shield, not a fighter. Your tusks do almost nothing.",
-      "Your aura is a moving fortress: spells of 5th level or lower from outside your 10 ft. bubble can't touch anyone inside it. Hide the casters and the wounded in it, especially against Arkhan's Hand of Vecna.",
-      "Heal (once): 70 HP and cures blindness, deafness and disease. Save it for someone about to die.",
-      "Cure wounds and bless twice each. Protection from evil and good on Or'Henn gives him advantage on his Pull saves.",
-      "Trumpet three times: Sparkles (radiant) against fiends, Blasting against everything else.",
-      "Banishment once: send one problem away for a minute. Stay off the rail and away from the Styx."
+    strategy: [
+      "{@b Role:} healer and spell shield, not a fighter. Stays on the ship, away from the rail and the Styx.",
+      "{@b Aura of Invulnerability:} spells of 5th level or lower from outside her 10-ft. sphere don't affect anyone inside. Keep the casters and the wounded inside it, especially against the Hand of Vecna.",
+      "{@b Healing:} cure wounds and bless twice each. Heal once (70 HP, cures blindness, deafness, disease), held for an ally about to die.",
+      "{@b Curse support:} protection from evil and good on Or'Henn gives advantage on his Pull saves.",
+      "{@b Offence:} Trumpet three times a day. Sparkles (radiant) against fiends, Blasting (thunder) against everything else. Banishment once, on the biggest single problem."
     ],
     tactics: [
       "Stays on the ship near the wounded; aura over the casters.",
@@ -163,13 +162,12 @@
     actions: [
       { name: "Dagger", text: "Melee or Ranged Weapon Attack: +5 to hit, reach 5 ft. or range 20/60 ft., one target. Hit: 4 (1d4 + 2) piercing damage." }
     ],
-    playerGuide: [
-      "Cast mage armor before the fight (AC 15). You are fragile: stay back, behind Lucan or inside Lulu's aura.",
-      "Counterspell (3rd level) is your best move: stop Arkhan's Hand of Vecna, or a dragon's spell.",
-      "Fireball on groups, cone of cold (once) on a dragon that is already hurt, fire bolt when you are out of slots.",
-      "Fly on a friend who needs to reach a dragon in the sky, or on yourself to escape.",
-      "Greater invisibility on Veska or yourself. Shield (reaction, +5 AC) when something hits you.",
-      "You do not like these people. You will leave the moment Tiamat rises unless someone gives you a very good reason."
+    strategy: [
+      "{@b Before the fight:} mage armor (AC 15). Stays at range, behind Lucan or inside Lulu's aura.",
+      "{@b Signature move:} counterspell against Arkhan's Hand of Vecna or a dragon's spell.",
+      "{@b Damage:} fireball on groups, cone of cold (once) on a wounded dragon, fire bolt when out of slots.",
+      "{@b Support:} fly on an ally who needs to reach a dragon in the air; greater invisibility on Veska or herself. Shield (+5 AC, reaction) when hit.",
+      "{@b Loyalty:} none. She leaves by misty step and fly the moment Tiamat rises unless given a very good reason."
     ],
     tactics: [
       "Counterspells Arkhan once, with relish.",
