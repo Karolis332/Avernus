@@ -1,10 +1,10 @@
-// Session 10: the Styx run, the Sibriex (optional), Uldrak's Grave, and the dragons the party calls.
+// Session 10: the flight to the Grave (flight scrolls, overland), the Sibriex (optional), Uldrak's Grave, and the dragons the party calls.
 // Tower dragons + Krull come from sessions/campaign-tower.js; this file overrides only their tactics.
 window.SESSION = {
   id: "10-the-styx-run",
-  title: "The Styx Run",
+  title: "The Flight to the Grave",
   subtitle: "Session 10 · Descent into Avernus",
-  summary: "The party runs the River Styx to Uldrak's Grave and spills Tiamat's blood to free the empyrean, even though that same vial was Or'Henn's only safe cure. Restored, Uldrak joins them, and they use the orb of dragonkind in his sword to call Arkhan's dragons to the Grave and kill them. The dragons come in waves, Krull comes with an offer, and one of the dragons knows exactly what Or'Henn's mark is for. On the way, if they stop, the chained sibriex.",
+  summary: "The party reads its flight scrolls and flies overland to Uldrak's Grave, the Lady Vengeance alongside, and spills Tiamat's blood to free the empyrean, even though that same vial was Or'Henn's only safe cure. Restored, Uldrak joins them, and they use the orb of dragonkind in his sword to call Arkhan's dragons to the Grave and kill them. The dragons come in waves, Krull comes with an offer, and one of the dragons knows exactly what Or'Henn's mark is for. On the way, if they turn aside, the chained sibriex.",
 
   party: [
     { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding drawn (Tier II); only the kinslaying remains. Carries the Shield of the Hidden Lord." },
@@ -150,8 +150,8 @@ window.SESSION = {
       duration: "5 minutes (read before play)",
       banner: "art/official/young-red-dragon.webp",
       blocks: [
-        { t: "p", text: "This session is designed for the three 13th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with their allies Veska, Ser Lucan, Jeremy, Lulu and Moonkite, and Colico Jack at the helm of the Lady Vengeance. It runs about four to five hours. It is a journey down the River Styx, a gift that costs more than the players know, and the biggest fight of the campaign so far: five of Arkhan's dragons, called down on purpose." },
-        { t: "note", title: "Tell the Players Before You Start", text: "Say this out of character, before the first scene: \"The Styx steals memories. Anything that touches the water can lose who it is. And calling five dragons to you is the most dangerous plan you have ever made. Characters can die here, and stay dead.\"" },
+        { t: "p", text: "This session is designed for the three 13th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with their allies Veska, Ser Lucan, Jeremy, Lulu and Moonkite, and Colico Jack at the helm of the Lady Vengeance. It runs about four to five hours. It is a fast flight across the waste, a gift that costs more than the players know, and the biggest fight of the campaign so far: five of Arkhan's dragons, called down on purpose." },
+        { t: "note", title: "Tell the Players Before You Start", text: "Say this out of character, before the first scene: \"Uldrak's Grave sits on the bank of the Styx, and the Styx steals memories. Anything that touches the water can lose who it is. And calling five dragons to you is the most dangerous plan you have ever made. Characters can die here, and stay dead.\"" },
 
         { t: "h", text: "Background" },
         { t: "p", text: "Last session the party stole a vial of Tiamat's living blood from {@c arkhan-the-cruel|Arkhan the Cruel} at the Monument to Tiamat, and escaped by {@spell word of recall} before anyone could fight. Drenwal's sanctuary is the statue of St. Cuthbert on the Lady Vengeance, so the spell carried all three of them straight back to their own deck. Nobody was left behind." },
@@ -160,10 +160,10 @@ window.SESSION = {
         { t: "p", text: "Set in the pommel of Uldrak's sword is an {@item Orb of Dragonkind|DMG}. It calls evil dragons. The party's plan is to free Uldrak, then use the orb to call Arkhan's dragons to the Grave and kill them with an empyrean on their side." },
 
         { t: "h", text: "Overview" },
-        { t: "p", text: "This session has nine scenes and takes about four to five hours to play. The Sibriex happens only if they stop at the gorge. The vision in The Dragon Queen's Garden is for Or'Henn alone; Feonor's message at dawn is for everyone. The Call and Wings Over the Grave happen only if they call the dragons, which is their plan. The Ending always runs." },
+        { t: "p", text: "This session has nine scenes and takes about four to five hours to play. The Sibriex happens only if they turn aside at the gorge. The vision in The Dragon Queen's Garden is for Or'Henn alone; Feonor's message at dawn is for everyone. The Call and Wings Over the Grave happen only if they call the dragons, which is their plan. The Ending always runs." },
         { t: "list", items: [
           "{@b Where We Left Off} (5 minutes). Word of Recall drops the party at the foot of St. Cuthbert's statue on their own deck, with the vial.",
-          "{@b The Styx Run} (20 to 30 minutes). Down to the river and along it, with Arkhan's dragons hunting somewhere behind. Lulu must stay dry.",
+          "{@b The Flight to the Grave} (20 to 30 minutes). Flight scrolls read, the ship alongside, straight across the waste instead of the long way up the river, with Arkhan's dragons hunting somewhere behind.",
           "{@b The Sibriex} (35 to 50 minutes). Optional. A chained flesh-sculptor smells Or'Henn's curse and explains it for free.",
           "{@b Uldrak's Grave} (30 to 45 minutes). The vial is poured, an empyrean stands up out of the ash, and he gives them the orb.",
           "{@b The Dragon Queen's Garden} (20 to 30 minutes). That night, Tiamat comes to Or'Henn in a vision with an offer that sounds like help. At dawn, Feonor's ash crow: Urexiel will trade the staff for a live dragon.",
@@ -173,8 +173,8 @@ window.SESSION = {
         ] },
 
         { t: "h", text: "Adventure Hooks" },
-        { t: "p", text: "{@b Uldrak's curse.} The party chose this road at the end of last session: run the Styx, pour the blood, free the empyrean. They are skipping the Stygian Dock." },
-        { t: "p", text: "{@b Arkhan's dragons.} Since the theft, Arkhan has had his four adult dragons and Obatala quartering the Styx for the Lady Vengeance. The party knows they are out there. They have decided to stop running and pick the ground themselves." },
+        { t: "p", text: "{@b Uldrak's curse.} The party chose this road at the end of last session: fly straight to the Grave, pour the blood, free the empyrean. They read flight scrolls and cut overland rather than following the Styx, and they are skipping the Stygian Dock." },
+        { t: "p", text: "{@b Arkhan's dragons.} Since the theft, Arkhan has had his four adult dragons and Obatala quartering the waste and the Styx for the Lady Vengeance. The party knows they are out there. They have decided to stop running and pick the ground themselves." },
         { t: "p", text: "{@b Or'Henn's mark.} Tiamat's curse is a clock. Every dragon they call is a dragon Or'Henn might ask for help. One of them will offer." },
 
         { t: "h", text: "Where things stand" },
@@ -202,73 +202,61 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "The session opens on the deck of the Lady Vengeance, the moment Word of Recall lands." },
         { t: "read", text: "One moment: the dragon skull's maw, the black Hand rising, Arkhan's voice behind you like a furnace door opening.\n\nThe next: silence, and the smell of tar and hot brass.\n\nYou are standing on your own deck at the foot of the statue of St. Cuthbert, all of you, breathing hard. The vial is warm in someone's fist. Inside the glass, the blood turns over by itself.\n\nAt the wheel, Colico Jack takes one look at your faces and does not ask. He throws the helm hard over and opens the throttle, and the whole ship shudders as she climbs.\n\n\"Where to?\" he shouts over the engines. \"And how fast?\"" },
-        { t: "p", text: "Let them breathe, heal and argue for a minute. They have already chosen: the Styx, then Uldrak's Grave. When they give Jack the course, go to {@scene the-styx-run|The Styx Run}." }
+        { t: "p", text: "Let them breathe, heal and argue for a minute. They have already chosen: flight scrolls, and straight across the waste to Uldrak's Grave. When they give Jack the course, go to {@scene the-flight|The Flight to the Grave}." }
       ]
     },
 
     {
-      id: "the-styx-run",
-      title: "The Styx Run",
+      id: "the-flight",
+      title: "The Flight to the Grave",
       when: "",
       duration: "20 to 30 minutes",
       blocks: [
-        { t: "p", text: "The Lady Vengeance flies from the Monument to the River Styx and follows it downstream to Uldrak's Grave. This scene is the journey. Read the boxes in order, and skip any you need to for time." },
-        { t: "note", title: "Running This Scene", text: "Two things matter here. Lulu must stay dry: her full memory is needed to free the Caged Star, and the Caged Star is where Drenwal's rebirth happens. And the Styx steals memories on contact. In the second event, make the players decide out loud how Lulu travels. Do not tell them why it matters." },
+        { t: "p", text: "The party reads its flight scrolls and flies from the Monument straight across the waste to Uldrak's Grave, with Colico Jack bringing the Lady Vengeance along beside them. They are not following the Styx: they cut overland, the short way, and only meet the river again at the Grave. This scene is the journey. Read the boxes in order, and skip any you need to for time." },
+        { t: "note", title: "Running This Scene", text: "The point of this scene is the hunt. Arkhan's dragons are out looking for the ship, and the party is flying in the open. Let the players feel watched, then let them arrive. Lulu is safe on this leg: there is no river under them. The Styx only matters again at the Grave, which sits on its bank. How long the scrolls last is your ruling from the table; this scene assumes they get the party there." },
 
         { t: "h", text: "Event: Behind Them" },
-        { t: "read", text: "Far behind the ship, where the Monument's skull is shrinking into the haze, five specks lift into the sky.\n\nThey circle once over the mountain, tight and angry. Then they split apart, each one going its own way, the way hounds split when they have lost a scent.\n\nOne of them is very large, and very pale." },
-        { t: "p", text: "Arkhan's dragons are hunting. They lose the ship in the ash, but the players should know they are out there. That is what makes the orb, later, feel like a choice instead of a gift." },
+        { t: "read", text: "Far behind you, where the Monument's skull is shrinking into the haze, five specks lift into the sky.\n\nThey circle once over the mountain, tight and angry. Then they split apart, each one going its own way, the way hounds split when they have lost a scent.\n\nOne of them is very large, and very pale." },
+        { t: "p", text: "Arkhan's dragons are hunting. They lose the party in the ash, but the players should know they are out there. That is what makes the orb, later, feel like a choice instead of a gift." },
 
-        { t: "h", text: "Event: Where Does Lulu Ride?" },
-        { t: "p", text: "Ask the table, plainly: \"Where does Lulu ride for this trip?\"" },
-        { t: "read", text: "Lulu has her trunk over the rail and her ears straight out, watching the waste slide past.\n\n\"A river!\" she says. \"I remember a river like this. No, I don't. Maybe I do. Can I see it? I want to see it.\"" },
-        { t: "list", items: [
-          "{@b Below decks:} safe from everything in this scene. She sulks.",
-          "{@b On deck, held or kept close:} she is safe as long as whoever holds her makes their saves. If they fail, she fails.",
-          "{@b At the rail, free:} she is exposed to every spray. This is the choice that should hurt later, and only later."
-        ] },
+        { t: "h", text: "Event: Taking Wing" },
+        { t: "read", text: "The scroll burns away in your hands, and the ground lets go of you.\n\nThere is no lurch, no effort. You simply rise, the way smoke rises, until the deck of the Lady Vengeance is level with your boots and then below them. Jack whistles and swings the ship in beside you, her engines throttled down so she does not leave you behind.\n\nBelow, the waste opens out: red rock, black glass, bone fields white as salt. Far off to your left, a black line winds across all of it, slow and patient. The Styx. Jack points at it, then points straight ahead, and grins. The long way and the short way." },
+        { t: "p", text: "Let each player describe how their character flies, and who rides on the ship instead: Lulu, Moonkite with Aurora, the allies. Nobody needs to roll for this. It is a breath of wonder before the session gets hard." },
 
-        { t: "h", text: "Event: The River Styx" },
-        { t: "read", text: "The Styx is wider than you remembered, and slower. It does not look like water. It looks like oil poured over glass, black and smooth, and it moves without a single ripple.\n\nThings drift in it. A helmet. A child's shoe. A door, still on its hinges. Here and there, just under the surface, a face turns up toward the ship as you pass, eyes open, mouth working, trying to remember a word.\n\nThere is no smell. There is no sound. Only, if you listen, a whisper, very far down, like a crowd of people all saying their names at once so they will not forget them." },
-        { t: "p", text: "Colico Jack flies her low, below the ash, ten feet over the water. Any lower and the spray reaches the deck." },
+        { t: "h", text: "Event: Over the Waste" },
+        { t: "read", text: "You pass over a battlefield that never ended. Two armies, a mile across, still fighting: demons swarming up a ridge, devils holding it in neat red squares. Neither side looks up. From up here it is almost quiet, a sound like surf.\n\nThen a road of iron spikes, each one wearing someone. Then nothing at all for a long time, only ash, and the wind of your own flight in your ears." },
+        { t: "p", text: "If anyone wants to dive on the battle, let them see it is pointless: it is miles wide and has been going for centuries. The war below is the Blood War, and it does not care about them." },
 
-        { t: "h", text: "Event: The Ferry" },
-        { t: "read", text: "A barge comes upriver toward you out of the murk, long and flat and black, with a single lantern on a pole at the stern.\n\nThe thing poling it is tall and thin and wrapped in grey cloth, with an insect's mouth under its hood. It does not move aside for a warship. It does not need to.\n\nAs you pass above it, it raises the lantern and looks up at you with great patience.\n\n\"Wrong way,\" it says, in a voice like dry leaves. \"The dragons have been up and down this water since yesterday. Looking for a ship. Your ship, I think.\"\n\nIt goes on poling. It does not look back." },
-        { t: "p", text: "The ferryman is a merrenoloth, a yugoloth that works the Styx for pay. It wants nothing from them and fights no one. If they hail it, it will carry a message anywhere on the river for a soul coin, and it knows exactly where Uldrak's Grave is: \"The little devil on the big sword. Two bends down. He talks to himself.\"" },
-
-        { t: "h", text: "Event: The Wake" },
-        { t: "read", text: "Something huge passes under the ship, under the water. You never see it. You only see the river bulge, a long slow hump moving against the current, and then the wave it leaves behind rising toward your keel." },
+        { t: "h", text: "Event: The Searching Shadow" },
+        { t: "read", text: "A shadow slides across the ground below you. Big. Fast. Moving the other way.\n\nYou look up. High above the ash, almost lost in it, something red is flying long, slow sweeps across the sky. It has not seen you yet. It is turning." },
         { t: "steps", items: [
-          "Each character on deck makes a {@b DC 13 Dexterity saving throw}. On a success, they get clear of the spray.",
-          "On a failure, the Styx touches their skin. They make a {@b DC 15 Intelligence saving throw}.",
-          "On a failed Intelligence save, the water steals memories. The character forgets the last day, plus one memory the player chooses: a face, a name, or a promise. The memories come back if {@spell greater restoration} is cast on them. Uldrak can do this at will once he is restored.",
-          "A character who falls fully into the river is targeted by {@spell feeblemind} (DC 20 Intelligence save, repeated at the start of each turn in the water until it fails). Only a reckless choice should put someone in the river.",
-          "If Lulu is at the rail, she rolls too. If someone holds her, she shares their fate."
+          "Everyone flying in the open makes a {@b DC 15 Dexterity (Stealth)} group check to drop low and hold still against the rock or the ash. The Lady Vengeance uses Colico Jack's roll; he cuts the engines and lets her drift.",
+          "On a success, the red dragon finishes its turn and flies on north. It never knew they were there.",
+          "On a failure, it sees something: a glint, a shape. It does not attack alone. It banks away fast toward the Monument. Arkhan now knows roughly which way they went. The dragons do not arrive early, but when the orb calls them in {@scene the-call|The Call}, they come already knowing whose ship it is."
         ] },
-        { t: "note", title: "What Was Under the Ship", text: "Leave it a mystery tonight. It is not one of Arkhan's dragons. The Styx is old and deep and a great many things live in it. If the players ask Jeremy, he says the hull sensors read it as \"long.\"" },
 
-        { t: "h", text: "Checks on the River" },
+        { t: "h", text: "Checks in the Air" },
         { t: "list", items: [
           "{@b DC 15 Intelligence (Arcana or Religion):} the Styx winds through the upper layers of the Lower Planes. Its water strips memory. Elturel is sinking toward it, and when the city touches it, every soul aboard becomes a devil.",
-          "{@b DC 14 Wisdom (Perception):} far off to the north, a speck of red is quartering the sky in long slow sweeps. It is looking for something.",
-          "{@b DC 13 Wisdom (Survival):} a needle stands up on the horizon downriver, straight and too regular to be rock. That is the sword at Uldrak's Grave, a few hours out."
+          "{@b DC 14 Wisdom (Perception):} the red speck to the north is not alone. Much farther off, something pale is quartering the sky the same way.",
+          "{@b DC 13 Wisdom (Survival):} a needle stands up on the horizon ahead, straight and too regular to be rock. That is the sword at Uldrak's Grave, where the land comes down to meet the Styx again."
         ] },
-        { t: "p", text: "When the river runs into a narrow gorge strung with chains, go to {@scene the-sibriex|The Sibriex}. If they fly straight past it, go to {@scene uldraks-grave|Uldrak's Grave}." }
+        { t: "p", text: "Partway there, they pass a narrow gorge strung with chains. If they turn aside, go to {@scene the-sibriex|The Sibriex}. If they fly straight on, go to {@scene uldraks-grave|Uldrak's Grave}." }
       ]
     },
 
     {
       id: "the-sibriex",
       title: "The Sibriex",
-      when: "Only if they stop at the gorge",
+      when: "Only if they turn aside at the gorge",
       duration: "35 to 50 minutes",
       blocks: [
-        { t: "p", text: "The party is running the Styx toward {@b Uldrak's Grave} to spill Tiamat's blood and break the empyrean's curse. They have chosen to skip the Stygian Dock. This site is on the way, and it is optional: the Haruman errand that once made the sibriex necessary is already spent -- his trophy supplied the piece. So this is not a quest. It is a temptation with a mouth." },
+        { t: "p", text: "The party is flying overland toward {@b Uldrak's Grave} to spill Tiamat's blood and break the empyrean's curse. They have chosen to skip the Stygian Dock. This site is on the way, and it is optional: the Haruman errand that once made the sibriex necessary is already spent -- his trophy supplied the piece. So this is not a quest. It is a temptation with a mouth." },
 
-        { t: "note", title: "Remember Lulu", text: "Lulu's full memory is a hard prerequisite for freeing the Caged Star, and the Caged Star is where Drenwal's rebirth happens. The Styx erases memory on contact. The players decided how she travels in The Styx Run. Hold them to it here: if she is at the rail and anyone goes into the water, run the forgetting." },
+        { t: "note", title: "Remember Lulu", text: "Lulu's full memory is a hard prerequisite for freeing the Caged Star, and the Caged Star is where Drenwal's rebirth happens. A thin black thread of the Styx runs along the floor of this gorge. If they land on the bank and Lulu comes with them, or anyone falls in, run the forgetting (DC 15 Intelligence save)." },
 
         { t: "h", text: "Event: Something Is Hanging Over the River" },
-        { t: "read", text: "The gorge narrows, and the Styx goes quiet the way water does under a low roof.\n\nChains come out of the rock on both sides -- ships' chains, each link as long as a man -- and where they meet, something hangs.\n\nIt is a head. Only a head, the size of a cart, bloated and pale and slick, with long thin arms trailing from under its jaw like roots from a pulled weed. Below it the bank is heaped with things that are still breathing and should not be: too many joints, too many faces, arranged.\n\nThe eyes open. They are perfectly calm.\n\n\"Oh,\" it says, wetly, delighted. \"Visitors. Come closer. We will not reach you. We cannot.\"" },
+        { t: "read", text: "You drop down into the gorge, and the air goes still the way it does under a low roof. Far below, a thin black thread of the Styx slides along the floor without a sound.\n\nChains come out of the rock on both sides -- ships' chains, each link as long as a man -- and where they meet, something hangs.\n\nIt is a head. Only a head, the size of a cart, bloated and pale and slick, with long thin arms trailing from under its jaw like roots from a pulled weed. Below it the bank is heaped with things that are still breathing and should not be: too many joints, too many faces, arranged.\n\nThe eyes open. They are perfectly calm.\n\n\"Oh,\" it says, wetly, delighted. \"Visitors. Come closer. We will not reach you. We cannot.\"" },
 
         { t: "h", text: "What It Wants" },
         { t: "p", text: "Down. That is the whole of it. Everything the {@c sibriex|sibriex} offers is rent paid toward one end: being let out of the chains. It does not beg, it does not threaten, and it does not lie -- lying would cost it the only currency it has." },
@@ -303,7 +291,7 @@ window.SESSION = {
 
         { t: "h", text: "Event: Passing By" },
         { t: "p", text: "If the party simply keeps going -- which is the sensible play -- give them this as the gorge opens up again." },
-        { t: "read", text: "The chains fall behind. The gorge widens. The quiet lets go of the water.\n\nBehind you, unhurried, it calls after you -- not shouting, just pitched to carry:\n\n\"When the lizard asks a dragon for help. Come back and tell us what it cost. We do so like to hear how our sister's work turns out.\"" },
+        { t: "read", text: "The chains fall behind. The gorge widens, and you climb back into the open sky.\n\nBehind you, unhurried, it calls after you -- not shouting, just pitched to carry:\n\n\"When the lizard asks a dragon for help. Come back and tell us what it cost. We do so like to hear how our sister's work turns out.\"" },
 
         { t: "choices", prompt: "What do the characters do?", items: [
           { label: "Pass it by", goto: "uldraks-grave" },

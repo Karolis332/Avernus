@@ -291,7 +291,7 @@ window.CAMPAIGN.map = {
       requires: ["Haruman's body."],
       unlocks: ["The way to the Bleeding Citadel (Eventyr)."],
       sessions: 1,
-      dmChoices: ["The Haruman errand here is spent -- the trophy supplied the piece -- so it is a temptation, not a quest.", "RE-OPENED for session 10: the party passes it on the Styx run to Uldrak Grave. Scene written in 10-the-styx-run.js.", "It smells Tiamat curse on Or Henn and explains the mechanism for free.", "DIAL: it offers to MAKE a dragon for the curse to step into. Cut this if you want Tiamat to stay caged.", "A sibriex spawn still roams the travel table."],
+      dmChoices: ["The Haruman errand here is spent -- the trophy supplied the piece -- so it is a temptation, not a quest.", "RE-OPENED for session 10: the party flies past it (flight scrolls, overland) on the way to Uldrak Grave. Scene written in 10-the-styx-run.js.", "It smells Tiamat curse on Or Henn and explains the mechanism for free.", "DIAL: it offers to MAKE a dragon for the curse to step into. Cut this if you want Tiamat to stay caged.", "A sibriex spawn still roams the travel table."],
       alternatives: ["If a piece is lost, the sibriex can read memory from another body."]
     },
     {
