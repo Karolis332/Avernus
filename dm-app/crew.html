@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crew Sheet</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<style>
+  /* Player hand-out for one companion: ?s=<session id>&c=<creature id>; no c = index, c=all = every sheet */
+  body.crew-page { display: block; overflow: auto; height: auto; }
+  #crew-wrap { max-width: 820px; margin: 0 auto; padding: 16px 16px 60px; }
+  .crew-controls { display: flex; gap: 12px; flex-wrap: wrap; align-items: center; margin-bottom: 12px; font-size: 14px; }
+  .crew-controls button { font: inherit; padding: 4px 12px; cursor: pointer; border: 1px solid var(--red, #8b1a1a); background: var(--parchment-dark, #e6d3ad); border-radius: 4px; }
+  .crew-sheet { margin-bottom: 32px; }
+  .crew-head { display: grid; grid-template-columns: 1fr 200px; gap: 16px; align-items: start; }
+  .crew-head h1 { font-family: Cinzel, serif; margin: 0 0 4px; }
+  .crew-role { font-style: italic; opacity: .85; }
+  .crew-head .portrait-wrap { min-height: 160px; }
+  .crew-head .portrait { max-height: 220px; }
+  .crew-hp { display: flex; flex-wrap: wrap; gap: 14px; margin: 14px 0; padding: 10px 14px; border: 3px double var(--red, #8b1a1a); border-radius: 4px; background: var(--sb-bg, rgba(0,0,0,.03)); }
+  .crew-box { display: flex; flex-direction: column; align-items: center; font-family: Cinzel, serif; font-size: 13px; }
+  .crew-box .write { width: 110px; height: 58px; border: 2px solid var(--ink, #2a1a10); border-radius: 4px; background: #fff8; margin-top: 4px; font-size: 26px; display: flex; align-items: center; justify-content: center; }
+  .crew-box.small .write { width: 70px; }
+  .crew-uses { flex: 1 1 220px; font-size: 14px; }
+  .crew-uses div { margin: 3px 0; }
+  .crew-uses .tick { display: inline-block; width: 14px; height: 14px; border: 1.5px solid var(--ink, #2a1a10); border-radius: 3px; margin-left: 4px; vertical-align: -2px; cursor: pointer; }
+  .crew-uses .tick.on { background: var(--red, #8b1a1a); }
+  .crew-sheet h2 { font-family: Cinzel, serif; font-size: 1.2em; margin: 16px 0 6px; border-bottom: 1px solid var(--red, #8b1a1a); }
+  .crew-guide li { margin: 4px 0; }
+  .crew-index li { margin: 6px 0; font-size: 1.1em; }
+  @media (max-width: 600px) { .crew-head { grid-template-columns: 1fr; } }
+  @media print {
+    .crew-controls { display: none !important; }
+    #crew-wrap { max-width: none; padding: 0; }
+    .crew-sheet { break-after: page; margin: 0; }
+    .crew-sheet:last-child { break-after: auto; }
+    .statblock { break-inside: auto; }
+  }
+</style>
+</head>
+<body class="crew-page">
+  <div id="crew-wrap"></div>
+
+  <script src="library/library.js"></script>
+  <script>window.LIBRARY = window.LIBRARY || { maps: [], docs: [] };</script>
+  <script src="js/core.js"></script>
+  <script src="js/render.js"></script>
+  <script src="js/statblock.js"></script>
+  <script src="sessions/index.js"></script>
+  <script src="sessions/campaign-ship.js"></script>
+  <script src="sessions/campaign-arcs.js"></script>
+  <script src="sessions/campaign-tower.js"></script>
+  <script src="sessions/campaign-map.js"></script>
+  <script src="sessions/campaign-crew.js" onerror="/* optional: crew creatures */"></script>
+  <script src="media/media.js"></script>
+  <script>window.MEDIA = window.MEDIA || {};</script>
+  <script>
+  (function () {
+    "use strict";
+    var el = window.DMRender.el;
+    var params = new URLSearchParams(location.search);
+    var list = window.SESSIONS || [];
+    var sid = params.get("s") || (list[list.length - 1] || {}).id;
+    var cid = params.get("c");
+    var wrap = document.getElementById("crew-wrap");
+
+    var s = document.createElement("script");
+    s.src = "sessions/" + sid + ".js";
+    s.onerror = function () { wrap.textContent = "Could not load session '" + sid + "'."; };
+    s.onload = render;
+    document.body.appendChild(s);
+
+    function findCreature(session, id) {
+      return (session.creatures || {})[id] || ((window.CAMPAIGN || {}).creatures || {})[id] || null;
+    }
+    function findCompanion(session, id) {
+      return (session.companions || []).filter(function (cp) { return cp.creature === id; })[0] || null;
+    }
+    function sheetUrl(c) { return "crew.html?s=" + encodeURIComponent(sid) + "&c=" + encodeURIComponent(c); }
+
+    // Limited uses from names like "Legendary Resistance (3/Day)", "Fire Breath (Recharge 5-6)", "Rally (1/day)"
+    function limitedUses(c) {
+      var out = [];
+      ["traits", "actions", "bonus", "reactions"].forEach(function (k) {
+        (c[k] || []).forEach(function (t) {
+          var n = t.name || "";
+          var m = n.match(/(\d+)\s*\/\s*(day|long rest|short rest)/i);
+          if (m) out.push({ label: n, count: Math.min(+m[1], 10) });
+          else if (/recharge/i.test(n)) out.push({ label: n, count: 1 });
+        });
+      });
+      return out;
+    }
+
+    function writeBox(label, cls) {
+      var b = el("div", "crew-box" + (cls ? " " + cls : ""));
+      b.appendChild(el("div", null, label));
+      b.appendChild(el("div", "write", ""));
+      return b;
+    }
+
+    function renderSheet(session, id) {
+      var c = findCreature(session, id);
+      var cp = findCompanion(session, id);
+      var sheet = el("section", "crew-sheet");
+      if (!c) { sheet.appendChild(el("p", null, "No creature '" + id + "' in this session or the campaign files.")); return sheet; }
+
+      var head = el("div", "crew-head");
+      var left = el("div");
+      left.appendChild(el("h1", null, (cp && cp.name) || c.name));
+      var role = (cp && cp.role) || c.role;
+      if (role) left.appendChild(el("div", "crew-role", role));
+      head.appendChild(left);
+      head.appendChild(window.DMStatblock.renderPortrait(c));
+      sheet.appendChild(head);
+
+      var hp = el("div", "crew-hp");
+      var maxBox = writeBox("Max HP", "small");
+      if (c.hp != null) maxBox.lastChild.textContent = c.hp;
+      hp.appendChild(maxBox);
+      hp.appendChild(writeBox("Current HP"));
+      hp.appendChild(writeBox("Temp HP", "small"));
+      var acBox = writeBox("AC", "small");
+      if (c.ac != null) acBox.lastChild.textContent = c.ac;
+      hp.appendChild(acBox);
+      var uses = limitedUses(c);
+      if (uses.length) {
+        var u = el("div", "crew-uses");
+        u.appendChild(el("strong", null, "Uses"));
+        uses.forEach(function (x) {
+          var row = el("div", null, x.label);
+          for (var i = 0; i < x.count; i++) {
+            var t = el("span", "tick");
+            t.addEventListener("click", function () { this.classList.toggle("on"); });
+            row.appendChild(t);
+          }
+          u.appendChild(row);
+        });
+        hp.appendChild(u);
+      }
+      sheet.appendChild(hp);
+
+      var guide = c.playerGuide && c.playerGuide.length ? c.playerGuide : (c.tactics || []);
+      if (guide.length) {
+        sheet.appendChild(el("h2", null, "How to play me"));
+        var ol = el("ol", "crew-guide");
+        guide.forEach(function (g) { var li = el("li"); li.appendChild(window.DMRender.renderInline(g)); ol.appendChild(li); });
+        sheet.appendChild(ol);
+      }
+
+      sheet.appendChild(el("h2", null, "Stat block"));
+      sheet.appendChild(window.DMStatblock.renderStatblock(c));
+
+      if (cp && cp.behaviour && cp.behaviour.length) {
+        sheet.appendChild(el("h2", null, "How I behave"));
+        var ul = el("ul");
+        cp.behaviour.forEach(function (b) { var li = el("li"); li.appendChild(window.DMRender.renderInline(b)); ul.appendChild(li); });
+        sheet.appendChild(ul);
+      }
+      return sheet;
+    }
+
+    function controls(extra) {
+      var bar = el("div", "crew-controls");
+      if (cid) {
+        var back = el("a", null, "← All companions");
+        back.href = "crew.html?s=" + encodeURIComponent(sid);
+        bar.appendChild(back);
+      }
+      var pr = el("button", null, "Print");
+      pr.type = "button";
+      pr.addEventListener("click", function () { window.print(); });
+      bar.appendChild(pr);
+      if (extra) bar.appendChild(extra);
+      return bar;
+    }
+
+    function render() {
+      var session = window.SESSION;
+      session.creatures = session.creatures || {};
+      var comps = session.companions || [];
+
+      if (cid === "all") {
+        document.title = "Crew Sheets · " + session.title;
+        wrap.appendChild(controls());
+        comps.filter(function (cp) { return cp.creature; }).forEach(function (cp) { wrap.appendChild(renderSheet(session, cp.creature)); });
+        return;
+      }
+      if (cid) {
+        var c = findCreature(session, cid);
+        document.title = (c ? c.name : cid) + " · Crew Sheet";
+        wrap.appendChild(controls());
+        wrap.appendChild(renderSheet(session, cid));
+        return;
+      }
+
+      document.title = "Crew Sheets · " + session.title;
+      var all = el("a", null, "Print all");
+      all.href = sheetUrl("all");
+      wrap.appendChild(controls(all));
+      wrap.appendChild(el("h1", null, session.title + ": Companions"));
+      if (!comps.length) { wrap.appendChild(el("p", null, "This session has no companions listed.")); return; }
+      var ul = el("ul", "crew-index");
+      comps.forEach(function (cp) {
+        var li = el("li");
+        if (cp.creature) {
+          var a = el("a", null, cp.name);
+          a.href = sheetUrl(cp.creature);
+          li.appendChild(a);
+        } else {
+          li.appendChild(document.createTextNode(cp.name + " (no stat block)"));
+        }
+        if (cp.role) li.appendChild(document.createTextNode(" — " + cp.role));
+        ul.appendChild(li);
+      });
+      wrap.appendChild(ul);
+    }
+  })();
+  </script>
+</body>
+</html>

@@ -1192,7 +1192,7 @@ window.SESSION = {
         },
         {
           "t": "p",
-          "text": "Uldrak's numbers with the new weapon, and who sold it to him: {@side uldraks-errand|Uldrak's Errand}."
+          "text": "Uldrak's numbers with Gnashing Hunger, Bel's reforged flail of Yeenoghu: {@side uldraks-errand|Uldrak's Errand}."
         },
         {
           "t": "encounter",
@@ -1428,16 +1428,16 @@ window.SESSION = {
         {
           "t": "list",
           "items": [
-            "{@b Bel, at Bel's Forge (recommended for a demonic weapon).} Bel was archduke of Avernus until Zariel took it from him. In the book he wants her disgraced and his throne back, and his forge is the greatest in the layer. {@b The weapon:} Gnashing Hunger, Yeenoghu's flail, recovered from the Demon Zapper field and reforged into a blade sized for an empyrean. A demon lord's hunger, beaten into shape on a devil's anvil. {@b The price:} when Tiamat falls, Uldrak marches with Bel against Zariel. A CR 23 empyrean on Bel's side of the war.",
-            "{@b Mephistopheles, through the Mirror of Mephistar (the biggest juice).} The archdevil of Cania, the greatest wizard in the Hells. In the book he reaches into Avernus through the Mirror to work against Zariel. That he wants Tiamat dead is a campaign invention: her death would break the prison Asmodeus built, and Mephistopheles would love to see Asmodeus embarrassed. {@b The weapon:} Cania's Verdict, a blade of hellfire and black ice. {@b The price:} whatever divine power Tiamat sheds when the blade kills her goes into the sword, and from the sword to Mephistopheles. Dumal is bound for the Mirror too. Uldrak may have met him there.",
+            "{@b Table ruling: Bel, at Bel's Forge.} Bel was archduke of Avernus until Zariel took it from him. In the book he wants her disgraced and his throne back, and his forge is the greatest in the layer. {@b The weapon:} Gnashing Hunger, Yeenoghu's flail, recovered from the Demon Zapper field and reforged into a blade sized for an empyrean. A demon lord's hunger, beaten into shape on a devil's anvil. {@b The price:} when Tiamat falls, Uldrak marches with Bel against Zariel. A CR 23 empyrean on Bel's side of the war.",
+            "{@b Mephistopheles} (Cania's Verdict) was considered and ruled out: too strong for this campaign.",
             "{@b Zariel} is possible but unlikely. She would rather the party died.",
             "{@b Asmodeus} gains from Tiamat's imprisonment. He would not sell this."
           ]
         },
         {
           "t": "note",
-          "title": "DM's Choice",
-          "text": "Pick one. Bel fits a literally demonic weapon and is close by on the map. Mephistopheles is the bigger story, and ties to Dumal and the Mirror."
+          "title": "Ruled: Bel",
+          "text": "The weapon is Gnashing Hunger, Yeenoghu's flail reforged at Bel's Forge. Uldrak now owes Bel his sword arm against Zariel. Mephistopheles' Cania's Verdict is out: too strong."
         },
         {
           "t": "h",
@@ -1448,8 +1448,8 @@ window.SESSION = {
           "items": [
             "{@b Godsbane Strike.} Uldrak's attacks with it: +17 to hit, reach 15 ft. Hit: 39 (6d12) slashing plus 27 (6d8) necrotic. This damage ignores Tiamat's immunities and resistances.",
             "{@b Drinker.} When it hits Tiamat Risen, she cannot regain hit points (including Unfinished) until the start of Uldrak's next turn.",
-            "{@b The Catch.} If it lands the blow that drops Tiamat Risen to 0 hit points, she does not go back to sleep at the Monument. She is destroyed in the Nine Hells, which by the campaign's rule means destroyed for good, and the patron collects (above). A goddess's death in Avernus shakes every layer of the Hells.",
-            "{@b The Voice.} It laughs. With Bel's blade, the laughter is Yeenoghu's. On a natural 1, Uldrak makes a DC 18 Wisdom save or attacks the nearest creature, friend or foe."
+            "{@b The Catch.} If it lands the blow that drops Tiamat Risen to 0 hit points, she does not go back to sleep at the Monument. She is destroyed in the Nine Hells, which by the campaign's rule means destroyed for good, and Bel collects his debt: Uldrak marches on Zariel. A goddess's death in Avernus shakes every layer of the Hells.",
+            "{@b The Voice.} It laughs. The laughter is Yeenoghu's. On a natural 1, Uldrak makes a DC 18 Wisdom save or attacks the nearest creature, friend or foe."
           ]
         },
         {

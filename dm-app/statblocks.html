@@ -8,13 +8,30 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <style>
-  /* Printable, single-column page of every stat block in one session: ?s=<session id> */
+  /* Fight screen for one session (?s=<session id>): fight sequence | creature tabs | initiative.
+     Print outputs every creature card only. */
   body.sb-page { display: block; overflow: auto; height: auto; }
-  #sb-wrap { max-width: 860px; margin: 0 auto; padding: 16px 16px 80px; }
-  #sb-wrap > h1 { font-family: Cinzel, serif; margin: 8px 0 4px; }
-  #sb-sub { opacity: .75; margin-bottom: 12px; }
-  /* One tab per creature; only the selected card shows. Print still outputs every card. */
-  #sb-nav { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 0 0; background: inherit; border-bottom: 2px solid var(--red, #8b1a1a); }
+  #sb-wrap { max-width: 1900px; margin: 0 auto; padding: 12px 16px 60px; }
+  #sb-head h1 { font-family: Cinzel, serif; margin: 4px 0 2px; }
+  #sb-sub { opacity: .75; margin-bottom: 10px; }
+
+  #sb-grid { display: flex; flex-direction: column; gap: 16px; }
+  #sb-grid > * { min-width: 0; }
+  #sb-init { order: 1; }
+  #sb-seq  { order: 2; }
+  #sb-main { order: 3; }
+  .sb-col { background: var(--sb-bg, rgba(0,0,0,.03)); border: 1px solid var(--red, #8b1a1a); border-radius: 6px; padding: 8px 12px; overflow-x: auto; }
+  .sb-col > h2 { font-family: Cinzel, serif; font-size: 1.1em; margin: 2px 0 8px; }
+  @media (min-width: 1200px) {
+    #sb-grid { display: grid; grid-template-columns: 22fr 48fr 30fr; align-items: start; }
+    #sb-grid.no-seq { grid-template-columns: 68fr 32fr; }
+    #sb-seq, #sb-main, #sb-init { order: 0; }
+    #sb-seq, #sb-init { position: sticky; top: 8px; max-height: calc(100vh - 16px); overflow-y: auto; }
+  }
+  #sb-grid.no-seq #sb-seq { display: none; }
+
+  /* creature tabs */
+  #sb-nav { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 0 0; background: var(--parchment, #f3e4c6); border-bottom: 2px solid var(--red, #8b1a1a); }
   #sb-nav button { font: inherit; font-size: 14px; padding: 6px 12px; cursor: pointer; color: inherit; background: transparent; border: 1px solid transparent; border-bottom: none; border-radius: 6px 6px 0 0; opacity: .7; }
   #sb-nav button:hover { opacity: 1; }
   #sb-nav button[aria-selected="true"] { opacity: 1; font-weight: 700; border-color: var(--red, #8b1a1a); background: var(--sb-bg, rgba(0,0,0,.04)); margin-bottom: -2px; padding-bottom: 8px; }
@@ -22,8 +39,35 @@
   .sb-card { padding-top: 8px; }
   .sb-card[hidden] { display: none; }
   .sb-card .lair-panel { margin-top: 10px; }
+  .comp-card { border: 1px solid var(--red, #8b1a1a); border-radius: 4px; padding: 10px 16px; margin: 12px 0; background: var(--sb-bg, rgba(0,0,0,.03)); }
+  .comp-card h2 { font-family: Cinzel, serif; margin: 0 0 2px; }
+  .comp-role { font-style: italic; opacity: .8; margin-bottom: 6px; }
+  .comp-fight { margin: 6px 0; }
+  .comp-sheet { font-size: 13px; }
+  .comp-card details { margin-top: 8px; }
+  .comp-card summary { cursor: pointer; font-weight: 700; }
+
+  /* initiative */
+  #sb-enc-pick { margin: 0 0 10px; }
+  #sb-enc-pick select { font: inherit; padding: 4px 6px; max-width: 100%; }
+
+  /* fight sequence */
+  .seq-phase { margin: 0 0 10px; }
+  .seq-phase > summary { cursor: pointer; font-weight: 700; font-family: Cinzel, serif; padding: 4px 0; }
+  .seq-reset { font: inherit; font-size: 11px; margin-left: 8px; padding: 1px 6px; cursor: pointer; border: 1px solid var(--red, #8b1a1a); background: transparent; border-radius: 3px; color: inherit; }
+  .seq-ev { display: flex; gap: 6px; align-items: flex-start; padding: 5px 0; border-top: 1px dotted rgba(0,0,0,.2); font-size: 14px; line-height: 1.35; }
+  .seq-ev input { margin-top: 3px; flex: none; }
+  .seq-ev.done .seq-body { opacity: .45; text-decoration: line-through; }
+  .seq-chip { display: inline-block; font-weight: 700; font-size: 11px; padding: 1px 6px; border-radius: 9px; margin-right: 4px; color: #fff; background: #6b5a45; white-space: nowrap; }
+  .seq-chip.tag-round { background: #8b1a1a; }
+  .seq-chip.tag-trigger { background: #a66a00; }
+  .seq-chip.tag-every-turn { background: #2f5d8a; }
+  .seq-chip.tag-choice { background: #3d6b35; }
+
   @media print {
-    #sb-nav, #sb-hint { display: none; }
+    #sb-nav, #sb-hint, #sb-seq, #sb-init { display: none !important; }
+    #sb-grid { display: block; }
+    .sb-col { border: none; background: none; padding: 0; }
     .sb-card[hidden] { display: block; }
     .sb-card { border-top: 2px solid var(--red, #8b1a1a); margin-top: 28px; break-inside: avoid-page; }
   }
@@ -31,11 +75,19 @@
 </head>
 <body class="sb-page">
   <div id="sb-wrap">
-    <h1 id="sb-title">Stat Blocks</h1>
-    <div id="sb-sub"></div>
-    <nav id="sb-nav" role="tablist"></nav>
-    <p id="sb-hint">← / → to switch monsters</p>
-    <div id="sb-list"></div>
+    <div id="sb-head">
+      <h1 id="sb-title">Stat Blocks</h1>
+      <div id="sb-sub"></div>
+    </div>
+    <div id="sb-grid" class="no-seq">
+      <aside id="sb-seq" class="sb-col"><h2>Fight Sequence</h2><div id="sb-seq-body"></div></aside>
+      <main id="sb-main" class="sb-col">
+        <nav id="sb-nav" role="tablist"></nav>
+        <p id="sb-hint">← / → to switch tabs · N = next turn in the initiative tracker</p>
+        <div id="sb-list"></div>
+      </main>
+      <aside id="sb-init" class="sb-col"><h2>Initiative</h2><div id="sb-init-body"></div></aside>
+    </div>
   </div>
 
   <script src="library/library.js"></script>
@@ -43,11 +95,13 @@
   <script src="js/core.js"></script>
   <script src="js/render.js"></script>
   <script src="js/statblock.js"></script>
+  <script src="js/tracker.js"></script>
   <script src="sessions/index.js"></script>
   <script src="sessions/campaign-ship.js"></script>
   <script src="sessions/campaign-arcs.js"></script>
   <script src="sessions/campaign-tower.js"></script>
   <script src="sessions/campaign-map.js"></script>
+  <script src="sessions/campaign-crew.js" onerror="/* optional: crew creatures */"></script>
   <script src="media/media.js"></script>
   <script>window.MEDIA = window.MEDIA || {};</script>
   <script>
@@ -62,6 +116,13 @@
     s.onerror = function () { document.getElementById("sb-list").textContent = "Could not load session '" + id + "'."; };
     s.onload = render;
     document.body.appendChild(s);
+
+    function loadJSON(key, fallback) {
+      try { var raw = localStorage.getItem(key); return raw ? JSON.parse(raw) : fallback; } catch (e) { return fallback; }
+    }
+    function saveJSON(key, value) {
+      try { localStorage.setItem(key, JSON.stringify(value)); } catch (e) { /* storage blocked or full: ticks still work this page load */ }
+    }
 
     // Campaign-layer creatures the session links to ({@c id|...}) but doesn't redefine, e.g. Arkhan, the Lady Vengeance.
     function pullLinkedCampaignCreatures(session) {
@@ -86,6 +147,99 @@
       return out;
     }
 
+    // LEFT: session.timeline -> collapsible phases of tick-off events, ticks kept per session
+    function renderTimeline(session) {
+      var phases = session.timeline || [];
+      if (!phases.length) return;
+      document.getElementById("sb-grid").classList.remove("no-seq");
+      var key = "dmapp:timeline:" + session.id;
+      var done = loadJSON(key, {});
+      var body = document.getElementById("sb-seq-body");
+      phases.forEach(function (ph, pi) {
+        var det = el("details", "seq-phase");
+        det.open = true;
+        var sum = el("summary", null, ph.phase);
+        var reset = el("button", "seq-reset", "Reset");
+        reset.type = "button";
+        sum.appendChild(reset);
+        det.appendChild(sum);
+        var rows = [];
+        (ph.events || []).forEach(function (ev, ei) {
+          var k = pi + ":" + ei;
+          var row = el("label", "seq-ev");
+          var cb = el("input");
+          cb.type = "checkbox";
+          cb.checked = !!done[k];
+          row.classList.toggle("done", cb.checked);
+          cb.addEventListener("change", function () {
+            if (cb.checked) done[k] = 1; else delete done[k];
+            row.classList.toggle("done", cb.checked);
+            saveJSON(key, done);
+          });
+          var txt = el("span", "seq-body");
+          if (ev.when) txt.appendChild(el("span", "seq-chip tag-" + (ev.tag || "none"), ev.when));
+          txt.appendChild(window.DMRender.renderInline(ev.text || ""));
+          row.appendChild(cb);
+          row.appendChild(txt);
+          det.appendChild(row);
+          rows.push({ k: k, cb: cb, row: row });
+        });
+        reset.addEventListener("click", function (e) {
+          e.preventDefault();
+          rows.forEach(function (r) { r.cb.checked = false; r.row.classList.remove("done"); delete done[r.k]; });
+          saveJSON(key, done);
+        });
+        body.appendChild(det);
+      });
+    }
+
+    // RIGHT: the app's own tracker, same encounter ids, so state is shared with the primer's tracker
+    function renderInitiative(session) {
+      var body = document.getElementById("sb-init-body");
+      var encs = [];
+      (session.scenes || []).forEach(function (sc) {
+        (sc.blocks || []).forEach(function (b) { if (b.t === "encounter") encs.push({ block: b, scene: sc }); });
+      });
+      if (!encs.length) { body.appendChild(el("p", null, "No encounters in this session.")); return; }
+      var holder = el("div");
+      function showEnc(i) {
+        holder.innerHTML = "";
+        holder.appendChild(window.DMTracker.renderEncounter(encs[i].block, { session: session }));
+      }
+      // Default: the encounter picked last time on this page, else the first big fight in story order
+      // (Session 10's dragon fight comes before Tiamat Reborn even though Tiamat Reborn is larger).
+      var pickKey = "dmapp:sb-encounter:" + session.id;
+      var best = -1;
+      try { var saved = localStorage.getItem(pickKey); encs.forEach(function (e, i) { if (e.block.id === saved) best = i; }); } catch (e) { /* storage blocked */ }
+      if (best < 0) {
+        var most = 0;
+        encs.forEach(function (e) { most = Math.max(most, (e.block.combatants || []).length); });
+        encs.forEach(function (e, i) { if (best < 0 && (e.block.combatants || []).length >= Math.min(3, most)) best = i; });
+      }
+      if (best < 0) best = 0;
+      if (encs.length > 1) {
+        var pick = el("div");
+        pick.id = "sb-enc-pick";
+        pick.appendChild(el("label", null, "Encounter: "));
+        var sel = el("select");
+        encs.forEach(function (e, i) {
+          var bt = e.block.title || e.block.id;
+          var o = el("option", null, bt === e.scene.title ? bt : e.scene.title + ": " + bt);
+          o.value = String(i);
+          sel.appendChild(o);
+        });
+        sel.value = String(best);
+        sel.addEventListener("change", function () {
+          showEnc(+sel.value);
+          try { localStorage.setItem(pickKey, encs[+sel.value].block.id); } catch (e) { /* storage blocked */ }
+        });
+        pick.appendChild(sel);
+        body.appendChild(pick);
+      }
+      body.appendChild(holder);
+      showEnc(best);
+    }
+
     function render() {
       var session = window.SESSION;
       session.creatures = session.creatures || {};
@@ -99,29 +253,34 @@
       var ids = creatureOrder(session);
       var tabs = {}, cards = {};
 
-      function select(cid) {
+      function addTab(key, label) {
+        var tab = el("button", null, label);
+        tab.type = "button";
+        tab.setAttribute("role", "tab");
+        tab.addEventListener("click", function () { select(key); });
+        tabs[key] = tab;
+        nav.appendChild(tab);
+        var card = el("section", "sb-card");
+        card.setAttribute("role", "tabpanel");
+        cards[key] = card;
+        listEl.appendChild(card);
+        return card;
+      }
+
+      function select(cid, initial) {
         if (!cards[cid]) cid = ids[0];
         ids.forEach(function (k) {
           cards[k].hidden = k !== cid;
           tabs[k].setAttribute("aria-selected", k === cid ? "true" : "false");
         });
         history.replaceState(null, "", "#" + cid);
-        window.scrollTo(0, 0);
+        if (!initial) document.getElementById("sb-main").scrollIntoView({ block: "nearest" });
       }
       function current() { return ids.filter(function (k) { return !cards[k].hidden; })[0]; }
 
       ids.forEach(function (cid) {
         var c = session.creatures[cid];
-        var tab = el("button", null, c.name);
-        tab.type = "button";
-        tab.setAttribute("role", "tab");
-        tab.addEventListener("click", function () { select(cid); });
-        tabs[cid] = tab;
-        nav.appendChild(tab);
-
-        var card = el("section", "sb-card");
-        card.setAttribute("role", "tabpanel");
-        cards[cid] = card;
+        var card = addTab(cid, c.name);
         // _cid/_sessionId: same keys app.js passes, so spell-slot pips stay in sync with the main app.
         card.appendChild(window.DMStatblock.renderCreaturePanelBody(Object.assign({ _cid: cid, _sessionId: session.id }, c)));
         if (c.lair && c.lair.text) {
@@ -132,17 +291,67 @@
           lair.appendChild(p);
           card.appendChild(lair);
         }
-        listEl.appendChild(card);
+      });
+      var creatureIds = ids.slice();
+
+      // Companions: one tab, a card per ally with how they behave (session.companions)
+      var comps = session.companions || [];
+      if (comps.length) {
+        var compCard = addTab("companions", "Companions");
+        compCard.appendChild(el("h2", null, "Companions"));
+        comps.forEach(function (cp) {
+          var box = el("div", "comp-card");
+          box.appendChild(el("h2", null, cp.name));
+          if (cp.role) box.appendChild(el("div", "comp-role", cp.role));
+          if (cp.creature) {
+            var a = el("a", "comp-sheet", "Open player sheet");
+            a.href = "crew.html?s=" + encodeURIComponent(session.id) + "&c=" + encodeURIComponent(cp.creature);
+            a.target = "_blank";
+            box.appendChild(a);
+          }
+          if (cp.inFight) {
+            var f = el("p", "comp-fight");
+            f.appendChild(el("strong", null, "In the fight: "));
+            f.appendChild(window.DMRender.renderInline(cp.inFight));
+            box.appendChild(f);
+          }
+          if (cp.behaviour && cp.behaviour.length) {
+            var ul = el("ul");
+            cp.behaviour.forEach(function (b) { var li = el("li"); li.appendChild(window.DMRender.renderInline(b)); ul.appendChild(li); });
+            box.appendChild(ul);
+          }
+          var cc = cp.creature && (session.creatures[cp.creature] || ((window.CAMPAIGN || {}).creatures || {})[cp.creature]);
+          if (cc) {
+            var det = el("details");
+            det.appendChild(el("summary", null, "Stat block"));
+            det.appendChild(window.DMStatblock.renderCreaturePanelBody(Object.assign({ _cid: cp.creature, _sessionId: session.id }, cc)));
+            box.appendChild(det);
+          }
+          compCard.appendChild(box);
+        });
+        ids.push("companions");
+      }
+
+      renderTimeline(session);
+      renderInitiative(session);
+
+      // Creature names (tracker rows, {@c} links) jump to that creature's tab instead of the app's side panel
+      document.addEventListener("click", function (e) {
+        var t = e.target.closest && e.target.closest("[data-cid]");
+        if (!t || creatureIds.indexOf(t.dataset.cid) < 0) return;
+        e.preventDefault();
+        select(t.dataset.cid);
       });
 
       document.addEventListener("keydown", function (e) {
         if (e.target.closest && e.target.closest("input, textarea, select")) return;
+        if ((e.key === "n" || e.key === "N") && !e.ctrlKey && !e.metaKey && !e.altKey) { window.DMTracker.triggerNextTurn(); return; }
         if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
         var i = ids.indexOf(current()) + (e.key === "ArrowRight" ? 1 : -1);
         select(ids[(i + ids.length) % ids.length]);
         tabs[current()].focus();
       });
-      select(decodeURIComponent(location.hash.slice(1)));
+      select(decodeURIComponent(location.hash.slice(1)), true);
     }
   })();
   </script>
