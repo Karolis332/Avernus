@@ -1,8 +1,61 @@
-// Campaign-wide: Arkhan the Cruel and his tower (dragons, Krull). Moved out of session 9
+// Campaign-wide: Arkhan the Cruel and his tower (dragons, Krull), plus Uldrak once restored. Moved out of session 9
 // so later sessions reuse the stat blocks and override only tactics/description.
 window.CAMPAIGN = window.CAMPAIGN || { creatures: {}, side: {} };
 
 Object.assign(window.CAMPAIGN.creatures, {
+
+  "uldrak": {
+    name: "Uldrak",
+    kind: "uldrak",
+    role: "Empyrean, son of Surtur, restored. Fights beside the party",
+    source: { page: "bestiary", name: "Empyrean", src: "MM" },
+    homebrew: "MM empyrean at full strength. His maul is his gargantuan sword: same numbers, slashing damage. The orb of dragonkind sits in its pommel.",
+    npc: false,
+    sizeType: "Huge celestial (titan), chaotic good",
+    ac: 22, acNote: "natural armor",
+    hp: 313, hpFormula: "19d12 + 190",
+    speed: "50 ft., fly 50 ft., swim 50 ft.",
+    abilities: { str: 30, dex: 21, con: 30, int: 21, wis: 22, cha: 27 },
+    saves: "Str +17, Int +12, Wis +13, Cha +15", skills: "Insight +13, Persuasion +15",
+    vulnerable: "", resist: "", immune: "bludgeoning, piercing, and slashing from nonmagical attacks", condImmune: "",
+    senses: "truesight 120 ft., passive Perception 16",
+    languages: "all",
+    cr: "23", xp: 50000, pb: 7,
+    traits: [
+      { name: "Innate Spellcasting", text: "Charisma (spell save DC 23, +15 to hit). At will: {@spell greater restoration}, {@spell pass without trace}, {@spell water breathing}, {@spell water walk}. 1/day each: {@spell commune}, {@spell dispel evil and good}, {@spell earthquake}, {@spell fire storm}, {@spell plane shift}." },
+      { name: "Legendary Resistance (3/Day)", text: "If Uldrak fails a saving throw, he can choose to succeed instead." },
+      { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
+      { name: "Magic Weapons", text: "His weapon attacks are magical." }
+    ],
+    actions: [
+      { name: "Sword", text: "Melee Weapon Attack: +17 to hit, reach 10 ft., one target. Hit: 31 (6d12 + 10) slashing. If the target is a creature, it must succeed on a DC 15 Constitution saving throw or be stunned until the end of Uldrak's next turn." },
+      { name: "Bolt", text: "Ranged Spell Attack: +15 to hit, range 600 ft., one target. Hit: 24 (7d6) acid, cold, fire, force, lightning, radiant or thunder damage (his choice)." }
+    ],
+    bonus: [], reactions: [],
+    legendary: {
+      count: 3,
+      intro: "Uldrak can take 3 legendary actions, one at a time, at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
+      actions: [
+        { name: "Attack", cost: 1, text: "Makes one attack." },
+        { name: "Bolster", cost: 1, text: "Every creature friendly to him within 120 ft. can't be charmed or frightened, and has advantage on ability checks and saving throws, until the end of his next turn." },
+        { name: "Trembling Strike", cost: 2, text: "Strikes the ground with his sword. Every other creature on the ground within 60 ft. must succeed on a DC 25 Strength saving throw or be knocked prone. This includes the party." }
+      ]
+    },
+    tactics: [
+      "Bolster first, at the end of the first enemy turn: it cancels fear for everyone near him.",
+      "Bolt type matters: never the damage type the target is immune to. When in doubt, force or radiant.",
+      "Trembling Strike knocks the party prone too. He warns them first: \"Off the ground!\"",
+      "At will, between fights: {@spell greater restoration} on anyone the Styx has touched."
+    ],
+    description: "Where the devil was, a giant stands up out of the ash. He is twenty feet tall, bronze-skinned, with veins of slow fire under the skin and a beard like a forge's smoke. He pulls the sword out of the ground with one hand, and for the first time in three thousand years it fits him.",
+    roleplay: [
+      "Appearance: a bronze giant with fire under his skin. He keeps touching his own face, as if checking it is still there.",
+      "Voice: deep and warm and much too loud. He laughs easily now.",
+      "Wants: to kill something of hers before he goes home. He has a long list and Arkhan's dragons are at the top of it.",
+      "Knows: Tiamat laid the curse, so only her blood could lift it. That is also why {@spell greater restoration} will not touch Or'Henn's mark. If asked, he tries anyway, and tells them so when it fails.",
+      "Sample line: \"Call them. Call all of them. I would like to be big at someone.\""
+    ]
+  },
 
   "skarrix": {
     name: "Slarkas",

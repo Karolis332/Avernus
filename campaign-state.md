@@ -32,6 +32,13 @@ Resolved (DM rulings 2026-10-23):
 ---
 
 ## Active Session Prep
+**Session 11: Roads from the Grave** (built 2026-10-23) — DM app: `dm-app/sessions/11-roads-from-the-grave.js`. Runs after the dragon fight. Three full branches, players pick: **Crypt of the Hellriders** (door → Nave of Names → Olanthius + shard 1), **Scabrous Menagerie** (Feonor → Singing Aisle → Pens → Trophy Vault / Urexiel), **Stygian Dock** (dock → Kreeg). Far sites (Arches of Ulloch, Wrecked Flying Fortress, Pit of Shummrath) are hook cards only (side `far-roads`).
+- **Kreeg canon used:** the played Session 8 version — **amnizu at the Stygian Dock**. The older "Vessper Hain at the Emporium" plan in the master primer is superseded.
+- **Proposed links (DM can drop any):** Eldra Vash survived the First Charge as a captive; **Kreeg bought her** for the Ashen Garden; Olanthius loved her and thinks she died in the Charge. Urexiel's ledger line "One gardener, aged. Incidental." is Eldra. The Crypt door opens for Lulu, a First Charge name (Or'Henn saying "Eldra"), the watchword "The sun will hold!", a bought word, or force (force = disadvantage with Olanthius). Kreeg's homebrew **Ledger of Forgetting** can take one old memory (Lulu's) instead of the last 5 hours.
+- **Feonor's road shifts +6 days** (crow on day 4 = her day 10): she waits outside the Menagerie with a map until **day 14**, then is caged. Geas still lapses day 30.
+- **DM recommendation:** Uldrak goes home to Muspelheim after the dragons and returns for the last battle (CR 23 trivialises all three roads).
+- **Still yours to rule:** who broke the Sword (Olanthius doesn't know).
+
 **Session 10: The Styx Run** — DM app: `dm-app/sessions/10-the-styx-run.js` (full session, Session 9 format). The Sibriex has **not** been met yet.
 
 **The route, as the party has settled it:** run the **River Styx** to **Uldrak's Grave** and **spill the vial** to break the empyrean's curse. **The Stygian Dock is being SKIPPED** — Thavius Kreeg keeps, and the pin stays on the map for later. **They will pass the Sibriex** on the way; the scene is written.

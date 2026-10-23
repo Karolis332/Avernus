@@ -262,3 +262,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Open:**
   - Does Uldrak stay for the dragon fight? The encounter assumes yes.
   - The orb-cage loophole is a DM's choice; don't hint at it until Small Vision 2 comes up.
+
+### 2026-10-23 — Session 11 "Roads from the Grave" built in the DM app
+- **Did:** New `dm-app/sessions/11-roads-from-the-grave.js` (Session 9 format): shared opening, full Crypt / Menagerie / Dock branches, Ending outcomes, sides `kreegs-bargains` + `far-roads`. New stat blocks: Olanthius, Urexiel (with lair), mezzoloth handler, Kreeg (amnizu), barbed devil. Uldrak moved into `campaign-tower.js`; Session 10 now overrides only his tactics.
+- **Why:** DM asked for every nearby scenario; chose full builds for the three close sites, hooks only for the far ones, password unknown (so five ways through the Crypt door). Kreeg follows the played Session 8 canon (amnizu at the Dock), not the older Vessper Hain plan.
+- **Open:** Who broke the Sword is unruled. Eldra-was-bought-by-Kreeg is a proposed link. Kreeg's numbers are the MTF amnizu reconstructed, so check them against the book. There's no Menagerie or Dock battle map; stand-ins are used.
