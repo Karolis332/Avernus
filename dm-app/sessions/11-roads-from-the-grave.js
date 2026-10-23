@@ -689,7 +689,7 @@ window.SESSION = {
         {
           "when": "C2. Funerary Chambers",
           "tag": "trigger",
-          "text": "ELDRA VASH on the older wall: Or'Henn finds it with no roll. Halvard's name in the Crimson Watch alcove: let Drenwal have the moment, then Veska or Lucan speaks."
+          "text": "Eldra's sun-and-sword badge on the older wall: Or'Henn knows it from her ring (no roll), and her name is beside it. He never knew she was a Hellrider. Halvard's name in the Crimson Watch alcove: let Drenwal have the moment, then Veska or Lucan speaks."
         },
       {"when": "Feonor arrives", "tag": "choice", "text": "Invisible, by fly, past the dragons: {@scene feonor-brings-the-staff|Feonor Brings the Staff}. Ember relights in Or'Henn's hand with 1d6 charges; geas ends. Green flare = the ship comes."},
         {
@@ -1020,15 +1020,15 @@ window.SESSION = {
         },
         {
           "t": "p",
-          "text": "If Or'Henn is looking for his teacher, he finds her without a roll. When he does, read:"
+          "text": "Or'Henn does not know Eldra was a Hellrider, so he is not looking for her. What catches him is a badge. The first time he enters this chamber, read:"
         },
         {
           "t": "read",
-          "text": "Halfway down the older wall, under a hundred years of dust, the carving is deeper and rougher than the rest. Cut fast. Cut grieving.\n\nELDRA VASH.\n\nBeside it, a small badge in the stone: a golden sun, pierced by a sword. And under the name, scratched in by a different, shakier hand, much later:\n\n\"I should have stopped her. O.\""
+          "text": "Halfway down the older wall, under a hundred years of dust, a small badge is cut into the stone: a golden sun, pierced by a sword. You have seen it before. You have seen it every day of your life.\n\nBeside it, the carving is deeper and rougher than the rest. Cut fast. Cut grieving.\n\nELDRA VASH.\n\nAnd under the name, scratched in by a different, shakier hand, much later:\n\n\"I should have stopped her. O.\""
         },
         {
           "t": "p",
-          "text": "Or'Henn has seen that badge before. Every day for sixty years, on a ring on Eldra's hand, while she showed him how to keep fire-moss alive in ash. Ask his player what he does."
+          "text": "Or'Henn has seen that badge before. Every day for sixty years, on a ring on Eldra's hand, while she showed him how to keep fire-moss alive in ash. He spots it on the wall with no roll, and the name beside it is hers. This is how he learns she rode with the Hellriders: she never told him. Ask his player what he does."
         },
         {
           "t": "note",
