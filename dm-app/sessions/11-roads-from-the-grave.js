@@ -24,20 +24,118 @@ window.SESSION = {
     { id: "feonor", name: "Feonor", note: "Free of the geas: she stole Cinderbloom and brought it. Stays only if asked nicely; leaves when Tiamat rises." }
   ],
 
-  creatures: {
+    creatures: {
+    "mummy-captain": {
+      "name": "Captain Aldous Varn",
+      "kind": "mummy-lord",
+      "role": "The officer who gave the order to run. Mummy lord chassis",
+      "source": {
+        "page": "bestiary",
+        "name": "Mummy Lord",
+        "src": "MM"
+      },
+      "homebrew": "Campaign NPC on a mummy lord's numbers (MM, CR 15), with his priest spells replaced by a Hellrider's commands. Not the book's.",
+      "description": "A tall figure in grave-cloth and the rags of an officer's tabard, his shield turned face-down on his back. His eyes are two points of grey light.",
+      "sizeType": "Medium undead, lawful evil",
+      "ac": 17,
+      "acNote": "natural armor",
+      "hp": 97,
+      "hpFormula": "13d8 + 39",
+      "speed": "20 ft.",
+      "abilities": {
+        "str": 18,
+        "dex": 10,
+        "con": 17,
+        "int": 11,
+        "wis": 18,
+        "cha": 16
+      },
+      "saves": "Con +8, Int +5, Wis +9, Cha +8",
+      "skills": "History +5, Religion +5",
+      "vulnerable": "fire",
+      "resist": "",
+      "immune": "necrotic, poison; bludgeoning, piercing, and slashing from nonmagical attacks",
+      "condImmune": "charmed, exhaustion, frightened, paralyzed, poisoned",
+      "senses": "darkvision 60 ft., passive Perception 14",
+      "languages": "Common, Celestial",
+      "cr": "15",
+      "xp": 13000,
+      "pb": 5,
+      "traits": [
+        {
+          "name": "Magic Resistance",
+          "text": "The captain has advantage on saving throws against spells and other magical effects."
+        },
+        {
+          "name": "Rejuvenation",
+          "text": "A destroyed captain gains a new body in 24 hours if his shield, turned face-down in the eastern tomb, is intact. Turning it face-up and laying it on Olanthius's coffin ends him for good."
+        },
+        {
+          "name": "Shame",
+          "text": "He cannot attack Olanthius, and if Olanthius orders him to kneel, he must."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "The captain can use his Dreadful Glare and makes one attack with his rotting fist."
+        },
+        {
+          "name": "Rotting Fist",
+          "text": "Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 14 (3d6 + 4) bludgeoning damage plus 21 (6d6) necrotic damage. A creature must succeed on a DC 16 Constitution saving throw or be cursed with mummy rot: it can't regain hit points, and its hit point maximum decreases by 10 (3d6) every 24 hours. The curse lasts until removed by remove curse or other magic."
+        },
+        {
+          "name": "Dreadful Glare",
+          "text": "One creature within 60 ft. that can see him makes a DC 16 Wisdom saving throw or is frightened until the end of his next turn; failing by 5 or more also paralyzes it for the same duration."
+        }
+      ],
+      "legendary": {
+        "count": 3,
+        "intro": "The captain can take 3 legendary actions, one at a time, at the end of another creature's turn. He regains them at the start of his turn.",
+        "actions": [
+          {
+            "name": "Attack",
+            "cost": 1,
+            "text": "He makes one rotting fist attack or uses his Dreadful Glare."
+          },
+          {
+            "name": "Order the Line",
+            "cost": 1,
+            "text": "One mummy he can see uses its reaction to make a rotting fist attack."
+          },
+          {
+            "name": "Run",
+            "cost": 2,
+            "text": "Each creature within 10 ft. makes a DC 16 Wisdom saving throw or must use its reaction to move its speed away from him. He remembers giving that order."
+          }
+        ]
+      },
+      "tactics": [
+        "Opens with Dreadful Glare on the strongest-looking fighter, then rotting fist on whoever is frightened.",
+        "Uses Order the Line every round. The mummies fight in ranks, the way Hellriders were taught.",
+        "If anyone says the word \"glory\", he flinches: disadvantage on his next attack."
+      ],
+      "roleplay": [
+        "Voice: a dry whisper, still giving orders.",
+        "Wants: to be forgiven, and he knows he will not be.",
+        "Sample line: \"I gave the order. I would give it again. They would all have died.\""
+      ]
+    },
+
     "wraith": {
-      "name": "Wraith",
+      "name": "Hellrider Wraith",
       "kind": "wraith",
-      "role": "Restless dead of the First Charge",
+      "role": "Restless dead of the First Charge. Upscaled for a level-13 party",
+      "homebrew": "Chassis: Wraith (MM, CR 5), upscaled to about CR 9: 112 HP, +8 to hit, two Life Drains a turn, DC 16.",
       "source": {
         "page": "bestiary",
         "name": "Wraith",
         "src": "MM"
       },
       "sizeType": "Medium undead, neutral evil",
-      "ac": 13,
-      "hp": 67,
-      "hpFormula": "9d8 + 27",
+      "ac": 15,
+      "hp": 112,
+      "hpFormula": "15d8 + 45",
       "speed": "0 ft., fly 60 ft. (hover)",
       "abilities": {
         "str": 6,
@@ -52,9 +150,9 @@ window.SESSION = {
       "condImmune": "charmed, exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained",
       "senses": "darkvision 60 ft., passive Perception 12",
       "languages": "the languages it knew in life",
-      "cr": "5",
-      "xp": 1800,
-      "pb": 3,
+      "cr": "9",
+      "xp": 5000,
+      "pb": 4,
       "traits": [
         {
           "name": "Incorporeal Movement",
@@ -67,8 +165,12 @@ window.SESSION = {
       ],
       "actions": [
         {
+          "name": "Multiattack",
+          "text": "The wraith makes two Life Drain attacks."
+        },
+        {
           "name": "Life Drain",
-          "text": "Melee Weapon Attack: +6 to hit, reach 5 ft., one creature. Hit: 21 (4d8 + 3) necrotic damage. The target must succeed on a DC 14 Constitution saving throw or its hit point maximum is reduced by an amount equal to the damage taken, until it finishes a long rest. The target dies if this reduces its hit point maximum to 0."
+          "text": "Melee Weapon Attack: +8 to hit, reach 5 ft., one creature. Hit: 21 (4d8 + 3) necrotic damage. The target must succeed on a DC 16 Constitution saving throw or its hit point maximum is reduced by an amount equal to the damage taken, until it finishes a long rest. The target dies if this reduces its hit point maximum to 0."
         },
         {
           "name": "Create Specter",
@@ -204,10 +306,10 @@ window.SESSION = {
         "src": "MM"
       },
       "sizeType": "Medium undead, lawful evil",
-      "ac": 11,
+      "ac": 13,
       "acNote": "natural armor",
-      "hp": 58,
-      "hpFormula": "9d8 + 18",
+      "hp": 97,
+      "hpFormula": "13d8 + 39",
       "speed": "20 ft.",
       "abilities": {
         "str": 16,
@@ -299,30 +401,40 @@ window.SESSION = {
       kind: "olanthius",
       role: "Death knight, guilty witness, keeper of the Sword's missing shard",
       source: { page: "bestiary", name: "Olanthius", src: "BGDIA" },
-      homebrew: "Monster Manual death knight numbers. He fights at half heart: he pulls killing blows, uses Hellfire Orb only as a warning shot, and never strikes a downed character.",
+      homebrew: "Upscaled from the Monster Manual death knight to CR 20 for three level-13 characters with companions: 285 HP, AC 21, +13, longsword 5d8 necrotic, 3 legendary actions, Legendary Resistance 2/day. He fights at half heart: he pulls killing blows, uses Hellfire Orb only as a warning shot, and never strikes a downed character.",
       npc: true,
       sizeType: "Medium undead, lawful neutral",
-      ac: 20, acNote: "plate, shield",
-      hp: 180, hpFormula: "19d8 + 95",
+      ac: 21, acNote: "plate, shield",
+      hp: 285, hpFormula: "30d8 + 150",
       speed: "30 ft.",
-      abilities: { str: 20, dex: 11, con: 20, int: 12, wis: 16, cha: 18 },
-      saves: "Dex +6, Wis +9, Cha +10", skills: "",
+      abilities: { str: 22, dex: 11, con: 20, int: 12, wis: 16, cha: 18 },
+      saves: "Str +12, Dex +6, Wis +9, Cha +10", skills: "Athletics +12, History +7, Insight +9",
       vulnerable: "", resist: "", immune: "necrotic, poison", condImmune: "exhaustion, frightened, poisoned",
       senses: "darkvision 120 ft., passive Perception 13",
       languages: "Celestial, Common, Infernal",
-      cr: "17", xp: 18000, pb: 6,
+      cr: "20", xp: 25000, pb: 6,
       traits: [
         { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
+        { name: "Legendary Resistance (2/Day)", text: "If he fails a saving throw, he can choose to succeed instead." },
         { name: "Marshal Undead", text: "Unless he is incapacitated, he and undead of his choice within 60 ft. have advantage on saving throws against features that turn undead." },
         { name: "Spellcasting", text: "19th-level paladin. Spell save DC 18, +10 to hit. 1st (4 slots): command, compelled duel, searing smite. 2nd (3): hold person, magic weapon. 3rd (3): dispel magic, elemental weapon. 4th (3): banishment, staggering smite. 5th (2): destructive wave." },
         { name: "Oathbreaker", text: "His spells that deal radiant damage deal necrotic damage instead." }
       ],
       actions: [
         { name: "Multiattack", text: "Three longsword attacks." },
-        { name: "Longsword", text: "Melee Weapon Attack: +11 to hit, reach 5 ft., one target. Hit: 9 (1d8 + 5) slashing plus 18 (4d8) necrotic." },
+        { name: "Longsword", text: "Melee Weapon Attack: +13 to hit, reach 5 ft., one target. Hit: 10 (1d8 + 6) slashing plus 22 (5d8) necrotic." },
         { name: "Hellfire Orb (1/Day)", text: "A ball of fire bursts at a point he can see within 120 ft. Each creature in a 20-ft. radius makes a DC 18 Dexterity saving throw: 35 (10d6) fire plus 35 (10d6) necrotic on a failure, half on a success. It spreads around corners." }
       ],
       bonus: [],
+      legendary: {
+        count: 3,
+        intro: "Olanthius can take 3 legendary actions, one at a time, at the end of another creature's turn. He regains them at the start of his turn.",
+        actions: [
+          { name: "Longsword", cost: 1, text: "He makes one longsword attack." },
+          { name: "Hold the Line", cost: 1, text: "He moves up to half his speed without provoking opportunity attacks, to stand between an enemy and a downed creature." },
+          { name: "The Sun Will Hold", cost: 2, text: "Each undead of his choice within 60 ft. regains 20 hit points, and each creature he chooses within 30 ft. makes a DC 18 Wisdom saving throw or is frightened of him until the end of its next turn." }
+        ]
+      },
       reactions: [
         { name: "Parry", text: "Adds 6 to his AC against one melee attack that would hit him. He must see the attacker and hold a melee weapon." }
       ],
@@ -570,6 +682,10 @@ window.SESSION = {
           "tag": "choice",
           "text": "Pass phrase \"For Glory\" ({@b DC 15 History/Religion}, Drenwal and Veska at advantage, Lucan knows it); Lulu says \"please\" (no roll); a rider's name spoken with grief (Eldra opens it); or a bought word."
         },
+      {"when": "Knock cast", "tag": "trigger", "text": "The spell fails; the bang carries. Arkhan's hunt arrives. Ship gone: no cannons. Go to {@scene knock-at-the-gates|Knock at the Gates}."},
+      {"when": "Knock, round 1", "tag": "round", "text": "Arkhan comes halfway down the stair and asks once. Refused: Flash breathes down the stairwell (DC 21 Dex)."},
+      {"when": "Knock, rounds 2+", "tag": "every-turn", "text": "Vecna's Grip on Or'Henn (DC 22 Con), then grapple (+15 Athletics) and drag 20 ft. a turn up the stair. {@b Inside the Cold Line he cannot draw the curse.} Past the doorway: Pull resumes, the Offering begins."},
+      {"when": "Knock, end of round 3", "tag": "trigger", "text": "Or \"For Glory\", or Lulu's \"please\": the gates open. Olanthius holds the doorway, Hellfire Orb up the stair. Fight beside him: advantage on his first check. Arkhan withdraws: the siege begins."},
         {
           "when": "C2. Funerary Chambers",
           "tag": "trigger",
@@ -668,7 +784,7 @@ window.SESSION = {
       "id": "feonor",
       "creature": "feonor",
       "name": "Feonor",
-      "role": "Free of the geas. Aboard only if asked nicely.",
+      "role": "Aboard the hidden ship. Not at the Crypt.",
       "inFight": "Counterspells Arkhan's Hand of Vecna once. Fireball and cone of cold from range. Leaves when Tiamat rises.",
       "behaviour": [
         "Stays on the ship outside the Cold Line: \"I have had enough of graves.\"",
@@ -679,8 +795,8 @@ window.SESSION = {
       "id": "lady-vengeance",
       "creature": "lady-vengeance",
       "name": "The Lady Vengeance (Colico Jack)",
-      "role": "Parked at the Cold Line. Jack keeps the engines warm.",
-      "inFight": "If Arkhan's hunt lands here, she is the biggest target on the field. Round 1 breath goes at her.",
+      "role": "Away, hiding from the dragons. Jack needs a signal to come back.",
+      "inFight": "Not in the fight at the gates. If signalled, she can come back for the party, and the dragons will see her coming.",
       "behaviour": [
         "Jack will not cross the line. \"Ships don't go in churches.\"",
         "Jeremy keeps Maintain Core going every round regardless (+10 vs DC 15)."
@@ -873,7 +989,7 @@ window.SESSION = {
         },
         {
           "t": "p",
-          "text": "If the characters break in by force or trick, Olanthius knows. Every check with him starts at disadvantage until someone apologises and he believes it."
+          "text": "{@b Table ruling: they cast knock.} The spell fails, but its bang carries. Go to {@scene knock-at-the-gates|Knock at the Gates}.\n\nIf the characters break in by force or trick, Olanthius knows. Every check with him starts at disadvantage until someone apologises and he believes it."
         },
         {
           "t": "h",
@@ -940,23 +1056,27 @@ window.SESSION = {
         },
         {
           "t": "p",
-          "text": "The Hellriders who stayed in Hell when the others fled do not all rest. If anyone breaks an urn, takes anything from a tomb without Olanthius's leave, or disturbs the kneeling knights outside, a {@c wraith|wraith} and four {@c specter|specters} rise from the walls of the nearest funerary chamber and attack. A {@c ghost|ghost} of the First Charge also haunts these rooms. It does not attack unless attacked; it will answer one question about the Charge, then fade, asking only that someone say its name aloud."
+          "text": "The Hellriders who stayed in Hell when the others fled do not all rest. If anyone breaks an urn, takes anything from a tomb without Olanthius's leave, or disturbs the kneeling knights outside, three {@c wraith|wraiths} and eight {@c specter|specters} rise from the walls of the nearest funerary chamber and attack, and the {@c ghost|ghost} turns hostile. A {@c ghost|ghost} of the First Charge also haunts these rooms. It does not attack unless attacked; it will answer one question about the Charge, then fade, asking only that someone say its name aloud."
         },
         {
           "t": "encounter",
           "id": "crypt-restless-dead",
           "title": "The Restless Dead",
           "combatants": [
-            {
-              "c": "wraith",
-              "n": 1
-            },
-            {
-              "c": "specter",
-              "n": 4
-            }
-          ],
-          "notes": "Only if the dead are disturbed. A level-13 party wins this easily: run it for a round or two as a warning, then let Olanthius's voice from C5 end it: \"Enough.\" The specters sink back into the walls."
+          {
+            "c": "wraith",
+            "n": 3
+          },
+          {
+            "c": "specter",
+            "n": 8
+          },
+          {
+            "c": "ghost",
+            "n": 1
+          }
+        ],
+          "notes": "Only if the dead are disturbed. Upscaled for three level-13 characters plus allies: the wraiths are Hellrider Wraiths (see their stat block: 112 HP, two Life Drains, Create Specter). Wraiths turn anyone they kill into a specter. Olanthius ends it from C5 after 3 rounds, or when the thief puts back what was taken: \"Enough.\""
         },
         {
           "t": "h",
@@ -1024,19 +1144,23 @@ window.SESSION = {
         },
         {
           "t": "p",
-          "text": "These are Hellriders who broke and fled at the Charge, and were brought back here in shame. They were never forgiven, and they have not forgotten. Opening the tomb wakes eight {@c mummy|mummies}. If Olanthius is present, they kneel to him instead of attacking, and he says, \"Not even them. Not yet.\""
+          "text": "These are Hellriders who broke and fled at the Charge, and were brought back here in shame. They were never forgiven, and they have not forgotten. Opening the tomb wakes eight {@c mummy|mummies} led by {@b Captain Aldous Varn}, the officer who gave the order to run ({@c mummy-captain|mummy captain}). If Olanthius is present, they kneel to him instead of attacking, and he says, \"Not even them. Not yet.\""
         },
         {
           "t": "encounter",
           "id": "crypt-ones-who-ran",
           "title": "The Ones Who Ran",
           "combatants": [
-            {
-              "c": "mummy",
-              "n": 8
-            }
-          ],
-          "notes": "Optional. Mummy rot (DC 12 Con) is the real threat: the cursed can't regain hit points until remove curse. Fire is their weakness."
+          {
+            "c": "mummy",
+            "n": 8
+          },
+          {
+            "c": "mummy-captain",
+            "n": 1
+          }
+        ],
+          "notes": "Optional. Upscaled: the mummies are the book's, with 97 HP each; the captain is a mummy lord chassis. Mummy rot is the real threat: the cursed can't regain hit points until remove curse. Fire is their weakness."
         },
         {
           "t": "h",
@@ -1053,6 +1177,137 @@ window.SESSION = {
         {
           "t": "p",
           "text": "The letters are to Eldra, written over a hundred years and never sent. A character who reads one learns that Olanthius loved her and believes she died in the Charge. Reading them without his leave is cruel; telling him they were read is crueller. But if Or'Henn reads one and then tells Olanthius the truth, it counts as the master key in area C5.\n\n{@b Treasure.} On the shelf, a map of Avernus marked in Olanthius's hand with the road to the Bleeding Citadel. He gives it freely to a party he trusts."
+        }
+      ]
+    },
+
+    {
+      "id": "knock-at-the-gates",
+      "title": "Knock at the Gates",
+      "when": "Table ruling: they cast knock on the C1 gates",
+      "duration": "45 to 75 minutes",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "The characters cast {@spell knock} on the Sealed Gates. The gates are enchanted to resist magic, so the spell fails, but {@spell knock} makes a loud knock audible out to 300 feet, and in the still cold of the Cold Line it carries much farther. Arkhan's hunt has been quartering the waste for them. They hear it."
+        },
+        {
+          "t": "note",
+          "title": "Who Is Here",
+          "text": "The Lady Vengeance has flown off to hide, with Colico Jack, Jeremy and Feonor aboard. At the gates are Drenwal, Aurora (with Moonkite), Or'Henn, Veska, Ser Lucan and Lulu. There are no cannons in this fight."
+        },
+        {
+          "t": "p",
+          "text": "When the echo of the knock dies away, read:"
+        },
+        {
+          "t": "read",
+          "text": "The knock booms down the stair and comes back up again, and up, and out, rolling across the waste like a bell.\n\nThe basalt doors do not move.\n\nFor a long moment there is nothing. Then, far above you, past the granite doorway, the red sky goes dark with wings. Something very large lands on the frost outside, and the kneeling knights in their rows shiver in their armour.\n\nA voice comes down the stairwell, calm and polite, and it echoes off the cold stone.\n\n\"Gardener. You have something of my queen's. Come up, and we will speak like civilised people.\""
+        },
+        {
+          "t": "h",
+          "text": "The Situation"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b The party is trapped.} The gates behind them are sealed. The only way out is the stair, 40 feet long and 10 feet wide, up to the granite doorway and the Cold Line.",
+            "{@b The dragons cannot come in.} The crypt's passages are 10 feet tall; a Huge dragon cannot fit down the stair. They can only breathe down it. A cone aimed down the stairwell catches everyone on the stair and the first 20 feet in front of the gates.",
+            "{@b Devils cannot cross the Cold Line.} Arkhan's abishai stop at the frost and hiss.",
+            "{@b Arkhan and Krull can.} Arkhan is a man, not a devil, and Krull is a tortle. Arkhan walks down the stair himself. Krull stays at the top, on Obatala, healing and casting.",
+            "{@b Tiamat is silent here.} Or'Henn is inside the Cold Line, so he makes no Pull saves, and {@b Arkhan cannot draw the curse out of him.} To run the Offering ({@scene arkhans-gambit|Arkhan's Gambit}), Arkhan must first drag Or'Henn up the stair and out past the granite doorway."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "What Arkhan Does"
+        },
+        {
+          "t": "steps",
+          "items": [
+            "{@b Round 1.} He comes halfway down the stair and asks, once, politely, for Or'Henn to walk up with him. If they refuse, Flash breathes fire down the stairwell (DC 21 Dexterity, the full cone) and Arkhan attacks whoever is closest to Or'Henn.",
+            "{@b Rounds 2 and on.} Vecna's Grip on Or'Henn (DC 22 Constitution or restrained and silenced), then he tries to haul him: a grapple (Arkhan +15 Athletics; Or'Henn may use Athletics or Acrobatics), dragging him 20 feet a turn up the stair. Command the Line sends Krull's spells at anyone trying to break the grapple.",
+            "{@b If Or'Henn is hauled past the doorway,} the Pull resumes at once and Arkhan begins the Offering on his next turn ({@scene arkhans-gambit|Arkhan's Gambit}). Vermilius is waiting outside to be the vessel.",
+            "{@b If he is losing,} Arkhan still teleports out at about 230 hit points, unless Tiamat is watching. Here she is not."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "The Gates Open"
+        },
+        {
+          "t": "p",
+          "text": "At the end of round 3, or as soon as someone says the pass phrase \"For Glory\", or Lulu touches the doors and whispers \"please\", the gates grind open behind the party. Read:"
+        },
+        {
+          "t": "read",
+          "text": "Behind you, stone grinds on stone. The basalt doors are opening, slowly, and cold green light spills out across your shadows.\n\nIn the gap stands a knight in blackened plate, a long sword in his hand, green fire burning behind his visor.\n\n\"Someone knocked,\" he says. He looks past you, up the stair, at Arkhan. \"And you have brought Tiamat's dog onto holy ground.\"\n\nHe steps through the doors, and the mist parts around his boots.\n\n\"Inside. All of you. Now.\""
+        },
+        {
+          "t": "p",
+          "text": "{@c olanthius|Olanthius} has no love for Tiamat's champion. He holds the doorway: anyone who retreats behind him is safe from Arkhan for as long as he stands there. He casts {@b Hellfire Orb} at the top of the stair once, at Krull and the dragons. If the party fights beside him rather than hiding behind him, they start his scene ({@scene the-kneeling-knight|C5. The Kneeling Knight}) with {@b advantage on the first check}, and the trespass of the knock is forgotten."
+        },
+        {
+          "t": "p",
+          "text": "Arkhan does not fight a death knight on his own holy ground for a gardener. He withdraws up the stair: \"I can wait. You cannot.\" The dragons settle outside the Cold Line. The crypt is now under siege, and the ship is somewhere out in the waste."
+        },
+        {
+          "t": "encounter",
+          "id": "knock-at-the-gates",
+          "title": "Knock at the Gates",
+          "combatants": [
+            {
+              "c": "arkhan-the-cruel",
+              "n": 1
+            },
+            {
+              "c": "krull",
+              "n": 1
+            },
+            {
+              "c": "praxamor",
+              "n": 1
+            },
+            {
+              "c": "obatala",
+              "n": 1
+            },
+            {
+              "c": "mirelle",
+              "n": 1
+            }
+          ],
+          "notes": "Flash, Obatala and Vermilius stay outside the Cold Line: they act only to breathe down the stairwell (one breath per round between them) or to take the vessel role in Arkhan's Gambit. Krull casts from Obatala's back at the top of the stair. Allies: Veska, Ser Lucan, Lulu, Moonkite; add Olanthius at the end of round 3. No ship, no cannons."
+        },
+        {
+          "t": "h",
+          "text": "Aftermath: The Siege"
+        },
+        {
+          "t": "list",
+          "items": [
+            "Inside, the party explores the crypt (areas C2 to C7) while Arkhan waits outside. Every hour, roll a d6: on a 1, a dragon breathes down the stair to remind them he is there.",
+            "Olanthius's road to the Citadel and his map in area C7 now matter for a new reason: there may be another way out. Decide whether the crypt has one (the Mist Well in area C4 is the obvious candidate).",
+            "The Lady Vengeance can come back for them. Jack will need a signal, and the dragons will see it too."
+          ]
+        },
+        {
+          "t": "choices",
+          "prompt": "How does it go?",
+          "items": [
+            {
+              "label": "The gates open: inside with Olanthius",
+              "goto": "the-kneeling-knight"
+            },
+            {
+              "label": "Arkhan drags Or'Henn out",
+              "goto": "arkhans-gambit"
+            },
+            {
+              "label": "Tiamat's Pull rules",
+              "side": "tiamats-pull"
+            }
+          ]
         }
       ]
     },
