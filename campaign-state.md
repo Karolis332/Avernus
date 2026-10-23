@@ -38,6 +38,8 @@ Resolved (DM rulings 2026-10-23):
 
 **Played so far (DM, 2026-10-23):** the vial was poured at Uldrak's Grave. **Uldrak is restored and gave the party the Orb of Dragonkind.** Or'Henn is still cursed and is seeing Tiamat's visions (one vial, one curse).
 
+**Cinderbloom timing (proposed 2026-10-23):** Feonor's day-10 message is pulled forward to the dawn after Uldrak's Grave (count it as **day 4** of the geas). Urexiel's price: Or'Henn himself, **or a live chromatic dragon**; a dead one buys only her Green Remnant. The staff itself is collected in a later Menagerie session. Tiamat can offer "Her Key" (staff handed over free) for a gold scale.
+
 **Added 2026-10-23 — the dragon trap:** after freeing Uldrak, the party plans to use the **Orb of Dragonkind** in his sword's pommel to **call Arkhan's dragons to the Grave and fight them** with the restored empyrean beside them. Built in the DM app as *The Call* + *Wings Over the Grave*: Flash (r1), Slarkas + Vermilius (r3), Vistalancer (r5), Obatala + Krull with an offer for the orb (r7). Vermilius offers Or'Henn "help" — the curse's bait.
 
 **The Uldrak fork is closed** — the book version stands: the vial frees him. *(Note the campaign map still carries the Eventyr twist text under `uldraks-grave`; ignore or edit it there.)*

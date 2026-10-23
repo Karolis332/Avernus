@@ -204,13 +204,13 @@ window.SESSION = {
         { t: "p", text: "Set in the pommel of Uldrak's sword is an {@item Orb of Dragonkind|DMG}. It calls evil dragons. The party's plan is to free Uldrak, then use the orb to call Arkhan's dragons to the Grave and kill them with an empyrean on their side." },
 
         { t: "h", text: "Overview" },
-        { t: "p", text: "This session has nine scenes and takes about four to five hours to play. The Sibriex happens only if they stop at the gorge. The Dragon Queen's Garden is for Or'Henn alone. The Call and Wings Over the Grave happen only if they call the dragons, which is their plan. The Ending always runs." },
+        { t: "p", text: "This session has nine scenes and takes about four to five hours to play. The Sibriex happens only if they stop at the gorge. The vision in The Dragon Queen's Garden is for Or'Henn alone; Feonor's message at dawn is for everyone. The Call and Wings Over the Grave happen only if they call the dragons, which is their plan. The Ending always runs." },
         { t: "list", items: [
           "{@b Where We Left Off} (5 minutes). Word of Recall drops the party at the foot of St. Cuthbert's statue on their own deck, with the vial.",
           "{@b The Styx Run} (20 to 30 minutes). Down to the river and along it, with Arkhan's dragons hunting somewhere behind. Lulu must stay dry.",
           "{@b The Sibriex} (35 to 50 minutes). Optional. A chained flesh-sculptor smells Or'Henn's curse and explains it for free.",
           "{@b Uldrak's Grave} (30 to 45 minutes). The vial is poured, an empyrean stands up out of the ash, and he gives them the orb.",
-          "{@b The Dragon Queen's Garden} (20 to 30 minutes). Or'Henn only. Tiamat comes to him in a vision with an offer that sounds like help.",
+          "{@b The Dragon Queen's Garden} (20 to 30 minutes). That night, Tiamat comes to Or'Henn in a vision with an offer that sounds like help. At dawn, Feonor's ash crow: Urexiel will trade the staff for a live dragon.",
           "{@b The Call} (20 to 30 minutes). Setting the trap, then calling the dragons with the orb.",
           "{@b Wings Over the Grave} (90 to 120 minutes). Five dragons in four waves, and Krull with an offer.",
           "{@b Ending the Session} (10 minutes). What it cost, and who comes back for revenge."
@@ -417,7 +417,7 @@ window.SESSION = {
     {
       id: "the-dragon-queens-garden",
       title: "The Dragon Queen's Garden",
-      when: "Only for Or'Henn: the first night after Uldrak's Grave, or the first time he touches the orb",
+      when: "The first night after Uldrak's Grave",
       duration: "20 to 30 minutes",
       blocks: [
         { t: "p", text: "Tiamat heard the orb. She knows the party has it now, and she knows they mean to call her children. So she comes to Or'Henn in a vision, to make him an offer that sounds like help. This is the first time she speaks to him directly. Run it at the table, with everyone watching: the other players see what his body does while he is gone." },
@@ -457,6 +457,11 @@ window.SESSION = {
 
         { t: "h", text: "Event: Waking" },
         { t: "read", text: "You wake with a jerk, on the deck, in the dark, with the smell of roses in your nose. Your hand is hot.\n\nThe Avernus night is the same as it was. Elturel hangs on its chains. The Styx moves below, slow and black.\n\nAnd from the orb, very softly, someone is humming the tune Eldra used to hum." },
+        { t: "h", text: "Event: Word from Feonor" },
+        { t: "p", text: "At dawn, the morning after the vision. Feonor has moved faster than anyone expected and is already at the Scabrous Menagerie. This pulls the day-10 message on her road forward: count today as day 4 of the geas." },
+        { t: "read", text: "A crow lands on the rail at first light. It is made of ash, packed tight, and it leaves grey prints where its feet touch the wood. When it opens its beak, the voice that comes out is Feonor's: dry, tired and furious.\n\n\"Your staff is in the Scabrous Menagerie. In a vault, on velvet, with a little brass plate. The owner is a yugoloth called Urexiel, and she will not sell it. Not to me, not for coin, not for anything I have.\"\n\nA pause. The crow tilts its head.\n\n\"She wants the matched set, gardener. The staff, and its keeper in a cage beside it. Or...\" The voice almost laughs. \"Or something rarer. Her collection has everything except a dragon.\"\n\nThe crow falls apart into ash, and the wind takes it." },
+        { t: "p", text: "Now the dragon fight is about Or'Henn too. Urexiel will trade Cinderbloom for a {@b live chromatic dragon}. Either way, the party still has to go to the Menagerie to collect the staff. That is a later session." },
+        { t: "note", title: "A Dragon for the Collector", text: "Taking a dragon alive: an attack that drops it to 0 hit points can knock it out instead of killing it. It stays down for {@dice 1d4} hours. To keep it, they need chains strong enough for a dragon (the Aether Harpoon's chain will do, towed behind the ship) and someone watching it day and night.\n\nA dead dragon is worth less. Urexiel is insulted, but trades the Green Remnant under its bell jar for a fresh carcass. That is one of the three Remnants Or'Henn needs for Cinderbloom Rekindled.\n\nThe danger: a chained, frightened dragon in tow for days, and an old druid who keeps hearing the word \"Ask.\" If they catch Vermilius, it spends the whole journey offering Or'Henn help." },
         { t: "p", text: "When they are ready to call the dragons, go to {@scene the-call|The Call}." }
       ]
     },
@@ -541,6 +546,9 @@ window.SESSION = {
         { t: "h", text: "The Orb in the Fight" },
         { t: "p", text: "The orb is what they came for. Every dragon wants it out of the holder's hands. Breath cannot harm it. If the holder goes down, the nearest dragon lands to take it in its jaws, and Krull wants it most of all. If Uldrak holds it, he cannot be disarmed of it while he stands." },
 
+        { t: "h", text: "Taking One Alive" },
+        { t: "p", text: "After Feonor's message, they may want a dragon alive for Urexiel. A dragon below its flee line tries to leave, so they have to stop it before it does. Knocking it out instead of killing it is a choice the attacker makes on the blow that drops it to 0. See {@scene the-dragon-queens-garden|A Dragon for the Collector}." },
+
         { t: "h", text: "Or'Henn's Mark" },
         { t: "p", text: "The first time a dragon comes within 30 ft. of Or'Henn, and again whenever he drops below half his hit points, he feels the mark lean toward it, the way it leaned toward the vial. Say so. If he asks a dragon for help, or says yes to Vermilius, the curse jumps. Open {@side if-the-curse-jumps|If the Curse Jumps}. If he took {@b Her Law} in the vision, no dragon harms him until he harms one. They crowd around him to talk instead, which puts every dragon's mouth right next to his ear." },
 
@@ -609,6 +617,10 @@ window.SESSION = {
         { t: "read", text: "The ash settles slowly, the way snow does.\n\nWhere the dragons fell, the ground smokes. The river has gone back to moving, slow and black and patient, carrying away whatever it took. Somewhere behind you, Colico Jack is swearing at the hull.\n\nUldrak sits down heavily on the edge of the trench, his sword across his knees, and for a long moment he just breathes." },
         { t: "p", text: "{@b Campaign change:} a pint from any dead adult dragon is a powerful creature's blood, so each one is new Blood Pay for the Intermediaries. Arkhan's tower has lost its teeth, and Arkhan will not take that quietly. The dragons that fled carry the story home." },
 
+        { t: "h", text: "Outcome: They Caught a Dragon" },
+        { t: "read", text: "It wakes in chains, towed behind the ship like a barge, its wings lashed flat. For a long time it says nothing.\n\nThen, as the sky goes dark, it turns one great eye toward the stern rail where Or'Henn is standing.\n\n\"Little cousin,\" it says, very softly. \"You look tired. Let me help you.\"" },
+        { t: "p", text: "{@b Campaign change:} they have the price of Cinderbloom, and Tiamat's best chance yet. Every day it is in tow, roll once on the Small Visions table in {@side arc-tiamat|Arc: Or'Henn and Tiamat}. Next stop: the Scabrous Menagerie." },
+
         { t: "h", text: "Outcome: Uldrak Survived" },
         { t: "read", text: "\"I came here to kill a god,\" Uldrak says. \"I think I will go home first and tell my father I am alive. He will be very angry with me.\"\n\nHe takes a coin from somewhere, bronze and warm and stamped with a hammer, and presses it into your hand.\n\n\"When you stand at her door,\" he says, \"say my name. I will come.\"\n\nThen the air folds around him like a curtain, and he is gone." },
         { t: "p", text: "{@b Campaign change:} the campaign map's \"grateful empyrean who may stand with the party at the end\" is now real. Saying his name with the coin in hand calls him, once." },
@@ -631,7 +643,7 @@ window.SESSION = {
         { t: "h", text: "Outcome: A Character Died" },
         { t: "p", text: "There is no Arkhan to broker a raising this time. Drenwal has {@spell revivify}, and at 13th level, {@spell resurrection}. Uldrak cannot raise the dead, but he will carry the body anywhere they ask." },
 
-        { t: "note", title: "Remember for Next Time", text: "Write down: which dragons died and which fled? What did Krull get? Did the curse jump, and to whom? Who touched the Styx, and what did they forget? Does the party have the orb? Is Uldrak alive, and do they have his coin?" }
+        { t: "note", title: "Remember for Next Time", text: "Write down: which dragons died, which fled, and which one is in chains? What day of Feonor's geas is it? What did Krull get? Did the curse jump, and to whom? Who touched the Styx, and what did they forget? Does the party have the orb? Is Uldrak alive, and do they have his coin?" }
       ]
     }
 

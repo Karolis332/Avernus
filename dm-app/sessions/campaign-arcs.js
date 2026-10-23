@@ -367,6 +367,8 @@ Object.assign(window.CAMPAIGN.side, {
         "{@b The white head: hunger.} The only head that threatens. It shows him his future: on his knees in front of a dragon, begging, because the curse has grown until asking is not a choice. {@b Gift: Her Hunger.} The next time he drops to 0 hit points, he drops to 1 instead."
       ] },
 
+      { t: "note", title: "Her Offer for Cinderbloom", text: "Once Feonor's message has come, the green head knows exactly where the staff is, and says so. A yugoloth who collects beasts will not refuse the Dragon Queen. {@b Gift: Her Key.} Urexiel hands the staff over with no fight, no price and no dragon. One gold scale, like every gift. Offer it in the vision after the party learns Urexiel's price, when the hard way looks hardest." },
+
       { t: "h", text: "The Gold Scales" },
       { t: "p", text: "Each gift he accepts turns one red scale on his body to gold, starting on the hand that reached for her. Everyone can see them. {@spell Remove curse} and {@spell greater restoration} do not touch them." },
       { t: "list", items: [
