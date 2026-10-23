@@ -13,19 +13,28 @@
   #sb-wrap { max-width: 860px; margin: 0 auto; padding: 16px 16px 80px; }
   #sb-wrap > h1 { font-family: Cinzel, serif; margin: 8px 0 4px; }
   #sb-sub { opacity: .75; margin-bottom: 12px; }
-  #sb-nav { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 6px; padding: 8px 0; background: inherit; }
-  #sb-nav a { font-size: 13px; padding: 3px 9px; border: 1px solid currentColor; border-radius: 12px; text-decoration: none; opacity: .85; }
-  #sb-nav a:hover { opacity: 1; }
-  .sb-card { border-top: 2px solid var(--red, #8b1a1a); padding-top: 8px; margin-top: 28px; scroll-margin-top: 56px; }
+  /* One tab per creature; only the selected card shows. Print still outputs every card. */
+  #sb-nav { position: sticky; top: 0; z-index: 5; display: flex; flex-wrap: wrap; gap: 4px; padding: 8px 0 0; background: inherit; border-bottom: 2px solid var(--red, #8b1a1a); }
+  #sb-nav button { font: inherit; font-size: 14px; padding: 6px 12px; cursor: pointer; color: inherit; background: transparent; border: 1px solid transparent; border-bottom: none; border-radius: 6px 6px 0 0; opacity: .7; }
+  #sb-nav button:hover { opacity: 1; }
+  #sb-nav button[aria-selected="true"] { opacity: 1; font-weight: 700; border-color: var(--red, #8b1a1a); background: var(--sb-bg, rgba(0,0,0,.04)); margin-bottom: -2px; padding-bottom: 8px; }
+  #sb-hint { font-size: 12px; opacity: .6; margin: 6px 0 0; }
+  .sb-card { padding-top: 8px; }
+  .sb-card[hidden] { display: none; }
   .sb-card .lair-panel { margin-top: 10px; }
-  @media print { #sb-nav { display: none; } .sb-card { break-inside: avoid-page; } }
+  @media print {
+    #sb-nav, #sb-hint { display: none; }
+    .sb-card[hidden] { display: block; }
+    .sb-card { border-top: 2px solid var(--red, #8b1a1a); margin-top: 28px; break-inside: avoid-page; }
+  }
 </style>
 </head>
 <body class="sb-page">
   <div id="sb-wrap">
     <h1 id="sb-title">Stat Blocks</h1>
     <div id="sb-sub"></div>
-    <nav id="sb-nav"></nav>
+    <nav id="sb-nav" role="tablist"></nav>
+    <p id="sb-hint">← / → to switch monsters</p>
     <div id="sb-list"></div>
   </div>
 
@@ -75,14 +84,32 @@
       var nav = document.getElementById("sb-nav");
       var listEl = document.getElementById("sb-list");
 
-      creatureOrder(session).forEach(function (cid) {
+      var ids = creatureOrder(session);
+      var tabs = {}, cards = {};
+
+      function select(cid) {
+        if (!cards[cid]) cid = ids[0];
+        ids.forEach(function (k) {
+          cards[k].hidden = k !== cid;
+          tabs[k].setAttribute("aria-selected", k === cid ? "true" : "false");
+        });
+        history.replaceState(null, "", "#" + cid);
+        window.scrollTo(0, 0);
+      }
+      function current() { return ids.filter(function (k) { return !cards[k].hidden; })[0]; }
+
+      ids.forEach(function (cid) {
         var c = session.creatures[cid];
-        var a = el("a", null, c.name);
-        a.href = "#sb-" + cid;
-        nav.appendChild(a);
+        var tab = el("button", null, c.name);
+        tab.type = "button";
+        tab.setAttribute("role", "tab");
+        tab.addEventListener("click", function () { select(cid); });
+        tabs[cid] = tab;
+        nav.appendChild(tab);
 
         var card = el("section", "sb-card");
-        card.id = "sb-" + cid;
+        card.setAttribute("role", "tabpanel");
+        cards[cid] = card;
         // _cid/_sessionId: same keys app.js passes, so spell-slot pips stay in sync with the main app.
         // This page is for fighting, so an npc with real numbers (e.g. the sibriex) still shows its stat block.
         var shown = Object.assign({ _cid: cid, _sessionId: session.id }, c);
@@ -98,6 +125,15 @@
         }
         listEl.appendChild(card);
       });
+
+      document.addEventListener("keydown", function (e) {
+        if (e.target.closest && e.target.closest("input, textarea, select")) return;
+        if (e.key !== "ArrowRight" && e.key !== "ArrowLeft") return;
+        var i = ids.indexOf(current()) + (e.key === "ArrowRight" ? 1 : -1);
+        select(ids[(i + ids.length) % ids.length]);
+        tabs[current()].focus();
+      });
+      select(decodeURIComponent(location.hash.slice(1)));
     }
   })();
   </script>
