@@ -194,8 +194,10 @@
         var figure = el("figure", "img-plate");
         var frame = el("div", "img-plate-frame");
         var image = document.createElement("img");
-        image.className = "img-plate-art";
+        image.className = "img-plate-art zoomable";
         image.src = block.src;
+        image.title = "Click to open full size";
+        image.addEventListener("click", function () { window.open(image.currentSrc || image.src, "_blank"); });
         image.alt = block.caption || "";
         image.loading = "lazy";
         image.onerror = function () { figure.style.display = "none"; };

@@ -273,8 +273,10 @@
       wrap.appendChild(el("div", "portrait-placeholder-glyph", "?"));
       return wrap;
     }
-    var img = el("img", "portrait");
+    var img = el("img", "portrait zoomable");
     img.alt = creature.name;
+    img.title = "Click to open full size";
+    img.addEventListener("click", function () { window.open(img.currentSrc || img.src, "_blank"); });
     var chain = portraitChain(creature.kind, creature.source);
     var i = 0;
     img.src = chain[0];
