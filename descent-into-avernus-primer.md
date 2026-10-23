@@ -22,7 +22,7 @@ This is a **sandbox reference, refreshed each session — not a script.** The pl
 
 > **PREMISE —** High Overseer **Thavius Kreeg** sold Elturel to the archdevil **Zariel** by infernal contract, then bound the whole city to it through the **Creed Resolute**. Elturel now hangs in the burning sky of Avernus, sinking by degrees toward the **river Styx** — and when it touches, every soul aboard becomes a devil forever. Two levers can save it: **THE SWORD** — Zariel's own blade in the **Bleeding Citadel**, which bleeds into being once every **33 days** — and **THE LAW** — Kreeg's true contract, the instrument that can annul the sale itself. Find the blade, break the contract, beat the heartbeat.
 >
-> **PARTY (Level 12) —** **Drenwal** (Light Cleric, Bhaalspawn, wounded his brother Dumal at the Last Hill but Dumal broke free and is still at large, cure pending) · **Aurora** (Archfey Warlock riding the freed celestial **Moonkite**) · **Or'Henn** (elderly Red Dragonborn Wildfire Druid hunting his lost staff **Cinderbloom**, now the Soul Capacitor's living carrier). Allies on call: **Veska** (Hellrider), **Ser Lucan the Reforged**, a **githzerai monk**, **Jeremy** (Lady Vengeance), **Lulu** (hollyphant, memories returning). **Asimov** is dead — his soul **SAVED** inside the Capacitor, speaking to Or'Henn.
+> **PARTY (Level 12) —** **Drenwal** (Light Cleric, Bhaalspawn, wounded his brother Dumal at the Last Hill but Dumal broke free and is still at large, cure pending) · **Aurora** (Archfey Warlock riding the freed celestial **Moonkite**) · **Or'Henn** (elderly Red Dragonborn Wildfire Druid hunting his lost staff **Cinderbloom**, now the Soul Capacitor's living carrier). Allies on call: **Veska** (Hellrider), **Ser Lucan the Reforged**, **Jeremy** (Lady Vengeance), **Lulu** (hollyphant, memories returning). **Asimov** is dead — his soul **SAVED** inside the Capacitor, speaking to Or'Henn.
 >
 > **RIGHT NOW —** The **Wandering Emporium** is the hub. Or'Henn has sealed on as the Capacitor's carrier (Asimov's soul secured, the Soul Council clock **closed**); soul-bounties now flow to him. Kreeg hides here as "**Vessper Hain**." The **Lady Vengeance** is crippled and needs **adamantine control rods** — the same rods **Bel** demands (one fetch, two payoffs). Standing next destination: **Bel's Forge**.
 >
@@ -82,7 +82,7 @@ Read top to bottom the first time; after that, jump. Only the **Living State Hea
 | **Drenwal** — Light Cleric, Bhaalspawn | Reeling from the Last Hill — he wounded his brother Dumal, but Dumal broke free and escaped; still at large, still circling Senna. Attuned: **Shield of the Hidden Lord** (Gargauth whispering). Cure pending: rebirth before a god who never claimed him. Sister **Senna** hidden with Harper Issa. HP/spell slots: _DM-fill_ |
 | **Aurora** — Archfey Warlock | Bonded the celestial **Moonkite** as mount; Wish spent. Next thread: the Moonkite's lost patron (→ Coram). HP/slots: _DM-fill_ |
 | **Or'Henn** — Wildfire Druid 12 (NEW) | Cinderbloom **lost** (staff hunt live). Wild Shape CR≤2 by ruling; Wildfire spirit + spells intact. Does not yet know his master's crest = Kreeg's seal. HP/slots: _DM-fill_ |
-| **Allies on call** | Veska (CR8, fear-immune, officiates Drenwal's rebirth) · Ser Lucan the Reforged (CR7 shield) · githzerai monk (CR6, psionic) · Jeremy (Lady Vengeance) · Lulu (hollyphant, memories returning) |
+| **Allies on call** | Veska (CR8, fear-immune, officiates Drenwal's rebirth) · Ser Lucan the Reforged (CR7 shield) · Jeremy (Lady Vengeance) · Lulu (hollyphant, memories returning) |
 | **Asimov** — Soul Capacitor voice | Disembodied. Relays Emporium soul-bounties **to Or'Henn (now the carrier)**. Soul **secured** — Council clock closed. Never met Or'Henn in life |
 
 ---
@@ -575,7 +575,7 @@ Bel does not grant audience to anyone who cannot survive his workforce. The fire
 
 | Mode | How | When to use |
 |---|---|---|
-| **Two waves of two** ⚔️ | 2 giants, then 2 more when the first pair is bloodied/down. Call it the instant a PC hits 0 OR the second wave is bloodied → *"Enough. You'll do."* | Party wants the fight; allies (Veska, Ser Lucan, gith monk) field to balance the action economy |
+| **Two waves of two** ⚔️ | 2 giants, then 2 more when the first pair is bloodied/down. Call it the instant a PC hits 0 OR the second wave is bloodied → *"Enough. You'll do."* | Party wants the fight; allies (Veska, Ser Lucan) field to balance the action economy |
 | **Martial-worth bypass** | **DC 16 Performance or Persuasion** — a display of arms, a scar shown, a killing-list recited. Bel's foreman calls the giants off. | Party leans social / wants to save resources |
 | **Forge-task bypass** | Or'Henn uses his **Wildfire kit** to shape/quench a piece of the giants' work faster or truer than they can — a **DC 16 ability check** (Nature/tool-flavored) at the anvil. A druid who commands fire *impresses* fire giants. | Or'Henn's spotlight; rewards his kit thematically |
 
@@ -1414,7 +1414,7 @@ Kharzug keeps eating and keeps **growing**. Reached later, he is worse:
 
 #### LADY UREXIEL — recovery boss (chain-devil chassis, scaled solo)
 
-> Statblock chassis: **chain devil**, rebuilt to solo CR 13–14. Use the **190 HP variant when NPC allies (Veska, Lucan, the Gith) are fielded**, 248 for three PCs alone.
+> Statblock chassis: **chain devil**, rebuilt to solo CR 13–14. Use the **190 HP variant when NPC allies (Veska, Lucan) are fielded**, 248 for three PCs alone.
 
 | LADY UREXIEL | Yugoloth broker · solo CR 13–14 |
 |---|---|
@@ -2513,7 +2513,7 @@ Run this before every session. It is the whole prep loop.
 | 3 | **Pick 3 likely sites.** Guess where the table drifts from last week's fiction. | → M5 gazetteer | Have those 3 H3s bookmarked. Don't prep more. |
 | 4 | **Pre-stage the next UNFIRED M8 beat.** Read its 2-3 triggers; note which are live this week. | → M8 | Trigger props ready (a name to drop, a crest to show, an omen to seed). |
 | 5 | **Line up one front move** in case pacing sags. | → M9.3, M9.7 | One antagonist action pre-rolled. |
-| 6 | **Field or bench the allies.** Decide before play. | → M9.9 | Note Veska/Lucan/Gith in or out; adjust boss HP accordingly. |
+| 6 | **Field or bench the allies.** Decide before play. | → M9.9 | Note Veska/Lucan in or out (the Gith is dead); adjust boss HP accordingly. |
 
 > RULING: If you only have two minutes, do steps 1, 2, and 4. State, clocks, and the next gut-punch are the load-bearing three.
 
@@ -2746,7 +2746,7 @@ Full dossiers in M6. This is the table-side cheat sheet.
 | **Cinderbloom / Cinderbloom Rekindled** | → M4 / orhenn-cinderbloom-and-contracts.html (supersedes digest §3) | Or'Henn's staff; Keeper 4 charges CR≤prof, +2 spell ATTACK. |
 | **Ally: Veska (CR8)** | → M4 | Hellrider, fear-immune, officiant. |
 | **Ally: Ser Lucan (CR7)** | → M4 | Near-unkillable shield, Gondian legs. |
-| **Ally: Gith monk (CR6)** | → M4 | Psionic, "river of mirrors." |
+| **Ally: Gith monk (CR6) — DEAD** | → M4 | Psionic, "river of mirrors." |
 
 #### Three generic Avernus blocks (inline — no page flip needed)
 

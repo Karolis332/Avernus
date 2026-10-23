@@ -14,7 +14,7 @@
   - **Whiskerbright** — Aurora's familiar, currently in imp form (Avernus adaptation).
   - **Sgt. Veska** — Hellrider of Elturel (Crimson Watch), freed from Bitter Breath's Palace of Gore. Knows the Bhaal cult inside the order. Officiates Drenwal's rebirth ritual. [HOMEBREW]
   - **Ser Lucan the Reforged** — Old Crimson Watch Hellrider rebuilt with Gondian automaton legs (Jeremy + Aurora's *Fabricate*). Carries Halvard's last words. [HOMEBREW]
-  - **The Gith** — Githzerai monk, freed from Bitter Breath's cells. Half-mad, psionic skirmisher. Speaks broken Common. Allegiance: loyal to party after the Last Hill battle. [HOMEBREW]
+  - **The Gith** — Githzerai monk, freed from Bitter Breath's cells. Half-mad, psionic skirmisher. **Dead** (DM ruling 2026-10-11; circumstances to fill in). His journal survives (Weave Jump teaching, see DM app ship). [HOMEBREW]
   - **Colico Jack** — Captain of the Lady Vengeance. Holds the remote detonation relay. [HOMEBREW]
   - **Jeremy** — Gondian operator of the Lady Vengeance's Planar Core. Built Lucan's legs. Can un-coin a soul without destroying it. [HOMEBREW]
 - **Transport:** The **Lady Vengeance** — Gondian-Portyr Hellship (AC 17, 350 HP, Arcane Cannons, Aether Harpoon, Soul Coin Overdrive). **Status: beached/damaged at the Last Hill** after the Session 7 Yeenoghu battle. [TO CONFIRM WITH DM: extent of hull damage; is the ship recoverable/mobile before the party departs for the Emporium, or do they travel overland?]
