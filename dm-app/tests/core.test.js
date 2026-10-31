@@ -288,4 +288,40 @@ var DMCore = require("../js/core.js");
   assert.strictEqual(DMCore.sourceKind(undefined), "other");
 })();
 
+// groupCombatants
+(function () {
+  var inst = DMCore.expandCombatants([{ c: "ghost", n: 3 }, { c: "wraith", n: 1 }, { c: "imp", n: 2 }], {});
+  var snapshot = JSON.stringify(inst);
+  var g = DMCore.groupCombatants(inst);
+  assert.deepStrictEqual(g.map(function (x) { return x.cid; }), ["ghost", "wraith", "imp"]);
+  assert.deepStrictEqual(g.map(function (x) { return x.members.length; }), [3, 1, 2]);
+  assert.strictEqual(g[1].members[0], inst[3], "singleton stays a group of one with the same instance");
+  assert.strictEqual(JSON.stringify(inst), snapshot, "groupCombatants must not mutate input");
+  assert.deepStrictEqual(DMCore.groupCombatants([]), []);
+  assert.deepStrictEqual(DMCore.groupCombatants(undefined), []);
+})();
+
+// saveBonus
+(function () {
+  var c = { saves: "Str +17, Int +12, Wis +13, Cha +15", abilities: { str: 25, dex: 11, con: 22, int: 8, wis: 9, cha: 16 } };
+  assert.strictEqual(DMCore.saveBonus(c, "wis"), 13);
+  assert.strictEqual(DMCore.saveBonus(c, "WIS"), 13);
+  assert.strictEqual(DMCore.saveBonus(c, "Str"), 17);
+  assert.strictEqual(DMCore.saveBonus(c, "dex"), 0);
+  assert.strictEqual(DMCore.saveBonus(c, "con"), 6);
+  assert.strictEqual(DMCore.saveBonus({ saves: "Dex -1" , abilities: {} }, "dex"), -1);
+  assert.strictEqual(DMCore.saveBonus({ abilities: { dex: 14 } }, "dex"), 2);
+  assert.strictEqual(DMCore.saveBonus(null, "dex"), 0);
+})();
+
+// rollGroupSave
+(function () {
+  var c = { saves: "Dex +4", abilities: { dex: 10 } };
+  assert.deepStrictEqual(DMCore.rollGroupSave(c, "dex", 15, 11), { total: 15, pass: true });
+  assert.deepStrictEqual(DMCore.rollGroupSave(c, "dex", 15, 10), { total: 14, pass: false });
+  var r = DMCore.rollGroupSave(c, "dex", 10);
+  assert.ok(r.total >= 5 && r.total <= 24, "real roll is d20 + bonus");
+  assert.strictEqual(typeof r.pass, "boolean");
+})();
+
 console.log("core.test.js: all assertions passed");

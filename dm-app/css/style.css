@@ -568,3 +568,11 @@ body.campaign-map-open #panel, body.campaign-map-open #center { transition: none
 .sb-lightbox::backdrop { background: rgba(0, 0, 0, 0.75); }
 .sb-lightbox img, .sb-lightbox video { max-width: 85vw; max-height: 80vh; display: block; margin: 0 auto; }
 .sb-lightbox-caption { margin-top: 6px; font-style: italic; }
+
+/* group header (identical monsters: one init, one save) */
+.group-header td { background: #e8dcc0; padding: 4px 8px; border-top: 2px solid #8b6b2f; }
+.group-controls { display: flex; flex-wrap: wrap; gap: 12px; align-items: center; }
+.group-save-result.pass { color: #2a6b2a; font-weight: bold; }
+.group-save-result.fail { color: #9b1c1c; font-weight: bold; }
+.fight-row-grouped td:first-child { border-left: 3px solid #8b6b2f; }
+.group-controls select { width: auto; min-width: 4.5em; }

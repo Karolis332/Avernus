@@ -37,7 +37,7 @@
     return Object.assign({
       id: "", kind: "monster", name: "", init: 0, dex: 0, hp: 0, maxHp: 0, ac: null,
       legendaryCount: 0, legendaryUsed: 0, conditions: "", deathSuccess: 0, deathFail: 0,
-      cid: null, isLair: false
+      cid: null, isLair: false, gid: null
     }, opts);
   }
 
@@ -124,18 +124,21 @@
       var monsterTable = el("table", "tracker-table");
       monsterTable.appendChild(headerRow(["Monster", "Init", "Init mod", "Reroll"]));
       var monsterBody = el("tbody");
-      var monsterState = combatantInstances.map(function (inst) {
-        return { inst: inst, init: "", dex: initModOf(inst.creature) };
+      // one entry per group of identical monsters: one init for all members
+      var monsterState = Core.groupCombatants(combatantInstances).map(function (g) {
+        var lead = g.members[0];
+        return { group: g, inst: lead, init: "", dex: initModOf(lead.creature) };
       });
       function renderMonsterRows() {
         monsterBody.innerHTML = "";
         monsterState.forEach(function (m) {
-          var tr = el("tr");
-          tr.appendChild(creatureNameTd(m.inst.instanceName, m.inst.cid));
+          var n = m.group.members.length;
+          var tr = el("tr", n > 1 ? "setup-group-row" : null);
+          tr.appendChild(creatureNameTd(n > 1 ? m.inst.creature.name + " ×" + n + " (group)" : m.inst.instanceName, m.inst.cid));
           var initInput = numberInput(m.init || "", function (v) { m.init = v; });
           var tdInit = el("td"); tdInit.appendChild(initInput); tr.appendChild(tdInit);
           tr.appendChild(el("td", null, (m.dex >= 0 ? "+" : "") + m.dex));
-          var reroll = el("button", "tracker-btn-sm", "Reroll");
+          var reroll = el("button", "tracker-btn-sm", n > 1 ? "Roll group" : "Reroll");
           reroll.addEventListener("click", function () {
             m.init = rollInit(m.inst.creature).total;
             renderMonsterRows();
@@ -178,15 +181,21 @@
             }));
           }
         });
+        var groupInit = {};
         monsterState.forEach(function (m) {
-          var c = m.inst.creature || {};
-          // a blank init box means "roll it for me", not init 0
+          // a blank init box means "roll it for me", not init 0; one roll per group
           var init = blank(m.init) ? rollInit(m.inst.creature).total : Number(m.init);
-          rows.push(makeRow({
-            id: "mon-" + m.inst.instanceId, kind: "monster", name: m.inst.instanceName,
-            init: init, dex: m.dex, hp: c.hp || 0, maxHp: c.hp || 0, ac: c.ac != null ? c.ac : null,
-            legendaryCount: (c.legendary && c.legendary.count) || 0, cid: m.inst.cid
-          }));
+          var grouped = m.group.members.length > 1;
+          if (grouped) groupInit[m.group.cid] = init;
+          m.group.members.forEach(function (inst) {
+            var c = inst.creature || {};
+            rows.push(makeRow({
+              id: "mon-" + inst.instanceId, kind: "monster", name: inst.instanceName,
+              init: init, dex: m.dex, hp: c.hp || 0, maxHp: c.hp || 0, ac: c.ac != null ? c.ac : null,
+              legendaryCount: (c.legendary && c.legendary.count) || 0, cid: inst.cid,
+              gid: grouped ? inst.cid : null
+            }));
+          });
         });
         if (lairCreature) {
           // -Infinity would serialise to null through JSON.stringify; -99 is
@@ -195,7 +204,7 @@
         }
         rows = Core.sortInitiative(rows.map(function (r) { return { init: r.init, dex: r.dex, isPC: r.kind === "pc", _row: r }; }))
           .map(function (w) { return w._row; });
-        state = { phase: "fight", rows: rows, idx: 0, round: 1 };
+        state = { phase: "fight", rows: clusterGroups(rows), idx: 0, round: 1, groupInit: groupInit, groupSaves: {} };
         persist();
         renderRoot();
       });
@@ -226,11 +235,26 @@
       inp.addEventListener("change", function () { onChange(inp.value === "" ? "" : Number(inp.value)); });
       return inp;
     }
+    // Pulls every member of a group next to the group's first row (new array).
+    function clusterGroups(rows) {
+      var out = [];
+      rows.forEach(function (r) {
+        if (r.gid && out.some(function (o) { return o.gid === r.gid; })) return;
+        out.push(r);
+        if (r.gid) rows.forEach(function (o) { if (o !== r && o.gid === r.gid) out.push(o); });
+      });
+      return out;
+    }
+    function isLeader(rows, i) { return !rows[i].gid || i === 0 || rows[i - 1].gid !== rows[i].gid; }
+    function groupRows(gid) { return state.rows.filter(function (r) { return r.gid === gid; }); }
+
     // re-sort by initiative; the turn marker stays on the same creature
     function resort() {
       var current = state.rows[state.idx];
       state.rows = Core.sortInitiative(state.rows.map(function (r) { return { init: Number(r.init) || 0, dex: r.dex, isPC: r.kind === "pc", _row: r }; })).map(function (w) { return w._row; });
+      state.rows = clusterGroups(state.rows);
       state.idx = Math.max(0, state.rows.indexOf(current));
+      while (state.idx > 0 && !isLeader(state.rows, state.idx)) state.idx--;
     }
 
     // -------- fight view -----------------------------------------------------
@@ -252,11 +276,20 @@
       var table = el("table", "tracker-table tracker-fight");
       table.appendChild(headerRow(["Init", "Name", "HP", "AC", "Dmg/Heal", "Legendary", "Conditions", ""]));
       var tbody = el("tbody");
+      var curGid = state.rows[state.idx] && state.rows[state.idx].gid;
       state.rows.forEach(function (row, i) {
-        var tr = el("tr", i === state.idx ? "fight-row fight-row-current" : "fight-row");
+        if (row.gid && isLeader(state.rows, i)) tbody.appendChild(renderGroupHeader(row.gid));
+        var isCur = i === state.idx || (curGid && row.gid === curGid);
+        var tr = el("tr", isCur ? "fight-row fight-row-current" : "fight-row");
+        if (row.gid) tr.classList.add("fight-row-grouped");
         if (row.hp === 0 && row.maxHp > 0 && row.kind === "monster") tr.classList.add("fight-row-dead");
 
-        var initInput = numberInput(row.init, function (v) { row.init = v; resort(); persist(); renderFight(); });
+        var initInput = numberInput(row.init, function (v) {
+          // group members share one initiative: editing one edits them all
+          if (row.gid) { groupRows(row.gid).forEach(function (r) { r.init = v; }); state.groupInit = Object.assign({}, state.groupInit, { [row.gid]: v }); }
+          else row.init = v;
+          resort(); persist(); renderFight();
+        });
         var tdInit = el("td"); tdInit.appendChild(initInput); tr.appendChild(tdInit);
 
         var nameCell = el("td");
@@ -348,10 +381,75 @@
       table.appendChild(tbody);
       root.appendChild(table);
 
-      function applyHp(row, delta) {
+      function setHp(row, delta) {
         row.hp = Math.max(0, Math.min(row.maxHp || row.hp + delta, row.hp + delta));
+      }
+      function applyHp(row, delta) {
+        setHp(row, delta);
         persist();
         renderFight();
+      }
+
+      // Group header: collective save (one d20) + damage to every living member.
+      function renderGroupHeader(gid) {
+        var members = groupRows(gid);
+        var creature = session.creatures[gid];
+        var saved = (state.groupSaves || {})[gid] || { ability: "dex", dc: 15 };
+        function remember(patch) {
+          state.groupSaves = Object.assign({}, state.groupSaves, { [gid]: Object.assign({}, saved, patch) });
+          saved = state.groupSaves[gid];
+        }
+        var tr = el("tr", "group-header");
+        var td = el("td"); td.colSpan = 8;
+        var wrap = el("div", "group-controls");
+        wrap.appendChild(el("strong", "group-title", (creature ? creature.name : gid) + " ×" + members.length + " · init " + members[0].init));
+
+        var saveBox = el("span", "group-save");
+        saveBox.appendChild(el("span", null, "Group save "));
+        var abil = document.createElement("select");
+        abil.className = "tracker-input tracker-input-sm";
+        ["str", "dex", "con", "int", "wis", "cha"].forEach(function (a) {
+          var o = document.createElement("option"); o.value = a; o.textContent = a.toUpperCase();
+          if (a === saved.ability) o.selected = true;
+          abil.appendChild(o);
+        });
+        var dcIn = document.createElement("input");
+        dcIn.type = "number"; dcIn.className = "tracker-input tracker-input-sm"; dcIn.value = saved.dc; dcIn.title = "DC";
+        abil.addEventListener("change", function () { remember({ ability: abil.value }); persist(); });
+        dcIn.addEventListener("change", function () { remember({ dc: Number(dcIn.value) || 0 }); persist(); });
+        var rollBtn = el("button", "tracker-btn-sm", "Roll");
+        rollBtn.addEventListener("click", function () {
+          var dc = Number(dcIn.value) || 0;
+          var r = Core.rollGroupSave(creature, abil.value, dc);
+          remember({ ability: abil.value, dc: dc, total: r.total, pass: r.pass });
+          persist(); renderFight();
+        });
+        saveBox.appendChild(abil); saveBox.appendChild(el("span", null, " DC ")); saveBox.appendChild(dcIn); saveBox.appendChild(rollBtn);
+        if (saved.total != null) {
+          saveBox.appendChild(el("span", "group-save-result " + (saved.pass ? "pass" : "fail"), " " + saved.total + (saved.pass ? " pass" : " fail")));
+        }
+        wrap.appendChild(saveBox);
+
+        var applyBox = el("span", "group-apply");
+        var dmg = document.createElement("input");
+        dmg.type = "number"; dmg.className = "tracker-input tracker-input-sm"; dmg.placeholder = "dmg";
+        var mode = document.createElement("select");
+        mode.className = "tracker-input tracker-input-sm";
+        [["full", "Full"], ["half", "Half"]].forEach(function (p) {
+          var o = document.createElement("option"); o.value = p[0]; o.textContent = p[1]; mode.appendChild(o);
+        });
+        if (saved.pass != null) mode.value = saved.pass ? "half" : "full";
+        var applyBtn = el("button", "tracker-btn-sm", "Apply to group");
+        applyBtn.addEventListener("click", function () {
+          var amt = Math.abs(Number(dmg.value) || 0);
+          if (mode.value === "half") amt = Math.floor(amt / 2);
+          members.forEach(function (r) { if (r.hp > 0) setHp(r, -amt); });
+          persist(); renderFight();
+        });
+        applyBox.appendChild(dmg); applyBox.appendChild(mode); applyBox.appendChild(applyBtn);
+        wrap.appendChild(applyBox);
+        td.appendChild(wrap); tr.appendChild(td);
+        return tr;
       }
 
       function renderDeathSaves(row) {
@@ -418,8 +516,12 @@
       if (currentEl && currentEl.scrollIntoView) currentEl.scrollIntoView({ block: "nearest" });
     }
 
+    // A group takes one turn: step past non-leader members.
     function doNext() {
       var r = Core.nextTurn(state.rows, state.idx, state.round);
+      for (var g = 0; g < r.order.length && !isLeader(r.order, r.idx); g++) {
+        r = Core.nextTurn(r.order, r.idx, r.round);
+      }
       state.idx = r.idx;
       state.round = r.round;
       state.rows = r.order;
@@ -428,6 +530,9 @@
     }
     function doPrev() {
       var r = Core.prevTurn(state.rows, state.idx, state.round);
+      for (var g = 0; g < state.rows.length && !isLeader(state.rows, r.idx); g++) {
+        r = Core.prevTurn(state.rows, r.idx, r.round);
+      }
       state.idx = r.idx;
       state.round = r.round;
       persist();

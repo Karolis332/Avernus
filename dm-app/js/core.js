@@ -193,6 +193,48 @@
     return out;
   }
 
+  // ---- group rule (identical monsters share one initiative + one save) -------
+  // instances: output of expandCombatants. Returns a NEW array
+  // [{ cid, members: [instance, ...] }] in order of first appearance of each
+  // cid. Singletons are groups of one; callers treat members.length > 1 as a group.
+  function groupCombatants(instances) {
+    var order = [];
+    var byCid = {};
+    (instances || []).forEach(function (inst) {
+      if (!byCid[inst.cid]) {
+        byCid[inst.cid] = { cid: inst.cid, members: [] };
+        order.push(byCid[inst.cid]);
+      }
+      byCid[inst.cid].members.push(inst);
+    });
+    return order;
+  }
+
+  // Saving-throw bonus: reads creature.saves ("Str +17, Wis +13" string, or an
+  // object { wis: 13 }); falls back to the ability modifier.
+  function saveBonus(creature, ability) {
+    var key = String(ability || "").toLowerCase().slice(0, 3);
+    var saves = creature && creature.saves;
+    if (saves && typeof saves === "object") {
+      if (saves[key] != null) return Number(saves[key]);
+    } else if (saves) {
+      var re = /\b(str|dex|con|int|wis|cha)[a-z]*\s*([+-]\s*\d+)/gi;
+      var m;
+      while ((m = re.exec(String(saves)))) {
+        if (m[1].toLowerCase() === key) return parseInt(m[2].replace(/\s+/g, ""), 10);
+      }
+    }
+    var score = creature && creature.abilities && creature.abilities[key];
+    return abilityMod(score == null ? 10 : score);
+  }
+
+  // One d20 for the whole group. d20 is injected in tests; omitted = real roll.
+  function rollGroupSave(creature, ability, dc, d20) {
+    var die = d20 != null ? d20 : rollDice("1d20").rolls[0];
+    var total = die + saveBonus(creature, ability);
+    return { total: total, pass: total >= dc };
+  }
+
   // ---- library (maps / book pages) ---------------------------------------
   // Mirrors tools/build_library.py's slugging so ids stay stable between the
   // Python builder and any JS code that needs to compute/verify one.
@@ -358,6 +400,9 @@
     nextTurn: nextTurn,
     prevTurn: prevTurn,
     expandCombatants: expandCombatants,
+    groupCombatants: groupCombatants,
+    saveBonus: saveBonus,
+    rollGroupSave: rollGroupSave,
     slugify: slugify,
     searchLibraryText: searchLibraryText,
     mergeCampaign: mergeCampaign,
