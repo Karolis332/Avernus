@@ -329,6 +329,22 @@
     return { intro: text.slice(0, headers[0].start).trim(), groups: groups, outro: outro };
   }
 
+  // Stable ascending sort by dc; returns a new array, input untouched.
+  function sortChecks(items) {
+    return (items || []).map(function (it, i) { return { it: it, i: i }; })
+      .sort(function (a, b) { return (a.it.dc - b.it.dc) || (a.i - b.i); })
+      .map(function (w) { return w.it; });
+  }
+
+  // Source tag -> chip kind: book | eventyr | homebrew | other.
+  function sourceKind(tag) {
+    var t = String(tag || "").trim().toLowerCase();
+    if (t.indexOf("book") === 0) return "book";
+    if (t.indexOf("eventyr") === 0) return "eventyr";
+    if (t.indexOf("homebrew") === 0) return "homebrew";
+    return "other";
+  }
+
   var DMCore = {
     parseTags: parseTags,
     stripTags: stripTags,
@@ -347,7 +363,9 @@
     mergeCampaign: mergeCampaign,
     applyPinState: applyPinState,
     setPinState: setPinState,
-    countSessionsLeft: countSessionsLeft
+    countSessionsLeft: countSessionsLeft,
+    sortChecks: sortChecks,
+    sourceKind: sourceKind
   };
 
   if (typeof window !== "undefined") window.DMCore = DMCore;

@@ -28,6 +28,67 @@
     return p;
   }
 
+  // ---- entry thumbnails + one shared lightbox <dialog> ---------------------
+  var lightbox = null;
+  function openLightbox(kind, src, caption) {
+    if (!lightbox) {
+      lightbox = document.createElement("dialog");
+      lightbox.className = "sb-lightbox";
+      lightbox.addEventListener("click", function () { lightbox.close(); });
+      lightbox.addEventListener("close", function () { lightbox.replaceChildren(); });
+      document.body.appendChild(lightbox);
+    }
+    lightbox.replaceChildren();
+    var m;
+    if (kind === "video") {
+      m = document.createElement("video");
+      m.controls = true;
+      m.autoplay = true;
+      m.loop = true;
+    } else {
+      m = document.createElement("img");
+      m.alt = caption || "";
+    }
+    m.src = src;
+    m.addEventListener("click", function (e) { e.stopPropagation(); });
+    lightbox.appendChild(m);
+    if (caption) lightbox.appendChild(el("div", "sb-lightbox-caption", caption));
+    lightbox.showModal();
+  }
+
+  function entryThumbs(entry) {
+    if (!entry.art && !entry.video) return null;
+    var wrap = el("span", "sb-thumbs");
+    if (entry.art) {
+      var img = el("img", "sb-thumb");
+      img.src = entry.art;
+      img.alt = entry.name || "";
+      img.loading = "lazy";
+      img.addEventListener("click", function () { openLightbox("image", entry.art, entry.name); });
+      img.onerror = function () { img.remove(); };
+      wrap.appendChild(img);
+    }
+    if (entry.video) {
+      var v = el("video", "sb-thumb sb-thumb-video");
+      v.muted = true;
+      v.preload = "metadata";
+      v.src = entry.video;
+      v.addEventListener("click", function () { openLightbox("video", entry.video, entry.name); });
+      v.onerror = function () { v.remove(); };
+      wrap.appendChild(v);
+    }
+    return wrap;
+  }
+
+  function entryParagraph(entry, label) {
+    var p = el("p", "sb-entry");
+    p.appendChild(el("strong", "sb-entry-name", label));
+    p.appendChild(renderInline(entry.text));
+    var th = entryThumbs(entry);
+    if (th) p.appendChild(th);
+    return p;
+  }
+
   function entryList(title, entries, creature) {
     if (!entries || !entries.length) return null;
     var wrap = el("div", "sb-entries");
@@ -39,11 +100,7 @@
         var special = renderSpellcasting(entry, creature);
         if (special) { wrap.appendChild(special); return; }
       }
-      var p = el("p", "sb-entry");
-      var name = el("strong", "sb-entry-name", entry.name + (entry.cost ? " (Costs " + entry.cost + " Actions)" : "") + ". ");
-      p.appendChild(name);
-      p.appendChild(renderInline(entry.text));
-      wrap.appendChild(p);
+      wrap.appendChild(entryParagraph(entry, entry.name + (entry.cost ? " (Costs " + entry.cost + " Actions)" : "") + ". "));
     });
     return wrap;
   }
@@ -179,6 +236,26 @@
     return wrap;
   }
 
+  // "How they cast it": [{ spell, line }], shown right after the section holding Spellcasting.
+  function castLinesBlock(lines) {
+    if (!lines || !lines.length) return null;
+    var wrap = el("div", "cast-lines");
+    wrap.appendChild(el("h4", "sb-entries-title", "How they cast it"));
+    var ul = el("ul");
+    lines.forEach(function (cl) {
+      var li = el("li");
+      li.appendChild(el("strong", "cast-spell", cl.spell + ": "));
+      li.appendChild(renderInline(cl.line || ""));
+      ul.appendChild(li);
+    });
+    wrap.appendChild(ul);
+    return wrap;
+  }
+
+  function hasSpellcasting(entries) {
+    return (entries || []).some(function (e) { return e.name && e.name.indexOf("Spellcasting") !== -1; });
+  }
+
   function renderStatblock(creature) {
     var sb = el("div", "statblock");
     if (creature.homebrew) {
@@ -216,12 +293,19 @@
     ].forEach(function (n) { if (n) sb.appendChild(n); });
 
     sb.appendChild(el("div", "sb-rule"));
+    var castBlock = castLinesBlock(creature.castLines);
+    var castAfter = hasSpellcasting(creature.traits) ? "traits" : hasSpellcasting(creature.actions) ? "actions" : "reactions";
     [
-      entryList("Traits", creature.traits, creature),
-      entryList("Actions", creature.actions, creature),
-      entryList("Bonus Actions", creature.bonus, creature),
-      entryList("Reactions", creature.reactions, creature)
-    ].forEach(function (n) { if (n) sb.appendChild(n); });
+      ["traits", "Traits", creature.traits],
+      ["actions", "Actions", creature.actions],
+      ["bonus", "Bonus Actions", creature.bonus],
+      ["reactions", "Reactions", creature.reactions]
+    ].forEach(function (sec) {
+      var n = entryList(sec[1], sec[2], creature);
+      if (n) sb.appendChild(n);
+      if (castBlock && sec[0] === castAfter) { sb.appendChild(castBlock); castBlock = null; }
+    });
+    if (castBlock) sb.appendChild(castBlock);
 
     if (creature.legendary) {
       var leg = el("div", "sb-entries");
@@ -232,10 +316,7 @@
         leg.appendChild(introP);
       }
       (creature.legendary.actions || []).forEach(function (a) {
-        var p = el("p", "sb-entry");
-        p.appendChild(el("strong", "sb-entry-name", a.name + (a.cost && a.cost > 1 ? " (Costs " + a.cost + " Actions)" : "") + ". "));
-        p.appendChild(renderInline(a.text));
-        leg.appendChild(p);
+        leg.appendChild(entryParagraph(a, a.name + (a.cost && a.cost > 1 ? " (Costs " + a.cost + " Actions)" : "") + ". "));
       });
       sb.appendChild(leg);
     }

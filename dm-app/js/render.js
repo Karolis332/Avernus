@@ -206,6 +206,44 @@
         imgWrap.appendChild(figure);
         return imgWrap;
       }
+      case "more": {
+        var det = el("details", "block block-more");
+        var sum = el("summary", "more-summary");
+        sum.appendChild(el("span", "more-title", block.title || "More"));
+        (block.src || []).forEach(function (tag) {
+          sum.appendChild(el("span", "src-chip " + window.DMCore.sourceKind(tag), tag));
+        });
+        det.appendChild(sum);
+        var inner = el("div", "more-body");
+        (block.blocks || []).forEach(function (b) { inner.appendChild(renderBlock(b, ctx)); });
+        det.appendChild(inner);
+        return det;
+      }
+      case "checks": {
+        var ladder = el("div", "block block-checks");
+        window.DMCore.sortChecks(block.items).forEach(function (c) {
+          var r = el("div", "check-row");
+          r.appendChild(el("span", "check-dc", "DC " + c.dc));
+          r.appendChild(el("span", "check-skill", c.skill));
+          if (c.who) r.appendChild(el("span", "check-who", "(" + c.who + ")"));
+          var t = el("span", "check-text");
+          t.appendChild(renderInline(c.text || ""));
+          r.appendChild(t);
+          ladder.appendChild(r);
+        });
+        return ladder;
+      }
+      case "env": {
+        var envBox = el("div", "block block-env");
+        [["sight", "Sight"], ["sound", "Sound"], ["smell", "Smell"], ["feel", "Feel"]].forEach(function (f) {
+          if (!block[f[0]]) return;
+          var line = el("p", "env-line");
+          line.appendChild(el("strong", "env-label", f[1] + " "));
+          line.appendChild(renderInline(block[f[0]]));
+          envBox.appendChild(line);
+        });
+        return envBox;
+      }
       default: {
         var unk = el("div", "block block-unknown", "[unknown block: " + block.t + "]");
         return unk;

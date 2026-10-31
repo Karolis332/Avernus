@@ -262,4 +262,30 @@ var DMCore = require("../js/core.js");
   assert.strictEqual(DMCore.parseSpellcasting(""), null);
 })();
 
+// sortChecks
+(function () {
+  var items = [
+    { skill: "Arcana", dc: 15, text: "a" },
+    { skill: "History", dc: 10, text: "b" },
+    { skill: "Religion", dc: 15, text: "c" },
+    { skill: "Insight", dc: 5, text: "d" }
+  ];
+  var snapshot = JSON.stringify(items);
+  var sorted = DMCore.sortChecks(items);
+  assert.deepStrictEqual(sorted.map(function (x) { return x.text; }), ["d", "b", "a", "c"]);
+  assert.strictEqual(JSON.stringify(items), snapshot, "sortChecks must not mutate input");
+  assert.notStrictEqual(sorted, items);
+  assert.deepStrictEqual(DMCore.sortChecks(undefined), []);
+})();
+
+// sourceKind
+(function () {
+  assert.strictEqual(DMCore.sourceKind("Book p.12"), "book");
+  assert.strictEqual(DMCore.sourceKind("Book"), "book");
+  assert.strictEqual(DMCore.sourceKind("Eventyr"), "eventyr");
+  assert.strictEqual(DMCore.sourceKind("Homebrew"), "homebrew");
+  assert.strictEqual(DMCore.sourceKind("Forum thread"), "other");
+  assert.strictEqual(DMCore.sourceKind(undefined), "other");
+})();
+
 console.log("core.test.js: all assertions passed");

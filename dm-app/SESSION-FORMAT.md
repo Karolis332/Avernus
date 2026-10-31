@@ -71,6 +71,14 @@ window.SESSION = {
 
 Initiative modifier = `init` when set, otherwise DEX mod (the tracker rolls d20 + that bonus; shown as the "Init mod" column). Legendary `count` gives the tracker its pips.
 
+Optional CREATURE additions (placeholder example):
+
+```js
+castLines: [ { spell: "Example Bolt", line: "Points a finger; a thin streak crosses the room." } ],   // "How they cast it" list after the spellcasting section
+actions: [ { name: "Slam", text: "…", art: "art/generated/slam.webp", video: "art/generated/slam.mp4" } ]   // art/video optional on any trait, action or legendary entry; small thumbnail, click opens a lightbox
+```
+
+
 ### SCENE
 
 ```js
@@ -99,6 +107,9 @@ Initiative modifier = `init` when set, otherwise DEX mod (the tracker rolls d20 
 | `encounter` | `id`, `title`, `combatants: [{ c: "<creature id>", n: 1 }]`, `lair: "<creature id>"` (optional), `notes` | Inline initiative tracker |
 | `map` | `id` (library map id) OR `src` (image path, e.g. `maps/x.webp`), `title` (optional), `note` (optional) | Thumbnail card; click opens the map in the right panel (Plain/Grid/DM + open full size). If `id` isn't in the library, renders a muted "Map not available on this device" note — never crashes. With `src`, skips the library and opens that single image + an open-full-size link (no Plain/Grid/DM switcher). |
 | `img` | `src`, `caption` (optional), `credit` (optional) | Full-width book-plate illustration (double-rule parchment frame), italic caption below. Lazy-loaded; if the image fails to load, the whole figure hides itself. `tools/gen_event_art.py` generates art for `art/generated/`. |
+| `more` | `title`, `src: ["Book p.X", "Eventyr", "Homebrew"]`, `blocks: [BLOCK]` | Collapsed `<details>`; summary = title + one colored chip per source (Book / Eventyr / Homebrew / other). Inner blocks render normally and may include another `more`. Example: `{ t: "more", title: "Why the door hums", src: ["Homebrew"], blocks: [{ t: "p", text: "Placeholder lore." }] }` |
+| `checks` | `items: [{ skill, dc, who?, text }]` | DC ladder, sorted ascending by `dc` (stable). Row: `DC N · Skill · (who) · text`. Example: `{ t: "checks", items: [{ skill: "Perception", dc: 12, who: "anyone", text: "Notice the draft." }] }` |
+| `env` | `sight`, `sound`, `smell`, `feel` (all optional) | Sensory box, one labelled line per field present. Example: `{ t: "env", sight: "Dim torchlight.", smell: "Wet stone." }` |
 
 The first `p` block of a scene gets a decorative drop cap (book style). Every `read`
 block automatically gets a "Read or paraphrase the following:" lead-in line above it.
