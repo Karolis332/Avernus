@@ -174,4 +174,90 @@
       "Leaves by misty step and fly when Tiamat rises."
     ]
   };
+
+  // After the Crypt of the Hellriders (Session 12), if they survived it. Base blocks above stay for earlier sessions.
+  C["veska-banner-captain"] = Object.assign({}, C["veska"], {
+    name: "Veska, Banner-Captain",
+    kind: "veska",
+    role: "Hellrider captain of the Last Ride. The party's anchor, now with the First Charge's colours",
+    homebrew: "Veska after the Crypt: about CR 10, level 12 strength. 142 HP, AC 19, three attacks, radiant against undead as well as fiends. Leadership becomes the Banner of the First Charge (if Marshal Dunmere stood down) or the Captain's Oath (if he did not).",
+    description: "The same dented plate, but the tabard is new: Hellrider white, cut from the Marshal's own colours, with the sun-and-sword sewn on by hand. She carries a banner now, half of it burned black, and she will not let anyone else hold it.",
+    ac: 19, acNote: "plate, shield of the First Charge",
+    hp: 142, hpFormula: "19d8 + 57",
+    abilities: { str: 20, dex: 12, con: 16, int: 11, wis: 14, cha: 16 },
+    saves: "Str +9, Con +7, Wis +6, Cha +7", skills: "Athletics +9, Insight +6, Intimidation +7, Perception +6, Religion +4",
+    senses: "passive Perception 16",
+    cr: "10", xp: 5900, pb: 4,
+    traits: [
+      { name: "Hellrider's Oath", text: "Veska is immune to being frightened, and allies within 10 ft. of her have advantage on saving throws against being frightened." },
+      { name: "Devil-Bane Arms", text: "Her weapon attacks are magical and silvered, and deal an extra 9 (2d8) radiant damage to fiends and undead." },
+      { name: "The Watchword", text: "Once per turn, when she hits an undead with a weapon attack, she can speak the watchword: if the target has half its hit points or fewer, it makes a DC 15 Wisdom saving throw or stops and does nothing on its next turn. A Hellrider soul that fails is laid to rest instead." }
+    ],
+    actions: [
+      { name: "Multiattack", text: "Veska makes three Blessed Lance or Longsword attacks." },
+      { name: "Blessed Lance", text: "Melee Weapon Attack: +9 to hit, reach 10 ft., one target. Hit: 11 (1d12 + 5) piercing damage." },
+      { name: "Longsword", text: "Melee Weapon Attack: +9 to hit, reach 5 ft., one target. Hit: 9 (1d8 + 5) slashing damage." },
+      { name: "Hellrider's Charge (Recharge 4-6)", text: "If Veska moved at least 20 ft. straight toward the target, one lance hit deals an extra 14 (4d6) damage and the target makes a DC 17 Strength saving throw or is knocked prone." },
+      { name: "Banner of the First Charge (1/Long Rest; if the Marshal stood down)", text: "She plants the banner in her space for 1 minute (it moves with her if she carries it, but then she fights one-handed: Longsword only). Each ally within 30 ft. that can see it adds a d4 to attack rolls and saving throws and can't be frightened. The first time each ally drops to 0 hit points while within 30 ft. of it, that ally drops to 1 hit point instead." },
+      { name: "Captain's Oath (Recharges after a Short or Long Rest; if he did not)", text: "For 1 minute, each ally within 30 ft. that can hear her adds a d4 to attack rolls and saving throws. Once during the minute, as a reaction when an ally within 30 ft. drops to 0 hit points, that ally drops to 1 instead." }
+    ],
+    reactions: [
+      { name: "Parry", text: "Veska adds 4 to her AC against one melee attack that would hit her. She must see the attacker and be holding a melee weapon." },
+      { name: "Shield the Fallen", text: "When an ally she can see within 5 ft. takes damage, she takes half of it instead." }
+    ],
+    strategy: [
+      "{@b Position:} front line beside Drenwal or the most exposed ally. Her 10-ft. fear aura answers dragon Frightful Presence.",
+      "{@b Opening:} plant the Banner (or swear the Captain's Oath) in round 1, where the most allies can see it. Every ally in 30 ft. adds a d4 to attacks and saves, and the first one to drop stays up at 1.",
+      "{@b Offence:} three lance attacks a turn from 10 ft. away, +2d8 radiant against fiends and undead. Lead with Hellrider's Charge whenever a 20-ft. straight run is open (recharge 4-6).",
+      "{@b Against the dead:} speak the watchword on a hit against a bloodied undead. It stops for a turn, and a Hellrider soul is laid to rest.",
+      "{@b Defence:} Parry (+4 AC) for herself, or Shield the Fallen to take half the damage meant for a wounded ally within 5 ft. One reaction per round.",
+      "{@b Never retreats,} and never lets the banner fall. If it is taken, getting it back is her whole next turn."
+    ],
+    tactics: [
+      "Banner (or Captain's Oath) in round 1; three lances on whatever is attacking Drenwal.",
+      "The watchword on bloodied undead. Shield the Fallen on any character below half."
+    ]
+  });
+
+  C["ser-lucan-named"] = Object.assign({}, C["ser-lucan"], {
+    name: "Ser Lucan, Named Among the Living",
+    kind: "ser-lucan",
+    role: "Old Hellrider on Gondian legs, struck off the roll of the dead. The shield, now with the Crypt's cold in his legs",
+    homebrew: "Ser Lucan after the Crypt: about CR 10, level 12 strength. 162 HP, AC 20, resistance to the hit he takes for someone else, Cannot Be Kept Down twice, and Ward of the Cold Line: a small, portable copy of the Crypt's ward.",
+    description: "He stands straighter. The brass legs run cold now, rimed with a thin frost that never melts even in Avernus, and the Crypt's chill comes off him like a draught from an open door. On the inside of his shield, under Halvard's last words, a new line: his own name, and the word LIVING.",
+    ac: 20, acNote: "Hellrider plate, shield, cold-forged legs",
+    hp: 162, hpFormula: "19d8 + 76",
+    abilities: { str: 18, dex: 10, con: 18, int: 11, wis: 15, cha: 13 },
+    saves: "Str +8, Con +8, Wis +6", skills: "Athletics +8, Perception +6, Religion +4",
+    resist: "cold, necrotic",
+    senses: "passive Perception 16",
+    cr: "10", xp: 5900, pb: 4,
+    traits: [
+      { name: "Cannot Be Kept Down (2/Long Rest)", text: "When Lucan would drop to 0 hit points, he drops to 1 instead." },
+      { name: "Cold-Forged Legs", text: "He can't be knocked prone, grappled by the legs or moved against his will, and difficult terrain doesn't slow him. Disadvantage on Dexterity (Stealth) checks." },
+      { name: "Hellrider's Watch", text: "Lucan and allies within 10 ft. of him have advantage on saving throws against effects from fiends and undead." }
+    ],
+    actions: [
+      { name: "Multiattack", text: "Lucan makes two Hellrider Longsword attacks, and can replace one of them with Shield Slam." },
+      { name: "Hellrider Longsword", text: "Melee Weapon Attack: +8 to hit, reach 5 ft., one target. Hit: 8 (1d8 + 4) slashing damage plus 9 (2d8) radiant damage." },
+      { name: "Shield Slam", text: "Melee Weapon Attack: +8 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) bludgeoning damage, and the target can't take reactions until the start of its next turn and has disadvantage on its next attack roll against anyone but Lucan." },
+      { name: "Iron Charge (Recharge 5-6)", text: "Lucan moves up to his speed in a straight line. Each creature in his path takes 13 (2d8 + 4) bludgeoning damage plus 9 (2d8) cold damage and must succeed on a DC 16 Strength saving throw or be knocked prone." },
+      { name: "Ward of the Cold Line (1/Long Rest)", text: "He sets his heel and the Crypt's cold spreads from his legs: a 10-ft.-radius circle centred on him, which does not move, for 1 minute (no concentration). A fiend or undead that tries to enter it, or starts its turn in it, makes a DC 16 Charisma saving throw. On a failure it can't willingly enter, and one already inside must leave by the shortest route. Breath weapons and spells still cross the line; bodies do not." }
+    ],
+    reactions: [
+      { name: "Keep the Watch", text: "When a creature he can see within 5 ft. of him is hit by an attack, Lucan becomes the target instead, takes the hit, and has resistance to its damage." }
+    ],
+    strategy: [
+      "{@b Position:} beside the most fragile ally, never more than 5 ft. away.",
+      "{@b Core tactic:} Keep the Watch every round. When an adjacent ally is hit, Lucan takes the hit instead, at half damage.",
+      "{@b Offence:} two longsword attacks a turn, each +2d8 radiant; swap one for Shield Slam on whatever is about to hit his ward, so it must hit him or attack at disadvantage.",
+      "{@b The Cold Line:} once a day, plant the Crypt's ward around himself and the people behind him. Fiends and undead can't walk in. Use it when the party is pinned, when someone is down, or at a door.",
+      "{@b Durability:} can't be knocked prone or shoved, and stays up at 1 HP the first two times he drops. Plays boldly because of it.",
+      "{@b Fallback:} if Drenwal goes down, Lucan speaks Halvard's last words. Drenwal gains advantage on his next death save."
+    ],
+    tactics: [
+      "Stands in front of the weakest character and takes the hits at half damage.",
+      "Ward of the Cold Line when the line breaks; Iron Charge on anything Large that gets through."
+    ]
+  });
 })();
