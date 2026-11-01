@@ -14,3 +14,4 @@
 - [Session handoff — Yeenoghu/Dumal set-piece](session_handoff_yeenoghu.md) — RESOLVED Session 7 (2026-07-19): party DEFEATED Yeenoghu + Dumal; Dumal arc closed. Encounter build in yeenoghu-encounter.md.
 - [Session 5 Dumal handoff](session_handoff_dumal_session5.md) — prior state: Session 4 outcomes, Dumal arc plan, homebrew lore (Coram/Senna/Ardentwine), v2 influence tracker, Open5e MCP. Primer: session-5-dumal-primer.md.
 - [DM app primer feedback](dm_app_primer_feedback.md) — primers need deep DM context + sources, collapsed lore, combat screen, group-monster house rule
+- [DnD orchestration lessons](dnd_orchestration_lessons.md) — 2026-11-01: pull before planning (laptop commits to origin), agents kill by PID only, headless chrome.exe fallback when Playwright MCP is down
