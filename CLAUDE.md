@@ -216,20 +216,6 @@ Newest last, **last 10 entries only** — this file loads into context every ses
 unbounded log would eat the smart zone it exists to protect. Promote anything still valuable
 past that into the body above, or into `brain/`. No secrets or customer PII: this is committed.
 
-### 2026-10-23 — Reinstall restore + Session 10 "The Styx Run" built in the DM app
-- **Did:**
-  - Restored `DnD/` from GitHub after the Windows reinstall. Gitignored art, maps, PDFs and sfx were pulled back from the VPS (the pre-reinstall backup is gone; the VPS + this PC are the only copies).
-  - The laptop's `da7a8a3`..`fa7fa3d` recorded Session 9 as played: party level 13, vial stolen, Word of Recall escape.
-  - Session 10 is now a full session in the Session 9 format: primer, recap, Styx run, Sibriex, Uldrak's Grave, The Call, Wings Over the Grave, Ending, plus the orb, Krull's offer and curse-jump side panels.
-  - The tower dragons, Krull and Arkhan moved into the new `sessions/campaign-tower.js`. Sessions override only `tactics`.
-- **Why:**
-  - DM rulings: Word of Recall went to the St. Cuthbert statue on the Lady Vengeance; nobody was left behind; Colico Jack pilots; Aurora is an Archfey Warlock; the Sibriex is not met yet.
-  - The party's plan is to free Uldrak, then call Arkhan's dragons with his Orb of Dragonkind (SRD rules). The fight runs in waves so it stays survivable, and Vermilius baits the Or'Henn curse.
-- **Open:**
-  - DM's choices still open: one vial or two curses; the Solar's Helmet under the sword; whether Krull survived Session 9.
-  - No art yet for Uldrak or the Styx (generating it costs money; ask first).
-  - Krull's stat block links to the Session 9-only `raise-the-dead` panel; in Session 10 that link does nothing.
-
 ### 2026-10-23 — Or'Henn × Tiamat visions arc
 - **Did:**
   - New campaign side `arc-tiamat` in `dm-app/sessions/campaign-arcs.js`: the five heads, each with one gift; gold scales 1–5 with escalating costs; a d8 Small Visions table; the orb-cage loophole.
@@ -281,3 +267,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Did:** `c000ce8`, merges `070aecf` + `336f73d`, then the art commit. S12: map 3.3 room key (C1–C7, party in C2g), DM Context chapter, a Hellrider hard choice on each laptop urn wave (wounded/line, burning gate, truth/comfort), every loot table d20, Arkhan wants the party dead + Or'Henn hostage + Drenwal Geas'd into Planar Ally for a gold dragon (vial spent on Uldrak). `statblocks.html`/`crew.html` load campaign-hellriders/world (Hellrider creatures and Cania's Envoy were missing); S13 portrait sources; chapter colour bars + campaign dots (`js/app.js`); `dm-app/tests/creature-audit.js`. Scene art for 10 empty chapters via Codex `gpt-6-astra` (= the DM's "astra").
 - **Why:** the laptop pushed 13 S12 commits during this work (three waves, Marshal Dunmere, Urn Hoard, Riders' Bequest); its file won and this PC's changes were re-applied on top. My fallen-rider/herald creatures were dropped as redundant; the laptop's Wings image kept; laptop d6/d8 entries kept as the first rows of the d20 tables.
 - **Open:** check on the map that the left/middle/right trial doorways are C2f/C2e/C2a, and east vs west C6. Gold dragon via Planar Ally is a DM ruling. Saddlebag OCR still missing. Day 12, Dumal 4/6, Lulu taken: unconfirmed. Laptop: `git pull` before editing S12.
+
+### 2026-11-01 — Same-context rule (chat log hook) + individual dragon portraits
+- **Did:** `e0cdc33` Stop hook `.claude/hooks/chat-log.mjs` pushes each session's DM prompts + Claude replies (redacted) to `.claude/logs/` on main via git plumbing; rule at the top of this file. Five astra portraits `dm-app/art/generated/{skarrix,vhennic,mirelle,praxamor,obatala}-portrait.webp`, wired with a new per-creature `portrait` field (`js/statblock.js`, falls back to the kind's art).
+- **Why:** the DM works from the PC and the laptop at once and wants identical context. Logs live outside `.claude/context/` because `/sync-context` wipes that folder. The DM wants each dragon to be an individual (look, scars, personality).
+- **Open:** written dragon character profiles not yet in `campaign-tower.js` (a safety filter stopped that step; ask the DM how to proceed). Obatala's broken horn did not render. Next: a single group image mixing all five, once the DM has looked at the portraits.

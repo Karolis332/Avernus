@@ -60,6 +60,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "skarrix": {
     name: "Slarkas",
     kind: "young-black-dragon",
+    portrait: "art/generated/skarrix-portrait.webp",
     role: "Tower dragon (black), sullen and sadistic",
     source: { page: "bestiary", name: "Adult Black Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
@@ -119,6 +120,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "vhennic": {
     name: "Vistalancer",
     kind: "young-blue-dragon",
+    portrait: "art/generated/vhennic-portrait.webp",
     role: "Tower dragon (blue), the fastest of the four",
     source: { page: "bestiary", name: "Adult Blue Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
@@ -177,6 +179,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "mirelle": {
     name: "Vermilius",
     kind: "young-green-dragon",
+    portrait: "art/generated/mirelle-portrait.webp",
     role: "Tower dragon (green), the cruelest talker",
     source: { page: "bestiary", name: "Adult Green Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
@@ -236,6 +239,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "praxamor": {
     name: "Flash",
     kind: "young-red-dragon",
+    portrait: "art/generated/praxamor-portrait.webp",
     role: "Tower dragon (red), the proudest, the hardest hitter",
     source: { page: "bestiary", name: "Adult Red Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons. Book: a wyrmling. Here grown to an adult dragon (MM stats) for the ambush, Legendary Resistance 1/day, Wingover reaction added.",
@@ -294,6 +298,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "obatala": {
     name: "Obatala",
     kind: "adult-white-dragon",
+    portrait: "art/generated/obatala-portrait.webp",
     role: "Krull's mount, the elder adult dragon that calls the halt",
     source: { page: "bestiary", name: "Adult White Dragon", src: "MM" },
     homebrew: "Elder adult: canon adult white, buffed above the four tower dragons (CR 14–17) so his 'ENOUGH!' lands; scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons.",
