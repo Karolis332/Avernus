@@ -365,7 +365,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 
 ### Session 12 — The Siege of the Crypt (in play, 2026-11-01)
 - **Urn Hall:** three great urns, three waves (rearguard wraiths, lance wraiths, Marshal Aubrec Dunmere). The party did very well.
-- **Scales of Mercy ruling:** the shade was **Yael**; **Zariel** ordered her death for leaving the line for a child. The Charge came first; after the fall Yael hid the Sword, and Zariel later had the old sentence carried out. Her ghost guards the Sword (book). The party split one each way with one abstention, then **chose the insignia (justice)**. Yael remembers this at the Citadel.
+- **Scales of Mercy ruling:** the shade was **Yael**; **Zariel** ordered her death for leaving the line for a child. The Charge came first; after the fall Yael hid the Sword, and Zariel later had the old sentence carried out. Her ghost guards the Sword (book). The party split one each way with one abstention, then **chose the insignia (justice)**. Yael remembers this at the Citadel. **The Bleeding Citadel rose later on the spot where she was executed**, around the Sword she hid there; it bleeds her blood.
 - **Generals' Seats:** rank ordering by sun rays (Zariel 4, Haruman 3, Olanthius 2, Yael 1).
 
 ---
