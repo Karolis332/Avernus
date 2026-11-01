@@ -23,3 +23,5 @@ Karolis directive (2026-07-25). **Thavius Kreeg** (canon DiA High Overseer who s
 **Emotional payoff:** Or'Henn unknowingly served the arch-traitor who damned Drenwal's city and killed his father's order. Table-silencing reveal ("The Neighbor," primer M8). Or'Henn's predecessor Eldra = an enslaved Material-Plane druid who tended the garden, taught him, left him Cinderbloom.
 
 Lives in the primer [[descent_avernus_master_primer]]; state in [[session_handoff_orhenn]].
+
+**Eldra, ruled 2026-11-01:** flavour only, no plot purpose. The name "Eldra Vash" was invented by Claude in the 2026-07-25 primer re-chapter; the DM never supplied it. Or'Henn's player backstory has only an unnamed druid predecessor ("he") who taught him and left him Cinderbloom. Don't hang plot keys on her. The Hellrider version (signet, First Charge, Olanthius) is shelved.
