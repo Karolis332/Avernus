@@ -542,6 +542,12 @@ body.campaign-map-open #panel, body.campaign-map-open #center { transition: none
 #campaign-nav-group { margin-top: 18px; padding-top: 12px; border-top: 1px solid var(--read-border); }
 #campaign-title-label { margin: 0 0 6px; font-size: 1em; }
 #campaign-list { list-style: none; padding: 0; margin: 0; }
+/* chapter colour coding: each scene owns a colour (--chapter); campaign sections carry a dot per chapter that links to them */
+#scene-list .scene-item { border-left: 4px solid var(--chapter, transparent); padding-left: 6px; }
+.campaign-item { display: flex; align-items: baseline; gap: 6px; }
+.campaign-item.unused { opacity: 0.5; }
+.chapter-dots { display: inline-flex; gap: 2px; flex: none; min-width: 10px; }
+.chapter-dot { width: 9px; height: 9px; border-radius: 50%; display: inline-block; box-shadow: 0 0 0 1px #0003; }
 
 /* ---- slice 1: more / checks / env blocks, cast lines, entry thumbs ---- */
 .block-more { margin: 10px 0; border: 1px solid var(--read-border); border-radius: 3px; background: var(--sb-bg); }

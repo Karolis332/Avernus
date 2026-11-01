@@ -39,7 +39,7 @@ window.SESSION = {
 
     // ---- new: gnolls (SRD gnoll chassis, own numbers) ----
     "scab-gnoll": {
-      name: "Scab Gnoll", kind: "gnoll", role: "Yeenoghu's raider. Eats first, asks never.",
+      name: "Scab Gnoll", kind: "gnoll", source: { page: "bestiary", name: "Gnoll", src: "MM" }, role: "Yeenoghu's raider. Eats first, asks never.",
       homebrew: "SRD gnoll chassis with more hit points and a better bite, so a group of six matters to a level-13 party.",
       npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 15, acNote: "hide armour, shield",
       hp: 33, hpFormula: "6d8 + 6", speed: "30 ft.",
@@ -55,7 +55,7 @@ window.SESSION = {
       tactics: ["They rush the nearest bleeding creature and ignore the rest. A group shares one initiative and one saving throw.", "They break and run when the pack lord or Targ Nar falls."]
     },
     "gnoll-packlord": {
-      name: "Gnoll Pack Lord", kind: "gnoll", role: "Pack lord. Eats first, and shares last.",
+      name: "Gnoll Pack Lord", kind: "gnoll", source: { page: "bestiary", name: "Gnoll Pack Lord", src: "MM" }, role: "Pack lord. Eats first, and shares last.",
       homebrew: "Our own block on the SRD gnoll chassis. Eventyr suggests replacing the 15 mundane gnolls of S13 with 5 pack lords; this is that.",
       npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 15, acNote: "scab-plate",
       hp: 52, hpFormula: "8d8 + 16", speed: "30 ft.",
@@ -63,19 +63,19 @@ window.SESSION = {
       vulnerable: "", resist: "", immune: "", condImmune: "", senses: "darkvision 60 ft., passive Perception 10", languages: "Gnoll",
       cr: "3", xp: 700, pb: 2,
       traits: [
-        { name: "Rampage", text: "As the scab gnoll's Rampage." },
-        { name: "Pack Howl (Recharge 5-6)", text: "As a bonus action the pack lord howls. Each gnoll within 30 feet (not itself) adds 1d4 to its next attack roll before the end of the pack lord's next turn." }
+        { name: "Rampage", art: "art/generated/gnoll-packlord-rampage.webp", text: "As the scab gnoll's Rampage." },
+        { name: "Pack Howl (Recharge 5-6)", art: "art/generated/gnoll-packlord-pack-howl.webp", text: "As a bonus action the pack lord howls. Each gnoll within 30 feet (not itself) adds 1d4 to its next attack roll before the end of the pack lord's next turn." }
       ],
       actions: [
         { name: "Multiattack", text: "Two attacks: one bite and one flail." },
-        { name: "Bite", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) piercing damage." },
-        { name: "Flail", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 9 (1d10 + 4) bludgeoning damage." }
+        { name: "Bite", art: "art/generated/gnoll-packlord-bite.webp", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) piercing damage." },
+        { name: "Flail", art: "art/generated/gnoll-packlord-flail.webp", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 9 (1d10 + 4) bludgeoning damage." }
       ],
       bonus: [], reactions: [],
       tactics: ["Howl on round 1, then pick the same target as the others. They fight in the widened corridor, not the narrow one."]
     },
     "targ-nar": Object.assign({}, {
-      name: "Targ Nar, Fang of Yeenoghu", kind: "gnoll", role: "Gnoll war-leader. The loudest laugh in the Scab.",
+      name: "Targ Nar, Fang of Yeenoghu", kind: "gnoll", source: { page: "bestiary", name: "Gnoll Fang of Yeenoghu", src: "MM" }, role: "Gnoll war-leader. The loudest laugh in the Scab.",
       homebrew: "Our own block on the SRD gnoll chassis, scaled up. The book gives the character; these numbers are ours.",
       npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 16, acNote: "scab-plate",
       hp: 120, hpFormula: "16d8 + 48", speed: "35 ft.",
@@ -97,7 +97,7 @@ window.SESSION = {
 
     // ---- new: demons of the Scab ----
     "bulezau": {
-      name: "Rot Demon (bulezau)", kind: "bulezau", role: "Goat-headed demon. Smells like a grave in summer.",
+      name: "Rot Demon (bulezau)", kind: "bulezau", source: { page: "bestiary", name: "Bulezau", src: "MTF" }, role: "Goat-headed demon. Smells like a grave in summer.",
       homebrew: "Our own block. The book names the demon; the numbers and the aura are ours.",
       npc: false, sizeType: "Medium fiend (demon), chaotic evil", ac: 14, acNote: "natural armor",
       hp: 45, hpFormula: "7d8 + 14", speed: "30 ft.",
@@ -114,7 +114,7 @@ window.SESSION = {
       tactics: ["They throw themselves at whatever is in front of them and never retreat; their master's displeasure is worse. They fight to the death."]
     },
     "barlgura": {
-      name: "Barlgura (invisible ambusher)", kind: "barlgura", role: "Ape-shaped demon that hides in the walls.",
+      name: "Barlgura (invisible ambusher)", kind: "barlgura", source: { page: "bestiary", name: "Barlgura", src: "MM" }, role: "Ape-shaped demon that hides in the walls.",
       homebrew: "Our own block. The book names the demon; the numbers and the invisibility are ours.",
       npc: false, sizeType: "Large fiend (demon), chaotic evil", ac: 15, acNote: "natural armor",
       hp: 68, hpFormula: "8d10 + 24", speed: "40 ft., climb 40 ft.",
@@ -151,7 +151,7 @@ window.SESSION = {
       tactics: ["They keep digging until hit. They are afraid of Vatilan and more afraid of Trantolox. A group shares one initiative."]
     },
     "vatilan": {
-      name: "Vatilan, the Digging Overseer", kind: "shadow-demon", role: "Shadow demon. Screams in Abyssal at the diggers.",
+      name: "Vatilan, the Digging Overseer", kind: "shadow-demon", source: { page: "bestiary", name: "Shadow Demon", src: "MM" }, role: "Shadow demon. Screams in Abyssal at the diggers.",
       homebrew: "Our own block: a shadow demon in all but name, numbers ours.",
       npc: false, sizeType: "Medium fiend (demon), chaotic evil", ac: 13, acNote: "",
       hp: 66, hpFormula: "12d8 + 12", speed: "30 ft., fly 30 ft.",
@@ -197,10 +197,10 @@ window.SESSION = {
       traits: [ { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." } ],
       actions: [
         { name: "Multiattack", text: "Uses Horror Nimbus if available, then three attacks: one bite and two claws." },
-        { name: "Bite", text: "Melee Weapon Attack: +10 to hit, reach 5 ft., one target. Hit: 32 (5d10 + 5) piercing damage." },
-        { name: "Claw", text: "Melee Weapon Attack: +10 to hit, reach 10 ft., one target. Hit: 15 (3d6 + 5) slashing damage." },
-        { name: "Horror Nimbus (Recharge 5-6)", text: "The demon shimmers with a multicolored light. Each creature within 15 feet that can see it must succeed on a DC 15 Wisdom saving throw or be frightened for 1 minute. A creature repeats the save at the end of each of its turns, and is immune for 24 hours once it succeeds." },
-        { name: "Teleport", text: "The demon magically teleports up to 120 feet to an unoccupied space it can see." }
+        { name: "Bite", art: "art/generated/trantolox-bite.webp", text: "Melee Weapon Attack: +10 to hit, reach 5 ft., one target. Hit: 32 (5d10 + 5) piercing damage." },
+        { name: "Claw", art: "art/generated/trantolox-claw.webp", text: "Melee Weapon Attack: +10 to hit, reach 10 ft., one target. Hit: 15 (3d6 + 5) slashing damage." },
+        { name: "Horror Nimbus (Recharge 5-6)", art: "art/generated/trantolox-horror-nimbus.webp", text: "The demon shimmers with a multicolored light. Each creature within 15 feet that can see it must succeed on a DC 15 Wisdom saving throw or be frightened for 1 minute. A creature repeats the save at the end of each of its turns, and is immune for 24 hours once it succeeds." },
+        { name: "Teleport", art: "art/generated/trantolox-teleport.webp", text: "The demon magically teleports up to 120 feet to an unoccupied space it can see." }
       ],
       bonus: [], reactions: [],
       tactics: [
@@ -210,7 +210,7 @@ window.SESSION = {
       ]
     },
     "crokek-toeck": {
-      name: "Crokek'toeck, Yeenoghu's Beast", kind: "gnoll-hound", role: "Huge fiend. A lost pet that is also a siege engine.",
+      name: "Crokek'toeck, Yeenoghu's Beast", kind: "gnoll-hound", source: { page: "bestiary", name: "Crokek'toeck", src: "BGDIA" }, role: "Huge fiend. A lost pet that is also a siege engine.",
       homebrew: "Our own Huge-fiend block, roughly CR 13. The book names and imprisons it; the form and numbers are ours. It is not built to be killed in one fight: the party's win is getting past it. It leaves after three rounds to find Yeenoghu.",
       npc: false, sizeType: "Huge fiend (demon), chaotic evil", ac: 17, acNote: "bone plates",
       hp: 230, hpFormula: "20d12 + 100", speed: "50 ft., burrow 20 ft. (scab only)",
@@ -223,9 +223,9 @@ window.SESSION = {
       ],
       actions: [
         { name: "Multiattack", text: "Three attacks: one bite and two claws." },
-        { name: "Bite", text: "Melee Weapon Attack: +13 to hit, reach 10 ft., one target. Hit: 26 (4d8 + 8) piercing damage. A Large or smaller target is grappled (escape DC 18) and the beast can swallow-bite it as a second bite on its next turn for the same damage." },
-        { name: "Claw", text: "Melee Weapon Attack: +13 to hit, reach 10 ft., one target. Hit: 19 (2d10 + 8) slashing damage." },
-        { name: "Howl of the Hungry God (Recharge 5-6)", text: "Each creature within 60 feet that can hear it must succeed on a DC 17 Wisdom saving throw or be frightened until the end of its next turn. Gnolls and demons that hear it have advantage on their next attack roll." }
+        { name: "Bite", art: "art/generated/crokek-toeck-bite.webp", text: "Melee Weapon Attack: +13 to hit, reach 10 ft., one target. Hit: 26 (4d8 + 8) piercing damage. A Large or smaller target is grappled (escape DC 18) and the beast can swallow-bite it as a second bite on its next turn for the same damage." },
+        { name: "Claw", art: "art/generated/crokek-toeck-claw.webp", text: "Melee Weapon Attack: +13 to hit, reach 10 ft., one target. Hit: 19 (2d10 + 8) slashing damage." },
+        { name: "Howl of the Hungry God (Recharge 5-6)", art: "art/generated/crokek-toeck-howl-of-the-hungry-god.webp", text: "Each creature within 60 feet that can hear it must succeed on a DC 17 Wisdom saving throw or be frightened until the end of its next turn. Gnolls and demons that hear it have advantage on their next attack roll." }
       ],
       bonus: [], reactions: [],
       tactics: [
@@ -263,11 +263,11 @@ window.SESSION = {
         { t: "read", text: "You came out of the Crypt of the Hellriders carrying a shard of the Sword of Zariel and the road to the Scab. Behind you the Crypt's cold line was already thinning. In front of you was a long red road.\n\nYou left a siege behind, or a bargain, or a ride of cold riders going out into the dark. Whatever it cost, it is paid.\n\nThen the Lady Vengeance's wards went white for a held breath, and riders in white and gold came and took Lulu. Nobody was hurt. One of them said she would be safe. The shard in your pack has been humming ever since, in a marching rhythm." },
         { t: "p", text: "Branch the opening in one line, whichever way they left:" },
         { t: "list", items: [
-          "{@b By the orb.} They hold it, and four dragons may still be on a long road behind them. Arkhan knows which way they went.",
+          "{@b By the orb.} They hold it, and four dragons may still be on a long road behind them. Arkhan did not chase the orb; he follows Or'Henn.",
           "{@b By the Last Ride.} The riders are at rest. The Crypt is quiet. Veska is lighter.",
           "{@b By Uldrak.} His promise is spent. He will not be at the Citadel. Tiamat noticed.",
           "{@b By Krull's double-cross.} Krull has the orb or a debt. Torogar is on the road.",
-          "{@b By parley.} Arkhan has the orb and keeps his word. He can call dragons across Avernus.",
+          "{@b By parley.} Arkhan has the orb and kept his word to the letter: his dragons stood back for a day. He promised nothing for himself, and he still wants Or'Henn alive and Drenwal casting.",
           "{@b By extraction.} The Lady Vengeance came for them and is no longer hidden."
         ] },
         { t: "p", text: "{@b Lulu, default:} Zariel's riders took her. {@b Alternative:} the wards held and she is still aboard; she can sense the Scab, which makes the shard a backup. See {@side zariel|Playing Zariel}." },
@@ -277,7 +277,7 @@ window.SESSION = {
         { t: "h", text: "Check Before You Start" },
         { t: "list", items: [
           "{@b Or'Henn's scales.} 0 unless the curse moved. If a gold scale was ever taken, tell him how many.",
-          "{@b The orb.} Who holds it, and whether Arkhan is still behind them.",
+          "{@b The orb.} Who holds it. {@b Arkhan} is behind them either way: with the vial spent, Or'Henn's curse is his last road to Tiamat.",
           "{@b The shard.} It is in someone's pack. Pick who carries it. It matters at the gates.",
           "{@b Moonkite's Bond.} Points from Session 12. Keep it on Aurora's sheet.",
           "{@b Drenwal's Watch pool.} Gasps start outside the Crypt. Did one happen in Session 12? Where does the pool stand?",
@@ -365,6 +365,7 @@ window.SESSION = {
       duration: "20 minutes",
       blocks: [
         { t: "read", text: "Up close the Scab is not a hill but a wound the size of one. The skin of it is rust and rope, the swamp around it is red, and a great round mouth gapes near the top, ringed with chains. Gnolls are camped at its lip, laughing, and one of them is sharpening a bone on another's skull." },
+        { t: "img", src: "art/generated/env-scab-mouth.webp", caption: "The mouth of the Scab.", credit: "Generated art." },
         { t: "env", sight: "A swamp of blood, a crust of red scab, black chains running into it. Gnolls round a fire of broken carts.", sound: "Gnoll laughter, chains, a slow wet drip.", smell: "Iron and copper and rot.", feel: "The ground is slightly warm and slightly wrong." },
         { t: "map", id: "the-scab-level-1-30x30", note: "Level 1: the entrance, the first pools and the Window (S1 to S5, by the pool rooms). Check the key on the map." },
 

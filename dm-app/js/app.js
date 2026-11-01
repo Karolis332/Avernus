@@ -110,10 +110,28 @@
     });
   }
 
+  // Chapter colours: scene i gets CHAPTER_COLORS[i]; campaign sections show a dot
+  // per chapter that links to them, so the DM sees which section belongs where.
+  var CHAPTER_COLORS = ["#8b1a1a", "#1f5f8b", "#2e7d32", "#b8860b", "#6a1b9a",
+    "#00838f", "#c2185b", "#5d4037", "#ef6c00", "#455a64"];
+  function chapterColor(i) { return CHAPTER_COLORS[i % CHAPTER_COLORS.length]; }
+
+  // Scene indexes whose blocks link to side `sid` ({@side sid|...} or a choice's side: "sid").
+  function chaptersUsingSide(sid) {
+    var tag = "{@side " + sid + "|", choice = '"side":"' + sid + '"';
+    var used = [];
+    (app.session.scenes || []).forEach(function (scene, i) {
+      var text = JSON.stringify(scene.blocks || []);
+      if (text.indexOf(tag) !== -1 || text.indexOf(choice) !== -1) used.push(i);
+    });
+    return used;
+  }
+
   function renderSceneList() {
     dom.sceneList.innerHTML = "";
     (app.session.scenes || []).forEach(function (scene, i) {
       var li = el("li", "scene-item");
+      li.style.setProperty("--chapter", chapterColor(i));
       if (scene.id === app.sceneId) li.classList.add("current");
       if (app.visited[scene.id]) li.classList.add("visited");
       if (scene.when) li.classList.add("conditional");
@@ -134,11 +152,30 @@
     dom.campaignList.innerHTML = "";
     if (!ids.length) { dom.campaignNavGroup.classList.add("hidden"); return; }
     dom.campaignNavGroup.classList.remove("hidden");
-    ids.forEach(function (sid) {
-      var side = app.session.side[sid];
-      var li = el("li", "scene-item");
-      li.appendChild(el("span", "scene-title-text", (side && side.title) || sid));
-      li.addEventListener("click", function () { openSide(sid); });
+    var scenes = app.session.scenes || [];
+    var rows = ids.map(function (sid, order) { return { sid: sid, order: order, used: chaptersUsingSide(sid) }; });
+    // Sections this session links to come first, in chapter order; the rest keep insertion order, dimmed.
+    rows.sort(function (a, b) {
+      var ka = a.used.length ? a.used[0] : 1e6, kb = b.used.length ? b.used[0] : 1e6;
+      return ka - kb || a.order - b.order;
+    });
+    rows.forEach(function (row) {
+      var side = app.session.side[row.sid];
+      var li = el("li", "scene-item campaign-item");
+      if (!row.used.length) li.classList.add("unused");
+      var dots = el("span", "chapter-dots");
+      row.used.forEach(function (i) {
+        var dot = el("span", "chapter-dot");
+        dot.style.background = chapterColor(i);
+        dot.title = "Chapter " + (i + 1) + ": " + scenes[i].title;
+        dots.appendChild(dot);
+      });
+      li.appendChild(dots);
+      li.appendChild(el("span", "scene-title-text", (side && side.title) || row.sid));
+      li.title = row.used.length
+        ? "Used in: " + row.used.map(function (i) { return (i + 1) + ". " + scenes[i].title; }).join(", ")
+        : "Not linked from this session";
+      li.addEventListener("click", function () { openSide(row.sid); });
       dom.campaignList.appendChild(li);
     });
   }

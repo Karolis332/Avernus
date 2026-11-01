@@ -32,21 +32,21 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Three longsword attacks." },
-      { name: "Longsword", text: "Melee Weapon Attack: +13 to hit, reach 5 ft., one target. Hit: 10 (1d8 + 6) slashing plus 22 (5d8) necrotic." },
-      { name: "Hellfire Orb (1/Day)", text: "A ball of fire bursts at a point he can see within 120 ft. Each creature in a 20-ft. radius makes a DC 18 Dexterity saving throw: 35 (10d6) fire plus 35 (10d6) necrotic on a failure, half on a success. It spreads around corners." }
+      { name: "Longsword", art: "art/generated/olanthius-longsword.webp", text: "Melee Weapon Attack: +13 to hit, reach 5 ft., one target. Hit: 10 (1d8 + 6) slashing plus 22 (5d8) necrotic." },
+      { name: "Hellfire Orb (1/Day)", art: "art/generated/olanthius-hellfire-orb.webp", text: "A ball of fire bursts at a point he can see within 120 ft. Each creature in a 20-ft. radius makes a DC 18 Dexterity saving throw: 35 (10d6) fire plus 35 (10d6) necrotic on a failure, half on a success. It spreads around corners." }
     ],
     bonus: [],
     legendary: {
       count: 3,
       intro: "Olanthius can take 3 legendary actions, one at a time, at the end of another creature's turn. He regains them at the start of his turn.",
       actions: [
-        { name: "Longsword", cost: 1, text: "He makes one longsword attack." },
+        { name: "Longsword", art: "art/generated/olanthius-longsword.webp", cost: 1, text: "He makes one longsword attack." },
         { name: "Hold the Line", cost: 1, text: "He moves up to half his speed without provoking opportunity attacks, to stand between an enemy and a downed creature." },
-        { name: "The Sun Will Hold", cost: 2, text: "Each undead of his choice within 60 ft. regains 20 hit points, and each creature he chooses within 30 ft. makes a DC 18 Wisdom saving throw or is frightened of him until the end of its next turn." }
+        { name: "The Sun Will Hold", art: "art/generated/olanthius-the-sun-will-hold.webp", cost: 2, text: "Each undead of his choice within 60 ft. regains 20 hit points, and each creature he chooses within 30 ft. makes a DC 18 Wisdom saving throw or is frightened of him until the end of its next turn." }
       ]
     },
     reactions: [
-      { name: "Parry", text: "Adds 6 to his AC against one melee attack that would hit him. He must see the attacker and hold a melee weapon." }
+      { name: "Parry", art: "art/generated/olanthius-parry.webp", text: "Adds 6 to his AC against one melee attack that would hit him. He must see the attacker and hold a melee weapon." }
     ],
     tactics: [
       "This is a test, not a murder. He fights to see whether they fight with honour.",
@@ -182,10 +182,10 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Bound to Its Urn (homebrew)", text: "If an intact urn holding its soul is within 120 ft., a ghost reduced to 0 hit points re-forms at the urn in 1d4 rounds with half its hit points. An action to bless the urn or break it (DC 14 Wisdom (Religion) check, or the watchword said aloud by a Hellrider) frees the soul for good." }
     ],
     actions: [
-      { name: "Withering Touch", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 17 (4d6 + 3) necrotic damage." },
-      { name: "Etherealness", text: "It enters the Ethereal Plane from the Material Plane, or the reverse. In the Border Ethereal it is visible on the Material Plane, and the reverse, but cannot affect or be affected by anything on the other plane." },
-      { name: "Horrifying Visage", text: "Each non-undead creature within 60 ft. that can see the ghost must succeed on a DC 14 Wisdom saving throw or be frightened for 1 minute. If the save fails by 5 or more, the target also ages 1d4 x 10 years (greater restoration reverses this within 24 hours). A frightened target repeats the save at the end of each of its turns. On a success, or when it ends, the target is immune to this ghost's Visage for 24 hours." },
-      { name: "Possession (Recharge 6)", text: "One humanoid the ghost can see within 5 ft. must succeed on a DC 14 Charisma saving throw or be possessed: the ghost vanishes and the target is incapacitated and loses control of its body. The ghost controls it, using the target's statistics but not its knowledge or class features, and cannot be targeted except by effects that turn undead. It lasts until the body drops to 0 hit points, the ghost ends it as a bonus action, or it is turned or forced out (dispel evil and good works). The target is immune for 24 hours afterwards." }
+      { name: "Withering Touch", art: "art/generated/hellrider-ghost-withering-touch.webp", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 17 (4d6 + 3) necrotic damage." },
+      { name: "Etherealness", art: "art/generated/hellrider-ghost-etherealness.webp", text: "It enters the Ethereal Plane from the Material Plane, or the reverse. In the Border Ethereal it is visible on the Material Plane, and the reverse, but cannot affect or be affected by anything on the other plane." },
+      { name: "Horrifying Visage", art: "art/generated/hellrider-ghost-horrifying-visage.webp", text: "Each non-undead creature within 60 ft. that can see the ghost must succeed on a DC 14 Wisdom saving throw or be frightened for 1 minute. If the save fails by 5 or more, the target also ages 1d4 x 10 years (greater restoration reverses this within 24 hours). A frightened target repeats the save at the end of each of its turns. On a success, or when it ends, the target is immune to this ghost's Visage for 24 hours." },
+      { name: "Possession (Recharge 6)", art: "art/generated/hellrider-ghost-possession.webp", text: "One humanoid the ghost can see within 5 ft. must succeed on a DC 14 Charisma saving throw or be possessed: the ghost vanishes and the target is incapacitated and loses control of its body. The ghost controls it, using the target's statistics but not its knowledge or class features, and cannot be targeted except by effects that turn undead. It lasts until the body drops to 0 hit points, the ghost ends it as a bonus action, or it is turned or forced out (dispel evil and good works). The target is immune for 24 hours afterwards." }
     ],
     bonus: [], reactions: [],
     castLines: [
@@ -233,8 +233,8 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Weight of Despair (homebrew)", text: "A hostile creature that starts its turn within 10 ft. of the wraith has its speed reduced by 10 ft. until the start of its next turn. It is the weight of a dead man's grief, and works on anyone." }
     ],
     actions: [
-      { name: "Life Drain", text: "Melee Weapon Attack: +6 to hit, reach 5 ft., one creature. Hit: 21 (4d8 + 3) necrotic damage. The target must succeed on a DC 14 Constitution saving throw or its hit point maximum is reduced by the damage taken, until it finishes a long rest. It dies if this reduces its maximum to 0." },
-      { name: "Create Specter", text: "It targets a humanoid within 10 ft. that has been dead no longer than 1 minute and died violently. The spirit rises as a specter in the corpse's space (or the nearest free space), under the wraith's control. No more than 7 specters at a time." }
+      { name: "Life Drain", art: "art/generated/despairing-wraith-life-drain.webp", text: "Melee Weapon Attack: +6 to hit, reach 5 ft., one creature. Hit: 21 (4d8 + 3) necrotic damage. The target must succeed on a DC 14 Constitution saving throw or its hit point maximum is reduced by the damage taken, until it finishes a long rest. It dies if this reduces its maximum to 0." },
+      { name: "Create Specter", art: "art/generated/despairing-wraith-create-specter.webp", text: "It targets a humanoid within 10 ft. that has been dead no longer than 1 minute and died violently. The spirit rises as a specter in the corpse's space (or the nearest free space), under the wraith's control. No more than 7 specters at a time." }
     ],
     bonus: [], reactions: [],
     castLines: [

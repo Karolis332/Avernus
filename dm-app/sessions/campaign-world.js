@@ -406,7 +406,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "h", text: "Factions and Gangs" },
       { t: "p", text: "Who the party can meet on the road, each with a hook and where to find the stats. Fights this arc are the ones with a block; the rest are talk." },
       { t: "list", items: [
-        "{@b Arkhan's dragon cult.} Besieging the Crypt. {@c arkhan-the-cruel|Arkhan}, {@c skarrix|Slarkas}, {@c vhennic|Vistalancer}, {@c mirelle|Vermilius}, {@c praxamor|Flash}, {@c obatala|Obatala} and {@c krull|Krull}. Hook: they want the orb back and Or'Henn begging a dragon for help. Not a fight to win.",
+        "{@b Arkhan's dragon cult.} Besieging the Crypt. {@c arkhan-the-cruel|Arkhan}, {@c skarrix|Slarkas}, {@c vhennic|Vistalancer}, {@c mirelle|Vermilius}, {@c praxamor|Flash}, {@c obatala|Obatala} and {@c krull|Krull}. Hook: the vial of Tiamat's blood is spent (it raised Uldrak), so Arkhan wants the party dead, Or'Henn alive as a hostage, and Drenwal made to call a gold dragon for Or'Henn to beg. Not a fight to win.",
         "{@b Zariel's legions and narzugons.} Her riders reach for the shard, the Sword and Lulu. Hook: a herald with a polite writ. Stats: {@c narzugon|Narzugon}. See {@side zariel|Playing Zariel}.",
         "{@b Haruman's riders.} Haruman is dead, so his Crimson Legion riders are leaderless: deserters, mercenaries, or a new boss looking for a banner. Hook: they sell their loyalty to whoever holds the Haruman piece. No block: use a Veteran for each rider and a Knight for a sergeant (SRD), or {@c hellrider-ghost|the ghosts} if the dead rise.",
         "{@b Mad Maggie's warband (Fort Knucklebone).} Maggie is a night hag; Chukka and Clonk repair war machines, Mickey and Barnabas run her errands. Hook: she trades in memories, and after three big trades Zariel notices her. Not a fight this arc. Stats: Night Hag (MM, CR 5); the book entry for Fort Knucklebone has the rest.",
@@ -454,7 +454,7 @@ Object.assign(window.CAMPAIGN.side, {
         { t: "p", text: "{@b This week:} he collects. Dumal is his lever on the party; Gargauth is his lever on Hell's politics. He sends an envoy to the Crypt with terms. {@b He wants:} the Shield of the Hidden Lord with Gargauth in it. {@b Why:} every Hell player collects pieces against Zariel, and he is the only one who does it without ever leaving his throne." }
       ] },
       { t: "more", title: "Tiamat", src: ["Homebrew"], blocks: [
-        { t: "p", text: "{@b This week:} Small Visions at every rest. Vermilius's kind offer rides outside the Crypt door, ready for the moment the curse jumps. {@b She wants:} Or'Henn to ask a dragon for help. She never lies to him, so the gifts are all true. {@b Why:} the siege makes the ask nearly irresistible, which is the exact trap." }
+        { t: "p", text: "{@b This week:} Small Visions at every rest. Vermilius's kind offer rides outside the Crypt door, ready for the moment the curse jumps. With the vial spent, Arkhan's harder plan is a hostage and a gold dragon called by Drenwal. {@b She wants:} Or'Henn to ask a dragon for help. She never lies to him, so the gifts are all true. {@b Why:} the siege makes the ask nearly irresistible, which is the exact trap." }
       ] }
     ]
   },

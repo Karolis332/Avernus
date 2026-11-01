@@ -88,11 +88,11 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 4 (1d8) acid." },
-      { name: "Claw", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
-      { name: "Tail", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
+      { name: "Bite", art: "art/generated/skarrix-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 4 (1d8) acid." },
+      { name: "Claw", art: "art/generated/skarrix-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
+      { name: "Tail", art: "art/generated/skarrix-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
       { name: "Frightful Presence", text: "Each creature of its choice within 120 ft. aware of it: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Acid Breath (Recharge 5-6)", text: "60-ft. line, 5 ft. wide. DC 18 Dexterity save, 54 (12d8) acid, half on a success." }
+      { name: "Acid Breath (Recharge 5-6)", art: "art/generated/skarrix-acid-breath.webp", text: "60-ft. line, 5 ft. wide. DC 18 Dexterity save, 54 (12d8) acid, half on a success." }
     ],
     bonus: [],
     reactions: [
@@ -103,7 +103,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       intro: "Slarkas can take one legendary action at the end of another creature's turn. It regains spent legendary actions at the start of its turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", cost: 1, text: "Makes one tail attack." },
+        { name: "Tail Attack", art: "art/generated/skarrix-tail.webp", cost: 1, text: "Makes one tail attack." },
         { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Slarkas then flies up to half its speed." }
       ]
     },
@@ -146,11 +146,11 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", text: "Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 5 (1d10) lightning." },
-      { name: "Claw", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
-      { name: "Tail", text: "Melee Weapon Attack: +12 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
+      { name: "Bite", art: "art/generated/vhennic-bite.webp", text: "Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 5 (1d10) lightning." },
+      { name: "Claw", art: "art/generated/vhennic-claw.webp", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
+      { name: "Tail", art: "art/generated/vhennic-tail.webp", text: "Melee Weapon Attack: +12 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
       { name: "Frightful Presence", text: "Each creature of its choice within 120 ft. aware of it: DC 17 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Lightning Breath (Recharge 5-6)", text: "90-ft. line, 5 ft. wide. DC 19 Dexterity save, 66 (12d10) lightning, half on a success." }
+      { name: "Lightning Breath (Recharge 5-6)", art: "art/generated/vhennic-lightning-breath.webp", text: "90-ft. line, 5 ft. wide. DC 19 Dexterity save, 66 (12d10) lightning, half on a success." }
     ],
     bonus: [],
     reactions: [
@@ -161,7 +161,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       intro: "Vistalancer can take one legendary action at the end of another creature's turn. It regains spent legendary actions at the start of its turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", cost: 1, text: "Makes one tail attack." },
+        { name: "Tail Attack", art: "art/generated/vhennic-tail.webp", cost: 1, text: "Makes one tail attack." },
         { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 20 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Vistalancer then flies up to half its speed." }
       ]
     },
@@ -205,11 +205,11 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 7 (2d6) poison." },
-      { name: "Claw", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
-      { name: "Tail", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
+      { name: "Bite", art: "art/generated/mirelle-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 7 (2d6) poison." },
+      { name: "Claw", art: "art/generated/mirelle-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
+      { name: "Tail", art: "art/generated/mirelle-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
       { name: "Frightful Presence", text: "Each creature of her choice within 120 ft. aware of her: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Poison Breath (Recharge 5-6)", text: "60-ft. cone. DC 18 Constitution save, 56 (16d6) poison, half on a success." }
+      { name: "Poison Breath (Recharge 5-6)", art: "art/generated/mirelle-poison-breath.webp", text: "60-ft. cone. DC 18 Constitution save, 56 (16d6) poison, half on a success." }
     ],
     bonus: [],
     reactions: [
@@ -220,7 +220,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       intro: "Vermilius can take one legendary action at the end of another creature's turn. She regains spent legendary actions at the start of her turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", cost: 1, text: "Makes one tail attack." },
+        { name: "Tail Attack", art: "art/generated/mirelle-tail.webp", cost: 1, text: "Makes one tail attack." },
         { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Vermilius then flies up to half her speed." }
       ]
     },
@@ -263,11 +263,11 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", text: "Melee Weapon Attack: +14 to hit, reach 10 ft. Hit: 19 (2d10 + 8) piercing plus 7 (2d6) fire." },
-      { name: "Claw", text: "Melee Weapon Attack: +14 to hit, reach 5 ft. Hit: 15 (2d6 + 8) slashing." },
-      { name: "Tail", text: "Melee Weapon Attack: +14 to hit, reach 15 ft. Hit: 17 (2d8 + 8) bludgeoning." },
+      { name: "Bite", art: "art/generated/praxamor-bite.webp", text: "Melee Weapon Attack: +14 to hit, reach 10 ft. Hit: 19 (2d10 + 8) piercing plus 7 (2d6) fire." },
+      { name: "Claw", art: "art/generated/praxamor-claw.webp", text: "Melee Weapon Attack: +14 to hit, reach 5 ft. Hit: 15 (2d6 + 8) slashing." },
+      { name: "Tail", art: "art/generated/praxamor-tail.webp", text: "Melee Weapon Attack: +14 to hit, reach 15 ft. Hit: 17 (2d8 + 8) bludgeoning." },
       { name: "Frightful Presence", text: "Each creature of his choice within 120 ft. aware of him: DC 19 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Fire Breath (Recharge 5-6)", text: "60-ft. cone. DC 21 Dexterity save, 63 (18d6) fire, half on a success." }
+      { name: "Fire Breath (Recharge 5-6)", art: "art/generated/praxamor-fire-breath.webp", text: "60-ft. cone. DC 21 Dexterity save, 63 (18d6) fire, half on a success." }
     ],
     bonus: [],
     reactions: [
@@ -278,7 +278,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       intro: "Flash can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", cost: 1, text: "Makes one tail attack." },
+        { name: "Tail Attack", art: "art/generated/praxamor-tail.webp", cost: 1, text: "Makes one tail attack." },
         { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 22 Dexterity save or 15 (2d6 + 8) bludgeoning and knocked prone. Flash then flies up to half his speed." }
       ]
     },
@@ -321,11 +321,11 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", text: "Melee Weapon Attack: +13 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 9 (2d8) cold." },
-      { name: "Claw", text: "Melee Weapon Attack: +13 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
-      { name: "Tail", text: "Melee Weapon Attack: +13 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
+      { name: "Bite", art: "art/generated/obatala-bite.webp", text: "Melee Weapon Attack: +13 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 9 (2d8) cold." },
+      { name: "Claw", art: "art/generated/obatala-claw.webp", text: "Melee Weapon Attack: +13 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
+      { name: "Tail", art: "art/generated/obatala-tail.webp", text: "Melee Weapon Attack: +13 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
       { name: "Frightful Presence", text: "Each creature of his choice within 120 ft. aware of Obatala: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Cold Breath (Recharge 5-6)", text: "60-ft. cone. DC 20 Constitution save, 63 (14d8) cold, half on a success." }
+      { name: "Cold Breath (Recharge 5-6)", art: "art/generated/obatala-cold-breath.webp", text: "60-ft. cone. DC 20 Constitution save, 63 (14d8) cold, half on a success." }
     ],
     bonus: [],
     reactions: [
@@ -336,7 +336,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       intro: "Obatala can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Obatala makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", cost: 1, text: "Obatala makes one tail attack." },
+        { name: "Tail Attack", art: "art/generated/obatala-tail.webp", cost: 1, text: "Obatala makes one tail attack." },
         { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 21 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Obatala then flies up to half his speed." }
       ]
     },
@@ -385,9 +385,9 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Krull makes two Maul attacks, or casts a spell and makes one Maul attack." },
-      { name: "Claws", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 7 (1d4 + 5) piercing." },
-      { name: "+1 Maul", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 13 (2d6 + 6) bludgeoning plus 13 (3d8) necrotic." },
-      { name: "Shell Defence", text: "Withdraws into its shell: +2 AC (AC 21), advantage on Str/Con saves; prone, speed 0, disadvantage on Dex saves, no reactions. Only action while inside is to emerge (bonus action)." }
+      { name: "Claws", art: "art/generated/krull-claws.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 7 (1d4 + 5) piercing." },
+      { name: "+1 Maul", art: "art/generated/krull-maul.webp", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 13 (2d6 + 6) bludgeoning plus 13 (3d8) necrotic." },
+      { name: "Shell Defence", art: "art/generated/krull-shell-defence.webp", text: "Withdraws into its shell: +2 AC (AC 21), advantage on Str/Con saves; prone, speed 0, disadvantage on Dex saves, no reactions. Only action while inside is to emerge (bonus action)." }
     ],
     bonus: [], reactions: [],
     legendary: {
@@ -396,7 +396,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       actions: [
         { name: "Cantrip", cost: 1, text: "Krull casts a cantrip." },
         { name: "Mend the Wing", cost: 1, text: "One dragon Krull can see within 60 ft. regains 22 (4d10) hit points." },
-        { name: "Unholy Word", cost: 2, text: "Krull speaks a word of Tiamat's. Each creature of his choice within 30 ft. makes a DC 20 Wisdom saving throw or is frightened of him until the end of its next turn." }
+        { name: "Unholy Word", art: "art/generated/krull-unholy-word.webp", cost: 2, text: "Krull speaks a word of Tiamat's. Each creature of his choice within 30 ft. makes a DC 20 Wisdom saving throw or is frightened of him until the end of its next turn." }
       ]
     },
     tactics: [
@@ -445,22 +445,22 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Aura of Hate", text: "While not incapacitated, Arkhan and all fiends/undead within 30 ft. deal +4 damage on melee weapon hits (already folded into the melee numbers below)." },
       { name: "Legendary Resistance (4/Day)", text: "If Arkhan fails a saving throw, he can choose to succeed instead." },
       { name: "Tiamat's Chosen", text: "The first time Arkhan drops to 0 hit points in a fight, he drops to 1 instead, and every chromatic dragon within 120 ft. that can see him uses its reaction to move up to its speed toward him." },
-      { name: "Hand of Vecna (12 charges, regains 2d4+4 at dawn)", text: "Spell save DC 22. Finger of death (5 charges), slow (2), teleport (3), sleep (1). Vecna's Grip (signature, 4 charges): one creature within 60 ft., DC 22 Con save or restrained and silenced until the start of Arkhan's next turn." },
+      { name: "Hand of Vecna (12 charges, regains 2d4+4 at dawn)", art: "art/generated/arkhan-the-cruel-hand-of-vecna.webp", text: "Spell save DC 22. Finger of death (5 charges), slow (2), teleport (3), sleep (1). Vecna's Grip (signature, 4 charges): one creature within 60 ft., DC 22 Con save or restrained and silenced until the start of Arkhan's next turn." },
       { name: "Innate Spellcasting", text: "Charisma (spell save DC 22, +14 to hit). 3/day each: animate dead, branding smite, revivify. 1/day each: geas, raise dead." }
     ],
     actions: [
       { name: "Multiattack", text: "Arkhan makes three Fane-Eater attacks. He can replace one of them with Breath of the Five, if it is available." },
-      { name: "Fane-Eater (Battleaxe)", text: "+18 to hit, reach 5 ft. Hit: 23 (2d8 + 14) slashing plus 13 (3d8) cold. (He fights with a shield, so always one-handed.) On a natural 20: extra 18 (4d8) necrotic, and Arkhan regains that much hit points." },
-      { name: "Breath of the Five (Recharge 5-6)", text: "Arkhan exhales his queen's breath in a 60-ft. cone, choosing acid, cold, fire, lightning or poison. Each creature in the cone makes a DC 22 Dexterity saving throw (Constitution for cold or poison), taking 63 (18d6) damage of that type on a failure, or half as much on a success." },
-      { name: "Javelin", text: "Ranged Weapon Attack: +15 to hit, range 30/120 ft. Hit: 10 (1d6 + 7) piercing. Used in melee it benefits from Aura of Hate: 14 (1d6 + 7 + 4) piercing." }
+      { name: "Fane-Eater (Battleaxe)", art: "art/generated/arkhan-the-cruel-fane-eater.webp", text: "+18 to hit, reach 5 ft. Hit: 23 (2d8 + 14) slashing plus 13 (3d8) cold. (He fights with a shield, so always one-handed.) On a natural 20: extra 18 (4d8) necrotic, and Arkhan regains that much hit points." },
+      { name: "Breath of the Five (Recharge 5-6)", art: "art/generated/arkhan-the-cruel-breath-of-the-five.webp", text: "Arkhan exhales his queen's breath in a 60-ft. cone, choosing acid, cold, fire, lightning or poison. Each creature in the cone makes a DC 22 Dexterity saving throw (Constitution for cold or poison), taking 63 (18d6) damage of that type on a failure, or half as much on a success." },
+      { name: "Javelin", art: "art/generated/arkhan-the-cruel-javelin.webp", text: "Ranged Weapon Attack: +15 to hit, range 30/120 ft. Hit: 10 (1d6 + 7) piercing. Used in melee it benefits from Aura of Hate: 14 (1d6 + 7 + 4) piercing." }
     ],
     bonus: [], reactions: [],
     legendary: {
       count: 4,
       intro: "Only one at a time, only at the end of another creature's turn. Regains all 4 at the start of his turn.",
       actions: [
-        { name: "Strike", cost: 1, text: "One Fane-Eater attack (+18, 23 (2d8+14) slashing plus 13 (3d8) cold)." },
-        { name: "Hand of Vecna", cost: 2, text: "Always costs 2 legendary actions. Arkhan casts slow, sleep or Vecna's Grip from the Hand, spending that spell's Hand charges as normal. Finger of death and teleport cannot be cast this way. Teleport (3 Hand charges) takes his action on his own turn: he and up to eight willing allies within 10 ft. vanish to his tower." },
+        { name: "Strike", art: "art/generated/arkhan-the-cruel-fane-eater.webp", cost: 1, text: "One Fane-Eater attack (+18, 23 (2d8+14) slashing plus 13 (3d8) cold)." },
+        { name: "Hand of Vecna", art: "art/generated/arkhan-the-cruel-hand-of-vecna.webp", cost: 2, text: "Always costs 2 legendary actions. Arkhan casts slow, sleep or Vecna's Grip from the Hand, spending that spell's Hand charges as normal. Finger of death and teleport cannot be cast this way. Teleport (3 Hand charges) takes his action on his own turn: he and up to eight willing allies within 10 ft. vanish to his tower." },
         { name: "Command the Line", cost: 1, text: "Arkhan directs Torogar, Krull, the manticore, or a dragon: that ally gains advantage on its next attack, or may use its reaction early." }
       ]
     },
