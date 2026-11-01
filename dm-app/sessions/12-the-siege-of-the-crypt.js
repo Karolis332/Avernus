@@ -213,6 +213,28 @@ window.SESSION = {
           { t: "p", text: "{@b Bond.} +1 each time Aurora helps a soul go on or spares a wraith at Moonkite's request, up to +2 this beat. -1 if she smashes urns or burns souls while it watches. Full rules in {@side arc-moonkite|Arc: Aurora and Moonkite}." }
         ] },
 
+        { t: "h", text: "The Urn Hoard" },
+        { t: "p", text: "The loot lay under the urns, and it is still there: the riders were buried with their gear. Once the last wave is over (laid to rest or destroyed), the shelf can be searched. Give it in full; this is the reward for the hardest fight in the Crypt." },
+        { t: "list", items: [
+          "{@b Always:} grave goods and Elturian coin worth {@b 2,000 gp}, and three {@item potion of supreme healing|DMG} flasks sealed in wax.",
+          "{@b First urn (the rearguard).} A {@item sun blade|DMG}: a rearguard officer's hilt with no blade until it is drawn, and then a blade of daylight. Radiant, and very good against everything in Avernus.",
+          "{@b Second urn (the lancers).} A bronze {@item horn of Valhalla|DMG} reflavoured as the {@b Horn of the First Charge}: blown, it calls four spectral Hellriders (berserker statistics, mounted, radiant instead of slashing) for 1 hour. They will not ride against a Hellrider.",
+          "{@b Third urn (the Marshal).} His own sword, a {@item dragon slayer|DMG} (+1, an extra 3d6 against dragons). He carried it into Avernus for a dragon he never reached. With Arkhan's dragons at the door and Tiamat stirring, it has never been more welcome."
+        ] },
+        { t: "note", title: "Laid to Rest or Destroyed", text: "An urn whose three souls were {@b laid to rest} gives its item freely: it is lying on top of the shards, as if set out. An urn whose souls were {@b destroyed} still has its item, but buried in the shards and rimed with frost: a DC 15 Investigation to find, and it is cold to the touch until the next dawn. The Marshal's sword is only given if he stood down; otherwise it is under the third urn's shards like the rest." },
+        { t: "note", title: "All Nine at Rest", text: "If all nine souls were laid to rest, the riders give one more thing as they go: {@b each PC} gains a {@b Charm of Heroism} (DMG supernatural gift: as an action, gain the benefits of a potion of heroism; one use). The cold candles in the Nave light themselves, and Olanthius, wherever he is, stands up." },
+
+        { t: "h", text: "Bonuses for a Strong Run" },
+        { t: "p", text: "On top of the loot. Give every one the party earned; they stack." },
+        { t: "list", items: [
+          "{@b Laid a soul to rest:} each PC (and Veska) who laid at least one soul to rest gains {@b Heroic Inspiration}.",
+          "{@b Nobody died:} all three waves beaten with no PC or companion killed. The Crypt's cold settles into them: {@b resistance to fire damage} for every PC and companion until the end of their next long rest. Exactly what they need for the door and the red dragon outside it.",
+          "{@b The Marshal stood down:} the riders stand to the ward one last time. {@b Erase two segments} from the ward clock (never below 0).",
+          "{@b No urn forced open by hand:} Olanthius's favour. He answers one question about the Bleeding Citadel truthfully, and once, later, he will come when Drenwal calls his name at a Hellrider grave.",
+          "{@b Seven or more souls at rest:} the trials' {@b Clean} candles light on their own (see {@scene the-trials-of-the-pure|The Trials of the Pure}) and the Last Ride is ready to ride (see {@scene the-ways-out|The Ways Out}).",
+          "{@b All nine at rest:} the Charm of Heroism above, and if your table levels by milestone, this is a good place for {@b level 14}."
+        ] },
+
         { t: "choices", prompt: "The urns are quiet.", items: [
           { label: "On to the Nave of Names and the trials", goto: "the-trials-of-the-pure" },
           { label: "Straight to the journals", goto: "the-hellrider-archive" }
@@ -287,29 +309,29 @@ window.SESSION = {
         { t: "note", title: "Memory 1 Opens at Any Tier", text: "Solving the Seats, however it went, opens {@b Drenwal's first General's Memory: Zariel as commander.} Read it from {@side arc-drenwal|Arc: Drenwal and the Hellrider Memories}, then give him the boon (Banner Discipline). Forced solves give him the memory in pieces: one sentence of the vision, then he must make a DC 12 Wisdom save or lose a round to it." },
 
         { t: "h", text: "Loot by Tier" },
-        { t: "p", text: "Each solved trial rolls once on the table for its tier. Clean is the top tier. When Griffon's Saddlebag items are supplied (not yet), the top tier also gives one fixed item per PC." },
+        { t: "p", text: "Each solved trial rolls once on the table for its tier, scaled for a level-13 party: Forced is uncommon, Hard-won rare, Clean very rare. The Urn Hall has its own hoard ({@scene the-urns-of-the-unquiet|The Urn Hoard}). When Griffon's Saddlebag items are supplied (not yet), the top tier also gives one fixed item per PC." },
         { t: "table", caption: "Forced (d6)", head: ["d6", "Reward"], rows: [
-          ["1-2", "{@item Potion of healing|DMG}"],
-          ["3", "A spell scroll, 2nd level (DM picks)"],
-          ["4", "Old Hellrider coins, worth 50 gp"],
-          ["5", "Ten {@item +1 arrows|DMG} wrapped in white cloth"],
+          ["1-2", "{@item Potion of superior healing|DMG} (two of them)"],
+          ["3", "A spell scroll, 4th level (DM picks)"],
+          ["4", "Old Hellrider coin, worth 500 gp"],
+          ["5", "{@item Potion of heroism|DMG} (two of them), in Hellrider field flasks"],
           ["6", "A plain white tabard with a sun-and-sword. It is worth nothing. It matters to Veska."]
         ] },
         { t: "table", caption: "Hard-won (d6)", head: ["d6", "Reward"], rows: [
-          ["1", "{@item Potion of greater healing|DMG}"],
-          ["2", "A spell scroll, 3rd level (DM picks)"],
-          ["3", "{@item Potion of resistance|DMG} (choose: fire, cold or poison)"],
-          ["4", "{@item Bag of holding|DMG}"],
-          ["5", "{@item Wand of the war mage, +1|DMG}"],
-          ["6", "A {@item +1 weapon|DMG} of the finder's choice"]
+          ["1", "{@item Potion of supreme healing|DMG}"],
+          ["2", "A spell scroll, 5th level (DM picks)"],
+          ["3", "{@item Amulet of health|DMG}: a rider's sun medallion"],
+          ["4", "{@item Ring of protection|DMG}"],
+          ["5", "{@item Cloak of displacement|DMG}: a Hellrider riding cloak that blurs like heat haze"],
+          ["6", "A {@item +2 weapon|DMG} of the finder's choice, Hellrider make"]
         ] },
         { t: "table", caption: "Clean (d6, rolled once per trial solved cleanly)", head: ["d6", "Reward"], rows: [
-          ["1", "{@item Ring of protection|DMG}"],
-          ["2", "{@item Bracers of defense|DMG}"],
-          ["3", "{@item Cloak of displacement|DMG}"],
-          ["4", "A {@item +2 weapon|DMG} of the finder's choice"],
-          ["5", "{@item Ring of evasion|DMG}"],
-          ["6", "A spell scroll, 5th level (DM picks)"]
+          ["1", "{@item +2 armor|DMG} of the finder's type, white Hellrider enamel"],
+          ["2", "A {@item +3 shield|DMG} with the sun-and-sword"],
+          ["3", "{@item Amulet of the planes|DMG}: the road home is a long one"],
+          ["4", "A {@item +3 weapon|DMG} of the finder's choice"],
+          ["5", "{@item Rod of absorption|DMG}: a marshal's baton"],
+          ["6", "A spell scroll, 7th level (DM picks)"]
         ] },
         { t: "note", title: "Saddlebag Items (Placeholder)", text: "{@b Top tier, fixed item per PC:} Saddlebag item for Drenwal: DM to supply (source missing). Saddlebag item for Aurora: DM to supply (source missing). Saddlebag item for Or'Henn: DM to supply (source missing). {@b Stand-in until then:} one {@item ring of protection|DMG} for the party to share, or one stand-in rare SRD item per PC from the Clean table. Do not invent Saddlebag items." },
 
