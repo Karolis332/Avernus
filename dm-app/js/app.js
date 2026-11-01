@@ -14,6 +14,16 @@
     return params.get("s");
   }
 
+  function wantsCombatView() {
+    return new URLSearchParams(window.location.search).get("view") === "combat";
+  }
+
+  // Named window: repeated calls focus the same pop-out instead of opening more.
+  function openCombatWindow() {
+    var w = window.open("index.html?s=" + encodeURIComponent(app.session.id) + "&view=combat", "dm-combat");
+    if (w && w.focus) w.focus();
+  }
+
   function wantsCampaignFixture() {
     var params = new URLSearchParams(window.location.search);
     return params.get("fixture") === "1";
@@ -63,6 +73,7 @@
     dom.searchBtn = qs("#search-btn");
     dom.libraryBtn = qs("#library-btn");
     dom.mapBtn = qs("#map-btn");
+    dom.combatBtn = qs("#combat-btn");
     dom.libraryView = qs("#library-view");
     dom.libraryContent = qs("#library-content");
     dom.libraryTabs = document.querySelectorAll(".lib-tab");
@@ -299,6 +310,7 @@
       else if (e.key.toLowerCase() === "n") window.DMTracker.triggerNextTurn();
       else if (e.key.toLowerCase() === "l") openLibrary();
       else if (e.key.toLowerCase() === "m") openCampaignMap();
+      else if (e.key.toLowerCase() === "c" && !e.ctrlKey && !e.metaKey && !e.altKey) openCombatWindow();
     });
   }
 
@@ -308,6 +320,7 @@
     dom.searchBtn.addEventListener("click", function () { window.DMSearch.open(); });
     dom.libraryBtn.addEventListener("click", openLibrary);
     dom.mapBtn.addEventListener("click", function () { openCampaignMap(); });
+    dom.combatBtn.addEventListener("click", openCombatWindow);
     dom.helpBtn.addEventListener("click", function () { dom.helpPopover.classList.toggle("open"); });
   }
 
@@ -318,6 +331,7 @@
       return;
     }
     app.session = window.DMCore.mergeCampaign(window.SESSION, window.CAMPAIGN);
+    if (wantsCombatView()) { window.DMCombat.mount(app.session); return; }
     renderHeader();
     window.DMPanel.init({
       panelEl: dom.panelEl, bodyEl: dom.panelBody, titleEl: dom.panelTitle,
@@ -352,6 +366,7 @@
     bindDelegatedClicks();
     bindKeyboard();
     bindMisc();
+    window.DMCombat.watchMain(app.session, dom.sceneBody);
   }
 
   var meta = pickSessionMeta();

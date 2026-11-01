@@ -46,6 +46,7 @@
     var sessionId = session.id;
     var root = el("div", "block block-encounter");
     root.dataset.encounterRoot = "1";
+    root.dataset.encounterId = block.id;
     root.addEventListener("mousedown", function () { api.active = api; });
 
     var state = loadJSON(encKey(sessionId, block.id), null);

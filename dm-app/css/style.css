@@ -576,3 +576,17 @@ body.campaign-map-open #panel, body.campaign-map-open #center { transition: none
 .group-save-result.fail { color: #9b1c1c; font-weight: bold; }
 .fight-row-grouped td:first-child { border-left: 3px solid #8b6b2f; }
 .group-controls select { width: auto; min-width: 4.5em; }
+
+/* ---- combat pop-out (?view=combat) ---- */
+body.combat-mode #app-header, body.combat-mode #layout, body.combat-mode #search-overlay { display: none; }
+.combat-root { display: grid; grid-template-columns: 200px minmax(560px, 1.8fr) minmax(320px, 1fr); gap: 12px; height: 100vh; padding: 10px; box-sizing: border-box; background: var(--parchment); }
+.combat-col { overflow-y: auto; min-height: 0; padding: 0 6px; }
+.combat-heading { font-family: "Cinzel", Georgia, serif; color: var(--red); margin: 4px 0 10px; }
+.combat-enc { display: flex; flex-direction: column; align-items: flex-start; width: 100%; text-align: left; margin-bottom: 6px; padding: 8px 10px; border: 1px solid var(--read-border); border-radius: 4px; background: var(--parchment-dark); color: var(--ink); cursor: pointer; font-family: inherit; }
+.combat-enc.selected { border-color: var(--red); background: #ffe9a8; box-shadow: inset 3px 0 0 var(--red); }
+.combat-enc-title { font-weight: bold; }
+.combat-enc-scene { font-size: 0.8rem; opacity: 0.75; }
+.combat-enc-live { font-size: 0.75rem; color: var(--red-light); font-weight: bold; }
+.combat-empty { font-style: italic; padding: 20px; }
+.combat-sb .statblock { margin: 0 0 14px; }
+.combat-sb.sb-active .statblock { box-shadow: 0 0 0 3px #d4a017; background: #fff4cf; }
