@@ -13,3 +13,4 @@
 - [Elturel endgame canon](elturel_endgame_canon.md) — adopted: Sword carried off by Yael+Lulu (Lulu's memories = path to the Citadel); contract copy vs original; victory tiers; Urexiel = yugoloth.
 - [Session handoff — Yeenoghu/Dumal set-piece](session_handoff_yeenoghu.md) — RESOLVED Session 7 (2026-07-19): party DEFEATED Yeenoghu + Dumal; Dumal arc closed. Encounter build in yeenoghu-encounter.md.
 - [Session 5 Dumal handoff](session_handoff_dumal_session5.md) — prior state: Session 4 outcomes, Dumal arc plan, homebrew lore (Coram/Senna/Ardentwine), v2 influence tracker, Open5e MCP. Primer: session-5-dumal-primer.md.
+- [DM app primer feedback](dm_app_primer_feedback.md) — primers need deep DM context + sources, collapsed lore, combat screen, group-monster house rule
