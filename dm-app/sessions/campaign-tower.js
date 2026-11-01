@@ -353,7 +353,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     kind: "krull",
     role: "Arkhan's priest and seneschal, a tortle cleric who covets Arkhan's place",
     source: { page: "bestiary", name: "Krull", src: "BGDIA" },
-    homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: HP 117 to 180, AC 17 to 19, save DC 16 to 18, spells up to 7th level, Multiattack added.",
+    homebrew: "Session 10 upscale to CR 17 for a level-13 party with a warship: HP 272, AC 20, save DC 20, 16th-level cleric (8th-level slot), 2 legendary actions. Earlier: scaled for a L12 party: HP 117 to 180, AC 17 to 19, save DC 16 to 18, spells up to 7th level, Multiattack added.",
     description: "An old tortle in ceremonial armour, wrinkled and slow. His shell is carved all over with tiny Draconic runes: hundreds of prayers to Tiamat, cut one by one. He carries a heavy maul and a sling bag that clinks. In the air he rides on Obatala's back; on the ground, at the tower, four ghouls trail him like hungry dogs until he clicks his tongue at them.",
     roleplay: [
       "Appearance: grey-green skin, cloudy old eyes, rune-carved shell, ceremonial plate. Smells of incense and grave dirt.",
@@ -369,27 +369,36 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     npc: false,
     sizeType: "Medium humanoid (tortle), lawful evil",
-    ac: 19, acNote: "natural armor; 21 in Shell Defence",
-    hp: 180, hpFormula: "24d8 + 72",
+    ac: 20, acNote: "natural armor; 22 in Shell Defence",
+    hp: 272, hpFormula: "32d8 + 128",
     speed: "30 ft.",
-    abilities: { str: 20, dex: 14, con: 16, int: 12, wis: 22, cha: 12 },
-    saves: "Con +7, Wis +10, Cha +5", skills: "Arcana +5, Medicine +10, Nature +5, Religion +5, Survival +10",
+    abilities: { str: 20, dex: 14, con: 18, int: 14, wis: 24, cha: 14 },
+    saves: "Con +10, Wis +13, Cha +8", skills: "Arcana +8, Insight +13, Medicine +13, Religion +8, Survival +13",
     vulnerable: "", resist: "", immune: "", condImmune: "",
-    senses: "passive Perception 16",
+    senses: "passive Perception 17",
     languages: "Common, Aquan, Draconic",
-    cr: "12", xp: 8400, pb: 4,
+    cr: "17", xp: 18000, pb: 6,
     traits: [
       { name: "Hold Breath", text: "Can hold its breath for 1 hour." },
       { name: "Inescapable Destruction", text: "Krull's necrotic spell damage ignores resistance to necrotic damage." },
-      { name: "Spellcasting", text: "14th-level cleric. Spell save DC 18, +10 to hit. Cantrips: chill touch, mending, sacred flame, spare the dying, thaumaturgy. 1st (4 slots): cure wounds, detect evil and good, inflict wounds. 2nd (3): hold person, spiritual weapon. 3rd (3): animate dead, spirit guardians, speak with dead. 4th (3): banishment, death ward, divination. 5th (2): contagion, flame strike, mass cure wounds. 6th (1): blade barrier, harm. 7th (1): fire storm, regenerate. Krull does not have raise dead himself; he can only broker Arkhan's innate raise dead (see {@side raise-the-dead|Raise the Dead}), not cast it." }
+      { name: "Spellcasting", text: "16th-level cleric. Spell save DC 20, +12 to hit. Cantrips: chill touch, mending, sacred flame, spare the dying, thaumaturgy. 1st (4 slots): cure wounds, detect evil and good, inflict wounds. 2nd (3): hold person, spiritual weapon. 3rd (3): animate dead, spirit guardians, speak with dead. 4th (3): banishment, death ward, divination. 5th (2): contagion, flame strike, mass cure wounds. 6th (1): blade barrier, harm. 7th (1): fire storm, regenerate. 8th (1): antimagic field, earthquake. Krull does not have raise dead himself; he can only broker Arkhan's innate raise dead (see {@side raise-the-dead|Raise the Dead}), not cast it." }
     ],
     actions: [
       { name: "Multiattack", text: "Krull makes two Maul attacks, or casts a spell and makes one Maul attack." },
-      { name: "Claws", text: "Melee Weapon Attack: +9 to hit, reach 5 ft. Hit: 7 (1d4 + 5) piercing." },
-      { name: "+1 Maul", text: "Melee Weapon Attack: +10 to hit, reach 5 ft. Hit: 13 (2d6 + 6) bludgeoning plus 9 (2d8) necrotic." },
+      { name: "Claws", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 7 (1d4 + 5) piercing." },
+      { name: "+1 Maul", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 13 (2d6 + 6) bludgeoning plus 13 (3d8) necrotic." },
       { name: "Shell Defence", text: "Withdraws into its shell: +2 AC (AC 21), advantage on Str/Con saves; prone, speed 0, disadvantage on Dex saves, no reactions. Only action while inside is to emerge (bonus action)." }
     ],
     bonus: [], reactions: [],
+    legendary: {
+      count: 2,
+      intro: "Krull can take 2 legendary actions, one at a time, at the end of another creature's turn. He regains them at the start of his turn.",
+      actions: [
+        { name: "Cantrip", cost: 1, text: "Krull casts a cantrip." },
+        { name: "Mend the Wing", cost: 1, text: "One dragon Krull can see within 60 ft. regains 22 (4d10) hit points." },
+        { name: "Unholy Word", cost: 2, text: "Krull speaks a word of Tiamat's. Each creature of his choice within 30 ft. makes a DC 20 Wisdom saving throw or is frightened of him until the end of its next turn." }
+      ]
+    },
     tactics: [
       "Heals both sides after {@scene dragons-attack|the dragon ambush}, without being asked ({@spell mass cure wounds}). A real courtesy, not a trick.",
       "In {@scene the-fight|the showdown}, stays near {@c arkhan-the-cruel|Arkhan}: {@spell mass cure wounds} when two or more allies are hurt, {@spell blade barrier} across the party's escape route, {@spell harm} on whoever is hurting Arkhan most. Unless he has already turned on the party or on Arkhan.",
@@ -420,35 +429,37 @@ Object.assign(window.CAMPAIGN.creatures, {
     source: { page: "bestiary", name: "Arkhan the Cruel", src: "BGDIA" },
     npc: false,
     sizeType: "Medium humanoid (dragonborn), lawful evil",
-    ac: 23, acNote: "obsidian flint dragon plate, shield",
-    hp: 345, hpFormula: "30d8 + 210",
+    ac: 24, acNote: "obsidian flint dragon plate, shield, Tiamat's favour",
+    hp: 460, hpFormula: "40d8 + 280",
     speed: "40 ft.",
-    abilities: { str: 20, dex: 12, con: 24, int: 10, wis: 10, cha: 20 },
-    saves: "Wis +7, Cha +12", skills: "Athletics +12, Deception +12, Intimidation +12",
+    abilities: { str: 24, dex: 12, con: 24, int: 12, wis: 14, cha: 22 },
+    saves: "Str +15, Con +15, Wis +10, Cha +14", skills: "Athletics +15, Deception +14, Intimidation +14, Religion +9",
     vulnerable: "", resist: "fire, poison, bludgeoning/piercing/slashing from nonmagical attacks", immune: "",
-    condImmune: "frightened",
-    senses: "darkvision 60 ft. (sees invisible creatures to the same range), passive Perception 10",
+    condImmune: "charmed, frightened",
+    senses: "darkvision 120 ft. (sees invisible creatures to the same range), passive Perception 12",
     languages: "Common, Draconic",
-    homebrew: "Buffed from the book's Arkhan to CR 22 for this table: 345 HP, AC 23, +15 Fane-Eater with Aura of Hate folded in; Hand of Vecna with 12 charges and the signature Vecna's Grip; 3 legendary actions (Strike, Hand of Vecna, Command the Line); Legendary Resistance 3/day; lair action (the skull's maw breathes).",
-    cr: "22", xp: 41000, pb: 7,
+    homebrew: "Session 10 upscale to CR 25 (460 HP, AC 24, +18 Fane-Eater 2d8+14 plus 3d8 cold, DC 22, 4 legendary actions, Legendary Resistance 4/day, Breath of the Five, Tiamat's Chosen) because the party is level 13 with a warship. Earlier: buffed from the book's Arkhan to CR 22 for this table: 345 HP, AC 23, +15 Fane-Eater with Aura of Hate folded in; Hand of Vecna with 12 charges and the signature Vecna's Grip; 3 legendary actions (Strike, Hand of Vecna, Command the Line); Legendary Resistance 3/day; lair action (the skull's maw breathes).",
+    cr: "25", xp: 75000, pb: 8,
     traits: [
       { name: "Special Equipment", text: "Wields Fane-Eater, a +3 battleaxe, and wears Obsidian Flint Dragon Plate (advantage on checks/saves to avoid or end being grappled). Fane-Eater and the Hand of Vecna never come off his body, dead or alive." },
       { name: "Aura of Hate", text: "While not incapacitated, Arkhan and all fiends/undead within 30 ft. deal +4 damage on melee weapon hits (already folded into the melee numbers below)." },
-      { name: "Legendary Resistance (3/Day)", text: "If Arkhan fails a saving throw, he can choose to succeed instead." },
-      { name: "Hand of Vecna (12 charges, regains 2d4+4 at dawn)", text: "Spell save DC 20. Finger of death (5 charges), slow (2), teleport (3), sleep (1). Vecna's Grip (signature, 4 charges): one creature within 60 ft., DC 20 Con save or restrained and silenced until the start of Arkhan's next turn." },
-      { name: "Innate Spellcasting", text: "Charisma (spell save DC 20, +12 to hit). 3/day each: animate dead, branding smite, revivify. 1/day each: geas, raise dead." }
+      { name: "Legendary Resistance (4/Day)", text: "If Arkhan fails a saving throw, he can choose to succeed instead." },
+      { name: "Tiamat's Chosen", text: "The first time Arkhan drops to 0 hit points in a fight, he drops to 1 instead, and every chromatic dragon within 120 ft. that can see him uses its reaction to move up to its speed toward him." },
+      { name: "Hand of Vecna (12 charges, regains 2d4+4 at dawn)", text: "Spell save DC 22. Finger of death (5 charges), slow (2), teleport (3), sleep (1). Vecna's Grip (signature, 4 charges): one creature within 60 ft., DC 22 Con save or restrained and silenced until the start of Arkhan's next turn." },
+      { name: "Innate Spellcasting", text: "Charisma (spell save DC 22, +14 to hit). 3/day each: animate dead, branding smite, revivify. 1/day each: geas, raise dead." }
     ],
     actions: [
-      { name: "Multiattack", text: "Arkhan makes three Fane-Eater attacks." },
-      { name: "Fane-Eater (Battleaxe)", text: "+15 to hit, reach 5 ft. Hit: 16 (1d8 + 12) slashing plus 9 (2d8) cold. (He fights with a shield, so always one-handed.) On a natural 20: extra 9 (2d8) necrotic, and Arkhan regains that much hit points." },
-      { name: "Javelin", text: "Ranged Weapon Attack: +12 to hit, range 30/120 ft. Hit: 8 (1d6 + 5) piercing. Used in melee it benefits from Aura of Hate: same +12 to hit, 12 (1d6 + 5 + 4) piercing." }
+      { name: "Multiattack", text: "Arkhan makes three Fane-Eater attacks. He can replace one of them with Breath of the Five, if it is available." },
+      { name: "Fane-Eater (Battleaxe)", text: "+18 to hit, reach 5 ft. Hit: 23 (2d8 + 14) slashing plus 13 (3d8) cold. (He fights with a shield, so always one-handed.) On a natural 20: extra 18 (4d8) necrotic, and Arkhan regains that much hit points." },
+      { name: "Breath of the Five (Recharge 5-6)", text: "Arkhan exhales his queen's breath in a 60-ft. cone, choosing acid, cold, fire, lightning or poison. Each creature in the cone makes a DC 22 Dexterity saving throw (Constitution for cold or poison), taking 63 (18d6) damage of that type on a failure, or half as much on a success." },
+      { name: "Javelin", text: "Ranged Weapon Attack: +15 to hit, range 30/120 ft. Hit: 10 (1d6 + 7) piercing. Used in melee it benefits from Aura of Hate: 14 (1d6 + 7 + 4) piercing." }
     ],
     bonus: [], reactions: [],
     legendary: {
-      count: 3,
-      intro: "Only one at a time, only at the end of another creature's turn. Regains all 3 at the start of his turn.",
+      count: 4,
+      intro: "Only one at a time, only at the end of another creature's turn. Regains all 4 at the start of his turn.",
       actions: [
-        { name: "Strike", cost: 1, text: "One Fane-Eater attack (16 (1d8+12) slashing plus 9 (2d8) cold)." },
+        { name: "Strike", cost: 1, text: "One Fane-Eater attack (+18, 23 (2d8+14) slashing plus 13 (3d8) cold)." },
         { name: "Hand of Vecna", cost: 2, text: "Always costs 2 legendary actions. Arkhan casts slow, sleep or Vecna's Grip from the Hand, spending that spell's Hand charges as normal. Finger of death and teleport cannot be cast this way. Teleport (3 Hand charges) takes his action on his own turn: he and up to eight willing allies within 10 ft. vanish to his tower." },
         { name: "Command the Line", cost: 1, text: "Arkhan directs Torogar, Krull, the manticore, or a dragon: that ally gains advantage on its next attack, or may use its reaction early." }
       ]
@@ -466,7 +477,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       "If the party is clearly winning, orders the {@c white-abishai|white abishai} around the tent to attack (1d4+1 arrive).",
       "Optional escalation (DM choice): as a bonus action he can call {@c asojano|Asojano}, the chimera that lairs deep in the skull. Add him with Add creature.",
       "Weapon blows blaze with Tiamat's radiant power ({@spell branding smite}). Revives fallen allies with {@spell revivify} as soon as he can.",
-      "At roughly half hit points (about 173), teleports home to his tower with Hand of Vecna, taking as many allies as he can. Never risks losing Fane-Eater or the Hand of Vecna.",
+      "At roughly half hit points (about 230), teleports home to his tower with Hand of Vecna, taking as many allies as he can. Never risks losing Fane-Eater or the Hand of Vecna.",
       "If the party flees before he is bloodied, he does not chase personally. He sends Torogar and the manticore after them and stays in the Monument."
     ]
   }

@@ -11,30 +11,40 @@ Object.assign(window.CAMPAIGN.creatures, {
     kind: "olanthius",
     role: "Death knight, guilty witness, keeper of the Sword's missing shard",
     source: { page: "bestiary", name: "Olanthius", src: "BGDIA" },
-    homebrew: "Monster Manual death knight numbers. He fights at half heart: he pulls killing blows, uses Hellfire Orb only as a warning shot, and never strikes a downed character.",
+    homebrew: "Upscaled from the Monster Manual death knight to CR 20 for three level-13 characters with companions: 285 HP, AC 21, +13, longsword 5d8 necrotic, 3 legendary actions, Legendary Resistance 2/day. He fights at half heart: he pulls killing blows, uses Hellfire Orb only as a warning shot, and never strikes a downed character.",
     npc: true,
     sizeType: "Medium undead, lawful neutral",
-    ac: 20, acNote: "plate, shield",
-    hp: 180, hpFormula: "19d8 + 95",
+    ac: 21, acNote: "plate, shield",
+    hp: 285, hpFormula: "30d8 + 150",
     speed: "30 ft.",
-    abilities: { str: 20, dex: 11, con: 20, int: 12, wis: 16, cha: 18 },
-    saves: "Dex +6, Wis +9, Cha +10", skills: "",
+    abilities: { str: 22, dex: 11, con: 20, int: 12, wis: 16, cha: 18 },
+    saves: "Str +12, Dex +6, Wis +9, Cha +10", skills: "Athletics +12, History +7, Insight +9",
     vulnerable: "", resist: "", immune: "necrotic, poison", condImmune: "exhaustion, frightened, poisoned",
     senses: "darkvision 120 ft., passive Perception 13",
     languages: "Celestial, Common, Infernal",
-    cr: "17", xp: 18000, pb: 6,
+    cr: "20", xp: 25000, pb: 6,
     traits: [
       { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
+      { name: "Legendary Resistance (2/Day)", text: "If he fails a saving throw, he can choose to succeed instead." },
       { name: "Marshal Undead", text: "Unless he is incapacitated, he and undead of his choice within 60 ft. have advantage on saving throws against features that turn undead." },
       { name: "Spellcasting", text: "19th-level paladin. Spell save DC 18, +10 to hit. 1st (4 slots): command, compelled duel, searing smite. 2nd (3): hold person, magic weapon. 3rd (3): dispel magic, elemental weapon. 4th (3): banishment, staggering smite. 5th (2): destructive wave." },
       { name: "Oathbreaker", text: "His spells that deal radiant damage deal necrotic damage instead." }
     ],
     actions: [
       { name: "Multiattack", text: "Three longsword attacks." },
-      { name: "Longsword", text: "Melee Weapon Attack: +11 to hit, reach 5 ft., one target. Hit: 9 (1d8 + 5) slashing plus 18 (4d8) necrotic." },
+      { name: "Longsword", text: "Melee Weapon Attack: +13 to hit, reach 5 ft., one target. Hit: 10 (1d8 + 6) slashing plus 22 (5d8) necrotic." },
       { name: "Hellfire Orb (1/Day)", text: "A ball of fire bursts at a point he can see within 120 ft. Each creature in a 20-ft. radius makes a DC 18 Dexterity saving throw: 35 (10d6) fire plus 35 (10d6) necrotic on a failure, half on a success. It spreads around corners." }
     ],
     bonus: [],
+    legendary: {
+      count: 3,
+      intro: "Olanthius can take 3 legendary actions, one at a time, at the end of another creature's turn. He regains them at the start of his turn.",
+      actions: [
+        { name: "Longsword", cost: 1, text: "He makes one longsword attack." },
+        { name: "Hold the Line", cost: 1, text: "He moves up to half his speed without provoking opportunity attacks, to stand between an enemy and a downed creature." },
+        { name: "The Sun Will Hold", cost: 2, text: "Each undead of his choice within 60 ft. regains 20 hit points, and each creature he chooses within 30 ft. makes a DC 18 Wisdom saving throw or is frightened of him until the end of its next turn." }
+      ]
+    },
     reactions: [
       { name: "Parry", text: "Adds 6 to his AC against one melee attack that would hit him. He must see the attacker and hold a melee weapon." }
     ],

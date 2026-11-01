@@ -301,7 +301,7 @@ window.SESSION = {
       when: "",
       duration: "30 minutes",
       blocks: [
-        { t: "p", text: "Olanthius gave the party the shard and the road. He did not give them the whole story. Behind the Nave, in a vaulted room of shelves and reading desks, the order kept its annals, and Olanthius's own journal lies open on the lectern. He lets Drenwal read it." },
+        { t: "p", text: "Olanthius gave the party the shard and the road. He did not give them the whole story. Behind the Nave, in a vaulted room of shelves and reading desks (area C7), the order kept its annals, and Olanthius's own journal lies open on the lectern. It is the book's key to him: if the party read it before they spoke, they read it again now with his leave, and if not, he lets Drenwal read it. The shard itself came from Drenwal telling him the truth about Halvard." },
         { t: "read", text: "A narrow room of shelves. Hundreds of leather-bound books, none of them dusty. A reading desk with a single lamp that gives a light the colour of a dawn that is never coming.\n\nOn the lectern, an open book in a heavy hand. The top page is a date you do not recognise, and under it, the first line: \"I will write this down because I cannot say it.\"" },
         { t: "env", sight: "Shelves of annals; a lamp that does not flicker; Olanthius's journal open at the last entry.", sound: "Pages turning on their own, once.", smell: "Leather, ink, cold lamp oil.", feel: "Looking at someone's diary and being asked to read it." },
 

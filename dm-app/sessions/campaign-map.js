@@ -291,7 +291,7 @@ window.CAMPAIGN.map = {
       requires: ["Haruman's body."],
       unlocks: ["The way to the Bleeding Citadel (Eventyr)."],
       sessions: 1,
-      dmChoices: ["The Haruman errand here is spent -- the trophy supplied the piece -- so it is a temptation, not a quest.", "RE-OPENED for session 10: the party passes it on the Styx run to Uldrak Grave. Scene written in 10-the-styx-run.js.", "It smells Tiamat curse on Or Henn and explains the mechanism for free.", "DIAL: it offers to MAKE a dragon for the curse to step into. Cut this if you want Tiamat to stay caged.", "A sibriex spawn still roams the travel table."],
+      dmChoices: ["The Haruman errand here is spent -- the trophy supplied the piece -- so it is a temptation, not a quest.", "RE-OPENED for session 10: the party flies past it (flight scrolls, overland) on the way to Uldrak Grave. Scene written in 10-the-styx-run.js.", "It smells Tiamat curse on Or Henn and explains the mechanism for free.", "DIAL: it offers to MAKE a dragon for the curse to step into. Cut this if you want Tiamat to stay caged.", "A sibriex spawn still roams the travel table."],
       alternatives: ["If a piece is lost, the sibriex can read memory from another body."]
     },
     {
@@ -343,10 +343,10 @@ window.CAMPAIGN.map = {
       x: 22.7, y: 70.5,
       stage: "ch3c", path: "main", status: "open",
       objective: "Win the third piece of the ROAD from Olanthius, the guilty witness, with Lulu there to hear him -- and take the one SHARD missing from the Sword, which cracked off in Zariel's last battle and which he has kept ever since.",
-      bloodPrice: "A death knight. Without Lulu, the watchword or a grieved name of the First Charge it is one DC 20 Persuasion, then a fight. Lulu relives the flight from Hell.",
+      bloodPrice: "A death knight. Without Drenwal's truth about Halvard it is one DC 18 Persuasion, then a trial or a fight. Lulu relives the flight from Hell.",
       blood: 2,
       eventyr: "3c, one of the Fallen Three. His final task in Eventyr: free Kostchtchie to distract Zariel.",
-      requires: ["The password from the Obelisk, or force, a trick, or a bought word.", "Lulu, the watchword \"The sun will hold!\", or a First Charge name said with real grief."],
+      requires: ["The password from the Obelisk, or force, a trick, or a bought word.", "Drenwal: the truth that the Bhaal cult murdered his father Halvard, whose name Olanthius carved as fallen at the wall."],
       unlocks: ["The Sword's missing shard (Eventyr's option): it opens the Citadel's vision trial, then rejoins the blade.", "Olanthius's piece of the Fallen Three road.", "Lulu's Stage 4 memory: the flight, and the raising of the Citadel.", "The Coram clue: he saw the star fall."],
       sessions: 1.5,
       dmChoices: ["Olanthius is a witness, not the one who hid the Sword. Yael and Lulu carried it out; the shard cracked off in Zariel's last battle, and he picked it up off the field.", "He will not hand the shard over easily. Taking it means answering for what the Sword cost Yael.", "He argues against taking the Sword: it would waste Yael's death."],
@@ -358,7 +358,7 @@ window.CAMPAIGN.map = {
           "The approach: the air turns wrongly cold. Devils will not follow.",
           "The Nave of Names, then the Hellrider tombs.",
           "Olanthius kneels at the empty sarcophagus. He opens with grief, not a sword.",
-          "Yael's name, said with real grief, is the master key: advantage on every social check, and plain speech.",
+          "Drenwal's truth about Halvard is the master key: advantage on every social check, plain speech, and the shard.",
           "When he names Yael, Lulu's memory fires. Do not miss it.",
           "Mark the Fallen Three at 3 of 3, and Lulu's stage."
         ] },
@@ -427,7 +427,7 @@ window.CAMPAIGN.map = {
       unlocks: ["Drag-marks to the Weeping Furrow.", "A Green Remnant seed in the burned beds."],
       sessions: 1,
       dmChoices: ["Feonor walks this trail under Or'Henn's Geas. See {@side arc-orhenn|Or'Henn's arc}.", "The staff hunt is on hold while she runs it."],
-      alternatives: ["Skip it: the Crypt door has other keys (Lulu, the watchword, a grieved name), so nothing here is required for Olanthius."]
+      alternatives: ["Skip it: nothing at the Crypt depends on it."]
     },
     {
       id: "weeping-furrow", title: "The Weeping Furrow",
@@ -604,7 +604,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "list", items: [
         "{@b Arkhan's price.} Moonkite given: the Coram road needs a new witness. Lulu given: her memory road is gone, so all three pieces are needed. Neither: the party runs, and the blood comes from somewhere else, or not at all.",
         "{@b Bel's price.} The party does not know it yet. His first audience names it: the spare rods and the command cipher, still in the wreck. One more trip, unless the Rust Queen gets there first.",
-        "{@b The Crypt.} The Obelisk password decides how gently it opens. A name of the First Charge, said with grief, opens Olanthius.",
+        "{@b The Crypt.} The Obelisk password decides how gently it opens. Drenwal's father opens Olanthius.",
         "{@b The contract.} The copy waits in Urexiel's vault, the original in Zariel's hand. Either one, with the Sword, gives the clean ending.",
         "{@b Kreeg.} Alive, he opens the box and signs. Dead, the party needs the slower registry transcript.",
         "{@b Coram.} The Solar's Helmet, Lulu's caging-memory and the Moonkite together free the Caged Star. That is the redemptive ending.",

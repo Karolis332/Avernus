@@ -1,10 +1,10 @@
-// Session 10: the Styx run, the Sibriex (optional), Uldrak's Grave, and the dragons the party calls.
+// Session 10: the flight to the Grave (flight scrolls, overland), the Sibriex (optional), Uldrak's Grave, and the dragons the party calls.
 // Tower dragons + Krull come from sessions/campaign-tower.js; this file overrides only their tactics.
 window.SESSION = {
   id: "10-the-styx-run",
-  title: "The Styx Run",
+  title: "The Flight to the Grave",
   subtitle: "Session 10 · Descent into Avernus",
-  summary: "The party runs the River Styx to Uldrak's Grave and spills Tiamat's blood to free the empyrean, even though that same vial was Or'Henn's only safe cure. Restored, Uldrak joins them, and they use the orb of dragonkind in his sword to call Arkhan's dragons to the Grave and kill them. The dragons come in waves, Krull comes with an offer, and one of the dragons knows exactly what Or'Henn's mark is for. On the way, if they stop, the chained sibriex.",
+  summary: "The party reads its flight scrolls and flies overland to Uldrak's Grave, the Lady Vengeance alongside, and spills Tiamat's blood to free the empyrean, even though that same vial was Or'Henn's only safe cure. Restored, Uldrak joins them, and they use the orb of dragonkind in his sword to call Arkhan's dragons to the Grave and kill them. The dragons come in waves, Krull comes with an offer, and one of the dragons knows exactly what Or'Henn's mark is for. On the way, if they turn aside, the chained sibriex.",
 
   party: [
     { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding drawn (Tier II); only the kinslaying remains. Carries the Shield of the Hidden Lord." },
@@ -19,10 +19,13 @@ window.SESSION = {
     { id: "lulu", name: "Lulu", note: "Hollyphant. HER MEMORY IS A CAMPAIGN PREREQUISITE -- see the warning in scene 1." },
     { id: "moonkite", name: "Moonkite", note: "Celestial mount, Aurora's companion" },
     { id: "lady-vengeance", name: "Lady Vengeance (Colico Jack)", note: "AC 17 · HP 350 · DT 15" },
-    { id: "uldrak", name: "Uldrak", note: "Empyrean, from Uldrak's Grave on. CR 23 ally." }
+    { id: "feonor", name: "Feonor", note: "Brought Cinderbloom. Geas fulfilled. Fights beside them once, if asked." }
   ],
 
   creatures: {
+    "arkhan-the-cruel": Object.assign({}, window.CAMPAIGN.creatures["arkhan-the-cruel"], {
+      tactics: window.CAMPAIGN.endgame.arkhanTactics
+    }),
 
     "sibriex": {
       name: "The Sibriex",
@@ -31,7 +34,7 @@ window.SESSION = {
       source: { page: "bestiary", name: "Sibriex", src: "MTF" },
       homebrew: "Stats as the party's own encounter table: AC 19, HP 150, CR 18, Squirt Bile, Warp Creature, 3 legendary actions. Campaign change: the Haruman errand that once justified this site is already spent (the trophy supplied the piece), so the sibriex is no longer a quest-giver. It is a temptation, and it has read what rides in Or'Henn's blood.",
       npc: true,
-      sizeType: "Large fiend (demon), chaotic evil",
+      sizeType: "Huge fiend (demon), chaotic evil",
       description: "A vast bloated head the size of a cart, hanging in rusted chains over a pit of its own leavings. No body worth the name: a sagging mass of folds, a lipless mouth, and long thin arms that end in fingers far too delicate for something so huge. Flesh it has shaped lies heaped below -- things with too many joints, still breathing. It smells of vinegar and birth.",
       roleplay: [
         "Appearance: a head in chains, eyes like wet stones, the skin running with pale bile.",
@@ -42,9 +45,37 @@ window.SESSION = {
         "Sample line: \"Let us down and we will tell you. We will even tell you true. We have no reason to lie to the short-lived.\"",
         "Never: begs. It has been here a long time and expects to be here longer."
       ],
-      ac: 19, acNote: "unnatural resilience",
-      hp: 150,
-      cr: "18", xp: 20000,
+      ac: 19, acNote: "natural armor",
+      hp: 150, hpFormula: "12d12 + 72",
+      speed: "0 ft., fly 20 ft. (hover) -- chained in place here",
+      abilities: { str: 10, dex: 3, con: 23, int: 25, wis: 24, cha: 25 },
+      saves: "Int +13, Cha +13", skills: "Arcana +13, History +13, Perception +13",
+      vulnerable: "", resist: "cold, fire, lightning; bludgeoning, piercing, and slashing from nonmagical attacks", immune: "poison", condImmune: "poisoned",
+      senses: "truesight 120 ft., passive Perception 23",
+      languages: "all, telepathy 120 ft.",
+      cr: "18", xp: 20000, pb: 6,
+      traits: [
+        { name: "Contamination", text: "The sibriex emits an aura of corruption 30 feet in every direction. Plants that aren't creatures wither in the aura, and the ground in it is difficult terrain for other creatures. Any creature that starts its turn in the aura must succeed on a DC 20 Constitution saving throw or take 14 (4d6) poison damage. A creature that succeeds is immune to this sibriex's Contamination for 24 hours." },
+        { name: "Innate Spellcasting", text: "Charisma (spell save DC 21, +13 to hit with spell attacks), no material components. At will: {@spell charm person}, {@spell command}, {@spell dispel magic}, {@spell hold person}. 3/day: {@spell feeblemind}." },
+        { name: "Legendary Resistance (3/Day)", text: "If the sibriex fails a saving throw, it can choose to succeed instead." },
+        { name: "Magic Resistance", text: "The sibriex has advantage on saving throws against spells and other magical effects." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "The sibriex uses Squirt Bile once and makes three attacks using its chain, bite, or both." },
+        { name: "Chain", text: "Melee Weapon Attack: +6 to hit, reach 15 ft., one target. Hit: 13 (2d12) piercing damage." },
+        { name: "Bite", text: "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 9 (2d8) piercing damage plus 9 (2d8) acid damage." },
+        { name: "Squirt Bile", text: "The sibriex targets one creature it can see within 120 feet. The target must succeed on a DC 20 Dexterity saving throw or take 35 (10d6) acid damage." },
+        { name: "Warp Creature", text: "The sibriex targets up to three creatures it can see within 120 feet. Each makes a DC 20 Constitution saving throw. On a success, the creature is immune to this sibriex's Warp Creature. On a failure, it is poisoned and gains 1 level of exhaustion. While poisoned this way it repeats the save at the start of each of its turns: three successes end the poison and remove the exhaustion it caused; each failure adds another level. At 6 levels it dies and becomes a living abyssal wretch under the sibriex's control. Only a {@spell wish} undoes the transformation." }
+      ],
+      legendary: {
+        count: 3,
+        intro: "The sibriex can take 3 legendary actions, one at a time, at the end of another creature's turn. It regains spent legendary actions at the start of its turn.",
+        actions: [
+          { name: "Cast a Spell", cost: 1, text: "The sibriex casts a spell." },
+          { name: "Spray Bile", cost: 1, text: "The sibriex uses Squirt Bile." },
+          { name: "Warp", cost: 2, text: "The sibriex uses Warp Creature." }
+        ]
+      },
       tactics: [
         "Opens with Warp Creature on whoever looks most physically perfect (Aurora or Moonkite).",
         "Squirt Bile at 120 ft. against anyone trying to cut the chains.",
@@ -68,6 +99,27 @@ window.SESSION = {
         "Knows: Tiamat's tricks, because she played one on him. How the orb in his pommel works. That Arkhan's dragons hunt this stretch of river.",
         "Sample line: \"I came here to kill a god. She made me small instead. Three thousand years I have been small. Pour it, and you will see what I was.\"",
         "Sample line: \"Do not pity me. Pour.\""
+      ],
+      // Spined devil numbers: he is not meant to be fought, but the table may try.
+      ac: 13, acNote: "natural armor",
+      hp: 22, hpFormula: "5d6 + 5",
+      speed: "20 ft., fly 40 ft.",
+      abilities: { str: 10, dex: 15, con: 12, int: 11, wis: 14, cha: 8 },
+      vulnerable: "", resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered", immune: "fire, poison", condImmune: "poisoned",
+      senses: "darkvision 60 ft., passive Perception 12",
+      languages: "Infernal, telepathy 120 ft. (and every tongue he knew as an empyrean)",
+      cr: "2", xp: 450, pb: 2,
+      traits: [
+        { name: "Devil's Sight", text: "Magical darkness doesn't impede his darkvision." },
+        { name: "Flyby", text: "He doesn't provoke opportunity attacks when he flies out of an enemy's reach." },
+        { name: "Limited Spines", text: "He has twelve tail spines. Used spines regrow by the time he finishes a long rest." },
+        { name: "Magic Resistance", text: "He has advantage on saving throws against spells and other magical effects." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "Two attacks: one with his bite and one with his fork, or two with his tail spines." },
+        { name: "Bite", text: "Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 5 (2d4) piercing damage." },
+        { name: "Fork", text: "Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 3 (1d6) piercing damage." },
+        { name: "Tail Spine", text: "Ranged Weapon Attack: +4 to hit, range 20/80 ft., one target. Hit: 4 (1d4 + 2) piercing damage plus 3 (1d6) fire damage." }
       ]
     },
 
@@ -142,6 +194,168 @@ window.SESSION = {
 
   },
 
+  timeline: [
+    {
+      "phase": "All Session",
+      "events": [
+        {
+          "when": "Start",
+          "tag": "trigger",
+          "text": "Set Or'Henn's {@b Pull} to 2 + 1 per gold scale. Say it out loud. Rules: {@side tiamats-pull|Tiamat's Pull}."
+        },
+        {
+          "when": "Each vision",
+          "tag": "trigger",
+          "text": "Dragon Queen's Garden {@b +2}; each Small Vision {@b +1}; first sight of each chromatic dragon {@b +1}; touching the orb {@b +1}."
+        },
+        {
+          "when": "Feonor arrives",
+          "tag": "choice",
+          "text": "While they argue about the orb: {@scene feonor-returns|Feonor Returns}. Cinderbloom attunes as a bonus action. Each staff charge: Pull {@b -1} or reroll a Pull save."
+        }
+      ]
+    },
+    {
+      "phase": "Wings Over the Grave",
+      "events": [
+        {
+          "when": "Every Or'Henn turn",
+          "tag": "every-turn",
+          "text": "If he sees a chromatic dragon: {@b Wisdom save DC 10 + Pull}. Fail: 0-3 disadvantage vs dragons; 4-6 can't target them and drifts toward them; 7-9 charmed and asks for help (curse can jump); 10 asks, no save."
+        },
+        {
+          "when": "Round 1",
+          "tag": "round",
+          "text": "{@b Flash} (red) arrives. Breath at the Lady Vengeance, not the characters."
+        },
+        {
+          "when": "Round 3",
+          "tag": "round",
+          "text": "{@b Slarkas} (black) and {@b Vermilius} (green) arrive. Vermilius talks to Or'Henn."
+        },
+        {
+          "when": "Round 5",
+          "tag": "round",
+          "text": "{@b Vistalancer} (blue) arrives, fastest of the four."
+        },
+        {
+          "when": "Round 7",
+          "tag": "round",
+          "text": "{@b Obatala} and {@b Krull} arrive. Krull makes his offer: {@side krulls-offer|Krull's Offer}."
+        },
+        {
+          "when": "Any dragon at its flee line",
+          "tag": "trigger",
+          "text": "It tries to leave. Stop it if they want a live dragon for Urexiel."
+        },
+        {
+          "when": "2 dragons down or fled",
+          "tag": "trigger",
+          "text": "Go to {@scene arkhans-gambit|Arkhan's Gambit}."
+        }
+      ]
+    }
+  ].concat(window.CAMPAIGN.endgame.timeline),
+
+  companions: [
+    {
+      "id": "lady-vengeance",
+      "name": "The Lady Vengeance (Colico Jack)",
+      "creature": "lady-vengeance",
+      "role": "The party's warship. Jack flies her; anyone can man a gun.",
+      "inFight": "Dragons treat her as the biggest threat on the field. Round 1 breath goes at her, not at the characters.",
+      "behaviour": [
+        "{@b Jack} keeps her moving: he never ends a round in the same place twice, and he flies her between a dragon and a downed character if asked.",
+        "{@b Cannons} need a crew: any ally or character on board can fire one as their action.",
+        "{@b Under Tiamat:} Jack wants to run. He will stay only if a character tells him to, to his face."
+      ]
+    },
+    {
+      "id": "jeremy",
+      "name": "Jeremy",
+      "creature": "jeremy",
+      "role": "Gondian engineer at the Planar Core",
+      "inFight": "Maintain Core every round (+10 vs DC 15). Damage Control only when she burns or drops below half.",
+      "behaviour": [
+        "Never burns a soul coin unless a player asks. He asks back once: \"You sure?\"",
+        "If the Core fails twice in a row, one cannon goes dark until he fixes it.",
+        "{@b When Tiamat rises} he goes very quiet, then says: \"I can give you one Overdrive. Then she falls out of the sky.\""
+      ]
+    },
+    {
+      "id": "moonkite",
+      "name": "Moonkite",
+      "creature": "moonkite",
+      "role": "Aurora's celestial mount, with a mind of its own",
+      "inFight": "Rolls its own initiative. Carries Aurora out of danger before it attacks anything.",
+      "behaviour": [
+        "Shimmering Shield on Aurora first, then on whoever is lowest.",
+        "Will not go within 30 ft. of Tiamat unless Aurora asks well (DC 15 Persuasion, or a promise).",
+        "Hates Krull's ghouls and the Hand of Vecna: it attacks Arkhan's Hand hand on sight if it has a clear shot."
+      ]
+    },
+    {
+      "id": "veska",
+      "creature": "veska",
+      "name": "Veska",
+      "role": "Hellrider of Elturel. Fear-immune. Officiates Drenwal's rebirth.",
+      "inFight": "Fights on the ground beside Drenwal. Mans a cannon if the fight is in the air.",
+      "behaviour": [
+        "{@b Fear-immune:} she is the anchor when frightful presence lands. Let her drag a frightened character out of a breath line (her action).",
+        "Targets whatever is attacking Drenwal. She will not leave him.",
+        "{@b Arkhan:} she knows Hellrider stories about Tiamat's champion. She tells the party to break his line of sight with the curse thread (see Arkhan's Gambit)."
+      ]
+    },
+    {
+      "id": "ser-lucan",
+      "creature": "ser-lucan",
+      "name": "Ser Lucan the Reforged",
+      "role": "Old Crimson Watch Hellrider on Gondian legs. A shield wall.",
+      "inFight": "Stands in front of the weakest character and takes the hits.",
+      "behaviour": [
+        "Keep the Watch every round: when an ally next to him is hit, he takes the hit instead.",
+        "Carries Halvard's last words. If Drenwal goes down, Lucan says them aloud: it gives Drenwal advantage on his next death save.",
+        "Will not fight Krull's side if Krull's side is fighting Tiamat. Says so."
+      ]
+    },
+    {
+      "id": "lulu",
+      "creature": "lulu",
+      "name": "Lulu",
+      "role": "Hollyphant. Her memory is a campaign prerequisite.",
+      "inFight": "Stays on the ship. Her job is to stay alive and remember.",
+      "behaviour": [
+        "Casts healing and protection on whoever is closest to the rail; never goes near the Styx.",
+        "{@b When Tiamat rises} she remembers something: one true thing about Zariel and Tiamat from before the fall. Decide what, and let her blurt it.",
+        "If anyone tries to hand her the orb, she drops it. She will not touch it."
+      ]
+    },
+    {
+      "id": "feonor",
+      "creature": "feonor",
+      "name": "Feonor",
+      "role": "The archmage Or'Henn bound with a geas. She just brought his staff.",
+      "inFight": "Free of the geas. She fights beside them once, if Or'Henn asks her nicely.",
+      "behaviour": [
+        "Counterspells Arkhan's Hand of Vecna once, with relish.",
+        "Leaves the moment Tiamat rises, by teleport, unless someone gives her a very good reason.",
+        "Urexiel's hunters are on her trail. Wherever she goes, they follow."
+      ]
+    },
+    {
+      "id": "uldrak",
+      "name": "Uldrak (returning)",
+      "creature": "uldrak",
+      "role": "Empyrean, away hunting a god-killing weapon. Comes back mid-fight.",
+      "inFight": "Arrives when Tiamat rises (see Tiamat Reborn), or the moment the orb calls and the party is losing.",
+      "behaviour": [
+        "Goes straight for Tiamat. Ignores the other dragons unless they are killing someone.",
+        "With the new weapon: see {@side uldraks-errand|Uldrak's Errand} for what it does and what it cost him.",
+        "Will not let Arkhan teleport away if he can reach him: he grabs him (contested Athletics) and holds."
+      ]
+    }
+  ],
+
   scenes: [
     {
       id: "adventure-primer",
@@ -150,8 +364,8 @@ window.SESSION = {
       duration: "5 minutes (read before play)",
       banner: "art/official/young-red-dragon.webp",
       blocks: [
-        { t: "p", text: "This session is designed for the three 13th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with their allies Veska, Ser Lucan, Jeremy, Lulu and Moonkite, and Colico Jack at the helm of the Lady Vengeance. It runs about four to five hours. It is a journey down the River Styx, a gift that costs more than the players know, and the biggest fight of the campaign so far: five of Arkhan's dragons, called down on purpose." },
-        { t: "note", title: "Tell the Players Before You Start", text: "Say this out of character, before the first scene: \"The Styx steals memories. Anything that touches the water can lose who it is. And calling five dragons to you is the most dangerous plan you have ever made. Characters can die here, and stay dead.\"" },
+        { t: "p", text: "This session is designed for the three 13th-level characters of this campaign: Drenwal, Aurora and Or'Henn, with their allies Veska, Ser Lucan, Jeremy, Lulu and Moonkite, and Colico Jack at the helm of the Lady Vengeance. It runs about four to five hours. It is a fast flight across the waste, a gift that costs more than the players know, and the biggest fight of the campaign so far: five of Arkhan's dragons, called down on purpose." },
+        { t: "note", title: "Tell the Players Before You Start", text: "Say this out of character, before the first scene: \"Uldrak's Grave sits on the bank of the Styx, and the Styx steals memories. Anything that touches the water can lose who it is. And calling five dragons to you is the most dangerous plan you have ever made. Characters can die here, and stay dead.\"" },
 
         { t: "h", text: "Background" },
         { t: "p", text: "Last session the party stole a vial of Tiamat's living blood from {@c arkhan-the-cruel|Arkhan the Cruel} at the Monument to Tiamat, and escaped by {@spell word of recall} before anyone could fight. Drenwal's sanctuary is the statue of St. Cuthbert on the Lady Vengeance, so the spell carried all three of them straight back to their own deck. Nobody was left behind." },
@@ -160,10 +374,10 @@ window.SESSION = {
         { t: "p", text: "Set in the pommel of Uldrak's sword is an {@item Orb of Dragonkind|DMG}. It calls evil dragons. The party's plan is to free Uldrak, then use the orb to call Arkhan's dragons to the Grave and kill them with an empyrean on their side." },
 
         { t: "h", text: "Overview" },
-        { t: "p", text: "This session has nine scenes and takes about four to five hours to play. The Sibriex happens only if they stop at the gorge. The vision in The Dragon Queen's Garden is for Or'Henn alone; Feonor's message at dawn is for everyone. The Call and Wings Over the Grave happen only if they call the dragons, which is their plan. The Ending always runs." },
+        { t: "p", text: "This session has nine scenes and takes about four to five hours to play. The Sibriex happens only if they turn aside at the gorge. The vision in The Dragon Queen's Garden is for Or'Henn alone; Feonor's message at dawn is for everyone. The Call and Wings Over the Grave happen only if they call the dragons, which is their plan. The Ending always runs." },
         { t: "list", items: [
           "{@b Where We Left Off} (5 minutes). Word of Recall drops the party at the foot of St. Cuthbert's statue on their own deck, with the vial.",
-          "{@b The Styx Run} (20 to 30 minutes). Down to the river and along it, with Arkhan's dragons hunting somewhere behind. Lulu must stay dry.",
+          "{@b The Flight to the Grave} (20 to 30 minutes). Flight scrolls read, the ship alongside, straight across the waste instead of the long way up the river, with Arkhan's dragons hunting somewhere behind.",
           "{@b The Sibriex} (35 to 50 minutes). Optional. A chained flesh-sculptor smells Or'Henn's curse and explains it for free.",
           "{@b Uldrak's Grave} (30 to 45 minutes). The vial is poured, an empyrean stands up out of the ash, and he gives them the orb.",
           "{@b The Dragon Queen's Garden} (20 to 30 minutes). That night, Tiamat comes to Or'Henn in a vision with an offer that sounds like help. At dawn, Feonor's ash crow: Urexiel will trade the staff for a live dragon.",
@@ -173,8 +387,8 @@ window.SESSION = {
         ] },
 
         { t: "h", text: "Adventure Hooks" },
-        { t: "p", text: "{@b Uldrak's curse.} The party chose this road at the end of last session: run the Styx, pour the blood, free the empyrean. They are skipping the Stygian Dock." },
-        { t: "p", text: "{@b Arkhan's dragons.} Since the theft, Arkhan has had his four adult dragons and Obatala quartering the Styx for the Lady Vengeance. The party knows they are out there. They have decided to stop running and pick the ground themselves." },
+        { t: "p", text: "{@b Uldrak's curse.} The party chose this road at the end of last session: fly straight to the Grave, pour the blood, free the empyrean. They read flight scrolls and cut overland rather than following the Styx, and they are skipping the Stygian Dock." },
+        { t: "p", text: "{@b Arkhan's dragons.} Since the theft, Arkhan has had his four adult dragons and Obatala quartering the waste and the Styx for the Lady Vengeance. The party knows they are out there. They have decided to stop running and pick the ground themselves." },
         { t: "p", text: "{@b Or'Henn's mark.} Tiamat's curse is a clock. Every dragon they call is a dragon Or'Henn might ask for help. One of them will offer." },
 
         { t: "h", text: "Where things stand" },
@@ -202,73 +416,62 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "The session opens on the deck of the Lady Vengeance, the moment Word of Recall lands." },
         { t: "read", text: "One moment: the dragon skull's maw, the black Hand rising, Arkhan's voice behind you like a furnace door opening.\n\nThe next: silence, and the smell of tar and hot brass.\n\nYou are standing on your own deck at the foot of the statue of St. Cuthbert, all of you, breathing hard. The vial is warm in someone's fist. Inside the glass, the blood turns over by itself.\n\nAt the wheel, Colico Jack takes one look at your faces and does not ask. He throws the helm hard over and opens the throttle, and the whole ship shudders as she climbs.\n\n\"Where to?\" he shouts over the engines. \"And how fast?\"" },
-        { t: "p", text: "Let them breathe, heal and argue for a minute. They have already chosen: the Styx, then Uldrak's Grave. When they give Jack the course, go to {@scene the-styx-run|The Styx Run}." }
+        { t: "note", title: "Start Tiamat's Pull Now", text: "Or'Henn's curse is tracked from the first minute of this session. Set his Pull to 2, plus 1 for each gold scale he already has. Rules and triggers: {@side tiamats-pull|Tiamat's Pull}. Keep the number where the players can see it." },
+        { t: "p", text: "Let them breathe, heal and argue for a minute. They have already chosen: flight scrolls, and straight across the waste to Uldrak's Grave. When they give Jack the course, go to {@scene the-flight|The Flight to the Grave}." }
       ]
     },
 
     {
-      id: "the-styx-run",
-      title: "The Styx Run",
+      id: "the-flight",
+      title: "The Flight to the Grave",
       when: "",
       duration: "20 to 30 minutes",
       blocks: [
-        { t: "p", text: "The Lady Vengeance flies from the Monument to the River Styx and follows it downstream to Uldrak's Grave. This scene is the journey. Read the boxes in order, and skip any you need to for time." },
-        { t: "note", title: "Running This Scene", text: "Two things matter here. Lulu must stay dry: her full memory is needed to free the Caged Star, and the Caged Star is where Drenwal's rebirth happens. And the Styx steals memories on contact. In the second event, make the players decide out loud how Lulu travels. Do not tell them why it matters." },
+        { t: "p", text: "The party reads its flight scrolls and flies from the Monument straight across the waste to Uldrak's Grave, with Colico Jack bringing the Lady Vengeance along beside them. They are not following the Styx: they cut overland, the short way, and only meet the river again at the Grave. This scene is the journey. Read the boxes in order, and skip any you need to for time." },
+        { t: "note", title: "Running This Scene", text: "The point of this scene is the hunt. Arkhan's dragons are out looking for the ship, and the party is flying in the open. Let the players feel watched, then let them arrive. Lulu is safe on this leg: there is no river under them. The Styx only matters again at the Grave, which sits on its bank. How long the scrolls last is your ruling from the table; this scene assumes they get the party there." },
 
         { t: "h", text: "Event: Behind Them" },
-        { t: "read", text: "Far behind the ship, where the Monument's skull is shrinking into the haze, five specks lift into the sky.\n\nThey circle once over the mountain, tight and angry. Then they split apart, each one going its own way, the way hounds split when they have lost a scent.\n\nOne of them is very large, and very pale." },
-        { t: "p", text: "Arkhan's dragons are hunting. They lose the ship in the ash, but the players should know they are out there. That is what makes the orb, later, feel like a choice instead of a gift." },
+        { t: "read", text: "Far behind you, where the Monument's skull is shrinking into the haze, five specks lift into the sky.\n\nThey circle once over the mountain, tight and angry. Then they split apart, each one going its own way, the way hounds split when they have lost a scent.\n\nOne of them is very large, and very pale." },
+        { t: "p", text: "Arkhan's dragons are hunting. They lose the party in the ash, but the players should know they are out there. That is what makes the orb, later, feel like a choice instead of a gift." },
 
-        { t: "h", text: "Event: Where Does Lulu Ride?" },
-        { t: "p", text: "Ask the table, plainly: \"Where does Lulu ride for this trip?\"" },
-        { t: "read", text: "Lulu has her trunk over the rail and her ears straight out, watching the waste slide past.\n\n\"A river!\" she says. \"I remember a river like this. No, I don't. Maybe I do. Can I see it? I want to see it.\"" },
-        { t: "list", items: [
-          "{@b Below decks:} safe from everything in this scene. She sulks.",
-          "{@b On deck, held or kept close:} she is safe as long as whoever holds her makes their saves. If they fail, she fails.",
-          "{@b At the rail, free:} she is exposed to every spray. This is the choice that should hurt later, and only later."
-        ] },
+        { t: "h", text: "Event: Taking Wing" },
+        { t: "read", text: "The scroll burns away in your hands, and the ground lets go of you.\n\nThere is no lurch, no effort. You simply rise, the way smoke rises, until the deck of the Lady Vengeance is level with your boots and then below them. Jack whistles and swings the ship in beside you, her engines throttled down so she does not leave you behind.\n\nBelow, the waste opens out: red rock, black glass, bone fields white as salt. Far off to your left, a black line winds across all of it, slow and patient. The Styx. Jack points at it, then points straight ahead, and grins. The long way and the short way." },
+        { t: "p", text: "Let each player describe how their character flies, and who rides on the ship instead: Lulu, Moonkite with Aurora, the allies. Nobody needs to roll for this. It is a breath of wonder before the session gets hard." },
 
-        { t: "h", text: "Event: The River Styx" },
-        { t: "read", text: "The Styx is wider than you remembered, and slower. It does not look like water. It looks like oil poured over glass, black and smooth, and it moves without a single ripple.\n\nThings drift in it. A helmet. A child's shoe. A door, still on its hinges. Here and there, just under the surface, a face turns up toward the ship as you pass, eyes open, mouth working, trying to remember a word.\n\nThere is no smell. There is no sound. Only, if you listen, a whisper, very far down, like a crowd of people all saying their names at once so they will not forget them." },
-        { t: "p", text: "Colico Jack flies her low, below the ash, ten feet over the water. Any lower and the spray reaches the deck." },
+        { t: "h", text: "Event: Over the Waste" },
+        { t: "read", text: "You pass over a battlefield that never ended. Two armies, a mile across, still fighting: demons swarming up a ridge, devils holding it in neat red squares. Neither side looks up. From up here it is almost quiet, a sound like surf.\n\nThen a road of iron spikes, each one wearing someone. Then nothing at all for a long time, only ash, and the wind of your own flight in your ears." },
+        { t: "p", text: "If anyone wants to dive on the battle, let them see it is pointless: it is miles wide and has been going for centuries. The war below is the Blood War, and it does not care about them." },
 
-        { t: "h", text: "Event: The Ferry" },
-        { t: "read", text: "A barge comes upriver toward you out of the murk, long and flat and black, with a single lantern on a pole at the stern.\n\nThe thing poling it is tall and thin and wrapped in grey cloth, with an insect's mouth under its hood. It does not move aside for a warship. It does not need to.\n\nAs you pass above it, it raises the lantern and looks up at you with great patience.\n\n\"Wrong way,\" it says, in a voice like dry leaves. \"The dragons have been up and down this water since yesterday. Looking for a ship. Your ship, I think.\"\n\nIt goes on poling. It does not look back." },
-        { t: "p", text: "The ferryman is a merrenoloth, a yugoloth that works the Styx for pay. It wants nothing from them and fights no one. If they hail it, it will carry a message anywhere on the river for a soul coin, and it knows exactly where Uldrak's Grave is: \"The little devil on the big sword. Two bends down. He talks to himself.\"" },
-
-        { t: "h", text: "Event: The Wake" },
-        { t: "read", text: "Something huge passes under the ship, under the water. You never see it. You only see the river bulge, a long slow hump moving against the current, and then the wave it leaves behind rising toward your keel." },
+        { t: "h", text: "Event: The Searching Shadow" },
+        { t: "read", text: "A shadow slides across the ground below you. Big. Fast. Moving the other way.\n\nYou look up. High above the ash, almost lost in it, something red is flying long, slow sweeps across the sky. It has not seen you yet. It is turning." },
         { t: "steps", items: [
-          "Each character on deck makes a {@b DC 13 Dexterity saving throw}. On a success, they get clear of the spray.",
-          "On a failure, the Styx touches their skin. They make a {@b DC 15 Intelligence saving throw}.",
-          "On a failed Intelligence save, the water steals memories. The character forgets the last day, plus one memory the player chooses: a face, a name, or a promise. The memories come back if {@spell greater restoration} is cast on them. Uldrak can do this at will once he is restored.",
-          "A character who falls fully into the river is targeted by {@spell feeblemind} (DC 20 Intelligence save, repeated at the start of each turn in the water until it fails). Only a reckless choice should put someone in the river.",
-          "If Lulu is at the rail, she rolls too. If someone holds her, she shares their fate."
+          "Everyone flying in the open makes a {@b DC 15 Dexterity (Stealth)} group check to drop low and hold still against the rock or the ash. The Lady Vengeance uses Colico Jack's roll; he cuts the engines and lets her drift.",
+          "On a success, the red dragon finishes its turn and flies on north. It never knew they were there.",
+          "On a failure, it sees something: a glint, a shape. It does not attack alone. It banks away fast toward the Monument. Arkhan now knows roughly which way they went. The dragons do not arrive early, but when the orb calls them in {@scene the-call|The Call}, they come already knowing whose ship it is."
         ] },
-        { t: "note", title: "What Was Under the Ship", text: "Leave it a mystery tonight. It is not one of Arkhan's dragons. The Styx is old and deep and a great many things live in it. If the players ask Jeremy, he says the hull sensors read it as \"long.\"" },
 
-        { t: "h", text: "Checks on the River" },
+        { t: "h", text: "Checks in the Air" },
         { t: "list", items: [
           "{@b DC 15 Intelligence (Arcana or Religion):} the Styx winds through the upper layers of the Lower Planes. Its water strips memory. Elturel is sinking toward it, and when the city touches it, every soul aboard becomes a devil.",
-          "{@b DC 14 Wisdom (Perception):} far off to the north, a speck of red is quartering the sky in long slow sweeps. It is looking for something.",
-          "{@b DC 13 Wisdom (Survival):} a needle stands up on the horizon downriver, straight and too regular to be rock. That is the sword at Uldrak's Grave, a few hours out."
+          "{@b DC 14 Wisdom (Perception):} the red speck to the north is not alone. Much farther off, something pale is quartering the sky the same way.",
+          "{@b DC 13 Wisdom (Survival):} a needle stands up on the horizon ahead, straight and too regular to be rock. That is the sword at Uldrak's Grave, where the land comes down to meet the Styx again."
         ] },
-        { t: "p", text: "When the river runs into a narrow gorge strung with chains, go to {@scene the-sibriex|The Sibriex}. If they fly straight past it, go to {@scene uldraks-grave|Uldrak's Grave}." }
+        { t: "p", text: "Partway there, they pass a narrow gorge strung with chains. If they turn aside, go to {@scene the-sibriex|The Sibriex}. If they fly straight on, go to {@scene uldraks-grave|Uldrak's Grave}." }
       ]
     },
 
     {
       id: "the-sibriex",
       title: "The Sibriex",
-      when: "Only if they stop at the gorge",
+      when: "Only if they turn aside at the gorge",
       duration: "35 to 50 minutes",
       blocks: [
-        { t: "p", text: "The party is running the Styx toward {@b Uldrak's Grave} to spill Tiamat's blood and break the empyrean's curse. They have chosen to skip the Stygian Dock. This site is on the way, and it is optional: the Haruman errand that once made the sibriex necessary is already spent -- his trophy supplied the piece. So this is not a quest. It is a temptation with a mouth." },
+        { t: "p", text: "The party is flying overland toward {@b Uldrak's Grave} to spill Tiamat's blood and break the empyrean's curse. They have chosen to skip the Stygian Dock. This site is on the way, and it is optional: the Haruman errand that once made the sibriex necessary is already spent -- his trophy supplied the piece. So this is not a quest. It is a temptation with a mouth." },
 
-        { t: "note", title: "Remember Lulu", text: "Lulu's full memory is a hard prerequisite for freeing the Caged Star, and the Caged Star is where Drenwal's rebirth happens. The Styx erases memory on contact. The players decided how she travels in The Styx Run. Hold them to it here: if she is at the rail and anyone goes into the water, run the forgetting." },
+        { t: "note", title: "Remember Lulu", text: "Lulu's full memory is a hard prerequisite for freeing the Caged Star, and the Caged Star is where Drenwal's rebirth happens. A thin black thread of the Styx runs along the floor of this gorge. If they land on the bank and Lulu comes with them, or anyone falls in, run the forgetting (DC 15 Intelligence save)." },
 
         { t: "h", text: "Event: Something Is Hanging Over the River" },
-        { t: "read", text: "The gorge narrows, and the Styx goes quiet the way water does under a low roof.\n\nChains come out of the rock on both sides -- ships' chains, each link as long as a man -- and where they meet, something hangs.\n\nIt is a head. Only a head, the size of a cart, bloated and pale and slick, with long thin arms trailing from under its jaw like roots from a pulled weed. Below it the bank is heaped with things that are still breathing and should not be: too many joints, too many faces, arranged.\n\nThe eyes open. They are perfectly calm.\n\n\"Oh,\" it says, wetly, delighted. \"Visitors. Come closer. We will not reach you. We cannot.\"" },
+        { t: "read", text: "You drop down into the gorge, and the air goes still the way it does under a low roof. Far below, a thin black thread of the Styx slides along the floor without a sound.\n\nChains come out of the rock on both sides -- ships' chains, each link as long as a man -- and where they meet, something hangs.\n\nIt is a head. Only a head, the size of a cart, bloated and pale and slick, with long thin arms trailing from under its jaw like roots from a pulled weed. Below it the bank is heaped with things that are still breathing and should not be: too many joints, too many faces, arranged.\n\nThe eyes open. They are perfectly calm.\n\n\"Oh,\" it says, wetly, delighted. \"Visitors. Come closer. We will not reach you. We cannot.\"" },
 
         { t: "h", text: "What It Wants" },
         { t: "p", text: "Down. That is the whole of it. Everything the {@c sibriex|sibriex} offers is rent paid toward one end: being let out of the chains. It does not beg, it does not threaten, and it does not lie -- lying would cost it the only currency it has." },
@@ -303,7 +506,7 @@ window.SESSION = {
 
         { t: "h", text: "Event: Passing By" },
         { t: "p", text: "If the party simply keeps going -- which is the sensible play -- give them this as the gorge opens up again." },
-        { t: "read", text: "The chains fall behind. The gorge widens. The quiet lets go of the water.\n\nBehind you, unhurried, it calls after you -- not shouting, just pitched to carry:\n\n\"When the lizard asks a dragon for help. Come back and tell us what it cost. We do so like to hear how our sister's work turns out.\"" },
+        { t: "read", text: "The chains fall behind. The gorge widens, and you climb back into the open sky.\n\nBehind you, unhurried, it calls after you -- not shouting, just pitched to carry:\n\n\"When the lizard asks a dragon for help. Come back and tell us what it cost. We do so like to hear how our sister's work turns out.\"" },
 
         { t: "choices", prompt: "What do the characters do?", items: [
           { label: "Pass it by", goto: "uldraks-grave" },
@@ -346,7 +549,16 @@ window.SESSION = {
           "{@b A gallon of his blood,} drawn at once into whatever they hand him. Empyrean blood is Blood Pay: a powerful creature's blood for the Intermediaries. He pays this first, so the party keeps it even if he falls later.",
           "{@b Greater restoration, at will,} on anyone the Styx touched on the way here ({@spell greater restoration}). Their memories come back.",
           "{@b His sword arm.} He came to Avernus to kill Tiamat. Her dragons are a down payment. If the party proposes calling Arkhan's dragons, he is delighted: \"Call them. Call all of them. I would like to be big at someone.\"",
-          "{@b The orb.} He pulls it from his pommel and gives it to them. He once offered it to Arkhan in trade for the vial; it means nothing to him. See {@side using-the-orb|Using the Orb} for what that costs. Tiamat hears it change hands."
+          "{@b The orb, as payment for the vial.} He pulls it from his pommel and gives it to them: that is his price for the blood, paid in full. He once offered it to Arkhan in the same trade; it means nothing to him. See {@side using-the-orb|Using the Orb} for what that costs. Tiamat hears it change hands."
+        ] },
+        { t: "h", text: "Event: Uldrak Goes" },
+        { t: "p", text: "Table ruling: Uldrak does not stay. Once he has paid what he owes, he leaves to find a weapon that can kill dragons, because he knows exactly what comes next." },
+        { t: "read", text: "Uldrak looks up at the sky for a long time. Then he looks at you.\n\n\"You stole from Arkhan,\" he says. \"And now you have freed the one creature in Avernus his queen hates more than you. He will not send one dragon after you. He will send all of them, and he will ride the last one himself.\"\n\nHe lifts his sword, and frowns at it, the way a man frowns at a tool that has gone blunt.\n\n\"This killed giants. It will not kill five dragons and their master. I need something better, and I know where to look.\" He grins. \"Do not die before I come back. I would take it personally.\"\n\nHe turns, and walks into the waste, and the ground shakes a little with every step until he is gone." },
+        { t: "list", items: [
+          "{@b He is not in the dragon fight.} Remove him from The Call and Wings Over the Grave. Breath weapons that the primer aims at Uldrak go at the Lady Vengeance instead.",
+          "{@b He still pays first:} the blood, the greater restoration and the orb all happen before he goes.",
+          "{@b Arkhan is coming whether they call or not.} If the party does not use the orb, the dragons find them anyway, within a day or two, on Arkhan's terms instead of theirs.",
+          "{@b The weapon} is a DM's choice, and the hook for his return. See {@side uldraks-errand|Uldrak's Errand}."
         ] },
         { t: "note", title: "DM's Choice: The Solar's Helmet", text: "The campaign map flags Uldrak's gargantuan helmet as a possible home for the Solar's Helmet, half of Drenwal's rebirth prerequisite. If you want it here, he took it from a fallen solar on his way in, three thousand years ago, and it has lain buried under the sword ever since. If not, he has never seen one." },
 
@@ -414,6 +626,7 @@ window.SESSION = {
         { t: "h", text: "Event: Waking" },
         { t: "read", text: "You wake with a jerk, on the deck, in the dark, with the smell of roses in your nose. Your hand is hot.\n\nThe Avernus night is the same as it was. Elturel hangs on its chains. The Styx moves below, slow and black.\n\nAnd from the orb, very softly, someone is humming the tune from the garden." },
         { t: "h", text: "Event: Word from Feonor" },
+        { t: "note", title: "Table Ruling: Skip This", text: "Feonor comes in person with the staff instead. Run {@scene feonor-returns|Feonor Returns} while the party decides what to do with the orb, and skip the crow below." },
         { t: "p", text: "At dawn, the morning after the vision. Feonor has moved faster than anyone expected and is already at the Scabrous Menagerie. This pulls the day-10 message on her road forward: count today as day 4 of the geas." },
         { t: "read", text: "A crow lands on the rail at first light. It is made of ash, packed tight, and it leaves grey prints where its feet touch the wood. When it opens its beak, the voice that comes out is Feonor's: dry, tired and furious.\n\n\"Your staff is in the Scabrous Menagerie. In a vault, on velvet, with a little brass plate. The owner is a yugoloth called Urexiel, and she will not sell it. Not to me, not for coin, not for anything I have.\"\n\nA pause. The crow tilts its head.\n\n\"She wants the matched set, gardener. The staff, and its keeper in a cage beside it. Or...\" The voice almost laughs. \"Or something rarer. Her collection has everything except a dragon.\"\n\nThe crow falls apart into ash, and the wind takes it." },
         { t: "p", text: "Now the dragon fight is about Or'Henn too. Urexiel will trade Cinderbloom for a {@b live chromatic dragon}. Either way, the party still has to go to the Menagerie to collect the staff. That is a later session." },
@@ -423,17 +636,92 @@ window.SESSION = {
     },
 
     {
+      "id": "feonor-returns",
+      "title": "Feonor Returns",
+      "when": "While the party decides what to do with the orb",
+      "duration": "15 to 20 minutes",
+      "blocks": [
+        {
+          "t": "p",
+          "text": "Table ruling: Feonor brings Cinderbloom in person, now, instead of sending a crow. Run this while the party is arguing about the orb. It gives Or'Henn something to hold onto before the hardest fight of the campaign."
+        },
+        {
+          "t": "read",
+          "text": "The air beside the sword splits with a sound like tearing silk, and a woman falls out of it onto her knees in the ash.\n\nFeonor. Her robes are scorched to the knee. One sleeve is gone, and the arm under it is wrapped in something that is still smoking. She is holding a long bundle of red velvet against her chest the way you would hold a child.\n\nShe stands up, slowly, and walks to Or'Henn, and holds it out.\n\n\"Take it,\" she says. \"Take it, and let me go.\"\n\nThe velvet falls away. Under it is a staff of grey ashwood, carved with leaves, and a little brass plate screwed into the heel: PROPERTY OF THE SCABROUS MENAGERIE. At its head, a dark ember the size of a heart.\n\nAs Or'Henn's fingers close on it, the ember flickers. Once."
+        },
+        {
+          "t": "h",
+          "text": "What Happened"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b She stole it.} Urexiel would not sell it. Feonor broke into the Trophy Vault, took the staff and nothing else, and teleported out with a mezzoloth's trident through her arm.",
+            "{@b The geas is fulfilled.} The task is done, so the spell ends. She is free, and she knows it. She is also very, very angry.",
+            "{@b Urexiel knows.} The brass plate is a tracking sigil. Urexiel's hunters will find the staff, and whoever carries it. The rest of the vault (the ledger, the Green Remnant, Kreeg's puzzle box) is still in the Menagerie, so Session 11's Menagerie road still matters."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "Cinderbloom, Dormant"
+        },
+        {
+          "t": "list",
+          "items": [
+            "{@b It knows his hand.} No short rest needed: Or'Henn attunes to it as a bonus action, because it was his.",
+            "{@b Its stats} are on Or'Henn's card ({@b orhenn-cinderbloom-and-contracts.html}): Cinderheart 2 charges, Keeper 4 charges, +2 to spell attacks. Its ember stays dark until the Mother Ash rite.",
+            "{@b Against the curse:} while he holds it, Or'Henn can expend 1 of the staff's charges as a reaction to lower his Pull by 1, or to reroll a failed Pull save ({@side cinderbloom|Cinderbloom}). Tiamat hates it: it is the one thing in his hands she did not give him."
+          ]
+        },
+        {
+          "t": "h",
+          "text": "Feonor's Terms"
+        },
+        {
+          "t": "read",
+          "text": "\"I have done what you made me do,\" Feonor says. \"I will not do it twice. Ask me nicely, druid, and I will burn one thing for you before I go. One.\""
+        },
+        {
+          "t": "p",
+          "text": "If Or'Henn asks nicely, she stays for one fight and counterspells Arkhan once. If he threatens her, or tries to lay a new geas, she teleports away and becomes an enemy for the rest of the campaign. Either way, she leaves when Tiamat rises."
+        },
+        {
+          "t": "choices",
+          "prompt": "What do the characters do?",
+          "items": [
+            {
+              "label": "Use the orb and call the dragons",
+              "goto": "the-call"
+            },
+            {
+              "label": "Read the orb's rules",
+              "side": "using-the-orb"
+            },
+            {
+              "label": "Check Or'Henn's Pull",
+              "side": "tiamats-pull"
+            },
+            {
+              "label": "Wait, and let Arkhan come to them",
+              "goto": "arkhans-gambit"
+            }
+          ]
+        }
+      ]
+    },
+
+    {
       id: "the-call",
       title: "The Call",
       when: "Only if they call the dragons",
       duration: "20 to 30 minutes",
       blocks: [
-        { t: "p", text: "The plan: use the {@item Orb of Dragonkind|DMG} in Uldrak's pommel to call Arkhan's dragons here, and kill them with an empyrean on their side. It is a good plan. It is also the most dangerous thing they could do with Tiamat's mark still on Or'Henn, and the dragon trapped inside the orb knows it." },
+        { t: "p", text: "The plan was to use the {@item Orb of Dragonkind|DMG} from Uldrak's pommel to call Arkhan's dragons here and kill them with an empyrean on their side. Uldrak has gone, so it is now a much worse plan, and the alternative is waiting for Arkhan to choose the ground. It is also the most dangerous thing they could do with Tiamat's mark still on Or'Henn, and the dragon trapped inside the orb knows it." },
         { t: "note", title: "Running This Scene", text: "Give the party real time to prepare before the call. Answer their questions honestly. Every good answer here is a dragon that dies easier later. Then read the call, and move straight to the fight." },
 
         { t: "h", text: "Who Holds the Orb" },
         { t: "list", items: [
-          "{@b Uldrak, if he stays for the fight.} He gave the orb away, but its magic still answers to him at once, with no check.",
+          "{@b Uldrak is gone} (table ruling): he left to find a weapon. Nobody here controls the orb for free.",
           "{@b A character.} They must attune to it first (a short rest), then use an action and make a {@b DC 15 Charisma check}. On a success they control the orb. On a failure they are charmed by it for as long as they stay attuned, and it casts {@spell suggestion} on them at will (DC 18). The dragon inside wants Tiamat worshipped. Its first suggestion, to anyone near Or'Henn: \"Let the druid ask for help. It is only kind.\"",
           "{@b Or'Henn himself.} Tiamat wants it in his hands. Allow it. If he fails the check, the orb and the curse want the same thing, and the suggestion is aimed at him: \"Ask the red one. It will help you.\" Enforce it."
         ] },
@@ -537,7 +825,7 @@ window.SESSION = {
           { c: "vhennic", n: 1 },
           { c: "obatala", n: 1 },
           { c: "krull", n: 1 }
-        ], notes: "Hold each dragon out until its wave round: Flash 1, Slarkas and Vermilius 3, Vistalancer 5, Obatala and Krull 7. Add Uldrak and the ship from the ally rows. XP: Flash 18,000, Vistalancer 15,000, Vermilius 13,000, Slarkas 11,500, Obatala 20,000, Krull 8,400, for each one killed or driven off." },
+        ], notes: "Hold each dragon out until its wave round: Flash 1, Slarkas and Vermilius 3, Vistalancer 5, Obatala and Krull 7. Add the ship (and Feonor, if she stayed) from the ally rows. Uldrak is away. Each round, Or'Henn makes his Pull save (see Tiamat's Pull). If two or more dragons are down or fleeing, go to Arkhan's Gambit. XP: Flash 18,000, Vistalancer 15,000, Vermilius 13,000, Slarkas 11,500, Obatala 20,000, Krull 8,400, for each one killed or driven off." },
 
         { t: "h", text: "Event: Something in the River" },
         { t: "p", text: "Round 3, as Slarkas surfaces." },
@@ -561,6 +849,9 @@ window.SESSION = {
       ]
     },
 
+    window.CAMPAIGN.scenes["arkhans-gambit"],
+    window.CAMPAIGN.scenes["tiamat-reborn"],
+
     {
       id: "ending",
       title: "Ending the Session",
@@ -577,10 +868,9 @@ window.SESSION = {
         { t: "read", text: "It wakes in chains, towed behind the ship like a barge, its wings lashed flat. For a long time it says nothing.\n\nThen, as the sky goes dark, it turns one great eye toward the stern rail where Or'Henn is standing.\n\n\"Little cousin,\" it says, very softly. \"You look tired. Let me help you.\"" },
         { t: "p", text: "{@b Campaign change:} they have the price of Cinderbloom, and Tiamat's best chance yet. Every day it is in tow, roll once on the Small Visions table in {@side arc-tiamat|Arc: Or'Henn and Tiamat}. Next stop: the Scabrous Menagerie." },
 
-        { t: "h", text: "Outcome: Uldrak Survived" },
-        { t: "read", text: "\"I came here to kill a god,\" Uldrak says. \"I think I will go home first and tell my father I am alive. He will be very angry with me.\"\n\nHe takes a coin from somewhere, bronze and warm and stamped with a hammer, and presses it into your hand.\n\n\"When you stand at her door,\" he says, \"say my name. I will come.\"\n\nThen the air folds around him like a curtain, and he is gone." },
-        { t: "p", text: "{@b Campaign change:} the campaign map's \"grateful empyrean who may stand with the party at the end\" is now real. Saying his name with the coin in hand calls him, once." },
-
+        { t: "h", text: "Outcome: Uldrak Came Back" },
+        { t: "read", text: "Uldrak sits down heavily on the edge of the trench with the black blade across his knees. It is still laughing, quietly, to itself.\n\n\"Bel will want his war,\" he says. \"I said yes. I would say it again.\"" },
+        { t: "p", text: "{@b Campaign change:} Uldrak owes Bel his sword arm against Zariel, and Gnashing Hunger travels in the party's company. If it struck the blow that dropped Tiamat, she is destroyed for good, and every layer of the Hells felt it. See {@side uldraks-errand|Uldrak's Errand}." },
         { t: "h", text: "Outcome: Uldrak Fell" },
         { t: "read", text: "The giant goes down slowly, the way a tower does, and the ground shakes when he lands. The fire under his skin flickers, and goes out, and he is only bronze.\n\nHe got to be big again for one afternoon." },
         { t: "p", text: "The party keeps the gallon of blood he paid up front. There is no coin and no ally at the end, and they know exactly why." },
@@ -592,21 +882,19 @@ window.SESSION = {
         { t: "h", text: "Outcome: The Curse Jumped" },
         { t: "p", text: "Or'Henn is free. If the marked dragon is still alive, it burns out at the next dawn, and Tiamat wakes in her true form then. If it already died, she is awake. See {@side if-the-curse-jumps|If the Curse Jumps}. Either way the endgame has changed: the campaign map's Chapter 5 option, Tiamat breaks Elturel's chains for a price, is now on the table whether the party wants it or not." },
 
-        { t: "h", text: "Outcome: They Let Uldrak Go Without Calling" },
-        { t: "read", text: "Uldrak looks at the orb, and at the sky, and shrugs his enormous shoulders.\n\n\"Another day,\" he says. \"I have had a great many of them.\"" },
-        { t: "p", text: "He gives them the coin anyway, and the orb if they want it. Arkhan's dragons are still hunting the Styx." },
-
+        { t: "h", text: "Outcome: They Kept the Orb and Flew On" },
+        { t: "read", text: "The orb rides in the hold, wrapped in three cloaks, and everyone on deck knows exactly where it is.\n\nNobody says the word \"dragon\" until the Grave is out of sight." },
+        { t: "p", text: "{@b Campaign change:} Arkhan is still coming, with every dragon he has, on his own terms. Session 11 opens on the road to the Crypt of the Hellriders. Carry Or'Henn's Pull over as it stands, and run {@scene arkhans-gambit|Arkhan's Gambit} wherever the hunt lands." },
         { t: "h", text: "Outcome: A Character Died" },
         { t: "p", text: "There is no Arkhan to broker a raising this time. Drenwal has {@spell revivify}, and at 13th level, {@spell resurrection}. Uldrak cannot raise the dead, but he will carry the body anywhere they ask." },
 
-        { t: "note", title: "Remember for Next Time", text: "Write down: which dragons died, which fled, and which one is in chains? What day of Feonor's geas is it? What did Krull get? Did the curse jump, and to whom? Who touched the Styx, and what did they forget? Does the party have the orb? Is Uldrak alive, and do they have his coin?" }
+        { t: "note", title: "Remember for Next Time", text: "Write down: which dragons died, which fled, and which one is in chains? What day of Feonor's geas is it? What did Krull get? Did the curse jump, and to whom? Who touched the Styx, and what did they forget? Does the party have the orb? Or'Henn's Pull number. Did Uldrak come back, and what does he owe Bel?" }
       ]
     }
 
   ],
 
   side: {
-
     "what-the-sibriex-offers": {
       title: "What the Sibriex Offers",
       blocks: [
@@ -655,65 +943,6 @@ window.SESSION = {
         { t: "h", text: "Breaking It" },
         { t: "p", text: "It looks fragile and is not. Dragon breath and almost all damage do nothing to it. {@spell Disintegrate}, or one good hit from a +3 weapon, destroys it. Breaking it frees the dragon essence inside. What that dragon does next is your call." }
       ]
-    },
-
-    "krulls-offer": {
-      title: "Krull's Offer",
-      blocks: [
-        { t: "p", text: "{@c krull|Krull} arrives on {@c obatala|Obatala} in round 7, circles once out of reach, and raises a hand before anyone attacks. He speaks in Common, bored, as if he were reading a bill." },
-        { t: "read", text: "\"Well. You have been busy.\"\n\nThe old tortle looks down at the smoking ground, at the empyrean, at whatever is left of his master's dragons. His face does not change.\n\n\"My lord Arkhan would like his orb. He would also like your heads, but he is a practical man, and I am a more practical one. Give me the glass, and I will take what is left of these beasts home. No one else needs to die today.\"\n\nHe smiles, very slightly.\n\n\"Most of all, not you.\"" },
-
-        { t: "h", text: "What He Really Wants" },
-        { t: "p", text: "Krull covets Arkhan's place. With the orb, Arkhan's dragons would answer to him, not to Arkhan. He will not take it home." },
-        { t: "list", items: [
-          "{@b DC 18 Wisdom (Insight):} he is not hungry for Arkhan. He is hungry for himself.",
-          "{@b If they name it out loud,} he does not deny it. \"A tower needs a priest who prays. Mine does not.\""
-        ] },
-
-        { t: "h", text: "If They Hand It Over" },
-        { t: "list", items: [
-          "The surviving dragons leave with him. The fight is over.",
-          "They have armed a coup at Arkhan's Tower. Next time the party sees the tower, Krull is either running it or dead. Either way Arkhan is distracted, and the dragons that serve Krull remember who gave him the orb.",
-          "Uldrak hates this, and says so. He does not stop them."
-        ] },
-
-        { t: "h", text: "If They Refuse" },
-        { t: "p", text: "He sighs, and Obatala dives. Run his Session 10 tactics. He leaves when Obatala is bloodied: he does not die for Arkhan, and he will not die for an orb he could take another day." },
-
-        { t: "h", text: "If They Counter-Offer" },
-        { t: "p", text: "He listens. He is a bargainer before he is a priest. He will trade the surviving dragons' withdrawal for something that hurts Arkhan: news of the vial being spent, a promise not to come back to the tower, or one of the dead dragons' heads to prove to his master how badly this went." }
-      ]
-    },
-
-    "if-the-curse-jumps": {
-      title: "If the Curse Jumps",
-      blocks: [
-        { t: "p", text: "Tiamat's mark on Or'Henn is a delivery system, not a wound. It pushes him to ask a dragon for help. When he does, it jumps into that dragon, and the dragon becomes the door. It burns out from the inside, and when it is gone, Tiamat wakes in her true form. Full background: {@side arc-tiamat|Arc: Or'Henn and Tiamat}." },
-
-        { t: "h", text: "What Counts as Asking" },
-        { t: "list", items: [
-          "Any request for help made to a dragon, in any language: \"help me\", \"take it off me\", \"please\".",
-          "Saying yes to a dragon's offer of help. Vermilius makes that offer on purpose.",
-          "NOT: surrendering, bargaining, threatening, or asking a dragon a question.",
-          "Telegraph it first. The moment before he speaks, he feels the mark lean toward the dragon like a hand reaching out. If he speaks anyway, enforce it."
-        ] },
-
-        { t: "h", text: "Event: The Mark Moves" },
-        { t: "read", text: "The words are barely out of your mouth before you feel it go.\n\nIt peels off you like a wet shirt, all at once, and the relief is so sharp it nearly drops you to your knees. You can breathe. You did not know you could not breathe.\n\nAcross the ash, the dragon jerks as if struck. Its eyes, which were cunning a moment ago, go gold all the way across. Pure, flat, molten gold.\n\nIt does not look at you anymore. It looks down, at the ground, as if listening to something underneath." },
-
-        { t: "h", text: "What Happens Next" },
-        { t: "list", items: [
-          "{@b Or'Henn is free.} Fully. The mark is gone.",
-          "{@b The marked dragon is doomed.} It stops fighting for itself. It will not flee. If nobody kills it, the mark burns it from the inside at the next dawn.",
-          "{@b The moment it dies, Tiamat wakes in her true form.} Whoever kills it. Uldrak, eager to kill dragons, will kill it unless someone stops him. Tell the players he is about to.",
-          "{@b They can try to keep it alive.} Capture it, chain it, hold it with {@spell hold monster} until dawn. It will not stop the dawn. It buys them hours to decide where they want Tiamat to arrive."
-        ] },
-
-        { t: "h", text: "When Tiamat Comes" },
-        { t: "note", title: "Not a Fight", text: "Do not stat her. The campaign map already holds this as a Chapter 5 option: Tiamat breaks Elturel's chains, for a price. She arrives as a voice and a shape too big for the sky, five heads looking down from the clouds, and she is grateful in the way only a god can be: completely, and on her own terms. Arkhan, wherever he is, falls to his knees. This changes the endgame. Only run it if the party truly chose it." },
-        { t: "read", text: "The dragon dies, and the sky tears.\n\nNot open. Tears, like cloth, and through the gap come five heads, each one larger than the Lady Vengeance, each one a different colour, all of them smiling.\n\nThe voice is five voices, and every one of them is pleased with you.\n\n\"Little druid. You asked so nicely.\"" }
-      ]
     }
-
   }
 };
