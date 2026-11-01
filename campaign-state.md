@@ -5,37 +5,45 @@
 - **Size:** 3 players (was 4 — Xebeche and Rebecca had earlier arcs; Mikas transitioned from Asimov to Or'Henn after Session 7)
 - **Current PCs:**
   - **Drenwal** — Light Cleric 13. **SIGIL #2 (the Binding) IS DONE** — drawn in Dumal's blood, taken when he wounded his brother at the Last Hill. He is now **Tier II** on the Three Sigils road: the *power* road, the same ritual that forged Dumal the Flame Ascendant, which `drenwal-bhaal-blood.md` warns "may be Bhaal's design dressed as salvation." Only **Step 3 — Mastery** remains: *kill the last living Bhaalspawn*, a kinslaying. The surviving Bhaalspawn are **Dumal, Senna (~6) and Drenwal himself** — so followed honestly, his own ritual ends with his own death, which is also Mordenkainen's rebirth. That convergence is the redemption out. Hellrider, child of Bhaal. Gargauth tempts him via the Shield. Primary healer/support/frontline. Warding Flare, Radiance of the Dawn, Divine Intervention (hijacked by Bhaal). *Wounded his brother Dumal "Den" at the Last Hill (Session 7); Dumal broke free and escaped — brother still at large, RP fallout unresolved.*
-  - **Aurora** — Archfey Warlock, Level 13 (DM ruling 2026-10-23). Her 13th-level gain is **Mystic Arcanum 7th** (Forcecage, Plane Shift, Finger of Death, Etherealness — player picks). Moonkite bonded as mount. Moonbow of Celestial Warding (evolved from +2 bow + Wand of Celestial Warding). Fey Presence, Misty Escape. Sustained ranged DPS.
+  - **Aurora** — Archfey Warlock, Level 13 (DM ruling 2026-10-23). Her 13th-level gain is **Mystic Arcanum 7th** (Forcecage, Plane Shift, Finger of Death, Etherealness — player picks). Moonkite bonded as mount (bond tracked from **Bond 1, 2 points** — `arc-moonkite`; beats in S12/S13). Moonbow of Celestial Warding (evolved from +2 bow + Wand of Celestial Warding). Fey Presence, Misty Escape. Sustained ranged DPS.
   - **Or'Henn** — Circle of Wildfire Druid (Level 13). **AFFLICTED WITH TIAMAT'S CURSE (Session 9)** — see *Or'Henn's Arc* below. The curse is a delivery mechanism, not an affliction: it pressures the victim into **asking a dragon for help**, transfers to that dragon, and **a dragon taking it wakes Tiamat in her true form** (DM wording 2026-10-23). **He is seeing Tiamat's visions** — see the DM app side *Arc: Or'Henn and Tiamat*. Doing nothing is not neutral — it is a clock. The only stated safe cure is the stolen vial (Arkhan: *"Spill it on the right ground and it breaks curses that she laid"*). [HOMEBREW] Elderly (~65) Red Dragonborn, native to Avernus. Blind scarred left eye; molten-gold right. Infernal-adapted druid armor (leather/bark/ashwood + blackened iron & dark brass, living hellflowers growing from it). Round ashwood shield bearing a devil-noble-house heraldic crest [devil house TBD — HOMEBREW]. Played by Mikas. Wild Shape cap raised to CR 2 by DM ruling. Personal arc: recover lost staff **Cinderbloom** via 5 Wandering Emporium soul-bounty contracts relayed by Asimov's soul. *New recruit — never met Asimov in life; joins the party at the Wandering Emporium.*
 - **Fallen PC (soul in the capacitor):**
   - **Asimov** — Soulknife Rogue. DIED to Yeenoghu in Session 7. His soul was captured in the **Soul Capacitor**. He is no longer a playable PC. The Soul Council placed Asimov in the bounty-hunter succession in place of Rasheem — Asimov now relays Wandering Emporium "soul-bounties" to Or'Henn (as Rasheem once relayed bounties to Asimov). The Soul Council has given a **one-week clock** for Asimov to establish a new living bounty hunter (Or'Henn / the party), or the succession lapses.
 - **Companions / allies:**
-  - **Lulu** — Hollyphant. Zariel's former companion. Fragmented memories recovering. Emotional, loyal.
+  - **Lulu** — Hollyphant. Zariel's former companion. Fragmented memories recovering. Emotional, loyal. **NOT with the party** (Session 11): hidden on the Lady Vengeance in the mists. Session 12 default: Zariel's riders take her there at the end of the session (DM to confirm).
   - **Whiskerbright** — Aurora's familiar, currently in imp form (Avernus adaptation).
-  - **Sgt. Veska** — Hellrider of Elturel (Crimson Watch), freed from Bitter Breath's Palace of Gore. Knows the Bhaal cult inside the order. Officiates Drenwal's rebirth ritual. [HOMEBREW]
-  - **Ser Lucan the Reforged** — Old Crimson Watch Hellrider rebuilt with Gondian automaton legs (Jeremy + Aurora's *Fabricate*). Carries Halvard's last words. [HOMEBREW]
+  - **Sgt. Veska** — Hellrider of Elturel (Crimson Watch), freed from Bitter Breath's Palace of Gore. Knows the Bhaal cult inside the order. Officiates Drenwal's rebirth ritual. With the party in the Crypt. Stat block `veska` (`dm-app/sessions/campaign-hellriders.js`). [HOMEBREW]
+  - **Ser Lucan the Reforged** — Old Crimson Watch Hellrider rebuilt with Gondian automaton legs (Jeremy + Aurora's *Fabricate*). Carries Halvard's last words. With the party in the Crypt. Stat block `ser-lucan` (CR 7, `campaign-hellriders.js`). [HOMEBREW]
   - **The Gith** — Githzerai monk, freed from Bitter Breath's cells. Half-mad, psionic skirmisher. **Dead** (DM ruling 2026-10-11; circumstances to fill in). His journal survives (Weave Jump teaching, see DM app ship). [HOMEBREW]
   - **Colico Jack** — Captain of the Lady Vengeance, and **her pilot** (DM ruling 2026-10-23). Holds the remote detonation relay. [HOMEBREW]
   - **Jeremy** — Gondian operator of the Lady Vengeance's Planar Core. Built Lucan's legs. Can un-coin a soul without destroying it. [HOMEBREW]
-- **Transport:** The **Lady Vengeance** — Gondian-Portyr Hellship (AC 17, 350 HP, Arcane Cannons, Aether Harpoon, Soul Coin Overdrive). **Status: beached/damaged at the Last Hill** after the Session 7 Yeenoghu battle. [TO CONFIRM WITH DM: extent of hull damage; is the ship recoverable/mobile before the party departs for the Emporium, or do they travel overland?]
+- **Transport:** The **Lady Vengeance** — Gondian-Portyr Hellship (AC 17, 350 HP, Arcane Cannons, Aether Harpoon, Soul Coin Overdrive). **Status (Session 11): repaired and flying, hidden in the mists of Avernus** with Jeremy and Colico Jack aboard. (Beached at the Last Hill after Session 7; repaired since.) [TO CONFIRM WITH DM: any remaining hull damage.]
 
 ---
 
 ## Current Location
-**Aboard the Lady Vengeance.** The party left the Monument to Tiamat by **Word of Recall** with the vial. Drenwal's sanctuary is **the statue of St. Cuthbert on the Lady Vengeance**, so the spell carried them straight back to their own deck (DM ruling 2026-10-23).
+**Inside the Crypt of the Hellriders, mid-fight** (end of Session 11). Exploring the urn hall, the party found soul urns with loot beneath; **5–8 ghosts and some wraiths** came out of them (improvised at the table).
 
-Resolved (DM rulings 2026-10-23):
-- **The sanctuary** is the statue of St. Cuthbert aboard the Lady Vengeance.
-- **Nobody was left behind.** Only the party was at the Monument, and they all got out.
-- **The Lady Vengeance** is flown by Colico Jack; Jeremy runs the Planar Core.
+- **Outside, waiting:** Arkhan, the four tower dragons (Slarkas, Vistalancer, Vermilius, Flash), Obatala and Krull. Drenwal's *knock* on the warded door carried 50 miles and drew them. **Nothing evil can enter the Crypt**, so they stay at the entrance.
+- **The Crypt ward is cracked** by the knock: 6 segments, **0 filled**. When it fails, evil can enter.
+- **The Lady Vengeance** is hidden in the mists with Jeremy and Colico Jack. **Lulu is aboard, not with the party.**
+- With the party: Drenwal, Aurora, Or'Henn, Moonkite, Veska, Ser Lucan. The party holds the **Orb of Dragonkind**.
 
 ---
 
 ## Active Session Prep
-**Session 11: Roads from the Grave** (built 2026-10-23) — DM app: `dm-app/sessions/11-roads-from-the-grave.js`. Runs after the dragon fight. Three full branches, players pick: **Crypt of the Hellriders** (door → Nave of Names → Olanthius + shard 1), **Scabrous Menagerie** (Feonor → Singing Aisle → Pens → Trophy Vault / Urexiel), **Stygian Dock** (dock → Kreeg). Far sites (Arches of Ulloch, Wrecked Flying Fortress, Pit of Shummrath) are hook cards only (side `far-roads`).
+**Built 2026-11-01 (DM app `dm-app/`):**
+- **Session 12 "The Siege of the Crypt"** — `dm-app/sessions/12-the-siege-of-the-crypt.js`. The siege is a puzzle with ways out, not a fight to win (ways A–F plus X, the Tiamat trap). Side "Talking to Arkhan".
+- **Session 13 "The Scab"** — `dm-app/sessions/13-the-scab.js`, with side `the-sword-reforged`.
+- **Campaign sides:** `world-state` (key W), `zariel`, `running-the-endgame` (all in `campaign-world.js`); `arc-drenwal` (`campaign-hellriders.js`).
+- **Tools:** combat pop-out window for a second monitor (key C). House rule: identical monsters share one initiative and make one collective save.
+- **Open DM items:** Griffon's Saddlebag loot is a placeholder (DM to supply the source text); Day 12 estimate (Day 0 = end of Session 5) to confirm; Dumal clock 4/6 is an estimate; the master primer still has mentions of the dropped link; slice 8 art waits on the Codex login.
+
+**Earlier prep (Sessions 10–11, now played):**
+**Session 11: Roads from the Grave** (built 2026-10-23; the Crypt road was played) — DM app: `dm-app/sessions/11-roads-from-the-grave.js`. Runs after the dragon fight. Three full branches, players pick: **Crypt of the Hellriders** (door → Nave of Names → Olanthius + shard 1), **Scabrous Menagerie** (Feonor → Singing Aisle → Pens → Trophy Vault / Urexiel), **Stygian Dock** (dock → Kreeg). Far sites (Arches of Ulloch, Wrecked Flying Fortress, Pit of Shummrath) are hook cards only (side `far-roads`).
 - **Kreeg canon used:** the played Session 8 version — **amnizu at the Stygian Dock**. The older "Vessper Hain at the Emporium" plan in the master primer is superseded.
 - **Proposed links (DM can drop any):** Eldra link dropped (DM ruling 2026-11-01): Or'Henn is simply Kreeg's gardener. The Crypt door opens for Lulu, a First Charge name said with grief, the watchword "The sun will hold!", a bought word, or force (force = disadvantage with Olanthius). Kreeg's homebrew **Ledger of Forgetting** can take one old memory (Lulu's) instead of the last 5 hours.
-- **Feonor's road shifts +6 days** (crow on day 4 = her day 10): she waits outside the Menagerie with a map until **day 14**, then is caged. Geas still lapses day 30.
+- **Feonor's road shifts +6 days** (superseded: Feonor delivered Cinderbloom in Session 11) (crow on day 4 = her day 10): she waits outside the Menagerie with a map until **day 14**, then is caged. Geas still lapses day 30.
 - **DM recommendation:** Uldrak goes home to Muspelheim after the dragons and returns for the last battle (CR 23 trivialises all three roads).
 - **The Sword (2026-10-23):** Eventyr's one-shard version. Olanthius keeps the missing shard; the Maw and the Pit are optional again.
 
@@ -86,6 +94,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 - **Mahadi (Wandering Emporium)** — wants Red Ruth's leftover secrets that the party holds (Bhaalspawn-arc intel, her heartstone, Mordenkainen letter, soul-stock) [CAMPAIGN CANON / HOMEBREW]. The party has leverage for a trade.
 - **Mephistopheles** — opened as a thread during the Yeenoghu battle. Dumal's pledge to Cania means the Archduke of the Eighth Hell has a stake. Dumal escaped the Last Hill wounded, so Mephistopheles's asset is loose rather than lost — the Archduke is tracking him and gauging the party. (DM-confirmed: Dumal escaped, wounded and unaided.)
 - **Or'Henn's estate-master is Thavius Kreeg** — the traitor High Overseer who damned Elturel, reborn by Zariel as an **amnizu** at the **Stygian Dock** [D&D CANON fate]. Or'Henn unknowingly served him; the party **deduced his identity (Session 8)**. His binding contract to Thavius voided when the estate was razed. His **true name sits in the Contract V coffer**. This welds Or'Henn's arc to the **main quest** (free Elturel). See `npc-reference.md` → Thavius Kreeg. [CAMPAIGN CANON / HOMEBREW link]
+- **Session 11 (Crypt road):** **Olanthius** gave the party the **Sword shard** and the **location of the Scab** (the road to the Bleeding Citadel), and told them *"the pure of heart may brave the dangers of this crypt to receive rewards."* Feonor delivered **Cinderbloom** to Or'Henn. The party holds the **Orb of Dragonkind**.
 
 ---
 
@@ -108,6 +117,8 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 - Party fought through Red Ruth's Bone Brambles, killed Red Ruth, obtained the method to free the genie Ralzala (Session 5–6)
 - At the Demon Zapper: freed Ralzala, obtained Ralzala's letter to Bel; Dumal ambushed with Yeenoghu leashed; the Lady Vengeance eventually became a fort at the Last Hill (Session 6–7)
 - **SESSION 7 CLIMAX (the Last Hill):** Party defeated both Yeenoghu and Dumal in the mountaintop siege battle. Yeenoghu was banished (century ward). Drenwal wounded his brother Dumal "Den" — but Dumal broke free and escaped; the Dumal arc remains open. **Asimov (Mikas's PC) died to Yeenoghu; his soul was captured in the Soul Capacitor.** The Soul Council placed Asimov into the bounty-hunter succession in Rasheem's place.
+- Session 8: Drenwal's Torm oath; the party deduced Thavius Kreeg. Session 9: Arkhan's Tower, vial stolen, Word of Recall; party Level 13. Session 10: the vial freed Uldrak, who gave the Orb of Dragonkind.
+- **SESSION 11 (Crypt road):** Olanthius gave the shard and the Scab's location. Feonor delivered Cinderbloom. Drenwal's *knock* on the warded door carried 50 miles and drew Arkhan, the four dragons, Obatala and Krull, who wait outside because nothing evil can enter. The session stopped mid-fight with 5–8 ghosts and wraiths from the soul urns.
 
 ---
 
@@ -119,10 +130,11 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
    - Without the shard, Lulu's memory alone opens the vision trial and the Sword stays notched (DM's choice what that costs).
    - **The Fallen Three are unchanged** — they supply the *road to the Citadel* (Haruman's piece held 1/3; Bel's and Olanthius's open).
 
-1. **Main Quest:** Find the Bleeding Citadel → claim Zariel's Sword (bring Olanthius's shard to make it whole) → free Elturel. Haruman piece collected (1/3). Olanthius + Bel remaining. Bleeding Citadel manifests every 33 days; next window [TO CONFIRM WITH DM: days remaining after Session 7 elapsed time — the original 17-day clock was set at Session 5/6].
+1. **Main Quest:** Find the Bleeding Citadel → claim Zariel's Sword (the party already holds Olanthius's shard; the road is the Scab, then the Citadel, then Yael, then Idyllglen, where the shard rejoins the blade) → free Elturel. Haruman piece collected; Olanthius met in Session 11 (shard and Scab location received); Bel remaining. Bleeding Citadel manifests every 33 days; next window [TO CONFIRM WITH DM: days remaining after Session 7 elapsed time — the original 17-day clock was set at Session 5/6].
    - **NEW — the Thavius Kreeg lead:** Or'Henn's former estate-master is **Thavius Kreeg** (the traitor of Elturel), reborn an **amnizu at the Stygian Dock** [D&D CANON]. He signed the pact that damned Elturel — a direct line to the Companion (imprisoned planetar), the Creed Resolute souls, and possibly *breaking the contract*. Or'Henn is the way in; his true name (Contract V coffer) is the leverage. See `npc-reference.md` → Thavius Kreeg. [HOMEBREW link]
 
 ### DRENWAL'S ARC
+2b. **Generals' Memories and Bhaal's Last Gasps (set 2026-11-01).** Solving a Crypt puzzle opens Drenwal to the memories of past Hellrider generals (Zariel as commander, Haruman, Olanthius, Yael); this sets up the Idyllglen vision. **Bhaal's Last Gasps start after he leaves the Crypt**, as he prepares for Sigil 3. DM canon: the Hellriders trained Bhaalspawn as weapons and tamed the blood; the Kept Watch sigil is their taming tool. When he is weakened (bloodied, Watch pool empty, sigil cracked), Bhaal can reach him. Side `arc-drenwal`.
 2a. **THE THREE SIGILS — STEP 2 COMPLETE (Session 9).** The **Sigil of the Binding** was drawn in another Bhaalspawn's blood (Dumal's, taken at the Last Hill). Drenwal is **Tier II**. Only **Step 3 — Mastery** remains: *kill the last living Bhaalspawn*, a kinslaying.
    - **He is on the competing road.** `drenwal-bhaal-blood.md` is explicit that the Sigils and the Rebirth are two *rival* cures: the Sigils are "the power road… may be Bhaal's design dressed as salvation," and "the same ritual that forged **Dumal the Flame Ascendant**."
    - **Dumal wants exactly this.** From the app's `arc-dumal`: "He wants him to finish the Three Sigils and stand beside him." Completing sigil two was doing what his brother has been asking for.
@@ -133,7 +145,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 4. **Senna thread:** Drenwal's youngest sibling (~6), raised by Harper Issa. Location unknown to the party. Dumal is alive and at large — both the chief threat to Senna and the party's only real lead to her. This is now the party's thread to chase. [HOMEBREW]
 
 ### AURORA'S ARC
-5. **Aurora's Arc:** Moonkite fully recovered + mounted. Moonbow of Celestial Warding active. Next personal arc: investigating Moonkite's lost celestial patron (potential third deity for Drenwal's rebirth). Ring of Wishes spent (inert silver band).
+5. **Aurora's Arc:** Moonkite beats in Sessions 12 and 13 (`arc-moonkite`, Bond 1). Moonkite fully recovered + mounted. Moonbow of Celestial Warding active. Next personal arc: investigating Moonkite's lost celestial patron (potential third deity for Drenwal's rebirth). Ring of Wishes spent (inert silver band).
 
 ### OR'HENN'S ARC (NEW — opens Session 8)
 6. **Soul Capacitor succession + one-week clock:** Asimov's soul is in the capacitor. The Soul Council gave a **one-week deadline** for Asimov to recruit a new living bounty hunter — Or'Henn and the party are the intended recruits. Clock started at the end of Session 7. If the deadline lapses, the succession chain collapses and the capacitor's role changes. [HOMEBREW / CAMPAIGN CANON]
@@ -141,6 +153,8 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 8. **Cinderbloom staff-recovery arc (5 contracts):** Or'Henn's personal arc — recovering his lost staff *Cinderbloom* (very rare druidic staff, key to the estate's menagerie wards; acts as his title and inheritance). Five soul-bounty contracts relayed by Asimov's soul, available at the Wandering Emporium. Breadcrumb trail: estate boundary seal → salvage manifest (Kharzug the Root-Eater barlgura, last seen at the Weeping Furrow) → ashwood compass flake (Contract 3, Pellucid Jax) → the Weeping Furrow → tribute to **Lady Urexiel, Keeper of the Scabrous Menagerie**. Writ of reclamation (Contract 5) is the legal crowbar. Capstone: staff upgraded to Legendary at **Vaelisha, the Mother Ash** (last living tree of Avernus) after gathering three Green Remnants. [HOMEBREW]
 
 ### ONGOING THREADS
+7a. **Or'Henn status (Session 11):** **0 gold scales**, curse live, the Orb of Dragonkind held, Cinderbloom recovered. The Kreeg-bought-someone link is dropped. Arkhan wants the orb back and wants Or'Henn to beg a dragon (Vermilius's kind offer is the Tiamat trap).
+7b. **Zariel and Lulu:** Zariel's signs appear in Session 12 and her presence in Session 13. Default: Zariel's riders take Lulu at the end of Session 12 (DM to confirm). Sides `zariel`, `running-the-endgame`.
 8a. **TIAMAT'S CURSE ON OR'HENN (NEW — Session 9).** Not a status effect, a **delivery mechanism**: it pressures the cursed into **asking a dragon for help**; the curse transfers to that dragon, and **Tiamat wakes in her true form**. Inaction is not safety — it is a clock. [HOMEBREW]
    - **This is Arkhan's win condition, delivered by proxy.** His entire purpose is freeing Tiamat. He told the party for free what the blood does, at a price the primer states is *"free. He wants them to want it more."* They stole the vial and fled, and may have done precisely what he wanted.
    - **Two cures, and they compete.** The vial breaks curses Tiamat laid (safe, but spends the vial). The dragon-transfer clears Or'Henn and summons her.
@@ -151,7 +165,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
    - **Resurrection** (Drenwal). Asimov is dead with his soul in the Soul Capacitor. The spell needs a body he can touch *and* a soul free and willing — a soul held by the Soul Council under a succession contract is arguably neither, and whether Asimov's body was recovered from the Last Hill is not recorded. If the players connect these dots they will try it, and the answer reshapes Or'Henn's whole bounty arc. [TO CONFIRM WITH DM]
    - **Plane Shift** (druid at 13; warlock arcanum). Escaping Avernus is Chapter 5's goal. Decide now how it interacts with Elturel's chains and the Styx, because "why don't we just leave" is coming. [TO CONFIRM WITH DM]
 9. **Gargauth's Manipulation:** Tempting Drenwal with power; angling to be the god who "catches" Drenwal during the rebirth ritual. [HOMEBREW]
-10. **Bel's Forge:** Pending destination (Fallen Three 2/3 + Olanthius remaining). Ralzala's letter of introduction should grant easier access. Bel's condition: retrieve the adamantine control rods from the Wrecked Flying Fortress. He holds the Arches of Ulloch intel (the only path to the Bleeding Citadel). [D&D CANON + HOMEBREW]
+10. **Bel's Forge:** Pending destination (Haruman dead, Olanthius met; Bel remaining). Ralzala's letter of introduction should grant easier access. Bel's condition: retrieve the adamantine control rods from the Wrecked Flying Fortress. He holds the Arches of Ulloch intel (the only path to the Bleeding Citadel). [D&D CANON + HOMEBREW]
 11. **Mephistopheles thread (NEW — opened Session 7):** Dumal's pledge to Cania means the Archduke of the Eighth Hell has a stake in the party's actions. Dumal escaped alive, so Mephistopheles's investment is loose rather than lost; the Archduke is tracking his asset and putting the party on his balance sheet. A live arc. [HOMEBREW]
 12. **Smiler the Defiler — banishment debt:** Party owes Smiler banishment to his realm. No Wish access. Need scroll/NPC/ritual. Future quest.
 13. **Time Pressure:** Elturel continues sinking. Bleeding Citadel manifestation window running. [TO CONFIRM WITH DM: days remaining.]
@@ -303,7 +317,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 
 ---
 
-### Session 8 — The Wandering Emporium (in progress)
+### Session 8 — The Wandering Emporium (completed)
 **Location:** The Last Hill → the Wandering Emporium
 **Events:**
 - Drenwal cast **Planar Ally** beseeching **Torm**; a **gold dragon** (Torm's companion) answered and agreed to courier resources to Elturel **for a vow, not coin** — Drenwal swore, on the sun and the sword, to see Elturel freed and to answer for the blood in his veins. Torm now holds a claim on his redemption (a candidate rebirth-god). See `drenwal-bhaal-blood.md` — the oath's "retained judgment."
@@ -330,4 +344,23 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 
 ---
 
-*File last updated: 2026-10-11 (Session 9 complete — vial stolen, Word of Recall escape, Sigil #2 drawn, Tiamat's curse on Or'Henn, party to Level 13)*
+### Session 10 — The Styx Run (played)
+**Location:** The River Styx → Uldrak's Grave
+**Events:**
+- The party ran the Styx to Uldrak's Grave and poured the vial. **Uldrak is restored** and gave the party the **Orb of Dragonkind**. One vial, one curse: Or'Henn is still cursed and sees Tiamat's visions.
+**Consequences:** the vial is spent. Uldrak's endgame promise is still unspent (way C in Session 12).
+
+---
+
+### Session 11 — Roads from the Grave: the Crypt (played)
+**Location:** The Crypt of the Hellriders
+**Events:**
+- **Olanthius** gave the party the Sword shard and the Scab's location: *"the pure of heart may brave the dangers of this crypt to receive rewards."*
+- **Feonor delivered Cinderbloom** to Or'Henn.
+- Drenwal's *knock* on the warded door carried 50 miles and drew Arkhan, the four dragons, Obatala and Krull. They wait outside; nothing evil can enter.
+- Exploring, the party found soul urns with loot beneath. **5–8 ghosts and some wraiths** attacked. The session ended mid-fight.
+**Consequences:** the Crypt ward is cracked (6 segments, 0 filled). Lulu is not with the party. Or'Henn has 0 gold scales, curse live. Next: Session 12 "The Siege of the Crypt".
+
+---
+
+*File last updated: 2026-11-01 (Session 11 played — Crypt road; Sessions 12 and 13 built in the DM app)*
