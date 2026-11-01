@@ -221,6 +221,16 @@ window.SESSION = {
           "{@b Second urn (the lancers).} A bronze {@item horn of Valhalla|DMG} reflavoured as the {@b Horn of the First Charge}: blown, it calls four spectral Hellriders (berserker statistics, mounted, radiant instead of slashing) for 1 hour. They will not ride against a Hellrider.",
           "{@b Third urn (the Marshal).} His own sword, a {@item dragon slayer|DMG} (+1, an extra 3d6 against dragons). He carried it into Avernus for a dragon he never reached. With Arkhan's dragons at the door and Tiamat stirring, it has never been more welcome."
         ] },
+        { t: "h", text: "The Riders' Bequest (static loot)" },
+        { t: "p", text: "Fixed, not rolled: one piece per PC, laid out on the shelf behind the urns as if the riders had been keeping them for exactly these three. Give them whatever the dice say elsewhere." },
+        { t: "read", text: "Behind the urns, on the bare stone of the shelf, three things lie in a row on folded white cloth. None of them is dusty. Each has a slip of vellum under it in the same careful hand, and each slip says only: For the one who came back for us." },
+        { t: "list", items: [
+          "{@b Drenwal:} a {@item Amulet of the devout, +2|TCE}, the Hellrider chaplains' sun medallion. While he wears it, his spell attacks and save DC get +2, and he regains one use of Channel Divinity on a short rest whenever he spends one in Avernus. Veska knows it on sight: the chaplain of the First Charge wore it into Avernus.",
+          "{@b Aurora:} a {@item Rod of the pact keeper, +2|DMG}, a rider's silver riding crop with a moon-white thong. +2 to her spell attacks and save DC, and once a day it restores a Pact Magic slot. Moonkite lowers its head to it, once, without being asked.",
+          "{@b Or'Henn:} a {@item Moon sickle, +2|TCE}, the hook the Hellriders' druid-scouts used to cut forage in a wasteland. +2 to his spell attacks and save DC, and when he restores hit points with a spell he adds {@dice 1d4} to the healing. It is a weapon and a focus, so it sits beside Cinderbloom rather than replacing it.",
+          "{@b Veska and Ser Lucan} are covered by their {@scene ending|Crypt upgrades} (the banner, the cold-forged legs). If you want a physical item: Veska takes the Marshal's white {@b +1 shield}, and Lucan the rearguard's {@b +1 plate} (both already in their upgraded AC)."
+        ] },
+
         { t: "h", text: "Rolled Grave Goods" },
         { t: "p", text: "On top of each urn's fixed item. Roll {@dice 1d8} on that urn's table {@b once per soul from it that was laid to rest} (up to three), or {@b once} if all three were destroyed. Rerolls on a duplicate." },
         { t: "table", caption: "First urn: the rearguard (d8)", head: ["d8", "Grave goods"], rows: [
@@ -366,7 +376,7 @@ window.SESSION = {
           ["5", "{@item Rod of absorption|DMG}: a marshal's baton"],
           ["6", "A spell scroll, 7th level (DM picks)"]
         ] },
-        { t: "note", title: "Saddlebag Items (Placeholder)", text: "{@b Top tier, fixed item per PC:} Saddlebag item for Drenwal: DM to supply (source missing). Saddlebag item for Aurora: DM to supply (source missing). Saddlebag item for Or'Henn: DM to supply (source missing). {@b Stand-in until then:} one {@item ring of protection|DMG} for the party to share, or one stand-in rare SRD item per PC from the Clean table. Do not invent Saddlebag items." },
+        { t: "note", title: "Saddlebag Items (Placeholder)", text: "{@b Top tier, fixed item per PC:} Saddlebag item for Drenwal: DM to supply (source missing). Saddlebag item for Aurora: DM to supply (source missing). Saddlebag item for Or'Henn: DM to supply (source missing). {@b Until then:} the fixed per-PC items are the Riders' Bequest in {@scene the-urns-of-the-unquiet|The Urns of the Unquiet} (amulet of the devout, rod of the pact keeper, moon sickle, each +2). Do not invent Saddlebag items." },
 
         { t: "choices", prompt: "The trials are done, or the party has had enough.", items: [
           { label: "Read the journals", goto: "the-hellrider-archive" },
