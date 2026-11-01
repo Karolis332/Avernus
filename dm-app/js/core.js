@@ -32,6 +32,9 @@
         tokens.push({ type: "item", name: body.first, src: (body.second || "dmg").toLowerCase() });
       } else if (tag === "dice") {
         tokens.push({ type: "dice", expr: body.first });
+      } else if (tag === "url") {
+        if (/^https?:\/\//i.test(body.first)) tokens.push({ type: "url", href: body.first, label: body.second || body.first });
+        else tokens.push({ type: "text", text: m[0] });
       } else if (tag === "b" || tag === "i") {
         tokens.push({ type: tag, text: m[2].trim() });
       } else {
@@ -50,7 +53,7 @@
     return parseTags(text)
       .map(function (t) {
         if (t.type === "text" || t.type === "b" || t.type === "i") return t.text;
-        if (t.type === "c" || t.type === "side" || t.type === "scene") return t.label || t.id;
+        if (t.type === "c" || t.type === "side" || t.type === "scene" || t.type === "url") return t.label || t.id;
         if (t.type === "spell" || t.type === "item") return t.name;
         if (t.type === "dice") return t.expr;
         return "";

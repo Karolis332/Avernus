@@ -1,6 +1,6 @@
 // Session 11: the roads out of Uldrak's Grave. Three full branches (the Crypt of the Hellriders,
 // the Scabrous Menagerie, the Stygian Dock) plus hook cards for the far sites.
-// Uldrak comes from sessions/campaign-tower.js; Olanthius from sessions/campaign-hellriders.js. This file overrides only their tactics.
+// Uldrak comes from sessions/campaign-tower.js; Olanthius from sessions/campaign-hellriders.js; Urexiel, the mezzoloth handler and Kreeg from sessions/campaign-world.js. This file overrides only their tactics.
 window.SESSION = {
   id: "11-roads-from-the-grave",
   title: "Roads from the Grave",
@@ -87,145 +87,24 @@ window.SESSION = {
       ]
     }),
 
-    "urexiel": {
-      name: "Lady Urexiel",
-      kind: "urexiel",
-      role: "Yugoloth broker, Keeper of the Scabrous Menagerie",
-      homebrew: "Campaign boss on a chain devil chassis, scaled to solo CR 14. Use 190 hit points if Veska or Ser Lucan fight beside the party, 248 if the three characters face her alone.",
-      npc: true,
-      sizeType: "Medium fiend (yugoloth), neutral evil",
-      ac: 18, acNote: "natural armor",
-      hp: 248, hpFormula: "homebrew (190 with allies)",
-      speed: "30 ft.",
-      abilities: { str: 18, dex: 16, con: 18, int: 18, wis: 16, cha: 20 },
-      saves: "Dex +7, Wis +8", skills: "Insight +8, Perception +8, Persuasion +10",
-      vulnerable: "", resist: "cold, fire, lightning; bludgeoning, piercing, and slashing from nonmagical attacks", immune: "acid, poison", condImmune: "poisoned",
-      senses: "darkvision 120 ft., passive Perception 18",
-      languages: "Abyssal, Common, Infernal, telepathy 120 ft.",
-      cr: "14", xp: 11500, pb: 5,
-      traits: [
-        { name: "Legendary Resistance (3/Day)", text: "If she fails a saving throw, she can choose to succeed instead." },
-        { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
-        { name: "Collector's Verdict (1/Turn)", text: "No action needed. She appraises one creature she can see, out loud. It makes a DC 17 Wisdom saving throw or is frightened of her until the end of its next turn. \"Exquisite. And yet.\"" }
-      ],
-      actions: [
-        { name: "Multiattack", text: "Four Animated Chain attacks. The walls of her collection answer her." },
-        { name: "Animated Chain", text: "Melee Weapon Attack: +9 to hit, reach 15 ft., one target. Hit: 11 (2d6 + 4) slashing, and the target is grappled (escape DC 16). While grappled, a barbed link bleeds it for 1d6 slashing at the start of each of its turns. She can hold up to four creatures." },
-        { name: "Barb Yank (Recharge 4-6)", text: "One creature she has grappled makes a DC 15 Strength saving throw. On a failure it is dragged 20 ft. toward an open cage or the Feeding Chute and takes 11 (2d10) piercing." }
-      ],
-      bonus: [], reactions: [],
-      legendary: {
-        count: 3,
-        intro: "Urexiel can take 3 legendary actions, one at a time, at the end of another creature's turn. She regains spent legendary actions at the start of her turn.",
-        actions: [
-          { name: "Chain Reach", cost: 1, text: "One Animated Chain attack." },
-          { name: "Reposition", cost: 1, text: "Moves up to half her speed without provoking opportunity attacks." },
-          { name: "Rattle the Ring", cost: 2, text: "Every creature she has grappled takes 1d6 slashing, and its escape DC rises by 2 until her next turn." }
-        ]
-      },
-      lair: { initiative: 20, text: "On initiative 20, pick one. {@b Open a Pen:} a drop-gate opens and one specimen comes out. It attacks the nearest living thing, sometimes her own handlers. If it is one of Or'Henn's three beasts, it goes for her instead. {@b Feeding Chute:} a 10-ft. grate drops open; a creature on it makes a DC 15 Dexterity saving throw or slides into a lower pen ({@dice 2d6} damage, and company). {@b Trophy Light:} the vault lamps flare; every creature that can see Kreeg's box makes a DC 14 Wisdom saving throw or has disadvantage on its next attack." },
+    "urexiel": Object.assign({}, window.CAMPAIGN.creatures.urexiel, {
       tactics: [
         "She deals before she fights. She respects a writ, and she respects coin.",
         "She turns hostile the moment she decides the party is worth more caged than paid.",
         "Grapple the strongest fighter, then Barb Yank them toward an open cage. Collector's Verdict every turn on whoever is not grappled.",
         "Below half hit points, she retreats to the Killing Floor and opens every cage at once.",
         "The ledger is chained at her hip. If she dies in fire, it burns with her."
-      ],
-      description: "A tall, elegant yugoloth in layers of dark silk, with a jeweller's loupe on a chain and long grey fingers that never stop touching things. Chains hang from every wall of her collection, and they move when she looks at them.",
-      roleplay: [
-        "Appearance: dark silks, a loupe on a chain, a ring of keys at one hip and a lacquered ledger at the other.",
-        "Voice: warm, delighted, a little bored. Every sentence sounds like a price.",
-        "Wants: rare things, in matched sets. Or'Henn and his staff. A live dragon. An empyrean, if one walks in.",
-        "Knows: she paid for the raid on the Ashen Garden. It was a job. She has no idea what the box is.",
-        "Sample line: \"Buyers, or the beginnings of a very fine new exhibit. I do love a matched set.\""
       ]
-    },
+    }),
 
-    "mezzoloth": {
-      name: "Menagerie Handler",
-      kind: "mezzoloth",
-      role: "Mezzoloth handler patrolling the Pens",
-      source: { page: "bestiary", name: "Mezzoloth", src: "MTF" },
-      homebrew: "Mezzoloth chassis. They work the Pens with tridents and hooked poles.",
-      npc: false,
-      sizeType: "Medium fiend (yugoloth), neutral evil",
-      ac: 18, acNote: "natural armor",
-      hp: 75, hpFormula: "10d8 + 30",
-      speed: "40 ft.",
-      abilities: { str: 18, dex: 11, con: 16, int: 7, wis: 10, cha: 11 },
-      saves: "", skills: "Perception +3",
-      vulnerable: "", resist: "cold, fire, lightning; bludgeoning, piercing, and slashing from nonmagical attacks", immune: "acid, poison", condImmune: "poisoned",
-      senses: "blindsight 60 ft., darkvision 60 ft., passive Perception 13",
-      languages: "Abyssal, Infernal, telepathy 60 ft.",
-      cr: "5", xp: 1800, pb: 3,
-      traits: [
-        { name: "Innate Spellcasting", text: "Charisma (spell save DC 11). At will: {@spell darkness}, {@spell dispel magic}. 2/day: {@spell cloudkill}." },
-        { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
-        { name: "Magic Weapons", text: "Its weapon attacks are magical." }
-      ],
-      actions: [
-        { name: "Multiattack", text: "One Claws attack and one Trident attack." },
-        { name: "Claws", text: "Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 9 (2d4 + 4) slashing." },
-        { name: "Trident", text: "Melee or Ranged Weapon Attack: +7 to hit, reach 5 ft. or range 20/60 ft., one target. Hit: 7 (1d6 + 4) piercing, or 8 (1d8 + 4) if used with two hands." },
-        { name: "Teleport", text: "Magically teleports, with what it carries, up to 60 ft. to a place it can see." }
-      ],
-      bonus: [], reactions: [],
+    "mezzoloth": Object.assign({}, window.CAMPAIGN.creatures.mezzoloth, {
       tactics: [
         "On round 2, one handler teleports to the vault to warn Urexiel. Then she is ready when the party arrives.",
         "Cloudkill into a crowded aisle. The caged beasts scream, and that brings more handlers."
-      ],
-      description: "A man-sized insect in a leather apron, four arms, a trident in two of them and a hooked pole in the others. It smells of feed and disinfectant.",
-      roleplay: ["Does not talk. Clicks, and points at the exit."]
-    },
+      ]
+    }),
 
-    "kreeg": {
-      name: "Thavius Kreeg",
-      kind: "kreeg",
-      role: "Amnizu dockmaster of the Styx. The man who sold Elturel",
-      source: { page: "bestiary", name: "Amnizu", src: "MTF" },
-      homebrew: "Campaign boss on the amnizu chassis (Mordenkainen's Tome of Foes), raised to CR 22 to stand beside Arkhan. Zariel made him master of the Styx at this Dock, and every soul that passes through his ledger feeds him. Killed in the Nine Hells, he is destroyed for good.",
-      npc: true,
-      sizeType: "Medium fiend (devil), lawful evil",
-      ac: 22, acNote: "natural armor",
-      hp: 342, hpFormula: "36d8 + 180",
-      speed: "30 ft., fly 40 ft.",
-      abilities: { str: 11, dex: 14, con: 20, int: 24, wis: 16, cha: 22 },
-      saves: "Dex +9, Con +12, Wis +10, Cha +13", skills: "Arcana +14, Deception +13, Insight +10, Perception +10, Persuasion +13",
-      vulnerable: "", resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered", immune: "fire, poison", condImmune: "charmed, poisoned",
-      senses: "truesight 60 ft., darkvision 120 ft., passive Perception 20",
-      languages: "Common, Infernal, telepathy 1,000 ft.",
-      cr: "22", xp: 41000, pb: 7,
-      traits: [
-        { name: "Devil's Sight", text: "Magical darkness doesn't impede his darkvision." },
-        { name: "Legendary Resistance (3/Day)", text: "If he fails a saving throw, he can choose to succeed instead." },
-        { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
-        { name: "Innate Spellcasting", text: "Intelligence (spell save DC 22, +14 to hit). At will: {@spell charm person}, {@spell command}, {@spell detect thoughts}, {@spell suggestion}. 3/day each: {@spell dominate monster}, {@spell modify memory}. 1/day each: {@spell feeblemind}, {@spell mass suggestion}." },
-        { name: "Ledger of Forgetting", text: "When a creature stunned by his Forgetfulness stays stunned for the full minute, Kreeg can take one memory of his choice instead of the last 5 hours, however old it is. He writes it in his ledger as a single line. Reading that line aloud to the creature gives the memory back. {@spell Greater restoration} does not. Burning the page loses it forever." },
-        { name: "Escape Clause (1/Day)", text: "When he drops to 0 hit points, he drops to 1 instead and vanishes into the ledger room under the tollhouse. Each creature that saw it makes a DC 22 Intelligence saving throw or forgets where he went. Speaking his true name, or {@item dimensional shackles|DMG} on his wrists, stops this." }
-      ],
-      actions: [
-        { name: "Multiattack", text: "He uses Poison Mind, then makes two Taint attacks." },
-        { name: "Taint", text: "Melee Spell Attack: +14 to hit, reach 5 ft., one target. Hit: 33 (6d10) necrotic, and the target can't regain hit points until the start of his next turn." },
-        { name: "Poison Mind", text: "Up to three creatures he can see within 60 ft. make a DC 22 Wisdom saving throw. On a failure, each takes 32 (5d12) necrotic and is blinded until the start of his next turn. On a success, half damage and not blinded." },
-        { name: "Forgetfulness (Recharge 5-6)", text: "One creature he can see within 60 ft. makes a DC 22 Intelligence saving throw or is stunned for 1 minute. It repeats the save at the end of each of its turns, ending the effect on a success. If it stays stunned for the full minute, it forgets everything from the last 5 hours, or he uses his Ledger of Forgetting." }
-      ],
-      bonus: [
-        { name: "Dockmaster's Order", text: "One devil on the Dock that can hear his telepathy uses its reaction to move up to its speed and make one attack." }
-      ],
-      reactions: [
-        { name: "Instinctive Attraction", text: "When a creature he can see targets him with a spell, the caster makes a DC 22 Wisdom saving throw. On a failure, the spell targets the creature closest to the caster instead, other than Kreeg or the caster. It fails against a caster who can't be charmed." }
-      ],
-      legendary: {
-        count: 3,
-        intro: "Kreeg can take 3 legendary actions, one at a time, at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
-        actions: [
-          { name: "Taint", cost: 1, text: "One Taint attack." },
-          { name: "Command", cost: 1, text: "He casts {@spell command}." },
-          { name: "Poison Mind", cost: 2, text: "He uses Poison Mind." },
-          { name: "Strike from the Record", cost: 3, text: "One creature he can see within 60 ft. makes a DC 22 Charisma saving throw. On a failure it vanishes until the end of its next turn and takes 22 (4d10) psychic. Until it comes back, its allies forget it was ever there: they can't target it with spells or help it. It reappears in the space it left, or the nearest free one." }
-        ]
-      },
-      lair: { initiative: 20, text: "On initiative 20, while he is on the Dock, pick one. {@b The Styx Rises:} a black wave sweeps a 20-ft. stretch of the wharf. Each creature there makes a DC 18 Dexterity saving throw; on a failure the Styx touches it, and it makes a DC 15 Intelligence saving throw or forgets the last day. A creature knocked into the river is targeted by {@spell feeblemind}. {@b The Count:} every lemure on the Dock chants numbers at once. Each creature of his choice makes a DC 18 Wisdom saving throw or has disadvantage on concentration saves and can't take reactions until initiative 20 next round. {@b Barge Chains:} a mooring chain lashes out at one creature within 10 ft. of the edge. DC 18 Strength saving throw, or it is pulled 10 ft. toward the water." },
+    "kreeg": Object.assign({}, window.CAMPAIGN.creatures.kreeg, {
       tactics: [
         "He would rather talk, and he would rather you forgot. Charm person, suggestion and command before anything that hurts.",
         "Forgetfulness on whoever is carrying Lulu, or on Lulu herself if he has guessed who she is.",
@@ -233,16 +112,8 @@ window.SESSION = {
         "Strike from the Record on the healer, so the party forgets to save whoever is dying.",
         "Lair actions: The Styx Rises first, while people are still standing near the edge.",
         "Below 100 hit points he offers terms: his signature, for his life. He means it, this once. At 0 he uses the Escape Clause, and the hunt moves under the tollhouse."
-      ],
-      description: "A gaunt grey devil in a clerk's black robe, with a long bald skull, small dark wings folded like a coat, and fingers stained black with ink. On one finger, much too small for it now, is a High Overseer's ring with a cracked sun on it.",
-      roleplay: [
-        "Appearance: an amnizu. Inky fingers. The old ring. He keeps his face turned a little away, the way he did at the Ashen Garden.",
-        "Voice: dry, precise, reasonable. He talks like a man explaining a fair price.",
-        "Wants: out from under Zariel before Elturel touches the Styx and she collects him. His box back. His gardener back.",
-        "Knows: everything about the contract. The Companion is a planetar in chains. The Creed Resolute. A living signatory can sign it away.",
-        "Sample line: \"Gardener. You're late. The roses will be dead.\""
       ]
-    },
+    }),
 
     "barbed-devil": {
       name: "Barbed Devil (Dock Guard)",

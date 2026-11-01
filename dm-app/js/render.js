@@ -62,6 +62,12 @@
         it.target = "_blank";
         it.rel = "noopener";
         frag.appendChild(it);
+      } else if (t.type === "url") {
+        var ua = el("a", "tag tag-url", t.label);
+        ua.href = t.href;
+        ua.target = "_blank";
+        ua.rel = "noopener noreferrer";
+        frag.appendChild(ua);
       } else if (t.type === "dice") {
         var d = el("span", "tag tag-dice", t.expr);
         d.dataset.dice = t.expr;

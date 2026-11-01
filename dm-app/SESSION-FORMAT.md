@@ -127,6 +127,7 @@ book-style section heading instead of a plain sub-heading.
 | `{@item name\|src}` | 5e.tools item link (default src DMG) |
 | `{@dice 2d6}` | Click to roll |
 | `{@b text}` / `{@i text}` | Bold / italic |
+| `{@url https://…\|label}` | External link, new tab (`http(s)` only; anything else renders as plain text; label defaults to the URL) |
 
 ### MEDIA entry
 

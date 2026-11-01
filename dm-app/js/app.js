@@ -74,6 +74,7 @@
     dom.libraryBtn = qs("#library-btn");
     dom.mapBtn = qs("#map-btn");
     dom.combatBtn = qs("#combat-btn");
+    dom.worldBtn = qs("#world-btn");
     dom.libraryView = qs("#library-view");
     dom.libraryContent = qs("#library-content");
     dom.libraryTabs = document.querySelectorAll(".lib-tab");
@@ -311,6 +312,7 @@
       else if (e.key.toLowerCase() === "l") openLibrary();
       else if (e.key.toLowerCase() === "m") openCampaignMap();
       else if (e.key.toLowerCase() === "c" && !e.ctrlKey && !e.metaKey && !e.altKey) openCombatWindow();
+      else if (e.key.toLowerCase() === "w" && !e.ctrlKey && !e.metaKey && !e.altKey) openSide("world-state");
     });
   }
 
@@ -321,6 +323,7 @@
     dom.libraryBtn.addEventListener("click", openLibrary);
     dom.mapBtn.addEventListener("click", function () { openCampaignMap(); });
     dom.combatBtn.addEventListener("click", openCombatWindow);
+    dom.worldBtn.addEventListener("click", function () { openSide("world-state"); });
     dom.helpBtn.addEventListener("click", function () { dom.helpPopover.classList.toggle("open"); });
   }
 

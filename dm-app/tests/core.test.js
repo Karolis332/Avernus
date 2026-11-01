@@ -324,4 +324,19 @@ var DMCore = require("../js/core.js");
   assert.strictEqual(typeof r.pass, "boolean");
 })();
 
+// url tag
+(function () {
+  var t = DMCore.parseTags("see {@url https://example.org/x|Example} now")[1];
+  assert.strictEqual(t.type, "url");
+  assert.strictEqual(t.href, "https://example.org/x");
+  assert.strictEqual(t.label, "Example");
+  var bare = DMCore.parseTags("{@url http://example.org/y}")[0];
+  assert.strictEqual(bare.type, "url");
+  assert.strictEqual(bare.label, "http://example.org/y", "label defaults to href");
+  var bad = DMCore.parseTags("{@url javascript:alert(1)|x}");
+  assert.strictEqual(bad.length, 1);
+  assert.strictEqual(bad[0].type, "text", "non-http(s) href is rejected as plain text");
+  assert.strictEqual(DMCore.stripTags("{@url https://example.org/x|Example}"), "Example");
+})();
+
 console.log("core.test.js: all assertions passed");
