@@ -310,6 +310,7 @@ window.SESSION = {
       duration: "30 minutes",
       blocks: [
         { t: "read", text: "The road runs west and down, across black glass and old battlefields. Far ahead there is a hill that is the wrong shape. As you get closer you see it is not rock. It is a scab, a great pink crust the size of a mountain, with chains the thickness of towers running into it from every direction." },
+        { t: "img", src: "art/generated/env-road-to-the-scab.webp", caption: "The road to the Scab.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "env", sight: "Burnt carts, a standard with the sun cut out, a hill that pulses very slightly.", sound: "Chains groaning under strain, a long way off.", smell: "Iron, old bread, rot under it.", feel: "The shard hums against your ribs. It is warm, and it tugs west." },
 
         { t: "h", text: "The Shard Leads" },
@@ -404,6 +405,7 @@ window.SESSION = {
 
         { t: "h", text: "Area S1 · The Oozing Entrance" },
         { t: "read", text: "A wound the width of a house yawns near the top of the scab, and the warm dark below it breathes." },
+        { t: "img", src: "art/generated/env-scab-level-1.webp", caption: "Level 1: the Window in the wound.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "p", text: "A 20-foot-wide tube drops into the dark. Climbing down is easy (DC 12 Athletics, or a rope). At the bottom is the first pool of blood: this is where you remind them of the flaw rule." },
 
         { t: "h", text: "Area S2 · The Angelic Window" },
@@ -450,6 +452,7 @@ window.SESSION = {
 
         { t: "h", text: "Area S6 · The Torture Chamber" },
         { t: "read", text: "Two chains hang from the ceiling, ending in hyena skulls that bite into a screaming devil. Three horse-sized flies jab it with their mouthparts." },
+        { t: "img", src: "art/generated/env-scab-level-2.webp", caption: "Level 2: chains, flies and bones.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "p", text: "{@c alazub|Alazub} (a barbed devil, down to 25 hit points) came to spy on Trantolox for Zariel. Three fly-demons (use giant wasp stats, or skip them) are torturing him for what he knows. Trantolox wants him to talk." },
         { t: "checks", items: [
           { skill: "Medicine", dc: 15, who: "anyone", text: "Remove a chain without hurting him. Otherwise a chain comes off as an action and deals 2d6 piercing damage to the devil. (Chains: AC 19, 15 hp, immune to cold, fire, poison and psychic.)" },
@@ -507,6 +510,7 @@ window.SESSION = {
 
         { t: "h", text: "Area S11 · The Statue of Yeenoghu" },
         { t: "read", text: "A nine-foot idol of hulking scab-flesh stands in the middle of the room, and the gnolls and vulture-demons are dancing round it." },
+        { t: "img", src: "art/generated/env-scab-level-3.webp", caption: "Level 3: the idol of scab-flesh.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "p", text: "Six gnolls and three vrocks cackle round the statue. It is carved of hard scab: AC 17, 60 hit points, immune to poison and psychic. Demons and gnolls within 30 feet gain 10 hit points at the start of their turn. When destroyed it explodes: every creature within 30 feet takes 4d10 piercing damage (DC 15 Dexterity halves)." },
         { t: "encounter", id: "s11-statue", title: "S11 (real fight): the statue", combatants: [ { c: "vrock", n: 2 }, { c: "scab-gnoll", n: 6 } ], notes: "Real fight. Cut from three vrocks to two. The statue heals them, so the party should destroy it first. The vrocks form one group, the gnolls another. Exits: break the statue from range (the explosion also hits them), or lead them out of its 30 feet." },
         { t: "more", title: "Who tells the party about the statue", src: ["Eventyr"], blocks: [
@@ -552,6 +556,7 @@ window.SESSION = {
       duration: "15 minutes",
       blocks: [
         { t: "p", text: "Session 12 gave signs. This is the second beat: a presence, not a meeting. She does not enter the scene. She watches, and she lets them know it. Full guide in {@side zariel|Playing Zariel}." },
+        { t: "img", src: "art/generated/env-zariels-presence.webp", caption: "Zariel, far down in the blood mirror.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "read", text: "The blood in the nearest pool stops moving. It goes flat and dark as a mirror, and in it, very far down, a woman stands with her back to you, hand resting where a sword would hang.\n\nShe does not turn. The shard in your pack goes quiet, as if it were holding its breath.\n\n\"I am told you carry something of mine,\" says a calm, tired voice, from everywhere at once. \"Bring it to me. Then I will tell you the cost of keeping what is yours.\"" },
         { t: "env", sight: "A pool of blood gone still as glass, a figure at the bottom of it with her back turned.", sound: "Nothing at all. The Scab holds its breath.", smell: "Cold iron, no rot, for the length of the voice.", feel: "The kind of attention you feel when a general reads your name off a list." },
 
@@ -597,6 +602,7 @@ window.SESSION = {
       duration: "15 minutes",
       blocks: [
         { t: "read", text: "The doors are brass, taller than a church, and a blindfolded angel is carved across both of them with her sword half out. The frame is gold runes. Even the rot of the Scab seems to keep back from them by a few paces." },
+        { t: "img", src: "art/generated/env-citadel-gates.webp", caption: "The gates of the Bleeding Citadel.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "env", sight: "Brass doors with a blindfolded angel, a frame of gold-inlaid runes, scab pulled back from the frame.", sound: "A very faint hymn, as if from the far end of a long hall.", smell: "Wax and clean stone, for the first time since the Crypt.", feel: "The shard in the carrier's hand is hot." },
         { t: "p", text: "The doors are indestructible and have abjuration on them. The runes carry a warning that only the pure of heart may part them. {@b In the printed adventure} a good-aligned creature opens them only with Lulu within 60 feet, and otherwise a voice offers to let them in if they bring her." },
 

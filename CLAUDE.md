@@ -206,24 +206,6 @@ Newest last, **last 10 entries only** — this file loads into context every ses
 unbounded log would eat the smart zone it exists to protect. Promote anything still valuable
 past that into the body above, or into `brain/`. No secrets or customer PII: this is committed.
 
-### 2026-10-11 — DM app: tracker upgrades, Monument battle map, S9 text audit
-- **Did:**
-  - Tracker: creature names are clickable and open the stat block; rows re-sort when an init is edited.
-  - Creature `init` field, which gives dragons their initiative bonus.
-  - Spell-slot circles via `Core.parseSpellcasting()`.
-  - Wider side panel, smaller left nav.
-  - Map block accepts `src`.
-  - Generated Monument battle map at `dm-app/maps/monument-battlemap.webp`, gitignored and deploy-only. `gen_event_art.py` gained `--ref`, `--max-width` and `--quality`.
-  - S9 flavour-text audit (Krull rides Obatala, not the ship deck). Monk dead; Gith teacher replaced by the Gith's journal.
-- **Why:** the paid CartographyAssets "Arkhan's Tower" pack (€4) is the tower INTERIOR, 10 floors, not the Monument. Only its style was matched. Art derived from a paid map stays out of the public repo. Image generation cost about $0.75 for 3 calls, against $0.50 approved.
-- **Open:**
-  - The map's tent sits beside the maw, not inside it.
-  - Audit applied 60 fixes in S9. Not yet fixed:
-    - optional D1–D4: Moonkite-arc links, Torogar "huge", gate skull colours;
-    - stale facts outside S9: campaign-state.md (level 11, Asimov, Session 5), primer Or'Henn level 11 and Aurora as Warlock, campaign-arcs L306/L438 (Devil's Ride is at the Monument).
-    - Trigger: next prep session.
-  - Buy the €4 pack if the party ever enters the tower.
-
 ### 2026-10-23 — Reinstall restore + Session 10 "The Styx Run" built in the DM app
 - **Did:**
   - Restored `DnD/` from GitHub after the Windows reinstall. Gitignored art, maps, PDFs and sfx were pulled back from the VPS (the pre-reinstall backup is gone; the VPS + this PC are the only copies).
@@ -283,4 +265,9 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Why:** DM rulings from the grill. Trantolox is a nalfeshnee (source), not a barbed devil. Dragon ids stay skarrix/vhennic/mirelle/praxamor with display names Slarkas/Vistalancer/Vermilius/Flash. The "Session 9 in the dropdown" report was browser cache, not a bug.
 - **Merge (same day):** this checkout was 21 commits behind origin (the laptop's 2026-10-23 S11 rewrite: Crypt areas C1–C7, Drenwal's truth about Halvard as the key to Olanthius, `campaign-endgame.js`, `campaign-crew.js`, `statblocks.html`, `crew.html`). Merged origin/main in; the laptop's S11 and map rulings win, this PC's changes re-applied on top: Olanthius/Kreeg/Urexiel/mezzoloth ported to the campaign files with the laptop's numbers (S11 keeps tactics overrides), Eldra dropped everywhere per the 11-01 ruling, S12 Archive sentence aligned to the Halvard key. The "Yael's name as Crypt key" wording from slice 4 was discarded. Merged tree verified in headless Chromium (`statblocks.html` S11, S12 combat view, S12 primer render; MCP Playwright was down, so cached `ms-playwright` chrome.exe was driven directly).
 - **Later rulings (same day):** Arkhan was arriving as the party went in and they shut the door; he never came inside (S12 recap + Wings at the Door fixed; laptop S11's stair fight was prep only). Eldra is flavour only: the laptop's flavour lines are restored in S10/S11/arcs/map; the name was invented in prep, not by the DM; the primer's Hellrider version is shelved, not deleted.
-- **Open:** slice 8 art is blocked until the DM runs `codex login` (401; `dm-app/tools/png_to_webp.py` untracked + untested). Saddlebag OCR missing everywhere (DM will supply; placeholders stay). DM to confirm: Day 12 count, Dumal clock 4/6, Lulu taken at the end of S12, S13 map-level split (S1–5/S6–10/S11–14). Agents killed python and node processes (MCP servers down: `/mcp` to reconnect). Always `git pull` before planning on this PC. No deploy.
+- **Open:** slice 8 art: done, see the next entry. Saddlebag OCR missing everywhere (DM will supply; placeholders stay). DM to confirm: Day 12 count, Dumal clock 4/6, Lulu taken at the end of S12, S13 map-level split (S1–5/S6–10/S11–14). Agents killed python and node processes (MCP servers down: `/mcp` to reconnect). Always `git pull` before planning on this PC. No deploy.
+
+### 2026-11-01 — S12 merged with the laptop: urn hard choices, room key, Arkhan's hostage plan, monster primer fix
+- **Did:** `c000ce8`, merges `070aecf` + `336f73d`, then the art commit. S12: map 3.3 room key (C1–C7, party in C2g), DM Context chapter, a Hellrider hard choice on each laptop urn wave (wounded/line, burning gate, truth/comfort), every loot table d20, Arkhan wants the party dead + Or'Henn hostage + Drenwal Geas'd into Planar Ally for a gold dragon (vial spent on Uldrak). `statblocks.html`/`crew.html` load campaign-hellriders/world (Hellrider creatures and Cania's Envoy were missing); S13 portrait sources; chapter colour bars + campaign dots (`js/app.js`); `dm-app/tests/creature-audit.js`. Scene art for 10 empty chapters via Codex `gpt-6-astra` (= the DM's "astra").
+- **Why:** the laptop pushed 13 S12 commits during this work (three waves, Marshal Dunmere, Urn Hoard, Riders' Bequest); its file won and this PC's changes were re-applied on top. My fallen-rider/herald creatures were dropped as redundant; the laptop's Wings image kept; laptop d6/d8 entries kept as the first rows of the d20 tables.
+- **Open:** check on the map that the left/middle/right trial doorways are C2f/C2e/C2a, and east vs west C6. Gold dragon via Planar Ally is a DM ruling. Saddlebag OCR still missing. Day 12, Dumal 4/6, Lulu taken: unconfirmed. Laptop: `git pull` before editing S12.

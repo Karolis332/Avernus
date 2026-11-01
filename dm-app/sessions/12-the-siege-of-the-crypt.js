@@ -624,6 +624,7 @@ window.SESSION = {
       duration: "30 minutes",
       blocks: [
         { t: "p", text: "Olanthius gave the party the shard and the road. He did not give them the whole story. North of his hall (C5) is C7, where the order kept its annals. The party has already seen it in Session 11: the shelf of annals, and Olanthius's own journal open on the desk. This scene is the reading. It is the book's key to him: if the party read it before they spoke, they read it again now with his leave, and if not, he lets Drenwal read it. The shard itself came from Drenwal telling him the truth about Halvard." },
+        { t: "img", src: "art/generated/env-hellrider-archive.webp", caption: "C7, the Archive: the annals, and Olanthius's journal on the desk.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "read", text: "A narrow room of shelves. Hundreds of leather-bound books, none of them dusty. A reading desk with a single lamp that gives a light the colour of a dawn that is never coming.\n\nOn the desk, an open book in a heavy hand. The top page is a date you do not recognise, and under it, the first line: \"I will write this down because I cannot say it.\"" },
         { t: "env", sight: "Shelves of annals; a lamp that does not flicker; Olanthius's journal open at the last entry.", sound: "Pages turning on their own, once.", smell: "Leather, ink, cold lamp oil.", feel: "Looking at someone's diary and being asked to read it." },
 
@@ -762,6 +763,7 @@ window.SESSION = {
       duration: "40 minutes",
       blocks: [
         { t: "p", text: "There are seven exits. They only need one. Each has a mechanic and a cost, and none of them is free. Offer none of them to the players. Let the players invent them, then say yes and read the cost. If they get stuck, the ward clock will unstick them." },
+        { t: "img", src: "art/generated/env-last-ride.webp", caption: "Exit B, the Last Ride: the freed riders clear a lane through the dragons.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "list", items: [
           "{@b A} the Orb. {@b B} the Last Ride. {@b C} Uldrak. {@b D} Krull's double-cross.",
           "{@b E} parley with Arkhan. {@b F} the Lady Vengeance. {@b X} Vermilius's kind offer (the trap)."
@@ -875,6 +877,7 @@ window.SESSION = {
       duration: "10 minutes",
       blocks: [
         { t: "p", text: "The Last Gasps begin only once Drenwal is outside the cold. The Crypt's vigil is still alive in there; Bhaal cannot reach him through it. The trigger is simple: the moment he crosses the cold line into Avernus, treat the Watch pool as empty for one beat." },
+        { t: "img", src: "art/generated/env-bhaals-first-gasp.webp", caption: "Bhaal's First Gasp: the first breath outside the cold.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "read", text: "The cold line passes over you like a hand lifted from your shoulder. The air outside tastes of iron.\n\nThen you feel it: a breath that is not yours. It comes in slow, old and patient, and it smells of salt and rust. It does not speak. It is the shape a voice would take if the god behind it had died, and the dying had not finished." },
         { t: "p", text: "Use the Gasp save and effects from {@side arc-drenwal|Arc: Drenwal and the Hellrider Memories}. For this first one, treat the trigger as met automatically. If the party never steps out (the ship picks them up from the roof, say), fire it the first time Drenwal stands under the Avernus sky." },
         { t: "more", title: "Why it starts here", src: ["Homebrew"], blocks: [
@@ -893,6 +896,7 @@ window.SESSION = {
       duration: "20 minutes",
       blocks: [
         { t: "p", text: "Zariel should be felt before she is seen. This session is signs only. Pick two or three from the list, then end on Jeremy's message. The full guide to playing her is {@side zariel|Playing Zariel}." },
+        { t: "img", src: "art/generated/env-zariel-notices.webp", caption: "A banner with no army under it, and a polite writ.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "list", items: [
           "A banner on the horizon with no army under it: a sun with the sword torn out.",
           "A {@c narzugon|narzugon} rides to the Crypt hill after the siege and leaves a writ, politely. It asks for the shard and for Lulu by name. It does not threaten.",
