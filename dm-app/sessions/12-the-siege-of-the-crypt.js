@@ -110,7 +110,7 @@ window.SESSION = {
 
         { t: "h", text: "At a Glance" },
         { t: "list", items: [
-          "{@b 1 · The Urns of the Unquiet (30 min).} Finish the fight: six ghosts, three wraiths, nine souls to lay to rest.",
+          "{@b 1 · The Urns of the Unquiet (30-45 min).} Finish the fight, which grows: three great urns, three waves (the first urn's wraiths, then the lance wraiths, then Marshal Dunmere, the Last Banner). Nine souls to lay to rest.",
           "{@b 2 · The Trials of the Pure (45 min).} Three puzzles set the loot tier. Drenwal's first memory.",
           "{@b 3 · The Hellrider Archive (30 min).} Olanthius's journal and the annals. A DC ladder of what they learn.",
           "{@b 4 · Wings at the Door (30 min).} Arkhan's terms, the dragons, the ward clock, Vermilius's kindness.",
@@ -151,32 +151,59 @@ window.SESSION = {
       when: "",
       duration: "30 minutes",
       blocks: [
-        { t: "read", text: "The urns crack along their rims with a sound like ice on a river. What was swirling inside rises as a white, ragged smoke, and the smoke takes the shape of riders: a dozen cold shapes in tabards, in helms, in a charge that never ended. Behind them, from the dark between the pillars, three drifts of grey cloak slide into the room, quiet as grief.\n\nA rider's voice, from far away: \"The sun will hold!\"\n\nIt does not sound like a promise. It sounds like a question." },
-        { t: "env", sight: "Pale riders over cracked clay urns; the grey drift of the wraiths behind; the cold candles of the Nave flickering at the door.", sound: "A distant charge, on a wind that is not blowing; one voice saying the watchword over and over.", smell: "Cold stone, church wax, old iron.", feel: "The cold is not hostile. It is the cold of a room where someone has just stopped breathing." },
-        { t: "map", id: "crypt-of-the-hellriders-40x30", note: "The Urn Hall opens off the Nave of Names. The urns sit on a long stone shelf; the riders rise from them." },
+        { t: "read", text: "Three great urns stand on the long stone shelf, each taller than a man, sealed with lead and stamped with the rising sun. The first one is already open. What was swirling inside rises as white, ragged smoke and takes the shape of riders, and the grey wraiths go up with it.\n\nThe other two are not quiet. A hairline crack runs around the rim of the second, glowing faintly, and from inside comes the sound of hooves on stone. The third is the largest. Something inside it is breathing slowly, the way a man breathes before he gives an order.\n\nA rider's voice, from far away: \"The sun will hold!\"\n\nIt does not sound like a promise. It sounds like a question." },
+        { t: "env", sight: "Pale riders over the first broken urn; two more urns on the shelf, cracks glowing along their rims; the cold candles of the Nave flickering at the door.", sound: "Hooves inside the second urn. A slow breath inside the third. One voice saying the watchword over and over.", smell: "Cold stone, church wax, old iron.", feel: "The cold is not hostile. It is the cold of a room where someone has just stopped breathing." },
+        { t: "map", id: "crypt-of-the-hellriders-40x30", note: "The Urn Hall opens off the Nave of Names. The three great urns sit on a long stone shelf along the far wall, 15 ft. apart." },
+        { t: "img", src: "art/generated/event-crypt-urn-hall.webp", caption: "The Urn Hall: one urn open, two still cracking.", credit: "Generated art (gpt-image-2.5)." },
 
-        { t: "encounter", id: "urns-fight", title: "The Urn Hall", combatants: [
-          { c: "hellrider-ghost", n: 6 },
-          { c: "despairing-wraith", n: 3 }
-        ], notes: "6 ghosts and 3 wraiths is a hard fight for three level-13 PCs with Veska, Ser Lucan and Moonkite. They run as two groups with one initiative each and one collective save. To tune: remove two ghosts (easier), or add one wraith and remove none (harder). Keep the total at 9 so the count of nine urns matches. Ghosts re-form at their urn unless it is blessed or broken (see their stat block)." },
+        { t: "h", text: "The Three Urns" },
+        { t: "table", head: ["Urn", "Breaks", "Releases", "Souls"], rows: [
+          ["{@b First urn}", "Already open (the fight in progress)", "3 {@c hellrider-wraith|Hellrider Wraiths}, 8 {@c crypt-specter|specters} (smoke, not souls), and the {@c first-charge-ghost|Ghost of the First Charge} (not an urn soul)", "3"],
+          ["{@b Second urn}", "Start of round 4 of the fight, or as soon as anyone strikes it", "3 {@c lance-wraith|Hellrider Lance Wraiths}: mounted, charge and wheel away", "3"],
+          ["{@b Third urn}", "Two rounds after the second opens, or when its last lance wraith falls, whichever is first", "{@c banner-marshal|Marshal Aubrec Dunmere, the Last Banner} (miniboss, CR 15) and 2 {@c hellrider-ghost|Hellrider ghosts}, his banner guards", "3"]
+        ] },
+        { t: "p", text: "{@b Holding an urn shut.} A character at an unbroken urn can use an action to bless it or say the watchword: DC 16 Wisdom (Religion), or no check for a Hellrider speaking the watchword with Drenwal's sigil in view. Each success holds that urn shut for one more round. Two successes on the second urn, or three on the third, and its souls are laid to rest without a fight: they count. Every action spent at an urn is an action not spent on the dead already loose." },
+
+        { t: "h", text: "Wave 1: The First Urn (in progress)" },
+        { t: "p", text: "Carry the Session 11 tracker straight over: same hit points, same round count. In the app this is the same set of creatures as Session 11's Restless Dead." },
+        { t: "encounter", id: "urns-fight", title: "Wave 1: The First Urn", combatants: [
+          { c: "hellrider-wraith", n: 3 },
+          { c: "crypt-specter", n: 8 },
+          { c: "first-charge-ghost", n: 1 }
+        ], notes: "Run the wraiths and the specters as two groups (one initiative, one collective save each). Specters are the urn's smoke: when the first urn's last soul is laid to rest or destroyed, every specter blows away. The Ghost of the First Charge stops if someone says his name from the wall." },
+
+        { t: "h", text: "Wave 2: The Second Urn" },
+        { t: "read", text: "The second urn does not crack. It bursts. Three riders come out of it already at the gallop, horses of white smoke under them, lances level, and the hall is suddenly far too small for them." },
+        { t: "encounter", id: "urns-fight-2", title: "Wave 2: The Lance Wraiths", combatants: [
+          { c: "lance-wraith", n: 3 }
+        ], notes: "Add them to the running initiative as one group. They enter at the second urn and charge on their first turn. Hit, wheel away, charge again: punish anyone who is standing in the open between the urns." },
+
+        { t: "h", text: "Wave 3: The Last Banner (miniboss)" },
+        { t: "read", text: "The third urn opens like a door. A rider half again a man's height steps out of it on a horse of smoke, and plants a banner in the shards: the rising sun, half of it burned black. Two riders take their places at his stirrups. The visor turns to Drenwal, and the light inside it is patient.\n\n\"Rider,\" says Marshal Dunmere. \"Report. Has the sun held?\"" },
+        { t: "img", src: "art/generated/event-crypt-banner-marshal.webp", caption: "Marshal Aubrec Dunmere, the Last Banner.", credit: "Generated art (gpt-image-2.5)." },
+        { t: "encounter", id: "urns-fight-3", title: "Wave 3: The Last Banner", combatants: [
+          { c: "banner-marshal", n: 1 },
+          { c: "hellrider-ghost", n: 2 }
+        ], notes: "Miniboss, CR 15, with 3 legendary actions. The banner (AC 17, 40 HP, vulnerable to radiant) buffs every undead within 30 ft. and powers Rally the Line: break it or take it. The mercy route is Stand Down: a Hellrider gives the order, DC 18 Charisma, three successes or one once he is below 115 HP. His question is real: answer it honestly and the first Stand Down check has advantage." },
+        { t: "note", title: "Scaling", text: "Three level-13 PCs with Veska, Ser Lucan and Moonkite. Each wave alone is a medium fight; overlapping, they are deadly, which is the point: the party should feel the urns as a clock and start sealing them. {@b Easier:} the third urn breaks only when the second urn's last wraith falls, never on the round count. {@b Harder:} the second urn breaks at the start of round 3, and the Marshal has 280 HP. Never more than one urn breaking in a round." },
 
         { t: "checks", items: [
-          { skill: "Religion", dc: 14, who: "anyone", text: "Bless an urn with the right words: one soul is laid to rest. The ghost bound to it stops and thanks you." },
+          { skill: "Religion", dc: 14, who: "anyone", text: "Bless a wraith below half hit points within 5 ft.: that soul is laid to rest. At an unbroken urn it is DC 16 and holds the urn shut for a round." },
           { skill: "History", dc: 15, who: "Drenwal, Veska (advantage)", text: "Speak the watchword \"The sun will hold!\" at an urn. The ghost stops and listens. Anyone who says it with a Hellrider's sigil in view frees the soul." },
-          { skill: "Persuasion", dc: 16, who: "anyone", text: "A wraith hesitates once its brothers are at rest. Wisdom (Religion or Persuasion) DC 16 lets it go." },
+          { skill: "Persuasion", dc: 18, who: "Drenwal, Veska", text: "Stand Down: give Marshal Dunmere the order the Charge never got. Three successes, or one once he is bloodied, and he lowers the lance." },
           { skill: "Insight", dc: 12, who: "anyone", text: "The ghosts are not hunting. They are asking to be let off the ride." }
         ] },
 
         { t: "h", text: "Three Ways to End It Early" },
         { t: "steps", items: [
-          "{@b Religion.} A DC 14 Wisdom (Religion) action at the urn blesses it. That soul is laid to rest for good. A critical failure wakes the nearest wraith.",
+          "{@b Religion.} A DC 14 Wisdom (Religion) action blesses a wraith below half hit points, or a banner guard, within 5 ft. That soul is laid to rest for good. A critical failure draws the nearest wraith's next attack.",
           "{@b Turn Undead.} Turns every ghost in 30 feet for a minute. A turned ghost cannot be blessed that turn, but the room is safe to work in. Radiant light looks like forgiveness.",
-          "{@b The watchword and Drenwal's sigil.} Drenwal (or Veska) says \"The sun will hold!\" with a hand on the sigil, and a ghost within 30 feet stops. One soul per round, no check. This is the intended way out."
+          "{@b The watchword and Drenwal's sigil.} Drenwal (or Veska) says \"The sun will hold!\" with a hand on the sigil: one wraith below half hit points within 30 ft. stops and is laid to rest. One soul per round, no check. On the Marshal it does not work; he needs the other order, Stand Down."
         ] },
-        { t: "note", title: "Track the Souls", text: "Every soul laid to rest counts, however it happened. {@b Nine in all} (six ghosts, three wraiths). The count decides the Roll of the Charge in {@scene the-trials-of-the-pure|The Trials of the Pure} and the size of the Last Ride in {@scene the-ways-out|The Ways Out}. A ghost that is only destroyed re-forms later: it does not count." },
+        { t: "note", title: "Track the Souls", text: "Every soul laid to rest counts, however it happened. {@b Nine in all}, three per urn: the first urn's three wraiths, the second urn's three lance wraiths, and the Marshal with his two banner guards. Souls laid to rest at a sealed urn count too. Specters and the Ghost of the First Charge do not. The count decides the Roll of the Charge in {@scene the-trials-of-the-pure|The Trials of the Pure} and the size of the Last Ride in {@scene the-ways-out|The Ways Out}. A soul that is only destroyed is gone, not at rest: it does not count." },
 
         { t: "more", title: "What the urns are", src: ["Homebrew"], blocks: [
-          { t: "p", text: "The First Charge rode into Avernus and did not ride out. The Crypt bottled what was left of their souls so that Zariel's fall could not take them as well. Each urn holds one rider. The ghosts are those riders, still waiting for the order to stand down." },
+          { t: "p", text: "The First Charge rode into Avernus and did not ride out. The Crypt bottled what was left of their souls so that Zariel's fall could not take them as well. Each of the three great urns holds three riders: the first the rearguard, the second the lancers of the front rank, the third the Marshal and his colour guard. They are still waiting for the order to stand down." },
           { t: "p", text: "{@b The wraiths are different.} They are riders who despaired {@i inside the Crypt}, years after the Charge, and were never laid to rest. That is why the ban on evil never kept them out: they did not come in, they were already here. They are grief, not malice. Nobody ever told them the ride was not for nothing." },
           { t: "p", text: "{@b Why this link exists:} it explains a fight inside a place where evil cannot enter, and it turns the fight into something Drenwal's order can answer with mercy." }
         ] },
@@ -208,9 +235,9 @@ window.SESSION = {
 
         { t: "h", text: "(a) The Roll of the Charge" },
         { t: "env", sight: "Rows of names with cold candles under them. Nine of the candles are unlit and have no name above them, only a rank.", sound: "A very faint chanting of the roll call, one voice at a time.", smell: "Wax that has never burned.", feel: "The names pull at you, like being called on in a lesson." },
-        { t: "p", text: "Nine candles wait unlit, each under a rank and nothing else. They belong to the nine souls in the Urn Hall. A candle lights when its rider's name is spoken aloud with grief, from the mouth of someone who has heard it." },
+        { t: "p", text: "Nine candles wait unlit, each under a rank and nothing else. They belong to the nine souls in the three urns of the Urn Hall. A candle lights when its rider's name is spoken aloud with grief, from the mouth of someone who has heard it." },
         { t: "checks", items: [
-          { skill: "Investigation", dc: 12, who: "anyone", text: "The nine ranks are the nine urns, in order. The ghosts' names are on the urns' lids." },
+          { skill: "Investigation", dc: 12, who: "anyone", text: "The nine ranks are the nine souls, three to an urn, the Marshal's rank highest. Their names are on the urns' lids." },
           { skill: "History", dc: 14, who: "Drenwal, Veska (advantage)", text: "Fill in a missing name from the order's own history. Lights one candle." },
           { skill: "Insight", dc: 13, who: "anyone", text: "A freed soul will tell its own name if asked kindly." }
         ] },
@@ -246,6 +273,7 @@ window.SESSION = {
         { t: "h", text: "(c) The Generals' Seats" },
         { t: "env", sight: "A round room, a stone table, four high-backed seats. On the table four helms of different make lie in a heap. Each seat has a device carved in the back.", sound: "Nothing. The room is waiting.", smell: "Old oil on leather.", feel: "Looking down at a map that is not there." },
         { t: "read", text: "Each seat's back carries a device, and under it a line of verse.\n\nA sun above a lowered banner: \"The first holds the line.\"\nA fist wrapped in chain: \"The second holds the watch.\"\nA shield beside a closed gate: \"The third holds the road.\"\nAn empty scabbard, burning: \"The fourth holds what none could hold.\"\n\nThe helms are marked only by rank. On the table, a small card: \"Set the right head on the right chair, and the dead will tell you what they carried.\"" },
+        { t: "img", src: "art/generated/event-crypt-trials-of-the-pure.webp", caption: "The Round of the Four: set the right head on the right chair.", credit: "Generated art (gpt-image-2.5)." },
         { t: "checks", items: [
           { skill: "History", dc: 13, who: "Drenwal, Veska (advantage)", text: "The sun over a lowered banner is the commander's. The chained fist is the general who ran the watch over the Bhaalspawn: Haruman." },
           { skill: "Religion", dc: 14, who: "anyone", text: "The shield and the closed gate is Olanthius, who held the road to the Citadel. The empty scabbard is the keeper of the Sword: Yael." },
@@ -349,6 +377,7 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "The party shut the great door when they came in, and it is still shut. Arkhan knocks: three slow knocks, the way Drenwal knocked. If they will not open it, he talks through the wood and the scene runs the same, but they see the dragons only when they look out. When they open it, read:" },
         { t: "read", text: "The great door swings in, and the cold line runs across the threshold like a rope. Beyond it the red sky is full of wings.\n\nOn the ridge, a black dragon the size of a barn lies with its chin on its claws. High above, a blue one cuts slow circles, lightning crawling on its wings. A green one has settled nearest the line and sits quite still, head tilted, as if it were listening to the music of a place it has not been invited to. A red one perches on the roof of the Crypt itself, one claw curled round a gargoyle. To the north, on a hill, a great white shape with an old tortle on its back.\n\nAnd on the threshold, one step outside the cold line, a tall dragonborn in black plate. The left side of his face is grey. He has Fane-Eater on his hip and his hands open at his sides.\n\n\"Good morning,\" says Arkhan the Cruel. \"I believe you have something of mine.\"" },
+        { t: "img", src: "art/generated/event-crypt-wings-at-the-door.webp", caption: "Arkhan at the cold line, his dragons behind him.", credit: "Generated art (gpt-image-2.5)." },
         { t: "env", sight: "Five dragons in a ring; the cold line on the threshold; Arkhan's grey half-face turned away from the light.", sound: "Wings. A low hum from the ward. Krull's prayers, very faint.", smell: "Smoke, old meat, incense from the north hill.", feel: "Everyone outside is patient. That is the frightening part." },
 
         { t: "h", text: "Arkhan's Terms" },
@@ -490,6 +519,7 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "The siege is not a fight to win. Escape is the win. If the ward fails, or they go through the door on purpose, run the exits as a running fight in two waves. The dragons do not go inside. Fight at the line and in the lane. The group rules apply: set up each wave, and groups share an initiative." },
         { t: "read", text: "Fane-Eater clears its scabbard with a sound like a door opening onto cold air.\n\n\"A shame,\" says Arkhan the Cruel, and means it. Over his head the sky turns over, and wings come down." },
+        { t: "img", src: "art/generated/event-crypt-breakout.webp", caption: "The Last Ride clears a lane.", credit: "Generated art (gpt-image-2.5)." },
 
         { t: "encounter", id: "the-door-fight", title: "Wave 1: The Doorway", combatants: [
           { c: "skarrix", n: 1 },
