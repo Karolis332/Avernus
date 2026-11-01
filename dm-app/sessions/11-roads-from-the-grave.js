@@ -1,6 +1,6 @@
 // Session 11: the roads out of Uldrak's Grave. Three full branches (the Crypt of the Hellriders,
 // the Scabrous Menagerie, the Stygian Dock) plus hook cards for the far sites.
-// Uldrak comes from sessions/campaign-tower.js; this file overrides only his tactics.
+// Uldrak comes from sessions/campaign-tower.js; Olanthius from sessions/campaign-hellriders.js. This file overrides only their tactics.
 window.SESSION = {
   id: "11-roads-from-the-grave",
   title: "Roads from the Grave",
@@ -78,53 +78,14 @@ window.SESSION = {
       ]
     },
 
-    "olanthius": {
-      name: "Olanthius",
-      kind: "olanthius",
-      role: "Death knight, guilty witness, keeper of the Sword's missing shard",
-      source: { page: "bestiary", name: "Olanthius", src: "BGDIA" },
-      homebrew: "Monster Manual death knight numbers. He fights at half heart: he pulls killing blows, uses Hellfire Orb only as a warning shot, and never strikes a downed character.",
-      npc: true,
-      sizeType: "Medium undead, lawful neutral",
-      ac: 20, acNote: "plate, shield",
-      hp: 180, hpFormula: "19d8 + 95",
-      speed: "30 ft.",
-      abilities: { str: 20, dex: 11, con: 20, int: 12, wis: 16, cha: 18 },
-      saves: "Dex +6, Wis +9, Cha +10", skills: "",
-      vulnerable: "", resist: "", immune: "necrotic, poison", condImmune: "exhaustion, frightened, poisoned",
-      senses: "darkvision 120 ft., passive Perception 13",
-      languages: "Celestial, Common, Infernal",
-      cr: "17", xp: 18000, pb: 6,
-      traits: [
-        { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
-        { name: "Marshal Undead", text: "Unless he is incapacitated, he and undead of his choice within 60 ft. have advantage on saving throws against features that turn undead." },
-        { name: "Spellcasting", text: "19th-level paladin. Spell save DC 18, +10 to hit. 1st (4 slots): command, compelled duel, searing smite. 2nd (3): hold person, magic weapon. 3rd (3): dispel magic, elemental weapon. 4th (3): banishment, staggering smite. 5th (2): destructive wave." },
-        { name: "Oathbreaker", text: "His spells that deal radiant damage deal necrotic damage instead." }
-      ],
-      actions: [
-        { name: "Multiattack", text: "Three longsword attacks." },
-        { name: "Longsword", text: "Melee Weapon Attack: +11 to hit, reach 5 ft., one target. Hit: 9 (1d8 + 5) slashing plus 18 (4d8) necrotic." },
-        { name: "Hellfire Orb (1/Day)", text: "A ball of fire bursts at a point he can see within 120 ft. Each creature in a 20-ft. radius makes a DC 18 Dexterity saving throw: 35 (10d6) fire plus 35 (10d6) necrotic on a failure, half on a success. It spreads around corners." }
-      ],
-      bonus: [],
-      reactions: [
-        { name: "Parry", text: "Adds 6 to his AC against one melee attack that would hit him. He must see the attacker and hold a melee weapon." }
-      ],
+    "olanthius": Object.assign({}, window.CAMPAIGN.creatures.olanthius, {
       tactics: [
         "This is a test, not a murder. He fights to see whether they fight with honour.",
         "If they accept a yield, do not gang up on a downed foe, and sheathe when he sheathes, he ends the duel himself and talks.",
         "If they play it as a murder, he fights to the end, and everything he knows dies with him.",
         "Compelled duel on whoever struck first. Hold person on anyone who attacks a kneeling or downed enemy."
-      ],
-      description: "A knight kneels at an open stone coffin. His armour is Hellrider steel gone black, and cold green fire burns behind his visor. He does not get up when you come in. He has been kneeling there for a hundred years.",
-      roleplay: [
-        "Appearance: blackened Hellrider plate, a rising sun ground off the breastplate. Green fire in the helm.",
-        "Voice: slow and cold, like something pulled up a deep well. He never shouts.",
-        "Wants: to stop remembering. He cannot. So he guards.",
-        "Knows: the road to the Bleeding Citadel. Why the Sword was hidden. Where its missing shard is. That a small star fell, and Zariel hated it.",
-        "Sample line: \"If you've come to be forgiven for something, you're in the wrong crypt.\""
       ]
-    },
+    }),
 
     "urexiel": {
       name: "Lady Urexiel",
@@ -420,7 +381,7 @@ window.SESSION = {
         { t: "p", text: "The book's password comes from the Obelisk, and the party does not have it. Any one of these opens the door." },
         { t: "list", items: [
           "{@b Lulu.} If she is with them, she puts her trunk on the stone and whispers \"please.\" The door opens. It remembers her. She does not know why. This should be the easiest way in.",
-          "{@b A name of the dead.} The door opens for anyone who speaks the name of a rider of the First Charge with grief in it. If Or'Henn says \"Eldra\" here for any reason (a prayer, a curse, a memory), it opens, and you have just learned something about his teacher.",
+          "{@b A name of the dead.} The door opens for anyone who speaks the name of a rider of the First Charge with grief in it. Any name from the wall will do, and Olanthius notices which one they chose.",
           "{@b The watchword.} The First Charge rode in shouting \"The sun will hold!\" A {@b DC 15 Intelligence (History or Religion)} check remembers it. Drenwal and Veska have advantage.",
           "{@b A bought word.} The merrenoloth ferryman on the Styx sells it for one soul coin. Or Asimov can take it as the payment for a delivered soul-bounty.",
           "{@b Force.} A {@b DC 25 Strength} check, {@spell passwall} or {@spell disintegrate}. {@spell Knock} does nothing: the door is not locked, it is waiting. Breaking in costs them: Olanthius knows. Every social check with him starts at disadvantage until someone apologises and he believes it."
@@ -438,11 +399,11 @@ window.SESSION = {
         { t: "read", text: "A long hall of grey stone, two walls carved from floor to ceiling with names. Thousands of them. The riders of the First Charge, and every Hellrider since who died in Elturel's service.\n\nCold candles stand in rows along the walls. They will not light. The floor is worn smooth in two long grooves, where people knelt.\n\nAt the far end, beyond an arch, something green is glowing." },
         { t: "p", text: "Lulu goes quiet in here. At the end of the hall she turns toward the arch before anyone else does. She knows the way, and does not know how." },
 
-        { t: "h", text: "Event: Eldra Vash" },
-        { t: "p", text: "Combing the walls for any one name is a {@b DC 12 Intelligence (Investigation)} check. If Or'Henn is looking for his teacher, he finds her without a roll." },
-        { t: "read", text: "Halfway down the older wall, under a hundred years of dust, the carving is deeper and rougher than the rest. Cut fast. Cut grieving.\n\nELDRA VASH.\n\nBeside it, a small badge in the stone: a golden sun, pierced by a sword. And under the name, scratched in by a different, shakier hand, much later:\n\n\"I should have stopped her. O.\"" },
-        { t: "p", text: "Or'Henn has seen that badge before. Every day for sixty years, on a ring on Eldra's hand, while she showed him how to keep fire-moss alive in ash. Ask his player what he does." },
-        { t: "note", title: "DM Only: Who Eldra Was", text: "Eldra Vash rode in the First Charge. The wall says she died there. She did not. She was taken alive, and her fey blood kept her young. Kreeg bought her for his Hell-side estate and set her to keep his garden. She kept it for a century, and she raised Or'Henn. She died in the raid that Urexiel paid for. Olanthius loved her, and has believed for a hundred years that she died in the Charge. Nobody has told him otherwise." },
+        { t: "h", text: "Event: Yael" },
+        { t: "p", text: "Combing the walls for any one name is a {@b DC 12 Intelligence (Investigation)} check. If Lulu is with them, she walks straight to it without a roll." },
+        { t: "read", text: "Halfway down the older wall, under a hundred years of dust, the carving is deeper and rougher than the rest. Cut fast. Cut grieving.\n\nYAEL.\n\nBeside it, a small badge in the stone: a golden sun, pierced by a sword. And under the name, scratched in by a different, shakier hand, much later:\n\n\"I should have stopped her. O.\"" },
+        { t: "p", text: "Nobody here knows which of them \"her\" means: Yael, who carried the Sword out, or Zariel, who fell. Olanthius has never said. Lulu puts her trunk against the badge and her glow brightens." },
+        { t: "note", title: "DM Only: The Scratched Line", text: "The scratch is Olanthius's. He returned to the wall once, a long time ago, and could not finish the sentence. Let the players guess. If someone asks him, he answers \"Both.\" and says nothing else." },
 
         { t: "h", text: "Event: The Crimson Watch" },
         { t: "read", text: "One alcove is set apart from the rest. The stone rider on the tomb inside is unfinished: the sculptor stopped at the shoulders, as if he could not bring himself to carve the face. The red paint on the shield has flaked to the colour of dried blood.\n\nSomeone has left an offering on the plinth: a soldier's ration token, so old it has fused to the stone." },
@@ -470,8 +431,8 @@ window.SESSION = {
 
         { t: "h", text: "How He Opens Up" },
         { t: "list", items: [
-          "{@b Eldra's name, from someone who knew her.} This is the master key. Advantage on every social check with him, and he speaks plainly. Run Event: Her Name.",
-          "{@b Eldra's name read off the wall,} by strangers: advantage on the first check only.",
+          "{@b Yael's name, said with real grief.} This is the master key (Lulu's voice carries it best). Advantage on every social check with him, and he speaks plainly. Run Event: Her Name.",
+          "{@b Yael's name read off the wall,} by strangers: advantage on the first check only.",
           "{@b No key:} one {@b DC 18 Charisma (Persuasion)} check with a real appeal to duty or honour. Grief-baiting fails and hardens him. On a success he gives the road and the reason, coldly.",
           "{@b If they fail, or ask to prove themselves,} he offers a trial: the Vigil or the Half-Heart Duel (below).",
           "{@b If they broke the door,} everything starts at disadvantage until someone apologises and he believes it."
@@ -479,9 +440,9 @@ window.SESSION = {
 
         { t: "h", text: "Event: Her Name" },
         { t: "read", text: "At the name, the green fire in the visor gutters. For one moment it is not a death knight's flame at all, but something smaller and older: a man's grief, with a man's face behind it.\n\n\"Where did you hear that name?\"\n\nIt is not a question. It is a wound.\n\n\"She wore the sun and sword into the Charge. I told her the sun would hold. I told her Zariel would hold.\" The great black shape bows until his brow nearly touches the stone. \"I have guarded a road for a hundred years so I would not have to remember the face of the woman who rode it first.\"" },
-        { t: "p", text: "Now Or'Henn can tell him the truth: Eldra did not die in the Charge. She lived a hundred years in a garden in Hell, and she taught a red dragonborn boy to make things grow. Let the player say it." },
-        { t: "read", text: "He is very still for a long time.\n\n\"She lived,\" he says at last. \"A hundred years. And I knelt here, mourning her, a day's ride away.\"\n\nThe green fire steadies. It is a different colour now, closer to blue.\n\n\"How did she die?\"" },
-        { t: "p", text: "If they tell him about the raid, he asks who paid for it. If they know Urexiel's name, he repeats it once, to remember it. If they do not, he says: \"Find out. Then come back and tell me.\" From here on he answers anything, plainly." },
+        { t: "p", text: "He asks what they came for. Let them answer in their own words: the answer sets how he handles the shard in Event: The Shard." },
+        { t: "read", text: "He is very still for a long time.\n\n\"She carried it out through me,\" he says at last. \"A hundred years. And I knelt here, a day's ride from the road she took.\"\n\nThe green fire steadies. It is a different colour now, closer to blue.\n\n\"Ask what you came to ask.\"" },
+        { t: "p", text: "From here on he answers anything, plainly." },
 
         { t: "h", text: "Event: Lulu Remembers" },
         { t: "p", text: "This fires the first time Olanthius names Yael or the gate while Lulu is present, key or no key. It is the strongest reason to bring her. Do not miss it." },
@@ -576,7 +537,7 @@ window.SESSION = {
         { t: "list", items: [
           "{@b Ash,} the hell hound. Or'Henn raised her from a pup. Use the hell hound stat block.",
           "{@b Gorse,} the nightmare. She pulled the plough on the ash-beds. Use the nightmare stat block.",
-          "{@b Thistle,} the chimera. It was always more trouble than it was worth, and Eldra loved it best. Use the chimera stat block."
+          "{@b Thistle,} the chimera. It was always more trouble than it was worth, and Or'Henn loved it best. Use the chimera stat block."
         ] },
         { t: "p", text: "Or'Henn has {@b advantage on every Wisdom (Animal Handling) check} with them. Calming one so it follows him quietly is DC 15. If Urexiel opens a pen in a fight, these three turn on her, not on him." },
         { t: "note", title: "The Contract 1 Breaches", text: "If Contract 1 is the one that was sealed, Or'Henn is legally the groundskeeper of these three. Every infernal dawn one of them stays uncatalogued, the seal gets a breach mark. At three, the Chancery can seize what was recovered under it. Reclaiming them, culling them, or burying them here clears it." },
@@ -626,7 +587,7 @@ window.SESSION = {
         { t: "h", text: "Event: The Ledger" },
         { t: "p", text: "The ledger hangs chained at her hip. Getting a look at it takes a trick, a bargain, a {@b DC 18 Dexterity (Sleight of Hand)} check, or her death. If she is about to die in fire, warn them: Asimov speaks from the Capacitor. \"The book. The answer to who paid for this is in that book, and it burns when she does.\"" },
         { t: "read", text: "The bookkeeping is perfect. A demon warband, hired by the page. A garden, listed item by item as it was emptied. Wards, salvaged. Beasts, appraised.\n\nAnd low down, under the beasts, a single cost entered in the same neat hand as everything else.\n\nOne gardener, aged. Incidental.\n\nNot even a name." },
-        { t: "p", text: "That line is Eldra. The rest of the ledger names the warband and the buyers above Urexiel who took the loot up the chain. Reading it is how the party follows the raid past this room. If she dies before they have it, the paper trail dies with her." },
+        { t: "p", text: "That line is a gardener who died in the raid, someone Or'Henn worked beside. Let his player say who. The rest of the ledger names the warband and the buyers above Urexiel who took the loot up the chain. Reading it is how the party follows the raid past this room. If she dies before they have it, the paper trail dies with her." },
 
         { t: "h", text: "If the Characters..." },
         { t: "p", text: "{@b ...pay her,} she is charming about it, and lets them leave with exactly what they paid for. She is watching Or'Henn the whole time." },
@@ -696,7 +657,7 @@ window.SESSION = {
           "{@b The Companion,} the second sun over Elturel, was a planetar in chains. It still is.",
           "{@b The Creed Resolute} is the clause that binds the souls of the faithful. Every soul in Elturel who swore the Creed belongs to Zariel when the city touches the Styx.",
           "{@b The copy.} There were two copies of the contract. Zariel holds the original. His own copy was in a box in his house, and a yugoloth's raid took it. He does not know which yugoloth.",
-          "{@b Eldra.} His service records list her: \"Acquired, First Charge. Kept for the garden.\" He bought her. He says it the way he would say he bought a chair."
+          "{@b The gardener.} Or'Henn's service record reads: \"Kept for the garden.\" Kreeg says it the way he would say he kept a chair."
         ] },
         { t: "p", text: "What he wants, and what he will trade for it, is in {@side kreegs-bargains|Kreeg's Bargains}." },
 
@@ -791,7 +752,7 @@ window.SESSION = {
           "{@b Free, if they ask well:} the truth about the Companion and the Creed Resolute.",
           "{@b For a promise to get him out of Avernus:} his signature on the copy, when they bring him the box and a writ. This is the legal road to freeing Elturel.",
           "{@b For his box:} the location of the original. Zariel keeps it in her own hand. He knows where she keeps her hand.",
-          "{@b For Or'Henn's service, one year:} Eldra's records, and the name of the slaver who sold her to him.",
+          "{@b For Or'Henn's service, one year:} the Ashen Garden's records, and the name of the buyer who paid Urexiel.",
           "{@b For Lulu:} anything. Refuse."
         ] },
         { t: "h", text: "The Catches" },

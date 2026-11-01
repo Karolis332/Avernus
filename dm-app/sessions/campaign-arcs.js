@@ -323,7 +323,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "note", title: "The Ledger", text: "Urexiel's ledger records the raid on the Ashen Garden: the warband's fee, the buyers above her, the tally of what was taken. If the party kills her before they get it, the paper trail dies with her. Warn them in the fiction: she taps the ledger and smiles. When Or'Henn reads it, his household is a line of figures. That is the horror. To her it was never personal." },
 
       { t: "h", text: "The Green Remnants" },
-      { t: "p", text: "The rite needs three. There are four sources, so no single loss blocks the capstone: the vault (a shoot under a bell jar), Vaelisha's own gift (freely given if the party shows, in roleplay, that they mean to protect what green is left), Mad Maggie, and a seed in the soil of Eldra's grave at the Ashen Garden." },
+      { t: "p", text: "The rite needs three. There are four sources, so no single loss blocks the capstone: the vault (a shoot under a bell jar), Vaelisha's own gift (freely given if the party shows, in roleplay, that they mean to protect what green is left), Mad Maggie, and a seed in the soil of the Ashen Garden's burned beds." },
 
       { t: "h", text: "Event: The Rite at the Mother Ash" },
       { t: "p", text: "Vaelisha is the last living tree of Avernus, and the one place in Hell where nothing wants to hurt anyone. The rite takes 8 hours. Or'Henn leads, and the tree lends her own life to the work. If the rite is broken (a fight reaches her roots, the staff is moved, Or'Henn is incapacitated), it starts again from the beginning. The Remnants are only used up when it succeeds. Grant it clean if the party has bled for it, or run 2 or 3 waves at the hollow's edge if the table wants a final fight." },
@@ -363,7 +363,7 @@ Object.assign(window.CAMPAIGN.side, {
         "{@b The red head: kin.} It speaks to his blood and his pride. \"Who made you, little red? Not the devils. Not your gardener. Me.\" {@b Gift: Her Fire.} Once, his breath weapon becomes a red dragon's: a 60-foot cone, DC 18 Dexterity saving throw, 63 (18d6) fire damage, half on a success.",
         "{@b The blue head: order.} It speaks to the keeper in him, and promises a garden no raid can burn: all of Avernus green again, once she is awake. {@b Gift: Her Law.} For one day, no chromatic dragon will harm him until he harms one first. They come close and talk instead.",
         "{@b The green head: secrets.} It speaks to what he does not know. Greens lie, but this one does not need to. {@b Gift: Her Truth.} One true answer to any question about his household, his old master or the raid. If he asks who owned the Ashen Garden, this is how the Kreeg reveal can land early. Only give it if you want it now.",
-        "{@b The black head: grief.} It speaks to the dead. It shows him the night the Ashen Garden burned, and Eldra's grave. {@b Gift: Her Mourning.} He hears Eldra's voice once, saying the one thing he most needed to hear. Decide what that is with his player.",
+        "{@b The black head: grief.} It speaks to the dead. It shows him the night the Ashen Garden burned, and the beds where he buried what he lost. {@b Gift: Her Mourning.} He hears a voice from the old garden once, someone he loved, saying the one thing he most needed to hear. Decide who and what with his player.",
         "{@b The white head: hunger.} The only head that threatens. It shows him his future: on his knees in front of a dragon, begging, because the curse has grown until asking is not a choice. {@b Gift: Her Hunger.} The next time he drops to 0 hit points, he drops to 1 instead."
       ] },
 
@@ -384,7 +384,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "p", text: "Roll when Or'Henn rolls a natural 1 on a Wisdom saving throw, when he first sees a dragon in a scene, or whenever the table goes quiet and you want the curse in the room. Each one lasts a heartbeat and only he sees it." },
       { t: "table", caption: "Small Visions (d8)", head: ["d8", "Or'Henn sees..."], rows: [
         ["1", "Every flower on his armour turns its head toward the nearest dragon, all at once. (Red head.)"],
-        ["2", "A whisper in Draconic from the orb: his name, the one Eldra gave him. (The orb. This one opens the loophole below.)"],
+        ["2", "A whisper in Draconic from the orb: his name, in the voice of someone from the garden. (The orb. This one opens the loophole below.)"],
         ["3", "His reflection in water or metal has five heads, for one heartbeat. (All five.)"],
         ["4", "The ash at his feet draws the shape of a garden path, leading east. (Blue head.)"],
         ["5", "He tastes rain. There is no rain in Avernus. (Black head.)"],
@@ -505,6 +505,33 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "list", items: [
         "{@b Torn free.} If the party gets it out, it carries {@b Vecna's Mark}: a black handprint on its brow. Its Vitality maximum drops by 1, and Arkhan always knows which way it is. A drop of Tears through Lulu removes the mark. So does {@spell greater restoration} plus a DC 15 Intelligence (Religion) check by Drenwal; on a roll of 1 to 5, Bhaal twists the light, the mark stays, and Bhaal's Claim +2. Rescue: {@b +2 bond}.",
         "{@b Left behind.} Arkhan chains Moonkite in his tower and feeds the Hand from it a little each dawn. It loses 1 Vitality a day. At 0 it dies, as in Branch B, and Arkhan's rot is held back for a season. Aurora always knows the direction to it. Within telepathy range it can tell her where the guards are. {@c krull|Krull}, who covets Arkhan's place, will sell a way in for the right price. Rescue: {@b +2 bond}."
+      ] },
+      { t: "h", text: "Sessions 12 and 13: Where the Bond Stands" },
+      { t: "p", text: "The bond was never tracked at the table, so start it now: {@b Bond 1, 2 points,} the Wish that broke its cage. It speaks in words and has not yet shared senses. The three beats below are the only points Session 12 and Session 13 hand out by design (the usual limit of 3 gained per session still holds). If everything lands, Aurora reaches about 8 points (Bond 2) by the Citadel. Star's Answer (14) is not in reach before Idyllglen." },
+
+      { t: "h", text: "Beat S12: The Quiet Dead" },
+      { t: "p", text: "{@b Trigger:} Moonkite comes within 30 feet of the soul urns in the Crypt, or the first ghost speaks. {@b What Moonkite does:} it stops, and says in her head: \"They are not coins. They are asking to be let go. Not out. Let go.\" It offers Starpath on one urn. The usual rule stands: before Bond 4 it needs Lulu or Jeremy, and neither is here, so Aurora makes the DC 13 Charisma check alone. On a failure the soul slips free and wanders the Nave (it can be found later). On a success it goes on in peace and counts toward the Last Ride." },
+      { t: "list", items: [
+        "{@b Bond +1} (honouring what it is) each time Aurora helps a soul go on, or spares a wraith at Moonkite's request. Limit this beat to +2.",
+        "{@b Bond -1} if she smashes urns or burns souls while it watches and does not object.",
+        "{@b If Arkhan speaks at the door,} Moonkite adds: \"He is at the door. He is not angry. He is patient. That is worse.\" No bond change, but it should make her player look at the door."
+      ] },
+
+      { t: "h", text: "Beat S13: The Bleeding Road" },
+      { t: "p", text: "{@b Trigger:} the party's first camp on the Scab road. {@b What Moonkite does:} it is quiet a long time. Then: \"Something upstream bleeds. I can smell it from here. It smells like home, and it is wrong.\" It asks Aurora to tell it what colour the sky was where she was born, so it can remember its own. This is the beat for a quiet talk and for asking about its cage, its fall and the one it lost; it still cannot say its patron's name." },
+      { t: "list", items: [
+        "{@b Bond +1,} a real talk (once per session): Aurora tells it something true.",
+        "{@b Bond +1,} asking about its past (once per bond level): she asks about the cage and listens without pushing.",
+        "{@b If Bond is already 2 (5 points),} Shared Senses is available: Moonkite offers to scout the road ahead for a minute, and describes the Citadel's shadow as \"a wound with a roof on it\"."
+      ] },
+
+      { t: "h", text: "Beat S13: The Gate Knows the Light" },
+      { t: "p", text: "{@b Trigger:} the party reaches the gates of the Bleeding Citadel. {@b What Moonkite does:} its light flares on its own, and the gate answers with a hum the party can feel. Zariel's presence, which has been circling all session, turns toward it. Moonkite asks Aurora whether to go in at all: \"It is the cage. I am afraid. I will go if you ask. I would rather you asked.\" It needs Aurora to ask, not tell." },
+      { t: "list", items: [
+        "{@b Bond +2} (once) if she asks, lets it say no, and walks in beside it. It will keen at the first sight of the cage; staying through that is the other +2 on the bond track.",
+        "{@b Bond -1} if she orders it through after it asked to wait.",
+        "{@b Bond -3} if anyone offers it as a price to Zariel or a devil, even as a bluff.",
+        "{@b Zariel,} if she looks at it: she knows what it is. She says nothing yet. Save that look for Chapter 5."
       ] },
       { t: "note", title: "Moonkite Is the Witness", text: "Freeing the Caged Star needs three things together: the Solar's Helmet, Lulu's caging-memory, and Moonkite as the celestial witness. Whatever happens at Arkhan's Tower, write down where Moonkite stands with the campaign's convergence: alive and bonded, lost and recoverable, or gone." }
     ]
