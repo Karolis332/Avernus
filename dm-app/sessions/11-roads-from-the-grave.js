@@ -1408,7 +1408,7 @@ window.SESSION = {
         { t: "list", items: [
           "{@b Ash,} the hell hound. Or'Henn raised her from a pup. Use the hell hound stat block.",
           "{@b Gorse,} the nightmare. She pulled the plough on the ash-beds. Use the nightmare stat block.",
-          "{@b Thistle,} the chimera. It was always more trouble than it was worth, and Or'Henn fed it by hand anyway. Use the chimera stat block."
+          "{@b Thistle,} the chimera. It was always more trouble than it was worth, and Eldra loved it best. Use the chimera stat block."
         ] },
         { t: "p", text: "Or'Henn has {@b advantage on every Wisdom (Animal Handling) check} with them. Calming one so it follows him quietly is DC 15. If Urexiel opens a pen in a fight, these three turn on her, not on him." },
         { t: "note", title: "The Contract 1 Breaches", text: "If Contract 1 is the one that was sealed, Or'Henn is legally the groundskeeper of these three. Every infernal dawn one of them stays uncatalogued, the seal gets a breach mark. At three, the Chancery can seize what was recovered under it. Reclaiming them, culling them, or burying them here clears it." },
@@ -1458,8 +1458,8 @@ window.SESSION = {
 
         { t: "h", text: "Event: The Ledger" },
         { t: "p", text: "The ledger hangs chained at her hip. Getting a look at it takes a trick, a bargain, a {@b DC 18 Dexterity (Sleight of Hand)} check, or her death. If she is about to die in fire, warn them: Asimov speaks from the Capacitor. \"The book. The answer to who paid for this is in that book, and it burns when she does.\"" },
-        { t: "read", text: "The bookkeeping is perfect. A demon warband, hired by the page. A garden, listed item by item as it was emptied. Wards, salvaged. Beasts, appraised.\n\nAnd low down, under the beasts, a single cost entered in the same neat hand as everything else.\n\nOne gardener, absent. Incidental.\n\nNot even a name." },
-        { t: "p", text: "That line is Or'Henn: the raid wrote him off with the beasts, because he was away when the wards fell. The rest of the ledger names the warband and the buyers above Urexiel who took the loot up the chain. Reading it is how the party follows the raid past this room. If she dies before they have it, the paper trail dies with her." },
+        { t: "read", text: "The bookkeeping is perfect. A demon warband, hired by the page. A garden, listed item by item as it was emptied. Wards, salvaged. Beasts, appraised.\n\nAnd low down, under the beasts, a single cost entered in the same neat hand as everything else.\n\nOne gardener, aged. Incidental.\n\nNot even a name." },
+        { t: "p", text: "That line is Eldra. The rest of the ledger names the warband and the buyers above Urexiel who took the loot up the chain. Reading it is how the party follows the raid past this room. If she dies before they have it, the paper trail dies with her." },
 
         { t: "h", text: "If the Characters..." },
         { t: "p", text: "{@b ...pay her,} she is charming about it, and lets them leave with exactly what they paid for. She is watching Or'Henn the whole time." },
@@ -1530,7 +1530,7 @@ window.SESSION = {
           "{@b The Companion,} the second sun over Elturel, was a planetar in chains. It still is.",
           "{@b The Creed Resolute} is the clause that binds the souls of the faithful. Every soul in Elturel who swore the Creed belongs to Zariel when the city touches the Styx.",
           "{@b The copy.} There were two copies of the contract. Zariel holds the original. His own copy was in a box in his house, and a yugoloth's raid took it. He does not know which yugoloth.",
-          "{@b Or'Henn's service record.} It lists him: \"Engaged, Material Plane. Druid. Kept for the garden. Term unexpired.\" He says it the way he would read out a lease."
+          "{@b Eldra.} His service records list her: \"Acquired, Material Plane. Druid. Kept for the garden.\" He bought her. He says it the way he would say he bought a chair."
         ] },
         { t: "p", text: "What he wants, and what he will trade for it, is in {@side kreegs-bargains|Kreeg's Bargains}." },
 
@@ -1628,7 +1628,7 @@ window.SESSION = {
           "{@b Free, if they ask well:} the truth about the Companion and the Creed Resolute.",
           "{@b For a promise to get him out of Avernus:} his signature on the copy, when they bring him the box and a writ. This is the legal road to freeing Elturel.",
           "{@b For his box:} the location of the original. Zariel keeps it in her own hand. He knows where she keeps her hand.",
-          "{@b For Or'Henn's service, one year:} Or'Henn's service record, voided and burned in front of him, so the garden's claim on him ends.",
+          "{@b For Or'Henn's service, one year:} Eldra's records, and the name of the slaver who sold her to him.",
           "{@b For Lulu:} anything. Refuse."
         ] },
         { t: "h", text: "The Catches" },

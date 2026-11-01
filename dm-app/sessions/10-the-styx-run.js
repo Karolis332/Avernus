@@ -592,7 +592,7 @@ window.SESSION = {
         { t: "note", title: "Running This Scene", text: "Read {@side arc-tiamat|Arc: Or'Henn and Tiamat} once before the session. It has the five heads, their gifts, the gold scales and the small visions. Tiamat never lies to him here. Everything she says is true, and that is the danger." },
 
         { t: "h", text: "Event: The Garden Remembered" },
-        { t: "read", text: "You are standing in the Ashen Garden.\n\nNot the ruin. The garden, the way it was on a good morning sixty years ago: ash-roses open along the wall, fire-moss glowing in the beds, the old brass gate warm in a sun that Avernus does not have. Somewhere behind the hedges, a gardener is humming. Somewhere, someone is laughing.\n\nYour staff is in your hand. Cinderbloom. Its ember is lit.\n\nYou know at once that none of it is real. You also know, with your whole heart, that you do not want to leave." },
+        { t: "read", text: "You are standing in the Ashen Garden.\n\nNot the ruin. The garden, the way it was on a good morning sixty years ago: ash-roses open along the wall, fire-moss glowing in the beds, the old brass gate warm in a sun that Avernus does not have. Somewhere behind the hedges, Eldra is humming. Somewhere, a gardener is laughing.\n\nYour staff is in your hand. Cinderbloom. Its ember is lit.\n\nYou know at once that none of it is real. You also know, with your whole heart, that you do not want to leave." },
         { t: "p", text: "Let Or'Henn's player walk around. Anything he looks for is there. Anyone he calls for does not answer. The humming always comes from the next row over." },
 
         { t: "h", text: "Event: The Sky Changes Colour" },
@@ -606,7 +606,7 @@ window.SESSION = {
         { t: "h", text: "Event: The Question" },
         { t: "p", text: "Whatever he answers, she asks him one question before he wakes. Write his answer down. It shapes every vision after this one." },
         { t: "read", text: "\"Who made you?\" asks the red head, gently. \"Not your gardener. Not the devils. Think, little red. Who made you?\"" },
-        { t: "p", text: "There is no right answer. Pride, defiance, the garden, his own two hands: whatever he says, she smiles and says, \"We will talk again.\"" },
+        { t: "p", text: "There is no right answer. Pride, defiance, Eldra, his own two hands: whatever he says, she smiles and says, \"We will talk again.\"" },
 
         { t: "h", text: "What the Others See" },
         { t: "list", items: [
@@ -624,7 +624,7 @@ window.SESSION = {
         { t: "p", text: "{@b ...asks her for help,} the curse does not move: she laid it, and it wants a mortal dragon. But she hears him ask, and she remembers it." },
 
         { t: "h", text: "Event: Waking" },
-        { t: "read", text: "You wake with a jerk, on the deck, in the dark, with the smell of roses in your nose. Your hand is hot.\n\nThe Avernus night is the same as it was. Elturel hangs on its chains. The Styx moves below, slow and black.\n\nAnd from the orb, very softly, someone is humming the tune from the garden." },
+        { t: "read", text: "You wake with a jerk, on the deck, in the dark, with the smell of roses in your nose. Your hand is hot.\n\nThe Avernus night is the same as it was. Elturel hangs on its chains. The Styx moves below, slow and black.\n\nAnd from the orb, very softly, someone is humming the tune Eldra used to hum." },
         { t: "h", text: "Event: Word from Feonor" },
         { t: "note", title: "Table Ruling: Skip This", text: "Feonor comes in person with the staff instead. Run {@scene feonor-returns|Feonor Returns} while the party decides what to do with the orb, and skip the crow below." },
         { t: "p", text: "At dawn, the morning after the vision. Feonor has moved faster than anyone expected and is already at the Scabrous Menagerie. This pulls the day-10 message on her road forward: count today as day 4 of the geas." },

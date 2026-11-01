@@ -419,12 +419,12 @@ window.CAMPAIGN.map = {
     {
       id: "ashen-garden", title: "The Ashen Garden",
       stage: "ch3c", path: "optional", status: "open",
-      objective: "Walk Or'Henn's burned home. Find the staff's trail.",
+      objective: "Walk Or'Henn's burned home. Find the staff's trail and Eldra's grave.",
       bloodPrice: "Grief more than blood. The crest on the ruin is Kreeg's: a reveal that hurts.",
       blood: 1,
       eventyr: "Not in Eventyr. Campaign homebrew, the start of Or'Henn's staff hunt.",
       requires: ["Or'Henn's wish to go home."],
-      unlocks: ["Drag-marks to the Weeping Furrow.", "A Green Remnant seed in the burned beds."],
+      unlocks: ["Drag-marks to the Weeping Furrow.", "A Green Remnant seed at Eldra's grave."],
       sessions: 1,
       dmChoices: ["Feonor walks this trail under Or'Henn's Geas. See {@side arc-orhenn|Or'Henn's arc}.", "The staff hunt is on hold while she runs it."],
       alternatives: ["Skip it: nothing at the Crypt depends on it."]

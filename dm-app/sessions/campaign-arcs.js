@@ -323,7 +323,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "note", title: "The Ledger", text: "Urexiel's ledger records the raid on the Ashen Garden: the warband's fee, the buyers above her, the tally of what was taken. If the party kills her before they get it, the paper trail dies with her. Warn them in the fiction: she taps the ledger and smiles. When Or'Henn reads it, his household is a line of figures. That is the horror. To her it was never personal." },
 
       { t: "h", text: "The Green Remnants" },
-      { t: "p", text: "The rite needs three. There are four sources, so no single loss blocks the capstone: the vault (a shoot under a bell jar), Vaelisha's own gift (freely given if the party shows, in roleplay, that they mean to protect what green is left), Mad Maggie, and a seed in the soil of the Ashen Garden's burned beds." },
+      { t: "p", text: "The rite needs three. There are four sources, so no single loss blocks the capstone: the vault (a shoot under a bell jar), Vaelisha's own gift (freely given if the party shows, in roleplay, that they mean to protect what green is left), Mad Maggie, and a seed in the soil of Eldra's grave at the Ashen Garden." },
 
       { t: "h", text: "Event: The Rite at the Mother Ash" },
       { t: "p", text: "Vaelisha is the last living tree of Avernus, and the one place in Hell where nothing wants to hurt anyone. The rite takes 8 hours. Or'Henn leads, and the tree lends her own life to the work. If the rite is broken (a fight reaches her roots, the staff is moved, Or'Henn is incapacitated), it starts again from the beginning. The Remnants are only used up when it succeeds. Grant it clean if the party has bled for it, or run 2 or 3 waves at the hollow's edge if the table wants a final fight." },
@@ -363,7 +363,7 @@ Object.assign(window.CAMPAIGN.side, {
         "{@b The red head: kin.} It speaks to his blood and his pride. \"Who made you, little red? Not the devils. Not your gardener. Me.\" {@b Gift: Her Fire.} Once, his breath weapon becomes a red dragon's: a 60-foot cone, DC 18 Dexterity saving throw, 63 (18d6) fire damage, half on a success.",
         "{@b The blue head: order.} It speaks to the keeper in him, and promises a garden no raid can burn: all of Avernus green again, once she is awake. {@b Gift: Her Law.} For one day, no chromatic dragon will harm him until he harms one first. They come close and talk instead.",
         "{@b The green head: secrets.} It speaks to what he does not know. Greens lie, but this one does not need to. {@b Gift: Her Truth.} One true answer to any question about his household, his old master or the raid. If he asks who owned the Ashen Garden, this is how the Kreeg reveal can land early. Only give it if you want it now.",
-        "{@b The black head: grief.} It speaks to the dead. It shows him the night the Ashen Garden burned, and the beds where he buried what he lost. {@b Gift: Her Mourning.} He hears a voice from the old garden once, someone he loved, saying the one thing he most needed to hear. Decide who and what with his player.",
+        "{@b The black head: grief.} It speaks to the dead. It shows him the night the Ashen Garden burned, and Eldra's grave. {@b Gift: Her Mourning.} He hears Eldra's voice once, saying the one thing he most needed to hear. Decide what that is with his player.",
         "{@b The white head: hunger.} The only head that threatens. It shows him his future: on his knees in front of a dragon, begging, because the curse has grown until asking is not a choice. {@b Gift: Her Hunger.} The next time he drops to 0 hit points, he drops to 1 instead."
       ] },
 
@@ -384,7 +384,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "p", text: "Roll when Or'Henn rolls a natural 1 on a Wisdom saving throw, when he first sees a dragon in a scene, or whenever the table goes quiet and you want the curse in the room. Each one lasts a heartbeat and only he sees it." },
       { t: "table", caption: "Small Visions (d8)", head: ["d8", "Or'Henn sees..."], rows: [
         ["1", "Every flower on his armour turns its head toward the nearest dragon, all at once. (Red head.)"],
-        ["2", "A whisper in Draconic from the orb: his name, in the voice of someone from the garden. (The orb. This one opens the loophole below.)"],
+        ["2", "A whisper in Draconic from the orb: his name, the one Eldra gave him. (The orb. This one opens the loophole below.)"],
         ["3", "His reflection in water or metal has five heads, for one heartbeat. (All five.)"],
         ["4", "The ash at his feet draws the shape of a garden path, leading east. (Blue head.)"],
         ["5", "He tastes rain. There is no rain in Avernus. (Black head.)"],
