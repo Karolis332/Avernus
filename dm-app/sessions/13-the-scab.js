@@ -703,6 +703,7 @@ window.SESSION = {
           "{@b Window 3: the hamlet.} A peaceful village on a sunny day, then fire. The ghost glows brighter. \"To wield the Sword, you must first understand its wielder.\" Then light, and the vision."
         ] },
         { t: "p", text: "She answers questions about who she is and why she is here. {@b Olanthius:} if the party met him in the Crypt, Yael knows his name and says it, and Drenwal hears the weight in her voice." },
+        { t: "p", text: "{@b If the party met her shade in the Scales of Mercy (Session 12):} she knows them. If they chose the insignia, she says, without bitterness: \"You chose the badge. Good. Then you understand why I hid it from her. She was right about me, and wrong about everything else.\" If they chose the tabard, she thanks them for the child, and only for the child. Either way, ask who promised to remember the child." },
         { t: "more", title: "Yael as the quiet guide", src: ["Eventyr", "Homebrew"], blocks: [
           { t: "p", text: "{@b Eventyr:} give Yael the tour so Lulu's memory is not required. {@b Homebrew:} the shard is the conduit, so when the vision starts it is the shard that opens it, not Lulu. If Lulu is aboard she can stand beside it and the memory is hers; if not, the memory belongs to the blade and the ghost." }
         ] },

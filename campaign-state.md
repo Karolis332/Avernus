@@ -362,6 +362,12 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 - Exploring, the party found soul urns with loot beneath. **5–8 ghosts and some wraiths** attacked. The session ended mid-fight.
 **Consequences:** the Crypt ward is cracked (6 segments, 0 filled). Lulu is not with the party. Or'Henn has 0 gold scales, curse live. Next: Session 12 "The Siege of the Crypt".
 
+
+### Session 12 — The Siege of the Crypt (in play, 2026-11-01)
+- **Urn Hall:** three great urns, three waves (rearguard wraiths, lance wraiths, Marshal Aubrec Dunmere). The party did very well.
+- **Scales of Mercy ruling:** the shade was **Yael**; **Zariel** ordered her death for leaving the line for a child. The Charge came first; after the fall Yael hid the Sword, and Zariel later had the old sentence carried out. Her ghost guards the Sword (book). The party split one each way with one abstention, then **chose the insignia (justice)**. Yael remembers this at the Citadel.
+- **Generals' Seats:** rank ordering by sun rays (Zariel 4, Haruman 3, Olanthius 2, Yael 1).
+
 ---
 
-*File last updated: 2026-11-01 (Session 11 played — Crypt road; Sessions 12 and 13 built in the DM app)*
+*File last updated: 2026-11-01 (Session 12 in play: Urn Hall, Yael ruling)*
