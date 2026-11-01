@@ -221,6 +221,39 @@ window.SESSION = {
           "{@b Second urn (the lancers).} A bronze {@item horn of Valhalla|DMG} reflavoured as the {@b Horn of the First Charge}: blown, it calls four spectral Hellriders (berserker statistics, mounted, radiant instead of slashing) for 1 hour. They will not ride against a Hellrider.",
           "{@b Third urn (the Marshal).} His own sword, a {@item dragon slayer|DMG} (+1, an extra 3d6 against dragons). He carried it into Avernus for a dragon he never reached. With Arkhan's dragons at the door and Tiamat stirring, it has never been more welcome."
         ] },
+        { t: "h", text: "Rolled Grave Goods" },
+        { t: "p", text: "On top of each urn's fixed item. Roll {@dice 1d8} on that urn's table {@b once per soul from it that was laid to rest} (up to three), or {@b once} if all three were destroyed. Rerolls on a duplicate." },
+        { t: "table", caption: "First urn: the rearguard (d8)", head: ["d8", "Grave goods"], rows: [
+          ["1", "{@item Potion of superior healing|DMG} (two of them)"],
+          ["2", "A spell scroll, 5th level (DM picks)"],
+          ["3", "{@item Periapt of wound closure|DMG}"],
+          ["4", "{@item Cloak of protection|DMG}"],
+          ["5", "{@item Mace of disruption|DMG}: a rearguard chaplain's mace"],
+          ["6", "{@item Armor of resistance|DMG} (fire), Hellrider plate or the finder's type"],
+          ["7", "{@item Pearl of power|DMG}, set in a sun brooch"],
+          ["8", "{@item Ring of spell storing|DMG}, holding a {@spell spirit guardians} cast by a Hellrider chaplain"]
+        ] },
+        { t: "table", caption: "Second urn: the lancers (d8)", head: ["d8", "Grave goods"], rows: [
+          ["1", "Silver spurs, badges and pay, worth 750 gp"],
+          ["2", "{@item Potion of speed|DMG}"],
+          ["3", "A {@item +2 weapon|DMG}: a lancer's lance"],
+          ["4", "{@item Horseshoes of speed|DMG} (fit Moonkite, or any mount)"],
+          ["5", "{@item Javelin of lightning|DMG} (two of them)"],
+          ["6", "{@item Boots of speed|DMG}"],
+          ["7", "{@item Winged boots|DMG}"],
+          ["8", "{@item Ring of free action|DMG}"]
+        ] },
+        { t: "table", caption: "Third urn: the Marshal and his colour guard (d8)", head: ["d8", "Grave goods"], rows: [
+          ["1", "Marshal's regalia and Elturian gold, worth 1,500 gp"],
+          ["2", "{@item Potion of invulnerability|DMG}"],
+          ["3", "A spell scroll, 6th level (DM picks)"],
+          ["4", "{@item Mantle of spell resistance|DMG}"],
+          ["5", "{@item Belt of hill giant strength|DMG}"],
+          ["6", "{@item Staff of healing|DMG}: the colour guard's chaplain staff"],
+          ["7", "{@item Helm of brilliance|DMG}: the Marshal's parade helm, gems still in it"],
+          ["8", "{@item +2 armor|DMG} of the finder's type, the colour guard's white enamel"]
+        ] },
+
         { t: "note", title: "Laid to Rest or Destroyed", text: "An urn whose three souls were {@b laid to rest} gives its item freely: it is lying on top of the shards, as if set out. An urn whose souls were {@b destroyed} still has its item, but buried in the shards and rimed with frost: a DC 15 Investigation to find, and it is cold to the touch until the next dawn. The Marshal's sword is only given if he stood down; otherwise it is under the third urn's shards like the rest." },
         { t: "note", title: "All Nine at Rest", text: "If all nine souls were laid to rest, the riders give one more thing as they go: {@b each PC} gains a {@b Charm of Heroism} (DMG supernatural gift: as an action, gain the benefits of a potion of heroism; one use). The cold candles in the Nave light themselves, and Olanthius, wherever he is, stands up." },
 
