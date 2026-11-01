@@ -361,7 +361,10 @@
         onPin: function (id) { openCampaignMap(id); }
       }
     });
-    app.sceneId = (app.session.scenes[0] || {}).id;
+    // index.html?s=<id>#<scene id> opens straight on that scene
+    var hashScene = decodeURIComponent((window.location.hash || "").slice(1));
+    var linked = hashScene && app.session.scenes.find(function (sc) { return sc.id === hashScene; });
+    app.sceneId = ((linked || app.session.scenes[0]) || {}).id;
     if (app.sceneId) app.visited[app.sceneId] = true;
     renderSceneList();
     renderCampaignNav();
