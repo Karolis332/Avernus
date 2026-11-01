@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: feedback
   originSessionId: 48775292-a99a-4fbd-becd-d482a794020a
-  modified: 2026-11-01T05:01:48.887Z
+  modified: 2026-11-01T11:53:02.150Z
 ---
 
 Lessons from running `~/.claude/plans/hidden-cooking-tome.md` (2026-11-01, slices 0–9, merge commit `0183ce0`).
@@ -21,6 +21,10 @@ Lessons from running `~/.claude/plans/hidden-cooking-tome.md` (2026-11-01, slice
   render stat blocks at load, so no clicking is needed to exercise `statblock.js`.
 - **Agents report "Session 9 in the dropdown" after editing `sessions/index.js`:** it is their browser cache,
   not a bug; reload with cache disabled before filing it.
+- **The laptop edits live while this PC works (2026-11-01, 10:44–13:50: 13 S12 commits).** Fetch again right
+  before every commit, not only before planning. To merge a session file both sides rewrote: take the
+  laptop's file as base (`git checkout --theirs`), replay this PC's diff with `patch -F 3 -r rejects`, then
+  re-apply rejected hunks with an assert-count-1 Python script. `index.html?s=<id>#<scene-id>` opens a scene.
 - **The "VPS backup" of `Extracted Text/` (Saddlebag + DiA OCR) does not exist** anywhere reachable; the DM
   supplies it later. Don't send another agent to look.
 

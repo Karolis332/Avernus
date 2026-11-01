@@ -1,40 +1,37 @@
-# Checkpoint · C:\Users\kpaul\DnD · 2026-10-11T07:32:43.651Z · session 18e09db2 · ctx ≈ 362k
+# Checkpoint · C:\Users\kpaul\DnD · 2026-11-01T07:13:49.518Z · session 48775292 · ctx ≈ 365k
 
 ## Prompts
-- https://www.youtube.com/watch?v=4C1q3IEPLsE https://www.youtube.com/shorts/WoZjye5cYZ4 these 2 videos are out of touch compeltely
-- the monk died
-- and the side panel shold be a bit wider, the legend on the left can be a lot smaller
-- do dragons really have that little dexterity?
-- An old tortle in ceremonial armour, wrinkled and slow. His shell is carved all over with tiny Draconic runes: hundreds of prayers to Tiamat, cut one by one. He carries a heavy maul and a sling bag that clinks. Four ghouls shuffle behind him, gnawing bones and staring hungrily at the party until he c
-- Spellcasting. 14th-level cleric. Spell save DC 18, +10 to hit. Cantrips: chill touch, mending, sacred flame, spare the dying, thaumaturgy. 1st (4 slots): cure wounds, detect evil and good, inflict wounds. 2nd (3): hold person, spiritual weapon. 3rd (3): animate dead, spirit guardians, speak with dea
-- The moment your ship touches the ridge, the chattering stops. Twelve white heads turn at once. Twelve pairs of wings snap open. They come up the slope at you, fast and low, hissing, swords out. Krull raises one hand. "Tiamat's children," he calls in Draconic, sounding bored. "These are guests. Arkha
-- is there a map of where the fight happens? the monument etc?
+- status?
+- how much time for it to be done?
+- status?
+- how much till done?
+- i am going for a nap, please be done in an hour tobe ready for checks
+- status? how much till done? i am going for a nap, please be done in an hour tobe ready for checks
+- arkhan was arriving as they went in and closed the door to the dungeon. Eldra doesnt have a purpose I believe, but keep the stuff just in case and flavour material, do they come from orhenns back story?
+- how would they knoiw they are the riders fo the first charge? the item tables sohuld be at lleast d20 or d100s
 
 ## Files touched
-C:\Users\kpaul\DnD\session-9-arkhans-tower-primer.md
-C:\Users\kpaul\DnD\dm-app\SESSION-FORMAT.md
-C:\Users\kpaul\DnD\dm-app\docs\PRD-primer-tool.md
-C:\Users\kpaul\.claude-alt\projects\C--Users-kpaul-DnD\memory\dm-prep-format.md
-C:\Users\kpaul\DnD\descent-into-avernus-primer.md
-C:\Users\kpaul\.claude-alt\projects\C--Users-kpaul-DnD\memory\dm-app-hosting.md
-C:\Users\kpaul\.claude-alt\projects\C--Users-kpaul-DnD\memory\MEMORY.md
 C:\Users\kpaul\DnD\CLAUDE.md
-C:\Users\kpaul\DnD\dm-app\media\media.js
-C:\Users\kpaul\DnD\dm-app\sessions\09-arkhans-tower.js
+C:\Users\kpaul\.claude\plans\hidden-cooking-tome.md
+C:\Users\kpaul\.claude\projects\C--Users-kpaul-DnD\memory\dnd_orchestration_lessons.md
+C:\Users\kpaul\AppData\Local\Temp\arkhan_fix2.py
+C:\Users\kpaul\AppData\Local\Temp\state_fix.py
+C:\Users\kpaul\AppData\Local\Temp\notes_fix.py
 
 ## Agents
-ship-designer
-arc-designer
-map-builder
-cartographer
-s9-refuter
-app-refuter
-art-builder
-monk-cleanup
-map-scout
+slice1-blocks-statblock
+slice2-group-initiative
+slice3-combat-popout
+slice4-hellriders
+slice5-world-zariel
+slice6-session-12
+slice7-session-13
+slice8-visuals
+slice9-wrapup
+merge-s11-port
 
 ## Last assistant text
-The map builder only reported on the tracker work: wider panel, smaller menu, dragon initiative and spell-slot circles were never picked up. I've sent all three back to it.
+You've raised two things. I'll check how Session 12 tells the players these are First Charge riders and how big the loot tables are now. The art agent will touch Sessions 12 and 13 at its wiring step, so I'm warning it first to re-read those files before writing.
 
 ## Next
 - resume from the last prompt above; verify before claiming done
