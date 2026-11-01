@@ -2,7 +2,7 @@
 
 ## Party
 - **Level:** 13 — full Session 9 combat XP awarded (the Showdown roster: Arkhan 41,000 + Torogar 13,000 + Krull 8,400 + Chango 5,000 = **67,400**, split three ways = **22,467 each**), carrying them over the 120,000 threshold. Level 13 unlocks the **7th-level spell tier** for all three — see *Level 13 consequences* under Ongoing Threads.
-- **House rule (2026-11-01): Level 15 needs 260,000 XP** (book: 165,000). Level 14 stays at the book's 140,000. The 14 to 15 gap is 120,000 XP per PC, so the 8th-level spell tier arrives late, close to the endgame.
+- **House rule (2026-11-01): slower levels from 15 on**, because the party earns a lot per session. Level 14 stays at the book's 140,000. Then **15: 260,000 · 16: 320,000 · 17: 380,000 · 18: 440,000 · 19: 500,000 · 20: 560,000** (book: 165k / 195k / 225k / 265k / 305k / 355k). Each level after 15 is 60,000 XP more. The 8th-level spell tier arrives late, close to the endgame.
 - **Session 12 XP:** the urn fight is 50,600 total (Wave 1 17,700, Wave 2 17,700, Wave 3 15,200); trials suggested at Clean 3,400 / Hard-won 2,200 / Forced 1,100 per PC (DM's call).
 - **Size:** 3 players (was 4 — Xebeche and Rebecca had earlier arcs; Mikas transitioned from Asimov to Or'Henn after Session 7)
 - **Current PCs:**
