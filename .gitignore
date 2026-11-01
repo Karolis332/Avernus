@@ -64,3 +64,4 @@ dm-app/art/official/
 dm-app/media/sfx/
 dm-app/library/
 dm-app/maps/
+__pycache__/
