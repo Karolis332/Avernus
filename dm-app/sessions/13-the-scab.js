@@ -14,8 +14,10 @@ window.SESSION = {
     { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. 0 gold scales unless the curse moved. Holds the orb or knows who does." }
   ],
   allies: [
-    { id: "veska", name: "Veska", note: "Hellrider sergeant." },
-    { id: "ser-lucan", name: "Ser Lucan the Reforged", note: "ally" },
+    { id: "veska-banner-captain", name: "Veska, Banner-Captain", note: "Upgraded in the Crypt (if she survived it)." },
+    { id: "ser-lucan-named", name: "Ser Lucan, Named Among the Living", note: "Upgraded in the Crypt (if he survived it)." },
+    { id: "veska", name: "Veska", note: "Hellrider sergeant. Only if the Crypt upgrade did not happen." },
+    { id: "ser-lucan", name: "Ser Lucan the Reforged", note: "Only if the Crypt upgrade did not happen." },
     { id: "moonkite", name: "Moonkite", note: "Celestial mount. Bond track in arc-moonkite." },
     { id: "lulu", name: "Lulu", note: "Absent by default: Zariel's riders took her. Alternative: still aboard the hidden ship." },
     { id: "jeremy", name: "Jeremy", note: "On the Lady Vengeance with Colico Jack, hidden in the mists." }

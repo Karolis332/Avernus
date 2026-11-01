@@ -17,13 +17,13 @@
       "name": "Tiamat",
       "src": "FTD"
     },
-    "homebrew": "Campaign homebrew, CR 24, built for a three-sided Session 10 fight against a level-13 party, not the published CR 30 Tiamat. She is unfinished: 250 HP rising by 50 a turn to 400.",
+    "homebrew": "Campaign homebrew, CR 24, built for a three-sided Session 10 fight against a level-13 party, not the published CR 30 Tiamat. She wakes over five rounds: weak and unkillable at first (250 HP, one head, AC 19), full strength by round 5 (550 HP, five heads, AC 22, divine resistance).",
     "description": "Five heads on long necks rising out of a dead green dragon, still growing. The body is too small for what is inside it; scales of five colours keep pushing through the green, and the wings tear and regrow as she moves.",
     "sizeType": "Gargantuan fiend (dragon), chaotic evil",
     "ac": 22,
-    "acNote": "natural armor",
-    "hp": 400,
-    "hpFormula": "starts at 250; see Unfinished",
+    "acNote": "natural armor; 19 while Unfinished",
+    "hp": 550,
+    "hpFormula": "starts at 250, rises to 550; see Unfinished",
     "speed": "40 ft., fly 120 ft.",
     "abilities": {
       "str": 30,
@@ -41,13 +41,17 @@
     "condImmune": "charmed (except by the orb of dragonkind), frightened, poisoned, stunned",
     "senses": "truesight 120 ft., passive Perception 32",
     "languages": "all",
-    "cr": "24",
+    "cr": "24 (26 fully born)",
     "xp": 62000,
     "pb": 7,
     "traits": [
       {
-        "name": "Unfinished",
-        "text": "Tiamat Risen enters the fight with 250 hit points. At the start of each of her turns she regains 50 hit points, until she has regained 150 in total. If she drops to 0 hit points, the stolen body dies and she falls back into sleep at the Monument."
+        "name": "Unfinished (Waking)",
+        "text": "She wakes one head at a time. In round 1 one head is awake, and one more wakes at the start of each of her turns: all five by round 5. Until then: her AC is 19; Multiattack bites once per awake head (at most three); she can use only the breaths of awake heads (red first, then blue, green, black, white); she has one legendary action per awake head (at most three). She enters with 250 hit points and regains 75 at the start of each of her turns until she reaches 550. While Unfinished she cannot drop below 1 hit point except from radiant damage or Gnashing Hunger: anything else leaves her at 1, and the stolen body screams."
+      },
+      {
+        "name": "Fully Born",
+        "text": "When the fifth head wakes, she is Fully Born: AC 22, and resistance to all damage except radiant damage and Gnashing Hunger. Below 150 hit points she takes the sky and leaves."
       },
       {
         "name": "Bound to Avernus",
@@ -77,7 +81,7 @@
       },
       {
         "name": "Bite",
-        "text": "Melee Weapon Attack: +17 to hit, reach 20 ft., one target. Hit: 21 (2d10 + 10) piercing damage plus 14 (4d6) damage of the head's type (fire, lightning, poison, acid or cold)."
+        "text": "Melee Weapon Attack: +17 to hit, reach 20 ft., one target. Hit: 21 (2d10 + 10) piercing damage plus 17 (5d6) damage of the head's type (fire, lightning, poison, acid or cold)."
       },
       {
         "name": "Red Breath (Recharge 5-6)",
@@ -130,7 +134,7 @@
       "Round 1: does not attack. She speaks: thanks Or'Henn, forgives Arkhan, and names Krull a traitor. Let the table see the split happen.",
       "Wants the orb more than anyone's death. Whoever holds it is her first target, and she bites to disarm, not to kill.",
       "Breath goes at Krull's side first: they are the ones who could leash her. The party comes second.",
-      "Never fights to the death. Below 100 hit points she takes the sky and leaves, and Avernus hears her go."
+      "Never fights to the death. Fully born and below 150 hit points, she takes the sky and leaves, and Avernus hears her go."
     ],
     "roleplay": [
       "Five voices that finish each other's sentences. Warm, proud, patient. Only the white head threatens.",
@@ -535,7 +539,7 @@
       {
         "t": "note",
         "title": "She Is Not Finished",
-        "text": "This is {@c tiamat-risen|Tiamat Risen}: a goddess half-born into a stolen body, not her true form. She starts at 250 hit points and regains 50 at the start of each of her turns until she reaches 400. The party is not meant to kill her today. They are meant to survive, and to decide which side of the split to stand on."
+        "text": "This is {@c tiamat-risen|Tiamat Risen}: a goddess half-born into a stolen body, not her true form. She wakes over five rounds: one head in round 1, all five by round 5. She starts at 250 hit points and regains 75 at the start of each of her turns up to 550, and until she is fully born nothing but radiant damage or Gnashing Hunger can drop her below 1 hit point. The party is not meant to kill her today. They are meant to survive, and to decide which side of the split to stand on."
       },
       {
         "t": "h",
@@ -551,7 +555,8 @@
           "{@b Flash (red)} kneels without a save. He is a zealot. He fights for her.",
           "{@b Arkhan} rises and fights at her side. His Breath of the Five recharges at the start of each of his turns while she lives.",
           "{@b Krull} sees his chance, and turns. A goddess in a dragon's body is a dragon, and the orb of dragonkind can leash a dragon. He wants the orb, and he wants Arkhan's place. Obatala goes with him (advantage on the save: he trusts his rider more than his god).",
-          "{@b Slarkas and Vistalancer} roll. A dragon that succeeds follows Krull. One that fails kneels to Tiamat until she harms it, or for 1 minute."
+          "{@b Vistalancer (blue)} goes with Krull without a save. He is the fastest of the four and the most timid: he sides with whoever looks likeliest to keep him alive, and right now that is not the goddess who just ate Vermilius.",
+          "{@b Slarkas (black)} rolls. If he succeeds he follows Krull; if he fails he kneels to Tiamat until she harms him, or for 1 minute."
         ]
       },
       {
@@ -567,7 +572,8 @@
         "items": [
           "{@b Tiamat, Arkhan, Flash} (and Arkhan's cronies): want Or'Henn alive, the orb, and everyone else dead.",
           "{@b Krull, Obatala and the dragons who refused:} want the orb, Tiamat leashed, and Arkhan dead. They will not attack the party unless the party attacks them first, or refuses to hand over the orb.",
-          "{@b The party} is in the middle, holding the one item both sides want."
+          "{@b The party} is in the middle, holding the one item both sides want.",
+          "{@b How the party wins:} not alone. Their chance is the coalition: Krull, Obatala and Vistalancer pressing her, the {@b Lady Vengeance} back overhead (one green flare and Colico Jack comes, cannons and all), and {@b Uldrak} with Gnashing Hunger from round 3. Until she is fully born (round 5) she cannot be dropped below 1 hit point except by radiant damage or the blade, so the window is rounds 3 to 5: hit her hard while she is still waking."
         ]
       },
       {
@@ -625,7 +631,7 @@
             "n": 1
           }
         ],
-        "notes": "Three-sided fight. Mark Krull's side in the tracker notes (Krull, Obatala, and whichever of Slarkas and Vistalancer passed the Dominion save). Carry over current hit points from the dragon fight. Tiamat Risen starts at 250 HP and regains 50 at the start of her turns until 400. Uldrak arrives at the start of round 3. XP: Tiamat Risen driven off 62,000; Arkhan killed 75,000."
+        "notes": "Three-sided fight. Mark Krull's side in the tracker notes (Krull, Obatala, Vistalancer, and Slarkas if he passed the Dominion save; the Lady Vengeance if she came back). Carry over current hit points from the dragon fight. Tiamat Risen wakes over five rounds: 250 HP rising by 75 a turn to 550, one head per round, AC 19 until fully born; only radiant or Gnashing Hunger drop her below 1 HP until then. Uldrak arrives at the start of round 3. XP: Tiamat Risen driven off 62,000; Arkhan killed 75,000."
       },
       {
         "t": "h",
@@ -722,7 +728,7 @@
         {
           "when": "Start of her turns",
           "tag": "every-turn",
-          "text": "Tiamat Risen regains {@b 50 HP} (250 up to 400) unless Uldrak's blade hit her since his last turn."
+          "text": "One more head wakes; she regains {@b 75 HP} (250 up to 550) unless Gnashing Hunger hit her since Uldrak's last turn. Round 5: fully born (AC 22, resists all but radiant and Gnashing Hunger)."
         },
         {
           "when": "Orb holder's action",
@@ -735,7 +741,7 @@
           "text": "{@b Uldrak returns} with the fiendish blade. {@side uldraks-errand|Uldrak's Errand}."
         },
         {
-          "when": "Tiamat below 100 HP",
+          "when": "Fully born and below 150 HP",
           "tag": "trigger",
           "text": "She takes the sky and leaves. Avernus hears her go."
         },

@@ -93,90 +93,7 @@ window.SESSION = {
         "If Arkhan mocks him in front of the dragons, he notices. Only once, either way.",
         "If the ward falls, he enters behind Arkhan and casts blade barrier across the party's escape route, never at their feet."
       ]
-    }),
-
-    // Second urn: the three wounded riders are the urn's three souls. Objectives, not enemies.
-    "fallen-rider": {
-      name: "Fallen rider (wounded shade)",
-      kind: "fallen-rider",
-      role: "One of the second urn's three souls: a wounded rider the line stepped over",
-      source: { page: "bestiary", name: "Ghost", src: "MM" },
-      homebrew: "Homebrew objective, not an enemy. Each fallen rider is one soul. Track its hit points in the tracker; it never takes a turn.",
-      npc: false,
-      sizeType: "Medium undead, lawful good",
-      ac: 10, acNote: "",
-      hp: 22, hpFormula: "5d8",
-      speed: "0 ft. (it cannot rise until tended twice)",
-      abilities: { str: 10, dex: 10, con: 10, int: 10, wis: 12, cha: 14 },
-      saves: "", skills: "",
-      vulnerable: "", resist: "", immune: "poison",
-      condImmune: "charmed, frightened, poisoned",
-      senses: "passive Perception 11",
-      languages: "Common",
-      cr: "0", xp: 0, pb: 2,
-      traits: [
-        { name: "Trampled by the Line", text: "When a ghost of the line moves through its space, the fallen rider takes 10 necrotic damage. The line does not look down." },
-        { name: "Tended", text: "A creature next to it can use an action to tend it: a DC 13 Wisdom (Medicine) check, any spell that restores hit points, or Lay on Hands. Healing also restores its hit points. Tended twice, it rises, takes up its shield and fights beside the party: on its turn (the party's initiative) it makes one Withering Touch (+5 to hit, 17 (4d6 + 3) necrotic damage)." },
-        { name: "Fading", text: "At 0 hit points it fades. That soul is lost and does not count toward the nine." }
-      ],
-      actions: [], bonus: [], reactions: [],
-      tactics: [
-        "It does not fight until it rises. It reaches for the nearest living person and says its name.",
-        "The first time one of the three rises, the line stops, lowers its shields and kneels."
-      ],
-      description: "A rider on the stone floor, the white tabard dark with old blood, one gauntlet reaching up.",
-      roleplay: [
-        "Voice: a whisper, very calm, the calm of someone who knows how bad it is.",
-        "Sample line: \"Don't let them step on me again. Please. Just once, don't.\""
-      ]
-    },
-
-    // Third urn: the standard-bearer who still sounds the order to ride into Avernus.
-    "herald-of-the-charge": {
-      name: "Herald of the Charge",
-      kind: "herald-of-the-charge",
-      role: "The First Charge's standard-bearer, still sounding the order to ride into Avernus",
-      source: { page: "bestiary", name: "Ghost", src: "MM" },
-      homebrew: "Homebrew, CR 10: the SRD ghost's defences on a knight's frame. Silencing him stops the charge, but the riders still need to be spoken to before their souls count.",
-      npc: false,
-      sizeType: "Medium undead, lawful neutral",
-      ac: 17, acNote: "spectral plate",
-      hp: 136, hpFormula: "16d8 + 64",
-      speed: "0 ft., fly 40 ft. (hover)",
-      abilities: { str: 20, dex: 12, con: 18, int: 10, wis: 14, cha: 18 },
-      saves: "Con +8, Wis +6, Cha +8", skills: "Athletics +9, Intimidation +8",
-      vulnerable: "", resist: "acid, fire, lightning, thunder; bludgeoning, piercing and slashing from nonmagical attacks", immune: "cold, necrotic, poison",
-      condImmune: "charmed, exhaustion, frightened, grappled, paralyzed, petrified, poisoned, prone, restrained",
-      senses: "darkvision 60 ft., passive Perception 12",
-      languages: "Common, Celestial",
-      cr: "10", xp: 5900, pb: 4,
-      traits: [
-        { name: "Banner of the Charge", text: "While the Herald holds his banner, the riders of his urn cannot be frightened or turned, and a rider reduced to 0 hit points re-forms at the urn at the start of the Herald's next turn. A creature within 5 ft. can use an action to take the banner: a Strength (Athletics) check contested by the Herald's Athletics (+9). If the banner is taken, the Herald stops fighting and kneels, and the riders stop where they stand." },
-        { name: "Glory's Road", text: "At the end of each of the Herald's turns, each rider of his urn moves up to 30 ft. toward the burning arch. A rider will not ride through a living creature that stands in its path: it stops and attacks that creature instead. A rider that enters the arch is gone." },
-        { name: "Incorporeal Movement", text: "He can move through creatures and objects as if they were difficult terrain. He takes 5 (1d10) force damage if he ends his turn inside an object." }
-      ],
-      actions: [
-        { name: "Multiattack", text: "The Herald makes two Lance of the First Charge attacks." },
-        { name: "Lance of the First Charge", text: "Melee Weapon Attack: +9 to hit, reach 10 ft., one target. Hit: 16 (2d10 + 5) piercing damage plus 9 (2d8) radiant damage." },
-        { name: "Sound the Charge (Recharge 5-6)", text: "The Herald blows his horn. Each creature of his choice within 60 ft. that can hear it must succeed on a DC 16 Wisdom saving throw or use its reaction to move up to its speed toward the burning arch by the safest route, crying \"For glory!\" A creature that enters the arch takes 22 (4d10) fire damage and is thrown back out into the nearest open space. Only the dead go through." }
-      ],
-      bonus: [], reactions: [],
-      castLines: [
-        { spell: "Sound the Charge", line: "The horn is silver and a hundred years cold. When he blows it, every one of you remembers a war you were never in." },
-        { spell: "Lance of the First Charge", line: "The lance comes down like a gate closing, and it is warm, which is worse." }
-      ],
-      tactics: [
-        "He attacks only whoever blocks a rider. He does not care about anyone who stands aside.",
-        "Sound the Charge on the first round, and again whenever it recharges.",
-        "If the banner is taken he looks at his empty hand for a long time, then kneels. He goes to rest only if someone tells him the riders who stopped were not cowards."
-      ],
-      description: "A knight of pale light in old Elturian plate, a sun-and-sword tabard, a tattered banner in one hand and a silver horn in the other.",
-      roleplay: [
-        "Voice: a parade-ground voice, carrying, certain.",
-        "Wants: the riders to ride. He believes it is the only honourable thing left.",
-        "Sample line: \"The Lady rides into Avernus. Who rides with her?\""
-      ]
-    }
+    })
   },
 
   scenes: [
@@ -195,7 +112,7 @@ window.SESSION = {
         { t: "h", text: "At a Glance" },
         { t: "list", items: [
           "{@b 2 · DM Context (5 min).} The clocks, who moves tonight, and what the party does not know yet. Read it before the table sits down.",
-          "{@b 3 · The Urns of the Unquiet (60 min).} Three urns in C2g, three fights, and each one is a Hellrider's hard choice: stand down, the wounded or the line, the order at the gate. Nine souls to lay to rest.",
+          "{@b 3 · The Urns of the Unquiet (45-60 min).} Finish the fight, which grows: three great urns in C2g, three waves, each with a Hellrider's hard choice (the first urn's wraiths, then the lance wraiths, then Marshal Dunmere, the Last Banner). Nine souls to lay to rest.",
           "{@b 4 · The Trials of the Pure (45 min).} Three puzzles set the loot tier. Drenwal's first memory.",
           "{@b 5 · The Hellrider Archive (30 min).} Olanthius's journal and the annals. A DC ladder of what they learn.",
           "{@b 6 · Wings at the Door (30 min).} Arkhan's plan (a hostage and a gold dragon), the dragons, the ward clock, Vermilius's kindness.",
@@ -207,7 +124,7 @@ window.SESSION = {
         { t: "p", text: "Read this to the players. They have had a long break." },
         { t: "read", text: "You came to the Crypt of the Hellriders because a death knight had the answer you needed. Drenwal knocked at its gates with a spell, and the knock rolled out across the waste for fifty miles. Arkhan the Cruel heard it. His wings were coming over the ridge as you went in, with his four dragons, and Obatala, and old Krull on his back. You shut the door behind you. They stand outside, because nothing evil may enter here.\n\nBelow, Olanthius knelt at an open coffin and tested you, and when he was done he gave you a shard of the Sword of Zariel and the road to the Scab. He said one more thing: the pure of heart may brave the dangers of this crypt to receive rewards.\n\nIn the hall of urns the souls swirled and bubbled. The loot lay under them. You reached for it, and the urns cracked open." },
 
-        { t: "note", title: "House Rule: Groups", text: "A group of identical monsters shares {@b one initiative} and makes {@b one collective saving throw} (one d20 for the whole group). Hit points stay individual. The tracker does this for you: set up the encounter and each group has one initiative row and a Group save control. Used here for the ghosts and wraiths of each urn." },
+        { t: "note", title: "House Rule: Groups", text: "A group of identical monsters shares {@b one initiative} and makes {@b one collective saving throw} (one d20 for the whole group). Hit points stay individual. The tracker does this for you: set up the encounter and each group has one initiative row and a Group save control. Used here for each urn's wraiths, specters and banner guards." },
 
         { t: "h", text: "Check Before You Start" },
         { t: "list", items: [
@@ -304,18 +221,17 @@ window.SESSION = {
       id: "the-urns-of-the-unquiet",
       title: "The Urns of the Unquiet (C2g)",
       when: "",
-      duration: "60 minutes",
+      duration: "45-60 minutes",
       blocks: [
-        { t: "p", text: "The party is in C2g, the long south-east chamber, mid-fight. Three soul urns stand on the stone shelf. Each urn holds one company of the First Charge and one hard choice the Hellriders once had to make. Each urn is its own fight, and each fight is a puzzle: damage alone never ends it. The fight from Session 11 is the first urn: all three urns cracked, but only the first one's riders are loose. The second urn breaks open a minute after the first goes quiet, and the third a minute after the second. There is time to breathe between them, not to rest." },
-        { t: "read", text: "The urns crack along their rims with a sound like ice on a river. What was swirling inside rises as a white, ragged smoke, and the smoke takes the shape of riders: cold shapes in tabards, in helms, in a charge that never ended. Behind them, from the dark between the pillars, grey drifts of cloak slide into the room, quiet as grief.\n\nA rider's voice, from far away: \"For glory!\"\n\nIt does not sound like a battle cry. It sounds like a question." },
-        { t: "img", src: "art/generated/env-urn-hall.webp", caption: "C2g, the chamber of the urns, before they crack.", credit: "Generated art." },
-        { t: "env", sight: "Pale riders over cracked clay urns; the grey drift of the wraiths behind; names carved floor to ceiling on every wall.", sound: "A distant charge, on a wind that is not blowing; one voice crying \"For glory!\" over and over.", smell: "Cold stone, church wax, old iron.", feel: "The cold is not hostile. It is the cold of a room where someone has just stopped breathing." },
-        { t: "map", id: "crypt-of-the-hellriders-40x30", note: "C2g, the long south-east chamber. The three urns stand on a stone shelf along its length; the riders rise from them. The secret door to C6e is in the east wall." },
+        { t: "read", text: "Three great urns stand on the long stone shelf, each taller than a man, sealed with lead and stamped with the rising sun. The first one is already open. What was swirling inside rises as white, ragged smoke and takes the shape of riders, and the grey wraiths go up with it.\n\nThe other two are not quiet. A hairline crack runs around the rim of the second, glowing faintly, and from inside comes the sound of hooves on stone. The third is the largest. Something inside it is breathing slowly, the way a man breathes before he gives an order.\n\nA rider's voice, from far away: \"The sun will hold!\"\n\nIt does not sound like a promise. It sounds like a question." },
+        { t: "env", sight: "Pale riders over the first broken urn; two more urns on the shelf, cracks glowing along their rims; names carved floor to ceiling on every wall.", sound: "Hooves inside the second urn. A slow breath inside the third. One voice saying the watchword over and over.", smell: "Cold stone, church wax, old iron.", feel: "The cold is not hostile. It is the cold of a room where someone has just stopped breathing." },
+        { t: "map", id: "crypt-of-the-hellriders-40x30", note: "C2g, the long south-east chamber: the Urn Hall. The three great urns sit on a long stone shelf along the far wall, 15 ft. apart. The secret door to C6e is in the east wall." },
+        { t: "img", src: "art/generated/event-crypt-urn-hall.webp", caption: "The Urn Hall: one urn open, two still cracking.", credit: "Generated art (gpt-image-2.5)." },
 
         { t: "h", text: "Who These Riders Are" },
-        { t: "p", text: "The players should work out for themselves that these are the riders of the First Charge, who followed Zariel into Avernus a century ago and never came home. Hand them these clues during the fights. Each is free if a PC looks; the checks give more." },
+        { t: "p", text: "The players should work out for themselves that these are the riders of the First Charge, who followed Zariel into Avernus a century ago and never came home. Hand them these clues during the fight. Each is free if a PC looks; the checks give more." },
         { t: "list", items: [
-          "{@b The battle cry.} \"For glory!\" was the First Charge's cry, and the pass phrase of the C1 gates. {@c ser-lucan|Ser Lucan} knows it at once and says so.",
+          "{@b The battle cry.} Under the watchword, one rider keeps shouting \"For glory!\" It was the First Charge's cry, and the pass phrase of the C1 gates. {@c ser-lucan|Ser Lucan} knows it at once and says so.",
           "{@b The walls.} Every C2 chamber is carved floor to ceiling with names. The urn lids carry names too, and they are the same names.",
           "{@b The dead say so.} A soul laid to rest says its own name and one more thing: \"I rode with the Lady.\" The Lady is Zariel, before she fell."
         ] },
@@ -324,75 +240,83 @@ window.SESSION = {
           { skill: "Investigation", dc: 12, who: "anyone", text: "The names on the urn lids and in the C3 prayer niches match names on the walls. The niches were cut for riders who never came home." }
         ] },
 
-        { t: "h", text: "The First Urn: The Ride That Never Ended" },
-        { t: "p", text: "{@b The hard choice: to stand down.} The First Charge never got the order to stop. These riders are still charging, a hundred years on, and the answer is to give them the order nobody gave. This is the fight from Session 11: keep whatever is on the table." },
-        { t: "encounter", id: "urns-fight", title: "First Urn: The Ride That Never Ended", combatants: [
-          { c: "hellrider-ghost", n: 6 },
-          { c: "despairing-wraith", n: 3 }
-        ], notes: "Use what is on the table from Session 11 (five to eight ghosts plus wraiths). For a fresh set-up, 6 ghosts and 3 wraiths, run as two groups with one initiative each and one collective save. This urn holds three souls: the first three ghosts or wraiths laid to rest. Once three are at rest, the rest of this urn's riders fade; they were echoes. A ghost that is only destroyed re-forms at the urn (see its stat block)." },
+        { t: "h", text: "The Three Urns" },
+        { t: "table", head: ["Urn", "Breaks", "Releases", "Souls"], rows: [
+          ["{@b First urn}", "Already open (the fight in progress)", "3 {@c hellrider-wraith|Hellrider Wraiths}, 8 {@c crypt-specter|specters} (smoke, not souls), and the {@c first-charge-ghost|Ghost of the First Charge} (not an urn soul)", "3"],
+          ["{@b Second urn}", "Start of round 4 of the fight, or as soon as anyone strikes it", "3 {@c lance-wraith|Hellrider Lance Wraiths}: mounted, charge and wheel away", "3"],
+          ["{@b Third urn}", "Two rounds after the second opens, or when its last lance wraith falls, whichever is first", "{@c banner-marshal|Marshal Aubrec Dunmere, the Last Banner} (miniboss, CR 15) and 2 {@c hellrider-ghost|Hellrider ghosts}, his banner guards", "3"]
+        ] },
+        { t: "p", text: "{@b Holding an urn shut.} A character at an unbroken urn can use an action to bless it or say the watchword: DC 16 Wisdom (Religion), or no check for a Hellrider speaking the watchword with Drenwal's sigil in view. Each success holds that urn shut for one more round. Two successes on the second urn, or three on the third, and its souls are laid to rest without a fight: they count. Every action spent at an urn is an action not spent on the dead already loose." },
+
+        { t: "h", text: "Wave 1: The First Urn (in progress)" },
+        { t: "p", text: "Carry the Session 11 tracker straight over: same hit points, same round count. In the app this is the same set of creatures as Session 11's Restless Dead." },
+        { t: "encounter", id: "urns-fight", title: "Wave 1: The First Urn", combatants: [
+          { c: "hellrider-wraith", n: 3 },
+          { c: "crypt-specter", n: 8 },
+          { c: "first-charge-ghost", n: 1 }
+        ], notes: "Run the wraiths and the specters as two groups (one initiative, one collective save each). Specters are the urn's smoke: when the first urn's last soul is laid to rest or destroyed, every specter blows away. The Ghost of the First Charge stops if someone says his name from the wall." },
+
+        { t: "h", text: "The Hard Choice: The Wounded or the Line" },
+        { t: "img", src: "art/generated/env-urn-wounded.webp", caption: "The rearguard's choice: the wounded, or the line.", credit: "Generated art (Codex)." },
+        { t: "p", text: "The first urn holds the rearguard, and the rearguard's choice was this: hold the line, or go back for the wounded. They held the line. Their wounded died behind them, and that is why they never stopped riding. The fight replays it." },
+        { t: "list", items: [
+          "{@b The wounded.} When a {@c hellrider-wraith|Hellrider Wraith} drops below half its hit points, it falls to its knees, stops attacking and calls for help by name. At the end of each round, a fallen wraith with no living creature next to it loses 10 hit points as the urn's smoke closes over it. Destroyed this way, its soul does not count.",
+          "{@b Going back for them.} A PC who reaches a fallen wraith and spends an action on it (the Religion blessing, the watchword, or any healing) lays that soul to rest. Until the start of that PC's next turn, the specters have advantage on attacks against them: they knelt in front of the line.",
+          "{@b Holding the line.} The party can ignore the fallen and fight the specters. It is the faster fight, and the rearguard's own mistake: the fallen fade, and their souls do not count.",
+          "{@b The tell.} The first time a PC goes back for a fallen wraith, every wraith of the first urn stops attacking for a round and watches."
+        ] },
+
+        { t: "h", text: "Wave 2: The Second Urn" },
+        { t: "read", text: "The second urn does not crack. It bursts. Three riders come out of it already at the gallop, horses of white smoke under them, lances level, and the hall is suddenly far too small for them." },
+        { t: "encounter", id: "urns-fight-2", title: "Wave 2: The Lance Wraiths", combatants: [
+          { c: "lance-wraith", n: 3 }
+        ], notes: "Add them to the running initiative as one group. They enter at the second urn and charge on their first turn. Hit, wheel away, charge again: punish anyone who is standing in the open between the urns." },
+
+        { t: "h", text: "The Hard Choice: The Order at the Gate" },
+        { t: "img", src: "art/generated/env-urn-burning-gate.webp", caption: "The lancers' choice: ride through the burning gate, or refuse the order.", credit: "Generated art (Codex)." },
+        { t: "p", text: "The second urn holds the lancers of the front rank, and their choice was the First Charge itself: follow the Lady through the gate into Avernus, or refuse the order. They rode. When the urn bursts, it opens the gate again." },
+        { t: "read", text: "Fire climbs the east wall from the second urn's shards, and the wall is not a wall any more. It is an arch, and through it is a red sky, and a road, and a war. The lancers wheel toward it. One of them lifts a horn.\n\n\"The Lady rides into Avernus,\" he calls. \"Who rides with her?\"" },
+        { t: "list", items: [
+          "{@b The gate.} A burning arch on the east wall of C2g. At the end of each round, every {@c lance-wraith|lance wraith} that did not charge a living creature that round rides 30 feet toward it. A lance wraith that enters the arch is gone, a hundred years late, and its soul is lost.",
+          "{@b Stopping one.} Stand in its lane: it will not ride through a living person, so it charges them instead. Or spend an action and tell it the truth with a DC 15 Charisma (Persuasion) check: \"The charge failed. Elturel fell anyway. You can stop.\" On a success it lowers its lance and is laid to rest.",
+          "{@b The pull.} A PC who starts a turn within 10 feet of the arch hears the horn and must succeed on a DC 15 Wisdom saving throw or spend their movement stepping toward it, crying \"For glory!\" A living creature that enters the arch takes 22 (4d10) fire damage and is thrown back out. Only the dead go through.",
+          "{@b Let them ride.} The glory option is real. Each lance wraith that goes through drops its arms at the arch: roll once on the Hard-won loot table in {@scene the-trials-of-the-pure|The Trials of the Pure} for each. Their souls do not count toward the nine or toward the grave goods.",
+          "{@b The gate closes} when the last lance wraith is laid to rest, destroyed or gone through."
+        ] },
+
+        { t: "h", text: "Wave 3: The Last Banner (miniboss)" },
+        { t: "read", text: "The third urn opens like a door. A rider half again a man's height steps out of it on a horse of smoke, and plants a banner in the shards: the rising sun, half of it burned black. Two riders take their places at his stirrups. The visor turns to Drenwal, and the light inside it is patient.\n\n\"Rider,\" says Marshal Dunmere. \"Report. Has the sun held?\"" },
+        { t: "img", src: "art/generated/event-crypt-banner-marshal.webp", caption: "Marshal Aubrec Dunmere, the Last Banner.", credit: "Generated art (gpt-image-2.5)." },
+        { t: "encounter", id: "urns-fight-3", title: "Wave 3: The Last Banner", combatants: [
+          { c: "banner-marshal", n: 1 },
+          { c: "hellrider-ghost", n: 2 }
+        ], notes: "Miniboss, CR 15, with 3 legendary actions. The banner (AC 17, 40 HP, vulnerable to radiant) buffs every undead within 30 ft. and powers Rally the Line: break it or take it. The mercy route is Stand Down: a Hellrider gives the order, DC 18 Charisma, three successes or one once he is below 115 HP. His question is real: answer it honestly and the first Stand Down check has advantage." },
+        { t: "h", text: "The Hard Choice: The Truth or the Comfort" },
+        { t: "p", text: "The third urn holds the Marshal, and his question is the hard choice: \"Has the sun held?\" The truth is that it did not. Elturel fell into Avernus, and his charge did not save it. A kind lie would be easy." },
+        { t: "list", items: [
+          "{@b The comfort.} Tell him the sun held, and he believes it. He raises the banner and charges again, glad. The first Stand Down check has disadvantage: a man who thinks he won does not stop.",
+          "{@b The truth.} Tell him Elturel fell, and he is quiet for a round and takes no action. The first Stand Down check has advantage.",
+          "{@b The whole truth.} If someone also tells him the city is still there, chained above the Styx, and that the party means to bring it home, he lowers the banner himself. Stand Down needs one success instead of three."
+        ] },
+        { t: "note", title: "Scaling", text: "Three level-13 PCs with Veska, Ser Lucan and Moonkite. Each wave alone is a medium fight; overlapping, they are deadly, which is the point: the party should feel the urns as a clock and start sealing them. {@b Easier:} the third urn breaks only when the second urn's last wraith falls, never on the round count. {@b Harder:} the second urn breaks at the start of round 3, and the Marshal has 280 HP. Never more than one urn breaking in a round." },
 
         { t: "checks", items: [
-          { skill: "Religion", dc: 14, who: "anyone", text: "Bless an urn with the right words: one soul is laid to rest. The ghost bound to it stops and thanks you." },
+          { skill: "Religion", dc: 14, who: "anyone", text: "Bless a wraith below half hit points within 5 ft.: that soul is laid to rest. At an unbroken urn it is DC 16 and holds the urn shut for a round." },
           { skill: "History", dc: 15, who: "Drenwal, Veska (advantage)", text: "Speak the watchword \"The sun will hold!\" at an urn. The ghost stops and listens. Anyone who says it with a Hellrider's sigil in view frees the soul." },
-          { skill: "Persuasion", dc: 16, who: "anyone", text: "A wraith hesitates once its brothers are at rest. Wisdom (Religion or Persuasion) DC 16 lets it go." },
+          { skill: "Persuasion", dc: 18, who: "Drenwal, Veska", text: "Stand Down: give Marshal Dunmere the order the Charge never got. Three successes, or one once he is bloodied, and he lowers the lance." },
           { skill: "Insight", dc: 12, who: "anyone", text: "The ghosts are not hunting. They are asking to be let off the ride." }
         ] },
 
-        { t: "h", text: "How the First Urn Ends" },
+        { t: "h", text: "Three Ways to End It Early" },
         { t: "steps", items: [
-          "{@b Religion.} A DC 14 Wisdom (Religion) action at the urn blesses one rider. That soul is laid to rest for good. A critical failure wakes the nearest wraith.",
+          "{@b Religion.} A DC 14 Wisdom (Religion) action blesses a wraith below half hit points, or a banner guard, within 5 ft. That soul is laid to rest for good. A critical failure draws the nearest wraith's next attack.",
           "{@b Turn Undead.} Turns every ghost in 30 feet for a minute. A turned ghost cannot be blessed that turn, but the room is safe to work in. Radiant light looks like forgiveness.",
-          "{@b The order to stand down.} Drenwal (or Veska) says the Hellrider watchword, \"The sun will hold!\", with a hand on the sigil, and gives the order: \"Stand down.\" A ghost within 30 feet stops. One soul per round, no check. This is the intended way out."
+          "{@b The watchword and Drenwal's sigil.} Drenwal (or Veska) says \"The sun will hold!\" with a hand on the sigil: one wraith below half hit points within 30 ft. stops and is laid to rest. One soul per round, no check. On the Marshal it does not work; he needs the other order, Stand Down."
         ] },
-        { t: "note", title: "Optional: Olanthius Ends It", text: "From the laptop's Session 11 prep. If the fight drags, Olanthius speaks from C5 after round 3, or the moment the party puts the loot back on the shelf. The riders stop where they are. Riders stopped this way are quiet, not laid to rest: they do not count toward the nine." },
-
-        { t: "h", text: "The Second Urn: The Wounded or the Line" },
-        { t: "read", text: "The second urn splits with a sound like a bone breaking. Three riders spill out of the smoke and fall. They lie on the stone, tabards dark with old blood, reaching for anyone. Behind them the rest of their company locks shields into a line across the chamber, and the line begins to walk forward, over the fallen, toward you.\n\n\"Leave them,\" says a captain's voice from the line. \"The line holds or nobody goes home.\"" },
-        { t: "img", src: "art/generated/env-urn-wounded.webp", caption: "The second urn: the fallen and the line.", credit: "Generated art." },
-        { t: "p", text: "{@b The hard choice: stop for the wounded, or hold the line.} At the Charge, riders were ordered to step over their own wounded and keep the line. This urn asks the party to choose again, and it punishes the choice the order made." },
-        { t: "env", sight: "A shield wall of pale light; three riders on the floor in front of it, reaching up.", sound: "Boots in step. Under them, three voices saying their own names.", smell: "Old blood, cold iron.", feel: "Every step the line takes, you want to step back." },
-        { t: "encounter", id: "urn-two-the-line", title: "Second Urn: The Wounded or the Line", combatants: [
-          { c: "hellrider-ghost", n: 4 },
-          { c: "fallen-rider", n: 3 }
-        ], notes: "The four ghosts are the line: one group, one initiative. The three fallen riders never take a turn; they are the urn's three souls, so track their hit points. Medium for the party with allies; the danger is losing souls, not PCs." },
-        { t: "list", items: [
-          "{@b The line.} The four ghosts advance 15 feet a round as one shield wall and attack whatever stands in front of them. They walk over the fallen: each fallen rider the line passes over takes 10 necrotic damage.",
-          "{@b The fallen.} Three wounded riders (AC 10, 22 hit points). At 0 hit points a fallen rider fades, and that soul is lost.",
-          "{@b Tending.} An action next to a fallen rider: DC 13 Wisdom (Medicine), any healing spell, or Lay on Hands. Tended twice, the rider rises, takes up its shield and fights beside the party (see {@c fallen-rider|its stat block}).",
-          "{@b The puzzle.} Damage does not end this fight: a destroyed ghost re-forms at the urn and walks back into the line. The line breaks when the captain sees a fallen rider stand again. The first time one rises, the line stops, lowers its shields and kneels. Anyone who then says what the order should have said (\"No one is left behind,\" or words like it) lets the line fade in peace.",
-          "{@b The cost.} Tending means kneeling in front of the line. Whoever tends takes the hits."
-        ] },
-        { t: "list", items: [
-          "{@b All three rose:} three souls laid to rest. The line kneels and fades.",
-          "{@b Some faded:} the ones who rose still count. The line fades when the last fallen rider rises or fades.",
-          "{@b They held the line instead} (fought the ghosts and let the fallen fade): the urn goes dark and cold. No souls. The ward gains a segment."
-        ] },
-
-        { t: "h", text: "The Third Urn: The Order at the Gate" },
-        { t: "read", text: "The third urn does not crack. It opens, like a door. Fire pours out of its mouth and climbs the east wall of the chamber, and the wall is not a wall any more. It is an arch, and through it is a red sky, and a road, and a war.\n\nA rider in old plate rises from the urn with a banner in one hand and a silver horn in the other. Behind him, three riders form up, lances lowered toward the arch.\n\nHe lifts the horn. \"The Lady rides into Avernus. Who rides with her?\"" },
-        { t: "img", src: "art/generated/env-urn-burning-gate.webp", caption: "The third urn: the burning arch and the Herald of the Charge.", credit: "Generated art." },
-        { t: "p", text: "{@b The hard choice: obey the order, or refuse it.} The First Charge followed Zariel through the gate into Avernus, and none of them came home. The riders who refused were called cowards for the rest of their lives. This urn asks the party which kind of rider they are." },
-        { t: "encounter", id: "urn-three-the-gate", title: "Third Urn: The Order at the Gate", combatants: [
-          { c: "herald-of-the-charge", n: 1 },
-          { c: "hellrider-ghost", n: 3 }
-        ], notes: "The Herald (CR 10) and the three riders who are the urn's three souls. The riders share one initiative. Hard if the party fights the Herald head-on; much easier if they work the puzzle." },
-        { t: "list", items: [
-          "{@b The charge.} At the end of each of the {@c herald-of-the-charge|Herald's} turns, each rider moves 30 feet toward the burning arch. A rider that enters the arch is gone, through the gate to Avernus a hundred years late. That soul is lost.",
-          "{@b Stopping a rider.} Stand in its path: it will not ride through a living person, so it stops and attacks them instead. Or spend an action to tell it the truth, with a DC 15 Charisma (Persuasion) check: \"The charge failed. Elturel fell anyway. You can stop.\" On a success it lowers its lance and is laid to rest. Destroying a rider only sends it back to the urn, and it charges again next round.",
-          "{@b The horn.} The Herald's Sound the Charge pulls the PCs toward the arch too. They feel the order. That is the point.",
-          "{@b Silencing the Herald.} He stops at 0 hit points, or when someone takes his banner (an action, and a Strength (Athletics) check contested by his +9). Then every rider stops at once. Riders stopped this way are quiet, not at rest: each still needs someone to speak to it, and now no check is needed.",
-          "{@b The arch.} A living creature that enters it takes 22 (4d10) fire damage and is thrown back out. Only the dead go through."
-        ] },
-        { t: "list", items: [
-          "{@b They refused the order} (stood in the way, or spoke the truth): each rider stopped is a soul laid to rest. Drenwal feels the sigil cool.",
-          "{@b They let them ride,} or helped: each rider who goes through drops its arms at the arch. Roll once on the Hard-won loot table (in {@scene the-trials-of-the-pure|The Trials of the Pure}) for each. Their souls do not count. This is the glory option, and it is a real choice.",
-          "{@b They silenced the Herald first:} the riders stop, and they count once someone speaks to them. If someone also tells the Herald the riders who stopped were not cowards, he goes to rest with them."
-        ] },
-
-        { t: "note", title: "Track the Souls", text: "Every soul laid to rest counts, however it happened. {@b Nine in all: three per urn.} The count decides the Roll of the Charge in {@scene the-trials-of-the-pure|The Trials of the Pure} and the size of the Last Ride in {@scene the-ways-out|The Ways Out}. A ghost that is only destroyed re-forms later: it does not count." },
+        { t: "note", title: "Track the Souls", text: "Every soul laid to rest counts, however it happened. {@b Nine in all}, three per urn: the first urn's three wraiths, the second urn's three lance wraiths, and the Marshal with his two banner guards. Souls laid to rest at a sealed urn count too. Specters and the Ghost of the First Charge do not. The count decides the Roll of the Charge in {@scene the-trials-of-the-pure|The Trials of the Pure} and the size of the Last Ride in {@scene the-ways-out|The Ways Out}. A soul that is only destroyed is gone, not at rest: it does not count." },
 
         { t: "more", title: "What the urns are", src: ["Homebrew"], blocks: [
-          { t: "p", text: "The First Charge rode into Avernus and did not ride out. The Crypt bottled what was left of their souls so that Zariel's fall could not take them as well. Each of the three urns holds one company: three named riders, and the echoes of the rest. Each company is stuck in the worst choice it ever had to make." },
+          { t: "p", text: "The First Charge rode into Avernus and did not ride out. The Crypt bottled what was left of their souls so that Zariel's fall could not take them as well. Each of the three great urns holds three riders: the first the rearguard, the second the lancers of the front rank, the third the Marshal and his colour guard. They are still waiting for the order to stand down." },
           { t: "p", text: "{@b The wraiths are different.} They are riders who despaired {@i inside the Crypt}, years after the Charge, and were never laid to rest. That is why the ban on evil never kept them out: they did not come in, they were already here. They are grief, not malice. Nobody ever told them the ride was not for nothing." },
           { t: "p", text: "{@b Why this link exists:} it explains a fight inside a place where evil cannot enter, and it turns the fight into something Drenwal's order can answer with mercy." }
         ] },
@@ -400,6 +324,107 @@ window.SESSION = {
         { t: "more", title: "Moonkite: The Quiet Dead", src: ["Homebrew"], blocks: [
           { t: "p", text: "{@b Beat S12.} Moonkite stops within thirty feet of the urns and speaks to Aurora alone: \"They are not coins. They are asking to be let go. Not out. Let go.\" It offers {@spell Starpath} on one urn. Neither Lulu nor Jeremy is here, so Aurora makes the DC 13 Charisma check alone. On a success the soul goes on in peace and counts toward the Last Ride. On a failure it slips free and wanders the Crypt." },
           { t: "p", text: "{@b Bond.} +1 each time Aurora helps a soul go on or spares a wraith at Moonkite's request, up to +2 this beat. -1 if she smashes urns or burns souls while it watches. Full rules in {@side arc-moonkite|Arc: Aurora and Moonkite}." }
+        ] },
+
+        { t: "h", text: "The Urn Hoard" },
+        { t: "p", text: "The loot lay under the urns, and it is still there: the riders were buried with their gear. Once the last wave is over (laid to rest or destroyed), the shelf can be searched. Give it in full; this is the reward for the hardest fight in the Crypt." },
+        { t: "list", items: [
+          "{@b Always:} grave goods and Elturian coin worth {@b 2,000 gp}, and three {@item potion of supreme healing|DMG} flasks sealed in wax.",
+          "{@b First urn (the rearguard).} A {@item sun blade|DMG}: a rearguard officer's hilt with no blade until it is drawn, and then a blade of daylight. Radiant, and very good against everything in Avernus.",
+          "{@b Second urn (the lancers).} A bronze {@item horn of Valhalla|DMG} reflavoured as the {@b Horn of the First Charge}: blown, it calls four spectral Hellriders (berserker statistics, mounted, radiant instead of slashing) for 1 hour. They will not ride against a Hellrider.",
+          "{@b Third urn (the Marshal).} His own sword, a {@item dragon slayer|DMG} (+1, an extra 3d6 against dragons). He carried it into Avernus for a dragon he never reached. With Arkhan's dragons at the door and Tiamat stirring, it has never been more welcome."
+        ] },
+        { t: "h", text: "The Riders' Bequest (static loot)" },
+        { t: "p", text: "Fixed, not rolled: one piece per PC, laid out on the shelf behind the urns as if the riders had been keeping them for exactly these three. Give them whatever the dice say elsewhere." },
+        { t: "read", text: "Behind the urns, on the bare stone of the shelf, three things lie in a row on folded white cloth. None of them is dusty. Each has a slip of vellum under it in the same careful hand, and each slip says only: For the one who came back for us." },
+        { t: "list", items: [
+          "{@b Drenwal:} a {@item Amulet of the devout, +2|TCE}, the Hellrider chaplains' sun medallion. While he wears it, his spell attacks and save DC get +2, and once per dawn he can use Channel Divinity without spending a use. Veska knows it on sight: the chaplain of the First Charge wore it into Avernus.",
+          "{@b Aurora:} a {@item Rod of the pact keeper, +2|DMG}, a rider's silver riding crop with a moon-white thong. +2 to her spell attacks and save DC, and once per long rest she can use an action to regain one Pact Magic slot. Moonkite lowers its head to it, once, without being asked.",
+          "{@b Or'Henn:} a {@item Moon sickle, +2|TCE}, the hook the Hellriders' druid-scouts used to cut forage in a wasteland. +2 to his spell attacks and save DC, and when he restores hit points with a spell he adds {@dice 1d4} to the healing. It is a weapon and a focus, so it sits beside Cinderbloom rather than replacing it.",
+          "{@b Veska and Ser Lucan} are covered by their {@scene ending|Crypt upgrades} (the banner, the cold-forged legs). If you want a physical item: Veska takes the Marshal's white {@b +1 shield}, and Lucan the rearguard's {@b +1 plate} (both already in their upgraded AC)."
+        ] },
+
+        { t: "h", text: "Rolled Grave Goods" },
+        { t: "p", text: "On top of each urn's fixed item. Roll {@dice 1d20} on that urn's table {@b once per soul from it that was laid to rest} (up to three), or {@b once} if all three were destroyed. Rerolls on a duplicate." },
+        { t: "table", caption: "First urn: the rearguard (d20)", head: ["d20", "Grave goods"], rows: [
+          ["1", "{@item Potion of superior healing|DMG} (two of them)"],
+          ["2", "A spell scroll, 5th level (DM picks)"],
+          ["3", "{@item Periapt of wound closure|DMG}"],
+          ["4", "{@item Cloak of protection|DMG}"],
+          ["5", "{@item Mace of disruption|DMG}: a rearguard chaplain's mace"],
+          ["6", "{@item Armor of resistance|DMG} (fire), Hellrider plate or the finder's type"],
+          ["7", "{@item Pearl of power|DMG}, set in a sun brooch"],
+          ["8", "{@item Ring of spell storing|DMG}, holding a {@spell spirit guardians} cast by a Hellrider chaplain"],
+          ["9", "A {@item +1 shield|DMG}, the rearguard's, dented by a hundred blows"],
+          ["10", "{@item Potion of heroism|DMG} (two of them)"],
+          ["11", "{@item Periapt of health|DMG}"],
+          ["12", "{@item Bead of force|DMG}: the rearguard's last trick"],
+          ["13", "{@item Brooch of shielding|DMG}"],
+          ["14", "{@item Oil of etherealness|DMG}"],
+          ["15", "{@item Ring of protection|DMG}"],
+          ["16", "{@item Sentinel shield|DMG}: the night watch's shield"],
+          ["17", "{@item Elixir of health|DMG}"],
+          ["18", "{@item Ring of resistance|DMG} (necrotic)"],
+          ["19", "Six flasks of holy water and a chaplain's prayer book, worth 200 gp"],
+          ["20", "Roll twice on this table and keep both"]
+        ] },
+        { t: "table", caption: "Second urn: the lancers (d20)", head: ["d20", "Grave goods"], rows: [
+          ["1", "Silver spurs, badges and pay, worth 750 gp"],
+          ["2", "{@item Potion of speed|DMG}"],
+          ["3", "A {@item +2 weapon|DMG}: a lancer's lance"],
+          ["4", "{@item Horseshoes of speed|DMG} (fit Moonkite, or any mount)"],
+          ["5", "{@item Javelin of lightning|DMG} (two of them)"],
+          ["6", "{@item Boots of speed|DMG}"],
+          ["7", "{@item Winged boots|DMG}"],
+          ["8", "{@item Ring of free action|DMG}"],
+          ["9", "{@item Potion of flying|DMG}"],
+          ["10", "{@item Figurine of wondrous power|DMG} (bronze griffon): a lancer's mount, in miniature"],
+          ["11", "{@item Mithral armor|DMG}: a lancer's half plate"],
+          ["12", "{@item Weapon of warning|DMG}: a picket sentry's sword"],
+          ["13", "{@item Potion of fire giant strength|DMG}"],
+          ["14", "{@item Goggles of night|DMG}"],
+          ["15", "{@item Bracers of archery|DMG}"],
+          ["16", "{@item Quiver of Ehlonna|DMG}"],
+          ["17", "{@item Horn of blasting|DMG}: the lancers' charge horn"],
+          ["18", "A spell scroll, 4th level (DM picks)"],
+          ["19", "{@item Potion of superior healing|DMG}"],
+          ["20", "Roll twice on this table and keep both"]
+        ] },
+        { t: "table", caption: "Third urn: the Marshal and his colour guard (d20)", head: ["d20", "Grave goods"], rows: [
+          ["1", "Marshal's regalia and Elturian gold, worth 1,500 gp"],
+          ["2", "{@item Potion of invulnerability|DMG}"],
+          ["3", "A spell scroll, 6th level (DM picks)"],
+          ["4", "{@item Mantle of spell resistance|DMG}"],
+          ["5", "{@item Belt of hill giant strength|DMG}"],
+          ["6", "{@item Staff of healing|DMG}: the colour guard's chaplain staff"],
+          ["7", "{@item Helm of brilliance|DMG}: the Marshal's parade helm, gems still in it"],
+          ["8", "{@item +2 armor|DMG} of the finder's type, the colour guard's white enamel"],
+          ["9", "{@item Potion of supreme healing|DMG}"],
+          ["10", "{@item Rod of rulership|DMG}: the Marshal's baton of command"],
+          ["11", "{@item Ioun stone of leadership|DMG}"],
+          ["12", "{@item Sword of sharpness|DMG}: the Marshal's second blade"],
+          ["13", "{@item Potion of cloud giant strength|DMG}"],
+          ["14", "{@item Ring of resistance|DMG} (fire)"],
+          ["15", "{@item Gem of brightness|DMG}: the sun on the colour guard's standard"],
+          ["16", "A spell scroll, 7th level (DM picks)"],
+          ["17", "{@item Periapt of proof against poison|DMG}"],
+          ["18", "{@item Necklace of prayer beads|DMG}: the colour guard chaplain's"],
+          ["19", "{@item Elixir of health|DMG}"],
+          ["20", "Roll twice on this table and keep both"]
+        ] },
+
+        { t: "note", title: "Laid to Rest or Destroyed", text: "An urn whose three souls were {@b laid to rest} gives its item freely: it is lying on top of the shards, as if set out. An urn whose souls were {@b destroyed} still has its item, but buried in the shards and rimed with frost: a DC 15 Investigation to find, and it is cold to the touch until the next dawn. The Marshal's sword is only given if he stood down; otherwise it is under the third urn's shards like the rest." },
+        { t: "note", title: "All Nine at Rest", text: "If all nine souls were laid to rest, the riders give one more thing as they go: {@b each PC} gains a {@b Charm of Heroism} (DMG supernatural gift: as an action, gain the benefits of a potion of heroism; one use). The cold candles of C2f light themselves, and Olanthius, wherever he is, stands up." },
+
+        { t: "h", text: "Bonuses for a Strong Run" },
+        { t: "p", text: "On top of the loot. Give every one the party earned; they stack." },
+        { t: "list", items: [
+          "{@b Laid a soul to rest:} each PC (and Veska) who laid at least one soul to rest gains {@b Heroic Inspiration}.",
+          "{@b Nobody died:} all three waves beaten with no PC or companion killed. The Crypt's cold settles into them: {@b resistance to fire damage} for every PC and companion until the end of their next long rest. Exactly what they need for the door and the red dragon outside it.",
+          "{@b The Marshal stood down:} the riders stand to the ward one last time. {@b Erase two segments} from the ward clock (never below 0).",
+          "{@b No urn forced open by hand:} Olanthius's favour. He answers one question about the Bleeding Citadel truthfully, and once, later, he will come when Drenwal calls his name at a Hellrider grave.",
+          "{@b Seven or more souls at rest:} the trials' {@b Clean} candles light on their own (see {@scene the-trials-of-the-pure|The Trials of the Pure}) and the Last Ride is ready to ride (see {@scene the-ways-out|The Ways Out}).",
+          "{@b All nine at rest:} the Charm of Heroism above, and if your table levels by milestone, this is a good place for {@b level 14}."
         ] },
 
         { t: "choices", prompt: "The urns are quiet.", items: [
@@ -421,12 +446,39 @@ window.SESSION = {
         { t: "p", text: "Olanthius said the pure of heart may brave the dangers of this crypt to receive rewards. The Crypt means it. Three trials stand in three of the C2 chambers, each with a different way to be honest: the Roll of the Charge in C2f, the Scales of Mercy in C2e, and the Generals' Seats in C2a. The party can solve them in any order, and each ends in one of three outcomes: {@b Clean,} {@b Hard-won} or {@b Forced.} The outcome sets the loot tier for that trial. A forced answer makes noise at the door." },
         { t: "read", text: "The chambers of the Crypt run on past the reach of your lights. Every wall is carved floor to ceiling with names, row after row, each with a small cold candle beneath it. Most of the candles are dark.\n\nOver three of the doorways a line is cut in the lintel. You cannot read them from here. You are quite sure you can feel them." },
         { t: "map", id: "crypt-of-the-hellriders-40x30", note: "Trial (a) is C2f, the slanted south chamber. Trial (b) is C2e, the tall south-west chamber. Trial (c) is C2a, in the north-west." },
+        { t: "h", text: "The Three Doorways (left to right)" },
+        { t: "list", items: [
+          "{@b Left: (a) The Roll of the Charge, C2f.} The lintel reads: \"We were many. Say us.\"",
+          "{@b Middle: (b) The Scales of Mercy, C2e.} The lintel reads: \"Weigh it, and carry it.\"",
+          "{@b Right: (c) The Generals' Seats, C2a.} The lintel reads: \"Sit where we sat.\""
+        ] },
 
         { t: "h", text: "(a) The Roll of the Charge · C2f" },
+        { t: "read", text: "The left-hand doorway opens on a narrow gallery that runs back into the dark. Both walls are names, floor to vault, each with its cold candle. At the far end the names stop. Nine candles stand in a row under nine ranks with no names above them, and the stone where the names should be is smooth, as if it were waiting to be cut.\n\nThe air is very still. Somewhere, very faintly, a roll call is being read, one voice at a time, and every so often the voice stops, as if it has come to a name it cannot say." },
+        { t: "h", text: "Run It" },
+        { t: "steps", items: [
+          "{@b Read the box, then check the Urn Hall:} how many of the nine souls were {@b laid to rest} (not just destroyed)? Each one laid to rest gave its name as it went, and the names are on the urn lids too ({@b DC 12 Investigation}). The party {@i knows} those names.",
+          "{@b Each name is a moment.} A character stands at a candle and says the rider's name aloud, and something about them: how they fell, what they said going. No roll for a name they know. The candle lights, the name cuts itself into the stone, and the roll-call voice reads it and goes on.",
+          "{@b Destroyed souls are harder.} Their names must come from the order's memory: {@b DC 14 History} each (Drenwal and Veska with advantage), or from the annals in the Archive later. On a failure the candle gutters, and the voice stops at that rank and waits.",
+          "{@b Score it} with the tiers below. Then the voice reads the whole roll, all the way to the end, and stops on the last name lit.",
+          "{@b Pay it out:} roll once on the loot table for the tier. Memory 2 (Haruman) opens for Drenwal (see below). If all nine lit, read the box in If All Nine Light."
+        ] },
+        { t: "table", caption: "The nine (names on the urn lids)", head: ["Urn", "Rank", "Name", "What they say going"], rows: [
+          ["First", "Rearguard corporal", "Tamsin Hale", "\"Tell my sister the gate held. It did, didn't it?\""],
+          ["First", "Chaplain-rider", "Brother Odo Vane", "\"I prayed the whole way in. I think I can stop now.\""],
+          ["First", "Rider", "Benedek Strand", "\"Cold. It's cold. That's good. That's home.\""],
+          ["Second", "Lance-sergeant", "Ilsa Marrow", "\"Lances up. Lances up, lads. We're done.\""],
+          ["Second", "Rider", "Pell Garrow", "\"Did we reach her? Did anyone reach her?\""],
+          ["Second", "Rider", "Joss Kettering", "Says nothing. Salutes, grins, and goes."],
+          ["Third", "Standard-bearer", "Mirela Dunmere", "The Marshal's daughter. \"Father. It's all right. Put it down.\""],
+          ["Third", "Colour guard", "Cassius Ward", "\"Keep the colours clean for us, Captain.\" (to Veska)"],
+          ["Third", "Marshal", "Aubrec Dunmere", "\"The sun has held. Then so did we.\""]
+        ] },
+        { t: "note", title: "If All Nine Light", text: "Read: \"The last candle catches. For a moment every candle in the Crypt burns at once, thousands of them, and the cold goes out of the stone. The roll-call voice reads the nine new names, and then, quietly, one more you did not expect: Halvard. Not FELL AT THE WALL. Just his name, with a candle under it, lit.\" (This pays off Drenwal's truth about his father. If he never told Olanthius, drop the last two sentences.)" },
         { t: "env", sight: "Rows of names with cold candles under them. Nine of the candles are unlit and have no name above them, only a rank.", sound: "A very faint chanting of the roll call, one voice at a time.", smell: "Wax that has never burned.", feel: "The names pull at you, like being called on in a lesson." },
-        { t: "p", text: "Nine candles wait unlit, each under a rank and nothing else. They belong to the nine souls of the three urns in C2g. A candle lights when its rider's name is spoken aloud with grief, from the mouth of someone who has heard it." },
+        { t: "p", text: "Nine candles wait unlit, each under a rank and nothing else. They belong to the nine souls in the three urns of C2g. A candle lights when its rider's name is spoken aloud with grief, from the mouth of someone who has heard it." },
         { t: "checks", items: [
-          { skill: "Investigation", dc: 12, who: "anyone", text: "The nine ranks are the three companies of the three urns, in order. The riders' names are on the urns' lids." },
+          { skill: "Investigation", dc: 12, who: "anyone", text: "The nine ranks are the nine souls, three to an urn, the Marshal's rank highest. Their names are on the urns' lids." },
           { skill: "History", dc: 14, who: "Drenwal, Veska (advantage)", text: "Fill in a missing name from the order's own history. Lights one candle." },
           { skill: "Insight", dc: 13, who: "anyone", text: "A freed soul will tell its own name if asked kindly." }
         ] },
@@ -444,6 +496,7 @@ window.SESSION = {
         { t: "env", sight: "A tall bronze scale whose pans hang over an empty floor. In the left pan: a sun-and-sword badge, tarnished. In the right: a torn white tabard.", sound: "A pulse like a slow heartbeat, as if the scale were weighing the room.", smell: "Metal, and under it, rain.", feel: "A hand on your shoulder, from nobody." },
         { t: "read", text: "A shade stands between the pans. She is a young rider in a plain tabard, hands bound, head bowed. Along the wall behind her a hundred cold voices speak at once, all saying the same thing: \"She left her post.\"\n\nThe young rider lifts her head. \"I left,\" she says. \"I left because there was a child behind the wall. I did not know whether the wall would hold.\"\n\nThe scale tilts, and waits." },
         { t: "p", text: "She is not a real prisoner. She is the Crypt's question: mercy, or justice? The wall wants justice. She asks for mercy. Neither is the answer." },
+        { t: "p", text: "{@b Which way it tilts.} It starts tipped hard toward the {@b badge} (left pan, justice): a hundred voices outweigh one. Every honest point made for her (an Insight success, a case argued, the Religion fact) brings it a little level, but it never balances on argument alone. It balances only when the party chooses and pays the price aloud (Clean). If they choose without the whole truth, it slams down on the side they chose and stays there (Hard-won). Mercy tips it toward the {@b tabard} (right pan), justice keeps it on the badge; the Crypt does not care which, only whether they paid for it honestly." },
         { t: "checks", items: [
           { skill: "Insight", dc: 14, who: "anyone", text: "She is telling the truth. The child was real. She left for the child, not for herself." },
           { skill: "Religion", dc: 15, who: "Drenwal", text: "The Hellriders did not forbid leaving. They forbade leaving {@i without saying so.}" },
@@ -462,6 +515,7 @@ window.SESSION = {
         { t: "h", text: "(c) The Generals' Seats · C2a" },
         { t: "env", sight: "A stone table and four high-backed seats. On the table four helms of different make lie in a heap. Each seat has a device carved in the back.", sound: "Nothing. The room is waiting.", smell: "Old oil on leather.", feel: "Looking down at a map that is not there." },
         { t: "read", text: "Each seat's back carries a device, and under it a line of verse.\n\nA sun above a lowered banner: \"The first holds the line.\"\nA fist wrapped in chain: \"The second holds the watch.\"\nA shield beside a closed gate: \"The third holds the road.\"\nAn empty scabbard, burning: \"The fourth holds what none could hold.\"\n\nThe helms are marked only by rank. On the table, a small card: \"Set the right head on the right chair, and the dead will tell you what they carried.\"" },
+        { t: "img", src: "art/generated/event-crypt-trials-of-the-pure.webp", caption: "The Round of the Four: set the right head on the right chair.", credit: "Generated art (gpt-image-2.5)." },
         { t: "checks", items: [
           { skill: "History", dc: 13, who: "Drenwal, Veska (advantage)", text: "The sun over a lowered banner is the commander's. The chained fist is the general who ran the watch over the Bhaalspawn: Haruman." },
           { skill: "Religion", dc: 14, who: "anyone", text: "The shield and the closed gate is Olanthius, who held the road to the Citadel. The empty scabbard is the keeper of the Sword: Yael." },
@@ -475,74 +529,74 @@ window.SESSION = {
         { t: "note", title: "Memory 1 Opens at Any Tier", text: "Solving the Seats, however it went, opens {@b Drenwal's first General's Memory: Zariel as commander.} Read it from {@side arc-drenwal|Arc: Drenwal and the Hellrider Memories}, then give him the boon (Banner Discipline). Forced solves give him the memory in pieces: one sentence of the vision, then he must make a DC 12 Wisdom save or lose a round to it." },
 
         { t: "h", text: "Loot by Tier" },
-        { t: "p", text: "Each solved trial rolls once on the table for its tier. Clean is the top tier. When Griffon's Saddlebag items are supplied (not yet), the top tier also gives one fixed item per PC." },
-        { t: "table", caption: "Forced (d20): consumables and uncommon items", head: ["d20", "Reward"], rows: [
-          ["1", "Two {@item potion of healing|DMG}"],
-          ["2", "{@item Potion of greater healing|DMG}"],
-          ["3", "A spell scroll, 2nd level (DM picks)"],
-          ["4", "A spell scroll, 3rd level (DM picks)"],
+        { t: "p", text: "Each solved trial rolls once on the table for its tier, scaled for a level-13 party: Forced is uncommon, Hard-won rare, Clean very rare. The Urn Hall has its own hoard ({@scene the-urns-of-the-unquiet|The Urn Hoard}). When Griffon's Saddlebag items are supplied (not yet), the top tier also gives one fixed item per PC." },
+        { t: "table", caption: "Forced (d20): uncommon", head: ["d20", "Reward"], rows: [
+          ["1", "{@item Potion of superior healing|DMG} (two of them)"],
+          ["2", "A spell scroll, 4th level (DM picks)"],
+          ["3", "{@item Potion of heroism|DMG} (two of them), in Hellrider field flasks"],
+          ["4", "Old Hellrider coin, worth 500 gp"],
           ["5", "{@item Potion of fire breath|DMG}"],
-          ["6", "{@item Potion of resistance|DMG} (fire)"],
-          ["7", "{@item Potion of hill giant strength|DMG}"],
-          ["8", "{@item Potion of growth|DMG}"],
-          ["9", "{@item Oil of slipperiness|DMG}"],
-          ["10", "{@item Dust of disappearance|DMG}"],
-          ["11", "Ten {@item +1 arrows|DMG} wrapped in white cloth"],
-          ["12", "{@item Bag of holding|DMG}"],
-          ["13", "{@item Driftglobe|DMG}"],
-          ["14", "{@item Sending stones|DMG}"],
-          ["15", "{@item Pearl of power|DMG}"],
-          ["16", "{@item Cloak of protection|DMG}"],
-          ["17", "{@item Periapt of wound closure|DMG}"],
-          ["18", "{@item Wand of the war mage, +1|DMG}"],
-          ["19", "Old Hellrider coins, worth 50 gp"],
+          ["6", "{@item Potion of resistance|DMG} (fire, two of them)"],
+          ["7", "{@item Oil of slipperiness|DMG}"],
+          ["8", "{@item Dust of disappearance|DMG}"],
+          ["9", "{@item Bag of holding|DMG}"],
+          ["10", "{@item Sending stones|DMG}"],
+          ["11", "{@item Pearl of power|DMG}"],
+          ["12", "{@item Cloak of protection|DMG}"],
+          ["13", "{@item Periapt of wound closure|DMG}"],
+          ["14", "{@item Wand of the war mage, +1|DMG}"],
+          ["15", "A {@item +1 shield|DMG} with the sun-and-sword"],
+          ["16", "A {@item +1 weapon|DMG} of the finder's choice, Hellrider make"],
+          ["17", "{@item Gauntlets of ogre power|DMG}"],
+          ["18", "{@item Boots of striding and springing|DMG}"],
+          ["19", "{@item Necklace of adaptation|DMG}: Avernus air, made breathable"],
           ["20", "A plain white tabard with a sun-and-sword. It is worth nothing. It matters to Veska."]
         ] },
-        { t: "table", caption: "Hard-won (d20): uncommon to rare", head: ["d20", "Reward"], rows: [
-          ["1", "{@item Potion of superior healing|DMG}"],
-          ["2", "A spell scroll, 4th level (DM picks)"],
-          ["3", "{@item Potion of heroism|DMG}"],
-          ["4", "{@item Potion of invulnerability|DMG}"],
-          ["5", "{@item Elixir of health|DMG}"],
-          ["6", "A {@item +1 weapon|DMG} of the finder's choice"],
-          ["7", "A {@item +1 shield|DMG}"],
-          ["8", "{@item Gauntlets of ogre power|DMG}"],
-          ["9", "{@item Boots of striding and springing|DMG}"],
-          ["10", "{@item Necklace of fireballs|DMG}"],
-          ["11", "{@item Periapt of proof against poison|DMG}"],
-          ["12", "{@item Ring of protection|DMG}"],
-          ["13", "{@item Cloak of displacement|DMG}"],
-          ["14", "{@item Bracers of defense|DMG}"],
-          ["15", "A {@item +2 weapon|DMG} of the finder's choice"],
-          ["16", "{@item Ring of evasion|DMG}"],
-          ["17", "{@item Mantle of spell resistance|DMG}"],
-          ["18", "{@item Staff of healing|DMG}"],
-          ["19", "A spell scroll, 5th level (DM picks)"],
+        { t: "table", caption: "Hard-won (d20): rare", head: ["d20", "Reward"], rows: [
+          ["1", "{@item Potion of supreme healing|DMG}"],
+          ["2", "A spell scroll, 5th level (DM picks)"],
+          ["3", "{@item Amulet of health|DMG}: a rider's sun medallion"],
+          ["4", "{@item Ring of protection|DMG}"],
+          ["5", "{@item Cloak of displacement|DMG}: a Hellrider riding cloak that blurs like heat haze"],
+          ["6", "A {@item +2 weapon|DMG} of the finder's choice, Hellrider make"],
+          ["7", "{@item Bracers of defense|DMG}"],
+          ["8", "{@item Ring of evasion|DMG}"],
+          ["9", "{@item Flame tongue|DMG}: a Hellrider longsword that burns with clean light"],
+          ["10", "{@item Wand of lightning bolts|DMG}"],
+          ["11", "{@item Necklace of fireballs|DMG}"],
+          ["12", "{@item Periapt of proof against poison|DMG}"],
+          ["13", "{@item Potion of invulnerability|DMG}"],
+          ["14", "{@item Ring of resistance|DMG} (fire)"],
+          ["15", "{@item Gem of seeing|DMG}"],
+          ["16", "{@item Wings of flying|DMG}"],
+          ["17", "{@item Staff of the woodlands|DMG}"],
+          ["18", "{@item Necklace of prayer beads|DMG}"],
+          ["19", "{@item Ioun stone of protection|DMG}"],
           ["20", "Roll on the Clean table instead"]
         ] },
-        { t: "table", caption: "Clean (d20): rare to very rare, rolled once per trial solved cleanly", head: ["d20", "Reward"], rows: [
-          ["1", "{@item Sun blade|DMG}, the Hellriders' own"],
-          ["2", "{@item Dragon slayer|DMG} (longsword or greatsword). There are five dragons outside."],
-          ["3", "{@item Necklace of prayer beads|DMG}"],
-          ["4", "{@item Rod of the pact keeper, +2|DMG}"],
-          ["5", "{@item Robe of stars|DMG}"],
-          ["6", "{@item Horn of Valhalla|DMG} (brass). The spirits it calls wear white tabards."],
-          ["7", "{@item Staff of the woodlands|DMG}"],
-          ["8", "{@item Dragon scale mail|DMG} (gold)"],
-          ["9", "{@item Ring of free action|DMG}"],
-          ["10", "{@item Ring of spell storing|DMG}"],
-          ["11", "{@item Animated shield|DMG}"],
-          ["12", "{@item Amulet of the planes|DMG}"],
-          ["13", "{@item Ioun stone of protection|DMG}"],
-          ["14", "{@item Candle of invocation|DMG}, one of the Roll's own candles"],
-          ["15", "{@item Ring of regeneration|DMG}"],
-          ["16", "A {@item +2 armor|DMG} of the finder's choice"],
-          ["17", "A {@item +3 shield|DMG}"],
-          ["18", "A spell scroll, 7th level (DM picks)"],
-          ["19", "{@item Belt of hill giant strength|DMG}"],
+        { t: "table", caption: "Clean (d20): very rare, rolled once per trial solved cleanly", head: ["d20", "Reward"], rows: [
+          ["1", "{@item +2 armor|DMG} of the finder's type, white Hellrider enamel"],
+          ["2", "A {@item +3 shield|DMG} with the sun-and-sword"],
+          ["3", "{@item Amulet of the planes|DMG}: the road home is a long one"],
+          ["4", "A {@item +3 weapon|DMG} of the finder's choice"],
+          ["5", "{@item Rod of absorption|DMG}: a marshal's baton"],
+          ["6", "A spell scroll, 7th level (DM picks)"],
+          ["7", "{@item Robe of stars|DMG}"],
+          ["8", "{@item Animated shield|DMG}"],
+          ["9", "{@item Dragon scale mail|DMG} (gold)"],
+          ["10", "{@item Ring of regeneration|DMG}"],
+          ["11", "{@item Candle of invocation|DMG}, one of the Roll's own candles"],
+          ["12", "{@item Spellguard shield|DMG}"],
+          ["13", "{@item Horseshoes of a zephyr|DMG}: they fit Moonkite"],
+          ["14", "{@item Carpet of flying|DMG}"],
+          ["15", "{@item Frost brand|DMG}: cold steel against the red dragon outside"],
+          ["16", "{@item Dancing sword|DMG}"],
+          ["17", "{@item Rod of alertness|DMG}"],
+          ["18", "{@item Manual of bodily health|DMG}"],
+          ["19", "{@item Ring of shooting stars|DMG}"],
           ["20", "Roll twice on this table and keep both"]
         ] },
-        { t: "note", title: "Saddlebag Items (Placeholder)", text: "{@b Top tier, fixed item per PC:} Saddlebag item for Drenwal: DM to supply (source missing). Saddlebag item for Aurora: DM to supply (source missing). Saddlebag item for Or'Henn: DM to supply (source missing). {@b Stand-in until then:} one {@item ring of protection|DMG} for the party to share, or one stand-in rare SRD item per PC from the Clean table. Do not invent Saddlebag items." },
+        { t: "note", title: "Saddlebag Items (Placeholder)", text: "{@b Top tier, fixed item per PC:} Saddlebag item for Drenwal: DM to supply (source missing). Saddlebag item for Aurora: DM to supply (source missing). Saddlebag item for Or'Henn: DM to supply (source missing). {@b Until then:} the fixed per-PC items are the Riders' Bequest in {@scene the-urns-of-the-unquiet|The Urns of the Unquiet} (amulet of the devout, rod of the pact keeper, moon sickle, each +2). Do not invent Saddlebag items." },
 
         { t: "choices", prompt: "The trials are done, or the party has had enough.", items: [
           { label: "Read the journals", goto: "the-hellrider-archive" },
@@ -609,7 +663,7 @@ window.SESSION = {
         { t: "p", text: "The party shut the C1 gates behind them when they came in, and the gates are still shut. Above them the stair climbs forty feet to the doorway, and the cold line runs across its threshold. Arkhan stands at the top of the stair, one step outside the line. He does not knock. He speaks, and the stairwell carries his voice down to the gates like a well. If the party will not open the gates, he talks through them and the scene runs the same, but they see the dragons only when someone climbs the stair. When they open the gates, read:" },
         { t: "map", id: "crypt-of-the-hellriders-40x30", note: "C1, at the top of the map: the gates, and the 40-foot stair up to the doorway and the cold line." },
         { t: "read", text: "The gates of the Crypt swing in. The stair climbs forty feet above you to a doorway full of red sky, and across that doorway the cold line runs like a rope. Beyond it the sky is full of wings.\n\nOn the ridge, a black dragon the size of a barn lies with its chin on its claws. High above, a blue one cuts slow circles, lightning crawling on its wings. A green one has settled nearest the line and sits quite still, head tilted, as if it were listening to the music of a place it has not been invited to. A red one perches on the roof of the Crypt itself, one claw curled round a gargoyle. To the north, on a hill, a great white shape with an old tortle on its back.\n\nAnd at the top of the stair, one step outside the cold line, a tall dragonborn in black plate. The left side of his face is grey. He has Fane-Eater on his hip and his hands open at his sides.\n\n\"Good morning,\" says Arkhan the Cruel. \"You had something of mine. A little red glass. You poured it into a dead giant.\" He smiles with the half of his face that can. \"I am not angry. I want you to know that.\"" },
-        { t: "img", src: "art/generated/env-crypt-door-siege.webp", caption: "The C1 gates open: the stair, the cold line at the top, the dragons beyond.", credit: "Generated art." },
+        { t: "img", src: "art/generated/event-crypt-wings-at-the-door.webp", caption: "Arkhan at the cold line, his dragons behind him.", credit: "Generated art (gpt-image-2.5)." },
         { t: "env", sight: "Five dragons in a ring; the cold line on the threshold; Arkhan's grey half-face turned away from the light.", sound: "Wings. A low hum from the ward. Krull's prayers, very faint.", smell: "Smoke, old meat, incense from the north hill.", feel: "Everyone outside is patient. That is the frightening part." },
 
         { t: "h", text: "What Arkhan Wants Now" },
@@ -771,6 +825,7 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "The siege is not a fight to win. Escape is the win. If the ward fails, or they go through the door on purpose, run the exits as a running fight in two waves. The dragons do not go inside. Fight at the line and in the lane. The group rules apply: set up each wave, and groups share an initiative." },
         { t: "read", text: "Fane-Eater clears its scabbard with a sound like a door opening onto cold air.\n\n\"A shame,\" says Arkhan the Cruel, and means it. Over his head the sky turns over, and wings come down." },
+        { t: "img", src: "art/generated/event-crypt-breakout.webp", caption: "The Last Ride clears a lane.", credit: "Generated art (gpt-image-2.5)." },
 
         { t: "encounter", id: "the-door-fight", title: "Wave 1: The Doorway", combatants: [
           { c: "skarrix", n: 1 },
@@ -877,16 +932,26 @@ window.SESSION = {
         { t: "h", text: "Outcome: The Lady Vengeance Took Them Off" },
         { t: "p", text: "The ship is no longer hidden, and the hull is scorched. Zariel's riders know exactly where it is." },
 
+        { t: "h", text: "Outcome: Veska and Ser Lucan Survived the Crypt" },
+        { t: "p", text: "If both (or either) walk out alive, the Crypt gives them something before they go. Run it in the name-carved C2 chambers on the way to the C1 gates, or in the first quiet moment after the escape." },
+        { t: "read", text: "Olanthius stops you at the wall of names. He does not look at the party. He looks at the old knight on brass legs.\n\n\"There is a name on my wall that should not be there,\" he says, and puts his chisel to the stone. Three strokes, and LUCAN is gone from the roll of the dead. \"You are not dead, rider. Go and be alive. Take the cold with you; it will remember what it is for.\"\n\nFrost runs down the brass of Lucan's legs and does not melt.\n\nThen he turns to Veska, and takes the burned banner from the shards of the third urn, and holds it out. \"The Marshal gave you his colours. I am only the one who hands them over. Captain.\"" },
+        { t: "list", items: [
+          "{@b Veska becomes} {@c veska-banner-captain|Veska, Banner-Captain} (CR 10): 142 HP, AC 19, three lance attacks, radiant against fiends {@i and undead}, and the watchword on a hit lays a bloodied Hellrider soul to rest. If Marshal Dunmere stood down she carries the {@b Banner of the First Charge} (allies in 30 ft. add a d4 and the first to drop stays at 1). If he was destroyed instead, Olanthius gives her the rank but not the banner: she has the {@b Captain's Oath} (the same, smaller and once).",
+          "{@b Ser Lucan becomes} {@c ser-lucan-named|Ser Lucan, Named Among the Living} (CR 10): 162 HP, AC 20, takes the hit for his ward at half damage, can't be dropped twice a day, Shield Slam, and once a day {@b Ward of the Cold Line}: a 10-ft. circle fiends and undead can't walk into, for a minute. A piece of the Crypt he can carry.",
+          "{@b Only one survived?} They get their own upgrade, and the scene is about the one who did not. Olanthius carves the dead one's name on the wall himself, correctly.",
+          "{@b Crew sheets:} hand the players the new sheets (crew.html, ids {@b veska-banner-captain} and {@b ser-lucan-named}). The old ones still work for anything before the Crypt."
+        ] },
+
         { t: "h", text: "Branch: Tiamat Wakes" },
-        { t: "p", text: "If Or'Henn asked a dragon for help and a dragon took the curse (Vermilius, the gold dragon Drenwal was made to call, or the dragon in the orb with no cage), Tiamat wakes. Run it as the end of the session:" },
-        { t: "read", text: "It is a small thing. The dragon's head lifts, and every colour in the sky changes at once. The other dragons go still. Under your feet, under the cold stone, under the whole hot waste of Avernus, something very large turns over, slowly, and opens a great many eyes." },
+        { t: "p", text: "If Or'Henn asked a dragon for help and a dragon took the curse (Vermilius, or the dragon in the orb with no cage), Tiamat wakes. Run it as the end of the session:" },
+        { t: "read", text: "It is a small thing. Vermilius's head lifts, and every colour in the sky changes at once. The other dragons go still. Under your feet, under the cold stone, under the whole hot waste of Avernus, something very large turns over, slowly, and opens a great many eyes." },
         { t: "list", items: [
           "{@b The siege is over.} The dragons kneel. Arkhan smiles, for the first time, and means it.",
           "{@b Or'Henn is free of the curse and carries a hole where it was.} His player decides what that feels like.",
           "{@b Next session} Avernus shakes. The Monument is the centre of a storm. The Citadel's window shrinks. Run it from {@side world-state|The World Right Now}."
         ] },
 
-        { t: "note", title: "Remember for Next Time", text: "Write down: how many souls were laid to rest (of 9), and how each trial ended (Clean, Hard-won, Forced). Which General's Memories Drenwal holds. Where the ward stopped. Which exit they used, and what it cost. Who holds the orb, or who has it now. Whether Arkhan holds anyone. Did the curse jump? Did the Gasp land? Is Lulu with Zariel's riders? Moonkite's bond points. The loot tier of each trial." }
+        { t: "note", title: "Remember for Next Time", text: "Write down: how many souls were laid to rest (of 9), and how each trial ended (Clean, Hard-won, Forced). Which General's Memories Drenwal holds. Where the ward stopped. Which exit they used, and what it cost. Who holds the orb, or who has it now. Did the curse jump? Did the Gasp land? Is Lulu with Zariel's riders? Moonkite's bond points. The loot tier of each trial." }
       ]
     }
   ],

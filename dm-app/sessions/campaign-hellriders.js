@@ -255,6 +255,446 @@ Object.assign(window.CAMPAIGN.creatures, {
       "Wants: for someone to say that the ride was not for nothing. Nobody ever has.",
       "Sample line: \"We rode in. We were told we would ride out.\""
     ]
+  },
+
+  "hellrider-wraith": {
+    "name": "Hellrider Wraith",
+    "kind": "hellrider-wraith",
+    "role": "A rider of the First Charge from the first great urn. Upscaled for a level-13 party",
+    "source": {
+      "page": "bestiary",
+      "name": "Wraith",
+      "src": "MM"
+    },
+    "homebrew": "Same block as Session 11's Restless Dead: Wraith chassis (MM, CR 5) upscaled to about CR 9: 112 HP, AC 15, +8 to hit, two Life Drains, DC 16.",
+    "npc": false,
+    "sizeType": "Medium undead, neutral",
+    "ac": 15,
+    "acNote": "",
+    "hp": 112,
+    "hpFormula": "15d8 + 45",
+    "speed": "0 ft., fly 60 ft. (hover)",
+    "abilities": {
+      "str": 6,
+      "dex": 16,
+      "con": 16,
+      "int": 12,
+      "wis": 14,
+      "cha": 15
+    },
+    "saves": "",
+    "skills": "",
+    "vulnerable": "",
+    "resist": "acid, cold, fire, lightning, thunder; bludgeoning, piercing and slashing from nonmagical attacks not made with silvered weapons",
+    "immune": "necrotic, poison",
+    "condImmune": "charmed, exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained",
+    "senses": "darkvision 60 ft., passive Perception 12",
+    "languages": "the languages it knew in life",
+    "cr": "9",
+    "xp": 5000,
+    "pb": 4,
+    "traits": [
+      {
+        "name": "Incorporeal Movement",
+        "text": "It can move through creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object."
+      },
+      {
+        "name": "Sunlight Sensitivity",
+        "text": "In sunlight it has disadvantage on attack rolls, and on Wisdom (Perception) checks that rely on sight."
+      },
+      {
+        "name": "Soul of the First Urn (homebrew)",
+        "text": "One of the three souls bottled in the first urn. Destroyed, it is gone but not at rest and does not count. Blessed (DC 14 Wisdom (Religion) action within 5 ft.) or given the watchword by a Hellrider while below half hit points, it stops, lowers its head, and is laid to rest: it counts."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "It makes two Life Drain attacks."
+      },
+      {
+        "name": "Life Drain",
+        "text": "Melee Weapon Attack: +8 to hit, reach 5 ft., one creature. Hit: 21 (4d8 + 3) necrotic damage. The target must succeed on a DC 16 Constitution saving throw or its hit point maximum is reduced by the damage taken, until it finishes a long rest. It dies if this reduces its maximum to 0."
+      },
+      {
+        "name": "Create Specter",
+        "text": "It targets a humanoid within 10 ft. that has been dead no longer than 1 minute and died violently. The spirit rises as a specter under its control. No more than seven specters at a time."
+      }
+    ],
+    "bonus": [],
+    "reactions": [],
+    "tactics": [
+      "Goes for whoever broke the urn or took from it first.",
+      "Two Life Drains on the same target: they finish what they start.",
+      "Below half hit points it hesitates whenever a Hellrider speaks. That is the opening for the watchword."
+    ],
+    "description": "A ragged grey cloak with a rider's helm in it and nothing inside the helm, trailing the urn's white smoke behind it like a banner.",
+    "roleplay": [
+      "Voice: hollow and level, as if reading a long list of names.",
+      "Sample line: \"We rode in. We were told we would ride out.\""
+    ]
+  },
+
+  "crypt-specter": {
+    "name": "Specter",
+    "kind": "crypt-specter",
+    "role": "The urn's smoke, given a shape. Not a soul: it never counts",
+    "source": {
+      "page": "bestiary",
+      "name": "Specter",
+      "src": "MM"
+    },
+    "npc": false,
+    "sizeType": "Medium undead, neutral",
+    "ac": 12,
+    "acNote": "",
+    "hp": 22,
+    "hpFormula": "5d8",
+    "speed": "0 ft., fly 50 ft. (hover)",
+    "abilities": {
+      "str": 1,
+      "dex": 14,
+      "con": 11,
+      "int": 10,
+      "wis": 10,
+      "cha": 11
+    },
+    "saves": "",
+    "skills": "",
+    "vulnerable": "",
+    "resist": "acid, cold, fire, lightning, thunder; bludgeoning, piercing and slashing from nonmagical attacks",
+    "immune": "necrotic, poison",
+    "condImmune": "charmed, exhaustion, grappled, paralyzed, petrified, poisoned, prone, restrained, unconscious",
+    "senses": "darkvision 60 ft., passive Perception 10",
+    "languages": "understands the languages it knew in life but can't speak",
+    "cr": "1",
+    "xp": 200,
+    "pb": 2,
+    "traits": [
+      {
+        "name": "Incorporeal Movement",
+        "text": "It can move through creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object."
+      },
+      {
+        "name": "Sunlight Sensitivity",
+        "text": "In sunlight it has disadvantage on attack rolls, and on Wisdom (Perception) checks that rely on sight."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Life Drain",
+        "text": "Melee Spell Attack: +4 to hit, reach 5 ft., one creature. Hit: 10 (3d6) necrotic damage. The target must succeed on a DC 10 Constitution saving throw or its hit point maximum is reduced by the damage taken, until it finishes a long rest."
+      }
+    ],
+    "bonus": [],
+    "reactions": [],
+    "tactics": [
+      "They swarm whoever is already hurt. They are smoke: when their urn's last soul is laid to rest, every specter from that urn blows away."
+    ]
+  },
+
+  "first-charge-ghost": {
+    "name": "Ghost of the First Charge",
+    "kind": "first-charge-ghost",
+    "role": "A Hellrider who never left the rooms. Answers one question, then fades",
+    "source": {
+      "page": "bestiary",
+      "name": "Ghost",
+      "src": "MM"
+    },
+    "npc": false,
+    "sizeType": "Medium undead, lawful good",
+    "ac": 11,
+    "acNote": "",
+    "hp": 45,
+    "hpFormula": "10d8",
+    "speed": "0 ft., fly 40 ft. (hover)",
+    "abilities": {
+      "str": 7,
+      "dex": 13,
+      "con": 10,
+      "int": 10,
+      "wis": 12,
+      "cha": 17
+    },
+    "saves": "",
+    "skills": "",
+    "vulnerable": "",
+    "resist": "acid, fire, lightning, thunder; bludgeoning, piercing and slashing from nonmagical attacks",
+    "immune": "cold, necrotic, poison",
+    "condImmune": "charmed, exhaustion, frightened, grappled, paralyzed, petrified, poisoned, prone, restrained",
+    "senses": "darkvision 60 ft., passive Perception 11",
+    "languages": "Common, Celestial",
+    "cr": "4",
+    "xp": 1100,
+    "pb": 2,
+    "traits": [
+      {
+        "name": "Ethereal Sight",
+        "text": "It sees 60 ft. into the Ethereal Plane while on the Material Plane, and the reverse."
+      },
+      {
+        "name": "Incorporeal Movement",
+        "text": "It can move through creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Withering Touch",
+        "text": "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 17 (4d6 + 3) necrotic damage."
+      },
+      {
+        "name": "Etherealness",
+        "text": "It enters the Ethereal Plane from the Material Plane, or the reverse."
+      },
+      {
+        "name": "Horrifying Visage",
+        "text": "Each non-undead creature within 60 ft. that can see it makes a DC 13 Wisdom saving throw or is frightened for 1 minute; failing by 5 or more also ages it 1d4 x 10 years. Repeat the save at the end of each turn. A creature that succeeds is immune for 24 hours."
+      },
+      {
+        "name": "Possession (Recharge 6)",
+        "text": "One humanoid within 5 ft. makes a DC 13 Charisma saving throw or is possessed until the body drops to 0 hit points, the ghost ends it as a bonus action, or it is turned or forced out (dispel evil and good)."
+      }
+    ],
+    "bonus": [],
+    "reactions": [],
+    "tactics": [
+      "Hostile only because the dead were disturbed. Horrifying Visage, then Etherealness, and he is gone.",
+      "Not an urn soul. If someone says his name from the wall aloud, he stops, answers one question about the Charge, and fades."
+    ]
+  },
+
+  "lance-wraith": {
+    "name": "Hellrider Lance Wraith",
+    "kind": "lance-wraith",
+    "role": "A lancer of the First Charge, still mounted, from the second great urn",
+    "source": {
+      "page": "bestiary",
+      "name": "Wraith",
+      "src": "MM"
+    },
+    "homebrew": "Wraith chassis rebuilt as cavalry, about CR 10 (5,900 XP): 127 HP, AC 16, two lance attacks with reach 10 ft., a straight-line charge and a Ride Through recharge. Different from the first urn's wraiths: they hit and wheel away instead of clinging.",
+    "npc": false,
+    "sizeType": "Large undead (rider and spectral steed), neutral",
+    "ac": 16,
+    "acNote": "spectral plate",
+    "hp": 127,
+    "hpFormula": "17d10 + 34",
+    "speed": "0 ft., fly 80 ft. (hover)",
+    "abilities": {
+      "str": 18,
+      "dex": 16,
+      "con": 14,
+      "int": 10,
+      "wis": 14,
+      "cha": 15
+    },
+    "saves": "Wis +6",
+    "skills": "Athletics +8",
+    "vulnerable": "",
+    "resist": "acid, cold, fire, lightning, thunder; bludgeoning, piercing and slashing from nonmagical attacks not made with silvered weapons",
+    "immune": "necrotic, poison",
+    "condImmune": "charmed, exhaustion, frightened, grappled, paralyzed, petrified, poisoned, prone, restrained",
+    "senses": "darkvision 60 ft., passive Perception 12",
+    "languages": "the languages it knew in life",
+    "cr": "10",
+    "xp": 5900,
+    "pb": 4,
+    "traits": [
+      {
+        "name": "Incorporeal Movement",
+        "text": "It can move through creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object."
+      },
+      {
+        "name": "Spectral Charge",
+        "text": "If it flies at least 20 ft. straight toward a target and then hits it with a Grave Lance on the same turn, the target takes an extra 13 (3d8) necrotic damage and must succeed on a DC 17 Strength saving throw or be knocked prone."
+      },
+      {
+        "name": "Lance Line",
+        "text": "While another lance wraith is within 10 ft. of the same target, its Grave Lance scores a critical hit on a roll of 19 or 20."
+      },
+      {
+        "name": "Soul of the Second Urn (homebrew)",
+        "text": "One of the three souls in the second urn. Destroyed, it is gone but not at rest. Blessed or given the watchword by a Hellrider while below half hit points, it reins in, salutes, and is laid to rest: it counts."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "It makes two Grave Lance attacks."
+      },
+      {
+        "name": "Grave Lance",
+        "text": "Melee Weapon Attack: +8 to hit, reach 10 ft., one target. Hit: 13 (2d8 + 4) piercing damage plus 13 (3d8) necrotic damage."
+      },
+      {
+        "name": "Ride Through (Recharge 5-6)",
+        "text": "It flies up to 80 ft. in a straight line, through creatures, without provoking opportunity attacks. Each creature it passes through makes a DC 17 Constitution saving throw: on a failure 27 (6d8) necrotic damage and its hit point maximum is reduced by that much until a long rest; on a success, half damage and no reduction."
+      }
+    ],
+    "bonus": [],
+    "reactions": [
+      {
+        "name": "Wheel Away",
+        "text": "When a creature it can see hits it with a melee attack, it flies up to 30 ft. without provoking opportunity attacks."
+      }
+    ],
+    "castLines": [
+      {
+        "spell": "Spectral Charge",
+        "line": "The hooves make no sound. The lance does."
+      },
+      {
+        "spell": "Ride Through",
+        "line": "Horse and rider pass through you like a winter you lived through once, and you are older on the far side."
+      }
+    ],
+    "tactics": [
+      "They never hold still: charge, two lances, wheel away. Pull back 20 ft. every turn so the next charge counts.",
+      "Two of them pick one target for Lance Line. The third rides through the back line (casters, Moonkite).",
+      "Wheel Away against whoever just hit them, so melee characters chase and the line breaks.",
+      "Below half hit points they hear the watchword. They were the Charge's front rank and they want to be told it is over."
+    ],
+    "description": "A rider in Hellrider plate gone grey as ash, on a horse made of the urn's own smoke, a lance twice his height levelled at the room. The sun on his shield has been scraped down to the metal, and the shield is still raised.",
+    "roleplay": [
+      "Voice: a shout from the front rank, half a beat behind his lips.",
+      "Wants: one more charge that ends somewhere.",
+      "Sample line: \"Lances! Lances down, for Elturel!\""
+    ]
+  },
+
+  "banner-marshal": {
+    "name": "Marshal Aubrec Dunmere, the Last Banner",
+    "kind": "banner-marshal",
+    "role": "Miniboss: the marshal of the First Charge, from the third great urn",
+    "source": {
+      "page": "bestiary",
+      "name": "Death Knight",
+      "src": "MM"
+    },
+    "homebrew": "Homebrew miniboss, CR 15 (13,000 XP), built on the death knight's numbers without its spellcasting: 230 HP, AC 19, three lance attacks, legendary actions, a banner that buffs the dead. The mercy route is Stand Down. Name and story are the DM's, not the book's.",
+    "npc": false,
+    "sizeType": "Large undead (rider and spectral warhorse), lawful neutral",
+    "ac": 19,
+    "acNote": "spectral plate, shield",
+    "hp": 230,
+    "hpFormula": "20d10 + 120",
+    "speed": "0 ft., fly 60 ft. (hover)",
+    "abilities": {
+      "str": 22,
+      "dex": 14,
+      "con": 22,
+      "int": 14,
+      "wis": 18,
+      "cha": 20
+    },
+    "saves": "Con +11, Wis +9, Cha +10",
+    "skills": "Athletics +11, Perception +9",
+    "vulnerable": "",
+    "resist": "acid, fire, lightning, thunder; bludgeoning, piercing and slashing from nonmagical attacks",
+    "immune": "cold, necrotic, poison",
+    "condImmune": "charmed, exhaustion, frightened, grappled, paralyzed, petrified, poisoned, prone, restrained",
+    "senses": "darkvision 120 ft., passive Perception 19",
+    "languages": "Common, Celestial",
+    "cr": "15",
+    "xp": 13000,
+    "pb": 5,
+    "traits": [
+      {
+        "name": "Legendary Resistance (2/Day)",
+        "text": "If he fails a saving throw, he can choose to succeed instead."
+      },
+      {
+        "name": "Half in the World",
+        "text": "He can move through creatures (not objects) as if they were difficult terrain. His lance is solid enough to block."
+      },
+      {
+        "name": "Banner of the First Charge",
+        "text": "When he rises he plants his banner in the shards of the third urn. While it stands, undead allies within 30 ft. of it add 2 to attack rolls and saving throws and can't be turned. The banner is an object: AC 17, 40 hit points, immune to necrotic, poison and psychic damage, vulnerable to radiant. A creature can also pull it free with an action and a DC 20 Strength (Athletics) check. Destroyed or taken, the aura ends."
+      },
+      {
+        "name": "Stand Down (the mercy route)",
+        "text": "A Hellrider (Drenwal, or Veska) can use an action within 30 ft. to give the order the Charge never got: \"Stand down. The sun has held.\" Make a DC 18 Charisma (Persuasion or Intimidation) check, with advantage if the banner is down or in the party's hands. Three successes, or one success once he is below 115 hit points, and he lowers his lance. The fight ends; he and his banner guards are laid to rest and count. The success count stays between rounds."
+      },
+      {
+        "name": "Soul of the Third Urn (homebrew)",
+        "text": "Destroyed without standing down, he is gone but not at rest and does not count, and his banner guards fight on until they are destroyed or blessed."
+      }
+    ],
+    "actions": [
+      {
+        "name": "Multiattack",
+        "text": "He makes three Grave Lance attacks, or two and uses Rally the Line."
+      },
+      {
+        "name": "Grave Lance",
+        "text": "Melee Weapon Attack: +11 to hit, reach 10 ft., one target. Hit: 17 (2d10 + 6) piercing damage plus 18 (4d8) necrotic damage, and the target can't regain hit points until the start of his next turn."
+      },
+      {
+        "name": "Rally the Line",
+        "text": "One Hellrider ghost or wraith within 60 ft. that dropped to 0 hit points since his last turn re-forms beside the banner with half its hit points. Only while the banner stands, and never a soul that has been laid to rest."
+      },
+      {
+        "name": "Sound the Charge (Recharge 5-6)",
+        "text": "A horn that is not there. Each undead ally within 60 ft. can use its reaction to move up to its speed and make one weapon attack. Each non-undead creature within 30 ft. of him makes a DC 18 Wisdom saving throw or is frightened of him for 1 minute (repeat the save at the end of each of its turns)."
+      }
+    ],
+    "bonus": [],
+    "reactions": [
+      {
+        "name": "Guard the Colours",
+        "text": "When a creature he can see attacks the banner or an undead ally within 10 ft. of him, he adds 4 to the target's AC against that attack."
+      }
+    ],
+    "legendary": {
+      "count": 3,
+      "intro": "He can take 3 legendary actions, choosing from the options below. One at a time, at the end of another creature's turn. He regains them at the start of his turn.",
+      "actions": [
+        {
+          "name": "Lance",
+          "cost": 1,
+          "text": "He makes one Grave Lance attack."
+        },
+        {
+          "name": "Command",
+          "cost": 1,
+          "text": "One undead ally within 60 ft. uses its reaction to make one weapon attack."
+        },
+        {
+          "name": "Ride Down",
+          "cost": 2,
+          "text": "He flies up to 60 ft. in a straight line. Each creature in his path makes a DC 19 Dexterity saving throw: 22 (4d10) bludgeoning damage and knocked prone on a failure, half damage on a success."
+        }
+      ]
+    },
+    "castLines": [
+      {
+        "spell": "Sound the Charge",
+        "line": "He lifts a horn that is not there, and every dead throat in the hall answers it."
+      },
+      {
+        "spell": "Ride Down",
+        "line": "The warhorse of smoke comes down the hall like the whole First Charge in one body."
+      },
+      {
+        "spell": "Stand Down",
+        "line": "He hears the words. The lance wavers. For a long breath he looks a hundred years older, and then, very slowly, he dips the banner."
+      }
+    ],
+    "tactics": [
+      "Round 1: Sound the Charge if it is up, then Ride Down into the middle of the party. He wants them scattered.",
+      "Three lances on whoever holds the best weapon, or whoever is going for the banner. Guard the Colours on the banner first.",
+      "Rally the Line every turn there is someone to rally while the banner stands. Take the banner and the fight halves.",
+      "He listens to Drenwal. A Stand Down attempt never draws his legendary actions that round: he wants to hear it, even while he fights it.",
+      "He does not flee. If he is destroyed without the order, say so: the hall goes colder, not quieter."
+    ],
+    "description": "A rider half again a man's height on a warhorse of urn-smoke, in plate that was once white and gold and is now the grey of old snow. A banner of the rising sun hangs from his lance, half of it burned black. His visor is open, and inside it is only light, pale and patient, waiting for an order.",
+    "roleplay": [
+      "Appearance: a marshal's mantle, a broken horn at his hip, the sun-and-sword on a banner burned along one edge.",
+      "Voice: parade-ground calm. He gives orders to the dead as if they could still hear him, and they can.",
+      "Wants: the order to stand down. Zariel never gave it. Nobody alive has the rank to give it, except a Hellrider who means it.",
+      "Sample line: \"Hold the line. Hold it. The sun will hold, and so shall we.\""
+    ]
   }
 
 });
