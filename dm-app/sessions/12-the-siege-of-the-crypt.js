@@ -297,8 +297,35 @@ window.SESSION = {
         { t: "p", text: "Olanthius said the pure of heart may brave the dangers of this crypt to receive rewards. The Crypt means it. Three trials stand in the Nave of Names, each with a different way to be honest. The party can solve them in any order, and each ends in one of three outcomes: {@b Clean,} {@b Hard-won} or {@b Forced.} The outcome sets the loot tier for that trial. A forced answer makes noise at the door." },
         { t: "read", text: "The Nave of Names runs on for as far as your lights reach. Along its walls are the riders of the First Charge, carved into the stone, name after name, row after row, each with a small cold candle beneath it. Most of the candles are dark.\n\nAt the end of the Nave the floor opens into three smaller chambers, and over each doorway a line is cut in the lintel. You cannot read them from here. You are quite sure you can feel them." },
         { t: "map", id: "crypt-of-the-hellriders-40x30", note: "The three trials sit off the Nave: the wall of candles, the scales, and the round room of seats." },
+        { t: "h", text: "The Three Doorways (left to right)" },
+        { t: "list", items: [
+          "{@b Left: (a) The Roll of the Charge.} The lintel reads: \"We were many. Say us.\"",
+          "{@b Middle: (b) The Scales of Mercy.} The lintel reads: \"Weigh it, and carry it.\"",
+          "{@b Right: (c) The Generals' Seats.} The lintel reads: \"Sit where we sat.\""
+        ] },
 
         { t: "h", text: "(a) The Roll of the Charge" },
+        { t: "read", text: "The left-hand doorway opens on a narrow gallery that runs back into the dark. Both walls are names, floor to vault, each with its cold candle. At the far end the names stop. Nine candles stand in a row under nine ranks with no names above them, and the stone where the names should be is smooth, as if it were waiting to be cut.\n\nThe air is very still. Somewhere, very faintly, a roll call is being read, one voice at a time, and every so often the voice stops, as if it has come to a name it cannot say." },
+        { t: "h", text: "Run It" },
+        { t: "steps", items: [
+          "{@b Read the box, then check the Urn Hall:} how many of the nine souls were {@b laid to rest} (not just destroyed)? Each one laid to rest gave its name as it went, and the names are on the urn lids too ({@b DC 12 Investigation}). The party {@i knows} those names.",
+          "{@b Each name is a moment.} A character stands at a candle and says the rider's name aloud, and something about them: how they fell, what they said going. No roll for a name they know. The candle lights, the name cuts itself into the stone, and the roll-call voice reads it and goes on.",
+          "{@b Destroyed souls are harder.} Their names must come from the order's memory: {@b DC 14 History} each (Drenwal and Veska with advantage), or from the annals in the Archive later. On a failure the candle gutters, and the voice stops at that rank and waits.",
+          "{@b Score it} with the tiers below. Then the voice reads the whole roll, all the way to the end, and stops on the last name lit.",
+          "{@b Pay it out:} roll once on the loot table for the tier. Memory 2 (Haruman) opens for Drenwal (see below). If all nine lit, read the box in If All Nine Light."
+        ] },
+        { t: "table", caption: "The nine (names on the urn lids)", head: ["Urn", "Rank", "Name", "What they say going"], rows: [
+          ["First", "Rearguard corporal", "Tamsin Hale", "\"Tell my sister the gate held. It did, didn't it?\""],
+          ["First", "Chaplain-rider", "Brother Odo Vane", "\"I prayed the whole way in. I think I can stop now.\""],
+          ["First", "Rider", "Benedek Strand", "\"Cold. It's cold. That's good. That's home.\""],
+          ["Second", "Lance-sergeant", "Ilsa Marrow", "\"Lances up. Lances up, lads. We're done.\""],
+          ["Second", "Rider", "Pell Garrow", "\"Did we reach her? Did anyone reach her?\""],
+          ["Second", "Rider", "Joss Kettering", "Says nothing. Salutes, grins, and goes."],
+          ["Third", "Standard-bearer", "Mirela Dunmere", "The Marshal's daughter. \"Father. It's all right. Put it down.\""],
+          ["Third", "Colour guard", "Cassius Ward", "\"Keep the colours clean for us, Captain.\" (to Veska)"],
+          ["Third", "Marshal", "Aubrec Dunmere", "\"The sun has held. Then so did we.\""]
+        ] },
+        { t: "note", title: "If All Nine Light", text: "Read: \"The last candle catches. For a moment every candle in the Nave burns at once, thousands of them, and the cold goes out of the stone. The roll-call voice reads the nine new names, and then, quietly, one more you did not expect: Halvard. Not FELL AT THE WALL. Just his name, with a candle under it, lit.\" (This pays off Drenwal's truth about his father. If he never told Olanthius, drop the last two sentences.)" },
         { t: "env", sight: "Rows of names with cold candles under them. Nine of the candles are unlit and have no name above them, only a rank.", sound: "A very faint chanting of the roll call, one voice at a time.", smell: "Wax that has never burned.", feel: "The names pull at you, like being called on in a lesson." },
         { t: "p", text: "Nine candles wait unlit, each under a rank and nothing else. They belong to the nine souls in the three urns of the Urn Hall. A candle lights when its rider's name is spoken aloud with grief, from the mouth of someone who has heard it." },
         { t: "checks", items: [
