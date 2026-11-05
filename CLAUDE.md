@@ -216,16 +216,6 @@ Newest last, **last 10 entries only** — this file loads into context every ses
 unbounded log would eat the smart zone it exists to protect. Promote anything still valuable
 past that into the body above, or into `brain/`. No secrets or customer PII: this is committed.
 
-### 2026-10-23 — Or'Henn × Tiamat visions arc
-- **Did:**
-  - New campaign side `arc-tiamat` in `dm-app/sessions/campaign-arcs.js`: the five heads, each with one gift; gold scales 1–5 with escalating costs; a d8 Small Visions table; the orb-cage loophole.
-  - New Session 10 scene `the-dragon-queens-garden`: Tiamat meets Or'Henn in the restored Ashen Garden and offers Her Law right before the dragon call.
-  - Curse wording fixed everywhere to the DM's version: a dragon taking it wakes Tiamat in her true form.
-- **Why:** DM rulings. There was no fight at the Monument (Word of Recall at once; Krull alive). Uldrak is restored and gave the party the orb. One vial, one curse. Or'Henn sees Tiamat's visions. Tiamat never lies to him; the danger is that every gift is true.
-- **Open:**
-  - Does Uldrak stay for the dragon fight? The encounter assumes yes.
-  - The orb-cage loophole is a DM's choice; don't hint at it until Small Vision 2 comes up.
-
 ### 2026-10-23 — Session 11 "Roads from the Grave" built in the DM app
 - **Did:** New `dm-app/sessions/11-roads-from-the-grave.js` (Session 9 format): shared opening, full Crypt / Menagerie / Dock branches, Ending outcomes, sides `kreegs-bargains` + `far-roads`. New stat blocks: Olanthius, Urexiel (with lair), mezzoloth handler, Kreeg (amnizu), barbed devil. Uldrak moved into `campaign-tower.js`; Session 10 now overrides only his tactics.
 - **Why:** DM asked for every nearby scenario; chose full builds for the three close sites, hooks only for the far ones, password unknown (so five ways through the Crypt door). Kreeg follows the played Session 8 canon (amnizu at the Dock), not the older Vessper Hain plan.
@@ -272,3 +262,31 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Did:** `e0cdc33` Stop hook `.claude/hooks/chat-log.mjs` pushes each session's DM prompts + Claude replies (redacted) to `.claude/logs/` on main via git plumbing; rule at the top of this file. Five astra portraits `dm-app/art/generated/{skarrix,vhennic,mirelle,praxamor,obatala}-portrait.webp`, wired with a new per-creature `portrait` field (`js/statblock.js`, falls back to the kind's art).
 - **Why:** the DM works from the PC and the laptop at once and wants identical context. Logs live outside `.claude/context/` because `/sync-context` wipes that folder. The DM wants each dragon to be an individual (look, scars, personality).
 - **Open:** written dragon character profiles not yet in `campaign-tower.js` (a safety filter stopped that step; ask the DM how to proceed). Obatala's broken horn did not render. Next: a single group image mixing all five, once the DM has looked at the portraits.
+
+### 2026-11-01 — Live S12 (desktop PC): Tiamat waking, urn waves, ally upgrades, loot, Yael ruling, XP house rule
+- **Did:**
+  - `b688014` Tiamat Risen wakes over five rounds (250 to 550 HP, one head a round, AC 19 until fully born, killable only by radiant or Gnashing Hunger until then). The party's chance is the coalition: Krull, Obatala, Vistalancer (the timid blue, no save), the Lady Vengeance on a green flare, and Uldrak from round 3.
+  - `773e964` S12 Urn Hall as three urns in three waves. Wave 1 carries the S11 Restless Dead tracker; then Hellrider Lance Wraiths (CR 10); then the miniboss Marshal Aubrec Dunmere, the Last Banner (CR 15), with a banner aura and a Stand Down mercy route. Five scenes illustrated with `gpt-image-2.5-sunburst`. `statblocks.html` and `crew.html` load campaign-hellriders/world.
+  - `a37a3f2` post-Crypt allies: `veska-banner-captain` and `ser-lucan-named` (both CR 10). Handout PDFs are in `~/dnd/handouts/Session12-Crew-*.pdf`, outside the repo.
+  - Loot:
+    - Trial tables raised a tier.
+    - Urn Hoard: Sun Blade, Horn of the First Charge, Dragon Slayer.
+    - Rolled grave goods per urn (the laptop later made these d20).
+    - Riders' Bequest, a static item per PC: Amulet of the Devout +2, Rod of the Pact Keeper +2, Moon Sickle +2.
+    - Bonuses for a strong run.
+  - Trials:
+    - Left/middle/right doorways.
+    - Roll of the Charge run guide with the nine names.
+    - Scales tilt rules.
+    - Generals' Seats as a rank ordering by sun rays (Zariel 4, Haruman 3, Olanthius 2, Yael 1; Olanthius's filed helm is the trap).
+  - `159ab2f` `index.html?s=<id>#<scene>` deep-links to a scene.
+- **Why (table rulings):**
+  - The Scales shade was **Yael**. She watched the devil gate during the invasion and left her post to save a child. The breach lost the invasion, and **Zariel, still an angel, executed her**.
+  - The party split, then chose the insignia (Zariel's verdict).
+  - The **Bleeding Citadel rose where Yael died**. Her ghost and Lulu carried the Sword there after the fall. The doors open only for the pure of heart, so Zariel knows the place and cannot enter.
+  - **XP house rule:** level 15 is 260,000, then +60,000 per level (20 is 560,000), because the party earns a lot per session. The urn fight is worth 50,600 XP.
+- **Open:**
+  - Whether Conjure Celestial is the 2014 or 2024 version (affects the ruling note).
+  - Loot for the C6 Ones Who Ran fight.
+  - Check on the map that the doorways are C2f/C2e/C2a.
+  - The VPS has still not been redeployed (its host key changed).
