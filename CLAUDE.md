@@ -216,11 +216,6 @@ Newest last, **last 10 entries only** — this file loads into context every ses
 unbounded log would eat the smart zone it exists to protect. Promote anything still valuable
 past that into the body above, or into `brain/`. No secrets or customer PII: this is committed.
 
-### 2026-10-23 — S11 follow-up: one-shard Sword, Kreeg CR 22, outline maps
-- **Did:** Sword ruling changed to Eventyr's one-shard version across S11, `campaign-map.js` and `campaign-state.md`. Kreeg rebuilt to CR 22 (342 HP, AC 22, legendary + Dock lair actions, Escape Clause). New original SVG outline maps in `dm-app/art/outlines/` (menagerie, vault, dock) from `dm-app/tools/gen_outlines.py`. Reused painted maps: harbor-map-night, low-lantern, under-the-villa.
-- **Why:** checked against the book: the official adventure never breaks the Sword. The DM picked Eventyr's option: one shard cracked off in Zariel's last battle, and Olanthius keeps it. That puts Kostchtchie's Maw and the Pit of Shummrath back to optional. The DM wanted Kreeg in Arkhan's tier.
-- **Open:** The Menagerie still has no painted map, only the outline.
-
 ### 2026-10-23 — S10 travel fix + stat-block page (desktop PC)
 - **Did:** `2041958` Session 10 journey rewritten as "The Flight to the Grave": table ruling, everyone flew overland on flight scrolls with the Lady Vengeance alongside, not up the Styx. River events and the Lulu-stays-dry choice cut; Sibriex stays optional as a gorge fly-by; the Grave's river rules are unchanged. New `dm-app/statblocks.html?s=<id>`: every creature in a session on one printable page, encounter order first, sharing spell-slot state with the main app.
 - **Why:** the DM wanted the primer and the stat blocks side by side at the table. NPCs that have full numbers (the sibriex) show stats on that page.
@@ -290,3 +285,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Did:** `campaign-tower.js`: Slarkas, Vistalancer, Vermilius, Flash and Obatala each got a lore-based look (Monster Manual traits per colour), a scar matching the astra portrait, an allegiance, wants/fears, a table tell, sample lines and a homebrew signature move (Old Wound + Slow Melt; Lance Dive + Clean Exit; Honeyed Voice; Prove It + Overheat; Rimeground + Rider's Wing). S12 overrides give each its own siege role and a way to lure, turn or bait it.
 - **Why:** the DM wants five distinct dragons, like Vox Machina's Chroma Conclave, not one block in five colours. Vermilius is **she** (S9 was played that way); S12's "he" is fixed. Vistalancer is vain *and* timid (endgame canon), reconciled as a careful show-off. Vermilius's throat handprint = Arkhan's Hand of Vecna, the mark of the vessel.
 - **Open:** DM to approve the signature moves and hooks (Slarkas's lance rider buried in the Crypt; Flash's true name Praxamor). The group image with all five is still to come.
+
+### 2026-11-07 — Campaign Compass primer (where we are, book vs Eventyr vs ours)
+- **Did:** new `dm-app/sessions/00-campaign-compass.js`, first in the session dropdown (the app still opens the last session by default). Seven chapters: Where We Are, The Road Ahead, How the Book Ends, Eventyr's Ending (short credited quotes from the gitignored Library PDFs: Ch5 pp. 1–8, Ch4, Ch1 shard), How Our Campaign Differs, Decisions to Lock, Sources.
+- **Why:** the DM asked for one outline of the campaign stage and ending now that the party knows the Scab. Recommended finale: Zariel's redemption run as Eventyr's group check, then Tiamat rises as the final foe (Eventyr suggests exactly this when Arkhan/Tiamat featured heavily). Flagged: the book's Ultimate Sacrifice converges with Drenwal's die-and-be-reborn cure.
+- **Open:** the DM picks the preferred ending, Elturel's days left, and who breaks the chains (Decisions to Lock chapter). Quotes stay short because the repo is public.

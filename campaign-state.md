@@ -37,6 +37,7 @@
 **Built 2026-11-01 (DM app `dm-app/`):**
 - **Session 12 "The Siege of the Crypt"** — `dm-app/sessions/12-the-siege-of-the-crypt.js`. The siege is a puzzle with ways out, not a fight to win (ways A–F plus X, the Tiamat trap). Side "Talking to Arkhan".
 - **Session 13 "The Scab"** — `dm-app/sessions/13-the-scab.js`, with side `the-sword-reforged`.
+- **Campaign Compass** (2026-11-07) — `dm-app/sessions/00-campaign-compass.js`: where we are, the road ahead, book vs Eventyr vs our ending, decisions to lock.
 - **Campaign sides:** `world-state` (key W), `zariel`, `running-the-endgame` (all in `campaign-world.js`); `arc-drenwal` (`campaign-hellriders.js`).
 - **Tools:** combat pop-out window for a second monitor (key C). House rule: identical monsters share one initiative and make one collective save.
 - **Open DM items:** Griffon's Saddlebag loot is a placeholder (DM to supply the source text); Day 12 estimate (Day 0 = end of Session 5) to confirm; Dumal clock 4/6 is an estimate; the master primer still has mentions of the dropped link; slice 8 art waits on the Codex login.
