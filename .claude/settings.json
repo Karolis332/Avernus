@@ -92,7 +92,7 @@
           },
           {
             "type": "command",
-            "command": "cmd /c node %CLAUDE_PROJECT_DIR%/.claude/hooks/chat-log.mjs",
+            "command": "sh -c 'exec node \"${CLAUDE_PROJECT_DIR:-.}/.claude/hooks/chat-log.mjs\"'",
             "timeout": 5000
           }
         ]
