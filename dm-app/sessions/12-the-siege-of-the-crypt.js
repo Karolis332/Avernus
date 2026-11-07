@@ -133,8 +133,18 @@ window.SESSION = {
         ] },
 
         { t: "h", text: "What Happened Last Time" },
-        { t: "p", text: "Read this to the players. They have had a long break." },
-        { t: "read", text: "You came to the Crypt of the Hellriders because a death knight had the answer you needed. Drenwal knocked at its gates with a spell, and the knock rolled out across the waste for fifty miles. Arkhan the Cruel heard it. His wings were coming over the ridge as you went in, with his four dragons, and Obatala, and old Krull on his back. You shut the door behind you. They stand outside, because nothing evil may enter here.\n\nBelow, Olanthius knelt at an open coffin and tested you, and when he was done he gave you a shard of the Sword of Zariel and the road to the Scab. He said one more thing: the pure of heart may brave the dangers of this crypt to receive rewards.\n\nIn the hall of urns the souls swirled and bubbled. The loot lay under them. You reached for it, and the urns cracked open." },
+        { t: "p", text: "Read this to the players. Session 12 stopped partway through the Crypt, so the next game night picks up here, not in Session 13." },
+        { t: "read", text: "You came to the Crypt of the Hellriders for a death knight's answer. Drenwal knocked at its gates with a spell, and the knock rolled out across the waste for fifty miles. Arkhan the Cruel heard it. His wings came over the ridge as you went in, with his four dragons, and Obatala, and old Krull on his back. You shut the door on them. Below, Olanthius gave you a shard of the Sword of Zariel and the road to the Scab.\n\nThen the urns in the long hall cracked open. The dead of the First Charge came out of them, wave after wave, the last of them under a banner that would not fall, until the hall was quiet again.\n\nIn the Scales of Mercy a shade waited for your judgement. Her name was Yael. She was set to watch the devil gate, and she left her post to save a child. The devils came through the gap, and the invasion was lost. Zariel, still an angel then, killed her for it with her own hand. You did not agree, at first. In the end you chose the insignia: Zariel's own verdict.\n\nOutside the door, the wings are still circling." },
+
+        { t: "h", text: "Session 12 So Far (DM only)" },
+        { t: "list", items: [
+          "{@b Played:} the three urn waves in C2g (the Restless Dead, the Lance Wraiths, Marshal Aubrec Dunmere, the Last Banner). The urn fight is worth 50,600 XP (house rule: level 15 at 260,000). {@b Not recorded:} whether Dunmere fell or stood down, and the souls-laid-to-rest count.",
+          "{@b Played:} the Scales of Mercy in C2e. The shade was Yael; the party split, then chose the insignia. See {@scene the-trials-of-the-pure|The Trials of the Pure}.",
+          "{@b Prepared at the table:} Veska as Banner Captain and Ser Lucan the Named (both CR 10, handouts printed). {@b Not recorded:} whether they were handed out yet.",
+          "{@b Not recorded:} which loot the party took (the Urn Hoard: Sun Blade, Horn of the First Charge, Dragon Slayer; the grave goods; the Riders' Bequest), and whether the Roll of the Charge and the Generals' Seats were run.",
+          "{@b Still ahead:} the Hellrider Archive, Wings at the Door, the Ways Out, Zariel Notices (Lulu). The party has not left the Crypt."
+        ] },
+        { t: "p", text: "The checklist below is the state when Session 12 began. Where it disagrees with the list above, the list above wins." },
 
         { t: "note", title: "House Rule: Groups", text: "A group of identical monsters shares {@b one initiative} and makes {@b one collective saving throw} (one d20 for the whole group). Hit points stay individual. The tracker does this for you: set up the encounter and each group has one initiative row and a Group save control. Used here for each urn's wraiths, specters and banner guards." },
 
@@ -694,7 +704,7 @@ window.SESSION = {
         { t: "list", items: [
           "{@b Or'Henn, alive.} A dead druid cannot ask anyone for anything. Or'Henn is the hostage.",
           "{@b Drenwal, alive and able to cast.} Arkhan needs a priest to call a gold dragon.",
-          "{@b Why a gold dragon.} The curse jumps only if Or'Henn asks a dragon for help. He will never mean it to one of Arkhan's chromatic dragons. He might mean it to a gold one, called by his friend, with Fane-Eater at his throat."
+          "{@b Why a gold dragon.} The curse moves only when Or'Henn asks a dragon for help, meaning it, {@b and that dragon willingly takes the curse} (DM ruling 2026-11-08). The second half is the catch. Or'Henn will never mean it to one of Arkhan's chromatic dragons. A gold dragon, called by his friend, with Fane-Eater at his throat, is the one dragon he might ask, and the one dragon good enough to say yes to save him."
         ] },
         { t: "read", text: "\"I will make you one offer,\" says Arkhan, \"because I am not a brute. Send me the druid and the priest. The rest of you walk out of that door, and none of mine will touch you.\"\n\nHe lets that sit.\n\n\"Or wait. The ward is tired. You can hear it, can you not? Every hour a little lower. And I have waited a century for less.\"" },
 
@@ -703,7 +713,7 @@ window.SESSION = {
             "{@b Take the hostage.} Or'Henn by choice. Any PC will do if it makes Or'Henn ask, because the asking can be for someone else. Arkhan can only take someone who comes past the cold line, or after the ward falls. Vecna's Grip (DC 22 Constitution, restrained and silenced) holds them, then he carries them back up out of the stair.",
             "{@b Bind the priest.} He casts {@spell geas} on Drenwal (DC 22 Wisdom): call a gold dragon. Acting against it costs 5d10 psychic damage, once a day. If the Geas fails, the blade at the hostage's throat is the order instead.",
             "{@b The call.} Drenwal's 6th-level spell is {@spell planar ally}. By the rules it brings a celestial, an elemental or a fiend, so a gold dragon is a DM's ruling: Drenwal's god sends one, because a priest is begging. Divine Intervention also works if it lands (13% at level 13).",
-            "{@b The ask.} The gold dragon arrives over a dying friend. Arkhan holds the hostage at the edge of death and says one word to Or'Henn: \"Ask.\" If Or'Henn asks the gold dragon for help and means it, the curse jumps to the gold dragon, and Tiamat wakes in her true form. Run Branch: Tiamat Wakes in {@scene ending|Ending the Session}."
+            "{@b The ask.} The gold dragon arrives over a dying friend. Arkhan holds the hostage at the edge of death and says one word to Or'Henn: \"Ask.\" If Or'Henn asks the gold dragon for help and means it, and the gold dragon willingly takes the curse to save him (it will, unless someone has told it what the curse is), the curse jumps to the gold dragon, and Tiamat wakes in her true form. Run Branch: Tiamat Wakes in {@scene ending|Ending the Session}."
           ] },
           { t: "h", text: "How the Party Breaks It" },
           { t: "list", items: [

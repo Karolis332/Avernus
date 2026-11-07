@@ -23,7 +23,7 @@ window.SESSION = {
     {
       id: "where-we-are",
       title: "Where We Are",
-      when: "State after Session 11, with the Session 12 rulings made so far",
+      when: "State mid-Session 12: the party is still inside the Crypt",
       blocks: [
         { t: "note", title: "The one-line version", text: "In book terms the party is at the {@b end of Chapter 3 and the door of Chapter 4}. They hold the Sword's missing shard and know the road (the Scab). First they have to get out of the Crypt of the Hellriders, with Arkhan and five dragons waiting at the door." },
         { t: "img", src: "art/generated/env-road-to-the-scab.webp", caption: "The road to the Scab: the next step once the siege is broken." },
@@ -36,7 +36,7 @@ window.SESSION = {
         ] },
         { t: "h", text: "Where they stand" },
         { t: "list", items: [
-          "{@b Inside the Crypt of the Hellriders.} The urn waves and the trials of Session 12 are under way or done. Live ruling: the Scales shade was {@b Yael}.",
+          "{@b Inside the Crypt of the Hellriders, Session 12 half played.} Done: the three urn waves and the Scales of Mercy (the shade was {@b Yael}; the party chose the insignia). Still ahead: the Archive, Wings at the Door, the way out. Full recap: Session 12, What Happened Last Time.",
           "{@b Outside the door:} {@c arkhan-the-cruel|Arkhan}, the four tower dragons ({@c skarrix|Slarkas}, {@c vhennic|Vistalancer}, {@c mirelle|Vermilius}, {@c praxamor|Flash}), {@c obatala|Obatala} and {@c krull|Krull}. Nothing evil can enter while the ward holds. The ward clock is at 0 of 6.",
           "{@b Arkhan's goal now:} kill the party, take Or'Henn hostage, and force Drenwal to call a gold dragon with {@spell planar ally}, so the curse can be moved into a dragon and Tiamat wakes. Session 12, Wings at the Door, runs it."
         ] },
@@ -56,13 +56,13 @@ window.SESSION = {
         ] },
         { t: "more", title: "Or'Henn's curse: how it works, in one place", src: ["Homebrew"], blocks: [
           { t: "list", items: [
-            "{@b What it does.} It pushes Or'Henn to ask a dragon for help, aloud and meaning it. When he does, the curse jumps into that dragon and the dragon becomes the door. When that dragon dies, whoever kills it, Tiamat wakes.",
+            "{@b What it does.} It pushes Or'Henn to ask a dragon for help, aloud and meaning it. The curse moves only if that dragon then {@b willingly takes it} (DM ruling 2026-11-08: that is the catch; it can never be forced on a dragon). Then the dragon becomes the door. When that dragon dies, whoever kills it, Tiamat wakes.",
             "{@b Is an adult dragon enough?} Enough to wake her, not to free her. Through an adult vessel she comes as {@c tiamat-risen|Tiamat Risen}: half-born in the dragon's body, one head a round over five rounds, 250 to 550 hit points. Her true form (the CR 30 goddess) stays in her prison.",
             "{@b The pressure.} {@side tiamats-pull|Tiamat's Pull} (Wisdom save, DC 10 + Pull) and the gold scales from her gifts. At 5 scales he cannot refuse the next chromatic dragon that offers help. See {@side arc-tiamat|Arc: Or'Henn and Tiamat}.",
-            "{@b Arkhan's two ways.} At the Crypt: hostage Or'Henn, {@spell geas} on Drenwal to call a gold dragon, Fane-Eater at Or'Henn's throat until he asks it for help. In the endgame: he rips the curse out with the Hand of Vecna (DC 22 Charisma), binds it into Vermilius, who wants it, and kills her. See Arkhan's Gambit in the campaign endgame.",
+            "{@b Arkhan's two ways.} At the Crypt: hostage Or'Henn, {@spell geas} on Drenwal to call a gold dragon, Fane-Eater at Or'Henn's throat until he asks it for help and the gold dragon, being good, says yes to save him. In the endgame: he rips the curse out with the Hand of Vecna (DC 22 Charisma), binds it into Vermilius, who wants it, and kills her. See Arkhan's Gambit in the campaign endgame.",
             "{@b Ways out.} Her blood (spent on Uldrak), her word (Or'Henn kneels as her champion), {@spell wish}, or the dragon in the orb (DM's choice)."
           ] },
-          { t: "p", text: "{@b Open, needs a ruling:} (1) Session 12's exit X says Tiamat wakes in her true form; the endgame says half-born. Pick one. (2) If Vermilius dies before the sacrifice, Arkhan takes \"the nearest chromatic dragon\", but nothing makes an unwilling dragon hold still. Flash would volunteer; Slarkas and Vistalancer would not." }
+          { t: "p", text: "{@b Open, needs a ruling:} (1) Session 12's exit X says Tiamat wakes in her true form; the endgame says half-born. Pick one. (2) If Vermilius dies before the sacrifice, Arkhan takes \"the nearest chromatic dragon\", but an unwilling dragon cannot take the curse at all (DM ruling 2026-11-08). Flash would volunteer; Slarkas and Vistalancer would not." }
         ] }
       ]
     },

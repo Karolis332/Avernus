@@ -409,7 +409,7 @@
     "blocks": [
       {
         "t": "p",
-        "text": "Tiamat's mark on Or'Henn is a delivery system, not a wound. It pushes him to ask a dragon for help. When he does, it jumps into that dragon, and the dragon becomes the door. It burns out from the inside, and when it is gone, Tiamat wakes in her true form. Full background: {@side arc-tiamat|Arc: Or'Henn and Tiamat}."
+        "text": "Tiamat's mark on Or'Henn is a delivery system, not a wound. It pushes him to ask a dragon for help. When he does, and the dragon willingly takes it (DM ruling 2026-11-08), it jumps into that dragon, and the dragon becomes the door. It burns out from the inside, and when it is gone, Tiamat wakes in her true form. Full background: {@side arc-tiamat|Arc: Or'Henn and Tiamat}."
       },
       {
         "t": "h",
@@ -501,7 +501,7 @@
         "items": [
           "{@b Break his concentration.} Treat the ritual as concentration: any damage forces a Constitution save (DC 10 or half the damage). Arkhan has +15 and 4 Legendary Resistances. It will take a lot.",
           "{@b Move the vessel.} Push, pull or teleport Vermilius more than 30 ft. from Arkhan during turn 2 or 3, and the step fails.",
-          "{@b Kill Vermilius first.} If the vessel dies before Arkhan's turn 3, the thread snaps back into Or'Henn at Pull 8. Arkhan picks a new vessel next round: the nearest chromatic dragon.",
+          "{@b Kill Vermilius first.} If the vessel dies before Arkhan's turn 3, the thread snaps back into Or'Henn at Pull 8. Arkhan picks a new vessel next round: the nearest chromatic dragon that is willing. The curse cannot be forced on a dragon (DM ruling 2026-11-08).",
           "{@b Let it happen.} Or'Henn is free of the curse for good. His gold scales stay gold. And Tiamat is awake."
         ]
       },
@@ -708,7 +708,7 @@
         {
           "when": "Vermilius moved 30+ ft. / killed early",
           "tag": "trigger",
-          "text": "Step fails; curse snaps back at Pull 8; Arkhan picks the nearest dragon next round."
+          "text": "Step fails; curse snaps back at Pull 8; Arkhan picks the nearest willing dragon next round."
         }
       ]
     },

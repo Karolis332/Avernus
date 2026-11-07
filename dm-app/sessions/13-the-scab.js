@@ -284,7 +284,7 @@ window.SESSION = {
       when: "",
       duration: "10 minutes",
       blocks: [
-        { t: "p", text: "Session 12 ended with the party out of the Crypt, or on its way, and Lulu gone. This session is the Scab: a hill-sized wound in Avernus with the Bleeding Citadel buried in it. The road is short, the dungeon is crowded, and the last fight is at the door. It ends as the doors open to the shard." },
+        { t: "p", text: "{@b Draft opening.} It assumes Session 12 ends with the party out of the Crypt and Lulu taken. Neither has happened at the table yet, so rewrite the read-aloud below once Session 12 is over. This session is the Scab: a hill-sized wound in Avernus with the Bleeding Citadel buried in it. The road is short, the dungeon is crowded, and the last fight is at the door. It ends as the doors open to the shard." },
 
         { t: "h", text: "At a Glance" },
         { t: "list", items: [

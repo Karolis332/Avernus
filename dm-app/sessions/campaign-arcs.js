@@ -344,7 +344,7 @@ Object.assign(window.CAMPAIGN.side, {
   "arc-tiamat": {
     title: "Arc: Or'Henn and Tiamat",
     blocks: [
-      { t: "p", text: "Tiamat's curse sits in Or'Henn like a seed. If a dragon takes it from him, Tiamat wakes in her true form. She cannot make him ask a dragon for help. She can only make asking feel like the kindest, safest, most sensible thing in the world, and she has all the time there is. So she visits him in visions." },
+      { t: "p", text: "Tiamat's curse sits in Or'Henn like a seed. If a dragon willingly takes it from him, Tiamat wakes in her true form. It cannot be forced on a dragon (DM ruling 2026-11-08). She cannot make him ask a dragon for help. She can only make asking feel like the kindest, safest, most sensible thing in the world, and she has all the time there is. So she visits him in visions." },
       { t: "note", title: "Running Her", text: "Tiamat never lies to Or'Henn. She does not need to. She picks true things and shows them to him at the worst possible moment. Play her warm, proud and patient, like a grandmother who owns the house. Five heads, five voices, and they finish each other's sentences. Only the white head ever threatens." },
 
       { t: "h", text: "Why a Dragonborn" },
