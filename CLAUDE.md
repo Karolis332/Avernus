@@ -216,11 +216,6 @@ Newest last, **last 10 entries only** — this file loads into context every ses
 unbounded log would eat the smart zone it exists to protect. Promote anything still valuable
 past that into the body above, or into `brain/`. No secrets or customer PII: this is committed.
 
-### 2026-10-23 — Session 11 "Roads from the Grave" built in the DM app
-- **Did:** New `dm-app/sessions/11-roads-from-the-grave.js` (Session 9 format): shared opening, full Crypt / Menagerie / Dock branches, Ending outcomes, sides `kreegs-bargains` + `far-roads`. New stat blocks: Olanthius, Urexiel (with lair), mezzoloth handler, Kreeg (amnizu), barbed devil. Uldrak moved into `campaign-tower.js`; Session 10 now overrides only his tactics.
-- **Why:** DM asked for every nearby scenario; chose full builds for the three close sites, hooks only for the far ones, password unknown (so five ways through the Crypt door). Kreeg follows the played Session 8 canon (amnizu at the Dock), not the older Vessper Hain plan.
-- **Open:** Who broke the Sword is unruled. Eldra-was-bought-by-Kreeg is a proposed link. Kreeg's numbers are the MTF amnizu reconstructed, so check them against the book. There's no Menagerie or Dock battle map; stand-ins are used.
-
 ### 2026-10-23 — S11 follow-up: one-shard Sword, Kreeg CR 22, outline maps
 - **Did:** Sword ruling changed to Eventyr's one-shard version across S11, `campaign-map.js` and `campaign-state.md`. Kreeg rebuilt to CR 22 (342 HP, AC 22, legendary + Dock lair actions, Escape Clause). New original SVG outline maps in `dm-app/art/outlines/` (menagerie, vault, dock) from `dm-app/tools/gen_outlines.py`. Reused painted maps: harbor-map-night, low-lantern, under-the-villa.
 - **Why:** checked against the book: the official adventure never breaks the Sword. The DM picked Eventyr's option: one shard cracked off in Zariel's last battle, and Olanthius keeps it. That puts Kostchtchie's Maw and the Pit of Shummrath back to optional. The DM wanted Kreeg in Arkhan's tier.
@@ -290,3 +285,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
   - Loot for the C6 Ones Who Ran fight.
   - Check on the map that the doorways are C2f/C2e/C2a.
   - The VPS has still not been redeployed (its host key changed).
+
+### 2026-11-07 — Five dragons made individuals (lore + Vox Machina bar)
+- **Did:** `campaign-tower.js`: Slarkas, Vistalancer, Vermilius, Flash and Obatala each got a lore-based look (Monster Manual traits per colour), a scar matching the astra portrait, an allegiance, wants/fears, a table tell, sample lines and a homebrew signature move (Old Wound + Slow Melt; Lance Dive + Clean Exit; Honeyed Voice; Prove It + Overheat; Rimeground + Rider's Wing). S12 overrides give each its own siege role and a way to lure, turn or bait it.
+- **Why:** the DM wants five distinct dragons, like Vox Machina's Chroma Conclave, not one block in five colours. Vermilius is **she** (S9 was played that way); S12's "he" is fixed. Vistalancer is vain *and* timid (endgame canon), reconciled as a careful show-off. Vermilius's throat handprint = Arkhan's Hand of Vecna, the mark of the vessel.
+- **Open:** DM to approve the signature moves and hooks (Slarkas's lance rider buried in the Crypt; Flash's true name Praxamor). The group image with all five is still to come.

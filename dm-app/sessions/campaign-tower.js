@@ -64,11 +64,18 @@ Object.assign(window.CAMPAIGN.creatures, {
     role: "Tower dragon (black), sullen and sadistic",
     source: { page: "bestiary", name: "Adult Black Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
-    description: "A lean black dragon with a face like a bare skull. Acid hangs from its jaws in long strings and hisses where it lands. It stinks of swamp mud and rotten eggs.",
+    description: "The oldest of the four, and he looks it. Gaunt and low-slung, near-black with an oily green sheen, he crouches more than he stands, like something waiting in a swamp. His face is bare bone: as with every old black dragon, the hide around his horns and cheeks has rotted away as if eaten by his own acid, leaving a skull with deep eye pits and horns that curve forward and down. One eye is milky and blind. Acid hangs from his jaws in long yellow strings and hisses where it lands. Buried in his chest, below the shoulder, is the head of a Hellrider lance: pale steel stamped with the sun of Elturel. It still shines a little. He stinks of rot and stagnant water.",
     roleplay: [
-      "Personality: Slarkas is sullen and sadistic. Likes to melt things slowly and watch.",
-      "Voice: speaks only Draconic, and only to curse.",
-      "Sample line (Draconic): \"Hold still. It is better if you hold still.\""
+      "Lore (Monster Manual, black dragons): the most evil-tempered of the chromatics. They lair in swamps and ruins, fight from ambush, and enjoy watching prey despair. Slarkas is all of that. His silhouette at the table: the low, crouching skull.",
+      "Personality: sullen, patient and sadistic. Likes to melt things slowly and watch. Hates anything that shines.",
+      "The scar: Slarkas fought Zariel's Hellriders when they rode into Avernus, more than a hundred years ago. A rider put a sun-blessed lance through his chest, and the flash of holy fire burned out his left eye. The wound never healed. He never let anyone pull the lance head out: he wants to remember. The rider who did it is buried in this Crypt.",
+      "Allegiance: his own hate. Arkhan holds his leash, and Slarkas obeys because Arkhan lets him hurt things. He serves Tiamat out of fear, not faith, so he rolls the {@side tiamats-dominion|Dominion} save.",
+      "Wants: to melt every sun badge in Avernus. Fears: radiant light. The lance head burns when holy light comes near, and everyone can see him flinch.",
+      "At the Crypt: the ward makes the old wound ache, so he is in a foul temper all siege. If a Hellrider banner comes out of the door ({@c veska|Veska's}), he forgets every order and goes for it. That makes the banner a lure.",
+      "Voice: speaks only Draconic, and only to curse. Calls everyone \"meat\".",
+      "Tell: before he breathes, he turns his head so his good eye is on the target.",
+      "Sample line (Draconic): \"Hold still. It is better if you hold still.\"",
+      "Sample line (Draconic, at a Hellrider banner): \"I remember that sun. I kept a piece of it.\""
     ],
     npc: false,
     sizeType: "Huge dragon, chaotic evil",
@@ -84,12 +91,13 @@ Object.assign(window.CAMPAIGN.creatures, {
     cr: "14", xp: 11500, pb: 5,
     traits: [
       { name: "Amphibious", text: "Can breathe air and water." },
-      { name: "Legendary Resistance (1/Day)", text: "If Slarkas fails a saving throw, it can choose to succeed instead." },
-      { name: "Breath vs. the Ship", text: "Its breath weapon beats the Lady Vengeance's damage threshold of 15." }
+      { name: "Legendary Resistance (1/Day)", text: "If Slarkas fails a saving throw, he can choose to succeed instead." },
+      { name: "Breath vs. the Ship", text: "His breath weapon beats the Lady Vengeance's damage threshold of 15." },
+      { name: "Old Wound (homebrew)", text: "The Hellrider lance head in his chest is still blessed. When Slarkas takes radiant damage, he takes an extra 7 (2d6) radiant damage and can't use Wing Attack until the end of his next turn. A DC 15 Wisdom (Insight) or Intelligence (Religion) check spots the flinch and what causes it." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", art: "art/generated/skarrix-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 4 (1d8) acid." },
+      { name: "Bite", art: "art/generated/skarrix-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 4 (1d8) acid. {@b Slow Melt (homebrew):} the acid clings. The target takes 7 (2d6) acid damage at the start of each of its turns until it, or a creature next to it, uses an action to scrape it off." },
       { name: "Claw", art: "art/generated/skarrix-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
       { name: "Tail", art: "art/generated/skarrix-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
       { name: "Frightful Presence", text: "Each creature of its choice within 120 ft. aware of it: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
@@ -101,7 +109,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     legendary: {
       count: 3,
-      intro: "Slarkas can take one legendary action at the end of another creature's turn. It regains spent legendary actions at the start of its turn.",
+      intro: "Slarkas can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
         { name: "Tail Attack", art: "art/generated/skarrix-tail.webp", cost: 1, text: "Makes one tail attack." },
@@ -124,11 +132,18 @@ Object.assign(window.CAMPAIGN.creatures, {
     role: "Tower dragon (blue), the fastest of the four",
     source: { page: "bestiary", name: "Adult Blue Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
-    description: "A sleek blue dragon with a single great horn on its snout. Static crackles over its scales; the air smells of a lightning strike when it passes.",
+    description: "Long and narrow, built like a thrown spear, and almost never on the ground. His scales run from bright azure on the back to deep indigo at the flanks, polished smooth by blown sand, with a pale belly. Lightning runs in veins through his wing membranes. Like every blue, he has a single great horn on his snout, and he is vainer about it than any of them: he has had it capped in forged steel, banded with rings and filed to a point like a knight's lance. A round hole the size of a shield is burned clean through his right wing, and he keeps that wing angled away from anyone he is talking to. Static crackles over him; the air smells of ozone, like a lightning strike, when he passes.",
     roleplay: [
-      "Personality: Vistalancer is vain and precise. Keeps score of every hit, out loud.",
+      "Lore (Monster Manual, blue dragons): vain, territorial and methodical. Desert hunters that burrow in the sand to ambush and prefer to fight from the air, at range, on their own terms. They hate to look weak. Vistalancer's silhouette: the spear in the sky.",
+      "Personality: vain, precise and careful to the point of cowardice. He is the fastest of the four because he is always ready to leave. He keeps score of every hit, out loud, and fights only while he is ahead.",
+      "The scar: a force-cannon shot through the right wing. If the Lady Vengeance hit him at the tower, it was her guns, and he has not forgiven the ship. He flies a little crooked because of it, and hates anyone noticing.",
+      "Allegiance: himself. He reports to Arkhan because Arkhan is winning. When Tiamat rises he goes with Krull without a save, because Krull looks likeliest to keep him alive.",
+      "He can be turned: show him the odds. If the party has just driven off or badly hurt another dragon, a DC 18 Persuasion or Intimidation check makes him sit the fight out (advantage if they offer him gems, sapphires most of all, or a safe road out). Whatever he hears, Arkhan hears next, so a false plan told to him reaches Arkhan.",
+      "Wants: to win without risk, and to be admired. Fears: a fair fight. Being seen to lose.",
       "Voice: crisp Draconic, counting. \"One. Two. Three.\"",
-      "Sample line (Draconic): \"Four hits to your one, little boat. Shall we make it five?\""
+      "Tell: before he dives, he taps the steel cap of his horn twice against a claw.",
+      "Sample line (Draconic): \"Four hits to your one, little boat. Shall we make it five?\"",
+      "Sample line (Draconic, when the score turns): \"This is not a good number. I am leaving now.\""
     ],
     npc: false,
     sizeType: "Huge dragon, lawful evil",
@@ -143,8 +158,8 @@ Object.assign(window.CAMPAIGN.creatures, {
     languages: "Common, Draconic",
     cr: "16", xp: 15000, pb: 5,
     traits: [
-      { name: "Legendary Resistance (1/Day)", text: "If Vistalancer fails a saving throw, it can choose to succeed instead." },
-      { name: "Breath vs. the Ship", text: "Its breath weapon beats the Lady Vengeance's damage threshold of 15." }
+      { name: "Legendary Resistance (1/Day)", text: "If Vistalancer fails a saving throw, he can choose to succeed instead." },
+      { name: "Breath vs. the Ship", text: "His breath weapon beats the Lady Vengeance's damage threshold of 15." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
@@ -152,15 +167,17 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Claw", art: "art/generated/vhennic-claw.webp", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
       { name: "Tail", art: "art/generated/vhennic-tail.webp", text: "Melee Weapon Attack: +12 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
       { name: "Frightful Presence", text: "Each creature of its choice within 120 ft. aware of it: DC 17 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Lightning Breath (Recharge 5-6)", art: "art/generated/vhennic-lightning-breath.webp", text: "90-ft. line, 5 ft. wide. DC 19 Dexterity save, 66 (12d10) lightning, half on a success." }
+      { name: "Lightning Breath (Recharge 5-6)", art: "art/generated/vhennic-lightning-breath.webp", text: "90-ft. line, 5 ft. wide. DC 19 Dexterity save, 66 (12d10) lightning, half on a success." },
+      { name: "Lance Dive (homebrew)", text: "Replaces the bite in his Multiattack if he flew at least 30 ft. in a straight line this turn. Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 23 (3d10 + 7) piercing plus 11 (2d10) lightning, and a Large or smaller target must succeed on a DC 20 Strength save or be pushed 15 ft. and knocked prone." }
     ],
     bonus: [],
     reactions: [
-      { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Vistalancer, the attack has disadvantage. If the weapon forces a save instead, Vistalancer takes half damage." }
+      { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Vistalancer, the attack has disadvantage. If the weapon forces a save instead, Vistalancer takes half damage." },
+      { name: "Clean Exit (homebrew)", text: "When damage leaves Vistalancer below half his hit points (112), he flies up to his speed without provoking opportunity attacks. He comes back only when the fight turns his way again." }
     ],
     legendary: {
       count: 3,
-      intro: "Vistalancer can take one legendary action at the end of another creature's turn. It regains spent legendary actions at the start of its turn.",
+      intro: "Vistalancer can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
         { name: "Tail Attack", art: "art/generated/vhennic-tail.webp", cost: 1, text: "Makes one tail attack." },
@@ -183,11 +200,18 @@ Object.assign(window.CAMPAIGN.creatures, {
     role: "Tower dragon (green), the cruelest talker",
     source: { page: "bestiary", name: "Adult Green Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
-    description: "A green dragon with a frilled neck and a long, mocking smile. A sweet, sickly smell of poison and crushed leaves comes off it like perfume.",
+    description: "Long-limbed, lithe and graceful, she sits still where the others pace. Her scales are emerald, fine and thin, with a cream belly. Like every green, she has no outer ears: instead a tall crest starts above her eyes and runs down her spine, and at the neck it flares into a wide ivory frill spotted with violet, like a poisonous orchid. She smiles all the time. Gold rings climb her horns, one ring for every creature that ever asked her for help. Green smoke curls from her nostrils when she is amused. On her throat is a black handprint with long thin fingers, burned into the scales, and the scales there never grew back. She smells of chlorine and crushed leaves, sweet and sickly, like perfume.",
     roleplay: [
-      "Personality: Vermilius is a liar and a tease, and the only one who talks to the party.",
-      "Voice: purring Common, mocking and amused.",
-      "Sample line: \"Pretty boat. It will make a lovely coffin. Oh, is that a celestial I smell? The master will want that.\""
+      "Lore (Monster Manual, green dragons): the most cunning of the chromatics. Liars, manipulators and lovers of talk, they toy with prey, charm servants and corrupt what they can. Vermilius is that, aimed at one person. Her silhouette: the still shape with the tall frill.",
+      "Personality: a liar and a tease to everyone, and only ever truthful with Or'Henn. Tiamat told her the truth is the sharper hook. She is the only one of the four who talks to the party.",
+      "The rings: eleven. Each one is a creature that asked her for help and got exactly what it asked for. There is one bare space on her left horn, kept for Or'Henn. A PC who looks closely (DC 15 Wisdom (Perception)) sees it is the only gap.",
+      "The handprint: Arkhan once took her by the throat with the Hand of Vecna, and it marked her. She thinks it is an honour: she was chosen. She is right. It marks her as his vessel for the curse (see Bind the Vessel in {@scene arkhans-gambit|Arkhan's Gambit}). {@spell detect magic} shows necromancy in the print, and it is cold to the touch.",
+      "Allegiance: Tiamat, first and only. She uses Arkhan the way he uses her, and she wants to be the vessel.",
+      "Wants: Or'Henn to ask her for help, aloud. Fears: not being chosen, if the curse goes to the orb dragon or anyone else.",
+      "Voice: purring Common to the party, mocking and amused. Low, gentle Draconic to Or'Henn alone.",
+      "Tell: when she lies, the green smoke stops. When she tells the truth, it curls. A PC who watches her through two lies can learn it (DC 15 Wisdom (Insight)).",
+      "Sample line: \"Pretty boat. It will make a lovely coffin. Oh, is that a celestial I smell? The master will want that.\"",
+      "Sample line (Draconic, to Or'Henn): \"You need only ask. I will take it. I will take all of it.\""
     ],
     npc: false,
     sizeType: "Huge dragon, lawful evil",
@@ -214,7 +238,9 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Frightful Presence", text: "Each creature of her choice within 120 ft. aware of her: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
       { name: "Poison Breath (Recharge 5-6)", art: "art/generated/mirelle-poison-breath.webp", text: "60-ft. cone. DC 18 Constitution save, 56 (16d6) poison, half on a success." }
     ],
-    bonus: [],
+    bonus: [
+      { name: "Honeyed Voice (homebrew)", text: "One creature within 120 ft. that can hear her: DC 16 Wisdom save or charmed until the end of its next turn. While charmed, it can't attack her or target her with a harmful spell, and if it moves, it must move toward her. Or'Henn has disadvantage on the save: the curse listens to her. She uses this instead of attacking first." }
+    ],
     reactions: [
       { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Vermilius, the attack has disadvantage. If the weapon forces a save instead, she takes half damage." }
     ],
@@ -243,11 +269,18 @@ Object.assign(window.CAMPAIGN.creatures, {
     role: "Tower dragon (red), the proudest, the hardest hitter",
     source: { page: "bestiary", name: "Adult Red Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons. Book: a wyrmling. Here grown to an adult dragon (MM stats) for the ambush, Legendary Resistance 1/day, Wingover reaction added.",
-    description: "The youngest dragon of the tower, red as fresh blood, with heat shimmering off his back. Arkhan's people call him Flash. He hates it.",
+    description: "The youngest dragon of the tower, and too big too fast. His scales are still the bright, glossy scarlet of a young red; they have not yet darkened to the deep crimson of an old one. He runs too hot for his own skin: glowing cracks run between his scales like lava under a crust, and heat shimmers off his back. The great swept-back horns of his kind have barely started: his are short and blunt, and the spined frill along his neck is still soft. He rears up on his hind legs to look bigger, and roars at things that do not need roaring at. He has no scars, not one, and the others have noticed. He smells of smoke and sulfur. Arkhan's people call him Flash. He hates it.",
     roleplay: [
-      "Personality: Flash is proud, hot-headed and desperate to prove he is not a hatchling.",
+      "Lore (Monster Manual, red dragons): the most arrogant and covetous of the chromatics. They see themselves as kings, take any slight as a challenge, and fly into rages. Flash has all of that and none of the age to back it up. His silhouette: the rearing scarlet shape that will not stop roaring.",
+      "Personality: proud, hot-headed and desperate to prove he is not a hatchling. The only one of the four who truly believes.",
+      "His name: his real name is Praxamor, and nobody uses it. A PC who does gets one round of his full attention: he listens, and Persuasion checks against him have advantage for that round.",
+      "Hatched in Arkhan's tower from an egg Arkhan brought down from Faerûn. He prays to Tiamat every night, aloud, on the red spire. The others laugh at him for it.",
+      "Allegiance: Tiamat, as a zealot, and Arkhan because Arkhan is her paladin. When Tiamat rises he kneels without a save and fights for her.",
+      "Wants: a scar earned in a great fight, and for Tiamat to look at him. Fears: being called small, and being left behind.",
       "Voice: shrieking Draconic. Loses his temper if anyone calls him small or young.",
-      "Sample line (Draconic): \"I am not a hatchling! Say it again. Say it again!\""
+      "Tell: the cracks in his scales flare brighter the angrier he gets. When they go white, he is about to breathe.",
+      "Sample line (Draconic): \"I am not a hatchling! Say it again. Say it again!\"",
+      "Sample line (Draconic, to a whisper only he hears): \"Mother. Mother, watch me.\""
     ],
     npc: false,
     sizeType: "Huge dragon, chaotic evil",
@@ -263,7 +296,9 @@ Object.assign(window.CAMPAIGN.creatures, {
     cr: "17", xp: 18000, pb: 6,
     traits: [
       { name: "Legendary Resistance (1/Day)", text: "If Flash fails a saving throw, he can choose to succeed instead." },
-      { name: "Breath vs. the Ship", text: "His breath weapon beats the Lady Vengeance's damage threshold of 15." }
+      { name: "Breath vs. the Ship", text: "His breath weapon beats the Lady Vengeance's damage threshold of 15." },
+      { name: "Prove It (homebrew)", text: "If a creature calls Flash small, young or a hatchling, or deals him the most damage in a round, he marks it (one creature at a time). He has advantage on attacks against the marked creature, and attacks against him have advantage too. This lasts until the marked creature drops or Flash falls below half his hit points (128)." },
+      { name: "Overheat (homebrew)", text: "Below half his hit points, the cracks in his scales flare white: his Fire Breath recharges on a 4–6, and he sheds bright light for 30 ft. and can't hide." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
@@ -302,11 +337,18 @@ Object.assign(window.CAMPAIGN.creatures, {
     role: "Krull's mount, the elder adult dragon that calls the halt",
     source: { page: "bestiary", name: "Adult White Dragon", src: "MM" },
     homebrew: "Elder adult: canon adult white, buffed above the four tower dragons (CR 14–17) so his 'ENOUGH!' lands; scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons.",
-    description: "A huge white dragon, older and bigger than the four in the spires, stained grey with ash and soot. In the heat of Avernus his scales steam and drip. Frost spreads wherever he lands and melts at once into mud.",
+    description: "A huge white dragon, older and far heavier than the four in the spires: broad, low and thick-necked, built like a glacier rather than a spear. With age his scales have lost their glossy white for the pale grey and faint blue of old ice, and Avernus has stained them darker with ash and soot. He is always melting: icicles grow from his jaw and the trailing edges of his wings and drip as fast as they form, and steam rolls off his back. One great horn sweeps back on his right. The left is a stump, capped in carved bronze. On his back sits Krull's saddle: a lacquered howdah hung with chains and charms, with a small gilded shrine to Tiamat on top. Frost spreads wherever he lands and melts at once into mud.",
     roleplay: [
-      "Personality: Obatala is slow, sulky and loyal to Krull. Misses the cold.",
+      "Lore (Monster Manual, white dragons): the most bestial of the chromatics. They run on instinct and on memory, and a white dragon never forgets a slight. Cold lands, frozen hoards, little talk. Obatala is that beast, made loyal. His silhouette: the wide grey mass with a shrine on its back.",
+      "Personality: slow, sulky and loyal to Krull. Misses the cold. Not clever, but he never forgets a face that hurt Krull.",
+      "The horn: he snapped it hauling Krull out of an ice crevasse in the far north, long before Avernus. Krull carved the bronze cap himself and cut a prayer to Tiamat into it, in the same tiny runes as on his shell.",
+      "Allegiance: Krull. Only Krull. Not Arkhan, not Tiamat. Where Krull goes, he goes. If Krull turns ({@side krulls-offer|Krull's Offer}), Obatala turns with him without a word.",
+      "The other four: loud children. He calls Flash \"Spark\" to watch the cracks flare.",
+      "Wants: cold, and Krull safe. Fears: Krull dying in this furnace, a long way from snow.",
       "Voice: deep, slow Common, few words.",
-      "Sample line: \"Krull says stop. So you stop.\""
+      "Tell: when Krull clicks his tongue, Obatala's head comes up before the click is finished.",
+      "Sample line: \"Krull says stop. So you stop.\"",
+      "Sample line (to a PC who treated Krull well): \"Snow. You have seen snow? ... Good.\""
     ],
     npc: false,
     sizeType: "Huge dragon, chaotic evil",
@@ -322,7 +364,8 @@ Object.assign(window.CAMPAIGN.creatures, {
     cr: "18", xp: 20000, pb: 6,
     traits: [
       { name: "Ice Walk", text: "Moves across ice and snow without a check; difficult terrain from ice or snow costs him no extra movement." },
-      { name: "Legendary Resistance (2/Day)", text: "If Obatala fails a save, he can choose to succeed instead." }
+      { name: "Legendary Resistance (2/Day)", text: "If Obatala fails a save, he can choose to succeed instead." },
+      { name: "Rimeground (homebrew)", text: "Where Obatala lands, the ground within 20 ft. of him freezes, then melts into deep, steaming mud at the start of his next turn. That ground is difficult terrain for the rest of the fight. He ignores it." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
@@ -334,7 +377,8 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     bonus: [],
     reactions: [
-      { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Obatala, the attack has disadvantage. If the weapon forces a save instead, he takes half damage." }
+      { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Obatala, the attack has disadvantage. If the weapon forces a save instead, he takes half damage." },
+      { name: "Rider's Wing (homebrew)", text: "When a creature he can see attacks Krull while Krull is on his back or within 10 ft. of him, Obatala swings a wing into the way. The attack targets Obatala instead." }
     ],
     legendary: {
       count: 3,

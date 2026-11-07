@@ -47,8 +47,11 @@ window.SESSION = {
 
     "skarrix": Object.assign({}, window.CAMPAIGN.creatures.skarrix, {
       tactics: [
-        "Session 12. Slarkas (black) squats on the west ash ridge, sullen. He wants a fight and has been told no.",
-        "If a PC steps over the cold line, he spits acid at the line itself to see who flinches. Retreats below 60 hit points.",
+        "Session 12. Slarkas (black) squats low on the west ash ridge, half sunk in a slurry of ash and his own acid, like a black dragon in a swamp. Sullen. He wants a fight and has been told no. The ward makes his old wound ache.",
+        "If a PC steps over the cold line, he spits acid at the line itself to see who flinches.",
+        "{@b Lure:} a Hellrider banner ({@c veska|Veska's}) in the doorway makes him break orders and charge it. That pulls him away from his post for 2 rounds: an opening for a way out.",
+        "{@b Weakness:} radiant damage (Old Wound). The Sun Blade from the Urn Hoard, if they took it, hurts him more than anything else the party has.",
+        "In a fight he bites first (Slow Melt), then stays on the one who is scraping acid off. Retreats below 60 hit points.",
         "As a group of one, he does not share an initiative; if two dragons attack together, they do."
       ]
     }),
@@ -56,16 +59,21 @@ window.SESSION = {
     "vhennic": Object.assign({}, window.CAMPAIGN.creatures.vhennic, {
       tactics: [
         "Session 12. Vistalancer (blue) circles high and fast, tasting the ward with lightning. He is the one who reports to Arkhan.",
-        "Strafes anyone who leaves the doorway, then climbs out of reach. He will chase a flying PC (Moonkite) for a mile.",
-        "Retreats below 60 hit points. If the orb moves, he follows it by the most direct route."
+        "Strafes anyone who leaves the doorway with a Lance Dive, then climbs out of reach. He will chase a flying PC (Moonkite) for a mile.",
+        "{@b Turn him:} he is Arkhan's ears and the easiest to peel off. Show him the odds (DC 18 Persuasion or Intimidation, advantage right after another dragon is hurt, or for sapphires). A turned Vistalancer \"misreports\" to Arkhan, which buys the party one ward segment.",
+        "{@b Feed him lies:} whatever is said where he can hear reaches Arkhan next round.",
+        "Leaves at half hit points (Clean Exit). If the orb moves, he follows it by the most direct route, but at a distance."
       ]
     }),
 
     "mirelle": Object.assign({}, window.CAMPAIGN.creatures.mirelle, {
       tactics: [
-        "Session 12. Vermilius (green) sits nearest the cold line, wings folded, head tilted. He is the kindest voice outside.",
-        "He never attacks first. He talks to Or'Henn, and only to him, in a low and gentle Draconic. He means every word. That is the trap.",
-        "If the ward falls or the party breaks out, he is the last to commit. He is poisoned politeness: breath weapon only at someone who has hit him first.",
+        "Session 12. Vermilius (green) sits nearest the cold line, wings folded, head tilted. She is the kindest voice outside.",
+        "She never attacks first. She talks to Or'Henn, and only to him, in a low and gentle Draconic. To him she tells only the truth. That is the trap.",
+        "{@b Honeyed Voice} is her opening move on anyone who steps out: it walks them toward her, not toward the others. Or'Henn saves at disadvantage.",
+        "{@b Tell:} her green smoke curls when she tells the truth and stops when she lies. Let a player notice it.",
+        "If the ward falls or the party breaks out, she is the last to commit. Poisoned politeness: breath weapon only at someone who has hit her first.",
+        "She stays within 30 ft. of Arkhan whenever he is on the field: she is his vessel, and she knows it.",
         "Retreats below 60 hit points."
       ]
     }),
@@ -74,7 +82,9 @@ window.SESSION = {
       tactics: [
         "Session 12. Flash (red) perches on the Crypt's roof ridge and cannot enter. He is the proudest and the first to snap.",
         "Frightful Presence on anyone who looks up. Fire breath at the doorway if a PC steps out. He cannot hit the inside while the ward holds.",
-        "Retreats below 60 hit points."
+        "{@b Bait him:} call him small, young or a hatchling and he attacks that PC alone, at once, before the others are ready (Prove It). Arkhan then has to spend Command the Line to call him back. That splits the siege.",
+        "{@b His name:} a PC who calls him Praxamor gets one round of his attention. He has never been asked anything.",
+        "Below half hit points he overheats and breathes more often. Retreats below 60 hit points, screaming, and is the first to come back."
       ]
     }),
 
@@ -82,6 +92,8 @@ window.SESSION = {
       tactics: [
         "Session 12. Obatala waits on the north hill with Krull on his back. He does not move unless Krull clicks his tongue.",
         "Cold breath at anything that crosses the line toward Krull. He is slow but he does not forget.",
+        "Rider's Wing: attacks on Krull hit Obatala instead. Where he lands, the ground turns to steaming mud (Rimeground).",
+        "{@b Turn Krull, turn him:} he goes wherever Krull goes (exit D, Krull's double-cross). He cannot be turned on his own.",
         "If the party flees, he is the one who follows, but he follows slowly."
       ]
     }),
@@ -717,10 +729,10 @@ window.SESSION = {
 
         { t: "h", text: "Where Each One Waits" },
         { t: "list", items: [
-          "{@c skarrix|Slarkas} (black). The west ash ridge. Sullen. Wants a fight. Spits acid at the line to see who flinches.",
-          "{@c vhennic|Vistalancer} (blue). Circling high. Reports to Arkhan. Will strafe anyone who leaves the doorway.",
-          "{@c mirelle|Vermilius} (green). Nearest the cold line, perched and still. The kindest voice outside. Speaks to Or'Henn alone.",
-          "{@c praxamor|Flash} (red). The Crypt's roof ridge. Proud. First to snap. Fire breath at the doorway if a PC steps out.",
+          "{@c skarrix|Slarkas} (black). The west ash ridge, crouched low like a skull in a swamp. Sullen. Spits acid at the line to see who flinches. Charges any Hellrider banner. Radiant hurts him.",
+          "{@c vhennic|Vistalancer} (blue). Circling high, steel-capped horn glinting. Reports to Arkhan. Strafes anyone who leaves the doorway. The easiest to turn: show him the odds.",
+          "{@c mirelle|Vermilius} (green). Nearest the cold line, perched and still, frill raised. The kindest voice outside. Speaks to Or'Henn alone. Arkhan's black handprint is on her throat.",
+          "{@c praxamor|Flash} (red). The Crypt's roof ridge, rearing and roaring. Proud. First to snap. Fire breath at the doorway if a PC steps out. Call him small and he breaks ranks.",
           "{@c obatala|Obatala} and {@c krull|Krull}. The north hill. Krull counts minutes. Obatala does not move unless Krull clicks his tongue."
         ] },
 
@@ -739,8 +751,8 @@ window.SESSION = {
         ] },
 
         { t: "h", text: "Vermilius's Kindness" },
-        { t: "p", text: "{@c mirelle|Vermilius} never attacks first. He speaks to Or'Henn, and only to him, in low Draconic. He is the gentlest of the four, and he is Tiamat's hand." },
-        { t: "read", text: "A low voice, in Draconic, very kind. It does not come from the air. It comes from the green dragon's whole body, from a hundred feet away, soft as a hand on a sleeping child.\n\n\"You are tired, little red. I can tell. You have been carrying that for such a long time.\"\n\nHe does not move closer. He does not need to.\n\n\"You need only ask,\" says Vermilius. \"I will take it. I will take all of it.\"" },
+        { t: "p", text: "{@c mirelle|Vermilius} never attacks first. She speaks to Or'Henn, and only to him, in low Draconic. She is the gentlest of the four, and she is Tiamat's hand." },
+        { t: "read", text: "A low voice, in Draconic, very kind. It does not come from the air. It comes from the green dragon's whole body, from a hundred feet away, soft as a hand on a sleeping child.\n\n\"You are tired, little red. I can tell. You have been carrying that for such a long time.\"\n\nShe does not move closer. She does not need to.\n\n\"You need only ask,\" says Vermilius. \"I will take it. I will take all of it.\"" },
         { t: "more", title: "One Small Vision", src: ["Homebrew"], blocks: [
           { t: "p", text: "When Or'Henn first steps near the line, or when the ward reaches 3, give him one Small Vision from {@side arc-tiamat|Arc: Or'Henn and Tiamat}. The Crypt's quiet thins at the door, so the vision can reach him. A good one to choose: {@b d8 result 6,} Arkhan's voice, far off, praying; it stops, as if Arkhan heard him listening. That ties the door to the dragons." },
           { t: "p", text: "{@b Row 2} (a whisper from the orb) opens the orb-cage loophole. Use it only if you want the loophole live this session. It is a DM's choice. Do not hint at it otherwise." }
