@@ -38,7 +38,8 @@
       var found = list.find(function (s) { return s.id === requested; });
       return found || { id: requested, title: requested };
     }
-    return list[list.length - 1] || null;
+    // Default: the entry marked current (the next session to play), else the last one.
+    return list.find(function (s) { return s.current; }) || list[list.length - 1] || null;
   }
 
   function loadScript(src, onDone, onFail) {
