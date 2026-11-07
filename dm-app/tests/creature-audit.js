@@ -1,5 +1,5 @@
 // Audit: every creature a session references must resolve to a stat block with a portrait.
-// Usage: node tests/creature-audit.js 12-the-siege-of-the-crypt 13-the-scab
+// Usage: node tests/creature-audit.js 13-out-of-the-crypt 14-the-scab
 // Exits 1 if a referenced creature is missing; portrait gaps are reported but don't fail.
 const fs = require("fs");
 const path = require("path");

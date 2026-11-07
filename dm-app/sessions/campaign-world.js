@@ -510,7 +510,7 @@ Object.assign(window.CAMPAIGN.side, {
         "The shard hums when the party looks toward the Scab, and the hum has a rhythm like a marching step.",
         "Or'Henn's Tiamat visions give a glimpse of a figure standing over a field of fire, back to him. Tiamat knows her."
       ] },
-      { t: "h", text: "Session 13: a presence" },
+      { t: "h", text: "Session 14: a presence" },
       { t: "list", items: [
         "She speaks through a messenger, a mirror, or a dream. She does not enter the scene.",
         "She asks for a parley, not a surrender. The terms are plain: bring me what is mine, and I will tell you the cost of keeping what is yours.",
@@ -522,8 +522,8 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "h", text: "The Recommended Default: Lulu" },
       { t: "p", text: "This is a recommendation. The DM can take any piece or drop it. Each part has an alternative." },
       { t: "steps", items: [
-        "{@b End of Session 12:} her riders take Lulu from the hidden Lady Vengeance. Nobody is killed; the ship's wards fail for a moment and she is gone.",
-        "{@b Session 13:} the shard takes over Lulu's role in the Citadel as Eventyr's \"Replacing Lulu\" option describes. The party does not need her memories to find the road; the shard is the conduit.",
+        "{@b End of Session 13:} her riders take Lulu from the hidden Lady Vengeance. Nobody is killed; the ship's wards fail for a moment and she is gone.",
+        "{@b Session 14:} the shard takes over Lulu's role in the Citadel as Eventyr's \"Replacing Lulu\" option describes. The party does not need her memories to find the road; the shard is the conduit.",
         "{@b Chapter 5:} Lulu is Zariel's leverage. She is the price, the proof and the choice, never just a prop."
       ] },
       { t: "more", title: "If you don't want it: Lulu's capture", src: ["Homebrew"], blocks: [

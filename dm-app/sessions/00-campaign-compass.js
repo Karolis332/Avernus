@@ -23,20 +23,20 @@ window.SESSION = {
     {
       id: "where-we-are",
       title: "Where We Are",
-      when: "State mid-Session 12: the party is still inside the Crypt",
+      when: "State after Session 12: the Crypt is done, the party is leaving it",
       blocks: [
         { t: "note", title: "The one-line version", text: "In book terms the party is at the {@b end of Chapter 3 and the door of Chapter 4}. They hold the Sword's missing shard and know the road (the Scab). First they have to get out of the Crypt of the Hellriders, with Arkhan and five dragons waiting at the door." },
         { t: "img", src: "art/generated/env-road-to-the-scab.webp", caption: "The road to the Scab: the next step once the siege is broken." },
         { t: "h", text: "The party" },
         { t: "list", items: [
           "{@b Level 13}, three PCs: {@b Drenwal} (Light Cleric), {@b Aurora} (Archfey Warlock, on Moonkite), {@b Or'Henn} (Wildfire Druid). House rule: level 15 at 260,000 XP, then +60,000 per level.",
-          "{@b With them in the Crypt:} {@c veska|Veska} and {@c ser-lucan|Ser Lucan} (both upgraded in the Crypt if they survive it), Moonkite.",
+          "{@b With them:} {@c veska-banner-captain|Veska, Banner-Captain} and {@c ser-lucan-named|Ser Lucan, Named} (their Crypt upgrades), Moonkite.",
           "{@b Hidden in the mists:} the Lady Vengeance, with Colico Jack, Jeremy and {@b Lulu}. Default ruling: Zariel's riders take Lulu at the end of Session 12 (DM to confirm).",
           "{@b They hold:} Olanthius's {@b shard} of the Sword of Zariel, the {@b Orb of Dragonkind} (Uldrak's gift), the {@b Shield of the Hidden Lord} (Gargauth inside), {@b Cinderbloom} (Or'Henn's staff, delivered by Feonor)."
         ] },
         { t: "h", text: "Where they stand" },
         { t: "list", items: [
-          "{@b Inside the Crypt of the Hellriders, Session 12 half played.} Done: the three urn waves and the Scales of Mercy (the shade was {@b Yael}; the party chose the insignia). Still ahead: the Archive, Wings at the Door, the way out. Full recap: Session 12, What Happened Last Time.",
+          "{@b Session 12 is done.} They cleared the urn waves, solved the riddles and the trials, and took the loot. In the Scales of Mercy the shade was {@b Yael}, and the party chose the insignia. {@b Session 13 opens at the foot of the C1 stair,} on the way out, with Arkhan still outside. See Session 13: Out of the Crypt.",
           "{@b Outside the door:} {@c arkhan-the-cruel|Arkhan}, the four tower dragons ({@c skarrix|Slarkas}, {@c vhennic|Vistalancer}, {@c mirelle|Vermilius}, {@c praxamor|Flash}), {@c obatala|Obatala} and {@c krull|Krull}. Nothing evil can enter while the ward holds. The ward clock is at 0 of 6.",
           "{@b Arkhan's goal now:} kill the party, take Or'Henn hostage, and force Drenwal to call a gold dragon with {@spell planar ally}, so the curse can be moved into a dragon and Tiamat wakes. Session 12, Wings at the Door, runs it."
         ] },
@@ -76,9 +76,9 @@ window.SESSION = {
       when: "The next steps, in play order",
       blocks: [
         { t: "steps", items: [
-          "{@b Break the siege} (Session 12). It is a puzzle with seven ways out, not a fight to win. Each dragon now has its own way to be lured, turned or baited (see their panels).",
+          "{@b Break the siege} (Session 13, Out of the Crypt). It is a puzzle with seven ways out, not a fight to win. Each dragon now has its own way to be lured, turned or baited (see their panels).",
           "{@b Leaving the Crypt:} Bhaal's Last Gasps start for Drenwal. Zariel notices the party. By default her riders take Lulu.",
-          "{@b The Scab} (Session 13). The shard pulls toward it. Inside: Trantolox's demons, the shadow demon digging out {@b Crokek'toeck} (Yeenoghu's lost beast), and the gates of the Bleeding Citadel.",
+          "{@b The Scab} (Session 14). The shard pulls toward it. Inside: Trantolox's demons, the shadow demon digging out {@b Crokek'toeck} (Yeenoghu's lost beast), and the gates of the Bleeding Citadel.",
           "{@b The Bleeding Citadel.} The shard opens the doors. Yael's ghost gives the tour. The shard carries the party into the {@b Idyllglen} vision, then flies back onto the blade. Claiming the Sword destroys the Citadel. See the side panel {@b The Sword Reforged} in Session 13.",
           "{@b Chapter 5: the finale.} Three jobs, in any order: deal with Zariel, break the chains, return Elturel. See How the Book Ends below.",
           "{@b Land the personal arcs} before or inside the finale: Drenwal's rebirth or Sigil 3, Or'Henn's curse and Tiamat, and Moonkite's lost patron for Aurora."
@@ -234,7 +234,7 @@ window.SESSION = {
       blocks: [
         { t: "h", text: "Before Session 13" },
         { t: "list", items: [
-          "Is {@b Lulu taken} at the end of Session 12? (Default: yes, by Zariel's riders.)",
+          "Is {@b Lulu taken} at the end of Session 13? (Default: yes, by Zariel's riders.)",
           "{@b Planar Ally for a gold dragon}: does Arkhan's forced version work? And is Conjure Celestial the 2014 or the 2024 version?",
           "{@b Crokek'toeck}: should he get loose in the Scab? If he does, the book's Jaws option opens for breaking the chains.",
           "{@b The day count}: confirm Day 12 and Dumal at 4 of 6."

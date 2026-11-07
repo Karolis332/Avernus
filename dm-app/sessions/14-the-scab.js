@@ -1,16 +1,16 @@
-// Session 13: the Scab and the gates of the Bleeding Citadel. Follows Session 12 (the Crypt siege; Lulu taken by Zariel's riders by default).
+// Session 14: the Scab and the gates of the Bleeding Citadel. Follows Session 13 (out of the Crypt; Lulu taken by Zariel's riders by default).
 // Areas S1-S14 follow the printed adventure (rooms, counts, DCs) as summarised in the Eventyr Chapter 4 cheat sheet (local library), written in our own words.
 // Campaign creatures (vrock, hezrou, narzugon) come from campaign-world.js; this file overrides only their tactics.
 // Scab creatures use the book stat blocks (MM/MTF, per the Eventyr Chapter 4 appendix). Exception: Crokek'toeck keeps stand-in numbers; the official block is behind its 5etools link.
 window.SESSION = {
-  id: "13-the-scab",
+  id: "14-the-scab",
   title: "The Scab",
-  subtitle: "Session 13 · Descent into Avernus",
+  subtitle: "Session 14 · Descent into Avernus",
   summary: "The shard leads the party down the Scab road, past the Blood War's leftovers, to a hill-sized wound in Avernus with a cathedral buried in it. Inside the Scab are gnolls, demons and a caged beast that belongs to Yeenoghu. Every fight has an exit, because the party is three level-13 heroes and the day is long. Zariel is felt in a pool of blood, not met. At the end the doors of the Bleeding Citadel open to the shard in Lulu's place.",
 
   party: [
     { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding (Tier II). Shield of the Hidden Lord. Gasps start outside the Crypt." },
-    { id: "aurora", name: "Aurora", note: "Archfey Warlock 13. Rides Moonkite. Bond 1 (2 points) plus whatever Session 12 gave." },
+    { id: "aurora", name: "Aurora", note: "Archfey Warlock 13. Rides Moonkite. Bond 1 (2 points) plus whatever Sessions 12 and 13 gave." },
     { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. 0 gold scales unless the curse moved. Holds the orb or knows who does." }
   ],
   allies: [
@@ -27,16 +27,16 @@ window.SESSION = {
 
     // ---- campaign creatures: tactics only ----
     "vrock": Object.assign({}, window.CAMPAIGN.creatures.vrock, { tactics: [
-      "Session 13. At the statue they heal from it, so they stay inside its 30 feet and screech from there.",
+      "Session 14. At the statue they heal from it, so they stay inside its 30 feet and screech from there.",
       "Screech first on anyone who stands near the statue. Spores on whoever goes for the statue.",
       "On the road they strike a lone flyer first (Moonkite) and fly off when hurt."
     ] }),
     "hezrou": Object.assign({}, window.CAMPAIGN.creatures.hezrou, { tactics: [
-      "Session 13. In the food-fight pool they are already hurt and angry. They turn on the party only if a PC strikes one or touches the corpse.",
+      "Session 14. In the food-fight pool they are already hurt and angry. They turn on the party only if a PC strikes one or touches the corpse.",
       "On the road the hezrou holds the front while vrocks dive. When it falls the pack loses heart."
     ] }),
     "narzugon": Object.assign({}, window.CAMPAIGN.creatures.narzugon, { tactics: [
-      "Session 13. A herald, not a hunter. It is here to see whether the shard moves and to count who carries it. It reports; it does not fight unless the carrier raises a hand."
+      "Session 14. A herald, not a hunter. It is here to see whether the shard moves and to count who carries it. It reports; it does not fight unless the carrier raises a hand."
     ] }),
 
     // ---- by the book: gnolls (MM blocks; Targ Nar has the book's 100 hit points) ----
@@ -284,7 +284,7 @@ window.SESSION = {
       when: "",
       duration: "10 minutes",
       blocks: [
-        { t: "p", text: "{@b Draft opening.} It assumes Session 12 ends with the party out of the Crypt and Lulu taken. Neither has happened at the table yet, so rewrite the read-aloud below once Session 12 is over. This session is the Scab: a hill-sized wound in Avernus with the Bleeding Citadel buried in it. The road is short, the dungeon is crowded, and the last fight is at the door. It ends as the doors open to the shard." },
+        { t: "p", text: "{@b Draft opening.} It assumes Session 13 ends with the party out of the Crypt and Lulu taken. Rewrite the read-aloud below once Session 13 is over. This session is the Scab: a hill-sized wound in Avernus with the Bleeding Citadel buried in it. The road is short, the dungeon is crowded, and the last fight is at the door. It ends as the doors open to the shard." },
 
         { t: "h", text: "At a Glance" },
         { t: "list", items: [
@@ -316,8 +316,8 @@ window.SESSION = {
           "{@b Or'Henn's scales.} 0 unless the curse moved. If a gold scale was ever taken, tell him how many.",
           "{@b The orb.} Who holds it. {@b Arkhan} is behind them either way: with the vial spent, Or'Henn's curse is his last road to Tiamat.",
           "{@b The shard.} It is in someone's pack. Pick who carries it. It matters at the gates.",
-          "{@b Moonkite's Bond.} Points from Session 12. Keep it on Aurora's sheet.",
-          "{@b Drenwal's Watch pool.} Gasps start outside the Crypt. Did one happen in Session 12? Where does the pool stand?",
+          "{@b Moonkite's Bond.} Points from Sessions 12 and 13. Keep it on Aurora's sheet.",
+          "{@b Drenwal's Watch pool.} Gasps start outside the Crypt. Did one happen in Session 13? Where does the pool stand?",
           "{@b Allies.} Veska and Ser Lucan are with the party. Check whether either is a fiend or undead; the door's light matters (scene 7).",
           "The wider world is in {@side world-state|The World Right Now}. The Citadel window is estimated at Day 17."
         ] },
@@ -592,7 +592,7 @@ window.SESSION = {
       when: "After the fight at S14, or whenever the party stops to breathe",
       duration: "15 minutes",
       blocks: [
-        { t: "p", text: "Session 12 gave signs. This is the second beat: a presence, not a meeting. She does not enter the scene. She watches, and she lets them know it. Full guide in {@side zariel|Playing Zariel}." },
+        { t: "p", text: "Session 13 gave signs. This is the second beat: a presence, not a meeting. She does not enter the scene. She watches, and she lets them know it. Full guide in {@side zariel|Playing Zariel}." },
         { t: "img", src: "art/generated/env-zariels-presence.webp", caption: "Zariel, far down in the blood mirror.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "read", text: "The blood in the nearest pool stops moving. It goes flat and dark as a mirror, and in it, very far down, a woman stands with her back to you, hand resting where a sword would hang.\n\nShe does not turn. The shard in your pack goes quiet, as if it were holding its breath.\n\n\"I am told you carry something of mine,\" says a calm, tired voice, from everywhere at once. \"Bring it to me. Then I will tell you the cost of keeping what is yours.\"" },
         { t: "env", sight: "A pool of blood gone still as glass, a figure at the bottom of it with her back turned.", sound: "Nothing at all. The Scab holds its breath.", smell: "Cold iron, no rot, for the length of the voice.", feel: "The kind of attention you feel when a general reads your name off a list." },
