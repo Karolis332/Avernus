@@ -1,7 +1,7 @@
 // Session 13: the Scab and the gates of the Bleeding Citadel. Follows Session 12 (the Crypt siege; Lulu taken by Zariel's riders by default).
-// Areas S1-S14 are our own run-it blocks built from the Eventyr Chapter 4 guide (local library) and the printed adventure's layout; no text is copied.
+// Areas S1-S14 follow the printed adventure (rooms, counts, DCs) as summarised in the Eventyr Chapter 4 cheat sheet (local library), written in our own words.
 // Campaign creatures (vrock, hezrou, narzugon) come from campaign-world.js; this file overrides only their tactics.
-// New creatures here use openly licensed SRD chassis (gnoll, dretch, nalfeshnee, barbed devil, shadow-demon-like) with our own numbers and names.
+// Scab creatures use the book stat blocks (MM/MTF, per the Eventyr Chapter 4 appendix). Exception: Crokek'toeck keeps stand-in numbers; the official block is behind its 5etools link.
 window.SESSION = {
   id: "13-the-scab",
   title: "The Scab",
@@ -39,122 +39,149 @@ window.SESSION = {
       "Session 13. A herald, not a hunter. It is here to see whether the shard moves and to count who carries it. It reports; it does not fight unless the carrier raises a hand."
     ] }),
 
-    // ---- new: gnolls (SRD gnoll chassis, own numbers) ----
+    // ---- by the book: gnolls (MM blocks; Targ Nar has the book's 100 hit points) ----
     "scab-gnoll": {
-      name: "Scab Gnoll", kind: "gnoll", source: { page: "bestiary", name: "Gnoll", src: "MM" }, role: "Yeenoghu's raider. Eats first, asks never.",
-      homebrew: "SRD gnoll chassis with more hit points and a better bite, so a group of six matters to a level-13 party.",
-      npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 15, acNote: "hide armour, shield",
-      hp: 33, hpFormula: "6d8 + 6", speed: "30 ft.",
-      abilities: { str: 15, dex: 12, con: 12, int: 6, wis: 10, cha: 7 }, saves: "", skills: "",
+      name: "Gnoll", kind: "gnoll", source: { page: "bestiary", name: "Gnoll", src: "MM" }, role: "Yeenoghu's raider. Eats first, asks never.",
+      npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 15, acNote: "hide armor, shield",
+      hp: 22, hpFormula: "5d8", speed: "30 ft.",
+      abilities: { str: 14, dex: 12, con: 11, int: 6, wis: 10, cha: 7 }, saves: "", skills: "",
       vulnerable: "", resist: "", immune: "", condImmune: "", senses: "darkvision 60 ft., passive Perception 10", languages: "Gnoll",
-      cr: "1", xp: 200, pb: 2,
-      traits: [ { name: "Rampage", text: "When the gnoll reduces a creature to 0 hit points with a melee attack on its turn, it can use a bonus action to move up to half its speed and make a bite attack." } ],
+      cr: "1/2", xp: 100, pb: 2,
+      traits: [ { name: "Rampage", text: "When the gnoll reduces a creature to 0 hit points with a melee attack on its turn, it can take a bonus action to move up to half its speed and make a bite attack." } ],
       actions: [
-        { name: "Bite", text: "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) piercing damage." },
-        { name: "Spear", text: "Melee or Ranged Weapon Attack: +4 to hit, reach 5 ft. or range 20/60 ft., one target. Hit: 6 (1d6 + 3) piercing damage, or 7 (1d8 + 3) if used with two hands." }
+        { name: "Bite", text: "Melee Weapon Attack: +4 to hit, reach 5 ft., one creature. Hit: 4 (1d4 + 2) piercing damage." },
+        { name: "Spear", text: "Melee or Ranged Weapon Attack: +4 to hit, reach 5 ft. or range 20/60 ft., one target. Hit: 5 (1d6 + 2) piercing damage, or 6 (1d8 + 2) piercing damage if used with two hands to make a melee attack." },
+        { name: "Longbow", text: "Ranged Weapon Attack: +3 to hit, range 150/600 ft., one target. Hit: 5 (1d8 + 1) piercing damage." }
       ],
       bonus: [], reactions: [],
-      tactics: ["They rush the nearest bleeding creature and ignore the rest. A group shares one initiative and one saving throw.", "They break and run when the pack lord or Targ Nar falls."]
+      tactics: ["They rush the nearest bleeding creature and ignore the rest. A group shares one initiative and one saving throw (house rule).", "They break and run when Targ Nar falls."]
     },
     "gnoll-packlord": {
       name: "Gnoll Pack Lord", kind: "gnoll", source: { page: "bestiary", name: "Gnoll Pack Lord", src: "MM" }, role: "Pack lord. Eats first, and shares last.",
-      homebrew: "Our own block on the SRD gnoll chassis. Eventyr suggests replacing the 15 mundane gnolls of S13 with 5 pack lords; this is that.",
-      npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 15, acNote: "scab-plate",
-      hp: 52, hpFormula: "8d8 + 16", speed: "30 ft.",
-      abilities: { str: 17, dex: 13, con: 14, int: 8, wis: 11, cha: 10 }, saves: "", skills: "",
+      homebrew: "Not in the book's Scab. Used only in Eventyr's optional gnolls at the mouth, and as Eventyr's optional swap for the fifteen gnolls in S13.",
+      npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 15, acNote: "chain shirt",
+      hp: 49, hpFormula: "9d8 + 9", speed: "30 ft.",
+      abilities: { str: 16, dex: 14, con: 13, int: 8, wis: 11, cha: 9 }, saves: "", skills: "",
       vulnerable: "", resist: "", immune: "", condImmune: "", senses: "darkvision 60 ft., passive Perception 10", languages: "Gnoll",
+      cr: "2", xp: 450, pb: 2,
+      traits: [ { name: "Rampage", art: "art/generated/gnoll-packlord-rampage.webp", text: "When the gnoll reduces a creature to 0 hit points with a melee attack on its turn, it can take a bonus action to move up to half its speed and make a bite attack." } ],
+      actions: [
+        { name: "Multiattack", text: "Two attacks, either with its glaive or its longbow, and it uses Incite Rampage if it can." },
+        { name: "Bite", art: "art/generated/gnoll-packlord-bite.webp", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one creature. Hit: 5 (1d4 + 3) piercing damage." },
+        { name: "Glaive", text: "Melee Weapon Attack: +5 to hit, reach 10 ft., one target. Hit: 8 (1d10 + 3) slashing damage." },
+        { name: "Longbow", text: "Ranged Weapon Attack: +4 to hit, range 150/600 ft., one target. Hit: 6 (1d8 + 2) piercing damage." },
+        { name: "Incite Rampage (Recharge 5-6)", art: "art/generated/gnoll-packlord-pack-howl.webp", text: "One creature the gnoll can see within 30 feet of it can use its reaction to make a melee attack, if it can hear the gnoll and has the Rampage trait." }
+      ],
+      bonus: [], reactions: [],
+      tactics: ["Incite Rampage on round 1, then pick the same target as the others."]
+    },
+    "targ-nar": {
+      name: "Targ Nar, Fang of Yeenoghu", kind: "gnoll", source: { page: "bestiary", name: "Gnoll Fang of Yeenoghu", src: "MM" }, role: "Gnoll war-leader. The loudest laugh in the Scab.",
+      homebrew: "By the book: a gnoll Fang of Yeenoghu with 100 hit points (the MM block has 65).",
+      npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 14, acNote: "hide armor",
+      hp: 100, hpFormula: "book: 100 (MM 10d8 + 20)", speed: "30 ft.",
+      abilities: { str: 17, dex: 15, con: 15, int: 10, wis: 11, cha: 13 }, saves: "Con +4, Wis +2, Cha +3", skills: "",
+      vulnerable: "", resist: "", immune: "", condImmune: "", senses: "darkvision 60 ft., passive Perception 10", languages: "Abyssal, Gnoll",
+      cr: "4", xp: 1100, pb: 2,
+      traits: [ { name: "Rampage", text: "When the gnoll reduces a creature to 0 hit points with a melee attack on its turn, it can take a bonus action to move up to half its speed and make a bite attack." } ],
+      actions: [
+        { name: "Multiattack", text: "Three attacks: one with its bite and two with its claws." },
+        { name: "Bite", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) piercing damage, and the target must succeed on a DC 12 Constitution saving throw or take 7 (2d6) poison damage." },
+        { name: "Claw", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) slashing damage." }
+      ],
+      bonus: [], reactions: [],
+      tactics: ["He lets the pack go first, then wades in. He wants the shard, or the carrier's heart.", "He does not surrender. When he falls, the gnolls break."]
+    },
+
+    // ---- by the book: demons and the devil of the Scab (MM / MTF blocks) ----
+    "bulezau": {
+      name: "Bulezau", kind: "bulezau", source: { page: "bestiary", name: "Bulezau", src: "MTF" }, role: "Goat-headed demon. Smells like a grave in summer.",
+      npc: false, sizeType: "Medium fiend (demon), chaotic evil", ac: 14, acNote: "natural armor",
+      hp: 52, hpFormula: "7d8 + 21", speed: "40 ft.",
+      abilities: { str: 15, dex: 14, con: 17, int: 8, wis: 9, cha: 6 }, saves: "", skills: "",
+      vulnerable: "", resist: "cold, fire, lightning", immune: "poison", condImmune: "charmed, frightened, poisoned", senses: "darkvision 120 ft., passive Perception 9", languages: "Abyssal, telepathy 60 ft.",
       cr: "3", xp: 700, pb: 2,
       traits: [
-        { name: "Rampage", art: "art/generated/gnoll-packlord-rampage.webp", text: "As the scab gnoll's Rampage." },
-        { name: "Pack Howl (Recharge 5-6)", art: "art/generated/gnoll-packlord-pack-howl.webp", text: "As a bonus action the pack lord howls. Each gnoll within 30 feet (not itself) adds 1d4 to its next attack roll before the end of the pack lord's next turn." }
+        { name: "Rotting Presence", text: "When any creature that isn't a demon starts its turn within 30 feet of one or more bulezaus, it must succeed on a DC 13 Constitution saving throw or take 1d6 necrotic damage plus 1 necrotic damage for every bulezau within 30 feet of it." },
+        { name: "Standing Leap", text: "Its long jump is up to 20 feet and its high jump is up to 10 feet, with or without a running start." },
+        { name: "Sure-Footed", text: "Advantage on Strength and Dexterity saving throws made against effects that would knock it prone." }
       ],
       actions: [
-        { name: "Multiattack", text: "Two attacks: one bite and one flail." },
-        { name: "Bite", art: "art/generated/gnoll-packlord-bite.webp", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 7 (1d8 + 3) piercing damage." },
-        { name: "Flail", art: "art/generated/gnoll-packlord-flail.webp", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 9 (1d10 + 4) bludgeoning damage." }
+        { name: "Barbed Tail", text: "Melee Weapon Attack: +4 to hit, reach 5 ft., one target. Hit: 8 (1d12 + 2) piercing damage. A creature must succeed on a DC 13 Constitution saving throw against disease or be poisoned until the disease ends. While poisoned this way it has boils, coughs up flies and sheds rotting skin, and repeats the save every 24 hours. On a success the disease ends; on a failure its hit point maximum drops by 4 (1d8). It dies if its hit point maximum reaches 0." }
       ],
       bonus: [], reactions: [],
-      tactics: ["Howl on round 1, then pick the same target as the others. They fight in the widened corridor, not the narrow one."]
-    },
-    "targ-nar": Object.assign({}, {
-      name: "Targ Nar, Fang of Yeenoghu", kind: "gnoll", source: { page: "bestiary", name: "Gnoll Fang of Yeenoghu", src: "MM" }, role: "Gnoll war-leader. The loudest laugh in the Scab.",
-      homebrew: "Our own block on the SRD gnoll chassis, scaled up. The book gives the character; these numbers are ours.",
-      npc: false, sizeType: "Medium humanoid (gnoll), chaotic evil", ac: 16, acNote: "scab-plate",
-      hp: 120, hpFormula: "16d8 + 48", speed: "35 ft.",
-      abilities: { str: 20, dex: 14, con: 17, int: 9, wis: 12, cha: 14 }, saves: "Con +6, Wis +4", skills: "Intimidation +5",
-      vulnerable: "", resist: "", immune: "", condImmune: "frightened", senses: "darkvision 60 ft., passive Perception 11", languages: "Abyssal, Gnoll",
-      cr: "7", xp: 2900, pb: 3,
-      traits: [
-        { name: "Rampage", text: "As the scab gnoll's Rampage." },
-        { name: "Gnawing Frenzy", text: "While bloodied, the first creature Targ Nar hits each turn also takes 7 (2d6) necrotic damage." }
-      ],
-      actions: [
-        { name: "Multiattack", text: "Three attacks: one bite and two flails." },
-        { name: "Bite", text: "Melee Weapon Attack: +8 to hit, reach 5 ft., one target. Hit: 12 (2d6 + 5) piercing damage." },
-        { name: "Flail", text: "Melee Weapon Attack: +8 to hit, reach 5 ft., one target. Hit: 10 (1d10 + 5) bludgeoning damage." }
-      ],
-      bonus: [], reactions: [],
-      tactics: ["He lets the pack lords go first, then wades in. He wants the shard, or the carrier's heart; Yeenoghu gets whichever he is given.", "Below 40 hit points he laughs and keeps fighting. He does not surrender."]
-    }),
-
-    // ---- new: demons of the Scab ----
-    "bulezau": {
-      name: "Rot Demon (bulezau)", kind: "bulezau", source: { page: "bestiary", name: "Bulezau", src: "MTF" }, role: "Goat-headed demon. Smells like a grave in summer.",
-      homebrew: "Our own block. The book names the demon; the numbers and the aura are ours.",
-      npc: false, sizeType: "Medium fiend (demon), chaotic evil", ac: 14, acNote: "natural armor",
-      hp: 45, hpFormula: "7d8 + 14", speed: "30 ft.",
-      abilities: { str: 16, dex: 13, con: 15, int: 5, wis: 11, cha: 6 }, saves: "", skills: "",
-      vulnerable: "", resist: "cold, fire, lightning", immune: "poison", condImmune: "poisoned", senses: "darkvision 60 ft., passive Perception 10", languages: "understands Abyssal, can't speak",
-      cr: "2", xp: 450, pb: 2,
-      traits: [ { name: "Rot Stench", text: "A creature that starts its turn within 10 feet of the demon must succeed on a DC 12 Constitution saving throw or be poisoned until the start of its next turn." } ],
-      actions: [
-        { name: "Multiattack", text: "Two attacks: one bite and one tail." },
-        { name: "Bite", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 8 (1d10 + 3) piercing damage plus 3 (1d6) necrotic damage." },
-        { name: "Barbed Tail", text: "Melee Weapon Attack: +5 to hit, reach 10 ft., one target. Hit: 6 (1d6 + 3) piercing damage." }
-      ],
-      bonus: [], reactions: [],
-      tactics: ["They throw themselves at whatever is in front of them and never retreat; their master's displeasure is worse. They fight to the death."]
+      tactics: ["They throw themselves at whatever is in front of them and never retreat. Rotting Presence stacks: keep them bunched and let it do the work. They fight to the death."]
     },
     "barlgura": {
-      name: "Barlgura (invisible ambusher)", kind: "barlgura", source: { page: "bestiary", name: "Barlgura", src: "MM" }, role: "Ape-shaped demon that hides in the walls.",
-      homebrew: "Our own block. The book names the demon; the numbers and the invisibility are ours.",
+      name: "Barlgura", kind: "barlgura", source: { page: "bestiary", name: "Barlgura", src: "MM" }, role: "Ape-shaped demon that hides in the walls.",
       npc: false, sizeType: "Large fiend (demon), chaotic evil", ac: 15, acNote: "natural armor",
       hp: 68, hpFormula: "8d10 + 24", speed: "40 ft., climb 40 ft.",
       abilities: { str: 18, dex: 15, con: 16, int: 7, wis: 14, cha: 9 }, saves: "Dex +5, Con +6", skills: "Perception +5, Stealth +5",
-      vulnerable: "", resist: "cold, fire, lightning", immune: "poison", condImmune: "poisoned", senses: "darkvision 120 ft., passive Perception 15", languages: "Abyssal",
-      cr: "4", xp: 1100, pb: 2,
+      vulnerable: "", resist: "cold, fire, lightning", immune: "poison", condImmune: "poisoned", senses: "blindsight 30 ft., darkvision 120 ft., passive Perception 15", languages: "Abyssal, telepathy 120 ft.",
+      cr: "5", xp: 1800, pb: 3,
       traits: [
-        { name: "Unseen", text: "As a bonus action the barlgura turns invisible. The invisibility ends when it attacks or takes damage." },
-        { name: "Reckless", text: "At the start of its turn it can give itself advantage on all melee attacks that turn; attacks against it then have advantage until its next turn." }
+        { name: "Innate Spellcasting", text: "Wisdom (spell save DC 13, +5 to hit with spell attacks), no material components. 2/day each: {@spell disguise self}, {@spell invisibility} (self only). 1/day each: {@spell entangle}, {@spell phantasmal force}." },
+        { name: "Reckless", text: "At the start of its turn it can gain advantage on all melee weapon attack rolls that turn, but attack rolls against it have advantage until the start of its next turn." },
+        { name: "Running Leap", text: "Its long jump is up to 40 feet and its high jump is up to 20 feet with a running start." }
       ],
       actions: [
-        { name: "Multiattack", text: "Three attacks: two fists and one bite." },
-        { name: "Fist", text: "Melee Weapon Attack: +6 to hit, reach 10 ft., one target. Hit: 11 (2d6 + 4) bludgeoning damage." },
-        { name: "Bite", text: "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 15 (2d10 + 4) piercing damage." }
+        { name: "Multiattack", text: "Three attacks: one with its bite and two with its fists." },
+        { name: "Bite", text: "Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 11 (2d6 + 4) piercing damage." },
+        { name: "Fist", text: "Melee Weapon Attack: +7 to hit, reach 5 ft., one target. Hit: 9 (1d10 + 4) bludgeoning damage." }
       ],
       bonus: [], reactions: [],
-      tactics: ["They wait until all the party is in the chamber, then drop. They attack casters and the bandaging medic first, because the blood from the ceiling is their work."]
+      tactics: ["Invisible on the walls (their own spell). They drop when the party is in the chamber, go Reckless, and chase anyone who runs. They go for the medic bandaging the ceiling: the wound is their work."]
+    },
+    "chasme": {
+      name: "Chasme", kind: "chasme", source: { page: "bestiary", name: "Chasme", src: "MM" }, role: "Horse-sized fly demon. Torturer.",
+      npc: false, sizeType: "Large fiend (demon), chaotic evil", ac: 15, acNote: "natural armor",
+      hp: 84, hpFormula: "13d10 + 13", speed: "20 ft., fly 60 ft.",
+      abilities: { str: 15, dex: 15, con: 12, int: 11, wis: 14, cha: 10 }, saves: "Dex +5, Wis +5", skills: "Perception +5",
+      vulnerable: "", resist: "cold, fire, lightning", immune: "poison", condImmune: "poisoned", senses: "blindsight 10 ft., darkvision 120 ft., passive Perception 15", languages: "Abyssal, telepathy 120 ft.",
+      cr: "6", xp: 2300, pb: 3,
+      traits: [
+        { name: "Drone", text: "Demons are immune. Any other creature that starts its turn within 30 feet of the chasme must succeed on a DC 12 Constitution saving throw or fall unconscious for 10 minutes. A creature that can't hear the drone succeeds automatically. The effect ends if the creature takes damage or another creature splashes it with holy water. After a success, or when the effect ends, the creature is immune to the drone for 24 hours." },
+        { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." },
+        { name: "Spider Climb", text: "It can climb difficult surfaces, including upside down on ceilings, without an ability check." }
+      ],
+      actions: [
+        { name: "Proboscis", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one creature. Hit: 16 (4d6 + 2) piercing damage plus 24 (7d6) necrotic damage, and the target's hit point maximum drops by the necrotic damage taken. It dies if this reduces its hit point maximum to 0. The reduction lasts until a long rest or a spell like {@spell greater restoration}." }
+      ],
+      bonus: [], reactions: [],
+      tactics: ["The drone first: three of them means three saves a turn. Then the proboscis on whoever fell asleep."]
+    },
+    "swarm-of-insects": {
+      name: "Swarm of Hell-Flies", kind: "swarm-of-insects", source: { page: "bestiary", name: "Swarm of Insects", src: "MM" }, role: "The larder's flies. They leave fiends alone.",
+      npc: false, sizeType: "Medium swarm of Tiny beasts, unaligned", ac: 12, acNote: "natural armor",
+      hp: 22, hpFormula: "5d8", speed: "20 ft., climb 20 ft.",
+      abilities: { str: 3, dex: 13, con: 10, int: 1, wis: 7, cha: 1 }, saves: "", skills: "",
+      vulnerable: "", resist: "bludgeoning, piercing, slashing", immune: "", condImmune: "charmed, frightened, grappled, paralyzed, petrified, prone, restrained, stunned", senses: "blindsight 10 ft., passive Perception 8", languages: "",
+      cr: "1/2", xp: 100, pb: 2,
+      traits: [ { name: "Swarm", text: "It can occupy another creature's space and vice versa, and can move through any opening large enough for a Tiny insect. It can't regain hit points or gain temporary hit points." } ],
+      actions: [ { name: "Bites", text: "Melee Weapon Attack: +3 to hit, reach 0 ft., one target in the swarm's space. Hit: 10 (4d4) piercing damage, or 5 (2d4) piercing damage if the swarm has half of its hit points or fewer." } ],
+      bonus: [], reactions: [],
+      tactics: ["They attack anything crossing the larder that is not a fiend. Run the four as one group."]
     },
     "dretch": {
-      name: "Dretch (digger)", kind: "dretch", role: "Small grey demon. Digs where it is told.",
-      source: { page: "bestiary", name: "Dretch", src: "MM" }, homebrew: "SRD dretch, unchanged. Run them as one group.",
+      name: "Dretch", kind: "dretch", role: "Small grey demon. Digs where it is told.",
+      source: { page: "bestiary", name: "Dretch", src: "MM" },
       npc: false, sizeType: "Small fiend (demon), chaotic evil", ac: 11, acNote: "natural armor",
       hp: 18, hpFormula: "4d6 + 4", speed: "20 ft.",
       abilities: { str: 11, dex: 11, con: 12, int: 5, wis: 8, cha: 3 }, saves: "", skills: "",
-      vulnerable: "", resist: "cold, fire, lightning", immune: "poison", condImmune: "poisoned", senses: "darkvision 60 ft., passive Perception 9", languages: "Abyssal, telepathy 60 ft. (limited)",
+      vulnerable: "", resist: "cold, fire, lightning", immune: "poison", condImmune: "poisoned", senses: "darkvision 60 ft., passive Perception 9", languages: "Abyssal, telepathy 60 ft. (works only with creatures that understand Abyssal)",
       cr: "1/4", xp: 50, pb: 2,
       traits: [], actions: [
-        { name: "Multiattack", text: "Two attacks: one bite and one claws." },
+        { name: "Multiattack", text: "Two attacks: one with its bite and one with its claws." },
         { name: "Bite", text: "Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 3 (1d6) piercing damage." },
         { name: "Claws", text: "Melee Weapon Attack: +2 to hit, reach 5 ft., one target. Hit: 5 (2d4) slashing damage." },
-        { name: "Fetid Cloud (1/Day)", text: "A 10-foot-radius cloud of green gas spreads around corners. Each creature in it must succeed on a DC 11 Constitution saving throw or be poisoned until the start of its next turn." }
+        { name: "Fetid Cloud (1/Day)", text: "A 10-foot radius of disgusting green gas extends out from the dretch, spreading around corners, and lasts 1 minute or until a strong wind disperses it. Any creature that starts its turn there must succeed on a DC 11 Constitution saving throw or be poisoned until the start of its next turn. While poisoned this way, it can take either an action or a bonus action on its turn, not both, and can't take reactions." }
       ],
       bonus: [], reactions: [],
-      tactics: ["They keep digging until hit. They are afraid of Vatilan and more afraid of Trantolox. A group shares one initiative."]
+      tactics: ["They keep digging until hit. They fear Vatilan, and Trantolox more. A group shares one initiative (house rule)."]
     },
     "vatilan": {
       name: "Vatilan, the Digging Overseer", kind: "shadow-demon", source: { page: "bestiary", name: "Shadow Demon", src: "MM" }, role: "Shadow demon. Screams in Abyssal at the diggers.",
-      homebrew: "Our own block: a shadow demon in all but name, numbers ours.",
+      homebrew: "By the book: Vatilan is a shadow demon (MM block).",
       npc: false, sizeType: "Medium fiend (demon), chaotic evil", ac: 13, acNote: "",
       hp: 66, hpFormula: "12d8 + 12", speed: "30 ft., fly 30 ft.",
       abilities: { str: 1, dex: 17, con: 12, int: 14, wis: 13, cha: 14 }, saves: "Dex +5, Cha +4", skills: "Stealth +7",
@@ -162,35 +189,43 @@ window.SESSION = {
       cr: "4", xp: 1100, pb: 2,
       traits: [
         { name: "Incorporeal Movement", text: "It can move through other creatures and objects as if they were difficult terrain. It takes 5 (1d10) force damage if it ends its turn inside an object." },
-        { name: "Light Sensitivity", text: "While in bright light, it has disadvantage on attack rolls and on Perception checks that rely on sight." }
+        { name: "Light Sensitivity", text: "While in bright light, it has disadvantage on attack rolls and on Wisdom (Perception) checks that rely on sight." },
+        { name: "Shadow Sight", text: "It can see in magical darkness." },
+        { name: "Shadow Stealth", text: "While in dim light or darkness, it can take the Hide action as a bonus action." }
       ],
-      actions: [ { name: "Claws", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) psychic damage, or 17 (4d6 + 3) if the demon had advantage on the attack roll." } ],
+      actions: [ { name: "Claw", text: "Melee Weapon Attack: +5 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) psychic damage, or, if the demon had advantage on the attack roll, 17 (4d6 + 3) psychic damage." } ],
       bonus: [], reactions: [],
-      tactics: ["If attacked, it flies for S14 through the walls to warn Trantolox. Cutting it off is the whole point of the fight.", "Fights from the dark and flees from the light."]
+      tactics: ["If attacked, it flies for S14 through the walls to warn Trantolox (book). Cutting it off is the whole point of the fight.", "Hides in the dark as a bonus action and flees from light."]
     },
     "alazub": {
       name: "Alazub, the Chained Spy", kind: "barbed-devil", role: "Barbed devil in chains. Zariel's spy among the demons.",
       source: { page: "bestiary", name: "Barbed Devil", src: "MM" },
-      homebrew: "SRD barbed devil, reduced to 25 hit points by torture. He fights only to escape.",
+      homebrew: "By the book: a barbed devil tortured down to 25 hit points. He fights only to escape.",
       npc: false, sizeType: "Medium fiend (devil), lawful evil", ac: 15, acNote: "natural armor",
-      hp: 25, hpFormula: "bound; 25 hp left of 13d8+39", speed: "30 ft.",
-      abilities: { str: 16, dex: 17, con: 18, int: 12, wis: 14, cha: 14 }, saves: "Str +6, Con +7, Wis +5, Cha +5", skills: "Deception +5, Insight +5",
-      vulnerable: "", resist: "cold; bludgeoning, piercing and slashing from nonmagical attacks that aren't silvered", immune: "fire, poison", condImmune: "poisoned", senses: "darkvision 120 ft., passive Perception 12", languages: "Infernal, telepathy 120 ft.",
+      hp: 25, hpFormula: "25 left of 110 (13d8 + 52)", speed: "30 ft.",
+      abilities: { str: 16, dex: 17, con: 18, int: 12, wis: 14, cha: 14 }, saves: "Str +6, Con +7, Wis +5, Cha +5", skills: "Deception +5, Insight +5, Perception +8",
+      vulnerable: "", resist: "cold; bludgeoning, piercing and slashing from nonmagical attacks that aren't silvered", immune: "fire, poison", condImmune: "poisoned", senses: "darkvision 120 ft., passive Perception 18", languages: "Infernal, telepathy 120 ft.",
       cr: "5", xp: 1800, pb: 3,
       traits: [
         { name: "Barbed Hide", text: "At the start of each of its turns, it deals 5 (1d10) piercing damage to any creature grappling it." },
+        { name: "Devil's Sight", text: "Magical darkness doesn't impede its darkvision." },
         { name: "Magic Resistance", text: "Advantage on saving throws against spells and other magical effects." }
       ],
-      actions: [ { name: "Claw", text: "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) piercing damage." }, { name: "Hurl Flame", text: "Ranged Spell Attack: +5 to hit, range 150 ft., one target. Hit: 10 (3d6) fire damage." } ],
+      actions: [
+        { name: "Multiattack", text: "Three melee attacks: one with its tail and two with its claws. Alternatively, it can use Hurl Flame twice." },
+        { name: "Claw", text: "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) piercing damage." },
+        { name: "Tail", text: "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) piercing damage." },
+        { name: "Hurl Flame", text: "Ranged Spell Attack: +5 to hit, range 150 ft., one target. Hit: 10 (3d6) fire damage. A flammable object hit by this attack ignites if it isn't being worn or carried." }
+      ],
       bonus: [], reactions: [],
-      tactics: ["He talks. He trades what he knows for his freedom and reports the party to Zariel the moment he can. He never lies outright."]
+      tactics: ["He talks. He trades what he knows for his freedom, and if the Sword is mentioned he tries to report to Zariel (book). He never lies outright."]
     },
 
     // ---- new: Trantolox and Crokek'toeck ----
     "trantolox": {
       name: "Trantolox, the Deserter Lord", kind: "nalfeshnee", role: "Demon lord of the diggers. Will bargain.",
       source: { page: "bestiary", name: "Nalfeshnee", src: "MM" },
-      homebrew: "SRD nalfeshnee chassis (the book makes Trantolox a nalfeshnee, CR 13). The deserter flavour is ours: he walked out of a Blood War warband to find Crokek'toeck and sell the Citadel to the highest bidder. Flees below 60 hit points.",
+      homebrew: "By the book: an MM nalfeshnee (CR 13) who flees below 60 hit points. Our only addition is his motive: a Blood War deserter who means to sell what is inside the Citadel to the highest bidder.",
       npc: false, sizeType: "Large fiend (demon), chaotic evil", ac: 18, acNote: "natural armor",
       hp: 184, hpFormula: "16d10 + 96", speed: "20 ft., fly 30 ft.",
       abilities: { str: 21, dex: 10, con: 22, int: 19, wis: 12, cha: 15 }, saves: "Con +11, Int +9, Wis +6, Cha +7", skills: "",
@@ -213,7 +248,7 @@ window.SESSION = {
     },
     "crokek-toeck": {
       name: "Crokek'toeck, Yeenoghu's Beast", kind: "gnoll-hound", source: { page: "bestiary", name: "Crokek'toeck", src: "BGDIA" }, role: "Huge fiend. A lost pet that is also a siege engine.",
-      homebrew: "Our own Huge-fiend block, roughly CR 13. The book names and imprisons it; the form and numbers are ours. It is not built to be killed in one fight: the party's win is getting past it. It leaves after three rounds to find Yeenoghu.",
+      homebrew: "STAND-IN NUMBERS (ours, about CR 13). The book has its own stat block for Crokek'toeck: open the source link above (5etools, BGDIA) to run it by the book. Either way, by the book it leaves after three rounds to find Yeenoghu.",
       npc: false, sizeType: "Huge fiend (demon), chaotic evil", ac: 17, acNote: "bone plates",
       hp: 230, hpFormula: "20d12 + 100", speed: "50 ft., burrow 20 ft. (scab only)",
       abilities: { str: 26, dex: 14, con: 21, int: 6, wis: 12, cha: 8 }, saves: "Con +10, Wis +6", skills: "Perception +6",
@@ -291,7 +326,7 @@ window.SESSION = {
           { t: "p", text: "Eventyr reads the chapter as one adventuring day, with an artificial long rest halfway: the Citadel itself restores the party. So the Scab is the party's last fight before a full restore. Three level-13 PCs cannot take every room." },
           { t: "list", items: [
             "{@b Do these:} S11 the statue, S13 the gnoll corridor and S14 the door. Those are the three real fights.",
-            "{@b Cut or shorten these:} S3, S4, S5 and S9. Each has a stealth or talk way past it.",
+            "{@b Skippable if time is short:} S3, S4, S5 and S9. Every room is run with the book's numbers; each of these has a stealth or talk way past it.",
             "{@b Run, do not fight:} S10, Crokek'toeck. The win is getting past it.",
             "{@b Talk, not fight:} S6 and S7. They are information and a hazard.",
             "{@b Every fight has an exit.} Fleeing, a bargain, the environment, or a way to stop it with a check."
@@ -373,7 +408,7 @@ window.SESSION = {
         { t: "map", id: "the-scab-level-1-30x30", note: "Level 1: the entrance, the first pools and the Window (S1 to S5, by the pool rooms). Check the key on the map." },
 
         { t: "h", text: "The Gnolls Outside" },
-        { t: "encounter", id: "mouth-gnolls", title: "Gnolls at the mouth", combatants: [ { c: "scab-gnoll", n: 6 }, { c: "gnoll-packlord", n: 1 } ], notes: "Eventyr's addition: gnolls outside, so the party earns the mouth. Six gnolls and a pack lord is a medium fight; cut to four gnolls if resources are low. Exits: sneak up the back (DC 14 Stealth as a group), bait them with a bleeding body, or climb past while Moonkite draws them off. They break when the pack lord falls." },
+        { t: "encounter", id: "mouth-gnolls", title: "Gnolls at the mouth (optional, not in the book)", combatants: [ { c: "scab-gnoll", n: 6 }, { c: "gnoll-packlord", n: 1 } ], notes: "Eventyr's addition: gnolls outside, so the party earns the mouth. Six gnolls and a pack lord is a medium fight; cut to four gnolls if resources are low. Exits: sneak up the back (DC 14 Stealth as a group), bait them with a bleeding body, or climb past while Moonkite draws them off. They break when the pack lord falls." },
 
         { t: "h", text: "The Climb and the Dark" },
         { t: "checks", items: [
@@ -418,12 +453,12 @@ window.SESSION = {
         { t: "h", text: "Area S3 · The Drowned Hag" },
         { t: "read", text: "Five goat-headed demons crouch round a pool of blood, watching a robed body float in it." },
         { t: "p", text: "A hag called Yiggleblight was helping Trantolox find Crokek'toeck, and he suspected treachery and had her drowned. {@b Treasure:} a 5,000 gp diamond and a flask of River Styx water in her robes; optionally a pair of dimensional shackles." },
-        { t: "encounter", id: "s3-rot-demons", title: "S3 (optional): the rot demons", combatants: [ { c: "bulezau", n: 4 } ], notes: "Optional fight. Cut from five to four. Exits: the demons are intent on the body, so DC 13 Stealth as a group slips past; or Intimidation DC 15 shows them a bigger thing than themselves. A group of four shares one initiative and one save." },
+        { t: "encounter", id: "s3-rot-demons", title: "S3 (optional): the rot demons", combatants: [ { c: "bulezau", n: 5 } ], notes: "By the book: five bulezaus. Their Rotting Presence stacks (1d6 necrotic plus 1 per bulezau within 30 feet, DC 13 Constitution). Exits: the demons are intent on the body, so DC 13 Stealth as a group slips past; or Intimidation DC 15 shows them a bigger thing than themselves. The five share one initiative and one save (house rule)." },
 
         { t: "h", text: "Area S4 · The Bloody Downpour" },
         { t: "read", text: "Blood streams from a gaping wound in the ceiling into a pool that covers the floor, and something on the walls is watching you cross it." },
         { t: "p", text: "A 40-foot chamber. Barlguras have been invisible on the walls since they tore the wound; they attack when anyone enters and chase. Bandaging the ceiling wound takes a healer's kit, a DC 15 Medicine check and 5 minutes, and exposes the medic to the blood; cure wounds closes it too." },
-        { t: "encounter", id: "s4-barlguras", title: "S4 (optional): the ambush on the walls", combatants: [ { c: "barlgura", n: 2 } ], notes: "Optional. Cut from three to two. Passive Perception 16 or an active DC 16 spots the ripple of their movement on the wall. They are invisible until they attack. Exit: leave the pool by the way you came; they will not leave the walls." },
+        { t: "encounter", id: "s4-barlguras", title: "S4 (optional): the ambush on the walls", combatants: [ { c: "barlgura", n: 3 } ], notes: "By the book: three barlguras, invisible on the walls (their own spell). They attack when the party enters the chamber and pursue anyone who leaves. Invisibility ends when they attack. Exit: there is no clean one; fight or outrun them." },
 
         { t: "h", text: "Area S5 · The Food Fight" },
         { t: "read", text: "Two toad-bodied demons wade waist-deep in blood, bellowing as they claw at each other over a half-eaten bearded devil." },
@@ -453,7 +488,8 @@ window.SESSION = {
         { t: "h", text: "Area S6 · The Torture Chamber" },
         { t: "read", text: "Two chains hang from the ceiling, ending in hyena skulls that bite into a screaming devil. Three horse-sized flies jab it with their mouthparts." },
         { t: "img", src: "art/generated/env-scab-level-2.webp", caption: "Level 2: chains, flies and bones.", credit: "Generated art (Codex, gpt-6-astra)." },
-        { t: "p", text: "{@c alazub|Alazub} (a barbed devil, down to 25 hit points) came to spy on Trantolox for Zariel. Three fly-demons (use giant wasp stats, or skip them) are torturing him for what he knows. Trantolox wants him to talk." },
+        { t: "p", text: "{@c alazub|Alazub} (a barbed devil, down to 25 hit points) came to spy on Trantolox for Zariel. Three {@c chasme|chasmes} are torturing him for what he knows. Trantolox wants him to talk." },
+        { t: "encounter", id: "s6-chasmes", title: "S6: the torturers", combatants: [ { c: "chasme", n: 3 } ], notes: "By the book: three chasmes. Their drone puts non-demons to sleep (DC 12 Constitution each turn within 30 feet; damage or holy water wakes a sleeper). Three of them is dangerous: wake each other up. The three share one initiative (house rule)." },
         { t: "checks", items: [
           { skill: "Medicine", dc: 15, who: "anyone", text: "Remove a chain without hurting him. Otherwise a chain comes off as an action and deals 2d6 piercing damage to the devil. (Chains: AC 19, 15 hp, immune to cold, fire, poison and psychic.)" },
           { skill: "Deception vs Insight", dc: 13, who: "anyone", text: "Contested (DC 13 if you want a flat number). Convince him Zariel sent you. If it works he is relaxed; if not he wants a deal." },
@@ -463,7 +499,8 @@ window.SESSION = {
 
         { t: "h", text: "Area S7 · Trantolox's Larder" },
         { t: "read", text: "A roar of hellish flies over a floor of mutilated devils and gnawed bones; a hole in the middle shows another dark cavern below." },
-        { t: "p", text: "A 20-foot cavern with the dead of three bearded devils, two barbed devils and a bone devil. Four swarms of insects attack anything that is not a fiend. {@b Cost:} the swarms. Fiends and anyone passing as one (Drenwal with the right mask?) are left alone. SRD swarm of insects; run the four as one group." },
+        { t: "p", text: "A 20-foot cavern with the dead of three bearded devils, two barbed devils and a bone devil. Four swarms of insects attack anything that is not a fiend. {@b Cost:} the swarms. Fiends and anyone passing as one (Drenwal with the right mask?) are left alone. Run the four as one group." },
+        { t: "encounter", id: "s7-swarms", title: "S7: the larder flies", combatants: [ { c: "swarm-of-insects", n: 4 } ], notes: "By the book: four swarms of insects. They attack non-fiends who cross the room. One group, one initiative (house rule)." },
 
         { t: "h", text: "Area S8 · The Hag's Lair" },
         { t: "read", text: "A tunnel two feet high leads to a cyst of bones and weeping sores, its niches full of stoppered flasks, black orbs and skulls." },
@@ -512,7 +549,7 @@ window.SESSION = {
         { t: "read", text: "A nine-foot idol of hulking scab-flesh stands in the middle of the room, and the gnolls and vulture-demons are dancing round it." },
         { t: "img", src: "art/generated/env-scab-level-3.webp", caption: "Level 3: the idol of scab-flesh.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "p", text: "Six gnolls and three vrocks cackle round the statue. It is carved of hard scab: AC 17, 60 hit points, immune to poison and psychic. Demons and gnolls within 30 feet gain 10 hit points at the start of their turn. When destroyed it explodes: every creature within 30 feet takes 4d10 piercing damage (DC 15 Dexterity halves)." },
-        { t: "encounter", id: "s11-statue", title: "S11 (real fight): the statue", combatants: [ { c: "vrock", n: 2 }, { c: "scab-gnoll", n: 6 } ], notes: "Real fight. Cut from three vrocks to two. The statue heals them, so the party should destroy it first. The vrocks form one group, the gnolls another. Exits: break the statue from range (the explosion also hits them), or lead them out of its 30 feet." },
+        { t: "encounter", id: "s11-statue", title: "S11 (real fight): the statue", combatants: [ { c: "vrock", n: 3 }, { c: "scab-gnoll", n: 6 } ], notes: "By the book: three vrocks and six gnolls. The statue heals them, so the party should destroy it first. The vrocks form one group, the gnolls another. Exits: break the statue from range (the explosion also hits them), or lead them out of its 30 feet." },
         { t: "more", title: "Who tells the party about the statue", src: ["Eventyr"], blocks: [
           { t: "p", text: "Lulu would explain the statue's power. Eventyr offers two replacements if she is not here: Gargauth in the Shield of the Hidden Lord can fill in (and enjoys it), or you simply describe dark energy seeping from the statue to the fiends and closing their wounds." }
         ] },
@@ -524,7 +561,7 @@ window.SESSION = {
         { t: "h", text: "Area S13 · The Cackling Gnolls" },
         { t: "read", text: "A long corridor, and far down it, laughter and the click of claws on the scab." },
         { t: "p", text: "Targ Nar and his pack wait for anything that comes. If the party has no light and each makes a DC 10 Stealth check, the gnolls are surprised. The corridor is widened on the map, so the pack can come at them from more than one side." },
-        { t: "encounter", id: "s13-gnolls", title: "S13 (real fight): the corridor", combatants: [ { c: "targ-nar", n: 1 }, { c: "gnoll-packlord", n: 4 } ], notes: "Real fight. Eventyr suggests replacing the fifteen mundane gnolls with pack lords; four pack lords and Targ Nar is a hard fight for three level-13 PCs with allies. The four pack lords are one group (one initiative, one collective save); Targ Nar is on his own. Exits: break the pack lords and the rest flee; fall back down the narrow tunnel so the pack comes at them one at a time." },
+        { t: "encounter", id: "s13-gnolls", title: "S13 (real fight): the corridor", combatants: [ { c: "targ-nar", n: 1 }, { c: "scab-gnoll", n: 15 } ], notes: "By the book: Targ Nar (a Fang of Yeenoghu with 100 hit points) and fifteen gnolls. House rule: the fifteen are one group (one initiative, one collective save); Targ Nar is on his own. Eventyr's option if fifteen weak gnolls feel like filler: swap them for five gnoll pack lords. Exits: drop Targ Nar and the rest flee; fall back down the narrow tunnel so the pack comes at them one at a time." },
 
         { t: "h", text: "Area S14 · The Entrance to the Citadel" },
         { t: "read", text: "A wide cavern, and in its far wall two huge brass doors with a blindfolded angel carved on them. Demons are throwing themselves at the doors, and a fat, tusked thing with tiny wings is shouting at them." },

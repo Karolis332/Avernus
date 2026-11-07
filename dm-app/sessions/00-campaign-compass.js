@@ -37,7 +37,7 @@ window.SESSION = {
         { t: "h", text: "Where they stand" },
         { t: "list", items: [
           "{@b Inside the Crypt of the Hellriders.} The urn waves and the trials of Session 12 are under way or done. Live ruling: the Scales shade was {@b Yael}.",
-          "{@b Outside the door:} {@c arkhan|Arkhan}, the four tower dragons ({@c skarrix|Slarkas}, {@c vhennic|Vistalancer}, {@c mirelle|Vermilius}, {@c praxamor|Flash}), {@c obatala|Obatala} and {@c krull|Krull}. Nothing evil can enter while the ward holds. The ward clock is at 0 of 6.",
+          "{@b Outside the door:} {@c arkhan-the-cruel|Arkhan}, the four tower dragons ({@c skarrix|Slarkas}, {@c vhennic|Vistalancer}, {@c mirelle|Vermilius}, {@c praxamor|Flash}), {@c obatala|Obatala} and {@c krull|Krull}. Nothing evil can enter while the ward holds. The ward clock is at 0 of 6.",
           "{@b Arkhan's goal now:} kill the party, take Or'Henn hostage, and force Drenwal to call a gold dragon with {@spell planar ally}, so the curse can be moved into a dragon and Tiamat wakes. Session 12, Wings at the Door, runs it."
         ] },
         { t: "h", text: "The Fallen Three (the book's road to the Citadel)" },
@@ -53,6 +53,16 @@ window.SESSION = {
           "{@b Or'Henn's curse:} a clock, not a status. Every vision and every kind offer is pressure to ask a dragon for help. See {@side arc-tiamat|Arc: Or'Henn and Tiamat}.",
           "{@b Dumal:} alive, wounded, hunting Senna. His clock is estimated at 4 of 6.",
           "{@b Day count:} about Day 12 since the end of Session 5 (an estimate). See {@side world-state|The World Right Now}."
+        ] },
+        { t: "more", title: "Or'Henn's curse: how it works, in one place", src: ["Homebrew"], blocks: [
+          { t: "list", items: [
+            "{@b What it does.} It pushes Or'Henn to ask a dragon for help, aloud and meaning it. When he does, the curse jumps into that dragon and the dragon becomes the door. When that dragon dies, whoever kills it, Tiamat wakes.",
+            "{@b Is an adult dragon enough?} Enough to wake her, not to free her. Through an adult vessel she comes as {@c tiamat-risen|Tiamat Risen}: half-born in the dragon's body, one head a round over five rounds, 250 to 550 hit points. Her true form (the CR 30 goddess) stays in her prison.",
+            "{@b The pressure.} {@side tiamats-pull|Tiamat's Pull} (Wisdom save, DC 10 + Pull) and the gold scales from her gifts. At 5 scales he cannot refuse the next chromatic dragon that offers help. See {@side arc-tiamat|Arc: Or'Henn and Tiamat}.",
+            "{@b Arkhan's two ways.} At the Crypt: hostage Or'Henn, {@spell geas} on Drenwal to call a gold dragon, Fane-Eater at Or'Henn's throat until he asks it for help. In the endgame: he rips the curse out with the Hand of Vecna (DC 22 Charisma), binds it into Vermilius, who wants it, and kills her. See Arkhan's Gambit in the campaign endgame.",
+            "{@b Ways out.} Her blood (spent on Uldrak), her word (Or'Henn kneels as her champion), {@spell wish}, or the dragon in the orb (DM's choice)."
+          ] },
+          { t: "p", text: "{@b Open, needs a ruling:} (1) Session 12's exit X says Tiamat wakes in her true form; the endgame says half-born. Pick one. (2) If Vermilius dies before the sacrifice, Arkhan takes \"the nearest chromatic dragon\", but nothing makes an unwilling dragon hold still. Flash would volunteer; Slarkas and Vistalancer would not." }
         ] }
       ]
     },
@@ -144,8 +154,8 @@ window.SESSION = {
       when: "What the Eventyr Games guides change or add",
       blocks: [
         { t: "read", text: "\"Of all the chapters in Baldur's Gate: Descent into Avernus, this chapter is by far the most open-ended chapter. ... This allows you to craft the ending that best fits your campaign.\"\n\nEventyr Games, Chapter 5, p. 1" },
-        { t: "h", text: "1. Decide your preferred ending first" },
-        { t: "p", text: "Eventyr's core advice: the information you give the party decides which ending they reach. Do you want them facing Zariel alone or with allies? Is redemption plan A and a fight plan B, or the other way round? Choose, then feed them the clues for that road through NPCs (Lulu, Gargauth, Olanthius) and through what they can see from the steppe." },
+        { t: "h", text: "1. The information decides the road" },
+        { t: "p", text: "Eventyr's core advice: the information the party has decides which ending they can reach. Eventyr frames it as the DM picking a preferred ending; at this table the party chooses, so the job is to put the clues for every road in reach, through NPCs (Lulu, Gargauth, Olanthius) and through what they can see from the steppe, and let them pick." },
         { t: "h", text: "2. Redemption as a group check, not one roll" },
         { t: "read", text: "\"You can have the tempted – but unsure – Zariel ask each of the party members to make an argument for why she should take the sword and rejoin the celestial host, from their unique perspective.\"\n\nEventyr Games, Chapter 5, p. 4" },
         { t: "list", items: [
@@ -157,7 +167,7 @@ window.SESSION = {
         { t: "read", text: "\"... the bargain.. reversed.. back to.. how he found me..\"\n\nZariel, as a solar again. Gory wounds open on her body and she falls to her knees. Eventyr Games, Chapter 5, p. 4" },
         { t: "p", text: "She asks the party to protect her while she heals. That gives the finale a fight even when redemption works. Eventyr's candidates for the new foe: Kostchtchie coming for his hammer, Bel striking while she is weak, or Tiamat:" },
         { t: "read", text: "\"If Arkhan the Cruel or Tiamat have featured heavily in the campaign, you can have the dragon goddess make her move immediately following Zariel's redemption.\"\n\nEventyr Games, Chapter 5, p. 4" },
-        { t: "note", title: "Why this matters at our table", text: "Arkhan and Tiamat have featured more heavily here than anywhere in the book. Eventyr's option is already half-built: {@side tiamats-dominion|Tiamat's Dominion}, Tiamat Risen and the coalition in the campaign endgame file. Zariel's redemption followed by Tiamat's rising is the strongest finale this campaign has." },
+        { t: "note", title: "Why this matters at our table", text: "Arkhan and Tiamat have featured more heavily here than anywhere in the book. Eventyr's option is already half-built: {@side tiamats-dominion|Tiamat's Dominion}, Tiamat Risen and the coalition in the campaign endgame file. If the party chooses redemption, Tiamat's rising is the natural follow-up fight." },
         { t: "h", text: "4. Zariel's lines when a fight turns" },
         { t: "more", title: "If Zariel is winning", src: ["Eventyr"], blocks: [
           { t: "read", text: "\"You have fought well, but to continue now would be wasteful. Put down your arms and let us talk. There might be ways you can serve me better than by dying.\"" },
@@ -231,8 +241,8 @@ window.SESSION = {
         ] },
         { t: "h", text: "Before the finale" },
         { t: "list", items: [
-          "{@b The preferred ending.} Recommendation: redemption as plan A, run as Eventyr's group check, then Tiamat rises as the last foe, fought by the coalition. Plan B: Zariel's \"you fought well\" bargain.",
-          "{@b Who breaks the chains.} Strongest for our story: Zariel's hand after redemption, or Kreeg's contract through Or'Henn.",
+          "{@b The ending is the party's choice.} The DM's job is to make every road visible and prepped: redeem Zariel (Eventyr's group check), bargain with her, or fight her. If they redeem her and Tiamat is loose, Tiamat's rising is the follow-up fight.",
+          "{@b Every way to break the chains should be findable:} Zariel's hand, Kreeg's contract (through Or'Henn), Crokek'toeck's jaws, or Tiamat (a trap here). Make sure each has at least one clue in play.",
           "{@b Elturel's clock:} how many days are left, and can the party see the city from the steppe? Eventyr: a visible, sinking city pushes them to hurry; a known deadline lets them gather allies.",
           "{@b Drenwal's road:} is the Three Sigils ritual genuine, a cult lie, or twistable? Is \"the last Bhaalspawn\" Senna, Dumal or himself?",
           "{@b Plane Shift and Resurrection} at level 13: why the party can't just leave, and whether Asimov's soul can come back."
