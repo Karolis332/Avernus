@@ -2,6 +2,53 @@
 window.CAMPAIGN = window.CAMPAIGN || { creatures: {}, side: {} };
 
 Object.assign(window.CAMPAIGN.creatures, {
+  "colico-jack": {
+    name: "Colico Jack",
+    kind: "colico-jack",
+    role: "Pilot of the Lady Vengeance. Flies a hellship like other men ride a horse",
+    source: { page: "bestiary", name: "Scout", src: "MM" },
+    homebrew: "DM ruling 2026-11-08: Colico Jack is the equivalent of a level 9 ranger (Horizon Walker). Built as a PC-style NPC: 76 HP, AC 16, Extra Attack, Planar Warrior, Ethereal Step, ranger spells to 3rd level (haste, misty step and protection from evil and good from his subclass).",
+    npc: true,
+    portrait: false,
+    sizeType: "Medium humanoid (human), chaotic good",
+    ac: 16, acNote: "studded leather",
+    hp: 76, hpFormula: "9d10 + 18",
+    speed: "30 ft.",
+    abilities: { str: 12, dex: 18, con: 14, int: 12, wis: 16, cha: 13 },
+    saves: "Str +5, Dex +8",
+    skills: "Acrobatics +8, Perception +7, Stealth +8, Survival +7",
+    resist: "", immune: "", condImmune: "",
+    senses: "passive Perception 17",
+    languages: "Common, Infernal",
+    cr: "6", xp: 2300, pb: 4,
+    traits: [
+      { name: "Hold Her Steady", text: "While he is at the helm, the Lady Vengeance has advantage on Dexterity saving throws, and he adds his Survival bonus (+7) to the chase helm roll." },
+      { name: "Planar Warrior (bonus action)", text: "He picks one creature within 30 ft. The next time he hits it this turn, all the damage becomes force damage and deals an extra 1d8 force." },
+      { name: "Ethereal Step (1/short rest)", text: "As a bonus action he steps into the Ethereal Plane until the end of his turn (as {@spell etherealness}): he can walk through boarders and chains, and nothing on the Material Plane can touch him meanwhile." },
+      { name: "Detect Portal / Land's Stride", text: "He senses the nearest planar portal within 1 mile once per short rest, and moving through difficult terrain on the ship's deck costs him no extra movement." },
+      { name: "Spellcasting", text: "Wisdom (spell save DC 15, +7 to hit). Slots: 1st (4), 2nd (3), 3rd (2). Known: {@spell hunter's mark}, {@spell absorb elements}, {@spell cure wounds}, {@spell protection from evil and good}, {@spell pass without trace}, {@spell misty step}, {@spell lesser restoration}, {@spell haste}, {@spell lightning arrow}." }
+    ],
+    actions: [
+      { name: "Extra Attack", text: "He attacks twice when he takes the Attack action." },
+      { name: "Cutlass", text: "Melee Weapon Attack: +8 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) slashing damage (+1d6 with hunter's mark, +1d8 force with Planar Warrior)." },
+      { name: "Hellship Pistol", text: "Ranged Weapon Attack: +8 to hit, range 30/90 ft., one target. Hit: 9 (1d10 + 4) piercing damage (+1d6 with hunter's mark, +1d8 force with Planar Warrior). Reload as part of the attack." },
+      { name: "Drive (at the helm)", text: "He steers the ship: she moves on his turn. With a bonus action he can make her Dash." }
+    ],
+    reactions: [
+      { name: "Evasive Bank (with the Gyro Helm)", text: "If the Gyro Helm is fitted: when an attack roll is made against the ship, it has disadvantage; or when she makes a Dexterity saving throw, she has advantage. Three times per fight." }
+    ],
+    tactics: [
+      "At the helm first, always. If boarders take the wheel he goes Ethereal (Ethereal Step), walks through them and back to it.",
+      "Casts haste on the ship's best fighter on deck, or (table ruling) guides it into the Core for the chase.",
+      "Against devils: protection from evil and good on himself, then Planar Warrior every turn (force damage gets past their resistances)."
+    ],
+    description: "A lean, sun-scorched man of indeterminate age in a long salt-stained coat, with a wide hat pulled low and a grin that never reaches all the way to his eyes. He talks to the ship. She seems to listen.",
+    roleplay: [
+      "Voice: quick, cheerful, profane. Calls the ship \"darling\".",
+      "Wants: to keep flying. He likes this crew more than he admits."
+    ]
+  },
+
 
   "lady-vengeance": {
     name: "The Lady Vengeance",
