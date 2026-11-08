@@ -1,0 +1,202 @@
+/* D&D sourcebook look (5e PHB style), layered over style.css.
+   Fonts in ../fonts: Solbera's DND5e fonts, CC BY-SA 4.0 (https://github.com/jonathonf/solbera-dnd-fonts),
+   as packaged by Homebrewery. Frames and parchment in ./book: Homebrewery assets, MIT (https://github.com/naturalcrit/homebrewery).
+   Remove the <link> to this file to get the old look back. */
+
+@font-face { font-family: "BookInsanity"; src: url("../fonts/Bookinsanity.woff2") format("woff2"); }
+@font-face { font-family: "BookInsanity"; src: url("../fonts/Bookinsanity-Bold.woff2") format("woff2"); font-weight: bold; }
+@font-face { font-family: "BookInsanity"; src: url("../fonts/Bookinsanity-Italic.woff2") format("woff2"); font-style: italic; }
+@font-face { font-family: "BookInsanity"; src: url("../fonts/Bookinsanity-Bold-Italic.woff2") format("woff2"); font-weight: bold; font-style: italic; }
+@font-face { font-family: "ScalySans"; src: url("../fonts/Scaly-Sans.woff2") format("woff2"); }
+@font-face { font-family: "ScalySans"; src: url("../fonts/Scaly-Sans-Bold.woff2") format("woff2"); font-weight: bold; }
+@font-face { font-family: "ScalySans"; src: url("../fonts/Scaly-Sans-Italic.woff2") format("woff2"); font-style: italic; }
+@font-face { font-family: "ScalySans"; src: url("../fonts/Scaly-Sans-Bold-Italic.woff2") format("woff2"); font-weight: bold; font-style: italic; }
+@font-face { font-family: "ScalySansCaps"; src: url("../fonts/Scaly-Sans-Caps.woff2") format("woff2"); }
+@font-face { font-family: "MrEaves"; src: url("../fonts/Mr-Eaves-Small-Caps.woff2") format("woff2"); }
+@font-face { font-family: "Solbera"; src: url("../fonts/Solbera-Imitation-Tweak.woff2") format("woff2"); }
+@font-face { font-family: "Nodesto"; src: url("../fonts/Nodesto-Caps-Condensed.woff2") format("woff2"); }
+
+:root {
+  --parchment: #EEE5CE;
+  --parchment-dark: #e0d3b0;
+  --red: #58180D;
+  --gold: #C0AD6A;
+  --book-green: #E0E5C1;
+  --monster-bg: #F2E5B5;
+  --rule-red: #922610;
+  --caption: #766649;
+  --desk: #2a1f17;
+  --serif: "BookInsanity", "Libre Baskerville", Georgia, serif;
+  --sans: "ScalySans", "Trebuchet MS", sans-serif;
+  --heads: "MrEaves", "Cinzel", Georgia, serif;
+}
+
+body { font-family: var(--serif); }
+h1, h2, h3, h4, #session-title-label, .scene-title-text, .combat-heading, #campaign-map-title, .ledger-stage-title {
+  font-family: var(--heads);
+  letter-spacing: 0;
+  font-weight: normal;
+}
+
+/* ---- the desk and the page ---- */
+#center { background: radial-gradient(ellipse at top, #3d2c1f, var(--desk) 70%); padding: 28px 28px 48px; container-type: inline-size; }
+#scene-view {
+  position: relative;
+  max-width: 1120px;
+  margin: 0 auto;
+  padding: 44px 52px 80px;
+  background: var(--parchment) url("book/parchmentBackground.webp");
+  background-size: 100% auto;
+  box-shadow: 0 0 0 1px #0006, 0 12px 40px #000c;
+  font-size: 16px;
+  line-height: 1.38;
+}
+#scene-view::after {
+  content: ""; position: absolute; left: 0; right: 0; bottom: 0; height: 52px;
+  background: url("book/PHB_footerAccent.webp") center / 100% 100% no-repeat;
+  pointer-events: none;
+}
+#scene-banner { margin: -44px -52px 22px; height: 240px; }
+#scene-banner::after { background: linear-gradient(to bottom, transparent, #eee5ce); }
+
+/* ---- headings ---- */
+#scene-title { font-size: 2.7em; line-height: 1; margin: 0 0 4px; color: var(--red); }
+#scene-duration { font-family: var(--sans); font-style: italic; color: var(--caption); margin: 0 0 14px; }
+.block-h {
+  font-size: 1.55em; line-height: 1.05; color: var(--red);
+  border-bottom: 2px solid var(--gold); padding-bottom: 1px;
+  margin: 18px 0 8px; break-after: avoid;
+}
+.block-h-event { font-variant-caps: normal; letter-spacing: 0; border-bottom: 2px solid var(--gold); }
+
+/* ---- running text ---- */
+#scene-body .block { margin: 10px 0; }
+#scene-body .block-p p { margin: 0; }
+#scene-body .block-p p + p { text-indent: 1em; }
+.block-list, .block-steps { padding-left: 1.3em; }
+.block-list li, .block-steps li { margin: 3px 0; }
+.block-list li::marker { color: var(--red); }
+#scene-body strong { letter-spacing: -0.01em; }
+.dropcap::first-letter {
+  font-family: "Solbera", var(--heads);
+  font-size: 4.6em; line-height: 0.82; float: left;
+  padding: 0.06em 0.08em 0 0; margin-top: 0.02em;
+  color: transparent;
+  background-image: linear-gradient(-45deg, #322814, #998250, #322814);
+  -webkit-background-clip: text; background-clip: text;
+}
+
+/* two columns, like the books, when the page is wide enough */
+@container (min-width: 980px) {
+  #scene-body { column-count: 2; column-gap: 40px; column-fill: balance; }
+  #scene-body > .block-img, #scene-body > .block-table, #scene-body > .block-encounter,
+  #scene-body > .block-choices, #scene-body > .block-unknown { column-span: all; }
+  #scene-body > .block { break-inside: avoid; }
+  #scene-body > .block-more[open], #scene-body > .block-list, #scene-body > .block-steps, #scene-body > .block-read-wrap { break-inside: auto; }
+}
+
+/* ---- boxed read-aloud text ---- */
+.read-lead-in { font-family: var(--sans); font-style: italic; color: var(--caption); opacity: 1; margin: 12px 0 4px; }
+.block-read-wrap { margin: 12px 0 16px; }
+.block-read {
+  font-family: var(--sans); font-size: 1em; line-height: 1.5;
+  background: #FAF7EA; border-radius: 0;
+  border-style: solid; border-width: 7px;
+  border-image: url("book/descriptiveBorder.webp") 12 stretch;
+  border-image-outset: 4px;
+  box-shadow: 0 0 6px #FAF7EA;
+  padding: 8px 12px;
+}
+.block-read p { margin: 0 0 8px; }
+.block-read p:last-child { margin-bottom: 0; }
+
+/* ---- notes and sidebars (green box with black bars) ---- */
+.block-note, .block-env {
+  font-family: var(--sans); font-size: 0.95em; line-height: 1.3;
+  background: var(--book-green); border-radius: 0; overflow: visible;
+  border-style: solid; border-width: 1px;
+  border-image: url("book/noteBorder.webp") 12 stretch;
+  border-image-width: 11px; border-image-outset: 9px 0;
+  box-shadow: 1px 4px 14px #8888;
+  margin: 20px 0 !important; padding: 8px 12px;
+}
+.note-title {
+  background: none; color: var(--ink);
+  font-family: "ScalySansCaps", var(--sans); font-weight: bold; font-size: 1.12em;
+  letter-spacing: 0; padding: 0 0 4px; margin: 0;
+}
+.note-body { padding: 0; }
+.env-label { font-family: "ScalySansCaps", var(--sans); font-variant: normal; font-weight: bold; color: var(--red); }
+
+/* ---- expandable lore: a book sidebar ---- */
+.block-more {
+  font-family: var(--sans); font-size: 0.97em; line-height: 1.32;
+  background: #f4ecd4cc; border: none; border-left: 3px solid var(--gold); border-radius: 0;
+  box-shadow: 0 1px 0 #c0ad6a66;
+}
+.more-summary { font-family: var(--heads); font-weight: normal; font-size: 1.12em; color: var(--red); padding: 5px 10px; }
+.more-summary:hover { background: #e9dcb5; }
+.more-body { border-top: 1px solid #c0ad6a88; padding: 6px 12px 10px; }
+.more-body .block-read { font-size: 0.97em; }
+.src-chip { font-family: "ScalySansCaps", var(--sans); font-size: 0.68em; letter-spacing: 0.02em; }
+
+/* ---- tables ---- */
+.block-table table { font-family: var(--sans); font-size: 0.95em; line-height: 1.25; border-collapse: collapse; }
+.block-table th, .block-table td { border: none; padding: 4px 6px; vertical-align: top; text-align: left; }
+.block-table thead th { font-weight: bold; vertical-align: bottom; border-bottom: 1px solid #58180d55; }
+.block-table tbody tr:nth-child(odd) { background: var(--book-green); }
+.table-caption { font-family: "ScalySansCaps", var(--sans); font-style: normal; font-weight: bold; font-size: 1.1em; color: var(--ink); margin-bottom: 4px; }
+
+/* ---- skill checks ---- */
+.block-checks { font-family: var(--sans); border-left: 3px solid var(--rule-red); }
+.check-skill { font-family: "ScalySansCaps", var(--sans); font-variant: normal; }
+.check-who { color: var(--caption); }
+
+/* ---- art plates ---- */
+.img-plate-frame { background: none; border: none; padding: 0; box-shadow: 0 2px 12px #0007; }
+.img-plate-caption { font-family: var(--sans); font-style: italic; color: var(--caption); font-size: 0.95em; }
+.img-plate-credit { font-family: var(--sans); color: var(--caption); }
+.map-card { background: #FAF7EA; border-color: var(--gold); }
+.map-caption { font-family: var(--heads); font-weight: normal; color: var(--red); font-size: 1.1em; }
+.map-note { font-family: var(--sans); }
+
+/* ---- choices and encounter boxes ---- */
+.choices-prompt { font-family: var(--heads); font-weight: normal; font-size: 1.25em; color: var(--red); }
+.choice-btn { font-family: var(--heads); font-size: 1.05em; letter-spacing: 0.01em; }
+.block-encounter { font-family: var(--sans); background: #FAF7EA; border: 2px solid var(--red); border-radius: 0; box-shadow: 1px 4px 14px #8886; }
+.encounter-title { font-family: var(--heads); color: var(--red); font-size: 1.4em; }
+#scene-nav button { font-family: var(--heads); font-size: 1.05em; background: #FAF7EA; border: 1px solid var(--red); color: var(--red); }
+
+/* ---- stat blocks (PHB monster frame) ---- */
+.statblock {
+  font-family: var(--sans); font-size: 15px; line-height: 1.3;
+  background: var(--monster-bg); border-radius: 0;
+  border-style: solid; border-width: 7px 6px;
+  border-image: url("book/monsterBorderFancy.webp") 14 round;
+  box-shadow: 1px 4px 14px #888a;
+  padding: 6px 12px 10px;
+}
+.statblock .sb-bar { display: none; }
+.sb-name { font-family: var(--heads); font-weight: normal; font-size: 1.75em; line-height: 1; color: var(--red); }
+.sb-type { font-family: var(--sans); font-style: italic; }
+.sb-rule { height: 5px; border: none; margin: 7px 0; opacity: 1; background: var(--rule-red); clip-path: polygon(0 0, 100% 50%, 0 100%); }
+.sb-line, .sb-abilities { color: var(--red); }
+.sb-ability-label { font-weight: bold; }
+.sb-entries-title {
+  font-family: "ScalySansCaps", var(--sans); font-weight: normal; font-size: 1.25em;
+  color: var(--red); border-bottom: 1.5px solid var(--red); margin: 12px 0 4px;
+}
+
+/* ---- the table of contents (left) ---- */
+#left { background: #e6d8b4 url("book/parchmentBackground.webp"); background-size: 400px auto; border-right: 3px solid var(--red); }
+#session-title-label, #campaign-title-label { color: var(--red); border-bottom: 2px solid var(--gold); }
+.scene-item { font-family: var(--heads); font-size: 1rem; }
+.scene-when { font-family: var(--sans); }
+
+/* ---- header bar and side panel ---- */
+#app-header { border-bottom: 3px solid var(--gold); }
+#app-header button { font-family: var(--heads); font-size: 1rem; background: #f3e8cc; }
+#header-subtitle { font-family: var(--heads); font-style: normal; font-size: 1.2rem; letter-spacing: 0.02em; color: #f3e1b3; }
+#panel { background: var(--parchment) url("book/parchmentBackground.webp"); background-size: 600px auto; }
+#panel-title { font-family: var(--heads); font-weight: normal; font-size: 1.2em; color: var(--red); }
+#panel-body { font-family: var(--sans); }

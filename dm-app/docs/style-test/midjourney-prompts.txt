@@ -1,0 +1,53 @@
+MIDJOURNEY PROMPTS: THE FIVE TOWER DRAGONS (+ undead Obatala)
+==================================================================
+
+HOW TO USE (midjourney.com > Create)
+1. D&D prompts (1D to 6D) use your own settings from earlier sourcebook art: --raw --v 7 --profile srutin4.
+   Optional: drag  ref-wotc-style.png  into the prompt bar as "Style Reference" for an even closer WotC look.
+2. Vox Machina prompts (1V to 6V): --v 7 without --raw and without the profile, so the cartoon style is not pulled back to painting.
+3. Copy one whole line at a time (everything after the label), paste, press Enter.
+4. Each prompt gives 4 options. Upscale the best one, download it, and save it in the  mj  folder
+   next to this file. Any file name works; I'll sort them.
+12 prompts use a small part of your 3h20m of Fast hours.
+
+
+---------------- D&D STYLE (your profile srutin4) ----------------
+
+1D Slarkas:
+Close-up portrait of Slarkas, an ancient black dragon with a permanent scowl: heavy brow ridge pulled low, broad square jaw, thick jutting lower fangs, acid leaking from the corners of his mouth in smoking drips. The hide has rotted off his snout so the front of his face is bare skull. Long horns curve forward and down beside the jaw. Left eye milky white and blind, right eye small and yellow. A broken sun-stamped lance head buried in his chest. Near-black scales with an oily green sheen. Stagnant black swamp in the hellscape of Avernus, rust-brown sky. Dungeons & Dragons monster illustration, painterly WOTC sourcebook style, realistic, muted desaturated palette, low-key lighting, no text --ar 2:3 --raw --v 7 --profile srutin4 --no people, rider, watermark, letters
+
+2D Vistalancer:
+Close-up portrait of Vistalancer, an adult blue dragon with a long narrow crocodile-like face and a smug, haughty look: half-lowered eyelids, raised chin, curled lip. One great horn on the tip of his snout, capped in ringed forged steel and filed to a point like a knight's lance. Swept-back cheek frills, azure scales fading to deep indigo, faint static crackling over him. A round hole burned clean through the wing behind him. Grey ash dunes of Avernus under a dim red sky. Dungeons & Dragons monster illustration, painterly WOTC sourcebook style, realistic, muted desaturated palette, low-key lighting, no text --ar 2:3 --raw --v 7 --profile srutin4 --no people, rider, watermark, letters
+
+3D Vermilius:
+Close-up portrait of Vermilius, a female adult green dragon with a slender, elegant face, a sly closed-mouth smile and large warm amber eyes, kind and dangerous. No ears; a tall crest rises above her eyes and flares at the neck into a wide ivory frill spotted with violet, like a poisonous orchid. Thin gold rings climb her horns. A black long-fingered handprint is burned into the scales of her throat. A thread of green smoke curls from one nostril. Dark ruined garden of black thorns in Avernus. Dungeons & Dragons monster illustration, painterly WOTC sourcebook style, realistic, muted desaturated palette, low-key lighting, no text --ar 2:3 --raw --v 7 --profile srutin4 --no people, rider, watermark, letters
+
+4D Flash:
+Close-up portrait of Flash, a young red dragon, a brash teenager: short blunt snout, round cheeks, big eager eyes, mouth wide open in a roar that tries too hard, small new teeth. Short stubby horns that have barely grown, a soft spined frill. Glossy bright scarlet scales with glowing lava cracks between them, heat shimmer. Not a single scar. Cracked volcanic ridge in Avernus. Dungeons & Dragons monster illustration, painterly WOTC sourcebook style, realistic, muted desaturated palette, low-key lighting, no text --ar 2:3 --raw --v 7 --profile srutin4 --no people, rider, watermark, letters
+
+5D Obatala:
+Close-up portrait of Obatala, an ancient white dragon with a broad, flat, heavy face like a glacier: thick bony crest, heavy brow over small tired eyes, sagging jowls with a beard of dripping icicles, an expression of utter boredom. One great horn sweeps back on his left; the right horn is a broken stump capped in carved bronze. Pale grey-blue scales stained with soot, steam rising off him. A lacquered howdah saddle with a small gilded shrine on his back. Grey ash plain of Avernus. Dungeons & Dragons monster illustration, painterly WOTC sourcebook style, realistic, muted desaturated palette, low-key lighting, no text --ar 2:3 --raw --v 7 --profile srutin4 --no people, rider, watermark, letters
+
+6D Obatala, undead:
+Close-up portrait of Obatala as an undead white dragon, a dracolich: a broad, heavy bare-skull face of cracked bone, thick bony crest, cold green light burning in empty eye sockets, scraps of frozen grey hide hanging from the jaw, a beard of icicles. One great horn sweeps back on his left; the right horn is a broken stump capped in carved bronze. Exposed neck vertebrae, a chained howdah saddle on his back. Broken gothic ruins under a sickly green sky. Dungeons & Dragons monster illustration, painterly WOTC sourcebook style, realistic, muted desaturated palette, low-key lighting, no text --ar 2:3 --raw --v 7 --profile srutin4 --no people, rider, watermark, letters
+
+
+---------------- VOX MACHINA STYLE (no profile) ----------------
+
+1V Slarkas:
+Close-up portrait of Slarkas, an ancient black dragon with a permanent scowl: heavy brow ridge pulled low, broad square jaw, thick jutting lower fangs, acid leaking from the corners of his mouth in smoking drips. Bare-skull snout, long horns curving forward and down beside the jaw, left eye milky white and blind, right eye small and yellow, a broken lance head buried in his chest. Near-black scales with an oily green sheen. Black swamp in Avernus, rust-red sky. Frame from The Legend of Vox Machina animated series, 2D hand-drawn animation, bold clean ink outlines, cel shading, painted background, dramatic lighting, no text --ar 2:3 --v 7 --no people, rider, watermark, letters
+
+2V Vistalancer:
+Close-up portrait of Vistalancer, an adult blue dragon with a long narrow crocodile-like face and a smug, haughty look: half-lowered eyelids, raised chin, curled lip. One great steel-capped horn on his snout filed to a point like a knight's lance, swept-back cheek frills, azure scales fading to indigo, static crackling, a round hole burned through his wing. Ash dunes of Avernus, red sky. Frame from The Legend of Vox Machina animated series, 2D hand-drawn animation, bold clean ink outlines, cel shading, painted background, dramatic lighting, no text --ar 2:3 --v 7 --no people, rider, watermark, letters
+
+3V Vermilius:
+Close-up portrait of Vermilius, a female adult green dragon with a slender, elegant face, a sly closed-mouth smile and large warm amber eyes, kind and dangerous. No ears, a tall crest flaring at the neck into an ivory frill spotted with violet like a poisonous orchid, gold rings on her horns, a black long-fingered handprint burned into her throat, a thread of green smoke from one nostril. Ruined garden of black thorns in Avernus. Frame from The Legend of Vox Machina animated series, 2D hand-drawn animation, bold clean ink outlines, cel shading, painted background, dramatic lighting, no text --ar 2:3 --v 7 --no people, rider, watermark, letters
+
+4V Flash:
+Close-up portrait of Flash, a young red dragon, a brash teenager: short blunt snout, round cheeks, big eager eyes, mouth wide open in a roar that tries too hard, small new teeth, stubby horns, soft spined frill, glossy bright scarlet scales with glowing lava cracks, not a single scar. Cracked volcanic ridge in Avernus. Frame from The Legend of Vox Machina animated series, 2D hand-drawn animation, bold clean ink outlines, cel shading, painted background, dramatic lighting, no text --ar 2:3 --v 7 --no people, rider, watermark, letters
+
+5V Obatala:
+Close-up portrait of Obatala, an ancient white dragon with a broad, flat, heavy face like a glacier: thick bony crest, heavy brow over small tired eyes, sagging jowls with a beard of dripping icicles, utterly bored. Left horn sweeping back, right horn a broken stump capped in carved bronze, pale grey-blue soot-stained scales, steam rising, a howdah saddle with a small gilded shrine on his back. Ash plain of Avernus. Frame from The Legend of Vox Machina animated series, 2D hand-drawn animation, bold clean ink outlines, cel shading, painted background, dramatic lighting, no text --ar 2:3 --v 7 --no people, rider, watermark, letters
+
+6V Obatala, undead:
+Close-up portrait of Obatala as an undead white dragon, a dracolich: broad heavy bare-skull face of cracked bone, thick bony crest, cold green light in empty eye sockets, frozen grey hide hanging from the jaw, icicle beard, right horn a broken stump capped in bronze, exposed neck vertebrae, chained howdah saddle. Gothic ruins, sickly green sky. Frame from The Legend of Vox Machina animated series, 2D hand-drawn animation, bold clean ink outlines, cel shading, painted background, dramatic lighting, no text --ar 2:3 --v 7 --no people, rider, watermark, letters

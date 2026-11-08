@@ -93,14 +93,14 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Amphibious", text: "Can breathe air and water." },
       { name: "Legendary Resistance (1/Day)", text: "If Slarkas fails a saving throw, he can choose to succeed instead." },
       { name: "Breath vs. the Ship", text: "His breath weapon beats the Lady Vengeance's damage threshold of 15." },
-      { name: "Old Wound (homebrew)", text: "The Hellrider lance head in his chest is still blessed. When Slarkas takes radiant damage, he takes an extra 7 (2d6) radiant damage and can't use Wing Attack until the end of his next turn. A DC 15 Wisdom (Insight) or Intelligence (Religion) check spots the flinch and what causes it." }
+      { name: "Old Wound (homebrew)", art: "art/generated/skarrix-old-wound.webp", text: "The Hellrider lance head in his chest is still blessed. When Slarkas takes radiant damage, he takes an extra 7 (2d6) radiant damage and can't use Wing Attack until the end of his next turn. A DC 15 Wisdom (Insight) or Intelligence (Religion) check spots the flinch and what causes it." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
       { name: "Bite", art: "art/generated/skarrix-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 4 (1d8) acid. {@b Slow Melt (homebrew):} the acid clings. The target takes 7 (2d6) acid damage at the start of each of its turns until it, or a creature next to it, uses an action to scrape it off." },
       { name: "Claw", art: "art/generated/skarrix-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
       { name: "Tail", art: "art/generated/skarrix-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
-      { name: "Frightful Presence", text: "Each creature of its choice within 120 ft. aware of it: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Frightful Presence", art: "art/generated/skarrix-frightful-presence.webp", text: "Each creature of its choice within 120 ft. aware of it: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
       { name: "Acid Breath (Recharge 5-6)", art: "art/generated/skarrix-acid-breath.webp", text: "60-ft. line, 5 ft. wide. DC 18 Dexterity save, 54 (12d8) acid, half on a success." }
     ],
     bonus: [],
@@ -113,7 +113,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
         { name: "Tail Attack", art: "art/generated/skarrix-tail.webp", cost: 1, text: "Makes one tail attack." },
-        { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Slarkas then flies up to half its speed." }
+        { name: "Wing Attack", art: "art/generated/skarrix-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Slarkas then flies up to half its speed." }
       ]
     },
     tactics: [
@@ -166,14 +166,14 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Bite", art: "art/generated/vhennic-bite.webp", text: "Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 5 (1d10) lightning." },
       { name: "Claw", art: "art/generated/vhennic-claw.webp", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
       { name: "Tail", art: "art/generated/vhennic-tail.webp", text: "Melee Weapon Attack: +12 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
-      { name: "Frightful Presence", text: "Each creature of its choice within 120 ft. aware of it: DC 17 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Frightful Presence", art: "art/generated/vhennic-frightful-presence.webp", text: "Each creature of its choice within 120 ft. aware of it: DC 17 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
       { name: "Lightning Breath (Recharge 5-6)", art: "art/generated/vhennic-lightning-breath.webp", text: "90-ft. line, 5 ft. wide. DC 19 Dexterity save, 66 (12d10) lightning, half on a success." },
-      { name: "Lance Dive (homebrew)", text: "Replaces the bite in his Multiattack if he flew at least 30 ft. in a straight line this turn. Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 23 (3d10 + 7) piercing plus 11 (2d10) lightning, and a Large or smaller target must succeed on a DC 20 Strength save or be pushed 15 ft. and knocked prone." }
+      { name: "Lance Dive (homebrew)", art: "art/generated/vhennic-lance-dive.webp", text: "Replaces the bite in his Multiattack if he flew at least 30 ft. in a straight line this turn. Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 23 (3d10 + 7) piercing plus 11 (2d10) lightning, and a Large or smaller target must succeed on a DC 20 Strength save or be pushed 15 ft. and knocked prone." }
     ],
     bonus: [],
     reactions: [
       { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Vistalancer, the attack has disadvantage. If the weapon forces a save instead, Vistalancer takes half damage." },
-      { name: "Clean Exit (homebrew)", text: "When damage leaves Vistalancer below half his hit points (112), he flies up to his speed without provoking opportunity attacks. He comes back only when the fight turns his way again." }
+      { name: "Clean Exit (homebrew)", art: "art/generated/vhennic-clean-exit.webp", text: "When damage leaves Vistalancer below half his hit points (112), he flies up to his speed without provoking opportunity attacks. He comes back only when the fight turns his way again." }
     ],
     legendary: {
       count: 3,
@@ -181,7 +181,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
         { name: "Tail Attack", art: "art/generated/vhennic-tail.webp", cost: 1, text: "Makes one tail attack." },
-        { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 20 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Vistalancer then flies up to half its speed." }
+        { name: "Wing Attack", art: "art/generated/vhennic-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 20 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Vistalancer then flies up to half its speed." }
       ]
     },
     tactics: [
@@ -235,11 +235,11 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Bite", art: "art/generated/mirelle-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 7 (2d6) poison." },
       { name: "Claw", art: "art/generated/mirelle-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
       { name: "Tail", art: "art/generated/mirelle-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
-      { name: "Frightful Presence", text: "Each creature of her choice within 120 ft. aware of her: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Frightful Presence", art: "art/generated/mirelle-frightful-presence.webp", text: "Each creature of her choice within 120 ft. aware of her: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
       { name: "Poison Breath (Recharge 5-6)", art: "art/generated/mirelle-poison-breath.webp", text: "60-ft. cone. DC 18 Constitution save, 56 (16d6) poison, half on a success." }
     ],
     bonus: [
-      { name: "Honeyed Voice (homebrew)", text: "One creature within 120 ft. that can hear her: DC 16 Wisdom save or charmed until the end of its next turn. While charmed, it can't attack her or target her with a harmful spell, and if it moves, it must move toward her. Or'Henn has disadvantage on the save: the curse listens to her. She uses this instead of attacking first." }
+      { name: "Honeyed Voice (homebrew)", art: "art/generated/mirelle-honeyed-voice.webp", text: "One creature within 120 ft. that can hear her: DC 16 Wisdom save or charmed until the end of its next turn. While charmed, it can't attack her or target her with a harmful spell, and if it moves, it must move toward her. Or'Henn has disadvantage on the save: the curse listens to her. She uses this instead of attacking first." }
     ],
     reactions: [
       { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Vermilius, the attack has disadvantage. If the weapon forces a save instead, she takes half damage." }
@@ -250,7 +250,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
         { name: "Tail Attack", art: "art/generated/mirelle-tail.webp", cost: 1, text: "Makes one tail attack." },
-        { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Vermilius then flies up to half her speed." }
+        { name: "Wing Attack", art: "art/generated/mirelle-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Vermilius then flies up to half her speed." }
       ]
     },
     tactics: [
@@ -297,15 +297,15 @@ Object.assign(window.CAMPAIGN.creatures, {
     traits: [
       { name: "Legendary Resistance (1/Day)", text: "If Flash fails a saving throw, he can choose to succeed instead." },
       { name: "Breath vs. the Ship", text: "His breath weapon beats the Lady Vengeance's damage threshold of 15." },
-      { name: "Prove It (homebrew)", text: "If a creature calls Flash small, young or a hatchling, or deals him the most damage in a round, he marks it (one creature at a time). He has advantage on attacks against the marked creature, and attacks against him have advantage too. This lasts until the marked creature drops or Flash falls below half his hit points (128)." },
-      { name: "Overheat (homebrew)", text: "Below half his hit points, the cracks in his scales flare white: his Fire Breath recharges on a 4–6, and he sheds bright light for 30 ft. and can't hide." }
+      { name: "Prove It (homebrew)", art: "art/generated/praxamor-prove-it.webp", text: "If a creature calls Flash small, young or a hatchling, or deals him the most damage in a round, he marks it (one creature at a time). He has advantage on attacks against the marked creature, and attacks against him have advantage too. This lasts until the marked creature drops or Flash falls below half his hit points (128)." },
+      { name: "Overheat (homebrew)", art: "art/generated/praxamor-overheat.webp", text: "Below half his hit points, the cracks in his scales flare white: his Fire Breath recharges on a 4–6, and he sheds bright light for 30 ft. and can't hide." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
       { name: "Bite", art: "art/generated/praxamor-bite.webp", text: "Melee Weapon Attack: +14 to hit, reach 10 ft. Hit: 19 (2d10 + 8) piercing plus 7 (2d6) fire." },
       { name: "Claw", art: "art/generated/praxamor-claw.webp", text: "Melee Weapon Attack: +14 to hit, reach 5 ft. Hit: 15 (2d6 + 8) slashing." },
       { name: "Tail", art: "art/generated/praxamor-tail.webp", text: "Melee Weapon Attack: +14 to hit, reach 15 ft. Hit: 17 (2d8 + 8) bludgeoning." },
-      { name: "Frightful Presence", text: "Each creature of his choice within 120 ft. aware of him: DC 19 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Frightful Presence", art: "art/generated/praxamor-frightful-presence.webp", text: "Each creature of his choice within 120 ft. aware of him: DC 19 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
       { name: "Fire Breath (Recharge 5-6)", art: "art/generated/praxamor-fire-breath.webp", text: "60-ft. cone. DC 21 Dexterity save, 63 (18d6) fire, half on a success." }
     ],
     bonus: [],
@@ -318,7 +318,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
         { name: "Tail Attack", art: "art/generated/praxamor-tail.webp", cost: 1, text: "Makes one tail attack." },
-        { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 22 Dexterity save or 15 (2d6 + 8) bludgeoning and knocked prone. Flash then flies up to half his speed." }
+        { name: "Wing Attack", art: "art/generated/praxamor-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 22 Dexterity save or 15 (2d6 + 8) bludgeoning and knocked prone. Flash then flies up to half his speed." }
       ]
     },
     tactics: [
@@ -365,20 +365,20 @@ Object.assign(window.CAMPAIGN.creatures, {
     traits: [
       { name: "Ice Walk", text: "Moves across ice and snow without a check; difficult terrain from ice or snow costs him no extra movement." },
       { name: "Legendary Resistance (2/Day)", text: "If Obatala fails a save, he can choose to succeed instead." },
-      { name: "Rimeground (homebrew)", text: "Where Obatala lands, the ground within 20 ft. of him freezes, then melts into deep, steaming mud at the start of his next turn. That ground is difficult terrain for the rest of the fight. He ignores it." }
+      { name: "Rimeground (homebrew)", art: "art/generated/obatala-rimeground.webp", text: "Where Obatala lands, the ground within 20 ft. of him freezes, then melts into deep, steaming mud at the start of his next turn. That ground is difficult terrain for the rest of the fight. He ignores it." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
       { name: "Bite", art: "art/generated/obatala-bite.webp", text: "Melee Weapon Attack: +13 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 9 (2d8) cold." },
       { name: "Claw", art: "art/generated/obatala-claw.webp", text: "Melee Weapon Attack: +13 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
       { name: "Tail", art: "art/generated/obatala-tail.webp", text: "Melee Weapon Attack: +13 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
-      { name: "Frightful Presence", text: "Each creature of his choice within 120 ft. aware of Obatala: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Frightful Presence", art: "art/generated/obatala-frightful-presence.webp", text: "Each creature of his choice within 120 ft. aware of Obatala: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
       { name: "Cold Breath (Recharge 5-6)", art: "art/generated/obatala-cold-breath.webp", text: "60-ft. cone. DC 20 Constitution save, 63 (14d8) cold, half on a success." }
     ],
     bonus: [],
     reactions: [
       { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Obatala, the attack has disadvantage. If the weapon forces a save instead, he takes half damage." },
-      { name: "Rider's Wing (homebrew)", text: "When a creature he can see attacks Krull while Krull is on his back or within 10 ft. of him, Obatala swings a wing into the way. The attack targets Obatala instead." }
+      { name: "Rider's Wing (homebrew)", art: "art/generated/obatala-riders-wing.webp", text: "When a creature he can see attacks Krull while Krull is on his back or within 10 ft. of him, Obatala swings a wing into the way. The attack targets Obatala instead." }
     ],
     legendary: {
       count: 3,
@@ -386,7 +386,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       actions: [
         { name: "Detect", cost: 1, text: "Obatala makes a Wisdom (Perception) check." },
         { name: "Tail Attack", art: "art/generated/obatala-tail.webp", cost: 1, text: "Obatala makes one tail attack." },
-        { name: "Wing Attack", cost: 2, text: "Each creature within 10 ft.: DC 21 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Obatala then flies up to half his speed." }
+        { name: "Wing Attack", art: "art/generated/obatala-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 21 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Obatala then flies up to half his speed." }
       ]
     },
     tactics: [
