@@ -581,6 +581,69 @@ window.SESSION = {
     Object.assign({}, window.CAMPAIGN.scenes["tiamat-reborn"], { when: "If Arkhan finishes the Offering, or the curse jumped and the vessel dies" }),
 
     // =====================================================================
+    // SKY CHASE (after Word of Recall: the Lady Vengeance runs)
+    // =====================================================================
+    {
+      id: "sky-chase",
+      title: "Sky Chase: The Lady Vengeance Runs",
+      when: "After exit R or F, when Arkhan's sweepers find the ship",
+      duration: "30 to 45 minutes",
+      blocks: [
+        { t: "read", text: "The mist tears open behind the stern. A red shape comes through it first, too fast, roaring before it is close enough to matter. Behind and above it, a blue one, silent, lightning crawling along its wings, holding its distance like a hawk that has done this before.\n\nUnder your boots the Planar Core climbs to a scream. Colico Jack leans on the helm and grins without any humour at all. \"Hold on to something.\"" },
+        { t: "note", title: "Run It Fast", text: "Homebrew chase (proposal, written at the table 2026-11-08). The gap is counted in {@b bands}, not feet. Each round: the {@b helm rolls}, the {@b gap moves}, the {@b crew act}, then the {@b dragons act} by the gap. Three ways out: the gap reaches {@b Lost}, the dragons are {@b driven off}, or the ship is {@b caught} and it becomes a deck fight." },
+        { t: "encounter", id: "sky-chase", title: "Sky Chase: Flash and Vistalancer", combatants: [
+          { c: "praxamor", n: 1 }, { c: "vhennic", n: 1 }
+        ], notes: "Add the Lady Vengeance from Allies (Add + Init). Stations: Helm, Port cannon, Starboard cannon, Harpoon, Core (Jeremy unless a PC takes it). The ship acts on the crew's turns. Start the gap at Far." },
+
+        { t: "h", text: "The Gap" },
+        { t: "table", caption: "Bands (start at Far)", head: ["Band", "What reaches", "Dragons do"], rows: [
+          ["Lost", "Nothing", "Escaped. The chase is over."],
+          ["Far", "Force cannons only (600/2,400 ft.)", "Close in, no attack."],
+          ["Near", "Cannons, harpoon (120 ft.), spells", "Breath if recharged; otherwise close in."],
+          ["Close", "Everything, melee", "Claws, bites, Wing Attack on the deck. Flash may land."]
+        ] },
+
+        { t: "h", text: "Each Round" },
+        { t: "steps", items: [
+          "{@b Helm roll.} DC 15 Wisdom (Survival) or vehicle proficiency. Bonuses stack: +5 Haste (on the Core or the pilot, see below), +5 Overdrive or Overclock running, +2 the pilot took Dash.",
+          "{@b Move the gap.} Success: one band away. Failure: one band closer. Fail by 5 or more: one band closer and roll a mishap.",
+          "{@b Crew act} on their initiative. Cannons +9, 8d10 force. Harpoon +9, 4d12 piercing and tethered (escape DC 16 Strength). Jeremy rolls Maintain Core (DC 15) every turn: on a failure she loses 10 ft. or a cannon goes dark.",
+          "{@b Dragons act} by the band they are in (table above)."
+        ] },
+
+        { t: "h", text: "How It Ends" },
+        { t: "list", items: [
+          "{@b Escape.} The gap reaches Lost, or stays at Far for 2 rounds in a row: the mist swallows her.",
+          "{@b Driven off.} {@c vhennic|Vistalancer} leaves below 112 hit points (Clean Exit). {@c praxamor|Flash} overheats below 128 (breath on 4 to 6, glows, cannot hide) and retreats below 60, screaming.",
+          "{@b Caught.} The gap is Close at the end of 2 rounds in a row: it becomes a normal fight on the deck."
+        ] },
+
+        { t: "h", text: "The Ship" },
+        { t: "list", items: [
+          "{@c lady-vengeance|Lady Vengeance}: AC 17, 350 HP, {@b damage threshold 15} (every breath gets through). One hit of 30+ = mishap (d6). Bloodied at 175: 2d6 fire each round until Damage Control (DC 13).",
+          "{@b Overdrive} (Jeremy, 1 per fight, soul coin): speed doubles and counts +5 on the helm roll; foes starting within 30 ft. take 2d10 fire + 2d10 radiant. d20 1 to 5: 44 force to the ship, engines and cannons dead for 1d4 rounds. The soul is destroyed.",
+          "{@b Overclock} (DC 18 Arcana): speed doubles until Jeremy's next turn, +5 on the helm roll. Failure: she cannot move until then (an automatic helm failure).",
+          "{@b Scroll Feed:} a {@spell misty step} scroll blinks the whole ship: the gap moves one band away at once. {@spell Blur}: attacks against her have disadvantage."
+        ] },
+
+        { t: "h", text: "Haste on the Ship (table ruling)" },
+        { t: "list", items: [
+          "{@b On the Core} (Jeremy guides it in; a 3rd-level spell over Scroll Feed's 2nd-level limit, so optional DC 15 Arcana, failure = Core flare: 3d6 fire to whoever is at the Core each turn). The ship: +5 on the helm roll, AC 19, advantage on Dexterity saves. The caster concentrates: the dragons aim at them. When it ends the Core stalls: one round of no movement and no cannons, an automatic helm failure.",
+          "{@b On the pilot} (rules as written): the extra action is a Dash, +2 on the helm roll and +2 AC for the pilot only. When it ends the pilot loses a turn and she holds course."
+        ] },
+
+        { t: "h", text: "The Dragons" },
+        { t: "list", items: [
+          "{@c praxamor|Flash} (red, fly 80). Presses in hard; wants a scar. Fire Breath 60-ft. cone, DC 21 Dex, 63 (18d6). {@b Bait:} call him small and Prove It marks that PC; he ignores the ship to go for them, straight into harpoon range.",
+          "{@c vhennic|Vistalancer} (blue, fly 80). Shadows and reports; does not fight alone. Lightning Breath 90-ft. line, DC 19 Dex, 66 (12d10). Lance Dive on anyone on deck at Close. Leaves below 112 with Clean Exit, and Arkhan hears where the ship went.",
+          "{@b Wingover} (both, reaction, once a round): the first ship-weapon attack against each dragon has disadvantage (a saving-throw weapon deals half). Fire both cannons at the same dragon: the second shot is clean."
+        ] },
+
+        { t: "note", title: "After the Chase", text: "Escaped: the ship is hidden again, but the next hunt roll (exit R) gets +5 for a day. Driven off: Arkhan knows the heading. Caught and won: the hull is scorched and every dragon knows her. Whatever happens, write down the ship's hit points and whether the Overdrive coin was spent." }
+      ]
+    },
+
+    // =====================================================================
     // 7 BHAAL'S FIRST GASP
     // =====================================================================
     {
