@@ -395,6 +395,7 @@ window.CAMPAIGN.map = {
     },
     {
       id: "wandering-emporium", title: "The Wandering Emporium",
+      x: 72.3, y: 17.9,
       stage: "ch3c", path: "main", status: "changed",
       objective: "The hub: unmask Kreeg as 'Vessper Hain', work the contracts, chase soul-bounties.",
       bloodPrice: "Every deal has a clause. Spent soul coins are dead souls. Kreeg forces a choice: justice or mercy, and a living signer is worth more.",
@@ -403,7 +404,7 @@ window.CAMPAIGN.map = {
       requires: ["Nothing. It finds the party within a day."],
       unlocks: ["Kreeg's living hand, a key to the contract.", "Mahadi's hint that a living signer matters.", "Shattersticks, contracts, and a buyer for Red Ruth's leftovers."],
       sessions: 0.5,
-      dmChoices: ["Kreeg hides here as 'Vessper Hain'.", "Or'Henn sealed on as the Soul Capacitor's carrier. Asimov's soul is saved; the Council clock is closed.", "Mahadi loved Feonor and will want news of her."],
+      dmChoices: ["It wanders. As of Session 13 (2026-11-08) it is anchored near the Mirror of Mephistar (DM). The party sails there up the Styx from Uldrak's Grave.", "Kreeg hides here as 'Vessper Hain'.", "Or'Henn sealed on as the Soul Capacitor's carrier. Asimov's soul is saved; the Council clock is closed.", "Mahadi loved Feonor and will want news of her."],
       alternatives: ["Kreeg bolts if the puzzle box comes near him.", "Mephistopheles and Urexiel also bid for Kreeg."],
       blocks: [
         { t: "h", text: "How to Run It From Here" },

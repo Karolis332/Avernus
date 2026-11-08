@@ -644,6 +644,65 @@ window.SESSION = {
     },
 
     // =====================================================================
+    // UP THE STYX TO THE EMPORIUM (played 2026-11-08, after the Sky Chase)
+    // =====================================================================
+    {
+      id: "up-the-styx",
+      title: "Up the Styx to the Emporium",
+      when: "After the Sky Chase: the ship runs from Uldrak's Grave to the Wandering Emporium near the Mirror of Mephistar",
+      duration: "20 to 40 minutes",
+      blocks: [
+        { t: "read", text: "The Lady Vengeance drops out of the mist and finds the Styx where it always is: a long, slow wound across the waste, dark and oily, and quiet in a way no river should be. Jeremy brings her down until the keel almost touches it, and the Core changes its note.\n\nBehind you, two heads lie on the deck, one red and one blue, and the Avernus heat has already started on them. Ahead, far to the north and east, past the dock and the watchtowers and the hill where Haruman's banner used to fly, the Mirror of Mephistar catches the light. Somewhere near it, the Emporium is waiting." },
+        { t: "note", title: "Run It Fast", text: "Homebrew travel (proposal, written at the table 2026-11-08). The route runs from Uldrak's Grave in the south-west, along the Styx past the Styx Watchtowers, the Stygian Dock and Haruman's Hill, to the north-east, where the Emporium has anchored near the Mirror of Mephistar. Call it {@b 3 days} on the river: she flies 60 ft. over the Styx instead of 40. Roll {@b one event a day} on the table below. The ship keeps moving, so there is {@b no hunt roll} while she travels (exit R rule)." },
+
+        { t: "h", text: "Clocks Running During the Trip" },
+        { t: "list", items: [
+          "{@b The heads:} they spoil in 3 days without {@spell gentle repose} or salting (DC 14 Survival with salt and smoke). The trip is 3 days. Drenwal's {@spell gentle repose} buys 10 days per casting.",
+          "{@b The blood:} 2 wine bottles from each dragon, 10 doses each, potent for 7 days unless brewed. Fhet'Ahla at the Emporium buys bottles (about 5 soul coins each).",
+          "{@b Or'Henn's Pull:} the start-of-session value is 2 + his gold scales. On the river, a chromatic dragon sighted far off still counts (+1 the first time each). Track it on the Curse page.",
+          "{@b Arkhan:} he learns at dawn that Flash and Vistalancer did not come back. He does not know where the ship is. If the heads ride on the prow, anyone who sees the ship can tell him (+2 on his hunt roll whenever she stops)."
+        ] },
+
+        { t: "h", text: "Burning Coins for Speed" },
+        { t: "p", text: "Overdrive was built for one fight. On the road it works like this (proposal): {@b each soul coin Jeremy feeds the Core doubles her speed for 4 hours}, 120 ft. on the Styx. Burning coins the whole way turns 3 days into about {@b 1½ days} (about 5 coins), which saves the heads without {@spell gentle repose}. Roll the {@b d20 backlash for every coin} (1 to 5: 44 force to the ship, engines dead for 1d4 hours on the road). Every coin destroys a soul forever. Then count the coins burned since the last long rest on the {@b Soul Burn} track:" },
+        { t: "table", caption: "Soul Burn (coins burned since the last long rest)", head: ["Coins", "What happens (stacks)"], rows: [
+          ["1–2", "{@b The Core screams.} A thin sound under the hum that only the dying hear. Lulu, if aboard, cannot sleep. Jeremy will not look at whoever ordered it."],
+          ["3–4", "{@b The burned stay.} Faces in the steam, voices in the hull at night. The next long rest: each creature aboard makes a DC 13 Wisdom save or gains no benefit from Hit Dice that rest and wakes with 1 level of exhaustion."],
+          ["5–6", "{@b A beacon.} The ship trails grey soul-smoke you can see for miles, and every soul-eater in Avernus can smell it. Roll a Styx Road event {@b twice} each day (take both), and the watchtowers report her automatically. Arkhan and Zariel's riders learn her heading by the next dawn."],
+          ["7+", "{@b The Core tears.} Backlash on 1 to 10 instead of 1 to 5. Each further coin also deals 2d10 force to the hull. At dusk, 1d4 {@c crypt-specter|specters} (the burned, half-formed and furious) rise out of the Core and attack whoever fed them in."]
+        ] },
+        { t: "list", items: [
+          "{@b Drenwal} (Light cleric): burning a soul is not nothing. If he approves it, play his god's silence. If he refuses, his word counts double with the crew.",
+          "{@b The Soul Engine choice:} on the mercy path, every coin burned costs 1 Grace (if the Grace Lantern is fitted) and Jeremy's next install check has disadvantage. On the Portyr path it is what the engine was built for: no extra cost, which is the point.",
+          "{@b Freeing instead of burning:} a coin that is un-coined (the Ballast Chamber, or Lulu, Drenwal, the Moonkite) frees a soul instead. Slower, kinder, and the ship gains Grace if she has the lantern.",
+          "{@b It clears:} the Soul Burn count resets after a long rest with no coin burned during it."
+        ] },
+
+        { t: "h", text: "The Styx Itself" },
+        { t: "list", items: [
+          "{@b Touching the water:} a creature splashed or dunked makes a {@b DC 15 Intelligence save} or forgets the last day, plus one memory the player chooses (the Session 10 rule). Uldrak's {@spell greater restoration} brings it back; so does any {@spell greater restoration}.",
+          "{@b Flying low:} rough water or a bad turn means a DC 13 Dexterity save for anyone at the rails.",
+          "{@b Drinking or pouring Styx water into anything:} don't. The Core will not take it."
+        ] },
+
+        { t: "table", caption: "Styx Road Events (d8, once a day)", head: ["d8", "Event"], rows: [
+          ["1", "{@b The watchtowers.} A Styx Watchtower flashes a mirror at the ship: who goes there? Bluff it (DC 15 Deception, with Zariel's or Bel's name), hide in the mist (DC 15 helm check), or ignore it. On a failure the tower reports a black galley heading north-east. Zariel's riders hear by nightfall."],
+          ["2", "{@b The Blood War on the bank.} Demons and devils killing each other across a mile of ash. Nobody looks up unless the ship fires. Loot after: a DC 14 Investigation check on the edges of the field finds 1d4 soul coins or a broken infernal weapon."],
+          ["3", "{@b The Stygian Dock.} Traffic: barges, an infernal galley, a merfolk-fiend toll keeper. Pay 1 soul coin or talk (DC 15 Persuasion). A chance to sell a bottle of blood or a vial early, and to hear rumours: two dragons fell from the sky in the south, and Arkhan is asking who did it."],
+          ["4", "{@b The forgetting fog.} White mist rolls off the water. Everyone on deck: DC 13 Dexterity save or the spray touches them (then the DC 15 Intelligence save). Lulu, if she is aboard, must be below decks."],
+          ["5", "{@b Scavengers.} The heads draw {@c vrock|vrocks}: 1d3 + 1 of them circle, screeching, then dive for the trophies. A short fight on deck. Their spores (Spores, recharge 6) are the real threat to the crew."],
+          ["6", "{@b The green on the horizon.} {@c mirelle|Vermilius} shadows the ship for an hour, high and far, and never comes in range. At dusk a green-smoke voice reaches Or'Henn alone: \"You were very brave. You must be so tired.\" Pull save (out of combat rule)."],
+          ["7", "{@b Zariel's sign.} A {@c narzugon|narzugon} rides the riverbank on a nightmare, keeping pace with the ship, saying nothing. It turns away at the next bend. If Lulu was taken, it carries one of her feathers on its lance."],
+          ["8", "{@b Quiet water.} Nothing finds them. The Core hums; a safe long rest. Good moment for {@spell speak with dead} on the heads, brewing the blood, or the Veska and Ser Lucan scene."]
+        ] },
+
+        { t: "h", text: "Arriving at the Emporium" },
+        { t: "p", text: "The {@b Wandering Emporium} has anchored near the {@b Mirror of Mephistar}: the great glass in the north-east, where the cold starts. The traders know the ship (Or'Henn sealed on as the Soul Capacitor's carrier). Two dragon heads on the deck turn every head on the quay. Expect offers before the gangplank is down: Fhet'Ahla for the blood and the essence, Rassh for scales, teeth and horn, and someone quietly asking who killed them, for a buyer who will not give his name (Arkhan, through a broker)." },
+        { t: "note", title: "Remember for Next Time", text: "Days on the river, events rolled, who touched the Styx and what they forgot, whether the heads are preserved, what was sold at the Dock, and what the watchtowers saw." }
+      ]
+    },
+
+    // =====================================================================
     // 7 BHAAL'S FIRST GASP
     // =====================================================================
     {
