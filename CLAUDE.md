@@ -216,11 +216,6 @@ Newest last, **last 10 entries only** — this file loads into context every ses
 unbounded log would eat the smart zone it exists to protect. Promote anything still valuable
 past that into the body above, or into `brain/`. No secrets or customer PII: this is committed.
 
-### 2026-11-01 — Same-context rule (chat log hook) + individual dragon portraits
-- **Did:** `e0cdc33` Stop hook `.claude/hooks/chat-log.mjs` pushes each session's DM prompts + Claude replies (redacted) to `.claude/logs/` on main via git plumbing; rule at the top of this file. Five astra portraits `dm-app/art/generated/{skarrix,vhennic,mirelle,praxamor,obatala}-portrait.webp`, wired with a new per-creature `portrait` field (`js/statblock.js`, falls back to the kind's art).
-- **Why:** the DM works from the PC and the laptop at once and wants identical context. Logs live outside `.claude/context/` because `/sync-context` wipes that folder. The DM wants each dragon to be an individual (look, scars, personality).
-- **Open:** written dragon character profiles not yet in `campaign-tower.js` (a safety filter stopped that step; ask the DM how to proceed). Obatala's broken horn did not render. Next: a single group image mixing all five, once the DM has looked at the portraits.
-
 ### 2026-11-01 — Live S12 (desktop PC): Tiamat waking, urn waves, ally upgrades, loot, Yael ruling, XP house rule
 - **Did:**
   - `b688014` Tiamat Risen wakes over five rounds (250 to 550 HP, one head a round, AC 19 until fully born, killable only by radiant or Gnashing Hunger until then). The party's chance is the coalition: Krull, Obatala, Vistalancer (the timid blue, no save), the Lady Vengeance on a green flare, and Uldrak from round 3.
