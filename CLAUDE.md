@@ -288,3 +288,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Did:** art files renamed to the names the table uses: `skarrix-*`→`slarkas-*`, `vhennic-*`→`vistalancer-*`, `mirelle-*`→`vermilius-*`, `praxamor-*`→`flash-*` (34 files, paths in `campaign-tower.js`). Creature ids stay `skarrix/vhennic/mirelle/praxamor` (internal keys used by links in S9–S14). v2 Midjourney set (adult, menacing) for Vermilius + Flash: 17 `art/generated/<name>-*-v2.webp`, compared in `dm-app/docs/style-test/v1-vs-v2-sheet.webp`.
 - **Why:** DM: the two looked like kid dragons (the v1 prompts literally asked for round cheeks and big eyes); Slarkas and Vistalancer are fine. DM asked why the files had names nobody uses at the table.
 - **Open:** DM picks v1 or v2 on the laptop. To make v2 live: `python dm-app/docs/style-test/use_v2.py vermilius flash` (one or both names; v1 kept as `-v1.webp`), then commit. Renaming the internal ids too is possible but touches every session file; not done.
+
+### 2026-11-08 — v2 art live for Vermilius + Flash
+- **Did:** ran `use_v2.py vermilius flash`: the 17 adult/menacing v2 webps are now the live `art/generated/<name>-*.webp`; v1 kept as `<name>-*-v1.webp`. No code paths changed.
+- **Why:** DM picked v2 for both after viewing `docs/style-test/v1-vs-v2-sheet.webp`.
+- **Open:** rulings from the entries above.
