@@ -1088,13 +1088,13 @@ window.SESSION = {
 
         { t: "h", text: "The Fight" },
         { t: "steps", items: [
-          "{@b Round 1:} the chain launchers fire and the 2 {@c dock-chain-warden|Chain Wardens} animate the river chain and the barge's mooring chains: the ships are lashed together (Strength contest to break free: ship Str 22 vs. Athletics +9, per chain). The {@c barbed-devil|barbed devils} board.",
+          "{@b Round 1:} the chain launchers fire and the 2 {@c dock-chain-warden|Chain Wardens} animate the river chain and the barge's mooring chains: the ships are lashed together (Strength contest to break free: ship Str 22 vs. Athletics +9, per chain). The 2 {@c fortress-bone-devil|bone devils} (Zariel lent them to make sure) fly across and board.",
           "{@b Round 2:} the yugoloths drop from the ledges onto the deck. Kreeg uses Forgetfulness on whoever guards Lulu's hiding place, then on the shard-holder.",
           "{@b Round 3 onward:} Kreeg stays on his own deck, about 60 ft. away, where his Forgetfulness and Poison Mind reach. He crosses only to take Lulu himself. At 171 HP, Ledger Unbound: the page storm, Forgetfulness on 4–6, 4 legendary actions. No lair actions here: he is away from the Dock.",
           "{@b Below 100 HP} he offers his signature for his life, and means it: Zariel will kill him anyway. At 0 HP his Escape Clause drops him into the barge's hold (not his ledger room), and the hunt for him is a short one, below decks."
         ] },
         { t: "encounter", id: "kreegs-gangplank", title: "Kreeg's Interception at the Throat", combatants: [
-          { c: "kreeg", n: 1 }, { c: "dock-chain-warden", n: 2 }, { c: "barbed-devil", n: 4 }, { c: "mezzoloth", n: 4 }
+          { c: "kreeg", n: 1 }, { c: "dock-chain-warden", n: 2 }, { c: "fortress-bone-devil", n: 2 }, { c: "mezzoloth", n: 4 }
         ], notes: "Outside any truce, in the gorge. Round 1 chains and boarders, round 2 yugoloths from the cliffs. Kreeg fights from his barge 60 ft. away and goes for Lulu. To escape: cut the river chain and every lashing chain, then run at 80 ft. (the barge is just as fast: use the chase page). Ledger Unbound at 171 HP. Killed here, he is gone for good, and the contract with him." },
 
         { t: "h", text: "Ways Through Without a Brawl" },
@@ -1107,7 +1107,7 @@ window.SESSION = {
         { t: "h", text: "Rewards" },
         { t: "list", items: [
           "{@b Kreeg's Ledger}, {@b the High Overseer's Ring} and {@b the contract copy} (see the Stygian Dock rewards) are in his cabin on the barge. Taking the barge gets all three, plus 30 soul coins, and the barge itself (a second ship, slow to crew).",
-          "{@b XP:} Kreeg 41,000, Chain Wardens 5,900 each, barbed devils 1,800 each, yugoloths per their stat block. Split three ways.",
+          "{@b XP:} Kreeg 41,000, Chain Wardens 5,900 each, bone devils 8,400 each, yugoloths per their stat block. Split three ways.",
           "{@b If Kreeg dies}, the contract can never be unsigned, and Zariel comes herself ({@scene zariels-lesson|Zariel's Lesson}). {@b If he is taken alive}, he is the best bargaining chip in Avernus, and Zariel comes for him too."
         ] },
 
