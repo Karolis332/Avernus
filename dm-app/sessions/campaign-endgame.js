@@ -171,7 +171,9 @@
           "{@b +1} Each Small Vision (see {@side arc-tiamat|Arc: Or'Henn and Tiamat}).",
           "{@b +1} The first time he sees each chromatic dragon this session.",
           "{@b +1} He touches or uses the orb of dragonkind.",
-          "{@b +2} He accepts one of Tiamat's gifts (and gains a gold scale)."
+          "{@b +2} He accepts one of Tiamat's gifts (and gains a gold scale).",
+          "{@b +1} (fight progression, proposal 2026-11-08) He fails a Pull save during a fight: the leash tightens.",
+          "{@b +1} (fight progression, proposal 2026-11-08) The first time in a fight he damages each chromatic dragon: her blood answers his."
         ]
       },
       {

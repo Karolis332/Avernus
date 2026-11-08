@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Or'Henn's Curse</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/book.css">
+<style>
+  /* Or'Henn's curse tracker: Tiamat's Pull (0-10), the Pull save, gold scales, gifts, Small Visions.
+     Rules come from the side panels tiamats-pull and arc-tiamat (campaign-endgame.js / campaign-arcs.js);
+     edit the rules there and here together. State in localStorage, standalone page. */
+  body.curse-page { display: block; overflow: auto; height: auto; }
+  #wrap { max-width: 1500px; margin: 0 auto; padding: 12px 16px 60px; }
+  h1 { font-family: Cinzel, serif; margin: 4px 0 2px; }
+  .sub { opacity: .75; margin: 0 0 10px; }
+  .grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 1100px) { .grid { grid-template-columns: 1.15fr 1fr 1fr; } }
+  .card { border: 1px solid var(--red, #8b1a1a); border-radius: 6px; padding: 8px 12px; background: rgba(0,0,0,.03); min-width: 0; }
+  .card h2 { font-family: Cinzel, serif; font-size: 1.05em; margin: 2px 0 8px; }
+  .btn { font-family: Cinzel, serif; border: 1px solid var(--red, #8b1a1a); background: transparent; color: inherit; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+  .btn.on { background: var(--red, #8b1a1a); color: #fff; }
+  .btn.small { padding: 2px 7px; font-size: .85em; }
+  .btn:disabled { opacity: .4; cursor: default; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 5px 0; }
+  .row label { display: inline-flex; gap: 4px; align-items: center; }
+  input[type=number] { width: 60px; }
+  .meter { display: grid; grid-template-columns: repeat(11, 1fr); gap: 3px; margin: 8px 0 4px; }
+  .pip { text-align: center; padding: 10px 0; border-radius: 4px; border: 2px solid #8884; font-family: Cinzel, serif; cursor: pointer; }
+  .pip.t0.lit { background: #c9a227; color: #000; } .pip.t1.lit { background: #d9730d; color: #fff; }
+  .pip.t2.lit { background: #b71c1c; color: #fff; } .pip.t3.lit { background: #4a0072; color: #fff; }
+  .pip.cur { outline: 3px solid currentColor; outline-offset: 1px; }
+  .tierlabels { display: grid; grid-template-columns: 4fr 3fr 3fr 1fr; gap: 3px; font-size: .78em; text-align: center; opacity: .85; }
+  .big { font-family: Cinzel, serif; font-size: 2.2em; line-height: 1; }
+  .tierbox { border-left: 6px solid #8886; padding: 6px 10px; margin: 8px 0; background: rgba(0,0,0,.03); }
+  .tierbox.t0 { border-color: #c9a227; } .tierbox.t1 { border-color: #d9730d; } .tierbox.t2 { border-color: #b71c1c; } .tierbox.t3 { border-color: #4a0072; }
+  .flag { display: inline-block; font-size: .8em; padding: 1px 6px; border-radius: 3px; background: #b71c1c; color: #fff; margin: 2px 4px 2px 0; }
+  .flag.ok { background: #2e7d32; } .flag.warn { background: #c77700; } .flag.gold { background: #c9a227; color: #000; }
+  .result { font-weight: bold; margin: 4px 0; min-height: 1.3em; }
+  .scales { display: flex; gap: 6px; margin: 6px 0; }
+  .scale { width: 34px; height: 34px; border-radius: 50% 50% 50% 0; transform: rotate(-45deg); border: 2px solid #c9a227; cursor: pointer; }
+  .scale.lit { background: radial-gradient(circle at 30% 30%, #fff3b0, #c9a227 60%, #8a6d00); }
+  ul.lv { margin: 4px 0; padding-left: 18px; }
+  ul.lv li { margin: 3px 0; opacity: .55; }
+  ul.lv li.on { opacity: 1; font-weight: bold; }
+  .gift { display: grid; grid-template-columns: auto 1fr; gap: 6px; align-items: start; padding: 4px 0; border-bottom: 1px dotted #8885; }
+  .gift.taken { opacity: .55; text-decoration: line-through; }
+  .vis { display: grid; grid-template-columns: 22px 1fr auto; gap: 6px; padding: 3px 0; border-bottom: 1px dotted #8885; align-items: start; }
+  .vis.seen { opacity: .55; }
+  .seen-list label { display: inline-flex; gap: 4px; margin: 2px 10px 2px 0; }
+  #log { max-height: 240px; overflow-y: auto; font-size: .9em; margin: 0; padding-left: 18px; }
+  .rules { font-size: .92em; } .rules li { margin: 3px 0; }
+</style>
+</head>
+<body class="curse-page">
+<div id="wrap">
+  <h1>Or'Henn's Curse: Tiamat's Pull</h1>
+  <p class="sub">Tracker for the side panels "Tiamat's Pull" and "Arc: Or'Henn and Tiamat". Say the number out loud whenever it changes. <b>DM ruling 2026-11-08:</b> the curse moves only to a dragon that <i>willingly takes it</i>.</p>
+  <div class="row">
+    <button class="btn" id="new-session">New session: Pull = 2 + scales</button>
+    <button class="btn" id="new-scene">New scene (resets the talk-down)</button>
+    <label><input type="checkbox" id="cold"> Inside the Cold Line (Pull paused, no saves)</label>
+    <button class="btn small" id="reset" style="margin-left:auto">Reset everything</button>
+  </div>
+
+  <div class="grid">
+    <!-- ===================== PULL ===================== -->
+    <div class="card">
+      <h2>Pull</h2>
+      <div class="row"><span class="big" id="pull-num">2</span><span id="pull-tier"></span></div>
+      <div class="meter" id="meter"></div>
+      <div class="tierlabels"><span>0–3 Whispers</span><span>4–6 The Leash</span><span>7–9 Kin</span><span>10 Ask</span></div>
+      <div id="flags" style="margin-top:6px"></div>
+      <div class="tierbox" id="tierbox"></div>
+
+      <h2 style="margin-top:12px">Raise</h2>
+      <div class="row">
+        <button class="btn small" data-raise="2" data-why="Vision in the Dragon Queen's Garden">+2 Garden vision</button>
+        <button class="btn small" data-raise="1" data-why="Small Vision">+1 Small Vision</button>
+        <button class="btn small" data-raise="1" data-why="Touched or used the orb of dragonkind">+1 Orb</button>
+        <button class="btn small" data-raise="1" data-why="Raised by hand">+1 other</button>
+      </div>
+      <div class="seen-list" id="seen"></div>
+      <h2 style="margin-top:8px">Lower</h2>
+      <div class="row">
+        <button class="btn small" id="cinder-lower">−1 Cinderbloom (charge)</button>
+        <button class="btn small" id="talk">−1 Ally talks him back</button>
+        <button class="btn small" data-raise="-1" data-why="Lowered by hand">−1 other</button>
+      </div>
+      <div class="row"><label>Cinderbloom charges <input type="number" id="charges" min="0"></label><small>(1 charge: −1 Pull, or reroll a failed Pull save, as a reaction)</small></div>
+      <div class="result" id="talk-note"></div>
+    </div>
+
+    <!-- ===================== SAVE ===================== -->
+    <div class="card">
+      <h2>Fighting Dragons · Round <span id="fround">0</span></h2>
+      <div class="row">
+        <button class="btn" id="fight-start">Start fight</button>
+        <button class="btn small" id="fight-next">Next round</button>
+        <button class="btn small" id="fight-end">End fight</button>
+        <label><input type="checkbox" id="prog"> Fight progression (proposal)</label>
+      </div>
+      <ul class="rules">
+        <li><b>Start of each of his turns</b>, with a chromatic dragon or Tiamat in sight: <button class="btn small" id="turn-save">Roll his Pull save</button></li>
+        <li><b>Progression on</b>: every failed Pull save <b>+1</b> (the leash tightens), and the first time he damages each chromatic dragon in a fight <b>+1</b> (her blood answers his).</li>
+      </ul>
+      <div class="seen-list" id="hit-list"></div>
+
+      <h2 style="margin-top:12px">Pull Save · Wisdom DC <span id="dc">12</span></h2>
+      <ul class="rules">
+        <li><b>In combat:</b> at the start of each of his turns, if he can see a chromatic dragon or Tiamat.</li>
+        <li><b>Out of combat:</b> when a dragon speaks to him.</li>
+        <li><b>Natural 1:</b> roll a Small Vision too (+1 Pull). <b>Natural 20:</b> −1 Pull.</li>
+      </ul>
+      <div class="row"><label>His Wisdom save bonus <input type="number" id="wis" value="7"></label>
+        <label><input type="checkbox" id="pfeg"> Protection from evil and good (advantage)</label></div>
+      <div class="row">
+        <button class="btn" id="roll-save">Roll Pull save</button>
+        <label>or type the d20 <input type="number" id="manual"></label><button class="btn small" id="apply-manual">Apply</button>
+        <button class="btn small" id="reroll">Cinderbloom reroll</button>
+      </div>
+      <div class="result" id="save-result"></div>
+      <div class="tierbox" id="save-effect" style="display:none"></div>
+
+      <h2 style="margin-top:12px">If He Asks (Kin or Ask)</h2>
+      <ul class="rules">
+        <li>Kin (7–9): charmed by the nearest chromatic dragon; he says one line asking it for help. An ally within 5 ft. can stop the words with a reaction (grapple, a hand over his mouth, <i>silence</i>).</li>
+        <li>A chromatic dragon within 60 ft. answers yes with its reaction <b>and must willingly take it</b>: the curse jumps. Tiamat wakes. See "If the Curse Jumps" and Session 13 "Tiamat's Curse: Scenarios".</li>
+        <li>Vermilius's Honeyed Voice is built for this moment.</li>
+      </ul>
+      <div class="row">
+        <label>Curse jumped to <select id="jumped"><option value="">nobody (still on Or'Henn)</option><option>Vermilius</option><option>Flash</option><option>Vistalancer</option><option>Slarkas</option><option>Obatala</option><option>the dragon in the orb (gold cage)</option><option>another dragon</option></select></label>
+      </div>
+      <div id="jump-note"></div>
+
+      <h2 style="margin-top:12px">Log</h2>
+      <ol id="log" reversed></ol>
+    </div>
+
+    <!-- ===================== SCALES / GIFTS / VISIONS ===================== -->
+    <div class="card">
+      <h2>Gold Scales <span id="scale-num">0</span> / 5</h2>
+      <div class="scales" id="scales"></div>
+      <ul class="lv" id="scale-levels"></ul>
+      <small><i>Remove curse</i> and <i>greater restoration</i> do not touch them.</small>
+
+      <h2 style="margin-top:12px">Tiamat's Gifts (each: +1 scale, +2 Pull)</h2>
+      <div id="gifts"></div>
+      <small>Refusing costs nothing now: "Then we will talk again." But the next vision comes sooner, and the white head says more.</small>
+
+      <h2 style="margin-top:12px">Small Visions <button class="btn small" id="roll-vision">Roll d8</button></h2>
+      <div class="result" id="vision-result"></div>
+      <div id="visions"></div>
+    </div>
+  </div>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "dmapp:curse:orhenn";
+  var TIERS = [
+    { max: 3, name: "Whispers", text: "Disadvantage on his first attack roll against a chromatic dragon. His fire damage to chromatic dragons is halved." },
+    { max: 6, name: "The Leash", text: "He cannot target a chromatic dragon with an attack or a harmful spell. He must spend half his movement moving toward the nearest one." },
+    { max: 9, name: "Kin", text: "Charmed by the nearest chromatic dragon. On his turn he says aloud one line asking it for help. If a chromatic dragon within 60 ft. answers yes (its reaction) and willingly takes it, the curse jumps. An ally within 5 ft. can stop the words with a reaction." },
+    { max: 10, name: "Ask", text: "No save. He asks the nearest chromatic dragon for help. The DM decides whether it says yes (and it must willingly take the curse)." }
+  ];
+  var DRAGONS = ["Slarkas (black)", "Vistalancer (blue)", "Vermilius (green)", "Flash (red)", "Obatala (white)", "Other chromatic"];
+  var SCALES = [
+    "His molten-gold eye burns brighter whenever she is near. Visions now come awake as well as asleep.",
+    "Chromatic dragons know him on sight as hers. They talk before they bite. Metallic dragons will not deal with him.",
+    "He understands her voice in everything draconic: dragons, kobolds, the orb. Arkhan hears of him, and is jealous.",
+    "She sees through his gold eye while he sleeps. Anything the party plans in front of him while he sleeps, she knows.",
+    "He is hers. The next time a chromatic dragon offers him help, he cannot refuse, and the curse goes."
+  ];
+  var GIFTS = [
+    ["Her Fire (red head, kin)", "Once, his breath weapon becomes a red dragon's: 60-ft. cone, DC 18 Dex, 63 (18d6) fire, half on a success."],
+    ["Her Law (blue head, order)", "For one day, no chromatic dragon harms him until he harms one first. They come close and talk instead."],
+    ["Her Truth (green head, secrets)", "One true answer about his household, his old master or the raid (the Kreeg reveal can land early)."],
+    ["Her Mourning (black head, grief)", "He hears Eldra's voice once, saying the one thing he most needed to hear."],
+    ["Her Hunger (white head, hunger)", "The next time he drops to 0 hit points, he drops to 1 instead."],
+    ["Her Key (green head, for Cinderbloom)", "Urexiel hands over the staff with no fight, no price and no dragon."]
+  ];
+  var VISIONS = [
+    "Every flower on his armour turns its head toward the nearest dragon, all at once. (Red head.)",
+    "A whisper in Draconic from the orb: his name, the one Eldra gave him. (The orb. Opens the loophole: asking the dragon in the orb.)",
+    "His reflection in water or metal has five heads, for one heartbeat. (All five.)",
+    "The ash at his feet draws the shape of a garden path, leading east. (Blue head.)",
+    "He tastes rain. There is no rain in Avernus. (Black head.)",
+    "Arkhan's voice, far off, praying. It stops, as if Arkhan heard him listening. (Green head.)",
+    "His gold eye goes hot, and for a moment he sees through a dragon's eyes, flying very high. (White head.)",
+    "All five voices together, gently: \"Ask.\""
+  ];
+
+  function fresh() { return { pull: 2, scales: 0, gifts: {}, seen: {}, visions: {}, cold: false, talked: false, charges: 4, wis: 7, jumped: "", log: [], lastFail: null, prog: true, fight: 0, hit: {} }; }
+  var S;
+  try { S = Object.assign(fresh(), JSON.parse(localStorage.getItem(KEY)) || {}); } catch (e) { S = fresh(); }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* private window: memory only */ } }
+  function $(id) { return document.getElementById(id); }
+  function d(n) { return 1 + Math.floor(Math.random() * n); }
+  function tierOf(p) { for (var i = 0; i < TIERS.length; i++) if (p <= TIERS[i].max) return i; return 3; }
+  function stamp() { var t = new Date(); return ("0" + t.getHours()).slice(-2) + ":" + ("0" + t.getMinutes()).slice(-2); }
+  function log(m) { S.log.unshift(stamp() + " · " + m); S.log = S.log.slice(0, 100); }
+
+  function setPull(v, why) {
+    var old = S.pull;
+    S.pull = Math.max(0, Math.min(10, v));
+    if (S.pull !== old || why) log((why ? why + ": " : "") + "Pull " + old + " → " + S.pull + (tierOf(S.pull) !== tierOf(old) ? " (now " + TIERS[tierOf(S.pull)].name + ")" : ""));
+  }
+  function addScale(why) {
+    if (S.scales >= 5) return;
+    S.scales++;
+    log("Gold scale " + S.scales + (why ? " (" + why + ")" : "") + ": " + SCALES[S.scales - 1]);
+  }
+
+  function render() {
+    $("pull-num").textContent = S.pull;
+    var t = tierOf(S.pull);
+    $("pull-tier").innerHTML = '<span class="flag ' + ["gold", "warn", "", ""][t] + '" style="font-size:1em">' + TIERS[t].name + "</span>";
+    var m = $("meter"); m.innerHTML = "";
+    for (var i = 0; i <= 10; i++) (function (i) {
+      var p = document.createElement("div");
+      p.className = "pip t" + tierOf(i) + (i <= S.pull ? " lit" : "") + (i === S.pull ? " cur" : "");
+      p.textContent = i;
+      p.onclick = function () { setPull(i, "Set by hand"); save(); render(); };
+      m.appendChild(p);
+    })(i);
+    $("tierbox").className = "tierbox t" + t;
+    $("tierbox").innerHTML = "<b>On a failed save now (" + TIERS[t].name + "):</b> " + TIERS[t].text;
+    $("dc").textContent = 10 + S.pull;
+
+    var f = [];
+    if (S.cold) f.push('<span class="flag ok">Inside the Cold Line: Pull paused, no saves</span>');
+    if (S.pull >= 6) f.push('<span class="flag">Pull 6+: +2 on Arkhan\'s hunt roll (S13 exit R, proposal)</span>');
+    if (S.pull >= 10) f.push('<span class="flag">10: no save, he ASKS the nearest chromatic dragon</span>');
+    if (S.scales >= 5) f.push('<span class="flag">5 scales: he cannot refuse the next chromatic dragon that offers help</span>');
+    if (S.visions[2]) f.push('<span class="flag gold">Small Vision 2 has come up: the orb loophole is open</span>');
+    if (S.jumped) f.push('<span class="flag">CURSE JUMPED to ' + S.jumped + "</span>");
+    $("flags").innerHTML = f.join("");
+
+    $("cold").checked = !!S.cold;
+    $("charges").value = S.charges;
+    $("wis").value = S.wis;
+    $("cinder-lower").disabled = S.charges <= 0;
+    $("reroll").disabled = S.charges <= 0 || S.lastFail === null;
+    $("talk").disabled = !!S.talked;
+    $("talk-note").textContent = S.talked ? "Talk-down used this scene. Press \"New scene\" to reset." : "Talk-down: once per scene, an ally within 30 ft. uses an action: DC 15 Wisdom (Insight) or Charisma (Persuasion).";
+
+    var seen = $("seen"); seen.innerHTML = "<small>First time he sees each chromatic dragon this session (+1 each):</small><br>";
+    DRAGONS.forEach(function (n) {
+      var l = document.createElement("label"); var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = !!S.seen[n];
+      cb.onchange = function () { S.seen[n] = cb.checked; if (cb.checked) setPull(S.pull + 1, "First sight of " + n); else log("Unticked " + n + " (Pull not changed)"); save(); render(); };
+      l.appendChild(cb); l.appendChild(document.createTextNode(n)); seen.appendChild(l);
+    });
+
+    $("scale-num").textContent = S.scales;
+    var sc = $("scales"); sc.innerHTML = "";
+    for (var k = 1; k <= 5; k++) (function (k) {
+      var s = document.createElement("div"); s.className = "scale" + (k <= S.scales ? " lit" : ""); s.title = "Set to " + k;
+      s.onclick = function () { var v = (S.scales === k) ? k - 1 : k; log("Gold scales set by hand: " + S.scales + " → " + v); S.scales = v; save(); render(); };
+      sc.appendChild(s);
+    })(k);
+    $("scale-levels").innerHTML = SCALES.map(function (t, i) { return '<li class="' + (S.scales >= i + 1 ? "on" : "") + '"><b>' + (i + 1) + ":</b> " + t + "</li>"; }).join("");
+
+    var g = $("gifts"); g.innerHTML = "";
+    GIFTS.forEach(function (gi, i) {
+      var row = document.createElement("div"); row.className = "gift" + (S.gifts[i] ? " taken" : "");
+      var b = document.createElement("button"); b.className = "btn small"; b.textContent = S.gifts[i] ? "Taken" : "Accept";
+      b.onclick = function () {
+        if (S.gifts[i]) { if (!confirm("Undo this gift? (Scale and Pull are not changed back)")) return; S.gifts[i] = false; log("Gift undone: " + gi[0]); }
+        else { S.gifts[i] = true; addScale(gi[0]); setPull(S.pull + 2, "Accepted " + gi[0]); }
+        save(); render();
+      };
+      row.appendChild(b);
+      var tx = document.createElement("div"); tx.innerHTML = "<b>" + gi[0] + "</b><br><small>" + gi[1] + "</small>"; row.appendChild(tx);
+      g.appendChild(row);
+    });
+
+    var v = $("visions"); v.innerHTML = "";
+    VISIONS.forEach(function (t, i) {
+      var n = i + 1;
+      var row = document.createElement("div"); row.className = "vis" + (S.visions[n] ? " seen" : "");
+      row.innerHTML = "<b>" + n + "</b><span>" + t + "</span>";
+      var b = document.createElement("button"); b.className = "btn small"; b.textContent = S.visions[n] ? "✓ seen" : "Use";
+      b.onclick = function () { useVision(n); save(); render(); };
+      row.appendChild(b); v.appendChild(row);
+    });
+
+    $("fround").textContent = S.fight ? S.fight : "–";
+    $("prog").checked = !!S.prog;
+    $("fight-next").disabled = !S.fight; $("fight-end").disabled = !S.fight;
+    var hl = $("hit-list"); hl.innerHTML = "<small>He has damaged this fight" + (S.prog ? " (+1 the first time each)" : "") + ":</small><br>";
+    DRAGONS.forEach(function (n) {
+      var l = document.createElement("label"); var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = !!S.hit[n]; cb.disabled = !S.fight;
+      cb.onchange = function () { S.hit[n] = cb.checked; if (cb.checked) { if (S.prog) setPull(S.pull + 1, "First blood on " + n + " this fight"); else log("Or'Henn damaged " + n); } save(); render(); };
+      l.appendChild(cb); l.appendChild(document.createTextNode(n)); hl.appendChild(l);
+    });
+    $("jumped").value = S.jumped || "";
+    $("jump-note").innerHTML = S.jumped
+      ? '<p class="tierbox t3"><b>The curse has left Or\'Henn.</b> ' + (/orb/.test(S.jumped) ? "The orb turns gold and warm: Tiamat wakes halfway, inside the glass. Arkhan would burn Avernus to own it." : "Tiamat wakes in her true form. The dragons kneel. Run Session 13 \"Ending: Tiamat Wakes\".") + " His gold scales stay gold.</p>"
+      : "";
+    $("log").innerHTML = S.log.map(function (l) { return "<li>" + l + "</li>"; }).join("");
+  }
+
+  function useVision(n) {
+    S.visions[n] = true;
+    $("vision-result").textContent = "Vision " + n + ": " + VISIONS[n - 1];
+    log("Small Vision " + n + ": " + VISIONS[n - 1]);
+    setPull(S.pull + 1, "Small Vision");
+  }
+
+  function resolveSave(raw, shown) {
+    if (S.cold) { $("save-result").textContent = "Inside the Cold Line: no Pull save."; return; }
+    var t = tierOf(S.pull);
+    if (S.pull >= 10) {
+      $("save-result").textContent = "Pull 10: no save. He asks the nearest chromatic dragon for help.";
+      showEffect(3); log("Pull 10: he asks"); S.lastFail = null; return;
+    }
+    var wis = Number($("wis").value) || 0; S.wis = wis;
+    var total = raw + wis, dc = 10 + S.pull;
+    var nat1 = raw === 1, nat20 = raw === 20;
+    var ok = total >= dc;
+    var txt = "Pull save " + (shown ? "(" + shown + ") " : "") + raw + " + " + wis + " = " + total + " vs DC " + dc + ": " + (ok ? "SAVED" : "FAILED, " + TIERS[t].name);
+    $("save-result").textContent = txt; log(txt);
+    if (ok) { $("save-effect").style.display = "none"; S.lastFail = null; }
+    else { showEffect(t); S.lastFail = t; if (S.prog && S.fight) setPull(S.pull + 1, "Failed Pull save in a fight (the leash tightens)"); }
+    if (nat20) setPull(S.pull - 1, "Natural 20 on the Pull save");
+    if (nat1) { var r = d(8); $("vision-result").textContent = ""; useVision(r); }
+  }
+  function showEffect(t) {
+    var e = $("save-effect"); e.style.display = ""; e.className = "tierbox t" + t;
+    e.innerHTML = "<b>Until the start of his next turn (" + TIERS[t].name + "):</b> " + TIERS[t].text;
+  }
+  function roll() { var a = d(20), b = d(20); var adv = $("pfeg").checked; resolveSave(adv ? Math.max(a, b) : a, adv ? a + "/" + b : null); }
+
+  // ---------- wiring ----------
+  document.querySelectorAll("[data-raise]").forEach(function (b) {
+    b.onclick = function () {
+      if (b.dataset.why === "Small Vision") { var r = d(8); useVision(r); }
+      else setPull(S.pull + Number(b.dataset.raise), b.dataset.why);
+      save(); render();
+    };
+  });
+  $("cinder-lower").onclick = function () { if (S.charges <= 0) return; S.charges--; setPull(S.pull - 1, "Cinderbloom charge (" + S.charges + " left)"); save(); render(); };
+  $("talk").onclick = function () { S.talked = true; setPull(S.pull - 1, "An ally talked him back (DC 15 Insight or Persuasion)"); save(); render(); };
+  $("charges").onchange = function () { S.charges = Math.max(0, Number(this.value) || 0); save(); render(); };
+  $("wis").onchange = function () { S.wis = Number(this.value) || 0; save(); };
+  $("cold").onchange = function () { S.cold = this.checked; log(S.cold ? "Inside the Cold Line: Pull paused" : "Out of the Cold Line: the Pull starts again"); save(); render(); };
+  $("fight-start").onclick = function () { S.fight = 1; S.hit = {}; S.talked = false; log("Fight starts (Pull " + S.pull + ")"); save(); render(); };
+  $("fight-next").onclick = function () { if (!S.fight) return; S.fight++; log("Fight round " + S.fight); $("save-result").textContent = ""; $("save-effect").style.display = "none"; S.lastFail = null; save(); render(); };
+  $("fight-end").onclick = function () { log("Fight ends after " + S.fight + " round(s), Pull " + S.pull); S.fight = 0; S.hit = {}; save(); render(); };
+  $("prog").onchange = function () { S.prog = this.checked; log("Fight progression " + (S.prog ? "on" : "off")); save(); render(); };
+  $("turn-save").onclick = function () { if (!S.fight) { S.fight = 1; S.hit = {}; log("Fight starts (Pull " + S.pull + ")"); } roll(); save(); render(); };
+  $("roll-save").onclick = function () { roll(); save(); render(); };
+  $("apply-manual").onclick = function () { var v = Number($("manual").value); if (v >= 1 && v <= 20) { resolveSave(v); save(); render(); } $("manual").value = ""; };
+  $("reroll").onclick = function () { if (S.charges <= 0) return; S.charges--; log("Cinderbloom: reroll the failed save (" + S.charges + " charges left)"); roll(); save(); render(); };
+  $("roll-vision").onclick = function () { useVision(d(8)); save(); render(); };
+  $("jumped").onchange = function () { S.jumped = this.value; log(S.jumped ? "THE CURSE JUMPED to " + S.jumped : "Curse marked as still on Or'Henn"); save(); render(); };
+  $("new-session").onclick = function () { S.seen = {}; S.talked = false; S.lastFail = null; setPull(2 + S.scales, "New session (2 + " + S.scales + " scales)"); save(); render(); };
+  $("new-scene").onclick = function () { S.talked = false; log("New scene"); save(); render(); };
+  $("reset").onclick = function () { if (confirm("Reset the whole curse tracker (scales, gifts, visions, log)?")) { S = fresh(); save(); render(); } };
+
+  render();
+})();
+</script>
+</body>
+</html>
