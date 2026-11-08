@@ -15,3 +15,5 @@
 - [Session 5 Dumal handoff](session_handoff_dumal_session5.md) — prior state: Session 4 outcomes, Dumal arc plan, homebrew lore (Coram/Senna/Ardentwine), v2 influence tracker, Open5e MCP. Primer: session-5-dumal-primer.md.
 - [DM app primer feedback](dm_app_primer_feedback.md) — primers need deep DM context + sources, collapsed lore, combat screen, group-monster house rule; d20+ loot, map room codes, hard-choice puzzle fights, "astra" = gpt-6-astra
 - [DnD orchestration lessons](dnd_orchestration_lessons.md) — 2026-11-01: fetch before planning AND before every commit (laptop edits live), merge recipe, agents kill by PID only, headless chrome.exe fallback
+- [Free tools only](free_tools_only.md) — no paid tools; suggest free fantasy-tuned image-gen (astra, Gemini, local ComfyUI on 3070 Ti)
+- [Browser: Firefox](browser_firefox.md) — open the DM app and images in Firefox, never Edge (the Windows default)

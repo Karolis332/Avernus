@@ -1,37 +1,23 @@
-# Checkpoint · C:\Users\kpaul\DnD · 2026-11-01T07:13:49.518Z · session 48775292 · ctx ≈ 365k
+# Checkpoint · C:\Users\kpaul\DnD · 2026-11-07T20:53:04.675Z · session 16eecd26 · ctx ≈ 367k
 
 ## Prompts
-- status?
-- how much time for it to be done?
-- status?
-- how much till done?
-- i am going for a nap, please be done in an hour tobe ready for checks
-- status? how much till done? i am going for a nap, please be done in an hour tobe ready for checks
-- arkhan was arriving as they went in and closed the door to the dungeon. Eldra doesnt have a purpose I believe, but keep the stuff just in case and flavour material, do they come from orhenns back story?
-- how would they knoiw they are the riders fo the first charge? the item tables sohuld be at lleast d20 or d100s
+- lets please resume our prep time for what happens when they come out of the crypt of the hellriders, did you create visuals and images for each dragon to be uniquely personified, have unique tactics, allegiances, attacks and flavour text
+- resume and I will need to read everything before I can give any calls, which ending I prefer doesnt mind from me it matters as to what the praty chooses, but I need the scab location prepared and by the book proper. I want images of all sepparate dragons and visuals of their attacks
 
 ## Files touched
-C:\Users\kpaul\DnD\CLAUDE.md
-C:\Users\kpaul\.claude\plans\hidden-cooking-tome.md
-C:\Users\kpaul\.claude\projects\C--Users-kpaul-DnD\memory\dnd_orchestration_lessons.md
-C:\Users\kpaul\AppData\Local\Temp\arkhan_fix2.py
-C:\Users\kpaul\AppData\Local\Temp\state_fix.py
-C:\Users\kpaul\AppData\Local\Temp\notes_fix.py
+C:\Users\kpaul\DnD\dm-app\sessions\campaign-tower.js
+C:\Users\kpaul\DnD\dm-app\sessions\12-the-siege-of-the-crypt.js
+C:\Users\kpaul\DnD\dm-app\sessions\index.js
+C:\Users\kpaul\AppData\Local\Temp\gen_dragon_attacks.sh
+C:\Users\kpaul\AppData\Local\Temp\scab_book.py
+C:\Users\kpaul\AppData\Local\Temp\scab_creatures.js.txt
+C:\Users\kpaul\DnD\dm-app\sessions\13-the-scab.js
+C:\Users\kpaul\DnD\dm-app\sessions\00-campaign-compass.js
 
 ## Agents
-slice1-blocks-statblock
-slice2-group-initiative
-slice3-combat-popout
-slice4-hellriders
-slice5-world-zariel
-slice6-session-12
-slice7-session-13
-slice8-visuals
-slice9-wrapup
-merge-s11-port
 
 ## Last assistant text
-You've raised two things. I'll check how Session 12 tells the players these are First Charge riders and how big the loot tables are now. The art agent will touch Sessions 12 and 13 at its wiring step, so I'm warning it first to re-read those files before writing.
+Two problems. The Compass links Arkhan under the wrong id, and the art batch is failing. Checking both.
 
 ## Next
 - resume from the last prompt above; verify before claiming done
