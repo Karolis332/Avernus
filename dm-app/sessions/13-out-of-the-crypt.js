@@ -220,7 +220,7 @@ window.SESSION = {
         { t: "list", items: [
           "{@c skarrix|Slarkas} (black). The west ash ridge, crouched low like a skull in a swamp. Sullen. Spits acid at the line to see who flinches. Charges any Hellrider banner. Radiant hurts him.",
           "{@c vhennic|Vistalancer} (blue). Circling high, steel-capped horn glinting. Reports to Arkhan. Strafes anyone who crosses the line. The easiest to turn: show him the odds.",
-          "{@c mirelle|Vermilius} (green). Nearest the cold line, perched and still, frill raised. The kindest voice outside. Speaks to Or'Henn alone. Arkhan's black handprint is on her throat.",
+          "{@c mirelle|Vermilius} (green). Nearest the cold line, perched and still, crest raised. The kindest voice outside. Speaks to Or'Henn alone. Arkhan's black handprint is on her throat.",
           "{@c praxamor|Flash} (red). A rock spur just outside the line, level with the carved sun, rearing and roaring. Proud. First to snap. Fire breath at anyone on the frost. Call him small and he breaks ranks.",
           "{@c obatala|Obatala} and {@c krull|Krull}. The north hill. Krull counts minutes. Obatala does not move unless Krull clicks his tongue."
         ] },
@@ -287,7 +287,7 @@ window.SESSION = {
         ] },
 
         { t: "more", title: "Flash: the dragon with no scars", src: ["Homebrew"], blocks: [
-          { t: "read", text: "The red is the youngest and the loudest: glossy scarlet, with cracks glowing between his scales like lava under a crust. His horns have barely started. There is not one scar on him anywhere, and the other dragons keep glancing at the places where scars would be." },
+          { t: "read", text: "The red is the youngest and the loudest: glossy scarlet, with cracks glowing between his scales like lava under a crust. His horns are a crown of new spikes, too many and too sharp, without a chip on any of them. There is not one scar on him anywhere, and the other dragons keep glancing at the places where scars would be." },
           { t: "list", items: [
             "{@b Seen before:} the tower (Session 9), and at Uldrak's Grave if he fought there (Session 10: he landed on the sword's crossguard and duelled Uldrak).",
             "{@b Tied to:} his true name is Praxamor. Arkhan's people call him Flash, and he hates it.",

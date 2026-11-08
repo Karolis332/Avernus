@@ -284,7 +284,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Why:** DM: the two looked like kid dragons (the v1 prompts literally asked for round cheeks and big eyes); Slarkas and Vistalancer are fine. DM asked why the files had names nobody uses at the table.
 - **Open:** DM picks v1 or v2 on the laptop. To make v2 live: `python dm-app/docs/style-test/use_v2.py vermilius flash` (one or both names; v1 kept as `-v1.webp`), then commit. Renaming the internal ids too is possible but touches every session file; not done.
 
-### 2026-11-08 — v2 art live for Vermilius + Flash
-- **Did:** ran `use_v2.py vermilius flash`: the 17 adult/menacing v2 webps are now the live `art/generated/<name>-*.webp`; v1 kept as `<name>-*-v1.webp`. No code paths changed.
-- **Why:** DM picked v2 for both after viewing `docs/style-test/v1-vs-v2-sheet.webp`.
+### 2026-11-08 — v2 art live for Vermilius + Flash; look text matched; Scab pinned on the map
+- **Did:** ran `use_v2.py vermilius flash`: the 17 adult v2 webps are the live `art/generated/<name>-*.webp`; v1 kept as `-v1.webp`. Look text rewritten to match: Vermilius (`campaign-tower.js` description + silhouette, S13 "crest raised") is deep forest green with a spined crest, no ivory/violet frill; Flash (`campaign-tower.js`, S13 read-aloud) has a full crown of new, unchipped horns. Character unchanged (Flash still the youngest, unscarred, Prove It intact). `campaign-map.js`: `bleeding-citadel` pin at x 40.3 / y 7.8, the dark castle in the northern range between the 2nd and 3rd pillars.
+- **Why:** DM picked v2 for both. The book leaves the Scab/Citadel off the poster map (Olanthius or Bel reveals it); the DM placed it there.
+- **Also:** S14 road read-aloud + shard feel changed from "west" to "north" (from the Crypt the new spot is north, a little east).
 - **Open:** rulings from the entries above.

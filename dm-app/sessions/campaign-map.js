@@ -475,6 +475,7 @@ window.CAMPAIGN.map = {
     // ---------- Chapter 4: The Sword of Zariel ----------
     {
       id: "bleeding-citadel", title: "The Bleeding Citadel",
+      x: 40.3, y: 7.8,
       stage: "ch4", path: "main", status: "changed",
       objective: "Reach the Citadel in a 33-day window, get inside, and claim the Sword of Zariel. It waits on its dais, missing one shard.",
       bloodPrice: "Blood Pay at the door. A vision trial in the Hall of the Last Charge. Lulu relives Yael's death. Miss the window and Elturel drops a Rung.",
@@ -483,7 +484,7 @@ window.CAMPAIGN.map = {
       requires: ["The shard from the Crypt, ideally. Without it Lulu's memory alone opens the vision trial, and the Sword stays notched (DM's choice what that costs).", "The road: all three Fallen Three pieces, or Lulu's final memory.", "A live window. It was 12 days out at the last count."],
       unlocks: ["The Sword of Zariel, whole again -- the physical lever.", "Lulu's reunion with Yael.", "Lulu's caging-memory, the door to Coram."],
       sessions: 2.5,
-      dmChoices: ["The Sword waits on its dais as in the book, missing one shard (Eventyr's option, ruled 2026-10-23). It cracked off in Zariel's last battle; Olanthius kept it.", "The shard is the conduit for the vision trial. When the trial ends it flies up and rejoins the blade in a burst of light.", "The interior is this campaign's own: the Plain of Kneeling Penitents, the Wound-Gate, the Hall of the Last Charge, Yael's resting place, the Sword's chamber.", "The gate opens to grief or Blood Pay, never to force."],
+      dmChoices: ["The Scab and the Citadel sit at the dark castle in the northern range, between the second and third great pillars (DM placed it, 2026-11-08). The book leaves the spot to the DM.", "The Sword waits on its dais as in the book, missing one shard (Eventyr's option, ruled 2026-10-23). It cracked off in Zariel's last battle; Olanthius kept it.", "The shard is the conduit for the vision trial. When the trial ends it flies up and rejoins the blade in a burst of light.", "The interior is this campaign's own: the Plain of Kneeling Penitents, the Wound-Gate, the Hall of the Last Charge, Yael's resting place, the Sword's chamber.", "The gate opens to grief or Blood Pay, never to force."],
       alternatives: ["Off-window: hold a vigil at the scar (1d6 each day; 1-2 means a threat finds the camp).", "Run the book's Scab and Idyllglen instead, with the maps below."],
       blocks: [
         { t: "h", text: "How to Run It From Here" },

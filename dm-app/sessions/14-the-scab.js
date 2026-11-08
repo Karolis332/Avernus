@@ -344,9 +344,9 @@ window.SESSION = {
       when: "",
       duration: "30 minutes",
       blocks: [
-        { t: "read", text: "The road runs west and down, across black glass and old battlefields. Far ahead there is a hill that is the wrong shape. As you get closer you see it is not rock. It is a scab, a great pink crust the size of a mountain, with chains the thickness of towers running into it from every direction." },
+        { t: "read", text: "The road runs north for days, across black glass and old battlefields, toward the mountains at the edge of the sky. Far ahead there is a hill that is the wrong shape. As you get closer you see it is not rock. It is a scab, a great pink crust the size of a mountain, with chains the thickness of towers running into it from every direction." },
         { t: "img", src: "art/generated/env-road-to-the-scab.webp", caption: "The road to the Scab.", credit: "Generated art (Codex, gpt-6-astra)." },
-        { t: "env", sight: "Burnt carts, a standard with the sun cut out, a hill that pulses very slightly.", sound: "Chains groaning under strain, a long way off.", smell: "Iron, old bread, rot under it.", feel: "The shard hums against your ribs. It is warm, and it tugs west." },
+        { t: "env", sight: "Burnt carts, a standard with the sun cut out, a hill that pulses very slightly.", sound: "Chains groaning under strain, a long way off.", smell: "Iron, old bread, rot under it.", feel: "The shard hums against your ribs. It is warm, and it tugs north." },
 
         { t: "h", text: "The Shard Leads" },
         { t: "p", text: "Lulu used to be the way to the Citadel. Now the shard is. It tugs toward the Scab like a compass needle that wants to go home. Do not tell them which way is right: let the hum say it." },
