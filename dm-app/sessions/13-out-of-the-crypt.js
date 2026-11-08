@@ -36,11 +36,11 @@ window.SESSION = {
         { spell: "Teleport (Hand of Vecna)", line: "He bows to the doorway, all courtesy, and is simply not on the ridge any more." }
       ],
       tactics: [
-        "Session 13. He cannot cross the cold line at the top of the 40-foot stair, and he does not try. He stands there, patient, and talks down the stairwell to the C1 gates. He is the siege.",
+        "Session 13. He cannot cross the Cold Line, the edge of the frost outside the doorway, and he does not try. He stands one step beyond it, patient, and talks; the cold carries his voice down the stair to the C1 gates. He is the siege.",
         "The vial of Tiamat's blood is spent: the party poured it into Uldrak. Or'Henn's curse is his last road to his queen. He wants the party dead, except two: Or'Henn alive as a hostage, and Drenwal alive to cast.",
         "His plan: take Or'Henn, Geas Drenwal into calling a gold dragon, and hold Fane-Eater at Or'Henn's throat until Or'Henn asks that dragon for help. The curse jumps and Tiamat wakes. See Arkhan's Plan in {@scene wings-at-the-door|Wings at the Door}.",
         "He keeps his word to the letter and never lies. The orb no longer buys anything from him. His one offer: \"Send me the druid and the priest, and the rest of you walk.\"",
-        "He does not fight at the door. If the ward falls (6 of 6), he walks in with Krull and goes for Or'Henn, not the kill: Vecna's Grip, a grapple, then back up the stair. The fight is {@scene the-breakout|The Breakout}. It is not a fight to win: the exits are the win.",
+        "He does not fight at the door. If the ward falls (6 of 6), he walks in with Krull and goes for Or'Henn, not the kill: Vecna's Grip, a grapple, then back up the stair and out past the line. The fight is {@scene the-breakout|The Breakout}. It is not a fight to win: the exits are the win.",
         "If Uldrak appears, Arkhan bows to him, withdraws and does not fight. Tiamat has not given him leave."
       ]
     }),
@@ -59,7 +59,7 @@ window.SESSION = {
     "vhennic": Object.assign({}, window.CAMPAIGN.creatures.vhennic, {
       tactics: [
         "Session 13. Vistalancer (blue) circles high and fast, tasting the ward with lightning. He is the one who reports to Arkhan.",
-        "Strafes anyone who leaves the doorway with a Lance Dive, then climbs out of reach. He will chase a flying PC (Moonkite) for a mile.",
+        "Strafes anyone who crosses the line with a Lance Dive, then climbs out of reach. He will chase a flying PC (Moonkite) for a mile.",
         "{@b Turn him:} he is Arkhan's ears and the easiest to peel off. Show him the odds (DC 18 Persuasion or Intimidation, advantage right after another dragon is hurt, or for sapphires). A turned Vistalancer \"misreports\" to Arkhan, which buys the party one ward segment.",
         "{@b Feed him lies:} whatever is said where he can hear reaches Arkhan next round.",
         "Leaves at half hit points (Clean Exit). If the orb moves, he follows it by the most direct route, but at a distance."
@@ -80,8 +80,8 @@ window.SESSION = {
 
     "praxamor": Object.assign({}, window.CAMPAIGN.creatures.praxamor, {
       tactics: [
-        "Session 13. Flash (red) perches on the Crypt's roof ridge and cannot enter. He is the proudest and the first to snap.",
-        "Frightful Presence on anyone who looks up. Fire breath at the doorway if a PC steps out. He cannot hit the inside while the ward holds.",
+        "Session 13. Flash (red) clings to a spur of black rock just outside the line, level with the carved sun over the doorway, and glares at it. He cannot enter. He is the proudest and the first to snap.",
+        "Frightful Presence on anyone who looks up. Fire breath at any PC who walks out across the frost toward the line. Arkhan has forbidden breath down the stair: it could kill Or'Henn.",
         "{@b Bait him:} call him small, young or a hatchling and he attacks that PC alone, at once, before the others are ready (Prove It). Arkhan then has to spend Command the Line to call him back. That splits the siege.",
         "{@b His name:} a PC who calls him Praxamor gets one round of his attention. He has never been asked anything.",
         "Below half hit points he overheats and breathes more often. Retreats below 60 hit points, screaming, and is the first to come back."
@@ -122,7 +122,7 @@ window.SESSION = {
 
         { t: "h", text: "At a Glance" },
         { t: "list", items: [
-          "{@b 2 · Wings at the Door (30 min).} Arkhan's offer, where each dragon waits, the ward clock, Vermilius's kindness.",
+          "{@b 2 · Wings at the Door (30 min).} Arkhan's offer, what they see at the door (each object and where they saw it before), the ward, Vermilius's kindness.",
           "{@b 3 · The Ways Out (40 min).} Seven exits, each with a cost. They only need one.",
           "{@b 4 · The Breakout (optional).} Only if they fight.",
           "{@b 5 · Uldrak's Cue.} The four ways the empyrean comes back, and what each one spends. Read before play.",
@@ -144,9 +144,21 @@ window.SESSION = {
           "{@b Or'Henn is at 0 gold scales.} The curse is live. Inside the Crypt Tiamat is quiet; at the cold line the quiet thins. {@b DM ruling 2026-11-08:} the curse moves only if the dragon he asks {@b willingly takes it}.",
           "{@b The vial is spent.} It raised Uldrak in Session 10. Arkhan knows, and it is why he wants them dead.",
           "{@b The orb.} The party holds the Orb of Dragonkind, and Arkhan can feel it.",
-          "{@b The Crypt's ward} is where Session 12 left it. See {@scene wings-at-the-door|Wings at the Door} for what ticks it.",
+          "{@b The Crypt's ward:} start it at {@b 2 of 6} unless you tracked it in Session 12. What it is, how to describe it and what ticks it: {@scene wings-at-the-door|Wings at the Door}.",
           "{@b Uldrak} is at Bel's Forge. Read {@scene uldraks-cue|Uldrak's Cue} before play.",
           "The wider world is in {@side world-state|The World Right Now}."
+        ] },
+
+        { t: "h", text: "What They Carry Out" },
+        { t: "p", text: "The objects that matter tonight, where the party got them, and what each one does at the door. Check the sheets for who holds what." },
+        { t: "table", caption: "Objects of interest the party carries", head: ["Object", "Where it came from", "Why it matters tonight"], rows: [
+          ["Orb of Dragonkind", "It sat in the pommel of Uldrak's sword at the Grave. Uldrak gave it to them as payment for the vial (Session 10).", "Arkhan can feel it. It can lead the dragons away (exit A), reach Uldrak (cue 2), and it holds a dragon of its own (Scenario E). Holding it takes attunement and a DC 15 Charisma check."],
+          ["The shard of the Sword of Zariel", "Olanthius picked it up off the field the day Zariel fell and kept it for a hundred years. He gave it to them in the Crypt.", "It glows like a coal that will not go out and pulls toward the Citadel (DC 15 Arcana). Zariel's writ asks for it by name. Olanthius's condition: a Hellrider carries it, not a devil, a god or a dragon."],
+          ["Tiamat's mark (0 gold scales)", "Or'Henn's curse, since the Monument.", "Silent inside the Cold Line; outside, Tiamat's Pull starts again. It moves only to a dragon that willingly takes it (DM ruling 2026-11-08)."],
+          ["Soul Capacitor (Asimov)", "Asimov died fighting Dumal, and his soul was saved in it. Or'Henn carries it.", "Asimov goes quiet inside the line. The moment Or'Henn steps past it, the soul-traffic of Avernus floods back in. Suggestion: the first thing Asimov hears is riders in white and gold asking after a hollyphant (foreshadows {@scene zariel-notices|Zariel Notices})."],
+          ["Shield of the Hidden Lord", "Drenwal's. Gargauth, an outcast archdevil, is bound inside it.", "Mephistopheles wants it. His envoy may be waiting at the foot of the hill once the dragons leave ({@c ice-devil-agent|Cania's Envoy})."],
+          ["Sigil of the Binding (Tier II)", "Drenwal's leash on Bhaal's blood. Only the kinslaying is left.", "Inside the Crypt the Hellriders' vigil holds Bhaal back. Outside, only the sigil does: {@scene bhaals-first-gasp|Bhaal's First Gasp}."],
+          ["Sun Blade (if taken)", "The Urn Hoard, Session 12.", "Radiant. The lance head in Slarkas's chest burns when it comes near, and everyone can see him flinch."]
         ] }
       ]
     },
@@ -160,11 +172,11 @@ window.SESSION = {
       when: "",
       duration: "30 minutes",
       blocks: [
-        { t: "p", text: "The party shut the C1 gates behind them when they came in, and the gates are still shut. Above them the stair climbs forty feet to the doorway, and the cold line runs across its threshold. Arkhan stands at the top of the stair, one step outside the line. He does not knock. He speaks, and the stairwell carries his voice down to the gates like a well. If the party will not open the gates, he talks through them and the scene runs the same, but they see the dragons only when someone climbs the stair. When they open the gates, read:" },
+        { t: "p", text: "{@b Where everyone stands.} The party is inside the C1 gates at the foot of the 40-foot stair. The gates are shut, as they left them. At the top of the stair is the granite doorway they came in by, with the rider, the lance and the rising sun carved over it. Outside the doorway the frost runs about 60 feet out, with the two rows of kneeling dead on it, and ends at the Cold Line, the edge of the ward (Session 11). Everything evil waits beyond that edge. {@b The frost is safe ground:} the party can walk out among the kneeling knights and talk to Arkhan face to face, a step apart, with the line between them. He does not knock. He speaks, and the cold carries his voice down the stair like a voice down a well. If the party will not open the gates, he talks through them and the scene runs the same, but they see the dragons only when someone climbs the stair. When they open the gates and climb, read:" },
         { t: "map", id: "crypt-of-the-hellriders-40x30", note: "C1, at the top of the map: the gates, and the 40-foot stair up to the doorway and the cold line." },
-        { t: "read", text: "The gates of the Crypt swing in. The stair climbs forty feet above you to a doorway full of red sky, and across that doorway the cold line runs like a rope. Beyond it the sky is full of wings.\n\nOn the ridge, a black dragon the size of a barn lies with its chin on its claws. High above, a blue one cuts slow circles, lightning crawling on its wings. A green one has settled nearest the line and sits quite still, head tilted, as if it were listening to the music of a place it has not been invited to. A red one perches on the roof of the Crypt itself, one claw curled round a gargoyle. To the north, on a hill, a great white shape with an old tortle on its back.\n\nAnd at the top of the stair, one step outside the cold line, a tall dragonborn in black plate. The left side of his face is grey. He has Fane-Eater on his hip and his hands open at his sides.\n\n\"Good morning,\" says Arkhan the Cruel. \"You had something of mine. A little red glass. You poured it into a dead giant.\" He smiles with the half of his face that can. \"I am not angry. I want you to know that.\"" },
+        { t: "read", text: "The gates of the Crypt swing in. The stair climbs forty feet above you to the granite doorway, and the doorway is full of red sky.\n\nAt the top you come out onto the frost. The kneeling dead are still there in their two long rows, heads bowed, as they were when you came. At the far end of the rows the frost stops, as clean as a line drawn with a rule, and beyond that line the sky is full of wings.\n\nOn the west ridge a black dragon the size of a barn lies with its chin on its claws. High above, a blue one cuts slow circles, lightning crawling on its wings. A green one has settled nearest the line and sits quite still, head tilted, as if it were listening to music from a house it has not been invited into. A red one clings to a spur of black rock beside the line, level with the carved sun over the door, and glares at it. To the north, on a hill, a great white shape with an old tortle on its back.\n\nAnd at the end of the rows, one step outside the line, a tall dragonborn in black plate. The left side of his face is grey. Fane-Eater hangs at his hip, and his hands are open at his sides: one scaled, one black and shrivelled, stapled on at the wrist.\n\n\"Good morning,\" says Arkhan the Cruel. \"You had something of mine. A little red glass. You poured it into a dead giant.\" He smiles with the half of his face that can. \"I am not angry. I want you to know that.\"" },
         { t: "img", src: "art/generated/event-crypt-wings-at-the-door.webp", caption: "Arkhan at the cold line, his dragons behind him.", credit: "Generated art (gpt-image-2.5)." },
-        { t: "env", sight: "Five dragons in a ring; the cold line on the threshold; Arkhan's grey half-face turned away from the light.", sound: "Wings. A low hum from the ward. Krull's prayers, very faint.", smell: "Smoke, old meat, incense from the north hill.", feel: "Everyone outside is patient. That is the frightening part." },
+        { t: "env", sight: "Five dragons in a ring beyond the line; the kneeling dead on the frost; Arkhan's grey half-face turned away from the light.", sound: "Wings. The ward's low hum, like one held note. Krull's prayers, very faint.", smell: "Smoke, old meat, incense from the north hill. On the frost side, clean cold stone.", feel: "Everyone outside is patient. That is the frightening part." },
 
         { t: "h", text: "What Arkhan Wants Now" },
         { t: "p", text: "{@c arkhan-the-cruel|Arkhan} cannot cross the line and does not try. The vial of Tiamat's blood was his road to his queen, and the party spent it raising Uldrak. The curse in Or'Henn is the only road left. He no longer bargains for the orb. He wants the party dead, with two exceptions." },
@@ -177,7 +189,7 @@ window.SESSION = {
 
         { t: "more", title: "Arkhan's Plan: the Hostage and the Gold Dragon", src: ["Homebrew", "SRD (spells)"], blocks: [
           { t: "steps", items: [
-            "{@b Take the hostage.} Or'Henn by choice. Any PC will do if it makes Or'Henn ask, because the asking can be for someone else. Arkhan can only take someone who comes past the cold line, or after the ward falls. Vecna's Grip (DC 22 Constitution, restrained and silenced) holds them, then he carries them back up out of the stair.",
+            "{@b Take the hostage.} Or'Henn by choice. Any PC will do if it makes Or'Henn ask, because the asking can be for someone else. Arkhan can only take someone who comes past the Cold Line, or after the ward falls. Vecna's Grip (DC 22 Constitution, restrained and silenced) holds them, then he drags them away from the line.",
             "{@b Bind the priest.} He casts {@spell geas} on Drenwal (DC 22 Wisdom): call a gold dragon. Acting against it costs 5d10 psychic damage, once a day. If the Geas fails, the blade at the hostage's throat is the order instead.",
             "{@b The call.} Drenwal's 6th-level spell is {@spell planar ally}. By the rules it brings a celestial, an elemental or a fiend, so a gold dragon is a DM's ruling: Drenwal's god sends one, because a priest is begging. Divine Intervention also works if it lands (13% at level 13).",
             "{@b The ask.} The gold dragon arrives over a dying friend. Arkhan holds the hostage at the edge of death and says one word to Or'Henn: \"Ask.\" If Or'Henn asks the gold dragon for help and means it, and the gold dragon willingly takes the curse to save him (it will, unless someone has told it what the curse is), the curse jumps to the gold dragon, and Tiamat wakes in her true form. Run Branch: Tiamat Wakes in {@scene ending|Ending the Session}."
@@ -197,7 +209,7 @@ window.SESSION = {
           { skill: "Insight", dc: 16, who: "Or'Henn", text: "Arkhan keeps looking at you. He is not threatening you. He is waiting for you." },
           { skill: "Insight", dc: 18, who: "Drenwal", text: "He looks at your holy symbol the way a man looks at a key. He wants something cast, not someone killed." },
           { skill: "Perception", dc: 14, who: "anyone", text: "The dragons are not hungry. They are told to wait. Obatala has not moved." },
-          { skill: "Arcana", dc: 15, who: "anyone", text: "The ward is a tide. It fills in segments you can feel in your teeth. Six, and it fails." }
+          { skill: "Arcana", dc: 15, who: "anyone", text: "The ward is the Crypt's grief holding a line. It is cracked, not broken, and it weakens in steps you can feel in your teeth. Tell them how many of the 6 are gone." }
         ] },
 
         { t: "more", title: "Moonkite at the door", src: ["Homebrew"], blocks: [
@@ -207,28 +219,125 @@ window.SESSION = {
         { t: "h", text: "Where Each One Waits" },
         { t: "list", items: [
           "{@c skarrix|Slarkas} (black). The west ash ridge, crouched low like a skull in a swamp. Sullen. Spits acid at the line to see who flinches. Charges any Hellrider banner. Radiant hurts him.",
-          "{@c vhennic|Vistalancer} (blue). Circling high, steel-capped horn glinting. Reports to Arkhan. Strafes anyone who leaves the doorway. The easiest to turn: show him the odds.",
+          "{@c vhennic|Vistalancer} (blue). Circling high, steel-capped horn glinting. Reports to Arkhan. Strafes anyone who crosses the line. The easiest to turn: show him the odds.",
           "{@c mirelle|Vermilius} (green). Nearest the cold line, perched and still, frill raised. The kindest voice outside. Speaks to Or'Henn alone. Arkhan's black handprint is on her throat.",
-          "{@c praxamor|Flash} (red). The Crypt's roof ridge, rearing and roaring. Proud. First to snap. Fire breath at the doorway if a PC steps out. Call him small and he breaks ranks.",
+          "{@c praxamor|Flash} (red). A rock spur just outside the line, level with the carved sun, rearing and roaring. Proud. First to snap. Fire breath at anyone on the frost. Call him small and he breaks ranks.",
           "{@c obatala|Obatala} and {@c krull|Krull}. The north hill. Krull counts minutes. Obatala does not move unless Krull clicks his tongue."
         ] },
 
-        { t: "h", text: "The Ward Clock" },
-        { t: "p", text: "The knock cracked the ward. It weakens in 6 segments. It starts at 0. Track it where the table can see it." },
-        { t: "list", items: [
-          "{@b +1} at the end of scene 1 (the urns), scene 2 (the trials) and scene 3 (the archive), if the party spent a scene on it. Skip a tick if they skip the scene.",
-          "{@b +1} every time a trial is forced (see the Trials of the Pure).",
-          "{@b +1} every time someone shouts at, attacks or casts a loud spell toward the door.",
-          "{@b +1} if Arkhan uses Command the Line or Vecna's Grip across the threshold. He will not do this lightly.",
-          "{@b At 6,} the ward fails. Evil can enter. Arkhan walks in with Krull, the dragons crowd the doorway but cannot fit, and the fight is {@scene the-breakout|The Breakout}."
+        { t: "h", text: "What They Can See at the Door" },
+        { t: "p", text: "Every object out here is something the party has seen before, or something tied to a story they already know. Each box below has a line to read when someone looks closely, where they saw it before, what it is tied to, and how it plays tonight. Open the ones the players look at." },
+
+        { t: "more", title: "The kneeling dead on the frost", src: ["DiA Ch. 3", "Homebrew"], blocks: [
+          { t: "read", text: "Two long rows of knights kneel in the frost, heads bowed, exactly as they were when you came. Their plate is the faded white and gold of Elturel, rimed with ice. Through the gap in one visor you can see bone. None of them have moved in a hundred years." },
+          { t: "list", items: [
+            "{@b Seen before:} Session 11, on the walk in to the Cold Line. These are Hellriders who died outside the Crypt; their armour is their casket, and their bones stay upright inside it, as if in prayer (the book).",
+            "{@b Tied to:} the First Charge. Their names are on the C2 walls, and their brothers' ashes were in the urns the party broke open in Session 12. Veska and Ser Lucan know the regalia on sight.",
+            "{@b Tonight:} they are the ward's clock that everyone can see. Each time the ward weakens, the knight nearest the line bows lower, until its helm touches the frost. If the ward fails, the frost melts off them and they topple in their rows. On the Last Ride (exit B), every one of them lifts its head as the riders pass, then is still.",
+            "{@b Do not touch:} disturbing them angers the dead inside (Session 11)."
+          ] }
         ] },
-        { t: "more", title: "Why a clock, not a countdown", src: ["Homebrew"], blocks: [
-          { t: "p", text: "A clock the players can see creates urgency without forcing a fight. They always know how long they have, and they decide how to spend it. The ticks are mostly their choices: take the time, take the noise, or take the shortcut." },
-          { t: "p", text: "In the Crypt the Tiamat visions are quiet. As the ward fills, the quiet thins. At 3 segments Or'Henn can hear a whisper again. At 5 she speaks outright." }
+
+        { t: "more", title: "The carved sun over the doorway", src: ["DiA Ch. 3", "Homebrew"], blocks: [
+          { t: "read", text: "Over the granite doorway, worn but clear: a rider, a lance and a rising sun. Frost lies in the grooves of the carving and does not melt, even with a red dragon breathing twenty feet away." },
+          { t: "list", items: [
+            "{@b Seen before:} Session 11, over the door as they came in. The same sun is stamped on the lead seals of the urns (Session 12), on the old regalia of the kneeling dead, and on the lance head in Slarkas's chest.",
+            "{@b Tied to:} Elturel, and the Hellriders' oath. Zariel's banner later tonight ({@scene zariel-notices|Zariel Notices}) is this same sun with the sword torn out of it: she was the sword. When the writ arrives, put its seal next to this carving and let a player notice.",
+            "{@b Tonight:} Slarkas will not look at it. Flash glares at it from his spur, because the others told him the sun is what hurt Slarkas."
+          ] }
+        ] },
+
+        { t: "more", title: "Arkhan: the black hand, the grey face, the empty chain", src: ["DiA Ch. 3", "Homebrew"], blocks: [
+          { t: "read", text: "He stands easy, like a man at a garden gate. The left side of his face is grey and sunken, the scales peeling, and a sweet smell of old meat comes off him. His left hand is not his own: black, shrivelled and long-nailed, fixed to his wrist with iron staples. Frost forms on the air around the axe at his hip. At his throat hangs a fine chain, and on it, nothing at all." },
+          { t: "list", items: [
+            "{@b Seen before:} Session 9, at his tower. Then a small crystal vial hung on that chain, and the dark blood inside it moved on its own. The party poured that blood into Uldrak in Session 10. The empty chain is the vial they took from him.",
+            "{@b The hand} is the Hand of Vecna (the book). It keeps him alive and it rots him; to hold back the rot he must snuff out good lives. The same hand left the print on Vermilius's throat.",
+            "{@b Fane-Eater,} his battleaxe, frosts the air around it. It lights the colour of an old sunrise when he smites.",
+            "{@b Tonight:} he touches the empty chain whenever he speaks of his queen. Let a player see it (DC 12 Insight): it is the only thing he has lost that he minds."
+          ] }
+        ] },
+
+        { t: "more", title: "Slarkas's lance head", src: ["Homebrew"], blocks: [
+          { t: "read", text: "Buried in the black dragon's chest, below the shoulder, is the head of a lance: pale steel stamped with a sun. His scales have grown around it in a ridge. It still shines a little, and when the light from the doorway touches it, he flinches. His left eye is milky white." },
+          { t: "list", items: [
+            "{@b Seen before:} on Slarkas at the tower (Session 9), and over the Styx if he came in Session 10. Now, after the urns, the party can recognise the sun on it.",
+            "{@b Tied to:} the First Charge. More than a hundred years ago a Hellrider put that sun-blessed lance through his chest, and the holy fire burned out his eye. He never let anyone pull it out: he wants to remember. That rider is buried in this Crypt, and the name is on the C2 wall.",
+            "{@b Proposal (DM to rule):} the rider was {@b Marshal Aubrec Dunmere}, the Last Banner from the third urn. If Veska now carries his banner, Slarkas is looking at the colours of the knight who maimed him. That is why the banner breaks his orders.",
+            "{@b Tonight:} radiant light makes the lance head burn (the Sun Blade from the Urn Hoard). Lure: a Hellrider banner pulls him off his post for 2 rounds. His line at the banner: \"I remember that sun. I kept a piece of it.\""
+          ] }
+        ] },
+
+        { t: "more", title: "Vistalancer's steel horn and the hole in his wing", src: ["Homebrew"], blocks: [
+          { t: "read", text: "The blue dragon's single horn is capped in forged steel, banded with rings and filed to a lance point. Through his left wing, a hole the size of a shield, burned clean. He keeps that wing angled away from you and flies a little crooked." },
+          { t: "list", items: [
+            "{@b Seen before:} the tower (Session 9), and over the Styx if he came in Session 10.",
+            "{@b Tied to:} the Lady Vengeance. The hole is a force-cannon shot. If her guns hit him at the tower, it was this ship, and he has not forgiven it. If the ship comes in (exit F), he goes for it first.",
+            "{@b Tonight:} he is vain and careful. Mentioning the hole aloud (DC 13 Perception to spot how he hides it) gives advantage on the check to turn him. He wants to win without risk and to be admired."
+          ] }
+        ] },
+
+        { t: "more", title: "Vermilius's handprint and her gold rings", src: ["Homebrew"], blocks: [
+          { t: "read", text: "A black handprint is burned into the green dragon's throat: long, thin fingers, and the scales there never grew back. Gold rings climb both her horns, more than you can count at a glance. A thread of green smoke curls from one nostril." },
+          { t: "list", items: [
+            "{@b Seen before:} the tower, Session 9.",
+            "{@b The handprint} is Arkhan's: he once took her by the throat with the Hand of Vecna. She thinks it is an honour, and she is right. It marks her as the vessel he chose for the curse. {@spell detect magic} shows necromancy in it, and it is cold to the touch.",
+            "{@b The rings:} one for every creature that ever asked her for help. Ask her and she will say so, smiling. That is exactly what she wants from Or'Henn tonight.",
+            "{@b Tonight:} her smoke curls when she tells the truth and stops when she lies. To Or'Henn it never stops."
+          ] }
+        ] },
+
+        { t: "more", title: "Flash: the dragon with no scars", src: ["Homebrew"], blocks: [
+          { t: "read", text: "The red is the youngest and the loudest: glossy scarlet, with cracks glowing between his scales like lava under a crust. His horns have barely started. There is not one scar on him anywhere, and the other dragons keep glancing at the places where scars would be." },
+          { t: "list", items: [
+            "{@b Seen before:} the tower (Session 9), and at Uldrak's Grave if he fought there (Session 10: he landed on the sword's crossguard and duelled Uldrak).",
+            "{@b Tied to:} his true name is Praxamor. Arkhan's people call him Flash, and he hates it.",
+            "{@b Tonight:} call him small and he attacks that PC alone, at once. Call him Praxamor and you get one round of his attention. He wants a scar, and for Tiamat to look at him: he would volunteer as a second vessel ({@scene tiamats-curse|Tiamat's Curse}, D)."
+          ] }
+        ] },
+
+        { t: "more", title: "Obatala's bronze horn and Krull's shrine", src: ["Homebrew"], blocks: [
+          { t: "read", text: "The white dragon's right horn is a stump capped in carved bronze, cut all over with tiny runes. On his back sits a lacquered howdah hung with chains and charms, a little gilded shrine on top. In it sits an old tortle whose shell is carved with the same tiny runes. His lips move. He is counting." },
+          { t: "list", items: [
+            "{@b Seen before:} Session 9, when Obatala's roar woke Krull at the tower; Session 10, when Krull parleyed from his back.",
+            "{@b Tied to:} Obatala snapped that horn hauling Krull out of an ice crevasse in the far north, long before Avernus. Krull carved the cap and cut a prayer to Tiamat into it, in the runes on his shell. The shrine is to Tiamat. Obatala belongs to Krull, not to Arkhan and not to Tiamat.",
+            "{@b Tonight:} Krull is counting the ward (DC 14 Insight: he is timing it, and not for Arkhan). Turn Krull and Obatala turns with him (exit D)."
+          ] }
+        ] },
+
+        { t: "h", text: "The Ward: What It Is" },
+        { t: "p", text: "{@b In one line:} the Cold Line is the Crypt's ward. It is the edge of the frost where the heat of Avernus stops, and {@b nothing evil can step over it.} The party walked across it in Session 11." },
+        { t: "list", items: [
+          "{@b Why it exists.} The Crypt is a piece of Elturel that fell into Hell whole. Its cold is the city's grief for the First Charge, a grief that refuses to burn. The cold candles inside are the same vigil (Session 11, C3).",
+          "{@b Who crosses it.} Mortals, celestials, the party and the dead of the Charge cross freely. Devils and Arkhan's dragons cannot. Breath and spells can reach across, but every evil thing that reaches across strains it.",
+          "{@b Why it is failing.} Drenwal's {@spell knock} on the warded gates (Session 11) rang through the cold like a bell. That is how Arkhan heard it fifty miles away, and it cracked the ward. Cracked, not broken: the ward is tired, and it tires a little more with every hour and every loud thing done at it."
+        ] },
+        { t: "read", text: "Stand still on the frost and you can hear it: a low hum, like one long note held by a choir that has been singing for a hundred years. It comes up out of the ground, through the kneeling dead. Listen longer and you hear what is wrong with it. Now and then the note wavers, the way a tired voice does, and catches, and holds again." },
+
+        { t: "h", text: "The Ward Clock" },
+        { t: "p", text: "The ward has 6 boxes. When all 6 are gone, it fails. Show the boxes to the table." },
+        { t: "list", items: [
+          "{@b Where it starts:} {@b 2 of 6.} By Session 12's rules the urns cost one box and the trials one more, plus one for each trial that was forced. If you tracked something else, use that.",
+          "{@b How a tick looks:} the hum drops a note, the frost edge draws back a pace, and the kneeling knight nearest the line bows lower. Describe it every time, so the players see the clock without hearing a number.",
+          "{@b +1} for each hour the party waits inside. This is Arkhan's \"every hour a little lower\".",
+          "{@b +1} for each loud act at the line: a shout at the dragons, an attack across it, a loud spell cast outward, or an insult that makes Arkhan smile.",
+          "{@b +1} when an evil creature reaches across with magic: Arkhan's Vecna's Grip or Command the Line, a spell from Krull, a breath into the frost. Arkhan does this sparingly. He wants the ward down, but not before he has his hostage.",
+          "{@b −1, once (proposal):} if someone in the Crypt is forgiven tonight, a cold candle lights below, and the hum steadies.",
+          "{@b At 3:} the quiet that hid Or'Henn from Tiamat thins. Give him one Small Vision (below).",
+          "{@b At 5:} Tiamat speaks to him outright, in a voice he knows.",
+          "{@b At 6:} the ward fails. The frost melts off the kneeling dead and they fall in their rows. Evil can enter. Arkhan walks in with Krull, the dragons crowd the doorway but cannot fit, and the fight is {@scene the-breakout|The Breakout}."
+        ] },
+        { t: "more", title: "Why a clock", src: ["Homebrew"], blocks: [
+          { t: "p", text: "It makes the party safe enough to think and trapped enough that thinking has a deadline. They always know how long they have, and most ticks are their own choices: take the time, take the noise, or take the shortcut." }
         ] },
 
         { t: "h", text: "Vermilius's Kindness" },
-        { t: "p", text: "{@c mirelle|Vermilius} never attacks first. She speaks to Or'Henn, and only to him, in low Draconic. She is the gentlest of the four, and she is Tiamat's hand." },
+        { t: "p", text: "{@b When:} the first time Or'Henn comes up onto the frost where she can see him, or the moment the table goes quiet after Arkhan's offer." },
+        { t: "list", items: [
+          "{@b Who she is:} {@c mirelle|Vermilius}, the green dragon from Arkhan's tower (Session 9). Arkhan's handprint is on her throat: she is the vessel he chose. Her faith is in Tiamat, not in him.",
+          "{@b What she wants:} Or'Henn to ask her for help, aloud. The curse moves only into a dragon that {@b willingly takes it}, and no dragon in Avernus is more willing. Each gold ring on her horns is someone who asked before him.",
+          "{@b Why it works:} every word she says to him is true. He is tired. She would take it. If she does, Tiamat wakes when she dies (exit X in {@scene the-ways-out|The Ways Out}).",
+          "{@b How she plays:} she never attacks first and speaks to Or'Henn only, in low Draconic. Everyone else hears it as a purr. Her smoke never stops curling while she talks to him."
+        ] },
         { t: "read", text: "A low voice, in Draconic, very kind. It does not come from the air. It comes from the green dragon's whole body, from a hundred feet away, soft as a hand on a sleeping child.\n\n\"You are tired, little red. I can tell. You have been carrying that for such a long time.\"\n\nShe does not move closer. She does not need to.\n\n\"You need only ask,\" says Vermilius. \"I will take it. I will take all of it.\"" },
         { t: "more", title: "One Small Vision", src: ["Homebrew"], blocks: [
           { t: "p", text: "When Or'Henn first steps near the line, or when the ward reaches 3, give him one Small Vision from {@side arc-tiamat|Arc: Or'Henn and Tiamat}. The Crypt's quiet thins at the door, so the vision can reach him. A good one to choose: {@b d8 result 6,} Arkhan's voice, far off, praying; it stops, as if Arkhan heard him listening. That ties the door to the dragons." },
@@ -275,7 +384,7 @@ window.SESSION = {
         ] },
 
         { t: "more", title: "C · Calling Uldrak", src: ["Homebrew"], blocks: [
-          { t: "p", text: "{@b Mechanic.} He said: \"When you go up against her, call me. I will hear.\" The party can call him now, with the coin he gave them or a shout to the sky. He arrives in two rounds." },
+          { t: "p", text: "{@b Mechanic.} He said: \"When you go up against her, call me. I will hear.\" The party can call him now: his name shouted at the sky, or a call through the orb that once sat in his sword's pommel (Session 10). He arrives in two rounds." },
           { t: "p", text: "{@b Effect.} Uldrak (CR 23) arrives and stands on the ridge. Arkhan bows and withdraws. The dragons do not fight an empyrean. The party leaves. No ward tick is spent." },
           { t: "p", text: "{@b Cost.} It spends his endgame promise. He will not be at the Citadel or at the final fight with Tiamat. Tiamat noticed him. Arkhan holds a grudge for a century. Tell the players this before they call." },
           { t: "p", text: "{@b All four cues, and the unfinished blade:} {@scene uldraks-cue|Uldrak's Cue}." }
@@ -337,7 +446,7 @@ window.SESSION = {
         { t: "encounter", id: "the-ash-run", title: "Wave 2: The Ash Run", combatants: [
           { c: "praxamor", n: 1 },
           { c: "vhennic", n: 1 }
-        ], notes: "Flash drops from the roof; Vistalancer strafes from above. They want the carrier of the orb. The run is three rounds to cover the open ground. Breath beats the ship's damage threshold. Retreat below 60 hit points." },
+        ], notes: "Flash drops from his spur; Vistalancer strafes from above. They want the carrier of the orb. The run is three rounds to cover the open ground. Breath beats the ship's damage threshold. Retreat below 60 hit points." },
         { t: "encounter", id: "arkhan-at-the-line", title: "Only if the ward fails: Arkhan and Krull", combatants: [
           { c: "arkhan-the-cruel", n: 1 },
           { c: "krull", n: 1 }
@@ -348,7 +457,7 @@ window.SESSION = {
           "{@b Escape is the win.} Reward a clean exit with story, not XP. Do not reward killing a dragon.",
           "{@b Dragons do not enter.} Keep them out of the Crypt. They fight at the line and the lane. Any PC who stays inside is safe.",
           "{@b If Arkhan takes Or'Henn,} the goal becomes getting him back before the gold dragon comes. Arkhan's Plan in {@scene wings-at-the-door|Wings at the Door} lists the ways to break it.",
-          "{@b Breath goes at the door,} not at the people, unless a PC stands in the doorway. Never kill a PC in round 1.",
+          "{@b Breath goes at the frost and the line,} never down the stair, and only at a PC who walks out. Never kill a PC in round 1.",
           "{@b If it goes badly,} offer exit C (Uldrak) or exit E (the orb) as a last resort. Say plainly what they cost.",
           "{@b If it goes easily,} add Obatala and Krull on wave 2, or have Arkhan teleport onto the ridge and speak.",
           "{@b Veska and Ser Lucan} can hold the doorway for a round or two. Do not let either die unless the table chooses it."
@@ -371,7 +480,7 @@ window.SESSION = {
         { t: "p", text: "{@c uldrak|Uldrak} (CR 23), the empyrean the party raised with Tiamat's blood, is at Bel's Forge having Gnashing Hunger reforged into a blade that can kill a god ({@side uldraks-errand|Uldrak's Errand}). His promise: \"When you go up against her, call me. I will hear.\" He comes back on one of four cues, and each one spends something." },
 
         { t: "table", caption: "When Uldrak comes", head: ["Cue", "What sets it off", "He arrives", "The blade", "What it costs"], rows: [
-          ["1 · Called at the door", "Exit C: his coin, or a shout to the sky", "2 rounds later, on the ridge", "Unfinished", "His promise. He will not be at the Citadel or the last fight. Tiamat noticed him."],
+          ["1 · Called at the door", "Exit C: his name, shouted to the sky", "2 rounds later, on the ridge", "Unfinished", "His promise. He will not be at the Citadel or the last fight. Tiamat noticed him."],
           ["2 · The orb calls him", "Someone uses the orb while the party is losing", "1d4 rounds later", "Unfinished", "As cue 1. Arkhan feels the orb reach out and knows whom it reached for."],
           ["3 · Tiamat wakes", "The curse jumped, or Arkhan's Gambit finished", "Round 3 of Tiamat Reborn, or when the first PC drops to 0 HP", "Finished: Gnashing Hunger", "Bel's price: when Tiamat falls, Uldrak marches on Zariel."],
           ["4 · Nobody calls", "The party gets out without him", "Not tonight", "Finished, later", "Nothing. His promise is kept for the Citadel or the last fight."]
