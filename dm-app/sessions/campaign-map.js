@@ -407,6 +407,7 @@ window.CAMPAIGN.map = {
       dmChoices: ["It wanders. As of Session 13 (2026-11-08) it is anchored near the Mirror of Mephistar (DM). The party sails there up the Styx from Uldrak's Grave.", "Kreeg hides here as 'Vessper Hain'.", "Or'Henn sealed on as the Soul Capacitor's carrier. Asimov's soul is saved; the Council clock is closed.", "Mahadi loved Feonor and will want news of her."],
       alternatives: ["Kreeg bolts if the puzzle box comes near him.", "Mephistopheles and Urexiel also bid for Kreeg."],
       blocks: [
+        { t: "p", text: "{@side emporium-shops|Shops and prices}: every stall's stock, haggle DCs and the soul-coin economy." },
         { t: "h", text: "How to Run It From Here" },
         { t: "steps", items: [
           "Give two clear hints that a living signer matters before any chance to kill Kreeg. No gotchas.",
