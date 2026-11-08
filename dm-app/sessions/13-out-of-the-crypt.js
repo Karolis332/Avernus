@@ -1054,70 +1054,66 @@ window.SESSION = {
     },
 
     // =====================================================================
-    // KREEG'S TRAP AT THE EMPORIUM (written at the table 2026-11-08)
+    // KREEG'S INTERCEPTION ON THE STYX (written at the table 2026-11-08)
+    // He strikes before the Emporium, so Mahadi's truce never applies.
     // =====================================================================
     {
       id: "kreegs-trap-at-the-emporium",
-      title: "Kreeg's Trap at the Emporium",
-      when: "When the Lady Vengeance reaches the Wandering Emporium, after the Stygian Dock",
-      duration: "1 to 2 hours",
+      title: "Kreeg's Interception: the Throat of the Styx",
+      when: "On the Styx after the Stygian Dock, half a day before the Wandering Emporium",
+      duration: "1 to 1½ hours",
       blocks: [
-        { t: "note", title: "Why He Is Here First", text: "The Dock raid cost Zariel her fuel. She gave {@c kreeg|Thavius Kreeg} one chance: bring her the Sword shard and Lulu before her fortress flies again ({@b 1d4 days}), or be erased. He knows where the ship is going (his ledger points to Or'Henn like a compass, and the rumour is all over the river). He took Bazelsteen's fast barge, {@b the Ledger's Due}, and sailed through the night while the party rested. He has been at the Emporium for six hours. He has been busy." },
-        { t: "read", text: "The Emporium is where the rumours said: a caravan of wagons and tents moored on a black jetty under the Mirror of Mephistar, lamps lit, music playing, the smell of spice and brimstone.\n\nMoored at the end of the same jetty is a squat iron barge you saw last night at the Stygian Dock. Its deck is stacked with ledgers under oilcloth.\n\nOn the quay, the traders have stopped what they are doing to look at you. Not at the dragon heads. At you. A notice has been nailed to the bounty board since this morning, and the ink is still wet." },
+        { t: "note", title: "Why He Strikes Here", text: "The Dock raid cost Zariel her fuel. She gave {@c kreeg|Thavius Kreeg} one chance: bring her the Sword shard and Lulu before her fortress flies again ({@b 1d4 days}), or be erased. He knows where the ship is going: his ledger points to Or'Henn like a compass, and every barge on the river is talking about the Emporium. He also knows {@b Mahadi's truce}: once the ship ties up at the Emporium, nobody may draw steel, and he cannot afford to break the rakshasa's rule. So he strikes {@b before} they get there, at the last narrow stretch of the river, in Bazelsteen's fast barge, {@b the Ledger's Due}." },
 
-        { t: "h", text: "The Truce" },
+        { t: "h", text: "The Night Before: Memory Theft" },
+        { t: "p", text: "If the party rests on the river, Kreeg's barge catches up in the dark and holds station out of sight. At the second watch he casts {@spell modify memory} on whoever stands watch alone (he must charm them first: Wisdom save DC 22 against {@spell charm person}, then against modify memory). On a failure, the watcher forgets where Lulu is hidden, or that Kreeg is a threat, and wakes thinking him an old friend of Or'Henn's who will be \"meeting them on the river\". A DC 18 Insight check (or {@spell detect magic} on the watcher) notices the gap. His telepathy (1,000 ft.) may also murmur in the dark: the long rest needs a DC 15 Wisdom save or no Hit Dice are regained." },
+
+        { t: "h", text: "The Throat" },
+        { t: "read", text: "Half a day short of the Mirror of Mephistar, the Styx runs into a gorge. Black cliffs close in on both sides until the river is barely two hundred feet wide, and the souls in the current are pressed together so tightly that the water looks like it is boiling.\n\nAcross the narrowest point hangs a chain, cliff to cliff, as thick as a man's waist. It is just under the surface. Then it isn't: it rises, dripping, and pulls tight.\n\nBehind the chain, moored broadside across the channel, sits a squat iron barge you last saw at the Stygian Dock. A tall grey figure stands on its deck with a ledger open in his hands. He does not look up." },
         { t: "list", items: [
-          "{@b Mahadi's rule:} no steel drawn, no spell cast to harm, inside the Emporium. Whoever breaks it loses the Emporium, and Mahadi's guards side with the other party. Kreeg knows the rule better than anyone and will not break it first.",
-          "{@b The boundary:} the end of the jetty. The truce ends at the gangplank. Kreeg says so, to anyone who asks."
+          "{@b The battlefield:} a gorge 200 ft. wide; cliffs 80 ft. high on both sides, with ledges. The Styx below (DC 15 Intelligence save to anyone who goes in). Use the {@b River Styx} map from the Library with cliffs drawn along both long edges.",
+          "{@b The river chain} (AC 20, 60 hit points, threshold 10): the ship must stop, cut it, or run it. Running it: helm DC 16 at 80 ft.; on a failure the chain rakes the keel (4d10 bludgeoning, over the threshold, roll a mishap) and the ship is caught on it until cut.",
+          "{@b The Ledger's Due} (Bazelsteen's fast barge): AC 18, 250 hit points, damage threshold 15, 80 ft. on the Styx. Two chain launchers: +9 to hit, range 120 ft.; a hit lashes the two ships together until that chain is cut (AC 20, 25 HP).",
+          "{@b The cliff ledges:} 4 hired {@c mezzoloth|yugoloths} (Urexiel's people, lent for a fee) wait on the ledges and drop onto the deck in round 2."
         ] },
 
-        { t: "h", text: "What Kreeg Has Done (six hours of work)" },
-        { t: "steps", items: [
-          "{@b The notice on the bounty board:} \"Zariel's Writ of Hunt. A black galley, Gondian build. A hollyphant, alive. A shard of a sword. Payment on delivery: 200 soul coins.\" Every mercenary in the market has read it.",
-          "{@b A lien on the ship:} he filed a claim with Fhet'Ahla, the Emporium's notary: damages to Zariel's property (one clamp, one soul intake, one night's fuel). The Emporium honours notarised claims. Until it is settled, Mahadi will not let the ship leave the jetty. Price: {@b 60 soul coins}, or Flash's head and 30, or a favour to Kreeg, or proof the claim is false.",
-          "{@b An offer to Mahadi:} Kreeg has asked the rakshasa what a hollyphant would cost, \"purely hypothetically\". Mahadi has not said no. Mahadi never says no to a question about price.",
-          "{@b Bribes:} two traders (pick them) are paid to tell Kreeg where Lulu is, if she comes off the ship or is talked about. A DC 16 Insight check on a trader who is too friendly spots it.",
-          "{@b The Ledger's Due} at the end of the jetty: 2 {@c dock-chain-warden|Chain Wardens}, 4 {@c barbed-devil|barbed devils} and 4 hired {@c mezzoloth|yugoloths} (Urexiel's people, lent for a fee) wait aboard, out of sight, outside the truce."
-        ] },
-
-        { t: "h", text: "Kreeg at Mahadi's Table" },
-        { t: "read", text: "He is sitting at Mahadi's table, a cup of something black in front of him, a ledger open beside it. He stands when you come in, the way a clerk stands for a client.\n\n\"Gardener. Friends of the gardener. Please, sit. Nobody here is allowed to hurt anybody, which makes this the most honest room in Avernus.\" He turns a page. \"You owe Zariel a clamp, a throat and a night of fuel. I owe her my life. I think we can help each other.\"" },
+        { t: "h", text: "He Talks First" },
+        { t: "read", text: "His voice arrives in every head on your deck at once, dry and courteous.\n\n\"Good afternoon. You are about half a day from the Emporium, where nobody may lift a hand against anybody. I am aware of that. That is why we are meeting here.\" A page turns. \"I owe Zariel my life, and you owe her a clamp, a throat and a night of fuel. I think we can settle both accounts at once.\"" },
         { t: "list", items: [
-          "{@b His offer:} give him Lulu (or the shard; he would prefer both) and he tears up the lien, takes down the notice, and lets them sail. He swears by his signature, which he keeps to the letter.",
+          "{@b His offer:} hand over Lulu (or the shard; he would prefer both) and he drops the chain and lets them sail. He swears by his signature, which he keeps to the letter.",
           "{@b His second offer, if they push:} the {@b copy of Elturel's contract} for Lulu. He knows that is what they really want.",
-          "{@b If they refuse:} \"Then I'll wish you a pleasant stay. A long one.\" He goes back to his cup. The lien holds the ship until it is paid or broken.",
-          "{@b Mahadi:} delighted. Two guests, one of them in debt, both with something precious. He sells his help to the highest bidder: break the lien, move the ship at night, or tell Kreeg where Lulu sleeps."
+          "{@b What he has already done:} his broker reached the Emporium ahead of them and nailed {@b Zariel's Writ of Hunt} to the bounty board (200 soul coins for a hollyphant alive and a sword shard). Whatever happens here, the market will be waiting.",
+          "{@b If they refuse}, he closes the ledger. \"Then I'm afraid this is the part I'm bad at.\""
         ] },
 
-        { t: "h", text: "Ways Out of the Lien" },
-        { t: "checks", items: [
-          { skill: "Investigation", dc: 17, who: "anyone, with the claim document", text: "The claim names the \"Lady Vengeance\", but the ship was never registered under that name in any infernal ledger: Kreeg wrote it himself. Fhet'Ahla voids it if they prove the ship's registered name (Jeremy knows it)." },
-          { skill: "Persuasion", dc: 20, who: "anyone, to Fhet'Ahla", text: "Fhet'Ahla agrees the damages belong to Zariel, not Kreeg: only Zariel's own agent may claim them. The lien is suspended for one day." },
-          { skill: "Deception", dc: 18, who: "anyone, to Mahadi", text: "Convince Mahadi that Zariel will blame the Emporium for holding the ship. He lets them leave quietly, at night, for a favour." },
-          { skill: "Intimidation", dc: 22, who: "with the dragon heads in view", text: "Remind the market what the crew of this ship does to things that chase it. The two bribed traders recant." }
+        { t: "h", text: "The Fight" },
+        { t: "steps", items: [
+          "{@b Round 1:} the chain launchers fire and the 2 {@c dock-chain-warden|Chain Wardens} animate the river chain and the barge's mooring chains: the ships are lashed together (Strength contest to break free: ship Str 22 vs. Athletics +9, per chain). The {@c barbed-devil|barbed devils} board.",
+          "{@b Round 2:} the yugoloths drop from the ledges onto the deck. Kreeg uses Forgetfulness on whoever guards Lulu's hiding place, then on the shard-holder.",
+          "{@b Round 3 onward:} Kreeg stays on his own deck, about 60 ft. away, where his Forgetfulness and Poison Mind reach. He crosses only to take Lulu himself. At 171 HP, Ledger Unbound: the page storm, Forgetfulness on 4–6, 4 legendary actions. No lair actions here: he is away from the Dock.",
+          "{@b Below 100 HP} he offers his signature for his life, and means it: Zariel will kill him anyway. At 0 HP his Escape Clause drops him into the barge's hold (not his ledger room), and the hunt for him is a short one, below decks."
         ] },
-        { t: "list", items: [
-          "{@b Pay it:} 60 soul coins, or Flash's head and 30. Kreeg is very pleased: it buys him nothing with Zariel, but he likes a settled account.",
-          "{@b Break the truce:} the Emporium turns on them. Run Mahadi's guards and Kreeg's crew together. Do not recommend it."
-        ] },
-
-        { t: "h", text: "Night: Memory Theft" },
-        { t: "p", text: "If they stay the night, Kreeg tries the quiet way. At the second watch he casts {@spell modify memory} on whoever stands watch alone (Wisdom save DC 22; he must charm them first, and he does it from the jetty, in the dark). On a failure the watcher forgets where Lulu is hidden, or forgets that Kreeg is a threat at all, and wakes thinking him an old friend of Or'Henn's. A spell like this inside the truce is a breach, {@b if they can prove it}: {@spell detect magic} on the watcher, or a DC 18 Insight check to notice the gap in their memory. Proven to Mahadi, it voids the lien and turns the Emporium against Kreeg." },
-
-        { t: "h", text: "The Gangplank: When They Leave" },
-        { t: "read", text: "The ship slips her moorings. At the end of the jetty, the oilcloth comes off the iron barge. It is not stacked with ledgers. It is stacked with chains.\n\n\"The truce,\" says Kreeg's voice, in every head on your deck, \"ends here.\"" },
-        { t: "p", text: "The {@b Ledger's Due} (Bazelsteen's fast barge: AC 18, 250 hit points, damage threshold 15, 80 ft. on the Styx, two chain launchers: +9 to hit, range 120 ft., a hit lashes the two ships together until the chain is cut, AC 20, 25 HP) comes alongside. Chains fly. The decks are lashed together. Kreeg's crew boards. Kreeg himself stays on the barge's deck at 60 ft., where his Forgetfulness reaches." },
-        { t: "encounter", id: "kreegs-gangplank", title: "Kreeg's Boarding at the Emporium", combatants: [
+        { t: "encounter", id: "kreegs-gangplank", title: "Kreeg's Interception at the Throat", combatants: [
           { c: "kreeg", n: 1 }, { c: "dock-chain-warden", n: 2 }, { c: "barbed-devil", n: 4 }, { c: "mezzoloth", n: 4 }
-        ], notes: "Outside the truce, on the water. No lair actions here (he's away from the Dock), but Ledger Unbound still triggers at 171 HP. Round 1: chain launchers and Chain Wardens lash the ships together (Strength contest to break free: ship Str 22 vs Athletics +9 per chain). Boarders go for Lulu's hiding place; Kreeg uses Forgetfulness on whoever guards her, then on the shard-holder. Cut the chains and run at 80 ft. to escape (the barge is just as fast, so it takes a chase: use the chase page). Below 100 HP Kreeg offers his signature for his life, for real this time: Zariel will kill him anyway." },
+        ], notes: "Outside any truce, in the gorge. Round 1 chains and boarders, round 2 yugoloths from the cliffs. Kreeg fights from his barge 60 ft. away and goes for Lulu. To escape: cut the river chain and every lashing chain, then run at 80 ft. (the barge is just as fast: use the chase page). Ledger Unbound at 171 HP. Killed here, he is gone for good, and the contract with him." },
+
+        { t: "h", text: "Ways Through Without a Brawl" },
+        { t: "list", items: [
+          "{@b Blast the chain and run:} two good cannon volleys break the river chain (60 HP). Then it is a chase with the Ledger's Due.",
+          "{@b Hit the barge, not the devils:} the barge has 250 HP and threshold 15. Crippled (below 125), it can't follow. The infused cannons do this in about two rounds.",
+          "{@b Use what they know about him:} his true name (if they have it), the Ledger (if they took it at the Dock), or proof that Zariel will erase him regardless. A DC 20 Persuasion check, with that proof, turns the fight into the bargain he really wants: his signature for passage."
+        ] },
 
         { t: "h", text: "Rewards" },
         { t: "list", items: [
-          "{@b Kreeg's Ledger}, {@b the High Overseer's Ring} and {@b the contract copy} (see the Stygian Dock rewards) are on the barge, in his cabin. Capturing the barge gets all three, plus 30 soul coins and the barge itself (a second ship, slow to crew).",
+          "{@b Kreeg's Ledger}, {@b the High Overseer's Ring} and {@b the contract copy} (see the Stygian Dock rewards) are in his cabin on the barge. Taking the barge gets all three, plus 30 soul coins, and the barge itself (a second ship, slow to crew).",
           "{@b XP:} Kreeg 41,000, Chain Wardens 5,900 each, barbed devils 1,800 each, yugoloths per their stat block. Split three ways.",
-          "{@b If Kreeg dies,} the contract can never be unsigned. {@b If he is taken alive,} Zariel's hunt becomes about him too."
+          "{@b If Kreeg dies}, the contract can never be unsigned, and Zariel comes herself ({@scene zariels-lesson|Zariel's Lesson}). {@b If he is taken alive}, he is the best bargaining chip in Avernus, and Zariel comes for him too."
         ] },
-        { t: "note", title: "Remember for Next Time", text: "Did they pay, void or break the lien? What did they tell Mahadi, and what do they owe him? Did anyone's memory get edited (and do they know)? Is Kreeg dead, captured, signed, or loose? Who has the Ledger, the Ring, the contract copy? The fortress flies in 1d4 days from the Dock raid: then Zariel's own hunt begins." }
+
+        { t: "h", text: "Then: the Emporium" },
+        { t: "p", text: "Half a day later the ship ties up under the Mirror of Mephistar. The truce holds there: nobody may draw steel. But the {@b Writ of Hunt} is on the bounty board, every mercenary has read it, and a ship carrying two dragon heads (or their ash), a hollyphant and possibly a chained amnizu is the most interesting thing to arrive in a month. Mahadi will want to talk. Shops, prices and haggling: {@side emporium-shops|The Emporium's shops and prices}. A lien or a contract to void: {@side emporium-fhetahla|Fhet'Ahla, notary}." },
+        { t: "note", title: "Remember for Next Time", text: "Did anyone's memory get edited in the night (and do they know)? How did they get through the Throat? Is Kreeg dead, captured, signed, or loose? Who has the Ledger, the Ring, the contract copy? Did they take the barge? The fortress flies 1d4 days after the Dock raid: then Zariel comes." }
       ]
     },
 
@@ -1127,7 +1123,7 @@ window.SESSION = {
     {
       id: "zariels-lesson",
       title: "Zariel's Lesson",
-      when: "If Kreeg fails: he is dead, captured, or out of time (her fortress is repaired 1d4 days after the Dock raid)",
+      when: "If Kreeg fails at the Throat: he is dead, captured, or out of time (her fortress is repaired 1d4 days after the Dock raid)",
       duration: "20 to 40 minutes",
       blocks: [
         { t: "note", title: "Run It Fast", text: "{@c zariel|Zariel} comes herself, not to kill them but to teach them. She is CR 26 and the party is level 14: they cannot win this, and she does not want them dead yet (she wants the shard and Lulu). Run {@b at most three rounds}, one lesson per round, then she leaves. If they fight, let them hurt her, and let them see that radiant stops her healing: that is the clue to the endgame. She never harms Lulu." },
