@@ -365,7 +365,7 @@ window.SESSION = {
         { t: "img", src: "art/generated/env-last-ride.webp", caption: "Exit B, the Last Ride: the freed riders clear a lane through the dragons.", credit: "Generated art (Codex, gpt-6-astra)." },
         { t: "list", items: [
           "{@b A} the Orb. {@b B} the Last Ride. {@b C} Uldrak. {@b D} Krull's double-cross.",
-          "{@b E} parley with Arkhan. {@b F} the Lady Vengeance. {@b X} Vermilius's kind offer (the trap)."
+          "{@b E} parley with Arkhan. {@b F} the Lady Vengeance. {@b R} Word of Recall to the ship. {@b X} Vermilius's kind offer (the trap)."
         ] },
 
         { t: "more", title: "A · The Orb (lead them off)", src: ["DMG", "Homebrew"], blocks: [
@@ -408,6 +408,31 @@ window.SESSION = {
           { t: "p", text: "{@b Cost.} The ship is no longer hidden. Every dragon and Arkhan's scouts know where it is. It sets up Zariel's riders finding Lulu in scene 8 and the Citadel run. If the ship is not hidden, the cliffhanger in scene 8 lands harder." }
         ] },
 
+        { t: "more", title: "R · Word of Recall (home to the Lady Vengeance)", src: ["PHB", "Homebrew"], blocks: [
+          { t: "note", title: "Run It Tonight", text: "Cast inside the Crypt, out of Arkhan's sight: it works, and nothing he has can stop it. Cast where he can see Drenwal: he answers with Vecna's Grip. After they vanish, he cannot follow by teleport; he hunts. Unlike exit F, the ship stays hidden. That is the prize, and the reason Arkhan wants to stop it." },
+          { t: "p", text: "{@b The rule.} {@spell word of recall} is a 6th-level cleric spell: 1 action, {@b verbal component only}. Drenwal and up to five willing creatures within 5 feet teleport to his sanctuary, the statue of St. Cuthbert on the Lady Vengeance's deck. He set it before Session 9 and escaped the Monument with it. They land at the statue wherever the ship has drifted. It uses his only 6th-level slot (Light Cleric 13)." },
+          { t: "p", text: "{@b Who fits.} Drenwal plus five: Aurora, Or'Henn, Veska, Ser Lucan and Moonkite. That is everyone, exactly. Olanthius stays in C5 anyway. Anyone extra (a freed rider, someone they rescue) means someone else stays behind. Make them choose." },
+          { t: "p", text: "{@b Inside, door shut: let it work.} Arkhan has no counterspell, no dispel magic and no scrying, and neither does anyone with him: Krull's list has no silence and no counterspell. The ward only keeps evil from coming in; nothing in our prep stops teleportation going out. The party set this up three sessions ago, and Arkhan watched it work at the Monument. Reward the plan." },
+          { t: "p", text: "{@b In his sight (the doorway, the stair, past the line): his two answers.} Both come from the Hand of Vecna, and both work as a legendary action (cost 2), so he uses them at the end of the turn just before Drenwal's." },
+          { t: "list", items: [
+            "{@b Vecna's Grip} (4 charges). One creature within 60 ft.: {@b DC 22 Constitution} save or restrained and {@b silenced} until the start of Arkhan's next turn. Word of Recall is verbal only, so a silenced Drenwal cannot cast it. This is the answer he saves his charges for.",
+            "{@b Slow} (2 charges). {@b DC 22 Wisdom} save. When a slowed creature casts a spell with a casting time of 1 action, it rolls a d20. On an 11 or higher, the spell takes effect only on its next turn, and it must use its action then to finish it. Arkhan gets a full round to Grip or strike.",
+            "{@b Telegraph it.} When the party bunches up around Drenwal, Arkhan raises the Hand: \"Not twice, priest.\" They saw that hand at the Monument. Fair warning.",
+            "{@b Ways around him.} He must see the target. Magical darkness or {@spell fog cloud} blocks his sight; his darkvision does not see through magical darkness. Stepping back behind the door also works, and so does a Legendary Resistance spent on someone else first. A failed Grip lasts only until his next turn: Drenwal casts on the turn after."
+          ] },
+          { t: "p", text: "{@b He cannot follow by teleport.} {@spell teleport} needs a destination he knows, and a ship drifting in storm clouds is not a place he has seen. At best that counts as \"description\": 43% mishap. He will not gamble his body on it. He teleports home to the tower instead." },
+          { t: "p", text: "{@b What he does instead (his hunt).} Vistalancer and Flash sweep the storm clouds: the fastest dragon with blindsight, and the one eager to prove himself. Slarkas and Obatala hold the Crypt in case it was a trick. At dawn Krull casts {@spell divination}: \"Where will the druid be when the Pull takes him?\" Answer him with a riddle about a saint on a deck. Arkhan's line, to his dragons: \"The curse brings the druid to me. I need only wait.\"" },
+          { t: "table", caption: "Hunt roll (proposal): once per 8 hours the ship stays in one place", head: ["Roll d20 + modifiers", "Result"], rows: [
+            ["17 or lower", "The clouds hold. Nothing finds the ship."],
+            ["18 or higher", "Vistalancer finds it. He looks and does not fight alone (Clean Exit). Arkhan knows by the next 8 hours."],
+            ["+2", "The force cannons fired in the last day."],
+            ["+2", "Or'Henn's Pull is 6 or higher: the mark is loud, and Tiamat leans toward it (proposal)."],
+            ["+5", "The brass plate is still on Or'Henn's staff: Urexiel's hunters track it and sell the ship to Arkhan."],
+            ["No roll", "The ship moved that period."]
+          ] },
+          { t: "p", text: "{@b What they skip.} The Breakout. Still run {@scene bhaals-first-gasp|Bhaal's First Gasp}, {@scene zariel-notices|Zariel Notices} and {@scene ending|the Ending}; they happen on deck." }
+        ] },
+
         { t: "more", title: "X · Vermilius's kind offer (the Tiamat trap)", src: ["Homebrew"], blocks: [
           { t: "p", text: "{@b Mechanic.} Vermilius offers to take the curse. If Or'Henn says, aloud and meaning it, that he asks Vermilius for help, the curse jumps to the green dragon. Vermilius is the kindest, so it looks like a rescue." },
           { t: "p", text: "{@b Effect.} The curse leaves Or'Henn. For a moment he feels light. Then Vermilius changes, the other dragons kneel, and under Avernus something vast turns over in its sleep. Tiamat wakes in her true form. The siege lifts because the dragons have a new queen." },
@@ -417,7 +442,7 @@ window.SESSION = {
           { t: "p", text: "{@b Every way the curse can move tonight:} {@scene tiamats-curse|Tiamat's Curse: Scenarios}." }
         ] },
 
-        { t: "note", title: "Combining Exits", text: "Exits stack. A common good answer: the Last Ride clears the lane, the Lady Vengeance picks them up, Uldrak waits as the last resort. The Orb run can go with either. Giving Arkhan the orb (E) closes A and the cage loophole. Let them combine, and add the costs together." },
+        { t: "note", title: "Combining Exits", text: "Exits stack. A common good answer: the Last Ride clears the lane, the Lady Vengeance picks them up, Uldrak waits as the last resort. The Orb run can go with either. Giving Arkhan the orb (E) closes A and the cage loophole. Word of Recall (R) cast out of Arkhan's sight needs nothing else. Let them combine, and add the costs together." },
 
         { t: "choices", prompt: "Which way?", items: [
           { label: "They fight their way out", goto: "the-breakout" },
