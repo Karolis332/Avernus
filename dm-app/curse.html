@@ -52,6 +52,18 @@
   .seen-list label { display: inline-flex; gap: 4px; margin: 2px 10px 2px 0; }
   #log { max-height: 240px; overflow-y: auto; font-size: .9em; margin: 0; padding-left: 18px; }
   .rules { font-size: .92em; } .rules li { margin: 3px 0; }
+  .how summary { cursor: pointer; }
+  .howgrid { display: grid; gap: 18px; grid-template-columns: 1fr; margin-top: 6px; }
+  @media (min-width: 1100px) { .howgrid { grid-template-columns: 1fr 1fr 1fr; } }
+  .how h3 { font-family: Cinzel, serif; font-size: .98em; margin: 10px 0 4px; }
+  .how p, .how li { font-size: .93em; }
+  .how ul { padding-left: 18px; margin: 4px 0; }
+  table.mini { border-collapse: collapse; width: 100%; font-size: .9em; margin: 4px 0; }
+  table.mini td, table.mini th { border-bottom: 1px solid #8884; padding: 3px 5px; text-align: left; vertical-align: top; }
+  table.mini th { font-family: Cinzel, serif; padding-top: 8px; }
+  td.tg { white-space: nowrap; font-weight: bold; border-left: 6px solid #8886; }
+  td.tg.t0 { border-color: #c9a227; } td.tg.t1 { border-color: #d9730d; } td.tg.t2 { border-color: #b71c1c; } td.tg.t3 { border-color: #4a0072; }
+  #wrap > .card { margin-bottom: 14px; }
 </style>
 </head>
 <body class="curse-page">
@@ -64,6 +76,87 @@
     <label><input type="checkbox" id="cold"> Inside the Cold Line (Pull paused, no saves)</label>
     <button class="btn small" id="reset" style="margin-left:auto">Reset everything</button>
   </div>
+
+  <details class="card how" id="how" open>
+    <summary><h2 style="display:inline">How the Curse Works</h2> <small>(click to fold)</small></summary>
+    <div class="howgrid">
+      <div>
+        <h3>1 · What it is</h3>
+        <p>Tiamat's mark sits in Or'Henn like a seed. It is not a wound: it is a <b>delivery system</b>. Its only goal is to make him <b>ask a dragon for help</b>. If he asks, and that dragon <b>willingly takes it</b> (DM ruling 2026-11-08), the curse jumps into the dragon, and when that dragon dies, <b>Tiamat wakes in her true form</b>. Tiamat cannot force him; she can only make asking feel like the kindest, safest thing in the world. Doing nothing is not safe: the number below only climbs.</p>
+
+        <h3>2 · The Pull (0 to 10)</h3>
+        <p>The curse is one number, the <b>Pull</b>. Say it out loud every time it changes.</p>
+        <ul>
+          <li><b>Start of each session:</b> 2 + 1 per gold scale.</li>
+          <li><b>Inside the Crypt's Cold Line:</b> paused. No saves, no change.</li>
+        </ul>
+        <table class="mini">
+          <tr><th>Goes up</th><th></th></tr>
+          <tr><td>+1</td><td>First time he sees each chromatic dragon this session</td></tr>
+          <tr><td>+1</td><td>A Small Vision (also rolled on any natural 1 on a Pull save)</td></tr>
+          <tr><td>+1</td><td>He touches or uses the orb of dragonkind</td></tr>
+          <tr><td>+2</td><td>The vision in the Dragon Queen's Garden</td></tr>
+          <tr><td>+2</td><td>He accepts one of Tiamat's gifts (and gains a gold scale)</td></tr>
+          <tr><td>+1</td><td><i>Fighting dragons (proposal):</i> each failed Pull save during a fight</td></tr>
+          <tr><td>+1</td><td><i>Fighting dragons (proposal):</i> first time in a fight he damages each chromatic dragon</td></tr>
+          <tr><th>Goes down</th><th></th></tr>
+          <tr><td>−1</td><td>Cinderbloom: spend 1 charge as a reaction (or reroll a failed Pull save instead)</td></tr>
+          <tr><td>−1</td><td>An ally talks him back: action, within 30 ft., DC 15 Insight or Persuasion, once per scene</td></tr>
+          <tr><td>−1</td><td>Natural 20 on a Pull save</td></tr>
+        </table>
+      </div>
+
+      <div>
+        <h3>3 · The Pull Save</h3>
+        <p><b>Wisdom saving throw, DC 10 + Pull.</b> He makes it:</p>
+        <ul>
+          <li><b>In combat:</b> at the start of each of his turns, if he can see a chromatic dragon or Tiamat.</li>
+          <li><b>Out of combat:</b> whenever a dragon speaks to him.</li>
+          <li><i>Protection from evil and good</i> on him: advantage.</li>
+        </ul>
+        <p><b>On a failure</b>, until the start of his next turn, the effect depends on the Pull <i>at the moment he rolled</i>:</p>
+        <table class="mini">
+          <tr><td class="tg t0">0–3<br>Whispers</td><td>Disadvantage on his first attack against a chromatic dragon. His fire damage to chromatic dragons is halved.</td></tr>
+          <tr><td class="tg t1">4–6<br>The Leash</td><td>He can't target a chromatic dragon with an attack or harmful spell, and must spend half his movement moving toward the nearest one.</td></tr>
+          <tr><td class="tg t2">7–9<br>Kin</td><td>Charmed by the nearest chromatic dragon. On his turn he says aloud one line <b>asking it for help</b>. An ally within 5 ft. can stop the words with a reaction (grapple, a hand over his mouth, <i>silence</i>).</td></tr>
+          <tr><td class="tg t3">10<br>Ask</td><td><b>No save.</b> He asks the nearest chromatic dragon for help.</td></tr>
+        </table>
+        <p>So the climb is: distracted (Whispers) → can't fight them (Leash) → begs them (Kin) → begs with no save (Ask).</p>
+
+        <h3>4 · What Counts as Asking</h3>
+        <ul>
+          <li>Any request for help to a dragon, in any language: "help me", "take it off me", "please". Saying yes to a dragon's offer of help (Vermilius offers on purpose).</li>
+          <li><b>Not</b> asking: surrendering, bargaining, threatening, or asking a dragon a question.</li>
+          <li>Telegraph it: the moment before he speaks, he feels the mark lean toward the dragon like a hand reaching out. If he speaks anyway, enforce it.</li>
+        </ul>
+      </div>
+
+      <div>
+        <h3>5 · If a Dragon Takes It</h3>
+        <ul>
+          <li>The dragon must answer yes (its reaction) <b>and willingly take it</b>. A dragon can't be forced.</li>
+          <li><b>Or'Henn is free</b>, fully. His gold scales stay gold.</li>
+          <li><b>The dragon is doomed:</b> its eyes go flat gold, it stops fighting for itself and won't flee. The mark burns it out at the next dawn.</li>
+          <li><b>When it dies (killed, or at dawn), Tiamat wakes in her true form.</b> Uldrak will kill it unless someone stops him. Keeping it alive (chains, <i>hold monster</i>) only buys hours.</li>
+          <li><b>The orb loophole:</b> if he asks the dragon <i>inside</i> the orb of dragonkind, the orb becomes a gold cage. The curse leaves him, and Tiamat wakes only halfway, trapped in the glass. Don't hint at it until Small Vision 2 has come up.</li>
+        </ul>
+
+        <h3>6 · Gifts and Gold Scales</h3>
+        <p>In visions, each of Tiamat's five heads offers one true gift. Accepting one: <b>+1 gold scale and +2 Pull</b>. Refusing costs nothing now ("Then we will talk again"), but the next vision comes sooner. The scales build up to <b>5: he can't refuse the next chromatic dragon that offers help</b>. <i>Remove curse</i> and <i>greater restoration</i> don't touch them.</p>
+
+        <h3>7 · Other Ways to End It</h3>
+        <ul>
+          <li><b>Her blood</b> (the stolen vial): spent on Uldrak.</li>
+          <li><b>Her word:</b> she lifts it if he kneels at the Monument as her champion, in Arkhan's place.</li>
+          <li><b>Wish:</b> removes it, and the caster feels her look straight at them, once.</li>
+          <li><b>The dragon in the orb</b> (above).</li>
+        </ul>
+
+        <h3>8 · One Round, Example</h3>
+        <p>Pull 5, Flash in sight. Start of Or'Henn's turn: Wisdom save, DC 15. He rolls 9 total: fails, <b>The Leash</b>: he can't attack Flash this turn and moves half his speed toward him. Fight progression: Pull 6. Aurora uses her action to talk him back (Persuasion 17): Pull 5. Next turn, DC 15 again.</p>
+      </div>
+    </div>
+  </details>
 
   <div class="grid">
     <!-- ===================== PULL ===================== -->
@@ -362,6 +455,9 @@
   $("new-scene").onclick = function () { S.talked = false; log("New scene"); save(); render(); };
   $("reset").onclick = function () { if (confirm("Reset the whole curse tracker (scales, gifts, visions, log)?")) { S = fresh(); save(); render(); } };
 
+  var how = $("how");
+  try { if (localStorage.getItem(KEY + ":how") === "closed") how.open = false; } catch (e) {}
+  how.addEventListener("toggle", function () { try { localStorage.setItem(KEY + ":how", how.open ? "open" : "closed"); } catch (e) {} });
   render();
 })();
 </script>
