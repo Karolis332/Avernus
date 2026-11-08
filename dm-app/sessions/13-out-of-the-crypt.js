@@ -10,9 +10,9 @@ window.SESSION = {
   summary: "The Crypt has given up its dead and its rewards. Now the party has to leave it. Arkhan, four tower dragons, Obatala and Krull wait at the top of the stair, and the ward that keeps them out is tired. Arkhan wants the party dead, Or'Henn alive, and the curse moved into a dragon that will take it. Uldrak is at Bel's Forge, one call away, with a blade that is not finished. There are seven ways out, and one of them is the kindest trap in Avernus.",
 
   party: [
-    { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding (Tier II). Carries the Shield of the Hidden Lord." },
-    { id: "aurora", name: "Aurora", note: "Archfey Warlock 13. Rides Moonkite." },
-    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. Tiamat's curse: 0 gold scales. Carries the Soul Capacitor." }
+    { id: "drenwal", name: "Drenwal", note: "Light Cleric 14. Sigil of the Binding (Tier II). Carries the Shield of the Hidden Lord." },
+    { id: "aurora", name: "Aurora", note: "Archfey Warlock 14. Rides Moonkite." },
+    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 14. Tiamat's curse: 0 gold scales. Carries the Soul Capacitor." }
   ],
 
   allies: [
@@ -191,7 +191,7 @@ window.SESSION = {
           { t: "steps", items: [
             "{@b Take the hostage.} Or'Henn by choice. Any PC will do if it makes Or'Henn ask, because the asking can be for someone else. Arkhan can only take someone who comes past the Cold Line, or after the ward falls. Vecna's Grip (DC 22 Constitution, restrained and silenced) holds them, then he drags them away from the line.",
             "{@b Bind the priest.} He casts {@spell geas} on Drenwal (DC 22 Wisdom): call a gold dragon. Acting against it costs 5d10 psychic damage, once a day. If the Geas fails, the blade at the hostage's throat is the order instead.",
-            "{@b The call.} Drenwal's 6th-level spell is {@spell planar ally}. By the rules it brings a celestial, an elemental or a fiend, so a gold dragon is a DM's ruling: Drenwal's god sends one, because a priest is begging. Divine Intervention also works if it lands (13% at level 13).",
+            "{@b The call.} Drenwal's 6th-level spell is {@spell planar ally}. By the rules it brings a celestial, an elemental or a fiend, so a gold dragon is a DM's ruling: Drenwal's god sends one, because a priest is begging. Divine Intervention also works if it lands (14% at level 14).",
             "{@b The ask.} The gold dragon arrives over a dying friend. Arkhan holds the hostage at the edge of death and says one word to Or'Henn: \"Ask.\" If Or'Henn asks the gold dragon for help and means it, and the gold dragon willingly takes the curse to save him (it will, unless someone has told it what the curse is), the curse jumps to the gold dragon, and Tiamat wakes in her true form. Run Branch: Tiamat Wakes in {@scene ending|Ending the Session}."
           ] },
           { t: "h", text: "How the Party Breaks It" },
@@ -410,7 +410,7 @@ window.SESSION = {
 
         { t: "more", title: "R · Word of Recall (home to the Lady Vengeance)", src: ["PHB", "Homebrew"], blocks: [
           { t: "note", title: "Run It Tonight", text: "Cast inside the Crypt, out of Arkhan's sight: it works, and nothing he has can stop it. Cast where he can see Drenwal: he answers with Vecna's Grip. After they vanish, he cannot follow by teleport; he hunts. Unlike exit F, the ship stays hidden. That is the prize, and the reason Arkhan wants to stop it." },
-          { t: "p", text: "{@b The rule.} {@spell word of recall} is a 6th-level cleric spell: 1 action, {@b verbal component only}. Drenwal and up to five willing creatures within 5 feet teleport to his sanctuary, the statue of St. Cuthbert on the Lady Vengeance's deck. He set it before Session 9 and escaped the Monument with it. They land at the statue wherever the ship has drifted. It uses his only 6th-level slot (Light Cleric 13)." },
+          { t: "p", text: "{@b The rule.} {@spell word of recall} is a 6th-level cleric spell: 1 action, {@b verbal component only}. Drenwal and up to five willing creatures within 5 feet teleport to his sanctuary, the statue of St. Cuthbert on the Lady Vengeance's deck. He set it before Session 9 and escaped the Monument with it. They land at the statue wherever the ship has drifted. It uses his only 6th-level slot (Light Cleric 14)." },
           { t: "p", text: "{@b Who fits.} Drenwal plus five: Aurora, Or'Henn, Veska, Ser Lucan and Moonkite. That is everyone, exactly. Olanthius stays in C5 anyway. Anyone extra (a freed rider, someone they rescue) means someone else stays behind. Make them choose." },
           { t: "p", text: "{@b Inside, door shut: let it work.} Arkhan has no counterspell, no dispel magic and no scrying, and neither does anyone with him: Krull's list has no silence and no counterspell. The ward only keeps evil from coming in; nothing in our prep stops teleportation going out. The party set this up three sessions ago, and Arkhan watched it work at the Monument. Reward the plan." },
           { t: "p", text: "{@b In his sight (the doorway, the stair, past the line): his two answers.} Both come from the Hand of Vecna, and both work as a legendary action (cost 2), so he uses them at the end of the turn just before Drenwal's." },

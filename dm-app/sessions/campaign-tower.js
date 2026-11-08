@@ -63,7 +63,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     portrait: "art/generated/slarkas-portrait.webp",
     role: "Tower dragon (black), sullen and sadistic",
     source: { page: "bestiary", name: "Adult Black Dragon", src: "MM" },
-    homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
+    homebrew: "Built for a party of 3 (L12 then; now L14, checked 2026-11-08: still a hard-to-deadly fight each, no change) + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
     description: "The oldest of the four, and he looks it. Gaunt and low-slung, near-black with an oily green sheen, he crouches more than he stands, like something waiting in a swamp. His face is bare bone: as with every old black dragon, the hide around his horns and cheeks has rotted away as if eaten by his own acid, leaving a skull with deep eye pits and horns that curve forward and down. One eye is milky and blind. Acid hangs from his jaws in long yellow strings and hisses where it lands. Buried in his chest, below the shoulder, is the head of a Hellrider lance: pale steel stamped with the sun of Elturel. It still shines a little. He stinks of rot and stagnant water.",
     roleplay: [
       "Lore (Monster Manual, black dragons): the most evil-tempered of the chromatics. They lair in swamps and ruins, fight from ambush, and enjoy watching prey despair. Slarkas is all of that. His silhouette at the table: the low, crouching skull.",
@@ -131,7 +131,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     portrait: "art/generated/vistalancer-portrait.webp",
     role: "Tower dragon (blue), the fastest of the four",
     source: { page: "bestiary", name: "Adult Blue Dragon", src: "MM" },
-    homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
+    homebrew: "Built for a party of 3 (L12 then; now L14, checked 2026-11-08: still a hard-to-deadly fight each, no change) + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
     description: "Long and narrow, built like a thrown spear, and almost never on the ground. His scales run from bright azure on the back to deep indigo at the flanks, polished smooth by blown sand, with a pale belly. Lightning runs in veins through his wing membranes. Like every blue, he has a single great horn on his snout, and he is vainer about it than any of them: he has had it capped in forged steel, banded with rings and filed to a point like a knight's lance. A round hole the size of a shield is burned clean through his left wing, and he keeps that wing angled away from anyone he is talking to. Static crackles over him; the air smells of ozone, like a lightning strike, when he passes.",
     roleplay: [
       "Lore (Monster Manual, blue dragons): vain, territorial and methodical. Desert hunters that burrow in the sand to ambush and prefer to fight from the air, at range, on their own terms. They hate to look weak. Vistalancer's silhouette: the spear in the sky.",
@@ -199,7 +199,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     portrait: "art/generated/vermilius-portrait.webp",
     role: "Tower dragon (green), the cruelest talker",
     source: { page: "bestiary", name: "Adult Green Dragon", src: "MM" },
-    homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
+    homebrew: "Built for a party of 3 (L12 then; now L14, checked 2026-11-08: still a hard-to-deadly fight each, no change) + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
     description: "Long-limbed and serpentine, she sits still where the others pace. Her scales are a deep forest green, small and tight as mail, darker along her back and paler at the throat. Like every green, she has no outer ears: instead a crest of thin spines starts above her eyes and runs down her back, and long swept-back horns frame a narrow head with too many teeth. She smiles all the time. Gold rings climb her horns, one ring for every creature that ever asked her for help. Green smoke curls from her nostrils when she is amused. On her throat is a black handprint with long thin fingers, burned into the scales, and the scales there never grew back. She smells of chlorine and crushed leaves, sweet and sickly, like perfume.",
     roleplay: [
       "Lore (Monster Manual, green dragons): the most cunning of the chromatics. Liars, manipulators and lovers of talk, they toy with prey, charm servants and corrupt what they can. Vermilius is that, aimed at one person. Her silhouette: the still shape with the raised crest.",
@@ -268,7 +268,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     portrait: "art/generated/flash-portrait.webp",
     role: "Tower dragon (red), the proudest, the hardest hitter",
     source: { page: "bestiary", name: "Adult Red Dragon", src: "MM" },
-    homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons. Book: a wyrmling. Here grown to an adult dragon (MM stats) for the ambush, Legendary Resistance 1/day, Wingover reaction added.",
+    homebrew: "Built for a party of 3 (L12 then; now L14, checked 2026-11-08: still a hard-to-deadly fight each, no change) + allies + the Lady Vengeance's force cannons. Book: a wyrmling. Here grown to an adult dragon (MM stats) for the ambush, Legendary Resistance 1/day, Wingover reaction added.",
     description: "The youngest dragon of the tower, and too big too fast. His scales are still the bright, glossy scarlet of a young red; they have not yet darkened to the deep crimson of an old one. He runs too hot for his own skin: glowing cracks run between his scales like lava under a crust, and heat shimmers off his back. He has grown into his horns before anything else: a crown of swept-back spikes, too many and too sharp, without a chip on any of them, and a spined crest down his neck that he flares at everything. He rears up on his hind legs to look bigger, and roars at things that do not need roaring at. He has no scars, not one, and the others have noticed. He smells of smoke and sulfur. Arkhan's people call him Flash. He hates it.",
     roleplay: [
       "Lore (Monster Manual, red dragons): the most arrogant and covetous of the chromatics. They see themselves as kings, take any slight as a challenge, and fly into rages. Flash has all of that and none of the age to back it up. His silhouette: the rearing scarlet shape that will not stop roaring.",
@@ -336,7 +336,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     portrait: "art/generated/obatala-portrait.webp",
     role: "Krull's mount, the elder adult dragon that calls the halt",
     source: { page: "bestiary", name: "Adult White Dragon", src: "MM" },
-    homebrew: "Elder adult: canon adult white, buffed above the four tower dragons (CR 14–17) so his 'ENOUGH!' lands; scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons.",
+    homebrew: "Elder adult: canon adult white, buffed above the four tower dragons (CR 14–17) so his 'ENOUGH!' lands; built for a party of 3 (L12 then; now L14, checked 2026-11-08: no change) + allies + the Lady Vengeance's force cannons.",
     description: "A huge white dragon, older and far heavier than the four in the spires: broad, low and thick-necked, built like a glacier rather than a spear. With age his scales have lost their glossy white for the pale grey and faint blue of old ice, and Avernus has stained them darker with ash and soot. He is always melting: icicles grow from his jaw and the trailing edges of his wings and drip as fast as they form, and steam rolls off his back. One great horn sweeps back on his left. The right is a stump, capped in carved bronze. On his back sits Krull's saddle: a lacquered howdah hung with chains and charms, with a small gilded shrine to Tiamat on top. Frost spreads wherever he lands and melts at once into mud.",
     roleplay: [
       "Lore (Monster Manual, white dragons): the most bestial of the chromatics. They run on instinct and on memory, and a white dragon never forgets a slight. Cold lands, frozen hoards, little talk. Obatala is that beast, made loyal. His silhouette: the wide grey mass with a shrine on its back.",

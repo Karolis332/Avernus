@@ -6,12 +6,12 @@ window.SESSION = {
   id: "14-the-scab",
   title: "The Scab",
   subtitle: "Session 14 · Descent into Avernus",
-  summary: "The shard leads the party down the Scab road, past the Blood War's leftovers, to a hill-sized wound in Avernus with a cathedral buried in it. Inside the Scab are gnolls, demons and a caged beast that belongs to Yeenoghu. Every fight has an exit, because the party is three level-13 heroes and the day is long. Zariel is felt in a pool of blood, not met. At the end the doors of the Bleeding Citadel open to the shard in Lulu's place.",
+  summary: "The shard leads the party down the Scab road, past the Blood War's leftovers, to a hill-sized wound in Avernus with a cathedral buried in it. Inside the Scab are gnolls, demons and a caged beast that belongs to Yeenoghu. Every fight has an exit, because the party is three level-14 heroes and the day is long. Zariel is felt in a pool of blood, not met. At the end the doors of the Bleeding Citadel open to the shard in Lulu's place.",
 
   party: [
-    { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding (Tier II). Shield of the Hidden Lord. Gasps start outside the Crypt." },
-    { id: "aurora", name: "Aurora", note: "Archfey Warlock 13. Rides Moonkite. Bond 1 (2 points) plus whatever Sessions 12 and 13 gave." },
-    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. 0 gold scales unless the curse moved. Holds the orb or knows who does." }
+    { id: "drenwal", name: "Drenwal", note: "Light Cleric 14. Sigil of the Binding (Tier II). Shield of the Hidden Lord. Gasps start outside the Crypt." },
+    { id: "aurora", name: "Aurora", note: "Archfey Warlock 14. Rides Moonkite. Bond 1 (2 points) plus whatever Sessions 12 and 13 gave." },
+    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 14. 0 gold scales unless the curse moved. Holds the orb or knows who does." }
   ],
   allies: [
     { id: "veska-banner-captain", name: "Veska, Banner-Captain", note: "Upgraded in the Crypt (if she survived it)." },
@@ -323,7 +323,7 @@ window.SESSION = {
         ] },
 
         { t: "more", title: "How to pace the Scab (one adventuring day)", src: ["Eventyr"], blocks: [
-          { t: "p", text: "Eventyr reads the chapter as one adventuring day, with an artificial long rest halfway: the Citadel itself restores the party. So the Scab is the party's last fight before a full restore. Three level-13 PCs cannot take every room." },
+          { t: "p", text: "Eventyr reads the chapter as one adventuring day, with an artificial long rest halfway: the Citadel itself restores the party. So the Scab is the party's last fight before a full restore. Three level-14 PCs cannot take every room." },
           { t: "list", items: [
             "{@b Do these:} S11 the statue, S13 the gnoll corridor and S14 the door. Those are the three real fights.",
             "{@b Skippable if time is short:} S3, S4, S5 and S9. Every room is run with the book's numbers; each of these has a stealth or talk way past it.",
@@ -703,11 +703,11 @@ window.SESSION = {
         { t: "p", text: "Zariel knows the party wants the Sword. The meeting in Chapter 5 starts with her already knowing." },
 
         { t: "h", text: "XP and Level" },
-        { t: "p", text: "The printed adventure expects level 12 at the Citadel and 13 for the finale. This party is already 13." },
+        { t: "p", text: "The printed adventure expects level 12 at the Citadel and 13 for the finale. This party is already 14 (since Session 13)." },
         { t: "list", items: [
-          "{@b Default:} no level-up at the Citadel. The party stays 13, and you scale Chapter 5 up, not down: add a creature, raise a DC, or give an enemy legendary actions.",
+          "{@b Default:} no level-up at the Citadel. The party stays 14, and you scale Chapter 5 up, not down: add a creature, raise a DC, or give an enemy legendary actions.",
           "{@b Reward instead:} the Citadel's full restore is the reward. Award story XP (an adventure-sized chunk) but do not level.",
-          "{@b If the table wants a level:} give level 14 at the end of Idyllglen, and tune Chapter 5 to match."
+          "{@b If the table wants a level:} the next level is 15 at 260,000 XP (house rule); give it at the end of Idyllglen only if the XP is there, and tune Chapter 5 to match."
         ] },
 
         { t: "note", title: "Remember for Next Time", text: "Write down: who carries the shard. Which Scab fights they did, skipped or fled. Whether Vatilan reached S14. Whether Alazub lived and what he heard. Whether Crokek'toeck was freed and which way it went. What Trantolox was offered, and whether he lived. Moonkite's bond points and any Gasp. Drenwal's Generals' Memories. Whether Lulu is with Zariel. Which allies are in the Citadel." }

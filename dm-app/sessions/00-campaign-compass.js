@@ -9,9 +9,9 @@ window.SESSION = {
   summary: "One place to see where the campaign stands now that the party knows where the Scab is. It covers the next steps in order, how the printed adventure ends, how Eventyr Games suggests running that ending (with quotes), and what this table has changed. Read it before planning Session 13 and the finale.",
 
   party: [
-    { id: "drenwal", name: "Drenwal", note: "Light Cleric 13. Sigil of the Binding (Tier II). Holds the Shield of the Hidden Lord." },
-    { id: "aurora", name: "Aurora", note: "Archfey Warlock 13. Rides Moonkite (Bond 1)." },
-    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 13. Tiamat's curse, 0 gold scales. Holds Cinderbloom and the Orb of Dragonkind." }
+    { id: "drenwal", name: "Drenwal", note: "Light Cleric 14. Sigil of the Binding (Tier II). Holds the Shield of the Hidden Lord." },
+    { id: "aurora", name: "Aurora", note: "Archfey Warlock 14. Rides Moonkite (Bond 1)." },
+    { id: "orhenn", name: "Or'Henn", note: "Wildfire Druid 14. Tiamat's curse, 0 gold scales. Holds Cinderbloom and the Orb of Dragonkind." }
   ],
   allies: [],
   creatures: {},
@@ -29,7 +29,7 @@ window.SESSION = {
         { t: "img", src: "art/generated/env-road-to-the-scab.webp", caption: "The road to the Scab: the next step once the siege is broken." },
         { t: "h", text: "The party" },
         { t: "list", items: [
-          "{@b Level 13}, three PCs: {@b Drenwal} (Light Cleric), {@b Aurora} (Archfey Warlock, on Moonkite), {@b Or'Henn} (Wildfire Druid). House rule: level 15 at 260,000 XP, then +60,000 per level.",
+          "{@b Level 14}, three PCs: {@b Drenwal} (Light Cleric), {@b Aurora} (Archfey Warlock, on Moonkite), {@b Or'Henn} (Wildfire Druid). House rule: level 15 at 260,000 XP, then +60,000 per level.",
           "{@b With them:} {@c veska-banner-captain|Veska, Banner-Captain} and {@c ser-lucan-named|Ser Lucan, Named} (their Crypt upgrades), Moonkite.",
           "{@b Hidden in the mists:} the Lady Vengeance, with Colico Jack, Jeremy and {@b Lulu}. Default ruling: Zariel's riders take Lulu at the end of Session 12 (DM to confirm).",
           "{@b They hold:} Olanthius's {@b shard} of the Sword of Zariel, the {@b Orb of Dragonkind} (Uldrak's gift), the {@b Shield of the Hidden Lord} (Gargauth inside), {@b Cinderbloom} (Or'Henn's staff, delivered by Feonor)."
@@ -218,9 +218,9 @@ window.SESSION = {
           "{@b Uldrak.} Book-true: the vial freed him. He went to Bel's Forge to reforge Yeenoghu's flail as Gnashing Hunger, and can come back for the last battle.",
           "{@b Thavius Kreeg.} Book fate (an amnizu at the Stygian Dock), plus our link: he was Or'Henn's estate-master. Breaking the contract is Or'Henn's road.",
           "{@b The Hellriders.} The Crypt gives the party Veska and Ser Lucan as stronger allies, and Drenwal the Generals' Memories. They fill the role of Eventyr's Hellriders on pegasi in the finale.",
-          "{@b Party size.} Book: four to six characters. Ours: three, at level 13, with a slower XP curve after 15. The finale needs allies on the table."
+          "{@b Party size.} Book: four to six characters. Ours: three, at level 14, with a slower XP curve after 15. The finale needs allies on the table."
         ] },
-        { t: "note", title: "A convergence worth using", text: "The book's {@b Ultimate Sacrifice} asks for the soul of a good cleric or paladin of 10th level or higher, and it gives redemption a second chance with advantage. Drenwal is a level-13 Light Cleric whose cure is to die and be reborn in the eyes of another god. Offering himself to Zariel could be both: the sacrifice that frees Elturel and the death that starts his rebirth. Proposal only; it is the DM's call, and it works best if the player finds it." }
+        { t: "note", title: "A convergence worth using", text: "The book's {@b Ultimate Sacrifice} asks for the soul of a good cleric or paladin of 10th level or higher, and it gives redemption a second chance with advantage. Drenwal is a level-14 Light Cleric whose cure is to die and be reborn in the eyes of another god. Offering himself to Zariel could be both: the sacrifice that frees Elturel and the death that starts his rebirth. Proposal only; it is the DM's call, and it works best if the player finds it." }
       ]
     },
 
