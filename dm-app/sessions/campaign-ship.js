@@ -7,7 +7,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     kind: "colico-jack",
     role: "Pilot of the Lady Vengeance. Flies a hellship like other men ride a horse",
     source: { page: "bestiary", name: "Scout", src: "MM" },
-    homebrew: "DM ruling 2026-11-08: Colico Jack is the equivalent of a level 9 ranger (Horizon Walker). Built as a PC-style NPC: 76 HP, AC 16, Extra Attack, Planar Warrior, Ethereal Step, ranger spells to 3rd level (haste, misty step and protection from evil and good from his subclass).",
+    homebrew: "DM ruling 2026-11-08: Colico Jack is the equivalent of a level 9 ranger (Hunter), with earthly abilities only: no planar powers. Built as a PC-style NPC: 76 HP, AC 16, Extra Attack, Colossus Slayer, Escape the Horde, ranger spells to 3rd level.",
     npc: true,
     portrait: false,
     sizeType: "Medium humanoid (human), chaotic good",
@@ -23,24 +23,24 @@ Object.assign(window.CAMPAIGN.creatures, {
     cr: "6", xp: 2300, pb: 4,
     traits: [
       { name: "Hold Her Steady", text: "While he is at the helm, the Lady Vengeance has advantage on Dexterity saving throws, and he adds his Survival bonus (+7) to the chase helm roll." },
-      { name: "Planar Warrior (bonus action)", text: "He picks one creature within 30 ft. The next time he hits it this turn, all the damage becomes force damage and deals an extra 1d8 force." },
-      { name: "Ethereal Step (1/short rest)", text: "As a bonus action he steps into the Ethereal Plane until the end of his turn (as {@spell etherealness}): he can walk through boarders and chains, and nothing on the Material Plane can touch him meanwhile." },
-      { name: "Detect Portal / Land's Stride", text: "He senses the nearest planar portal within 1 mile once per short rest, and moving through difficult terrain on the ship's deck costs him no extra movement." },
-      { name: "Spellcasting", text: "Wisdom (spell save DC 15, +7 to hit). Slots: 1st (4), 2nd (3), 3rd (2). Known: {@spell hunter's mark}, {@spell absorb elements}, {@spell cure wounds}, {@spell protection from evil and good}, {@spell pass without trace}, {@spell misty step}, {@spell lesser restoration}, {@spell haste}, {@spell lightning arrow}." }
+      { name: "Colossus Slayer", text: "Once per turn, when he hits a creature that is below its hit point maximum, it takes an extra 1d8 damage." },
+      { name: "Escape the Horde", text: "Opportunity attacks against him are made with disadvantage." },
+      { name: "Land's Stride", text: "Moving through nonmagical difficult terrain (a wrecked deck, rigging, rubble) costs him no extra movement." },
+      { name: "Spellcasting", text: "Wisdom (spell save DC 15, +7 to hit). Slots: 1st (4), 2nd (3), 3rd (2). Known: {@spell hunter's mark}, {@spell absorb elements}, {@spell cure wounds}, {@spell fog cloud}, {@spell pass without trace}, {@spell lesser restoration}, {@spell lightning arrow}." }
     ],
     actions: [
       { name: "Extra Attack", text: "He attacks twice when he takes the Attack action." },
-      { name: "Cutlass", text: "Melee Weapon Attack: +8 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) slashing damage (+1d6 with hunter's mark, +1d8 force with Planar Warrior)." },
-      { name: "Hellship Pistol", text: "Ranged Weapon Attack: +8 to hit, range 30/90 ft., one target. Hit: 9 (1d10 + 4) piercing damage (+1d6 with hunter's mark, +1d8 force with Planar Warrior). Reload as part of the attack." },
+      { name: "Cutlass", text: "Melee Weapon Attack: +8 to hit, reach 5 ft., one target. Hit: 7 (1d6 + 4) slashing damage (+1d6 with hunter's mark, +1d8 with Colossus Slayer)." },
+      { name: "Hellship Pistol", text: "Ranged Weapon Attack: +8 to hit, range 30/90 ft., one target. Hit: 9 (1d10 + 4) piercing damage (+1d6 with hunter's mark, +1d8 with Colossus Slayer). Reload as part of the attack." },
       { name: "Drive (at the helm)", text: "He steers the ship: she moves on his turn. With a bonus action he can make her Dash." }
     ],
     reactions: [
       { name: "Evasive Bank (with the Gyro Helm)", text: "If the Gyro Helm is fitted: when an attack roll is made against the ship, it has disadvantage; or when she makes a Dexterity saving throw, she has advantage. Three times per fight." }
     ],
     tactics: [
-      "At the helm first, always. If boarders take the wheel he goes Ethereal (Ethereal Step), walks through them and back to it.",
-      "Casts haste on the ship's best fighter on deck, or (table ruling) guides it into the Core for the chase.",
-      "Against devils: protection from evil and good on himself, then Planar Warrior every turn (force damage gets past their resistances)."
+      "At the helm first, always. If boarders chain the wheel, he wriggles free (Acrobatics +8 against the grapple) and fights his way back; Escape the Horde means they get little out of him leaving.",
+      "Hunter's mark on the biggest boarder, then two attacks a turn with Colossus Slayer.",
+      "Fog cloud to blind a flier's approach; absorb elements against breath or hurled flame; cure wounds on whoever is down."
     ],
     description: "A lean, sun-scorched man of indeterminate age in a long salt-stained coat, with a wide hat pulled low and a grin that never reaches all the way to his eyes. He talks to the ship. She seems to listen.",
     roleplay: [

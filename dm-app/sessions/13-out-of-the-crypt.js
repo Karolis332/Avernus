@@ -23,7 +23,7 @@ window.SESSION = {
     { id: "lulu", name: "Lulu", note: "NOT here. On the Lady Vengeance, hidden in the mists." },
     { id: "jeremy", name: "Jeremy", note: "On the Lady Vengeance with Colico Jack." },
     { id: "lady-vengeance", name: "Lady Vengeance (Colico Jack)", note: "Hidden in the mists. AC 17 · HP 350 · DT 15" },
-    { id: "colico-jack", name: "Colico Jack", note: "Pilot. Equivalent of a level 9 ranger (Horizon Walker). 76 HP, AC 16." },
+    { id: "colico-jack", name: "Colico Jack", note: "Pilot. Equivalent of a level 9 ranger (Hunter), earthly abilities only. 76 HP, AC 16." },
     { id: "uldrak", name: "Uldrak", note: "At Bel's Forge. Call him and he will hear. See Uldrak's Cue." }
   ],
   creatures: {
