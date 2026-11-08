@@ -26,6 +26,182 @@ window.SESSION = {
     { id: "uldrak", name: "Uldrak", note: "At Bel's Forge. Call him and he will hear. See Uldrak's Cue." }
   ],
   creatures: {
+    // ---- Stygian Dock fight (S13, written at the table 2026-11-08): Kreeg at home + his wardens ----
+    "kreeg": Object.assign({}, window.CAMPAIGN.creatures.kreeg, {
+      homebrew: window.CAMPAIGN.creatures.kreeg.homebrew + " Session 13 (party level 14 with two CR 10 allies and a warship, fresh from killing two adult dragons): at home on his Dock he gains Ledger Unbound (a second phase at 171 hit points) and a fourth legendary action in that phase. Numbers otherwise unchanged.",
+      traits: window.CAMPAIGN.creatures.kreeg.traits.concat([
+        { name: "Ledger Unbound (homebrew, second phase)", text: "The first time Kreeg drops to 171 hit points or fewer, every ledger in the tollhouse bursts open and the pages pour out around him. Until he dies or escapes: {@b (1)} a 15-ft. storm of pages moves with him; it is difficult terrain, and a creature that enters it or starts its turn there makes a DC 20 Dexterity saving throw, taking 17 (5d6) slashing damage on a failure or half as much on a success; {@b (2)} his Forgetfulness recharges on a 4–6; {@b (3)} he can take 4 legendary actions instead of 3. Read it aloud: \"Every name in Elturel,\" he says, \"and every one of them paid.\"" },
+        { name: "Master of the Dock (homebrew)", text: "While Kreeg is on the Dock, devils on it have advantage on saving throws against being frightened or charmed, and he always knows where each of them is." }
+      ]),
+      tactics: [
+        "Round 1: he talks while the wardens act. Command (\"Kneel\") on the biggest fighter, suggestion on Veska (\"Put the sword down, rider; your mother is on page four thousand and eleven\").",
+        "Forgetfulness on Lulu, or whoever carries her, or whoever holds the Sword shard. In phase two it comes back fast: use it every time it recharges.",
+        "Poison Mind on clustered casters (three targets, DC 22 Wis, 5d12 necrotic and blinded). Strike from the Record on the healer.",
+        "Dominate monster on the strongest melee PC or ally, and walk them to the wharf edge.",
+        "Dockmaster's Order every turn on the chain devils: chains grab, then drag toward the edge.",
+        "Below 100 hit points he offers terms: his signature, for his life. He means it, this once. At 0 he uses the Escape Clause into the ledger room under the tollhouse."
+      ]
+    }),
+
+    "dock-chain-warden": {
+      name: "Chain Warden (Chain Devil)",
+      kind: "chain-devil",
+      role: "Kreeg's dock warden: keeps the barge chains, and the ships tied to them",
+      source: { page: "bestiary", name: "Chain Devil", src: "MM" },
+      homebrew: "Monster Manual chain devil (CR 8) raised to about CR 10 for a level-14 party: 136 HP, +10 to hit, grapple escape DC 17, Unnerving Mask DC 16, and it can animate the Dock's mooring chains (up to six, Huge ones) and the river chain.",
+      npc: false,
+      sizeType: "Medium fiend (devil), lawful evil",
+      ac: 17, acNote: "natural armor",
+      hp: 136, hpFormula: "16d8 + 64",
+      speed: "30 ft.",
+      abilities: { str: 20, dex: 15, con: 18, int: 11, wis: 12, cha: 14 },
+      saves: "Con +8, Wis +5, Cha +6",
+      skills: "Athletics +9",
+      resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered",
+      immune: "fire, poison",
+      condImmune: "poisoned",
+      senses: "darkvision 120 ft., passive Perception 11",
+      languages: "Infernal, telepathy 120 ft.",
+      cr: "10", xp: 5900, pb: 4,
+      traits: [
+        { name: "Devil's Sight", text: "Magical darkness doesn't impede its darkvision." },
+        { name: "Magic Resistance", text: "It has advantage on saving throws against spells and other magical effects." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "Two Chain attacks, plus one attack with each animated chain." },
+        { name: "Chain", text: "Melee Weapon Attack: +10 to hit, reach 10 ft., one target. Hit: 13 (2d6 + 6) slashing damage. The target is grappled (escape DC 17) if the devil isn't already grappling a creature. Until the grapple ends, the target is restrained and takes 7 (2d6) piercing damage at the start of each of its turns." },
+        { name: "Animate Chains (recharges after a short or long rest)", text: "Up to six chains it can see within 60 ft. sprout razor barbs and animate under its control (mooring chains, barge chains, the river chain). Each is an object with AC 20, 25 hit points, resistance to piercing damage and immunity to psychic and thunder damage. Each animated chain can make one Chain attack (reach 10 ft. from the chain) when the devil uses Multiattack. A Huge mooring chain that hits the Lady Vengeance instead {@b moors her}: she can't move until the chain is destroyed or the helm wins a Strength contest (ship Str 22 vs. the devil's Athletics +9). A chain reduced to 0 hit points falls inanimate." }
+      ],
+      reactions: [
+        { name: "Unnerving Mask", text: "When a creature it can see starts its turn within 30 ft. of it, it shows that creature the face of a loved one or a hated enemy. The creature makes a DC 16 Wisdom saving throw or is frightened of the devil until the end of its turn. For Or'Henn, the face is his old master behind the screen; for Veska, her mother." }
+      ],
+      tactics: [
+        "One warden on the wharf, one on the moored barges. Round 1: Animate Chains. Moor the Lady Vengeance first, then grab whoever is nearest the edge.",
+        "Drag grappled creatures toward the water: a creature pushed or dragged off the wharf falls into the Styx (the DC 15 Intelligence save, and lair-action feeblemind)."
+      ],
+      description: "A tall devil wrapped head to toe in barbed chain, links of black iron grown into its skin. The chains clink when it breathes. It wears no face of its own: when it looks at you, it wears one of yours."
+    },
+
+    "bazelsteen": {
+      name: "Bazelsteen (Horned Devil Mechanic)",
+      kind: "horned-devil",
+      role: "Zariel's dockmaster of machines at the Stygian Dock (book p. 123). Would rather tinker than fight",
+      source: { page: "bestiary", name: "Horned Devil", src: "MM" },
+      homebrew: "Book: a horned devil (CR 11) who runs the Stygian Dock's repairs. Raised to about CR 14 for a level-14 party: 250 HP, AC 19, +12 to hit, DC 18 tail wound, Hurl Flame 6d6, and two legendary actions from his tools.",
+      npc: true,
+      sizeType: "Large fiend (devil), lawful evil",
+      ac: 19, acNote: "natural armor, oil-black",
+      hp: 250, hpFormula: "20d10 + 140",
+      speed: "20 ft., fly 60 ft.",
+      abilities: { str: 24, dex: 17, con: 24, int: 18, wis: 16, cha: 17 },
+      saves: "Str +12, Dex +8, Wis +8, Cha +8",
+      skills: "Arcana +9, Investigation +9",
+      resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered",
+      immune: "fire, poison",
+      condImmune: "poisoned",
+      senses: "darkvision 120 ft., passive Perception 13",
+      languages: "Infernal, telepathy 120 ft.",
+      cr: "14", xp: 11500, pb: 5,
+      traits: [
+        { name: "Devil's Sight", text: "Magical darkness doesn't impede his darkvision." },
+        { name: "Magic Resistance", text: "He has advantage on saving throws against spells and other magical effects." },
+        { name: "Machine Whisperer", text: "He knows every infernal war machine and ship on sight: its weak points, its upgrades, and how much it would fetch." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "Three melee attacks: two with his fork and one with his tail. He can use Hurl Flame in place of any melee attack." },
+        { name: "Fork", text: "Melee Weapon Attack: +12 to hit, reach 10 ft., one target. Hit: 16 (2d8 + 7) piercing damage." },
+        { name: "Tail", text: "Melee Weapon Attack: +12 to hit, reach 10 ft., one target. Hit: 11 (1d8 + 7) piercing damage. The target (not undead or a construct) makes a DC 18 Constitution saving throw or loses 10 (3d6) hit points at the start of each of its turns from an infernal wound. Each further hit raises the wound by 10 (3d6). A DC 12 Medicine check (action) or any magical healing closes it." },
+        { name: "Hurl Flame", text: "Ranged Spell Attack: +9 to hit, range 150 ft., one target. Hit: 21 (6d6) fire damage. A flammable object that isn't worn or carried ignites." }
+      ],
+      legendary: {
+        count: 2,
+        intro: "Bazelsteen can take 2 legendary actions, at the end of another creature's turn.",
+        actions: [
+          { name: "Wrench", cost: 1, text: "One war machine or ship within 30 ft. regains 4d10 hit points, or loses 10 ft. of speed until his next turn (he knows where to hit)." },
+          { name: "Coal Spit", cost: 2, text: "He spits his red-hot coal: 15-ft. cone, DC 18 Dexterity saving throw, 14 (4d6) fire damage, half on a success." }
+        ]
+      },
+      tactics: [
+        "He does not want this fight. He wants a test crew. He fights demons first, intruders second, and the party last.",
+        "If the test run succeeded and Kreeg moves on the party, he takes the party's side for 2 rounds: the bathysphere is his, and so are its pilots.",
+        "Below 125 hit points he flies to the fortress (or away) and comes back with 3 barbed devils."
+      ],
+      description: "A big horned devil black with engine oil from horns to tail, chewing a shard of red-hot coal that smokes between his teeth. Tools hang from his belt where other devils hang skulls."
+    },
+
+    "glabrezu-ravager": {
+      name: "Glabrezu Ravager",
+      kind: "glabrezu",
+      role: "The raid's demon: lands on the barge to cut the bathysphere's chain (book p. 124)",
+      source: { page: "bestiary", name: "Glabrezu", src: "MM" },
+      homebrew: "Book: a glabrezu (CR 9). Raised to about CR 12 for a level-14 party: 230 HP, +11 to hit, pincers 2d10 + 7, grapple escape DC 17, spell DC 18.",
+      npc: false,
+      sizeType: "Large fiend (demon), chaotic evil",
+      ac: 18, acNote: "natural armor",
+      hp: 230, hpFormula: "20d10 + 120",
+      speed: "40 ft.",
+      abilities: { str: 24, dex: 15, con: 22, int: 19, wis: 17, cha: 16 },
+      saves: "Str +11, Con +10, Wis +7, Cha +7",
+      skills: "Athletics +11",
+      resist: "cold, fire, lightning; bludgeoning, piercing, and slashing from nonmagical attacks",
+      immune: "poison",
+      condImmune: "poisoned",
+      senses: "truesight 120 ft., passive Perception 13",
+      languages: "Abyssal, telepathy 120 ft.",
+      cr: "12", xp: 8400, pb: 4,
+      traits: [
+        { name: "Innate Spellcasting", text: "Intelligence (spell save DC 18). At will: {@spell darkness}, {@spell detect magic}, {@spell dispel magic}. 1/day each: {@spell confusion}, {@spell fly}, {@spell power word stun}." },
+        { name: "Magic Resistance", text: "It has advantage on saving throws against spells and other magical effects." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "Four attacks: two with its pincers and two with its fists. Or two pincer attacks and one spell. Or the Cut the Chain action and one pincer attack." },
+        { name: "Pincer", text: "Melee Weapon Attack: +11 to hit, reach 10 ft., one target. Hit: 18 (2d10 + 7) bludgeoning damage. A Medium or smaller target is grappled (escape DC 17). Each pincer can grapple one target." },
+        { name: "Fist", text: "Melee Weapon Attack: +11 to hit, reach 5 ft., one target. Hit: 11 (2d4 + 6) bludgeoning damage." },
+        { name: "Cut the Chain", text: "It snips at the bathysphere's chain: DC 20 Strength check (+11). On a success the chain parts and the bathysphere sinks to the riverbed. A creature can shield the chain: then the glabrezu must instead destroy a chain segment (AC 19, 40 hit points) first." }
+      ],
+      tactics: [
+        "Turn 1: Cut the Chain. It keeps trying every turn. Three turns, then Bazelsteen returns and drives it off.",
+        "Darkness on the crane operator; power word stun on anyone with fewer than 150 hit points who stands between it and the chain."
+      ],
+      description: "A dog-headed demon twice a man's height, with two great crab pincers and a second pair of small human hands folded at its belly."
+    },
+
+    "fortress-bone-devil": {
+      name: "Fortress Bone Devil",
+      kind: "bone-devil",
+      role: "One of three bone devils that circle Zariel's flying fortress while it refuels (book p. 123)",
+      source: { page: "bestiary", name: "Bone Devil", src: "MM" },
+      homebrew: "Monster Manual bone devil (CR 9) raised to about CR 12 for a level-14 party: 190 HP, +10 to hit, sting 2d8 + 6 plus 5d6 poison, DC 17.",
+      npc: false,
+      sizeType: "Large fiend (devil), lawful evil",
+      ac: 19, acNote: "natural armor",
+      hp: 190, hpFormula: "20d10 + 80",
+      speed: "40 ft., fly 40 ft.",
+      abilities: { str: 22, dex: 16, con: 18, int: 13, wis: 14, cha: 16 },
+      saves: "Int +5, Wis +6, Cha +7",
+      skills: "Deception +7, Insight +6",
+      resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered",
+      immune: "fire, poison",
+      condImmune: "poisoned",
+      senses: "darkvision 120 ft., passive Perception 12",
+      languages: "Infernal, telepathy 120 ft.",
+      cr: "12", xp: 8400, pb: 4,
+      traits: [
+        { name: "Devil's Sight", text: "Magical darkness doesn't impede its darkvision." },
+        { name: "Magic Resistance", text: "It has advantage on saving throws against spells and other magical effects." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "Three attacks: two with its claws and one with its sting." },
+        { name: "Claw", text: "Melee Weapon Attack: +10 to hit, reach 10 ft., one target. Hit: 10 (1d8 + 6) slashing damage." },
+        { name: "Sting", text: "Melee Weapon Attack: +10 to hit, reach 10 ft., one target. Hit: 15 (2d8 + 6) piercing damage plus 17 (5d6) poison damage, and the target makes a DC 17 Constitution saving throw or is poisoned for 1 minute. It repeats the save at the end of each of its turns." }
+      ],
+      tactics: [
+        "They guard the fortress, not the dock. They come down only if someone fights near the fortress, flies close to it, or raises an alarm.",
+        "If Lulu is seen, they take her alive: grapple and fly for the fortress."
+      ],
+      description: "A tall skeletal devil with skin stretched tight over its bones, a scorpion's tail curled over its back, wings like torn sails."
+    },
+
     // Copied from Session 11 (the Dock's wharf watch), for Passing the Stygian Dock.
     "barbed-devil": {
       "name": "Barbed Devil (Dock Guard)",
@@ -796,80 +972,83 @@ window.SESSION = {
     },
 
     // =====================================================================
-    // PASSING THE STYGIAN DOCK (written at the table 2026-11-08)
-    // Kreeg material condensed from Session 11's unplayed Dock branch.
+    // THE STYGIAN DOCK (book p. 123-124, upscaled for level 14 + Kreeg)
+    // Written at the table 2026-11-08. Book text paraphrased; numbers raised.
     // =====================================================================
     {
       id: "passing-the-stygian-dock",
-      title: "Passing the Stygian Dock",
-      when: "On the Styx road to the Emporium, the ship passes Kreeg's dock",
-      duration: "30 to 90 minutes (much longer if they go in to Kreeg)",
+      title: "The Stygian Dock",
+      when: "On the Styx road to the Emporium. Zariel's flying fortress is moored here tonight",
+      duration: "1 to 2 hours",
       blocks: [
-        { t: "read", text: "The river widens, and the smell changes: iron, ink, and something like a counting-house on a hot day.\n\nA wharf of black iron runs out over the Styx on chains, longer than a street. Barges lie along it, low in the water. Lemures shuffle up the gangplanks in lines, each with a box of soul coins on its head, all of them chanting numbers. At the end of the wharf a red devil covered in thorns stands beside a tollhouse with a bell above its door.\n\nAcross the river, from the tollhouse to the far bank, hangs a chain as thick as a man's waist. It is down in the water now. It does not have to stay there." },
-        { t: "note", title: "Run It Fast", text: "Homebrew, built on Session 11's Dock (never played). {@c kreeg|Thavius Kreeg}, the man who sold Elturel, is the amnizu who runs this dock. Or'Henn kept his garden for sixty years and never saw his face. Tonight the party can {@b A} sail past, {@b B} tie up and trade, or {@b C} go in to Kreeg. First check the three states below: they decide how the dock greets the ship." },
+        { t: "read", text: "Two enormous iron arms reach out from the cliffs and straddle the Styx, a hundred feet above the water, hung with clamps and chains and bars big enough to hold a ship the size of a town.\n\nOne is being held right now. Between the arms hangs a citadel of black basalt shaped like a sword blade, point down over the river. It thrums. Out of the Styx below it, souls are being pulled up into its belly in screaming ribbons, and the sound does not stop.\n\nThree skeletal shapes circle it slowly, like gulls round a fishing boat. On the dock, devils in threes walk the rails. And on a rusty barge a few hundred yards downriver, a devil black with engine oil is swearing at a crane." },
+        { t: "note", title: "Run It Fast", text: "Book p. 123–124, numbers raised for three level-14 PCs plus Veska, Ser Lucan, Moonkite and the ship. {@b Who is here:} {@c bazelsteen|Bazelsteen} runs the machines (book). {@c kreeg|Thavius Kreeg} keeps the fuel ledger: every soul the fortress drinks is counted by him (our campaign). {@b Zariel's flying fortress} is moored and refuelling, guarded by 3 {@c fortress-bone-devil|bone devils}. The party can {@b A} slip past, {@b B} take Bazelsteen's deal (Test Run 221, then the Demon Raid), or {@b C} go to Kreeg. The demon raid is Kreeg's moment: he moves while Bazelsteen is away." },
+        { t: "map", id: "harbor-map-night-25x25", title: "The Dock platform (use the harbour as the dock's upper arms)", note: "Stand-in: the dock is a 100-ft.-high iron service platform. The edges drop to the Styx." },
+        { t: "map", id: "avernus-river-styx-encounter-map-50x50", title: "The barge and the river (Test Run 221, the Demon Raid)", note: "Put Bazelsteen's barge mid-river with the crane at its stern. The riverbed is 40 ft. down." },
+        { t: "map", id: "styx-watchtower-45x20", title: "Kreeg's ledger tower (the tollhouse)", note: "Stand-in: T1 the counting floor, T2 Kreeg's office (the chains on the walls are the ledger chains), T3 the roof. The ledger room is under T1: his Escape Clause goes there." },
 
-        { t: "h", text: "How the Dock Greets Them" },
+        { t: "h", text: "Zariel's Flying Fortress (moored)" },
         { t: "list", items: [
-          "{@b Soul-smoke (Soul Burn 5–6 tonight):} the dock saw them coming for an hour. The harbour devil has the chain {@b up} before they arrive, and a ledger open: \"Black galley, Gondian build, trailing burned souls. Name and cargo.\"",
-          "{@b The dragon heads on the deck or the prow:} every devil on the wharf stops work to look. Advantage on Intimidation here; and by tonight every barge downriver is telling the story. Kreeg sends a clerk with an offer before they ask (see B).",
-          "{@b If the narzugon saw them (event 7):} Zariel's herald passed this way first. The harbour devil has an order in the herald's hand: hold any Gondian galley carrying a hollyphant. That makes Lulu's whereabouts the whole scene."
-        ] },
-        { t: "table", caption: "Optional: what is moored here today (d6)", head: ["d6", "At the dock"], rows: [
-          ["1", "{@b Zariel's flying fortress}, 450 feet of sword-blade iron, refuelling over the wharf (D&D canon: it refuels here). Her legion is everywhere. Do NOT stop. Sailing past is a DC 18 Stealth or Deception check for the helm. Lulu must be hidden below."],
-          ["2–3", "Soul barges and a slaver galley. Busy, loud, nobody looks twice unless the heads are showing."],
-          ["4–5", "Quiet. Only the harbour watch and the lemures."],
-          ["6", "A yugoloth broker's skiff: Urexiel's people. If the brass plate is still on Or'Henn's staff, they recognise it and sell the ship's position to Arkhan (+5 on his hunt roll)."]
-        ] },
-
-        { t: "h", text: "A · Sail Past" },
-        { t: "list", items: [
-          "{@b The toll:} 1 soul coin, or a bottle of dragon blood (they will take it gladly). The thorned devil drops the chain and writes the ship into the ledger. Kreeg now knows the ship passed, and her heading.",
-          "{@b Talk past it:} DC 15 Deception or Persuasion. Bel's name, Mahadi's name, or the Emporium as their port all help (advantage). Fail: pay, or go to the chain.",
-          "{@b Run the chain:} if the chain is up, the ship must go over it. Overclock or a soul coin gives the speed; the helm makes a DC 15 check. Fail: the chain rakes the keel, 4d10 bludgeoning to the ship (over the threshold), roll a mishap, and the alarm bell rings: 1d4 + 1 {@c barbed-devil|barbed devils} fly after the ship for 3 rounds. Every ledger on the Styx marks her as a toll-runner.",
-          "{@b Speed:} Tuned Vanes on the Styx put her at 80 ft. The dock's devils fly 60 at best. If she gets past the chain, nothing here catches her."
+          "{@b Book:} her 450-ft. flying fortress, a basalt citadel shaped like a sword blade, serviced here and fuelled with souls drawn out of the Styx. She pilots it by thought.",
+          "{@b Tonight:} Zariel is {@b not} aboard (her herald may be). The crew is busy refuelling. The 3 {@c fortress-bone-devil|bone devils} guard the fortress, not the dock: they come down only for a fight near it, a flyer that comes close, or an alarm.",
+          "{@b Lulu:} if a bone devil sees her, it tries to take her alive and fly her aboard. Keep her below decks. The writ said Zariel wants her.",
+          "{@b If they make trouble near the fortress:} the bone devils join in on round 2, and on round 4 the fortress's own guns wake: a {@b fortress lance} each round on initiative 0, 120 ft. line, DC 18 Dexterity save, 44 (8d10) force, half on a success. Run, or stop fighting.",
+          "{@b It leaves:} when the fuelling ends (1d4 hours after they arrive), it casts off and flies north-west. After that the dock is just a dock."
         ] },
 
-        { t: "h", text: "B · Tie Up and Trade" },
+        { t: "h", text: "A · Slip Past" },
         { t: "list", items: [
-          "{@b Docking fee:} 1 soul coin a day. Nobody on the wharf touches the Styx water without gloves, and nobody aboard should either.",
-          "{@b Buyers:} dragon blood (a bottle fetches about 5 soul coins here; the Emporium pays a little more), scales and teeth (a smith's agent), and the heads. {@b Kreeg's clerk} offers 20 soul coins for Flash's head \"for the master's wall\". Kreeg does not need the money. He wants the party to owe him a conversation.",
-          "{@b Sellers:} infernal metal (2 soul coins a piece, up to 10 pieces; that is what the next ship upgrades need), salt and pitch to preserve the heads, Styx-proof gloves, ship repairs (4d10 hit points for 2 soul coins, half a day).",
-          "{@b Lulu:} if she is aboard, keep her below. A lemure that sees a hollyphant chants it, and the chant reaches the tollhouse in minutes."
+          "Patrols: 12 {@c barbed-devil|barbed devils} in four groups of three. They warn ships off and attack intruders. They do not stop ships that keep moving on the river.",
+          "Sailing straight past under the fortress: helm DC 15 Stealth or Deception (with the soul-smoke trail: DC 18). Fail: a patrol of 3 hails the ship, and anyone who talks back gets Bazelsteen swooping down to deal with them (go to B).",
+          "Dragon heads on the prow: every devil looks. That is not hidden, but it is very persuasive (advantage on Intimidation here)."
         ] },
-        { t: "table", caption: "Wharf rumours (d6, one per PC who asks around)", head: ["d6", "They hear"], rows: [
-          ["1", "Two of Arkhan's dragons fell out of the sky in the south. Arkhan is paying for the name of whoever did it."],
-          ["2", "Zariel's sword-ship left this dock three days ago and went north-west, to her basalt spire past the Scab."],
-          ["3", "The Wandering Emporium is anchored under the Mirror of Mephistar this month. The fee to tie up there just doubled."],
-          ["4", "A green dragon has been asking barge captains, very kindly, about a red dragonborn druid."],
-          ["5", "The master of this dock collects names. Not souls: names. Nobody knows what he does with them."],
-          ["6", "Demons broke through near the Scab last week. Zariel's riders are pulling patrols off the Styx to plug the line."]
+
+        { t: "h", text: "B · Bazelsteen's Deal" },
+        { t: "p", text: "{@c bazelsteen|Bazelsteen} likes machines more than people. He looks the Lady Vengeance over, names three things wrong with her, and offers: crew his test and he repairs her and fits one upgrade free. He does not want money. He wants pilots he doesn't mind losing." },
+        { t: "h", text: "Test Run 221" },
+        { t: "steps", items: [
+          "{@b The bathysphere:} a 10-ft. iron-and-glass diving bell hanging from the barge's crane on a rusty chain, with suction tubes underneath. Up to four Medium crew. He swears it is watertight. Air: 1 hour for one, 15 minutes each for four. He plans 10 minutes.",
+          "{@b The prize:} \"Whoever sucks up the most silted souls gets a soul coin.\"",
+          "{@b The dive:} down 40 ft. to the riverbed. Souls in the current claw and scream at the glass. Visibility 10 ft.",
+          "{@b Each minute:} each crew member at a suction station makes a Dexterity check. The result is the number of silted souls they siphon into the tanks (dials on each tank).",
+          "{@b Opening the hatch} underwater floods the bell: Styx exposure for everyone inside (DC 15 Intelligence save or forget)."
         ] },
+
+        { t: "h", text: "The Demon Raid (10 minutes in)" },
+        { t: "p", text: "Book: ten vrocks hit the dock and Bazelsteen flies off to fight them; then a glabrezu lands on the barge to cut the chain. Here, for level 14, the raid is fewer but harder demons, and the moment Bazelsteen leaves, {@b Kreeg comes down the dock}. Roll initiative. The crew in the bell don't know what's happening above, and the barge doesn't know what's happening below." },
+        { t: "list", items: [
+          "{@b Round 1:} 6 {@c vrock|vrocks} (maximum hit points, 152; Spores DC 16) hit the dock and the barge. Bazelsteen goes to the dock.",
+          "{@b Round 2:} the {@c glabrezu-ravager|Glabrezu Ravager} lands on the barge and starts on the chain: DC 20 Strength check each turn. If the chain parts, the bell sinks and stays down until salvaged. Shielding the chain forces it to break a segment first (AC 19, 40 HP).",
+          "{@b The crane:} a PC at the controls uses an action and a DC 17 Intelligence (Arcana) check to work it. Three successes in a row bring the bell up. Fail by 5+: the bell drags 2d10 ft. across the bed, 2d4 bludgeoning to everyone inside.",
+          "{@b Round 3:} {@c kreeg|Kreeg} arrives with 2 {@c dock-chain-warden|Chain Wardens}. He wants Lulu, the shard, Flash's head, or Or'Henn, in that order, and the bell is a very good hostage: \"Shall I count to ten, or to the bottom of the river?\" The chain wardens animate the dock's chains to moor the Lady Vengeance.",
+          "{@b Round 5:} Bazelsteen comes back. If the bell is still on its chain, he drives the glabrezu off and, if the test was going well, turns on Kreeg's chain wardens for 2 rounds: those are his chains. If the chain broke, he calls Test Run 221 a failure and leaves the sunk crew to their fate.",
+          "{@b Air:} the crew in the bell start to suffocate when the air runs out (15 minutes for four)."
+        ] },
+        { t: "encounter", id: "dock-demon-raid", title: "The Demon Raid on the Barge", combatants: [
+          { c: "vrock", n: 6 }, { c: "glabrezu-ravager", n: 1 }
+        ], notes: "Book p. 124, raised: 6 vrocks at max HP (152, Spores DC 16) instead of 10, and the glabrezu at about CR 12. The glabrezu arrives round 2 and goes for the chain (DC 20 Strength). Add Bazelsteen from round 5 as an ally against the demons." },
+        { t: "encounter", id: "dock-kreeg", title: "Kreeg at the Dock (from round 3 of the raid, or if they go to him)", combatants: [
+          { c: "kreeg", n: 1 }, { c: "dock-chain-warden", n: 2 }, { c: "barbed-devil", n: 3 }
+        ], lair: "kreeg", notes: "Kreeg (CR 22, Ledger Unbound at 171 HP: page storm, Forgetfulness on 4–6, 4 legendary actions). Chain Wardens moor the ship with Huge chains. Barbed devils are a dock patrol that answers his Dockmaster's Order. Killed here he is gone for good, and Elturel's contract with him: he says so first. Below 100 HP he offers his signature for his life." },
+        { t: "encounter", id: "dock-fortress-guard", title: "Only if they fight near the fortress: the bone devils", combatants: [
+          { c: "fortress-bone-devil", n: 3 }
+        ], notes: "They join on round 2. From round 4 the fortress lance fires on initiative 0: 120-ft. line, DC 18 Dex, 8d10 force. They take Lulu alive if they can." },
 
         { t: "h", text: "C · Go In to Kreeg" },
-        { t: "p", text: "Or'Henn knows the bell over the tollhouse door. It is the Ashen Garden's gate bell: he would know the crack in its lip anywhere. Three rings meant a keeper reporting to the master, who always answered from behind a screen." },
-        { t: "list", items: [
-          "{@b Or'Henn rings three times:} the door opens, and nobody stops him or those with him. Kreeg receives them in his office as if he has been expecting a report.",
-          "{@b His true name} (if they have it from the Contract V coffer): he must answer every question truthfully, once each, and cannot use Forgetfulness on whoever holds the name.",
-          "{@b Otherwise:} a clerk asks their business and makes them wait an hour, on the wharf, in full view."
-        ] },
-        { t: "read", text: "The office is lined with ledgers, floor to ceiling, every spine labelled in the same neat hand. Behind the desk a tall grey devil in a clerk's black robe is writing, and does not look up.\n\n\"Before your Hellrider does anything brave,\" he says, \"let me save you a mistake. You are in the Nine Hells. If you kill me here, I am gone. Not to some other hell. Gone. And with me goes the only hand that can unsign that contract.\"\n\nHe blots the page.\n\n\"Two dragons. In one night. My gardener has grown.\"" },
-        { t: "list", items: [
-          "{@b He is not ashamed of the sale}, only of being caught. He keeps the letter of every deal and nothing else.",
-          "{@b What he knows:} the Companion over Elturel is a planetar in chains. The Creed Resolute binds every soul who swore it: they belong to Zariel when the city touches the Styx. He signed. Only his hand, or a copy he signs away, can break it.",
-          "{@b What he wants tonight:} to stay a rumour; Flash's head for his wall; and, if he sees her, {@b Lulu}. Zariel would pay anything for what is in her head, and he knows it.",
-          "{@b What he offers:} information for favours. The safest trade: Flash's head for one true answer, or for the location of the contract's copy. The worst: anything that names Lulu.",
-          "{@b Veska:} her mother swore the Creed. \"Then she is on page four thousand and eleven,\" he says, without looking. Let Veska's player decide what she does. If she draws, the barbed devils step in from the wharf, and Kreeg sighs.",
-          "{@b The Shield of the Hidden Lord} goes cold on Drenwal's arm. Gargauth knew Kreeg in the Vanthampur days: \"Ask him what he paid me. Ask him about the cellar.\"",
-          "{@b If they leave with nothing agreed}, he lets them go, and at the door uses Forgetfulness on whoever heard the most. \"Nothing personal. I prefer to be a rumour.\""
-        ] },
-        { t: "note", title: "No Surprises: Kill Him and the Contract Dies", text: "Killed in the Nine Hells, Kreeg is destroyed for good, and with him the only hand that can unsign Elturel's contract. He tells them so before they can act. Taking him alive is the best result for Elturel and the hardest: he flies, he dominates, and his Escape Clause pulls him out at 0 hit points unless they have {@item dimensional shackles|DMG} or his true name." },
-        { t: "encounter", id: "the-dock-fight-s13", title: "The Dock Fight: Kreeg and the Wharf Watch", combatants: [
-          { c: "kreeg", n: 1 }, { c: "barbed-devil", n: 3 }
-        ], notes: "Deadly: Kreeg is CR 22 with legendary and lair actions. He stays back and talks while he fights. Forgetfulness (DC 22 Int, stun) on Lulu or her carrier first, then on whoever holds the shard. Dominate monster on the strongest fighter. At 0 HP his Escape Clause drops him into the ledger room under the tollhouse. Styx water is under the whole wharf: anyone knocked off makes the DC 15 Intelligence save or forgets." },
+        { t: "p", text: "His tollhouse sits at the root of the docking arms, a squat basalt tower with a cracked bell over the door: the Ashen Garden's gate bell. Or'Henn rings three times and the door opens. Kreeg receives them as if a keeper has come to report. If they fight here, use the encounter above without the demons; if they talk, he wants the same things, and tonight he can sell them to Zariel's fortress across the dock within the hour." },
+        { t: "read", text: "\"Before your Hellrider does anything brave,\" he says, not looking up, \"you are in the Nine Hells. Kill me here and I am gone, and with me the only hand that can unsign that contract.\" He blots the page. \"Two dragons in one night. My gardener has grown. And you've brought them to her front door. Do sit.\"" },
 
-        { t: "h", text: "Or'Henn's Curse at the Dock" },
-        { t: "p", text: "No dragons here, so no Pull saves. But if Kreeg buys Flash's head, Or'Henn watches a red dragon's head carried into a devil's office by lemures. Roll a Small Vision if you want it (+1 Pull): the red head, in Flash's mouth, says \"Is this what you sell your family for, little red?\"" },
-        { t: "note", title: "Remember for Next Time", text: "Did they pay, talk past, or run the chain? What did they sell and buy (infernal metal count)? Did Kreeg see Lulu? Did they make any deal with him, and its exact words? Did anyone touch the Styx? What was moored at the dock?" }
+        { t: "h", text: "Rewards (proposal: strong, for level 14)" },
+        { t: "table", caption: "What they can win at the Dock", head: ["From", "Reward"], rows: [
+          ["{@b Test Run 221 (bell back up)}", "Book: Bazelsteen fully repairs the ship and gives one free upgrade, and a soul coin to the best siphoner. Here, the upgrade is one of: {@b Soul-Siphon Intake} (Overdrive can burn 10 silted souls instead of a soul coin, with no Soul Burn; they are already lost), {@b Infernal Hull Clamps} (+2 AC and damage threshold 20), a {@b second Aether Harpoon} at the stern, or the {@b Gyro Helm} (tier II engine) fitted free."],
+          ["{@b The silted souls}", "The tank dials are a currency: 10 silted souls = 1 soul coin at the Emporium, or fuel for the Intake. Bazelsteen lets them keep what they siphoned if the test succeeded."],
+          ["{@b Kreeg's Ledger} (if they take it)", "Legendary, requires attunement. Once a day, read one line aloud to give back a memory taken by Forgetfulness, the Styx, or anything else. {@b It can restore Lulu's memory.} Holding it, you know any creature's true name written in it (Kreeg's own is on the first page)."],
+          ["{@b The High Overseer's Ring}", "Very rare, attunement. +2 to spell save DCs and spell attacks; {@spell modify memory} once per day. Elturel's cracked-sun seal: it opens doors in Elturel."],
+          ["{@b The contract copy}", "In the ledger room. Elturel's contract, signed in Kreeg's hand. Burned, signed away by a living Kreeg, or carried to Zariel: the legal lever to break the chains."],
+          ["{@b The ledger room's strongbox}", "40 soul coins and 15 infernal metal (the next ship upgrades need metal)."],
+          ["{@b XP}", "Raid: 6 vrocks (13,800) + Glabrezu Ravager (8,400). Kreeg 41,000, Chain Wardens 5,900 each, barbed devils 1,800 each, bone devils 8,400 each. Split three ways."]
+        ] },
+        { t: "note", title: "Remember for Next Time", text: "Did the bell come back up? Silted souls siphoned (per PC). Which upgrade Bazelsteen fitted. Did Kreeg see Lulu? Is Kreeg alive, captured, signed, or escaped? What did the fortress see, and where did it fly?" }
       ]
     },
 
