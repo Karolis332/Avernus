@@ -98,19 +98,34 @@
       var cids = [];
       (block.combatants || []).forEach(function (c) { if (cids.indexOf(c.c) === -1) cids.push(c.c); });
       if (block.lair && cids.indexOf(block.lair) === -1) cids.push(block.lair);
-      cids.forEach(function (cid) {
-        var creature = session.creatures[cid];
-        if (!creature) return;
-        var wrap = el("div", "combat-sb");
-        wrap.appendChild(window.DMStatblock.renderStatblock(Object.assign({ _cid: cid, _sessionId: session.id }, creature)));
-        blockEls[cid] = wrap;
-        sbCol.appendChild(wrap);
-      });
+      cids.forEach(addStatblock);
+    }
+
+    function addStatblock(cid) {
+      var creature = session.creatures[cid];
+      if (!creature) return null;
+      var wrap = el("div", "combat-sb");
+      wrap.appendChild(window.DMStatblock.renderStatblock(Object.assign({ _cid: cid, _sessionId: session.id }, creature)));
+      blockEls[cid] = wrap;
+      sbCol.appendChild(wrap);
+      return wrap;
+    }
+
+    // Allies (session.allies) are not combatants, so their blocks are added on first use.
+    function ensureStatblock(cid) {
+      if (!cid) return null;
+      if (blockEls[cid]) return blockEls[cid];
+      if (!sbCol.querySelector(".combat-allies-heading")) sbCol.appendChild(el("h3", "combat-heading combat-allies-heading", "Allies"));
+      return addStatblock(cid);
     }
 
     function markActive() {
       var cur = trackCol.querySelector(".fight-row-current [data-cid]");
       var cid = cur ? cur.dataset.cid : null;
+      if (cid && !blockEls[cid] && observer) {
+        // adding a block mutates sbCol, not trackCol, so the observer does not loop
+        ensureStatblock(cid);
+      }
       Object.keys(blockEls).forEach(function (k) { blockEls[k].classList.toggle("sb-active", k === cid); });
       if (cid && blockEls[cid] && blockEls[cid].scrollIntoView) blockEls[cid].scrollIntoView({ block: "nearest" });
     }
@@ -136,9 +151,10 @@
     // clicking a creature name jumps to its stat block instead of opening the side panel
     document.addEventListener("click", function (e) {
       var t = e.target.closest ? e.target.closest("[data-cid]") : null;
-      if (!t || !blockEls[t.dataset.cid]) return;
+      var wrap = t ? ensureStatblock(t.dataset.cid) : null;
+      if (!wrap) return;
       e.preventDefault();
-      blockEls[t.dataset.cid].scrollIntoView({ block: "start" });
+      wrap.scrollIntoView({ block: "start" });
     });
 
     document.addEventListener("keydown", function (e) {
