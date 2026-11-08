@@ -664,12 +664,25 @@ window.SESSION = {
         ] },
 
         { t: "h", text: "Burning Coins for Speed" },
-        { t: "p", text: "Overdrive was built for one fight. On the road it works like this (proposal): {@b each soul coin Jeremy feeds the Core doubles her speed for 4 hours}, 120 ft. on the Styx. Burning coins the whole way turns 3 days into about {@b 1½ days} (about 5 coins), which saves the heads without {@spell gentle repose}. Roll the {@b d20 backlash for every coin} (1 to 5: 44 force to the ship, engines dead for 1d4 hours on the road). Every coin destroys a soul forever. Then count the coins burned since the last long rest on the {@b Soul Burn} track:" },
+        { t: "p", text: "Overdrive was built for one fight. On the road (proposal): {@b each soul coin gives 1 hour at double speed}, 120 ft. on the Styx. An hour at double speed covers two hours of river, so {@b every coin saves 1 hour}. The trip is about 36 hours under way (3 days); halving it takes 18 coins. Every coin destroys a soul forever." },
+        { t: "h", text: "The Chain: Each Coin in a Row Is Harder" },
+        { t: "p", text: "Coins fed one after another without a break form a {@b chain}. Number them: the 1st coin in the chain is {@b n = 1}, the next {@b n = 2}, and so on. The chain breaks only when the Core runs a full hour with no coin in it. Each coin, roll these saves when it goes in:" },
+        { t: "table", caption: "Saves for coin n of the chain", head: ["Who", "Save", "On a failure"], rows: [
+          ["{@b The Core} (the ship)", "Constitution (+5), {@b DC 10 + 2n}", "Backlash: 44 (8d10) force to the ship, engines and cannons dead for 1d4 hours, and the chain ends."],
+          ["{@b The feeder} (whoever drops the coin in)", "Wisdom, {@b DC 10 + 2n}", "The soul grabs on: {@b n × 1d6 psychic} damage, and they hear its last words (the player gets one line of a stranger's life). Fail by 5 or more: frightened of the Core for 1 hour."],
+          ["{@b Everyone aboard} (from the 3rd coin in a chain)", "Wisdom, {@b DC 8 + 2n}", "1 level of exhaustion: the screaming gets into them. Undead and constructs are immune; Lulu automatically fails."]
+        ] },
+        { t: "list", items: [
+          "{@b DCs at a glance:} coin 1: 12 / 12. Coin 2: 14 / 14. Coin 3: 16 / 16 (crew 14). Coin 4: 18 / 18 (crew 16). Coin 5: 20 / 20 (crew 18). Coin 6: 22 / 22 (crew 20). By the 5th or 6th coin something breaks.",
+          "{@b Breaking the chain} (one hour with no coin) resets n to 1. So the safe rhythm is coin, rest hour, coin: each pair saves 1 hour of a 2-hour stretch.",
+          "{@b Helps:} Jeremy guiding it (advantage on the Core save if he takes no other action that hour); {@spell protection from evil and good} on the feeder (advantage on the feeder's save); {@spell heroism} or {@spell beacon of hope} for the crew's saves."
+        ] },
+        { t: "p", text: "On top of the chain, count {@b all} coins burned since the last long rest on the {@b Soul Burn} track. These effects stack:" },
         { t: "table", caption: "Soul Burn (coins burned since the last long rest)", head: ["Coins", "What happens (stacks)"], rows: [
           ["1–2", "{@b The Core screams.} A thin sound under the hum that only the dying hear. Lulu, if aboard, cannot sleep. Jeremy will not look at whoever ordered it."],
           ["3–4", "{@b The burned stay.} Faces in the steam, voices in the hull at night. The next long rest: each creature aboard makes a DC 13 Wisdom save or gains no benefit from Hit Dice that rest and wakes with 1 level of exhaustion."],
           ["5–6", "{@b A beacon.} The ship trails grey soul-smoke you can see for miles, and every soul-eater in Avernus can smell it. Roll a Styx Road event {@b twice} each day (take both), and the watchtowers report her automatically. Arkhan and Zariel's riders learn her heading by the next dawn."],
-          ["7+", "{@b The Core tears.} Backlash on 1 to 10 instead of 1 to 5. Each further coin also deals 2d10 force to the hull. At dusk, 1d4 {@c crypt-specter|specters} (the burned, half-formed and furious) rise out of the Core and attack whoever fed them in."]
+          ["7+", "{@b The Core tears.} Every Core save is made with disadvantage. Each further coin also deals 2d10 force to the hull. At dusk, 1d4 {@c crypt-specter|specters} (the burned, half-formed and furious) rise out of the Core and attack whoever fed them in."]
         ] },
         { t: "list", items: [
           "{@b Drenwal} (Light cleric): burning a soul is not nothing. If he approves it, play his god's silence. If he refuses, his word counts double with the crew.",
