@@ -216,34 +216,6 @@ Newest last, **last 10 entries only** — this file loads into context every ses
 unbounded log would eat the smart zone it exists to protect. Promote anything still valuable
 past that into the body above, or into `brain/`. No secrets or customer PII: this is committed.
 
-### 2026-11-01 — Live S12 (desktop PC): Tiamat waking, urn waves, ally upgrades, loot, Yael ruling, XP house rule
-- **Did:**
-  - `b688014` Tiamat Risen wakes over five rounds (250 to 550 HP, one head a round, AC 19 until fully born, killable only by radiant or Gnashing Hunger until then). The party's chance is the coalition: Krull, Obatala, Vistalancer (the timid blue, no save), the Lady Vengeance on a green flare, and Uldrak from round 3.
-  - `773e964` S12 Urn Hall as three urns in three waves. Wave 1 carries the S11 Restless Dead tracker; then Hellrider Lance Wraiths (CR 10); then the miniboss Marshal Aubrec Dunmere, the Last Banner (CR 15), with a banner aura and a Stand Down mercy route. Five scenes illustrated with `gpt-image-2.5-sunburst`. `statblocks.html` and `crew.html` load campaign-hellriders/world.
-  - `a37a3f2` post-Crypt allies: `veska-banner-captain` and `ser-lucan-named` (both CR 10). Handout PDFs are in `~/dnd/handouts/Session12-Crew-*.pdf`, outside the repo.
-  - Loot:
-    - Trial tables raised a tier.
-    - Urn Hoard: Sun Blade, Horn of the First Charge, Dragon Slayer.
-    - Rolled grave goods per urn (the laptop later made these d20).
-    - Riders' Bequest, a static item per PC: Amulet of the Devout +2, Rod of the Pact Keeper +2, Moon Sickle +2.
-    - Bonuses for a strong run.
-  - Trials:
-    - Left/middle/right doorways.
-    - Roll of the Charge run guide with the nine names.
-    - Scales tilt rules.
-    - Generals' Seats as a rank ordering by sun rays (Zariel 4, Haruman 3, Olanthius 2, Yael 1; Olanthius's filed helm is the trap).
-  - `159ab2f` `index.html?s=<id>#<scene>` deep-links to a scene.
-- **Why (table rulings):**
-  - The Scales shade was **Yael**. She watched the devil gate during the invasion and left her post to save a child. The breach lost the invasion, and **Zariel, still an angel, executed her**.
-  - The party split, then chose the insignia (Zariel's verdict).
-  - The **Bleeding Citadel rose where Yael died**. Her ghost and Lulu carried the Sword there after the fall. The doors open only for the pure of heart, so Zariel knows the place and cannot enter.
-  - **XP house rule:** level 15 is 260,000, then +60,000 per level (20 is 560,000), because the party earns a lot per session. The urn fight is worth 50,600 XP.
-- **Open:**
-  - Whether Conjure Celestial is the 2014 or 2024 version (affects the ruling note).
-  - Loot for the C6 Ones Who Ran fight.
-  - Check on the map that the doorways are C2f/C2e/C2a.
-  - The VPS has still not been redeployed (its host key changed).
-
 ### 2026-11-07 — Five dragons made individuals (lore + Vox Machina bar)
 - **Did:** `campaign-tower.js`: Slarkas, Vistalancer, Vermilius, Flash and Obatala each got a lore-based look (Monster Manual traits per colour), a scar matching the astra portrait, an allegiance, wants/fears, a table tell, sample lines and a homebrew signature move (Old Wound + Slow Melt; Lance Dive + Clean Exit; Honeyed Voice; Prove It + Overheat; Rimeground + Rider's Wing). S12 overrides give each its own siege role and a way to lure, turn or bait it.
 - **Why:** the DM wants five distinct dragons, like Vox Machina's Chroma Conclave, not one block in five colours. Vermilius is **she** (S9 was played that way); S12's "he" is fixed. Vistalancer is vain *and* timid (endgame canon), reconciled as a careful show-off. Vermilius's throat handprint = Arkhan's Hand of Vecna, the mark of the vessel.
@@ -289,3 +261,8 @@ past that into the body above, or into `brain/`. No secrets or customer PII: thi
 - **Why:** DM picked v2 for both. The book leaves the Scab/Citadel off the poster map (Olanthius or Bel reveals it); the DM placed it there.
 - **Also:** S14 road read-aloud + shard feel changed from "west" to "north" (from the Crypt the new spot is north, a little east).
 - **Open:** rulings from the entries above.
+
+### 2026-11-08 — Live S13: Word of Recall → Sky Chase (scene + chase.html tracker + spells vs the ship); combat-view ally fix
+- **Did:** `13-out-of-the-crypt.js` new scene `sky-chase` with encounter `sky-chase` (Flash + Vistalancer): band chase (Lost/Far/Near/Close, DC 15 helm, 2 rounds Far = escape, 2 rounds Close = caught), Haste-on-the-Core ruling, Wingover note. New `dm-app/chase.html` (header button ⛵ Chase): live tracker (gap, helm roller with bonuses, ship HP with fire resistance + threshold 15 + mishap table, dragon HP marks, breath recharge, Leg. Res., Overdrive/Haste/Blink/Overclock timers, log; localStorage `dmapp:chase:13-sky-chase`) and a filterable table of all 144 cleric/druid/warlock spells of levels 1–3 with their ship/chase use. `js/combat.js` `3577c71`: ally stat blocks load on click or on the ally's turn.
+- **Why:** at the table the party cast Word of Recall to the Lady Vengeance, the ship ran full throttle from the dragons, and the soul coin (Overdrive) was spent. Rulings made live: Haste and Blink can be cast into the Core (3rd level, DC 15 Arcana guide check, Core flare on a fail); misty step through the Core DC 13; general rule DC 11/13/15 by spell level.
+- **Open:** record the chase result, ship HP, Gasp save and the Lulu option (a/b/c) in `campaign-state.md`. One soul coin was destroyed by the Overdrive. Chase rules are a table proposal; the DM may tune DCs.

@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sky Chase</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/book.css">
+<style>
+  /* Sky Chase: the Lady Vengeance vs Flash and Vistalancer (S13, homebrew band chase).
+     Tab 1 is a live tracker (state kept in localStorage); tab 2 is every party spell of
+     levels 1-3 and what it does to or for the ship. Standalone page, no app scripts. */
+  body.chase-page { display: block; overflow: auto; height: auto; }
+  #wrap { max-width: 1500px; margin: 0 auto; padding: 12px 16px 60px; }
+  h1 { font-family: Cinzel, serif; margin: 4px 0 2px; }
+  .sub { opacity: .75; margin: 0 0 10px; }
+  .tabs { display: flex; gap: 6px; margin: 8px 0 14px; flex-wrap: wrap; }
+  .tabs button, .btn { font-family: Cinzel, serif; border: 1px solid var(--red, #8b1a1a); background: transparent; color: inherit; padding: 5px 10px; border-radius: 4px; cursor: pointer; }
+  .tabs button.on, .btn.on { background: var(--red, #8b1a1a); color: #fff; }
+  .btn.small { padding: 2px 7px; font-size: .85em; }
+  .grid { display: grid; gap: 14px; grid-template-columns: 1fr; }
+  @media (min-width: 1100px) { .grid { grid-template-columns: 1.1fr 1fr 1fr; } }
+  .card { border: 1px solid var(--red, #8b1a1a); border-radius: 6px; padding: 8px 12px; background: rgba(0,0,0,.03); min-width: 0; }
+  .card h2 { font-family: Cinzel, serif; font-size: 1.05em; margin: 2px 0 8px; }
+  .bands { display: flex; gap: 4px; margin: 6px 0; }
+  .band { flex: 1; text-align: center; padding: 10px 2px; border: 2px solid #8884; border-radius: 4px; font-family: Cinzel, serif; cursor: pointer; }
+  .band.on { border-color: var(--red, #8b1a1a); background: var(--red, #8b1a1a); color: #fff; }
+  .band small { display: block; font-family: inherit; font-size: .72em; opacity: .85; }
+  .row { display: flex; gap: 8px; align-items: center; flex-wrap: wrap; margin: 5px 0; }
+  .row label { display: inline-flex; gap: 4px; align-items: center; }
+  input[type=number] { width: 64px; }
+  .hpbar { height: 10px; background: #8883; border-radius: 5px; overflow: hidden; margin: 3px 0 2px; }
+  .hpbar > div { height: 100%; background: #2e7d32; }
+  .hpbar.mid > div { background: #c77700; }
+  .hpbar.low > div { background: #b71c1c; }
+  .flag { display: inline-block; font-size: .8em; padding: 1px 6px; border-radius: 3px; background: #b71c1c; color: #fff; margin: 2px 4px 2px 0; }
+  .flag.ok { background: #2e7d32; }
+  .flag.warn { background: #c77700; }
+  .timer { display: grid; grid-template-columns: 1fr auto auto auto; gap: 6px; align-items: center; padding: 3px 0; border-bottom: 1px dotted #8885; }
+  #log { max-height: 260px; overflow-y: auto; font-size: .9em; margin: 0; padding-left: 18px; }
+  #log li { margin: 2px 0; }
+  .result { font-weight: bold; margin: 4px 0; min-height: 1.3em; }
+  .rules { font-size: .92em; }
+  .rules li { margin: 3px 0; }
+  table.sp { width: 100%; border-collapse: collapse; font-size: .92em; }
+  table.sp th, table.sp td { border-bottom: 1px solid #8884; padding: 5px 6px; text-align: left; vertical-align: top; }
+  table.sp th { font-family: Cinzel, serif; position: sticky; top: 0; background: var(--bg, #f6efe0); }
+  .cat { font-size: .78em; padding: 1px 6px; border-radius: 3px; color: #fff; white-space: nowrap; }
+  .cat-core { background: #6a1b9a; } .cat-chase { background: #1565c0; } .cat-fight { background: #8b1a1a; }
+  .cat-crew { background: #2e7d32; } .cat-none { background: #777; }
+  .who { font-size: .8em; white-space: nowrap; }
+  .hidden { display: none !important; }
+  .filters { display: flex; gap: 8px; flex-wrap: wrap; align-items: center; margin-bottom: 8px; }
+  .filters input[type=search] { min-width: 220px; padding: 4px 6px; }
+</style>
+</head>
+<body class="chase-page">
+<div id="wrap">
+  <h1>Sky Chase: The Lady Vengeance Runs</h1>
+  <p class="sub">Session 13 · Flash (red) and Vistalancer (blue) on the ship's tail. Homebrew band chase, written at the table on 2026-11-08. The full scene is in the Session 13 primer, "Sky Chase".</p>
+  <div class="tabs">
+    <button data-tab="tracker" class="on">⚓ Chase Tracker</button>
+    <button data-tab="spells">✨ Spells &amp; the Ship (levels 1–3)</button>
+    <button id="reset" class="btn" style="margin-left:auto">Reset chase</button>
+  </div>
+
+  <!-- ============================ TRACKER ============================ -->
+  <section id="tab-tracker">
+    <div class="grid">
+      <div class="card">
+        <h2>Gap · Round <span id="round">1</span>
+          <button class="btn small" id="round-prev">−</button><button class="btn small" id="round-next">Next round ▸</button></h2>
+        <div class="bands" id="bands"></div>
+        <div id="band-flags"></div>
+
+        <h2 style="margin-top:12px">Helm Roll (DC 15)</h2>
+        <div class="row"><label>Pilot's Wisdom (Survival) bonus <input type="number" id="pilot-mod" value="5"></label></div>
+        <div class="row" id="bonuses"></div>
+        <div class="row">
+          <button class="btn" id="roll-helm">Roll helm</button>
+          <label>or type the roll <input type="number" id="manual-roll" placeholder="d20"></label>
+          <button class="btn small" id="apply-manual">Apply</button>
+        </div>
+        <div class="result" id="helm-result"></div>
+        <div class="row">
+          <button class="btn small" id="gap-away">Gap +1 (away)</button>
+          <button class="btn small" id="gap-closer">Gap −1 (closer)</button>
+          <button class="btn small" id="misty">Misty step: +1 band</button>
+          <button class="btn small" id="mishap">Roll mishap</button>
+        </div>
+        <div class="result" id="mishap-result"></div>
+        <ul class="rules">
+          <li><b>Success:</b> one band away. <b>Failure:</b> one band closer. <b>Fail by 5+:</b> closer and a mishap.</li>
+          <li><b>Lost</b> = escaped. <b>Far</b> 2 rounds in a row = Lost. <b>Close</b> 2 rounds in a row = caught (deck fight).</li>
+          <li>A round blinked out (Blink) is an automatic success. An Overclock fail or a Haste lethargy round is an automatic failure.</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h2>The Lady Vengeance</h2>
+        <div id="ship"></div>
+        <div class="row">
+          <label>Damage <input type="number" id="ship-dmg"></label>
+          <select id="ship-type"><option value="fire">fire (Flash's breath)</option><option value="lightning">lightning (Vistalancer's breath)</option><option value="other">slashing / piercing / bludgeoning / force</option></select>
+          <button class="btn small" id="ship-hit">Hit</button>
+          <button class="btn small" id="ship-heal">Repair</button>
+        </div>
+        <div class="row"><label><input type="checkbox" id="prot-lightning"> Protection from energy / absorb elements: lightning</label></div>
+        <div class="result" id="ship-result"></div>
+        <ul class="rules">
+          <li>AC 17 (19 with Haste on the Core) · resists fire and poison · <b>damage threshold 15</b>: a hit of 14 or less does nothing.</li>
+          <li>One hit of 30+: roll a mishap. Bloodied at 175: 2d6 fire each round until Damage Control (DC 13).</li>
+          <li>Stations: Helm, Port cannon, Starboard cannon, Harpoon, Core. Jeremy: Maintain Core DC 15 every turn (fail: −10 ft. or a cannon dark).</li>
+        </ul>
+
+        <h2 style="margin-top:12px">Effects Running</h2>
+        <div id="timers"></div>
+        <div class="row"><button class="btn small" id="blink-roll">Roll Blink (end of caster's turn)</button></div>
+        <div class="result" id="blink-result"></div>
+      </div>
+
+      <div class="card">
+        <h2>The Chasers</h2>
+        <div id="dragons"></div>
+        <ul class="rules">
+          <li><b>Far:</b> close in, no attack. <b>Near:</b> breath if recharged, else close in. <b>Close:</b> claws, bite, Wing Attack on the deck; Flash may land.</li>
+          <li><b>Wingover</b> (each, once a round): the first ship-weapon attack on each dragon has disadvantage. Aim both cannons at one dragon. Faerie fire or guiding bolt cancels it.</li>
+          <li><b>Legendary Resistance</b> 1/day each: the first big control spell will be shrugged off.</li>
+          <li>Both have <b>blindsight 60 ft.</b>: darkness and fog only hide the ship at Near or Far.</li>
+        </ul>
+        <h2 style="margin-top:12px">Log</h2>
+        <ol id="log" reversed></ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============================ SPELLS ============================ -->
+  <section id="tab-spells" class="hidden">
+    <div class="card rules" style="margin-bottom:12px">
+      <h2>Casting Into the Ship (table ruling)</h2>
+      <ul>
+        <li><b>Scroll Feed.</b> The engineer feeds a spell scroll of 2nd level or lower into the Core as an action: the spell takes effect on the whole ship, no check. If Jeremy does it, he skips Maintain Core that turn (counts as a failure).</li>
+        <li><b>Cast through the Core.</b> A caster with a hand on the Core can make the ship the target of a spell that targets itself or one creature. Jeremy guides it in with an Intelligence (Arcana) check: <b>DC 11</b> for 1st level, <b>DC 13</b> for 2nd, <b>DC 15</b> for 3rd. On a failure the spell still works but the Core flares (3d6 fire to whoever is at the Core at the start of each of their turns, until Damage Control). A movement spell lands 1d4 × 10 ft. off target instead and does not move the gap.</li>
+        <li><b>Concentration</b> stays with the caster. The dragons know who to aim at.</li>
+        <li><b>Healing spells do not repair the ship</b> (she is an object). Only Repairs and Damage Control do.</li>
+        <li><b>Ground spells</b> (on the ground or a surface) do not work in open sky; on the deck they move with the ship. <b>Glyph of warding</b> breaks if the ship moves more than 10 ft.</li>
+      </ul>
+      <p><span class="cat cat-core">Core</span> cast into the ship · <span class="cat cat-chase">Chase</span> moves the gap or takes a dragon out · <span class="cat cat-fight">Fight</span> damage or debuff on a dragon, works as normal · <span class="cat cat-crew">Crew</span> helps the people aboard · <span class="cat cat-none">None</span> no use in this chase.
+        Who: <b>D</b> Drenwal (Light Cleric 13) · <b>O</b> Or'Henn (Wildfire Druid 13) · <b>A</b> Aurora (Archfey Warlock 13; the whole warlock list is shown, she only has the spells she knows). ★ = domain or patron spell.</p>
+    </div>
+    <div class="filters">
+      <input type="search" id="sp-search" placeholder="Search spells…">
+      <span>Caster:</span>
+      <button class="btn small on" data-who="all">All</button><button class="btn small" data-who="D">Drenwal</button><button class="btn small" data-who="O">Or'Henn</button><button class="btn small" data-who="A">Aurora</button>
+      <span>Use:</span>
+      <button class="btn small on" data-cat="all">All</button><button class="btn small" data-cat="core">Core</button><button class="btn small" data-cat="chase">Chase</button><button class="btn small" data-cat="fight">Fight</button><button class="btn small" data-cat="crew">Crew</button><button class="btn small" data-cat="none">None</button>
+    </div>
+    <table class="sp"><thead><tr><th>Spell</th><th>Lvl</th><th>Who</th><th>Use</th><th>In the chase</th></tr></thead><tbody id="sp-body"></tbody></table>
+  </section>
+</div>
+
+<script>
+(function () {
+  "use strict";
+  var KEY = "dmapp:chase:13-sky-chase";
+  var BANDS = [
+    { id: "close", name: "Close", note: "melee · Wing Attack" },
+    { id: "near", name: "Near", note: "breath · harpoon" },
+    { id: "far", name: "Far", note: "cannons only" },
+    { id: "lost", name: "Lost", note: "escaped" }
+  ];
+  var BONUSES = [
+    { id: "haste", label: "Haste on the Core +5", v: 5 },
+    { id: "speed", label: "Overdrive / Overclock +5", v: 5 },
+    { id: "invis", label: "Invisible ship +5", v: 5 },
+    { id: "dash", label: "Pilot Dashed +2", v: 2 },
+    { id: "hastepilot", label: "Haste on the pilot +2", v: 2 },
+    { id: "slowspell", label: "Longstrider / Expeditious Retreat +2", v: 2 },
+    { id: "cover", label: "Fog / darkness / sleet behind +2", v: 2 },
+    { id: "guidance", label: "Guidance +1d4", v: "d4" },
+    { id: "adv", label: "Advantage (Enhance Ability: Owl's Wisdom)", v: "adv" }
+  ];
+  var TIMERS = [
+    { id: "overdrive", name: "Soul Coin Overdrive", len: 10, note: "speed ×2, +2d10 radiant & force on weapons, 2d10 fire + 2d10 radiant to foes starting within 30 ft., +2 AC aboard. 1 per fight." },
+    { id: "haste", name: "Haste (Core)", len: 10, note: "concentration. Ends: the Core stalls 1 round (auto helm fail)." },
+    { id: "blink", name: "Blink (Core)", len: 10, note: "no concentration. d20 11+ at the end of the caster's turn: gone until their next turn." },
+    { id: "overclock", name: "Overclock", len: 1, note: "until Jeremy's next turn." },
+    { id: "other", name: "Other spell", len: 10, note: "track anything else here." }
+  ];
+  var DRAGONS = [
+    { id: "flash", name: "Flash (adult red)", hp: 256, ac: 19, breath: "Fire Breath 60-ft. cone, DC 21 Dex, 63 (18d6) fire",
+      marks: [{ at: 128, text: "Overheat: breath recharges on 4–6, glows, can't hide" }, { at: 60, text: "Retreats, screaming (driven off)" }], immune: "fire" },
+    { id: "vist", name: "Vistalancer (adult blue)", hp: 225, ac: 19, breath: "Lightning Breath 90-ft. line, DC 19 Dex, 66 (12d10) lightning",
+      marks: [{ at: 112, text: "Clean Exit: flies off (driven off). Arkhan learns the heading." }], immune: "lightning" }
+  ];
+  var MISHAPS = [
+    "", "Core flare: anyone at the Core takes 3d6 fire at the start of each of their turns.",
+    "Locked helm: she can only fly straight (helm rolls at disadvantage until fixed).",
+    "Core rupture: speed drops by 20 ft. (−2 on helm rolls until fixed).",
+    "Gun jam: one weapon of the DM's choice is silent (fix DC 20).",
+    "Smoke: the helm is heavily obscured.",
+    "Shed plating: her damage threshold drops to 5."
+  ];
+  var MISHAP_FIX = " Fix: a crew member at the spot, an action and a DC 15 Strength or Dexterity check with tools (DC 20 for a gun jam).";
+
+  function fresh() {
+    return { round: 1, band: "far", streak: { far: 0, close: 0 }, bonuses: {}, pilotMod: 5,
+      ship: 350, protLightning: false, timers: {}, dragons: { flash: { hp: 256, breath: true, lr: true }, vist: { hp: 225, breath: true, lr: true } }, log: [] };
+  }
+  var S;
+  try { S = JSON.parse(localStorage.getItem(KEY)) || fresh(); } catch (e) { S = fresh(); }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(S)); } catch (e) { /* private window: state lives in memory only */ } }
+  function $(id) { return document.getElementById(id); }
+  function d(n) { return 1 + Math.floor(Math.random() * n); }
+  function log(msg) { S.log.unshift("R" + S.round + " · " + msg); S.log = S.log.slice(0, 80); }
+  function bandIdx() { for (var i = 0; i < BANDS.length; i++) if (BANDS[i].id === S.band) return i; return 2; }
+  function setBand(i, why) {
+    i = Math.max(0, Math.min(BANDS.length - 1, i));
+    S.band = BANDS[i].id;
+    if (why) log(why + " → " + BANDS[i].name);
+  }
+
+  // ---------- render ----------
+  function render() {
+    $("round").textContent = S.round;
+    var bands = $("bands"); bands.innerHTML = "";
+    BANDS.forEach(function (b, i) {
+      var div = document.createElement("div");
+      div.className = "band" + (b.id === S.band ? " on" : "");
+      div.innerHTML = b.name + "<small>" + b.note + "</small>";
+      div.onclick = function () { setBand(i, "Gap set by hand"); save(); render(); };
+      bands.appendChild(div);
+    });
+    var f = [];
+    if (S.band === "lost") f.push('<span class="flag ok">ESCAPED: the mist has her</span>');
+    if (S.band === "far" && S.streak.far >= 1) f.push('<span class="flag ok">Far ' + S.streak.far + ' round(s): 2 in a row = Lost</span>');
+    if (S.band === "close") f.push('<span class="flag">Close ' + S.streak.close + ' round(s): 2 in a row = caught</span>');
+    if (S.streak.close >= 2) f.push('<span class="flag">CAUGHT: run it as a deck fight</span>');
+    $("band-flags").innerHTML = f.join("");
+
+    var bon = $("bonuses"); bon.innerHTML = "";
+    BONUSES.forEach(function (b) {
+      var l = document.createElement("label");
+      var cb = document.createElement("input"); cb.type = "checkbox"; cb.checked = !!S.bonuses[b.id];
+      cb.onchange = function () { S.bonuses[b.id] = cb.checked; save(); };
+      l.appendChild(cb); l.appendChild(document.createTextNode(b.label)); bon.appendChild(l);
+    });
+    $("pilot-mod").value = S.pilotMod;
+    $("prot-lightning").checked = !!S.protLightning;
+
+    var pct = S.ship / 350;
+    $("ship").innerHTML = "<b>" + S.ship + " / 350 HP</b>" +
+      '<div class="hpbar ' + (pct <= 0.25 ? "low" : pct <= 0.5 ? "mid" : "") + '"><div style="width:' + Math.max(0, pct * 100) + '%"></div></div>' +
+      (S.ship <= 0 ? '<span class="flag">SINKING: off the ship by the end of next round</span>' : S.ship <= 175 ? '<span class="flag warn">Bloodied: listing and burning, 2d6 fire each round until Damage Control</span>' : "");
+
+    var tw = $("timers"); tw.innerHTML = "";
+    TIMERS.forEach(function (t) {
+      var left = S.timers[t.id];
+      var row = document.createElement("div"); row.className = "timer";
+      row.innerHTML = '<span title="' + t.note + '"><b>' + t.name + "</b>" + (left ? " · " + left + " round(s) left" : "") + '<br><small style="opacity:.75">' + t.note + "</small></span>";
+      var on = document.createElement("button"); on.className = "btn small"; on.textContent = left ? "+1" : "Start";
+      on.onclick = function () {
+        if (!left) { S.timers[t.id] = t.len; log(t.name + " started (" + t.len + " rounds)" + (t.id === "overdrive" ? ": roll d20, 1–5 = backlash (44 force, engines and cannons dead 1d4 rounds)" : "")); }
+        else S.timers[t.id] = left + 1;
+        save(); render();
+      };
+      var end = document.createElement("button"); end.className = "btn small"; end.textContent = "End";
+      end.onclick = function () { endTimer(t); save(); render(); };
+      row.appendChild(on); row.appendChild(end);
+      if (t.id === "overdrive") {
+        var bl = document.createElement("button"); bl.className = "btn small"; bl.textContent = "d20";
+        bl.onclick = function () { var r = d(20); log("Overdrive d20: " + r + (r <= 5 ? " BACKLASH: 44 force to the ship, engines and cannons dead for " + d(4) + " round(s)" : " holds")); if (r <= 5) hitShip(44, "other", true); save(); render(); };
+        row.appendChild(bl);
+      } else row.appendChild(document.createElement("span"));
+      tw.appendChild(row);
+    });
+
+    var dw = $("dragons"); dw.innerHTML = "";
+    DRAGONS.forEach(function (g) {
+      var st = S.dragons[g.id];
+      var p = st.hp / g.hp;
+      var flags = g.marks.filter(function (m) { return st.hp < m.at; }).map(function (m) { return '<span class="flag">' + m.text + "</span>"; }).join("");
+      var box = document.createElement("div"); box.style.margin = "0 0 12px";
+      box.innerHTML = "<b>" + g.name + "</b> · AC " + g.ac + " · " + st.hp + " / " + g.hp + " HP" +
+        '<div class="hpbar ' + (p <= 0.25 ? "low" : p <= 0.5 ? "mid" : "") + '"><div style="width:' + Math.max(0, p * 100) + '%"></div></div>' +
+        "<small>" + g.breath + " · immune " + g.immune + "</small><br>" + flags;
+      var r = document.createElement("div"); r.className = "row";
+      var inp = document.createElement("input"); inp.type = "number"; inp.placeholder = "dmg";
+      var hit = document.createElement("button"); hit.className = "btn small"; hit.textContent = "Hit";
+      hit.onclick = function () { var n = Number(inp.value) || 0; if (!n) return; st.hp = Math.max(0, st.hp - n); log(g.name + " takes " + n + " (" + st.hp + " left)"); save(); render(); };
+      var br = document.createElement("button"); br.className = "btn small" + (st.breath ? " on" : ""); br.textContent = st.breath ? "Breath ready" : "Breath used";
+      br.onclick = function () { st.breath = !st.breath; log(g.name + (st.breath ? " breath ready" : " breathes")); save(); render(); };
+      var rc = document.createElement("button"); rc.className = "btn small"; rc.textContent = "Recharge d6";
+      rc.onclick = function () {
+        var need = (g.id === "flash" && st.hp < 128) ? 4 : 5; var v = d(6);
+        if (v >= need) st.breath = true;
+        log(g.name + " recharge d6: " + v + (v >= need ? " → breath ready" : " → not yet") + " (needs " + need + "+)"); save(); render();
+      };
+      var lr = document.createElement("button"); lr.className = "btn small" + (st.lr ? " on" : ""); lr.textContent = st.lr ? "Leg. Res. 1" : "Leg. Res. used";
+      lr.onclick = function () { st.lr = !st.lr; log(g.name + (st.lr ? " Legendary Resistance restored" : " uses Legendary Resistance")); save(); render(); };
+      r.appendChild(inp); r.appendChild(hit); r.appendChild(br); r.appendChild(rc); r.appendChild(lr);
+      box.appendChild(r);
+      dw.appendChild(box);
+    });
+
+    $("log").innerHTML = S.log.map(function (l) { return "<li>" + l + "</li>"; }).join("");
+  }
+
+  function endTimer(t) {
+    if (!S.timers[t.id]) return;
+    delete S.timers[t.id];
+    if (t.id === "haste") log("Haste ends: the Core stalls. Next helm roll is an automatic failure, no movement or cannons this round.");
+    else log(t.name + " ends");
+    if (t.id === "overdrive" || t.id === "overclock") S.bonuses.speed = !!S.timers.overdrive || !!S.timers.overclock;
+    if (t.id === "haste") S.bonuses.haste = false;
+  }
+
+  // ---------- helm ----------
+  function helm(raw, auto) {
+    var mod = Number($("pilot-mod").value) || 0; S.pilotMod = mod;
+    var bonus = 0, parts = [];
+    BONUSES.forEach(function (b) {
+      if (!S.bonuses[b.id] || b.v === "adv") return;
+      if (b.v === "d4") { var g = d(4); bonus += g; parts.push("guidance " + g); }
+      else { bonus += b.v; parts.push("+" + b.v); }
+    });
+    var total = raw + mod + bonus;
+    var ok = total >= 15, badly = total <= 10;
+    var txt = "Helm " + (auto ? "(rolled " + auto + ") " : "") + raw + " + " + mod + (parts.length ? " " + parts.join(" ") : "") + " = " + total + " vs 15: " +
+      (ok ? "SUCCESS, one band away" : badly ? "FAIL BY 5+, one band closer and a MISHAP" : "FAIL, one band closer");
+    $("helm-result").textContent = txt;
+    log(txt);
+    setBand(bandIdx() + (ok ? 1 : -1), ok ? "Helm success" : "Helm failure");
+    if (badly) rollMishap();
+    if (S.band === "far") S.streak.far++; else S.streak.far = 0;
+    if (S.band === "close") S.streak.close++; else S.streak.close = 0;
+    if (S.streak.far >= 2) { setBand(3, "Far two rounds in a row: the mist swallows her"); }
+    save(); render();
+  }
+  function rollMishap() { var r = d(6); var t = "Mishap d6: " + r + ". " + MISHAPS[r] + MISHAP_FIX; $("mishap-result").textContent = t; log(t); }
+
+  function hitShip(n, type, silent) {
+    var note = [];
+    if (type === "fire") { n = Math.floor(n / 2); note.push("halved, resists fire"); }
+    if (type === "lightning" && S.protLightning) { n = Math.floor(n / 2); note.push("halved, protected"); }
+    var res;
+    if (n < 15) { res = n + " damage: below the threshold, no effect"; }
+    else {
+      S.ship = Math.max(0, S.ship - n);
+      res = n + " damage (" + S.ship + " left)" + (n >= 30 ? ", 30+: ROLL A MISHAP" : "");
+    }
+    if (note.length) res += " [" + note.join(", ") + "]";
+    if (!silent) $("ship-result").textContent = res;
+    log("Ship: " + res);
+  }
+
+  // ---------- wire up ----------
+  $("roll-helm").onclick = function () { var a = d(20), b = d(20); var raw = S.bonuses.adv ? Math.max(a, b) : a; helm(raw, S.bonuses.adv ? a + "/" + b : null); };
+  $("apply-manual").onclick = function () { var v = Number($("manual-roll").value); if (v) helm(v); $("manual-roll").value = ""; };
+  $("gap-away").onclick = function () { setBand(bandIdx() + 1, "Gap moved away"); save(); render(); };
+  $("gap-closer").onclick = function () { setBand(bandIdx() - 1, "Gap moved closer"); save(); render(); };
+  $("misty").onclick = function () { setBand(bandIdx() + 1, "Misty step: the ship blinks 60 ft."); save(); render(); };
+  $("mishap").onclick = function () { rollMishap(); save(); render(); };
+  $("ship-hit").onclick = function () { var n = Number($("ship-dmg").value) || 0; if (n) hitShip(n, $("ship-type").value); $("ship-dmg").value = ""; save(); render(); };
+  $("ship-heal").onclick = function () { var n = Number($("ship-dmg").value) || 0; if (!n) return; S.ship = Math.min(350, S.ship + n); log("Ship repaired " + n + " (" + S.ship + ")"); $("ship-dmg").value = ""; save(); render(); };
+  $("prot-lightning").onchange = function () { S.protLightning = this.checked; save(); };
+  $("pilot-mod").onchange = function () { S.pilotMod = Number(this.value) || 0; save(); };
+  $("blink-roll").onclick = function () {
+    var r = d(20); var t = "Blink d20: " + r + (r >= 11 ? ": the ship vanishes until the caster's next turn (automatic helm success, the gap moves away)" : ": she stays this round");
+    $("blink-result").textContent = t; log(t);
+    if (r >= 11) setBand(bandIdx() + 1, "Blinked out");
+    save(); render();
+  };
+  $("round-next").onclick = function () {
+    S.round++;
+    TIMERS.forEach(function (t) { if (S.timers[t.id]) { S.timers[t.id]--; if (S.timers[t.id] <= 0) { S.timers[t.id] = 1; endTimer(t); } } });
+    if (S.ship > 0 && S.ship <= 175) log("Bloodied ship burns: roll 2d6 fire (ignores resistance and threshold) unless the fire is out");
+    log("Round " + S.round + " begins");
+    $("helm-result").textContent = ""; $("mishap-result").textContent = ""; $("blink-result").textContent = "";
+    save(); render();
+  };
+  $("round-prev").onclick = function () { S.round = Math.max(1, S.round - 1); save(); render(); };
+  $("reset").onclick = function () { if (confirm("Reset the whole chase?")) { S = fresh(); save(); render(); } };
+
+  document.querySelectorAll(".tabs button[data-tab]").forEach(function (b) {
+    b.onclick = function () {
+      document.querySelectorAll(".tabs button[data-tab]").forEach(function (x) { x.classList.toggle("on", x === b); });
+      $("tab-tracker").classList.toggle("hidden", b.dataset.tab !== "tracker");
+      $("tab-spells").classList.toggle("hidden", b.dataset.tab !== "spells");
+      try { localStorage.setItem(KEY + ":tab", b.dataset.tab); } catch (e) {}
+    };
+  });
+  try { var tab = localStorage.getItem(KEY + ":tab"); if (tab === "spells") document.querySelector('.tabs button[data-tab="spells"]').click(); } catch (e) {}
+
+  render();
+
+  // =================== SPELLS (levels 1-3) ===================
+  // who: D Drenwal (cleric, Light), O Or'Henn (druid, Wildfire), A Aurora (warlock, Archfey). * = domain/patron.
+  var SP = [
+    // ---------- 1st level ----------
+    ["Absorb Elements", 1, "O", "core", "Reaction via the Core when the ship takes lightning (or any breath): the ship resists it for that hit. She already resists fire, so save it for Vistalancer. DC 11 Arcana."],
+    ["Animal Friendship", 1, "O", "none", "Beasts only."],
+    ["Armor of Agathys", 1, "A", "crew", "On the caster: 5 cold to anything that hits them in melee. Good on whoever stands where Flash lands."],
+    ["Arms of Hadar", 1, "A", "fight", "10 ft. around the caster: only at Close, when a dragon is on or over the deck."],
+    ["Bane", 1, "D", "fight", "Cha save. −1d4 on the dragon's attacks and saves (helps later control spells land). Concentration."],
+    ["Beast Bond", 1, "O", "none", "No beasts in this chase."],
+    ["Bless", 1, "D", "crew", "+1d4 to the gunners' and harpooner's attack rolls and to everyone's saves against breath. Concentration."],
+    ["Burning Hands", 1, "D* O", "fight", "15-ft. cone: Close only. Flash is immune to fire."],
+    ["Cause Fear", 1, "A", "chase", "One dragon, Wis save (+7). Frightened: it can't willingly move closer, so it can't close the gap; drop it one band behind each round the helm succeeds. Repeats the save each turn. Concentration."],
+    ["Ceremony", 1, "D", "none", "Ritual. No use mid-chase."],
+    ["Charm Person", 1, "O A", "none", "Humanoids only."],
+    ["Command", 1, "D", "chase", "One dragon, Wis save (+7). \"Halt\" or \"Flee\": it loses its turn, and that dragon falls one band behind."],
+    ["Comprehend Languages", 1, "A", "none", "Everyone speaks Draconic or Common here."],
+    ["Create or Destroy Water", 1, "D O", "none", "Could put out a small deck fire as flavour; use Damage Control for the mechanics."],
+    ["Cure Wounds", 1, "D O*", "crew", "Heals the crew, not the ship."],
+    ["Detect Evil and Good", 1, "D", "none", "Dragons are not fiends or undead."],
+    ["Detect Magic", 1, "D O", "none", "No use mid-chase."],
+    ["Detect Poison and Disease", 1, "D O", "none", "No use mid-chase."],
+    ["Earth Tremor", 1, "O", "none", "Ground only."],
+    ["Entangle", 1, "O", "none", "Ground only."],
+    ["Expeditious Retreat", 1, "A", "core", "Through the Core: the ship can Dash as a bonus action every turn, +2 on the helm roll. Concentration, 10 minutes. DC 11 Arcana."],
+    ["Faerie Fire", 1, "D* O A*", "fight", "Outlines a dragon (Dex save): attacks against it have advantage, which cancels Wingover's disadvantage. Both cannons hit clean. Concentration."],
+    ["Fog Cloud", 1, "O", "chase", "Cast in the ship's wake: +2 on the helm roll while it lasts. Blindsight 60 ft. still sees through at Close. Concentration."],
+    ["Goodberry", 1, "O", "crew", "Healing between rounds for the crew."],
+    ["Guiding Bolt", 1, "D", "fight", "4d6 radiant, and the next attack on that dragon has advantage: cancels Wingover for one cannon shot."],
+    ["Healing Word", 1, "D O", "crew", "Bonus action, 60 ft.: pick up a downed gunner."],
+    ["Hellish Rebuke", 1, "A", "fight", "Reaction when the caster is damaged: 2d10 fire (useless against Flash)."],
+    ["Hex", 1, "A", "fight", "Extra 1d6 necrotic on Aurora's hits; disadvantage on one ability's checks. Concentration."],
+    ["Ice Knife", 1, "O", "fight", "Normal damage."],
+    ["Illusory Script", 1, "A", "none", "No use mid-chase."],
+    ["Inflict Wounds", 1, "D", "fight", "Melee: Close only."],
+    ["Jump", 1, "O", "crew", "Lets a PC leap to a dragon that is at Close."],
+    ["Longstrider", 1, "O", "core", "Through the Core: ship +10 ft. speed for 1 hour, +2 on the helm roll. No concentration. DC 11 Arcana. Cast it before the chase if you can."],
+    ["Protection from Evil and Good", 1, "D O A", "none", "Dragons are not on its list."],
+    ["Purify Food and Drink", 1, "D O", "none", "No use."],
+    ["Sanctuary", 1, "D", "core", "Through the Core: a dragon must pass a Wis save to attack the ship (breath is not an attack and still works). Ends the moment the ship fires. DC 11 Arcana."],
+    ["Shield of Faith", 1, "D", "core", "Through the Core: ship AC +2. Concentration, 10 minutes. DC 11 Arcana."],
+    ["Sleep", 1, "A*", "none", "The dragons have far too many hit points."],
+    ["Snare", 1, "O", "none", "Ground trap."],
+    ["Speak with Animals", 1, "O", "none", "No beasts."],
+    ["Thunderwave", 1, "O", "fight", "15-ft. cube: at Close, pushes a dragon 10 ft. off the deck (Con save)."],
+    ["Unseen Servant", 1, "A", "crew", "A spare pair of hands: advantage on one Damage Control check per round."],
+    ["Witch Bolt", 1, "A", "fight", "Normal damage, sustained."],
+
+    // ---------- 2nd level ----------
+    ["Aid", 2, "D", "crew", "+15 max HP to three crew. Not the ship."],
+    ["Animal Messenger", 2, "O", "none", "No use mid-chase."],
+    ["Augury", 2, "D O", "none", "Ask whether the storm-dive is wise. No mechanical effect."],
+    ["Barkskin", 2, "O", "none", "AC 16 floor: the ship is already AC 17."],
+    ["Beast Sense", 2, "O", "none", "No use."],
+    ["Blindness/Deafness", 2, "D", "chase", "One dragon, Con save (+13 Flash, +11 Vistalancer): blinded, but blindsight 60 ft. keeps it in the fight at Close. At Near or Far it loses the ship: that dragon falls one band behind."],
+    ["Calm Emotions", 2, "D A*", "chase", "Cha save. Suppresses the dragons' hostility: a calmed dragon stops chasing until it is attacked or the spell ends. Concentration."],
+    ["Cloud of Daggers", 2, "A", "fight", "5-ft. cube: only if a dragon lands on the deck."],
+    ["Continual Flame", 2, "D O", "none", "No use."],
+    ["Crown of Madness", 2, "A", "none", "Humanoids only."],
+    ["Darkness", 2, "A", "chase", "On the stern (moves with the ship): +2 on the helm roll at Near or Far. Blindsight 60 ft. sees through at Close. The crew can't see out either: the helm needs Devil's Sight or a guide. Concentration."],
+    ["Darkvision", 2, "O", "none", "No use."],
+    ["Dust Devil", 2, "O", "none", "Too small to matter."],
+    ["Earthbind", 2, "O A", "chase", "THE big one. One dragon, Str save (+8, not proficient): its fly speed becomes 0 and it sinks 60 ft. a round. It is out of the chase while the spell lasts. Concentration, 1 minute. Expect the Legendary Resistance."],
+    ["Enhance Ability", 2, "D O", "core", "Owl's Wisdom on the pilot: advantage on the helm roll. Fox's Cunning on Jeremy: advantage on Maintain Core and Overclock. Concentration, 1 hour. (Cast on a creature, no Core check.)"],
+    ["Enlarge/Reduce", 2, "O", "none", "Not on a Gargantuan ship. Reduce a dragon (Con save): disadvantage on Str, and 1d4 less damage. Minor."],
+    ["Enthrall", 2, "A", "fight", "Disadvantage on Perception for a dragon: helps the ship hide (+2 on one helm roll)."],
+    ["Find Traps", 2, "D O", "none", "No use."],
+    ["Flame Blade", 2, "O", "fight", "Melee fire: Close only, useless against Flash."],
+    ["Flaming Sphere", 2, "D* O*", "fight", "Rolls on the deck only. Flash is immune."],
+    ["Gentle Repose", 2, "D", "none", "No use."],
+    ["Gust of Wind", 2, "O", "chase", "60-ft. line from the stern: a dragon in it makes a Str save or is pushed 15 ft. and spends double movement to come closer: at Near, it drops one band behind. Also blows away the ship's own fog."],
+    ["Healing Spirit", 2, "O", "crew", "Heals crew on the deck."],
+    ["Heat Metal", 2, "O", "none", "Neither dragon carries metal. Do NOT target the ship."],
+    ["Hold Person", 2, "D O A", "none", "Humanoids only."],
+    ["Invisibility", 2, "A", "core", "Through the Core: the whole ship is invisible until she attacks: +5 on the helm roll, and attacks on her have disadvantage. Blindsight 60 ft. sees her at Close. Concentration, 1 hour. DC 13 Arcana."],
+    ["Lesser Restoration", 2, "D O", "crew", "Ends blinded, deafened, paralyzed or poisoned on a crew member."],
+    ["Locate Animals or Plants", 2, "O", "none", "No use."],
+    ["Locate Object", 2, "D O", "none", "No use."],
+    ["Mind Spike", 2, "A", "fight", "Psychic damage; afterwards Aurora always knows where that dragon is (useful once the chase is over)."],
+    ["Mirror Image", 2, "A", "core", "Through the Core: three phantom hulls. Claw, bite and Lance Dive attacks may hit an image instead. Breath ignores it. DC 13 Arcana."],
+    ["Misty Step", 2, "A", "core", "Scroll: the whole ship blinks 60 ft., the gap moves one band away at once. Cast through the Core: DC 13 Arcana; failure lands 1d4 × 10 ft. off target and the gap does not move."],
+    ["Moonbeam", 2, "O", "fight", "40-ft.-high cylinder: radiant on a dragon at Near, moves 60 ft. a turn with the ship. Concentration."],
+    ["Pass without Trace", 2, "O", "core", "Through the Core: +2 on the helm roll while hiding in the mist (Near or Far). Concentration, 1 hour. DC 13 Arcana."],
+    ["Phantasmal Force", 2, "A*", "chase", "One dragon, Int save: it sees a phantom (a second ship, a wall of fire ahead). On a failure it chases the phantom: that dragon falls one band behind until it works it out. Concentration."],
+    ["Prayer of Healing", 2, "D", "none", "10-minute cast."],
+    ["Protection from Poison", 2, "D O", "none", "No poison in this chase."],
+    ["Ray of Enfeeblement", 2, "A", "fight", "Con save: the dragon's Str weapon attacks deal half damage. Claws and bites only, not breath."],
+    ["Scorching Ray", 2, "D* O*", "fight", "Normal damage. Flash is immune."],
+    ["Shadow Blade", 2, "A", "fight", "Melee: Close only."],
+    ["Shatter", 2, "A", "fight", "Thunder on a dragon. Never centre it on the ship."],
+    ["Silence", 2, "D", "none", "Breath is not a spell."],
+    ["Skywrite", 2, "O", "none", "A signal in the sky (for Uldrak?), and a beacon for the dragons."],
+    ["Spider Climb", 2, "A", "crew", "A PC can fight from the hull's underside or rigging."],
+    ["Spike Growth", 2, "O", "none", "Ground only."],
+    ["Spiritual Weapon", 2, "D", "fight", "Floats 20 ft. a turn: keeps up only at Close. Bonus action."],
+    ["Suggestion", 2, "A", "chase", "One dragon, Wis save: \"The ship dived into the storm below, go look.\" That dragon leaves the chase while it lasts. Concentration."],
+    ["Summon Beast", 2, "O", "fight", "Air spirit (fly 60): an extra attacker at Close only."],
+    ["Warding Bond", 2, "D", "crew", "Shares damage between two crew."],
+    ["Warding Wind", 2, "O", "crew", "10 ft. around the caster: ranged attacks into it have disadvantage. Small help on deck."],
+    ["Zone of Truth", 2, "D", "none", "No use."],
+
+    // ---------- 3rd level ----------
+    ["Animate Dead", 3, "D", "none", "No corpses aboard (hopefully)."],
+    ["Aura of Vitality", 3, "D O", "crew", "Bonus-action 2d6 heals for 1 minute."],
+    ["Beacon of Hope", 3, "D", "crew", "Advantage on Wis saves (Frightful Presence) and Dex saves (both breaths) for the crew. Concentration."],
+    ["Bestow Curse", 3, "D", "chase", "Touch, Close only. Wis save. \"Wastes its turn\" option: it rolls each turn and may lose its action, and a dragon that loses a turn falls one band behind."],
+    ["Blink", 3, "O A*", "core", "Through the Core: 1 minute, no concentration. d20 at the end of the caster's turn: 11+ the ship vanishes until their next turn: automatic helm success, the gap moves away. DC 15 Arcana."],
+    ["Call Lightning", 3, "O", "fight", "3d10 a turn at Near or Close (the red sky counts as a storm: 4d10). Flash takes it; Vistalancer is immune. Concentration."],
+    ["Clairvoyance", 3, "D", "none", "10-minute cast."],
+    ["Conjure Animals", 3, "O", "fight", "Flying beasts (giant eagles): extra attackers at Near or Close."],
+    ["Counterspell", 3, "A", "none", "The dragons don't cast spells."],
+    ["Create Food and Water", 3, "D", "none", "No use."],
+    ["Daylight", 3, "D* O", "none", "Cancels the ship's own Darkness. Flash already glows when he overheats."],
+    ["Dispel Magic", 3, "D O A", "none", "Nothing to dispel on the dragons."],
+    ["Elemental Weapon", 3, "O", "crew", "On a gunner's or harpooner's weapon: +1 and 1d4 cold or acid (avoid fire against Flash)."],
+    ["Erupting Earth", 3, "O", "none", "Ground only."],
+    ["Fear", 3, "A", "chase", "30-ft. cone from the stern at Near or Close. Wis save: frightened, drops what it holds and must Dash away. That dragon is driven off while it lasts. Repeats the save only out of line of sight. Concentration."],
+    ["Feign Death", 3, "D O", "none", "No use."],
+    ["Fireball", 3, "D*", "fight", "Vistalancer only (Flash is immune). 150 ft. range: Near or Close."],
+    ["Flame Arrows", 3, "O", "none", "Fire: wasted on Flash."],
+    ["Fly", 3, "A", "crew", "A PC can leave the deck and fight or bait in the air. Also a way off a sinking ship."],
+    ["Gaseous Form", 3, "A", "none", "Speed 10. A last resort if the ship goes down."],
+    ["Glyph of Warding", 3, "D", "none", "Breaks if the ship moves more than 10 ft."],
+    ["Hunger of Hadar", 3, "A", "chase", "20-ft. sphere of darkness and cold in the ship's wake: a dragon flying through takes 2d6 cold + 2d6 acid, and +2 on the helm roll this round. Concentration."],
+    ["Hypnotic Pattern", 3, "A", "chase", "30-ft. cube at Near or Close. Wis save: charmed and incapacitated with speed 0. A flying dragon with speed 0 falls: out of the chase until the other dragon spends an action to shake it. Concentration."],
+    ["Intellect Fortress", 3, "A", "crew", "Advantage on Wis saves against Frightful Presence. Concentration."],
+    ["Life Transference", 3, "D", "crew", "Caster takes 4d8 necrotic, a crew member heals twice that."],
+    ["Magic Circle", 3, "D A", "none", "Dragons are not on its list."],
+    ["Major Image", 3, "A", "chase", "A decoy: a second Lady Vengeance turning into the storm. Each dragon makes an Investigation check against Aurora's DC; a dragon that fails chases the decoy and falls one band behind. Works best with Invisibility on the real ship. Concentration."],
+    ["Mass Healing Word", 3, "D", "crew", "Bonus action: up to six crew."],
+    ["Meld into Stone", 3, "D O", "none", "No stone."],
+    ["Plant Growth", 3, "O* A*", "none", "Ground only."],
+    ["Protection from Energy", 3, "D O", "core", "Through the Core: the ship resists lightning for 1 hour (she already resists fire). Halves Vistalancer's breath. Concentration. DC 15 Arcana."],
+    ["Remove Curse", 3, "D A", "none", "No use mid-chase."],
+    ["Revivify", 3, "D O*", "crew", "A dead crew member, within 1 minute."],
+    ["Sending", 3, "D", "none", "25 words to anyone: Uldrak's cue, or Lulu. No chase effect."],
+    ["Sleet Storm", 3, "O", "chase", "40-ft. cylinder in the wake: heavily obscured, +2 on the helm roll; a concentrating creature in it must save. Concentration."],
+    ["Speak with Dead", 3, "D", "none", "No use."],
+    ["Speak with Plants", 3, "O", "none", "No use."],
+    ["Spirit Guardians", 3, "D", "fight", "15 ft. around Drenwal: 3d8 radiant on a dragon at Close or on the deck. Concentration."],
+    ["Spirit Shroud", 3, "D A", "fight", "+1d8 radiant (or cold/necrotic) on the caster's hits; foes within 10 ft. can't heal. Concentration."],
+    ["Summon Fey", 3, "O A", "fight", "Extra attacker that teleports: can reach a dragon at Near."],
+    ["Summon Shadowspawn", 3, "A", "fight", "Extra attacker; Dreadful Scream can frighten a dragon (Wis save)."],
+    ["Thunder Step", 3, "A", "crew", "Teleport 90 ft. with one ally: back to the ship from a dragon's back, or off a sinking deck."],
+    ["Tidal Wave", 3, "O", "chase", "A wall of water crashes on a dragon at Near or Close: Dex save, 4d8 bludgeoning and knocked prone. A prone flier falls: it drops one band behind. DM's call in open sky."],
+    ["Tongues", 3, "D A", "none", "No use."],
+    ["Vampiric Touch", 3, "A", "fight", "Melee: Close only."],
+    ["Wall of Sand", 3, "O", "none", "Ground only."],
+    ["Wall of Water", 3, "O", "none", "Ground only."],
+    ["Water Breathing", 3, "O", "none", "No use."],
+    ["Water Walk", 3, "D O", "none", "No use."],
+    ["Wind Wall", 3, "O", "fight", "Across the wake: a dragon passing through takes 3d8 bludgeoning (Str save half). Huge dragons are not stopped."]
+  ];
+  var CATNAME = { core: "Core", chase: "Chase", fight: "Fight", crew: "Crew", none: "None" };
+  var fWho = "all", fCat = "all";
+  function renderSpells() {
+    var q = ($("sp-search").value || "").toLowerCase();
+    var html = SP.filter(function (s) {
+      if (fWho !== "all" && s[2].indexOf(fWho) === -1) return false;
+      if (fCat !== "all" && s[3] !== fCat) return false;
+      return !q || (s[0] + " " + s[4]).toLowerCase().indexOf(q) !== -1;
+    }).map(function (s) {
+      return "<tr><td><b>" + s[0] + "</b></td><td>" + s[1] + '</td><td class="who">' + s[2].replace(/\*/g, "★") + '</td><td><span class="cat cat-' + s[3] + '">' + CATNAME[s[3]] + "</span></td><td>" + s[4] + "</td></tr>";
+    }).join("");
+    $("sp-body").innerHTML = html || '<tr><td colspan="5">No spells match.</td></tr>';
+  }
+  document.querySelectorAll("[data-who]").forEach(function (b) {
+    b.onclick = function () { fWho = b.dataset.who; document.querySelectorAll("[data-who]").forEach(function (x) { x.classList.toggle("on", x === b); }); renderSpells(); };
+  });
+  document.querySelectorAll("[data-cat]").forEach(function (b) {
+    b.onclick = function () { fCat = b.dataset.cat; document.querySelectorAll("[data-cat]").forEach(function (x) { x.classList.toggle("on", x === b); }); renderSpells(); };
+  });
+  $("sp-search").oninput = renderSpells;
+  renderSpells();
+})();
+</script>
+</body>
+</html>
