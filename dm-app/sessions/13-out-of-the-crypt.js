@@ -26,6 +26,86 @@ window.SESSION = {
     { id: "uldrak", name: "Uldrak", note: "At Bel's Forge. Call him and he will hear. See Uldrak's Cue." }
   ],
   creatures: {
+    // Copied from Session 11 (the Dock's wharf watch), for Passing the Stygian Dock.
+    "barbed-devil": {
+      "name": "Barbed Devil (Dock Guard)",
+      "kind": "barbed-devil",
+      "role": "Wharf guard at the Stygian Dock",
+      "source": {
+        "page": "bestiary",
+        "name": "Barbed Devil",
+        "src": "MM"
+      },
+      "npc": false,
+      "sizeType": "Medium fiend (devil), lawful evil",
+      "ac": 15,
+      "acNote": "natural armor",
+      "hp": 110,
+      "hpFormula": "13d8 + 52",
+      "speed": "30 ft.",
+      "abilities": {
+        "str": 16,
+        "dex": 17,
+        "con": 18,
+        "int": 12,
+        "wis": 14,
+        "cha": 14
+      },
+      "saves": "Str +6, Con +7, Wis +5, Cha +5",
+      "skills": "Deception +5, Insight +5, Perception +8",
+      "vulnerable": "",
+      "resist": "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered",
+      "immune": "fire, poison",
+      "condImmune": "poisoned",
+      "senses": "darkvision 120 ft., passive Perception 18",
+      "languages": "Infernal, telepathy 120 ft.",
+      "cr": "5",
+      "xp": 1800,
+      "pb": 3,
+      "traits": [
+        {
+          "name": "Barbed Hide",
+          "text": "At the start of each of its turns, it deals 5 (1d10) piercing to any creature grappling it."
+        },
+        {
+          "name": "Devil's Sight",
+          "text": "Magical darkness doesn't impede its darkvision."
+        },
+        {
+          "name": "Magic Resistance",
+          "text": "Advantage on saving throws against spells and other magical effects."
+        }
+      ],
+      "actions": [
+        {
+          "name": "Multiattack",
+          "text": "Three melee attacks (one Tail, two Claw), or two Hurl Flame."
+        },
+        {
+          "name": "Claw",
+          "text": "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 6 (1d6 + 3) piercing."
+        },
+        {
+          "name": "Tail",
+          "text": "Melee Weapon Attack: +6 to hit, reach 5 ft., one target. Hit: 10 (2d6 + 3) piercing."
+        },
+        {
+          "name": "Hurl Flame",
+          "text": "Ranged Spell Attack: +5 to hit, range 150 ft., one target. Hit: 10 (3d6) fire. Flammable objects not worn or carried catch fire."
+        }
+      ],
+      "bonus": [],
+      "reactions": [],
+      "tactics": [
+        "Shove intruders toward the edge of the wharf. One step more and it is the Styx.",
+        "If Kreeg falls below half, they stop fighting and wait to see who their new master is."
+      ],
+      "description": "A tall red devil covered in thorns, standing very still on the wharf with its arms folded.",
+      "roleplay": [
+        "Bored. Counts barges. Speaks only to say a number."
+      ]
+    },
+
 
     "arkhan-the-cruel": Object.assign({}, window.CAMPAIGN.creatures["arkhan-the-cruel"], {
       castLines: [
@@ -712,6 +792,84 @@ window.SESSION = {
         { t: "h", text: "Arriving at the Emporium" },
         { t: "p", text: "The {@b Wandering Emporium} has anchored near the {@b Mirror of Mephistar}: the great glass in the north-east, where the cold starts. The traders know the ship (Or'Henn sealed on as the Soul Capacitor's carrier). Two dragon heads on the deck turn every head on the quay. Expect offers before the gangplank is down: Fhet'Ahla for the blood and the essence, Rassh for scales, teeth and horn, and someone quietly asking who killed them, for a buyer who will not give his name (Arkhan, through a broker)." },
         { t: "note", title: "Remember for Next Time", text: "Days on the river, events rolled, who touched the Styx and what they forgot, whether the heads are preserved, what was sold at the Dock, and what the watchtowers saw." }
+      ]
+    },
+
+    // =====================================================================
+    // PASSING THE STYGIAN DOCK (written at the table 2026-11-08)
+    // Kreeg material condensed from Session 11's unplayed Dock branch.
+    // =====================================================================
+    {
+      id: "passing-the-stygian-dock",
+      title: "Passing the Stygian Dock",
+      when: "On the Styx road to the Emporium, the ship passes Kreeg's dock",
+      duration: "30 to 90 minutes (much longer if they go in to Kreeg)",
+      blocks: [
+        { t: "read", text: "The river widens, and the smell changes: iron, ink, and something like a counting-house on a hot day.\n\nA wharf of black iron runs out over the Styx on chains, longer than a street. Barges lie along it, low in the water. Lemures shuffle up the gangplanks in lines, each with a box of soul coins on its head, all of them chanting numbers. At the end of the wharf a red devil covered in thorns stands beside a tollhouse with a bell above its door.\n\nAcross the river, from the tollhouse to the far bank, hangs a chain as thick as a man's waist. It is down in the water now. It does not have to stay there." },
+        { t: "note", title: "Run It Fast", text: "Homebrew, built on Session 11's Dock (never played). {@c kreeg|Thavius Kreeg}, the man who sold Elturel, is the amnizu who runs this dock. Or'Henn kept his garden for sixty years and never saw his face. Tonight the party can {@b A} sail past, {@b B} tie up and trade, or {@b C} go in to Kreeg. First check the three states below: they decide how the dock greets the ship." },
+
+        { t: "h", text: "How the Dock Greets Them" },
+        { t: "list", items: [
+          "{@b Soul-smoke (Soul Burn 5–6 tonight):} the dock saw them coming for an hour. The harbour devil has the chain {@b up} before they arrive, and a ledger open: \"Black galley, Gondian build, trailing burned souls. Name and cargo.\"",
+          "{@b The dragon heads on the deck or the prow:} every devil on the wharf stops work to look. Advantage on Intimidation here; and by tonight every barge downriver is telling the story. Kreeg sends a clerk with an offer before they ask (see B).",
+          "{@b If the narzugon saw them (event 7):} Zariel's herald passed this way first. The harbour devil has an order in the herald's hand: hold any Gondian galley carrying a hollyphant. That makes Lulu's whereabouts the whole scene."
+        ] },
+        { t: "table", caption: "Optional: what is moored here today (d6)", head: ["d6", "At the dock"], rows: [
+          ["1", "{@b Zariel's flying fortress}, 450 feet of sword-blade iron, refuelling over the wharf (D&D canon: it refuels here). Her legion is everywhere. Do NOT stop. Sailing past is a DC 18 Stealth or Deception check for the helm. Lulu must be hidden below."],
+          ["2–3", "Soul barges and a slaver galley. Busy, loud, nobody looks twice unless the heads are showing."],
+          ["4–5", "Quiet. Only the harbour watch and the lemures."],
+          ["6", "A yugoloth broker's skiff: Urexiel's people. If the brass plate is still on Or'Henn's staff, they recognise it and sell the ship's position to Arkhan (+5 on his hunt roll)."]
+        ] },
+
+        { t: "h", text: "A · Sail Past" },
+        { t: "list", items: [
+          "{@b The toll:} 1 soul coin, or a bottle of dragon blood (they will take it gladly). The thorned devil drops the chain and writes the ship into the ledger. Kreeg now knows the ship passed, and her heading.",
+          "{@b Talk past it:} DC 15 Deception or Persuasion. Bel's name, Mahadi's name, or the Emporium as their port all help (advantage). Fail: pay, or go to the chain.",
+          "{@b Run the chain:} if the chain is up, the ship must go over it. Overclock or a soul coin gives the speed; the helm makes a DC 15 check. Fail: the chain rakes the keel, 4d10 bludgeoning to the ship (over the threshold), roll a mishap, and the alarm bell rings: 1d4 + 1 {@c barbed-devil|barbed devils} fly after the ship for 3 rounds. Every ledger on the Styx marks her as a toll-runner.",
+          "{@b Speed:} Tuned Vanes on the Styx put her at 80 ft. The dock's devils fly 60 at best. If she gets past the chain, nothing here catches her."
+        ] },
+
+        { t: "h", text: "B · Tie Up and Trade" },
+        { t: "list", items: [
+          "{@b Docking fee:} 1 soul coin a day. Nobody on the wharf touches the Styx water without gloves, and nobody aboard should either.",
+          "{@b Buyers:} dragon blood (a bottle fetches about 5 soul coins here; the Emporium pays a little more), scales and teeth (a smith's agent), and the heads. {@b Kreeg's clerk} offers 20 soul coins for Flash's head \"for the master's wall\". Kreeg does not need the money. He wants the party to owe him a conversation.",
+          "{@b Sellers:} infernal metal (2 soul coins a piece, up to 10 pieces; that is what the next ship upgrades need), salt and pitch to preserve the heads, Styx-proof gloves, ship repairs (4d10 hit points for 2 soul coins, half a day).",
+          "{@b Lulu:} if she is aboard, keep her below. A lemure that sees a hollyphant chants it, and the chant reaches the tollhouse in minutes."
+        ] },
+        { t: "table", caption: "Wharf rumours (d6, one per PC who asks around)", head: ["d6", "They hear"], rows: [
+          ["1", "Two of Arkhan's dragons fell out of the sky in the south. Arkhan is paying for the name of whoever did it."],
+          ["2", "Zariel's sword-ship left this dock three days ago and went north-west, to her basalt spire past the Scab."],
+          ["3", "The Wandering Emporium is anchored under the Mirror of Mephistar this month. The fee to tie up there just doubled."],
+          ["4", "A green dragon has been asking barge captains, very kindly, about a red dragonborn druid."],
+          ["5", "The master of this dock collects names. Not souls: names. Nobody knows what he does with them."],
+          ["6", "Demons broke through near the Scab last week. Zariel's riders are pulling patrols off the Styx to plug the line."]
+        ] },
+
+        { t: "h", text: "C · Go In to Kreeg" },
+        { t: "p", text: "Or'Henn knows the bell over the tollhouse door. It is the Ashen Garden's gate bell: he would know the crack in its lip anywhere. Three rings meant a keeper reporting to the master, who always answered from behind a screen." },
+        { t: "list", items: [
+          "{@b Or'Henn rings three times:} the door opens, and nobody stops him or those with him. Kreeg receives them in his office as if he has been expecting a report.",
+          "{@b His true name} (if they have it from the Contract V coffer): he must answer every question truthfully, once each, and cannot use Forgetfulness on whoever holds the name.",
+          "{@b Otherwise:} a clerk asks their business and makes them wait an hour, on the wharf, in full view."
+        ] },
+        { t: "read", text: "The office is lined with ledgers, floor to ceiling, every spine labelled in the same neat hand. Behind the desk a tall grey devil in a clerk's black robe is writing, and does not look up.\n\n\"Before your Hellrider does anything brave,\" he says, \"let me save you a mistake. You are in the Nine Hells. If you kill me here, I am gone. Not to some other hell. Gone. And with me goes the only hand that can unsign that contract.\"\n\nHe blots the page.\n\n\"Two dragons. In one night. My gardener has grown.\"" },
+        { t: "list", items: [
+          "{@b He is not ashamed of the sale}, only of being caught. He keeps the letter of every deal and nothing else.",
+          "{@b What he knows:} the Companion over Elturel is a planetar in chains. The Creed Resolute binds every soul who swore it: they belong to Zariel when the city touches the Styx. He signed. Only his hand, or a copy he signs away, can break it.",
+          "{@b What he wants tonight:} to stay a rumour; Flash's head for his wall; and, if he sees her, {@b Lulu}. Zariel would pay anything for what is in her head, and he knows it.",
+          "{@b What he offers:} information for favours. The safest trade: Flash's head for one true answer, or for the location of the contract's copy. The worst: anything that names Lulu.",
+          "{@b Veska:} her mother swore the Creed. \"Then she is on page four thousand and eleven,\" he says, without looking. Let Veska's player decide what she does. If she draws, the barbed devils step in from the wharf, and Kreeg sighs.",
+          "{@b The Shield of the Hidden Lord} goes cold on Drenwal's arm. Gargauth knew Kreeg in the Vanthampur days: \"Ask him what he paid me. Ask him about the cellar.\"",
+          "{@b If they leave with nothing agreed}, he lets them go, and at the door uses Forgetfulness on whoever heard the most. \"Nothing personal. I prefer to be a rumour.\""
+        ] },
+        { t: "note", title: "No Surprises: Kill Him and the Contract Dies", text: "Killed in the Nine Hells, Kreeg is destroyed for good, and with him the only hand that can unsign Elturel's contract. He tells them so before they can act. Taking him alive is the best result for Elturel and the hardest: he flies, he dominates, and his Escape Clause pulls him out at 0 hit points unless they have {@item dimensional shackles|DMG} or his true name." },
+        { t: "encounter", id: "the-dock-fight-s13", title: "The Dock Fight: Kreeg and the Wharf Watch", combatants: [
+          { c: "kreeg", n: 1 }, { c: "barbed-devil", n: 3 }
+        ], notes: "Deadly: Kreeg is CR 22 with legendary and lair actions. He stays back and talks while he fights. Forgetfulness (DC 22 Int, stun) on Lulu or her carrier first, then on whoever holds the shard. Dominate monster on the strongest fighter. At 0 HP his Escape Clause drops him into the ledger room under the tollhouse. Styx water is under the whole wharf: anyone knocked off makes the DC 15 Intelligence save or forgets." },
+
+        { t: "h", text: "Or'Henn's Curse at the Dock" },
+        { t: "p", text: "No dragons here, so no Pull saves. But if Kreeg buys Flash's head, Or'Henn watches a red dragon's head carried into a devil's office by lemures. Roll a Small Vision if you want it (+1 Pull): the red head, in Flash's mouth, says \"Is this what you sell your family for, little red?\"" },
+        { t: "note", title: "Remember for Next Time", text: "Did they pay, talk past, or run the chain? What did they sell and buy (infernal metal count)? Did Kreeg see Lulu? Did they make any deal with him, and its exact words? Did anyone touch the Styx? What was moored at the dock?" }
       ]
     },
 
