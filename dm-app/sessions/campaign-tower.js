@@ -60,7 +60,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "skarrix": {
     name: "Slarkas",
     kind: "young-black-dragon",
-    portrait: "art/generated/skarrix-portrait.webp",
+    portrait: "art/generated/slarkas-portrait.webp",
     role: "Tower dragon (black), sullen and sadistic",
     source: { page: "bestiary", name: "Adult Black Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
@@ -93,15 +93,15 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Amphibious", text: "Can breathe air and water." },
       { name: "Legendary Resistance (1/Day)", text: "If Slarkas fails a saving throw, he can choose to succeed instead." },
       { name: "Breath vs. the Ship", text: "His breath weapon beats the Lady Vengeance's damage threshold of 15." },
-      { name: "Old Wound (homebrew)", art: "art/generated/skarrix-old-wound.webp", text: "The Hellrider lance head in his chest is still blessed. When Slarkas takes radiant damage, he takes an extra 7 (2d6) radiant damage and can't use Wing Attack until the end of his next turn. A DC 15 Wisdom (Insight) or Intelligence (Religion) check spots the flinch and what causes it." }
+      { name: "Old Wound (homebrew)", art: "art/generated/slarkas-old-wound.webp", text: "The Hellrider lance head in his chest is still blessed. When Slarkas takes radiant damage, he takes an extra 7 (2d6) radiant damage and can't use Wing Attack until the end of his next turn. A DC 15 Wisdom (Insight) or Intelligence (Religion) check spots the flinch and what causes it." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", art: "art/generated/skarrix-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 4 (1d8) acid. {@b Slow Melt (homebrew):} the acid clings. The target takes 7 (2d6) acid damage at the start of each of its turns until it, or a creature next to it, uses an action to scrape it off." },
-      { name: "Claw", art: "art/generated/skarrix-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
-      { name: "Tail", art: "art/generated/skarrix-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
-      { name: "Frightful Presence", art: "art/generated/skarrix-frightful-presence.webp", text: "Each creature of its choice within 120 ft. aware of it: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Acid Breath (Recharge 5-6)", art: "art/generated/skarrix-acid-breath.webp", text: "60-ft. line, 5 ft. wide. DC 18 Dexterity save, 54 (12d8) acid, half on a success." }
+      { name: "Bite", art: "art/generated/slarkas-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 4 (1d8) acid. {@b Slow Melt (homebrew):} the acid clings. The target takes 7 (2d6) acid damage at the start of each of its turns until it, or a creature next to it, uses an action to scrape it off." },
+      { name: "Claw", art: "art/generated/slarkas-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
+      { name: "Tail", art: "art/generated/slarkas-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
+      { name: "Frightful Presence", art: "art/generated/slarkas-frightful-presence.webp", text: "Each creature of its choice within 120 ft. aware of it: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Acid Breath (Recharge 5-6)", art: "art/generated/slarkas-acid-breath.webp", text: "60-ft. line, 5 ft. wide. DC 18 Dexterity save, 54 (12d8) acid, half on a success." }
     ],
     bonus: [],
     reactions: [
@@ -112,8 +112,8 @@ Object.assign(window.CAMPAIGN.creatures, {
       intro: "Slarkas can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", art: "art/generated/skarrix-tail.webp", cost: 1, text: "Makes one tail attack." },
-        { name: "Wing Attack", art: "art/generated/skarrix-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Slarkas then flies up to half its speed." }
+        { name: "Tail Attack", art: "art/generated/slarkas-tail.webp", cost: 1, text: "Makes one tail attack." },
+        { name: "Wing Attack", art: "art/generated/slarkas-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Slarkas then flies up to half its speed." }
       ]
     },
     tactics: [
@@ -128,7 +128,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "vhennic": {
     name: "Vistalancer",
     kind: "young-blue-dragon",
-    portrait: "art/generated/vhennic-portrait.webp",
+    portrait: "art/generated/vistalancer-portrait.webp",
     role: "Tower dragon (blue), the fastest of the four",
     source: { page: "bestiary", name: "Adult Blue Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
@@ -163,25 +163,25 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", art: "art/generated/vhennic-bite.webp", text: "Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 5 (1d10) lightning." },
-      { name: "Claw", art: "art/generated/vhennic-claw.webp", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
-      { name: "Tail", art: "art/generated/vhennic-tail.webp", text: "Melee Weapon Attack: +12 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
-      { name: "Frightful Presence", art: "art/generated/vhennic-frightful-presence.webp", text: "Each creature of its choice within 120 ft. aware of it: DC 17 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Lightning Breath (Recharge 5-6)", art: "art/generated/vhennic-lightning-breath.webp", text: "90-ft. line, 5 ft. wide. DC 19 Dexterity save, 66 (12d10) lightning, half on a success." },
-      { name: "Lance Dive (homebrew)", art: "art/generated/vhennic-lance-dive.webp", text: "Replaces the bite in his Multiattack if he flew at least 30 ft. in a straight line this turn. Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 23 (3d10 + 7) piercing plus 11 (2d10) lightning, and a Large or smaller target must succeed on a DC 20 Strength save or be pushed 15 ft. and knocked prone." }
+      { name: "Bite", art: "art/generated/vistalancer-bite.webp", text: "Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 5 (1d10) lightning." },
+      { name: "Claw", art: "art/generated/vistalancer-claw.webp", text: "Melee Weapon Attack: +12 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
+      { name: "Tail", art: "art/generated/vistalancer-tail.webp", text: "Melee Weapon Attack: +12 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
+      { name: "Frightful Presence", art: "art/generated/vistalancer-frightful-presence.webp", text: "Each creature of its choice within 120 ft. aware of it: DC 17 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Lightning Breath (Recharge 5-6)", art: "art/generated/vistalancer-lightning-breath.webp", text: "90-ft. line, 5 ft. wide. DC 19 Dexterity save, 66 (12d10) lightning, half on a success." },
+      { name: "Lance Dive (homebrew)", art: "art/generated/vistalancer-lance-dive.webp", text: "Replaces the bite in his Multiattack if he flew at least 30 ft. in a straight line this turn. Melee Weapon Attack: +12 to hit, reach 10 ft. Hit: 23 (3d10 + 7) piercing plus 11 (2d10) lightning, and a Large or smaller target must succeed on a DC 20 Strength save or be pushed 15 ft. and knocked prone." }
     ],
     bonus: [],
     reactions: [
       { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Vistalancer, the attack has disadvantage. If the weapon forces a save instead, Vistalancer takes half damage." },
-      { name: "Clean Exit (homebrew)", art: "art/generated/vhennic-clean-exit.webp", text: "When damage leaves Vistalancer below half his hit points (112), he flies up to his speed without provoking opportunity attacks. He comes back only when the fight turns his way again." }
+      { name: "Clean Exit (homebrew)", art: "art/generated/vistalancer-clean-exit.webp", text: "When damage leaves Vistalancer below half his hit points (112), he flies up to his speed without provoking opportunity attacks. He comes back only when the fight turns his way again." }
     ],
     legendary: {
       count: 3,
       intro: "Vistalancer can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", art: "art/generated/vhennic-tail.webp", cost: 1, text: "Makes one tail attack." },
-        { name: "Wing Attack", art: "art/generated/vhennic-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 20 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Vistalancer then flies up to half its speed." }
+        { name: "Tail Attack", art: "art/generated/vistalancer-tail.webp", cost: 1, text: "Makes one tail attack." },
+        { name: "Wing Attack", art: "art/generated/vistalancer-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 20 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Vistalancer then flies up to half its speed." }
       ]
     },
     tactics: [
@@ -196,7 +196,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "mirelle": {
     name: "Vermilius",
     kind: "young-green-dragon",
-    portrait: "art/generated/mirelle-portrait.webp",
+    portrait: "art/generated/vermilius-portrait.webp",
     role: "Tower dragon (green), the cruelest talker",
     source: { page: "bestiary", name: "Adult Green Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
@@ -232,14 +232,14 @@ Object.assign(window.CAMPAIGN.creatures, {
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", art: "art/generated/mirelle-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 7 (2d6) poison." },
-      { name: "Claw", art: "art/generated/mirelle-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
-      { name: "Tail", art: "art/generated/mirelle-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
-      { name: "Frightful Presence", art: "art/generated/mirelle-frightful-presence.webp", text: "Each creature of her choice within 120 ft. aware of her: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Poison Breath (Recharge 5-6)", art: "art/generated/mirelle-poison-breath.webp", text: "60-ft. cone. DC 18 Constitution save, 56 (16d6) poison, half on a success." }
+      { name: "Bite", art: "art/generated/vermilius-bite.webp", text: "Melee Weapon Attack: +11 to hit, reach 10 ft. Hit: 17 (2d10 + 6) piercing plus 7 (2d6) poison." },
+      { name: "Claw", art: "art/generated/vermilius-claw.webp", text: "Melee Weapon Attack: +11 to hit, reach 5 ft. Hit: 13 (2d6 + 6) slashing." },
+      { name: "Tail", art: "art/generated/vermilius-tail.webp", text: "Melee Weapon Attack: +11 to hit, reach 15 ft. Hit: 15 (2d8 + 6) bludgeoning." },
+      { name: "Frightful Presence", art: "art/generated/vermilius-frightful-presence.webp", text: "Each creature of her choice within 120 ft. aware of her: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Poison Breath (Recharge 5-6)", art: "art/generated/vermilius-poison-breath.webp", text: "60-ft. cone. DC 18 Constitution save, 56 (16d6) poison, half on a success." }
     ],
     bonus: [
-      { name: "Honeyed Voice (homebrew)", art: "art/generated/mirelle-honeyed-voice.webp", text: "One creature within 120 ft. that can hear her: DC 16 Wisdom save or charmed until the end of its next turn. While charmed, it can't attack her or target her with a harmful spell, and if it moves, it must move toward her. Or'Henn has disadvantage on the save: the curse listens to her. She uses this instead of attacking first." }
+      { name: "Honeyed Voice (homebrew)", art: "art/generated/vermilius-honeyed-voice.webp", text: "One creature within 120 ft. that can hear her: DC 16 Wisdom save or charmed until the end of its next turn. While charmed, it can't attack her or target her with a harmful spell, and if it moves, it must move toward her. Or'Henn has disadvantage on the save: the curse listens to her. She uses this instead of attacking first." }
     ],
     reactions: [
       { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Vermilius, the attack has disadvantage. If the weapon forces a save instead, she takes half damage." }
@@ -249,8 +249,8 @@ Object.assign(window.CAMPAIGN.creatures, {
       intro: "Vermilius can take one legendary action at the end of another creature's turn. She regains spent legendary actions at the start of her turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", art: "art/generated/mirelle-tail.webp", cost: 1, text: "Makes one tail attack." },
-        { name: "Wing Attack", art: "art/generated/mirelle-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Vermilius then flies up to half her speed." }
+        { name: "Tail Attack", art: "art/generated/vermilius-tail.webp", cost: 1, text: "Makes one tail attack." },
+        { name: "Wing Attack", art: "art/generated/vermilius-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 19 Dexterity save or 13 (2d6 + 6) bludgeoning and knocked prone. Vermilius then flies up to half her speed." }
       ]
     },
     tactics: [
@@ -265,7 +265,7 @@ Object.assign(window.CAMPAIGN.creatures, {
   "praxamor": {
     name: "Flash",
     kind: "young-red-dragon",
-    portrait: "art/generated/praxamor-portrait.webp",
+    portrait: "art/generated/flash-portrait.webp",
     role: "Tower dragon (red), the proudest, the hardest hitter",
     source: { page: "bestiary", name: "Adult Red Dragon", src: "MM" },
     homebrew: "Scaled for a L12 party of 3 + allies + the Lady Vengeance's force cannons. Book: a wyrmling. Here grown to an adult dragon (MM stats) for the ambush, Legendary Resistance 1/day, Wingover reaction added.",
@@ -297,16 +297,16 @@ Object.assign(window.CAMPAIGN.creatures, {
     traits: [
       { name: "Legendary Resistance (1/Day)", text: "If Flash fails a saving throw, he can choose to succeed instead." },
       { name: "Breath vs. the Ship", text: "His breath weapon beats the Lady Vengeance's damage threshold of 15." },
-      { name: "Prove It (homebrew)", art: "art/generated/praxamor-prove-it.webp", text: "If a creature calls Flash small, young or a hatchling, or deals him the most damage in a round, he marks it (one creature at a time). He has advantage on attacks against the marked creature, and attacks against him have advantage too. This lasts until the marked creature drops or Flash falls below half his hit points (128)." },
-      { name: "Overheat (homebrew)", art: "art/generated/praxamor-overheat.webp", text: "Below half his hit points, the cracks in his scales flare white: his Fire Breath recharges on a 4–6, and he sheds bright light for 30 ft. and can't hide." }
+      { name: "Prove It (homebrew)", art: "art/generated/flash-prove-it.webp", text: "If a creature calls Flash small, young or a hatchling, or deals him the most damage in a round, he marks it (one creature at a time). He has advantage on attacks against the marked creature, and attacks against him have advantage too. This lasts until the marked creature drops or Flash falls below half his hit points (128)." },
+      { name: "Overheat (homebrew)", art: "art/generated/flash-overheat.webp", text: "Below half his hit points, the cracks in his scales flare white: his Fire Breath recharges on a 4–6, and he sheds bright light for 30 ft. and can't hide." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", art: "art/generated/praxamor-bite.webp", text: "Melee Weapon Attack: +14 to hit, reach 10 ft. Hit: 19 (2d10 + 8) piercing plus 7 (2d6) fire." },
-      { name: "Claw", art: "art/generated/praxamor-claw.webp", text: "Melee Weapon Attack: +14 to hit, reach 5 ft. Hit: 15 (2d6 + 8) slashing." },
-      { name: "Tail", art: "art/generated/praxamor-tail.webp", text: "Melee Weapon Attack: +14 to hit, reach 15 ft. Hit: 17 (2d8 + 8) bludgeoning." },
-      { name: "Frightful Presence", art: "art/generated/praxamor-frightful-presence.webp", text: "Each creature of his choice within 120 ft. aware of him: DC 19 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Fire Breath (Recharge 5-6)", art: "art/generated/praxamor-fire-breath.webp", text: "60-ft. cone. DC 21 Dexterity save, 63 (18d6) fire, half on a success." }
+      { name: "Bite", art: "art/generated/flash-bite.webp", text: "Melee Weapon Attack: +14 to hit, reach 10 ft. Hit: 19 (2d10 + 8) piercing plus 7 (2d6) fire." },
+      { name: "Claw", art: "art/generated/flash-claw.webp", text: "Melee Weapon Attack: +14 to hit, reach 5 ft. Hit: 15 (2d6 + 8) slashing." },
+      { name: "Tail", art: "art/generated/flash-tail.webp", text: "Melee Weapon Attack: +14 to hit, reach 15 ft. Hit: 17 (2d8 + 8) bludgeoning." },
+      { name: "Frightful Presence", art: "art/generated/flash-frightful-presence.webp", text: "Each creature of his choice within 120 ft. aware of him: DC 19 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Fire Breath (Recharge 5-6)", art: "art/generated/flash-fire-breath.webp", text: "60-ft. cone. DC 21 Dexterity save, 63 (18d6) fire, half on a success." }
     ],
     bonus: [],
     reactions: [
@@ -317,8 +317,8 @@ Object.assign(window.CAMPAIGN.creatures, {
       intro: "Flash can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", art: "art/generated/praxamor-tail.webp", cost: 1, text: "Makes one tail attack." },
-        { name: "Wing Attack", art: "art/generated/praxamor-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 22 Dexterity save or 15 (2d6 + 8) bludgeoning and knocked prone. Flash then flies up to half his speed." }
+        { name: "Tail Attack", art: "art/generated/flash-tail.webp", cost: 1, text: "Makes one tail attack." },
+        { name: "Wing Attack", art: "art/generated/flash-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 22 Dexterity save or 15 (2d6 + 8) bludgeoning and knocked prone. Flash then flies up to half his speed." }
       ]
     },
     tactics: [

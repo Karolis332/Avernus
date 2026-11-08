@@ -14,10 +14,11 @@ PICKS = {  # stem: (job label, candidate index)
     "obatala-bite": ("A31", 2), "obatala-claw": ("A32", 1), "obatala-tail": ("A33", 1), "obatala-cold-breath": ("A43", 2),
     "obatala-frightful-presence": ("A35", 0), "obatala-wing-attack": ("A36", 1), "obatala-rimeground": ("A37", 0), "obatala-riders-wing": ("A38", 2),
 }
+NAMES = {"skarrix": "slarkas", "vhennic": "vistalancer", "mirelle": "vermilius", "praxamor": "flash"}  # file names use the campaign names (2026-11-08)
 here = os.path.dirname(os.path.abspath(__file__))
 out_dir = os.path.join(here, "..", "..", "art", "generated")
 assert len(PICKS) == 38
 for stem, (label, i) in PICKS.items():
     src = os.path.join(here, "mj", f"{label}-{stem}-{i}.jpg")
-    Image.open(src).convert("RGB").resize((1024, 683), Image.LANCZOS).save(os.path.join(out_dir, f"{stem}.webp"), quality=85)
+    Image.open(src).convert("RGB").resize((1024, 683), Image.LANCZOS).save(os.path.join(out_dir, NAMES.get(stem.split("-")[0], stem.split("-")[0]) + stem[stem.index("-"):] + ".webp"), quality=85)
 print(len(PICKS), "webps written")

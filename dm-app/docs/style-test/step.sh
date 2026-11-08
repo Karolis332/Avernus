@@ -1,16 +1,19 @@
 #!/bin/sh
-# Unpack attack job A<n> (if its dump exists), then write mj/next.js: the Playwright snippet that submits A<n+1>.
-# Usage: sh step.sh 1
+# Unpack job <P><n> (if its dump exists), then write mj/next.js: the Playwright snippet that submits <P><n+1>.
+# Usage: sh step.sh 1                         (attack run: A-jobs from attack-prompts.txt)
+#        P=B F=v2-prompts.txt sh step.sh 1    (v2 run)
 cd "$(dirname "$0")" || exit 1
+P=${P:-A}
+F=${F:-attack-prompts.txt}
 n=$(printf '%02d' "$1")
-row=$(grep "^A$n	" attack-prompts.txt)
-[ -f "mj/A$n.json" ] && python mj/unpack.py "A$n" "$(echo "$row" | cut -f2)"
+row=$(grep "^$P$n	" "$F")
+[ -f "mj/$P$n.json" ] && python mj/unpack.py "$P$n" "$(echo "$row" | cut -f2)"
 next=$(printf '%02d' $(( $1 + 1 )))
-python - "$next" <<'EOF'
+python - "$next" "$P" "$F" <<'EOF'
 import json, sys
-nxt = sys.argv[1]
-rows = [l.rstrip("\n").split("\t") for l in open("attack-prompts.txt", encoding="utf-8")]
-row = next((r for r in rows if r[0] == "A" + nxt), None)
+nxt, pre, fname = sys.argv[1], sys.argv[2], sys.argv[3]
+rows = [l.rstrip("\n").split("\t") for l in open(fname, encoding="utf-8")]
+row = next((r for r in rows if r[0] == pre + nxt), None)
 if not row:
     print("no more jobs"); sys.exit()
 js = """async (page) => {
