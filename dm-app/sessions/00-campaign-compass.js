@@ -49,7 +49,7 @@ window.SESSION = {
         { t: "h", text: "Clocks running" },
         { t: "list", items: [
           "{@b Elturel sinking} toward the Styx. Days left: not fixed yet (see Decisions to Lock).",
-          "{@b The Bleeding Citadel:} Zariel's headquarters (DM ruling 2026-11-08). The sanctum's window: it opens every 33 days. Next window: not fixed yet.",
+          "{@b The Bleeding Citadel's window:} it shows itself every 33 days. Next window: not fixed yet.",
           "{@b Or'Henn's curse:} a clock, not a status. Every vision and every kind offer is pressure to ask a dragon for help. See {@side arc-tiamat|Arc: Or'Henn and Tiamat}.",
           "{@b Dumal:} alive, wounded, hunting Senna. His clock is estimated at 4 of 6.",
           "{@b Day count:} about Day 12 since the end of Session 5 (an estimate). See {@side world-state|The World Right Now}."
@@ -78,8 +78,8 @@ window.SESSION = {
         { t: "steps", items: [
           "{@b Break the siege} (Session 13, Out of the Crypt). It is a puzzle with seven ways out, not a fight to win. Each dragon now has its own way to be lured, turned or baited (see their panels).",
           "{@b Leaving the Crypt:} Bhaal's Last Gasps start for Drenwal. Zariel notices the party. By default her riders take Lulu.",
-          "{@b The Scab} (Session 14). The shard pulls toward it. It is the Blood War's siege works around Zariel's headquarters. Inside: Trantolox's demons, the shadow demon digging out {@b Crokek'toeck} (Yeenoghu's lost beast), and the old sanctum door under her fortress.",
-          "{@b The Bleeding Citadel.} Zariel holds the fortress but not the sanctum, which refuses her. She wants the shard so the Sword stays broken. The shard opens the sanctum doors. Yael's ghost gives the tour. The shard carries the party into the {@b Idyllglen} vision, then flies back onto the blade. Claiming the Sword destroys the Citadel, and with it her headquarters. See the side panel {@b The Sword Reforged} in Session 13.",
+          "{@b The Scab} (Session 14). The shard pulls toward it. It is the Blood War front: demons dig toward the Citadel, and Zariel's legion patrols outside. Inside: Trantolox's demons, the shadow demon digging out {@b Crokek'toeck} (Yeenoghu's lost beast), and the gates of the Bleeding Citadel.",
+          "{@b The Bleeding Citadel.} Zariel cannot enter it; she watches from her Basalt Citadel to the west and wants the shard so the Sword stays broken. The shard opens the doors. Yael's ghost gives the tour. The shard carries the party into the {@b Idyllglen} vision, then flies back onto the blade. Claiming the Sword destroys the Citadel, and Zariel knows at once: her flying fortress launches. See the side panel {@b The Sword Reforged} in Session 13.",
           "{@b Chapter 5: the finale.} Three jobs, in any order: deal with Zariel, break the chains, return Elturel. See How the Book Ends below.",
           "{@b Land the personal arcs} before or inside the finale: Drenwal's rebirth or Sigil 3, Or'Henn's curse and Tiamat, and Moonkite's lost patron for Aurora."
         ] },
@@ -139,7 +139,7 @@ window.SESSION = {
           { t: "steps", items: [
             "{@b River's Edge:} Elturel is sinking into the Styx while demons and devils fight in its shadow. Two horned devils attack.",
             "{@b Field of Flames:} three group checks to cross the battlefield, then two hezrous fighting the pit fiend Lucille.",
-            "{@b Showdown:} Zariel is fighting a balor and is down to 450 hit points after four rounds. If the party fights her, she flees to her flying fortress at 100 hit points."
+            "{@b Showdown:} Zariel is fighting a balor and is down to 450 hit points after four rounds. If the party fights her, she flees to her flying fortress at 100 hit points. Ours: the fortress is moored at her Basalt Citadel, west of the Scab, and flies to Elturel for this."
           ] }
         ] }
       ]
@@ -213,7 +213,7 @@ window.SESSION = {
           "{@b The Sword.} Book: whole on its dais. Ours: Eventyr's one-shard version. A shard cracked off in Zariel's last battle; Olanthius kept it and gave it to the party. It opens the doors and carries them into Idyllglen.",
           "{@b Lulu.} Book: the key to the doors, the vision and Zariel's story. Ours: not with the party; by default Zariel's riders take her at the end of Session 12. She becomes Zariel's leverage and a reason to face her. Her full memory is still needed for Drenwal's rebirth at the Caged Star.",
           "{@b Yael.} Book: Zariel's general, who hid the Sword and died guarding it. Ours (Session 12 ruling): Yael left her post at the devil gate to save a child; the breach lost the invasion, and Zariel, still an angel, executed her. The Bleeding Citadel rose where Yael died. Her ghost and Lulu carried the Sword there.",
-          "{@b The doors.} Book: a good-aligned creature with Lulu nearby. Ours: the sanctum doors open only for the pure of heart, and the shard opens them. Zariel has made the fortress around the sanctum her headquarters (DM ruling 2026-11-08), but the sanctum still refuses her.",
+          "{@b The doors.} Book: a good-aligned creature with Lulu nearby. Ours: the doors open only for the pure of heart, and the shard opens them. That is why Zariel knows the place and still cannot enter; she watches it from her Basalt Citadel (DMG) to the west.",
           "{@b Arkhan and Tiamat.} Book: a possible ally; the Ire of Tiamat is a deal. Ours: the enemy. The vial went to Uldrak, so Or'Henn's curse is live, and a dragon taking it wakes Tiamat in her true form. The Ire of Tiamat is a trap here, not a deal.",
           "{@b Uldrak.} Book-true: the vial freed him. He went to Bel's Forge to reforge Yeenoghu's flail as Gnashing Hunger, and can come back for the last battle.",
           "{@b Thavius Kreeg.} Book fate (an amnizu at the Stygian Dock), plus our link: he was Or'Henn's estate-master. Breaking the contract is Or'Henn's road.",

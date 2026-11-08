@@ -475,8 +475,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "h", text: "What She Wants" },
       { t: "list", items: [
         "{@b To win the Blood War.} Everything else is a means. She believes Hell's price for her fall was a fair trade if the line holds.",
-        "{@b The Sword kept broken.} {@b [CAMPAIGN CANON] DM ruling 2026-11-08:} a whole Sword could redeem her or destroy her, and she wants neither. It lies in the sanctum of the Bleeding Citadel, which refuses her, so she cannot touch it. With the shard in her hands it stays broken for good. That is why her writ asks for the shard first.",
-        "{@b Her headquarters.} The Bleeding Citadel: her legion holds the fortress built over the sanctum, and the demons besiege it through the Scab. She guards what she cannot touch.",
+        "{@b The Sword kept broken.} {@b DM ruling 2026-11-08:} a whole Sword could redeem her or destroy her, and she wants neither. It lies in the Bleeding Citadel, whose doors refuse her. With the shard in her hands it stays broken for good. That is why her writ asks for the shard first.",
         "{@b Elturel as a debt.} Kreeg's pact is her leverage on the city. She will release it only for something worth more.",
         "{@b Lulu.} The only living witness to who she was before the fall, and the one who knows the way back. Zariel wants her silenced or kept close."
       ] },
@@ -491,6 +490,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "list", items: [
         "{@b Lulu:} the one thing in Hell she cannot weigh. She wants her safe and in the room, and she cannot say why. Play it as the only soft spot.",
         "{@b The Sword:} a reminder of what she was, and the one thing that could end her either way. She treats it like a held breath, and keeps it from being whole.",
+        "{@b Where she is:} her {@b Basalt Citadel} (DMG), on the black needle spire west of the Scab, its walls hung with the burned, some still alive. Her 450-foot {@b flying fortress} (BGDIA) is moored there. She watches the Bleeding Citadel from it, because she cannot enter.",
         "{@b The Hellriders:} her first army and her first betrayal. She remembers every name at the Wall, and she remembers who left. {@b Olanthius} and {@b Yael} are her unfinished business.",
         "{@b Elturel:} an asset, a mistake and an open wound. She would trade it, but never lightly, because the people in it are her own."
       ] },
@@ -518,7 +518,7 @@ Object.assign(window.CAMPAIGN.side, {
         "If Lulu is hers by now, Lulu says one line in her own voice. It is the first sign she is not a prisoner in the usual sense."
       ] },
       { t: "h", text: "Chapter 5: the full meeting" },
-      { t: "p", text: "She arrives in person, in her quarters in the Citadel's fortress or on the field. She has already decided how she will lose, if she is going to. Run it as a scene with three tasks the party can do in any order (see {@side running-the-endgame|Running the Endgame}). Never one roll." },
+      { t: "p", text: "She arrives in person: in her Basalt Citadel, on her flying fortress, or on the field. She has already decided how she will lose, if she is going to. Run it as a scene with three tasks the party can do in any order (see {@side running-the-endgame|Running the Endgame}). Never one roll." },
 
       { t: "h", text: "The Recommended Default: Lulu" },
       { t: "p", text: "This is a recommendation. The DM can take any piece or drop it. Each part has an alternative." },

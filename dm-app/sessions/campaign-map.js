@@ -28,7 +28,7 @@ window.CAMPAIGN.map = {
     {
       id: "ch4",
       title: "Chapter 4 · The Sword of Zariel",
-      summary: "Eventyr runs this as one adventuring day: climb the Scab, enter the Bleeding Citadel, survive the Idyllglen dream, claim the Sword. Gate: a worthy hand holds the Sword of Zariel. HERE IT IS BIGGER: the Citadel is Zariel's headquarters (2026-11-08) with the Scab as the demons' siege works around it, its sanctum stands open only in a 33-day window, Yael's resting place replaces Idyllglen, and the Sword waits on its dais missing one shard, which cracked off in Zariel's last battle. Olanthius has it. The shard carries the party into the vision trial, then rejoins the blade."
+      summary: "Eventyr runs this as one adventuring day: climb the Scab, enter the Bleeding Citadel, survive the Idyllglen dream, claim the Sword. Gate: a worthy hand holds the Sword of Zariel. HERE IT IS BIGGER: the Citadel stands only in a 33-day window, Yael's resting place replaces Idyllglen, and the Sword waits on its dais missing one shard, which cracked off in Zariel's last battle. Olanthius has it. The shard carries the party into the vision trial, then rejoins the blade. Zariel cannot enter; she watches from her Basalt Citadel, half a day's flight west, and wants the shard so the Sword stays broken (2026-11-08)."
     },
     {
       id: "ch5",
@@ -478,20 +478,19 @@ window.CAMPAIGN.map = {
       id: "bleeding-citadel", title: "The Bleeding Citadel",
       x: 40.3, y: 7.8,
       stage: "ch4", path: "main", status: "changed",
-      objective: "Reach the Citadel, Zariel's headquarters, through the demons' siege mines in the Scab. Get the shard past her to the sanctum she cannot enter, inside a 33-day window, and claim the Sword. It waits on its dais, missing one shard.",
+      objective: "Reach the Citadel in a 33-day window, get inside, and claim the Sword of Zariel. It waits on its dais, missing one shard.",
       bloodPrice: "Blood Pay at the door. A vision trial in the Hall of the Last Charge. Lulu relives Yael's death. Miss the window and Elturel drops a Rung.",
       blood: 3,
       eventyr: "All of Chapter 4: the Scab, the Citadel gate, the Idyllglen dream, the Sword. One adventuring day.",
       requires: ["The shard from the Crypt, ideally. Without it Lulu's memory alone opens the vision trial, and the Sword stays notched (DM's choice what that costs).", "The road: all three Fallen Three pieces, or Lulu's final memory.", "A live window. It was 12 days out at the last count."],
       unlocks: ["The Sword of Zariel, whole again -- the physical lever.", "Lulu's reunion with Yael.", "Lulu's caging-memory, the door to Coram."],
       sessions: 2.5,
-      dmChoices: ["[CAMPAIGN CANON] DM ruling 2026-11-08: the Citadel is Zariel's current headquarters. Her legion holds the fortress; the Scab around it is the Blood War's siege works (demons tunnel to reach her). The sanctum with the Sword still refuses her, so she guards what she cannot touch. She wants the shard so the Sword can never be whole (a whole Sword could redeem or destroy her), and Lulu silenced or kept close.", "The Scab and the Citadel sit at the dark castle in the northern range, between the second and third great pillars (DM placed it, 2026-11-08). The book leaves the spot to the DM.", "The Sword waits on its dais as in the book, missing one shard (Eventyr's option, ruled 2026-10-23). It cracked off in Zariel's last battle; Olanthius kept it.", "The shard is the conduit for the vision trial. When the trial ends it flies up and rejoins the blade in a burst of light.", "The interior is this campaign's own: the Plain of Kneeling Penitents, the Wound-Gate, the Hall of the Last Charge, Yael's resting place, the Sword's chamber.", "The gate opens to grief or Blood Pay, never to force."],
+      dmChoices: ["DM ruling 2026-11-08: Zariel cannot enter the Citadel and watches it from her Basalt Citadel to the west. She wants the shard so the Sword can never be whole (a whole Sword could redeem or destroy her), and Lulu silenced or kept close. The Scab is the Blood War front: demons dig toward the Citadel; her legion patrols the approaches. Drawing the Sword: she knows at once, and her flying fortress launches.", "The Scab and the Citadel sit at the dark castle in the northern range, between the second and third great pillars (DM placed it, 2026-11-08). The book leaves the spot to the DM.", "The Sword waits on its dais as in the book, missing one shard (Eventyr's option, ruled 2026-10-23). It cracked off in Zariel's last battle; Olanthius kept it.", "The shard is the conduit for the vision trial. When the trial ends it flies up and rejoins the blade in a burst of light.", "The interior is this campaign's own: the Plain of Kneeling Penitents, the Wound-Gate, the Hall of the Last Charge, Yael's resting place, the Sword's chamber.", "The gate opens to grief or Blood Pay, never to force."],
       alternatives: ["Off-window: hold a vigil at the scar (1d6 each day; 1-2 means a threat finds the camp).", "Run the book's Scab and Idyllglen instead, with the maps below."],
       blocks: [
         { t: "h", text: "How to Run It From Here" },
         { t: "steps", items: [
           "Count the days. Arrive in the window, or plan the vigil.",
-          "Go under her, not through her: the demons' mines in the Scab reach the sanctum's old door below her fortress. Expect her herald at the door with an offer (Lulu for the shard).",
           "The Plain of Kneeling Penitents: the petrified faithful.",
           "The Wound-Gate: grief or Blood Pay opens it.",
           "The Hall of the Last Charge: a personal Wisdom trial for each character.",
@@ -519,6 +518,20 @@ window.CAMPAIGN.map = {
     },
 
     // ---------- Chapter 5: Escape from Avernus ----------
+    {
+      id: "zariels-basalt-citadel", title: "Zariel's Basalt Citadel",
+      x: 28.6, y: 7.4,
+      stage: "ch5", path: "main", status: "open",
+      objective: "Zariel's stronghold. Where she watches the Bleeding Citadel from, and where her flying fortress is moored. Know where it is; do not walk in.",
+      bloodPrice: "Its walls are hung with the burned, sometimes still-living, corpses of those who displeased her.",
+      blood: 3,
+      eventyr: "Book: the DMG names a basalt citadel as Zariel's seat in Avernus; BGDIA gives her a flying fortress. Neither is a set location in the adventure. Ours places both here.",
+      requires: ["Nothing to know it exists. Getting in uninvited is a death sentence."],
+      unlocks: ["Where the flying fortress is when it is not on the front.", "Where Lulu is held, if her riders took her (DM's call)."],
+      sessions: 0,
+      dmChoices: ["[D&D CANON] DMG, Avernus: Zariel rules from a tall basalt citadel, its walls adorned with the burned, sometimes still-living, corpses of those who displeased her.", "[CAMPAIGN CANON] DM ruling 2026-11-08: it stands on the black needle spire in the northern mountains, west of the Scab, between the Scab and the Monument to Tiamat, about half a day's flight from the Scab.", "[D&D CANON] BGDIA: her 450-ft. sword-blade flying fortress, her mobile command post. It refuels at the Stygian Dock, flies the Blood War front, and she pilots it telepathically. Ours: it is moored here, and launches the moment the Sword is drawn.", "She watches the Bleeding Citadel from here because she cannot enter it."],
+      alternatives: ["The book's Chapter 5 still works: the fortress flies to Elturel for the endgame beneath the city.", "A parley can be held here if she invites them; she never breaks a sworn bargain."]
+    },
     {
       id: "elturel", title: "Elturel: Zariel's Audience",
       stage: "ch5", path: "main", status: "changed",
