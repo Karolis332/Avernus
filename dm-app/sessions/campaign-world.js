@@ -6,6 +6,65 @@
 window.CAMPAIGN = window.CAMPAIGN || { creatures: {}, side: {} };
 
 Object.assign(window.CAMPAIGN.creatures, {
+  // Zariel (book: BGDIA appendix, CR 26). Numbers from the book as remembered at the table 2026-11-08: check against the book before the finale.
+  "zariel": {
+    name: "Zariel, Archduke of Avernus",
+    kind: "zariel",
+    role: "Archduke of Avernus. The fallen angel who leads the Blood War. The Hellriders' first commander",
+    source: { page: "bestiary", name: "Zariel", src: "BGDIA" },
+    homebrew: "Book stat block (CR 26). Not to be beaten at level 14: when she appears before the finale, run her as a lesson of at most three rounds (see Session 13, Zariel's Lesson). Radiant damage stops her Regeneration for a turn; the whole Sword of Zariel is what can end her.",
+    npc: true,
+    sizeType: "Large fiend (devil), lawful evil",
+    ac: 21, acNote: "natural armor",
+    hp: 580, hpFormula: "40d10 + 360",
+    speed: "50 ft., fly 150 ft.",
+    abilities: { str: 27, dex: 24, con: 28, int: 26, wis: 27, cha: 30 },
+    saves: "Int +16, Wis +16, Cha +18",
+    skills: "Intimidation +18, Perception +16",
+    resist: "cold; bludgeoning, piercing, and slashing from nonmagical attacks that aren't silvered",
+    immune: "fire, poison",
+    condImmune: "charmed, exhaustion, frightened, poisoned",
+    senses: "darkvision 120 ft., truesight 120 ft., passive Perception 26",
+    languages: "all, telepathy 120 ft.",
+    cr: "26", xp: 90000, pb: 8,
+    traits: [
+      { name: "Devil's Sight", text: "Magical darkness doesn't impede her darkvision." },
+      { name: "Fiendish Weapons", text: "Her weapon attacks are magical. When she hits with a weapon, it deals an extra 36 (8d8) fire damage (included below)." },
+      { name: "Legendary Resistance (3/Day)", text: "If she fails a saving throw, she can choose to succeed instead." },
+      { name: "Magic Resistance", text: "She has advantage on saving throws against spells and other magical effects." },
+      { name: "Regeneration", text: "She regains 20 hit points at the start of her turn. If she takes radiant damage, this trait doesn't work at the start of her next turn. She dies only if she starts her turn with 0 hit points and doesn't regenerate." },
+      { name: "Innate Spellcasting", text: "Charisma (spell save DC 26). At will: {@spell alter self} (can become Medium), {@spell detect evil and good}, {@spell fireball}, {@spell invisibility} (self only), {@spell wall of fire}. 3/day each: {@spell blade barrier}, {@spell dispel evil and good}, {@spell finger of death}." }
+    ],
+    actions: [
+      { name: "Multiattack", text: "Three weapon attacks." },
+      { name: "Longsword", text: "Melee Weapon Attack: +16 to hit, reach 5 ft., one target. Hit: 17 (2d8 + 8) slashing damage, or 19 (2d10 + 8) with two hands, plus 36 (8d8) fire damage." },
+      { name: "Javelin", text: "Melee or Ranged Weapon Attack: +16 to hit, reach 5 ft. or range 30/120 ft., one target. Hit: 15 (2d6 + 8) piercing damage plus 36 (8d8) fire damage." },
+      { name: "Horrid Touch (Recharge 5–6)", text: "Melee Spell Attack: +18 to hit, reach 5 ft., one target. Hit: 44 (8d10) necrotic damage, and the target is poisoned for 1 minute. While poisoned this way it is also blinded and deafened. It repeats a DC 26 Constitution saving throw at the end of each of its turns, ending the effect on a success." },
+      { name: "Teleport", text: "She teleports, with anything she carries, to an unoccupied space she can see within 120 ft." }
+    ],
+    legendary: {
+      count: 3,
+      intro: "Zariel can take 3 legendary actions, one at a time, at the end of another creature's turn. She regains spent legendary actions at the start of her turn.",
+      actions: [
+        { name: "Attack", cost: 1, text: "One weapon attack." },
+        { name: "Teleport", cost: 1, text: "She uses Teleport." },
+        { name: "Immolating Gaze", cost: 2, text: "One creature she can see within 120 ft. makes a DC 26 Wisdom saving throw. On a failure it takes 22 (4d10) fire damage; a creature reduced to 0 hit points by this is reduced to ash." }
+      ]
+    },
+    tactics: [
+      "Before the finale she does not fight to win. She fights to teach: at most three rounds, then she leaves (see Zariel's Lesson).",
+      "Immolating Gaze on things, not people, first: the dragon heads, a cannon, a sail. Then on whoever reaches for the shard.",
+      "She never harms Lulu. Lulu is to be brought in whole.",
+      "Radiant damage stops her Regeneration; she notices, and remembers who did it."
+    ],
+    description: "Taller than any knight, in armour that was once white and gold and is now black and red, with great wings of burnished feathers that smoke at the edges. Her face is still beautiful. Her eyes are not. A sword hangs at her hip that is not the Sword: she has not touched that one in a hundred years.",
+    roleplay: [
+      "Voice: a commander's. Never shouts. Speaks as if the battle has already been decided and she is telling you the result.",
+      "Wants: the shard (so the Sword stays broken), Lulu (silenced, or at her side), and obedience. She respects courage and hates being pitied.",
+      "Sample line: \"I led the charge you are all so proud of. I know exactly what you are about to try. Don't.\""
+    ]
+  },
+
 
   "narzugon": {
     name: "Narzugon of Zariel's Legion",

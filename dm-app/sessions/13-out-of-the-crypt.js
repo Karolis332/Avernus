@@ -1122,6 +1122,59 @@ window.SESSION = {
     },
 
     // =====================================================================
+    // ZARIEL'S LESSON (written at the table 2026-11-08)
+    // =====================================================================
+    {
+      id: "zariels-lesson",
+      title: "Zariel's Lesson",
+      when: "If Kreeg fails: he is dead, captured, or out of time (her fortress is repaired 1d4 days after the Dock raid)",
+      duration: "20 to 40 minutes",
+      blocks: [
+        { t: "note", title: "Run It Fast", text: "{@c zariel|Zariel} comes herself, not to kill them but to teach them. She is CR 26 and the party is level 14: they cannot win this, and she does not want them dead yet (she wants the shard and Lulu). Run {@b at most three rounds}, one lesson per round, then she leaves. If they fight, let them hurt her, and let them see that radiant stops her healing: that is the clue to the endgame. She never harms Lulu." },
+        { t: "read", text: "The sky goes quiet first. Every devil in sight, every lemure, every damned thing on the water stops moving and turns its face upward.\n\nThen she lands. Not from far off: one moment there is red sky and the next there is a woman in black-and-red armour standing on your deck, taller than anyone here, her wings folding behind her with a sound like a banner in the wind. The planks under her feet start to smoke.\n\nShe looks at each of you in turn, as a general looks over troops she has inherited and does not think much of. Last of all she looks at the Hellriders.\n\n\"At ease,\" says Zariel." },
+
+        { t: "h", text: "Where She Comes" },
+        { t: "list", items: [
+          "{@b On the ship} (best): wherever it is, the day after Kreeg fails. She flies faster than any ship (150 ft.).",
+          "{@b At the Emporium:} the truce is Mahadi's, not hers. Mahadi bows very low and steps aside. Every trader on the quay finds somewhere else to be.",
+          "{@b At the Scab:} if they reach it first, she meets them at the edge of the demons' tunnels, with her legion behind her. Same three lessons."
+        ] },
+
+        { t: "h", text: "Round 1 · The Lesson of Power" },
+        { t: "list", items: [
+          "She takes no notice of weapons drawn. She looks at the two dragon heads, and they burn to ash in the time it takes to blink (Immolating Gaze; no roll). \"Arkhan's pets. Well done. They were never a threat to me.\"",
+          "Then a {@spell wall of fire} rises in a ring around the ship, 60 ft. out, as high as the mast. Nobody leaves until she is done talking.",
+          "If anyone attacks: one Multiattack on them, Longsword, +16, 2d8 + 8 slashing plus 8d8 fire per hit. She lets the second and third swing go wide on purpose, and says so."
+        ] },
+
+        { t: "h", text: "Round 2 · The Lesson of Cost (pick one)" },
+        { t: "list", items: [
+          "{@b If Kreeg is their prisoner:} she asks for him. If they refuse, she uses Finger of Death on him where he stands (or through the hull, with truesight). He is gone for good, and Elturel's contract can never be unsigned. \"He sold your city to me once. I don't need him to sell it twice.\" If they hand him over, she takes him and the contract copy; that is worse for Elturel but the party keeps its hands clean.",
+          "{@b If Kreeg is dead or gone:} she turns to {@c veska-banner-captain|Veska} or {@c ser-lucan-named|Ser Lucan}. \"You swore to ride for me once.\" Horrid Touch, +18: 8d10 necrotic, poisoned, blinded and deafened (DC 26 Con to end). She drops them to 0 hit points and stops there, on purpose. \"Every rider who follows them, I will unmake. Tell the others.\"",
+          "{@b Elturel:} \"And for every day you keep my shard, your city pays.\" Elturel drops one Rung tonight (or a district burns). They will hear of it."
+        ] },
+
+        { t: "h", text: "Round 3 · The Lesson of the Door (the offer)" },
+        { t: "read", text: "\"I know what you think you are doing. You think you are going to put my sword back together and hand it to someone pure enough to hold it.\" She smiles, almost kindly. \"I led the charge your songs are about. I know exactly what that blade does to the one who carries it.\"\n\n\"Bring the shard to the door of the Citadel. Bring the little elephant. Do that, and Elturel stops falling, and your riders live, and you may go home. Make me come for them again, and I bring the fortress.\"" },
+        { t: "list", items: [
+          "{@b Zariel's Mark:} she touches the shard's holder on the brow (no save). The mark is a small sunburst with the sword cut out. From now on she always knows where the shard is. Removing the mark: {@spell dispel evil and good} cast by a 14th-level or higher caster, or the Citadel's light.",
+          "Then she is gone (Teleport, then flight). The wall of fire drops a moment later. The planks where she stood are burned black in the shape of two boots."
+        ] },
+
+        { t: "h", text: "If They Fight Her" },
+        { t: "list", items: [
+          "She stays three rounds at most, or until she drops to half her hit points (290), whichever comes first. Then she leaves, unhurried.",
+          "{@b Radiant damage} (Drenwal, the Moonbow, the guiding-bolt cannons) stops her Regeneration for a turn. She notices. \"Ah. One of you still has some light.\" That is the clue: the whole Sword is what can end her.",
+          "She targets whoever holds the shard, then whoever hurts her most. Never Lulu.",
+          "The Lady Vengeance: one Immolating Gaze at a cannon or the sails if it fires at her (the cannon is slag; a sail burns)."
+        ] },
+        { t: "encounter", id: "zariels-lesson", title: "Zariel (a lesson, not a fight to win)", combatants: [ { c: "zariel", n: 1 } ], notes: "Three rounds at most, or until she is at 290 HP. One lesson per round (above). Regeneration 20 per turn unless she took radiant damage. Do not kill PCs: drop them to 0 and stop. XP: none for driving her off; 15,000 story award if they stand their ground and refuse her (5,000 each)." },
+
+        { t: "note", title: "Remember for Next Time", text: "Who holds the shard and carries Zariel's Mark? What did she take (the dragon heads, Kreeg, a rider)? Did Elturel drop a Rung? Did anyone hurt her with radiant? What did they say to her offer?" }
+      ]
+    },
+
+    // =====================================================================
     // 7 BHAAL'S FIRST GASP
     // =====================================================================
     {
