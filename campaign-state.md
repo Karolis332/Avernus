@@ -24,6 +24,8 @@
 ---
 
 ## Current Location
+**LIVE, Session 13 (2026-11-08): aboard the Lady Vengeance, escaping.** Drenwal cast *Word of Recall* out of the Crypt; the party landed at St. Cuthbert's statue on the ship. Arkhan, Vermilius, Slarkas, Obatala and Krull were left at the Crypt. Flash and Vistalancer hunted the ship alone and **both died** (details in the Session 13 log below). Nobody else saw it: the ship's location is unknown to Arkhan. *The block below is the state before Session 13.*
+
 **Inside the Crypt of the Hellriders, mid-fight** (end of Session 11). Exploring the urn hall, the party found soul urns with loot beneath; **5–8 ghosts and some wraiths** came out of them (improvised at the table).
 
 - **Outside, waiting:** Arkhan, the four tower dragons (Slarkas, Vistalancer, Vermilius, Flash), Obatala and Krull. Drenwal's *knock* on the warded gates carried 50 miles and drew them. **DM ruling 2026-11-01:** Arkhan was arriving as the party went in, and they shut the door behind them; Arkhan never came inside (the laptop's prepped "Knock at the Gates" stair fight did not happen). **Nothing evil can enter the Crypt**, so they stay at the shut door.
@@ -183,6 +185,22 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 ---
 
 ## Session Log
+
+### Session 13 — 2026-11-08 (live notes, desktop PC; finish after the session)
+**Location:** Crypt of the Hellriders → the Lady Vengeance, in the mists of Avernus
+**Party level:** 14 (DM).
+**Events so far:**
+- Drenwal cast **Word of Recall** from inside the Crypt (out of Arkhan's sight; it used his only 6th-level slot). The party blinked onto the Lady Vengeance at St. Cuthbert's statue.
+- **Sky chase:** Flash and Vistalancer found the ship and chased it. The ship ran full throttle. Spells were cast into the ship's Core: **Haste** and **Blink** (DM ruling: 3rd-level spells can be guided into the Core, DC 15 Arcana) and **misty step**.
+- **Soul Coin Overdrive used**: one soul coin spent; that soul is destroyed forever.
+- After a long battle the party **killed Flash (adult red, true name Praxamor) and Vistalancer (adult blue)**. They were separated from Arkhan's other dragons, so no witness survived.
+- Flash's body was hauled on the **Aether Harpoon**; Vistalancer's corpse was found in the ash.
+- **Both dragons beheaded.** Heads aboard: they spoil in ~3 days without *gentle repose* or salting. Display on the prow = +2 on Arkhan's hunt roll (proposal).
+- **Harvested: 3 vials of Flash's blood (red) and 3 vials of Vistalancer's blood (blue).** Uses (proposal): brew a resistance potion (DC 15, 1 hr), coat a weapon (+2d6 fire/lightning on the next hit), drink raw (DC 15 Con: resistance 1 hr), sell ~1 soul coin each. Or'Henn handling or drinking it: +1 Pull.
+- Not taken (yet, as far as reported): Vistalancer's steel horn cap with 4 sapphire-set gold rings (~250 gp each), 1d4+2 sapphires in his scales (1,000 gp each), scales, glands, hearts, teeth.
+- **XP (suggested):** Flash 18,000 + Vistalancer 15,000 = 33,000, i.e. 11,000 each (DM's call).
+**Still to record:** Or'Henn's Pull and gold scales; whether the curse moved (it did not, as far as reported); the ship's hit points; Bhaal's First Gasp result; whether Zariel's riders took Lulu (option a/b/c); Veska and Ser Lucan's upgrades; souls laid to rest; Moonkite bond points.
+
 
 ### Session 1 — 2026-02-15
 **Location:** Fort Knucklebone area
