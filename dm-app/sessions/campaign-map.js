@@ -28,7 +28,7 @@ window.CAMPAIGN.map = {
     {
       id: "ch4",
       title: "Chapter 4 · The Sword of Zariel",
-      summary: "Eventyr runs this as one adventuring day: climb the Scab, enter the Bleeding Citadel, survive the Idyllglen dream, claim the Sword. Gate: a worthy hand holds the Sword of Zariel. HERE IT IS BIGGER: the Citadel stands only in a 33-day window, Yael's resting place replaces Idyllglen, and the Sword waits on its dais missing one shard, which cracked off in Zariel's last battle. Olanthius has it. The shard carries the party into the vision trial, then rejoins the blade."
+      summary: "Eventyr runs this as one adventuring day: climb the Scab, enter the Bleeding Citadel, survive the Idyllglen dream, claim the Sword. Gate: a worthy hand holds the Sword of Zariel. HERE IT IS BIGGER: the Citadel is Zariel's headquarters (2026-11-08) with the Scab as the demons' siege works around it, its sanctum stands open only in a 33-day window, Yael's resting place replaces Idyllglen, and the Sword waits on its dais missing one shard, which cracked off in Zariel's last battle. Olanthius has it. The shard carries the party into the vision trial, then rejoins the blade."
     },
     {
       id: "ch5",
@@ -478,19 +478,20 @@ window.CAMPAIGN.map = {
       id: "bleeding-citadel", title: "The Bleeding Citadel",
       x: 40.3, y: 7.8,
       stage: "ch4", path: "main", status: "changed",
-      objective: "Reach the Citadel in a 33-day window, get inside, and claim the Sword of Zariel. It waits on its dais, missing one shard.",
+      objective: "Reach the Citadel, Zariel's headquarters, through the demons' siege mines in the Scab. Get the shard past her to the sanctum she cannot enter, inside a 33-day window, and claim the Sword. It waits on its dais, missing one shard.",
       bloodPrice: "Blood Pay at the door. A vision trial in the Hall of the Last Charge. Lulu relives Yael's death. Miss the window and Elturel drops a Rung.",
       blood: 3,
       eventyr: "All of Chapter 4: the Scab, the Citadel gate, the Idyllglen dream, the Sword. One adventuring day.",
       requires: ["The shard from the Crypt, ideally. Without it Lulu's memory alone opens the vision trial, and the Sword stays notched (DM's choice what that costs).", "The road: all three Fallen Three pieces, or Lulu's final memory.", "A live window. It was 12 days out at the last count."],
       unlocks: ["The Sword of Zariel, whole again -- the physical lever.", "Lulu's reunion with Yael.", "Lulu's caging-memory, the door to Coram."],
       sessions: 2.5,
-      dmChoices: ["The Scab and the Citadel sit at the dark castle in the northern range, between the second and third great pillars (DM placed it, 2026-11-08). The book leaves the spot to the DM.", "The Sword waits on its dais as in the book, missing one shard (Eventyr's option, ruled 2026-10-23). It cracked off in Zariel's last battle; Olanthius kept it.", "The shard is the conduit for the vision trial. When the trial ends it flies up and rejoins the blade in a burst of light.", "The interior is this campaign's own: the Plain of Kneeling Penitents, the Wound-Gate, the Hall of the Last Charge, Yael's resting place, the Sword's chamber.", "The gate opens to grief or Blood Pay, never to force."],
+      dmChoices: ["[CAMPAIGN CANON] DM ruling 2026-11-08: the Citadel is Zariel's current headquarters. Her legion holds the fortress; the Scab around it is the Blood War's siege works (demons tunnel to reach her). The sanctum with the Sword still refuses her, so she guards what she cannot touch. She wants the shard so the Sword can never be whole (a whole Sword could redeem or destroy her), and Lulu silenced or kept close.", "The Scab and the Citadel sit at the dark castle in the northern range, between the second and third great pillars (DM placed it, 2026-11-08). The book leaves the spot to the DM.", "The Sword waits on its dais as in the book, missing one shard (Eventyr's option, ruled 2026-10-23). It cracked off in Zariel's last battle; Olanthius kept it.", "The shard is the conduit for the vision trial. When the trial ends it flies up and rejoins the blade in a burst of light.", "The interior is this campaign's own: the Plain of Kneeling Penitents, the Wound-Gate, the Hall of the Last Charge, Yael's resting place, the Sword's chamber.", "The gate opens to grief or Blood Pay, never to force."],
       alternatives: ["Off-window: hold a vigil at the scar (1d6 each day; 1-2 means a threat finds the camp).", "Run the book's Scab and Idyllglen instead, with the maps below."],
       blocks: [
         { t: "h", text: "How to Run It From Here" },
         { t: "steps", items: [
           "Count the days. Arrive in the window, or plan the vigil.",
+          "Go under her, not through her: the demons' mines in the Scab reach the sanctum's old door below her fortress. Expect her herald at the door with an offer (Lulu for the shard).",
           "The Plain of Kneeling Penitents: the petrified faithful.",
           "The Wound-Gate: grief or Blood Pay opens it.",
           "The Hall of the Last Charge: a personal Wisdom trial for each character.",

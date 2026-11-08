@@ -6,7 +6,7 @@ window.SESSION = {
   id: "14-the-scab",
   title: "The Scab",
   subtitle: "Session 14 · Descent into Avernus",
-  summary: "The shard leads the party down the Scab road, past the Blood War's leftovers, to a hill-sized wound in Avernus with a cathedral buried in it. Inside the Scab are gnolls, demons and a caged beast that belongs to Yeenoghu. Every fight has an exit, because the party is three level-14 heroes and the day is long. Zariel is felt in a pool of blood, not met. At the end the doors of the Bleeding Citadel open to the shard in Lulu's place.",
+  summary: "The shard leads the party down the Scab road, past the Blood War's leftovers, to a hill-sized wound in Avernus around the Bleeding Citadel, which is now Zariel's headquarters. The Scab is the Blood War's siege works: demons tunnel through it to reach her fortress. Inside are gnolls, demons and a caged beast that belongs to Yeenoghu. Every fight has an exit, because the party is three level-14 heroes and the day is long. Zariel watches from her walls and is felt in a pool of blood, not met. At the end the old sanctum door under her fortress, the one she cannot pass, opens to the shard in Lulu's place.",
 
   party: [
     { id: "drenwal", name: "Drenwal", note: "Light Cleric 14. Sigil of the Binding (Tier II). Shield of the Hidden Lord. Gasps start outside the Crypt." },
@@ -284,16 +284,17 @@ window.SESSION = {
       when: "",
       duration: "10 minutes",
       blocks: [
-        { t: "p", text: "{@b Draft opening.} It assumes Session 13 ends with the party out of the Crypt and Lulu taken. Rewrite the read-aloud below once Session 13 is over. This session is the Scab: a hill-sized wound in Avernus with the Bleeding Citadel buried in it. The road is short, the dungeon is crowded, and the last fight is at the door. It ends as the doors open to the shard." },
+        { t: "p", text: "{@b Draft opening.} It assumes Session 13 ends with the party out of the Crypt and Lulu taken. Rewrite the read-aloud below once Session 13 is over. This session is the Scab: a hill-sized wound in Avernus around the Bleeding Citadel, Zariel's headquarters. The road is short, the dungeon is crowded, and the last fight is at the door. It ends as the sanctum doors open to the shard." },
 
         { t: "h", text: "At a Glance" },
         { t: "list", items: [
           "{@b 1 · The Road to the Scab (30 min).} The shard leads. One road encounter, Moonkite's beat, a possible Gasp.",
           "{@b 2 · The Mouth of the Scab (20 min).} The gnolls outside, the climb, the dark, the blood.",
           "{@b 3 to 5 · The Scab, levels 1 to 3 (about 2 hours).} Areas S1 to S14. Three real fights, a few optional, one chase.",
-          "{@b 6 · Zariel's Presence, part 2 (15 min).} She is felt in a pool of blood. She asks for a parley.",
-          "{@b 7 · The Gates of the Bleeding Citadel (15 min).} The shard opens the door. The cliffhanger. Then the {@side the-sword-reforged|Sword Reforged} side if the session has time."
+          "{@b 6 · Zariel's Presence, part 2 (15 min).} She is felt in a pool of blood, watching from her walls above. She asks for a parley: the shard, before it reaches the door.",
+          "{@b 7 · The Gates of the Bleeding Citadel (15 min).} The sanctum door, under her fortress. The shard opens it; she cannot follow. The cliffhanger. Then the {@side the-sword-reforged|Sword Reforged} side if the session has time."
         ] },
+        { t: "note", title: "The Citadel Is Zariel's Headquarters", text: "{@b [CAMPAIGN CANON] DM ruling 2026-11-08:} the Bleeding Citadel is Zariel's current headquarters. {@b Above:} her legion holds the fortress, its walls and halls. {@b Around it:} the Scab is the Blood War's siege works; the demons tunnel through it to get at her, and Trantolox's warband is one of them. {@b At its heart:} the old sanctum where the Sword lies on its dais. Its doors open only for the pure of heart, and they still refuse her. She holds the fortress and guards what she cannot touch. {@b What she wants:} to stop the reforging. A whole Sword could redeem her or destroy her, and she wants neither; with the shard in her hands the Sword stays broken for good. Lulu knows the way back to who she was, so Zariel wants Lulu silenced or kept close. {@b The way in:} not her gates. The demons' tunnels run under her walls to the sanctum's old door at S14, below the fortress. Inside the sanctum she cannot follow." },
 
         { t: "h", text: "What Happened Last Time" },
         { t: "p", text: "Read this to the players. Then ask each of them one question about it before you go on." },
@@ -418,7 +419,7 @@ window.SESSION = {
         ] },
         { t: "note", title: "Inside the Scab", text: "{@b Darkness.} No light unless the area says so. {@b Surfaces.} Dug by demon claws. {@b Pools of blood} are difficult terrain; a creature in the blood makes a DC 13 Wisdom save or gains the flaw \"I am cruel and uncaring toward others\" for 8 hours (dispel evil and good ends it). {@b Tunnels} are 10 feet wide unless stated." },
         { t: "more", title: "Why the Scab is shaped like this", src: ["Book", "Eventyr", "Homebrew"], blocks: [
-          { t: "p", text: "{@b Book:} the Scab is a mass of dried blood and flesh around the Bleeding Citadel, with demon-dug tunnels through it. {@b Eventyr:} the map is split into three levels from the cross-section, with the S13 corridor widened to make room for the gnoll fight." },
+          { t: "p", text: "{@b Book:} the Scab is a mass of dried blood and flesh around the Bleeding Citadel, with demon-dug tunnels through it. {@b Eventyr:} the map is split into three levels from the cross-section, with the S13 corridor widened to make room for the gnoll fight. {@b Ours (2026-11-08):} the demons dig because they are besieging Zariel's headquarters; the tunnels are siege mines, and the deepest one reached the sanctum door under her fortress." },
           { t: "p", text: "{@b Why this link exists:} so you can run the Scab as a dungeon with a map, rather than a cross-section drawing." }
         ] },
         { t: "choices", prompt: "The mouth is open.", items: [
@@ -493,7 +494,7 @@ window.SESSION = {
         { t: "checks", items: [
           { skill: "Medicine", dc: 15, who: "anyone", text: "Remove a chain without hurting him. Otherwise a chain comes off as an action and deals 2d6 piercing damage to the devil. (Chains: AC 19, 15 hp, immune to cold, fire, poison and psychic.)" },
           { skill: "Deception vs Insight", dc: 13, who: "anyone", text: "Contested (DC 13 if you want a flat number). Convince him Zariel sent you. If it works he is relaxed; if not he wants a deal." },
-          { skill: "Persuasion", dc: 15, who: "anyone", text: "He tells you that the demons found the Citadel's door but cannot get in, and that a shadow demon found Yeenoghu's lost beast and is trying to dig it free." }
+          { skill: "Persuasion", dc: 15, who: "anyone", text: "He tells you that the demons mined under Zariel's fortress and found an old door that will not open for them (or for her), and that a shadow demon found Yeenoghu's lost beast and is trying to dig it free." }
         ] },
         { t: "p", text: "If they will not free him he offers his information for his freedom. Whatever they do, if they mention the Sword he will try to report to Zariel. That feeds scene 6." },
 
@@ -594,14 +595,15 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "Session 13 gave signs. This is the second beat: a presence, not a meeting. She does not enter the scene. She watches, and she lets them know it. Full guide in {@side zariel|Playing Zariel}." },
         { t: "img", src: "art/generated/env-zariels-presence.webp", caption: "Zariel, far down in the blood mirror.", credit: "Generated art (Codex, gpt-6-astra)." },
-        { t: "read", text: "The blood in the nearest pool stops moving. It goes flat and dark as a mirror, and in it, very far down, a woman stands with her back to you, hand resting where a sword would hang.\n\nShe does not turn. The shard in your pack goes quiet, as if it were holding its breath.\n\n\"I am told you carry something of mine,\" says a calm, tired voice, from everywhere at once. \"Bring it to me. Then I will tell you the cost of keeping what is yours.\"" },
+        { t: "read", text: "The blood in the nearest pool stops moving. It goes flat and dark as a mirror, and in it a woman stands on a high wall above a red sky, with her back to you, hand resting where a sword would hang. The wall is the one over your heads.\n\nShe does not turn. The shard in your pack goes quiet, as if it were holding its breath.\n\n\"I am told you carry something of mine,\" says a calm, tired voice, from everywhere at once. \"Bring it up to me, not down to that door. Then I will tell you the cost of keeping what is yours.\"" },
         { t: "env", sight: "A pool of blood gone still as glass, a figure at the bottom of it with her back turned.", sound: "Nothing at all. The Scab holds its breath.", smell: "Cold iron, no rot, for the length of the voice.", feel: "The kind of attention you feel when a general reads your name off a list." },
 
         { t: "h", text: "What She Wants Them to Feel" },
         { t: "list", items: [
           "{@b Measured.} She has counted them, the way she counted everyone she ever led.",
           "{@b Invited, not threatened.} The terms are plain. She does not raise her voice, because she has never needed to.",
-          "{@b Late.} She has been waiting a long time and is neither angry nor in a hurry."
+          "{@b Late.} She has been waiting a long time and is neither angry nor in a hurry.",
+          "{@b Afraid of one thing.} The shard reaching the Sword. She never says so. Insight DC 20 catches that she asks for the shard first and Lulu second."
         ] },
         { t: "p", text: "She asks for a parley, not a surrender. She does not repeat herself. If Alazub reported the Sword to her, she knows already which of them carries the shard, and she says so by naming the carrier's trade, never their name." },
 
@@ -609,7 +611,7 @@ window.SESSION = {
         { t: "list", items: [
           "{@b If her riders have Lulu (default).} The voice stops. A second voice, small and clear, says one line in its own words: \"I am all right. Please be kind to her.\" It is the first sign Lulu is not a prisoner in the usual sense.",
           "{@b If Lulu is aboard.} She does not mention Lulu. Her silence is the loudest thing in the scene.",
-          "{@b Either way,} the shard is the party's only way in, and Zariel has just told them she knows it."
+          "{@b Either way,} the shard is the party's only way into the sanctum, and Zariel has just told them she knows it. She cannot open that door; she can only make sure they never reach it."
         ] },
         { t: "checks", items: [
           { skill: "Insight", dc: 15, who: "anyone", text: "She is not lying. She never does. She is also not offering mercy; she is offering a schedule." },
@@ -640,9 +642,10 @@ window.SESSION = {
       blocks: [
         { t: "read", text: "The doors are brass, taller than a church, and a blindfolded angel is carved across both of them with her sword half out. The frame is gold runes. Even the rot of the Scab seems to keep back from them by a few paces." },
         { t: "img", src: "art/generated/env-citadel-gates.webp", caption: "The gates of the Bleeding Citadel.", credit: "Generated art (Codex, gpt-6-astra)." },
-        { t: "note", title: "Why It Bleeds", text: "{@b Table ruling (Session 12):} the Citadel stands where Zariel, still an angel, executed {@b Yael} for leaving the devil gate to save a child, the breach that lost the invasion. After Zariel fell, Yael's ghost and Lulu carried the Sword here, to the ground her blood had consecrated, and the fortress rose around it. The walls have bled ever since. The doors open only for the pure of heart, so Zariel knows the place and cannot enter. If the party met her shade in the Scales of Mercy, let whoever voted for the insignia notice that the brass angel on the doors is blindfolded, like a judge, with her sword half drawn: Zariel, at the moment of the sentence." },
+        { t: "note", title: "Why It Bleeds", text: "{@b Table ruling (Session 12):} the Citadel stands where Zariel, still an angel, executed {@b Yael} for leaving the devil gate to save a child, the breach that lost the invasion. After Zariel fell, Yael's ghost and Lulu carried the Sword here, to the ground her blood had consecrated, and the fortress rose around it. The walls have bled ever since. The sanctum doors open only for the pure of heart. {@b [CAMPAIGN CANON] DM ruling 2026-11-08:} Zariel has since made the fortress built over the sanctum her headquarters: her legion holds the walls and halls, but the sanctum and the Sword still refuse her, so she guards what she cannot touch. These brass doors are the sanctum's old lower door, reached only through the demons' mines. If the party met her shade in the Scales of Mercy, let whoever voted for the insignia notice that the brass angel on the doors is blindfolded, like a judge, with her sword half drawn: Zariel, at the moment of the sentence." },
         { t: "env", sight: "Brass doors with a blindfolded angel, a frame of gold-inlaid runes, scab pulled back from the frame.", sound: "A very faint hymn, as if from the far end of a long hall.", smell: "Wax and clean stone, for the first time since the Crypt.", feel: "The shard in the carrier's hand is hot." },
         { t: "p", text: "The doors are indestructible and have abjuration on them. The runes carry a warning that only the pure of heart may part them. {@b In the printed adventure} a good-aligned creature opens them only with Lulu within 60 feet, and otherwise a voice offers to let them in if they bring her." },
+        { t: "note", title: "Getting the Shard Past Her", text: "She cannot pass this door, so her only chance is before it. {@b Her moves:} a {@c narzugon|narzugon} and riders come down a stair from the fortress into S14 to bar the way, and they offer a trade: Lulu (if she is Zariel's) for the shard, right here. {@b The party's answers:} fight through, bargain, or bluff (she never lies, so a lie told to her herald works once). {@b Once inside:} she cannot follow. The sanctum's light restores the party, and they have time for Yael and the vision. {@b Getting out again} is the next problem: the only ways out are back through the Scab or up through her fortress, unless the Sword's light opens a third (see The Sword Reforged)." },
 
         { t: "h", text: "Opening the Door with the Shard" },
         { t: "p", text: "Eventyr's \"Replacing Lulu\" option: the shard is the conduit. A good-aligned creature who carries it and presses a hand to the door opens it. If nobody carrying it is good, the door does not move; a voice asks for the shard to be given to someone who is." },
@@ -692,7 +695,7 @@ window.SESSION = {
       blocks: [
         { t: "p", text: "End on the open doors and the glowing sword. Read the outcomes that happened." },
         { t: "h", text: "Outcome: The Doors Open" },
-        { t: "p", text: "They go in. The Citadel's light gives a full long rest, as in the printed adventure. This is the session's win. Run {@side the-sword-reforged|The Sword Reforged} next." },
+        { t: "p", text: "They go in. The sanctum's light gives a full long rest, as in the printed adventure. Above them Zariel knows the door has opened, and her legion moves to hold every way out. This is the session's win. Run {@side the-sword-reforged|The Sword Reforged} next." },
         { t: "h", text: "Outcome: Trantolox Escaped" },
         { t: "p", text: "He is below 60 hit points and gone. He tells Zariel's riders where the shard is, or he sells it to Bel. He is back in Chapter 5 with a grudge." },
         { t: "h", text: "Outcome: They Made a Deal with Trantolox" },
@@ -777,7 +780,7 @@ window.SESSION = {
         { t: "h", text: "Claiming and Attuning the Sword" },
         { t: "p", text: "Any character who survived the vision can draw the Sword. If it accepts them, it attunes at once. The wielder is the players' choice; do not decide it for them." },
         { t: "list", items: [
-          "{@b The light.} When the Sword is drawn, the Citadel and the Scab outside burst into blinding light. Creatures in the Scab are hurled away and badly hurt; those inside the Citadel take no harm.",
+          "{@b The light.} When the Sword is drawn, the Citadel and the Scab outside burst into blinding light. Creatures in the Scab are hurled away and badly hurt; those inside the sanctum take no harm. {@b Ours (2026-11-08):} the light also tears through Zariel's fortress above, and in the book claiming the Sword destroys the Citadel: drawing it breaks her headquarters. That is the party's way out, and the reason she wanted the shard.",
           "{@b The wielder's pull.} The Sword is a legendary weapon, and its power presses on the wielder's alignment. Watch it: the endgame hinges on that shift.",
           "{@b The Sword's powers.} A radiant weapon against fiends, with an angelic edge and its own gifts. These are the printed item's; see it for the exact bonuses, extra damage, spells and drawbacks."
         ] },

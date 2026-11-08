@@ -61,6 +61,8 @@
 
 **Cinderbloom timing (proposed 2026-10-23):** Feonor's day-10 message is pulled forward to the dawn after Uldrak's Grave (count it as **day 4** of the geas). Urexiel's price: Or'Henn himself, **or a live chromatic dragon**; a dead one buys only her Green Remnant. The staff itself is collected in a later Menagerie session. Tiamat can offer "Her Key" (staff handed over free) for a gold scale.
 
+**The tower dragons as individuals (2026-11-07, details in `dm-app/sessions/campaign-tower.js`):** Slarkas (old black), Vistalancer (vain, careful blue), Vermilius (**she**; green; Arkhan's handprint on her throat = the vessel mark), Flash (young red, true name Praxamor), Obatala (white). Open hooks: Slarkas's lance rider buried in the Crypt. Flash and Vistalancer died in Session 13.
+
 **Added 2026-10-23 — the dragon trap:** after freeing Uldrak, the party plans to use the **Orb of Dragonkind** in his sword's pommel to **call Arkhan's dragons to the Grave and fight them** with the restored empyrean beside them. Built in the DM app as *The Call* + *Wings Over the Grave*: Flash (r1), Slarkas + Vermilius (r3), Vistalancer (r5), Obatala + Krull with an offer for the orb (r7). Vermilius offers Or'Henn "help" — the curse's bait.
 
 **The Uldrak fork is closed** — the book version stands: the vial frees him. *(Note the campaign map still carries the Eventyr twist text under `uldraks-grave`; ignore or edit it there.)*
@@ -132,6 +134,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 
 ### MAIN QUEST
 0. **⚔ THE SWORD — ONE MISSING SHARD (ruled 2026-10-23, replaces the 2026-10-11 three-shard split).** Checked against the book: the official adventure never breaks the Sword; it waits whole on its dais in the Bleeding Citadel. The DM chose **Eventyr Games' one-shard option**: the Sword waits on its dais **missing one small shard** that cracked off in Zariel's last battle (nobody broke it on purpose). **Olanthius picked it up off the field and keeps it at the Crypt.** The shard has a spark of sentience, pulls toward the Citadel, carries the party into the vision trial, then flies back onto the blade.
+   - **[CAMPAIGN CANON] DM ruling 2026-11-08: the Bleeding Citadel is Zariel's current headquarters.** Her legion holds the fortress; the Scab around it is the Blood War's siege works (demons tunnel through it to reach her; the party goes through the demons). The Sword lies in the inner sanctum, whose pure-of-heart doors still refuse her: she guards what she cannot touch. **Her motive: stop the reforging.** A whole Sword could redeem or destroy her and she wants neither; with the shard in her hands the Sword stays broken for good. Lulu knows the way back to her old self, so Zariel wants Lulu silenced or kept close. Drawing the Sword breaks the Citadel, and with it her headquarters.
    - **Kostchtchie's Maw and the Pit of Shummrath are optional again** (no shards there). Kostchtchie is Olanthius's book task: free him to distract Zariel.
    - Without the shard, Lulu's memory alone opens the vision trial and the Sword stays notched (DM's choice what that costs).
    - **The Fallen Three are unchanged** — they supply the *road to the Citadel* (Haruman's piece held 1/3; Bel's and Olanthius's open).
@@ -388,7 +391,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 
 ### Session 12 — The Siege of the Crypt (in play, 2026-11-01)
 - **Urn Hall:** three great urns, three waves (rearguard wraiths, lance wraiths, Marshal Aubrec Dunmere). The party did very well.
-- **Scales of Mercy ruling:** the shade was **Yael**. She watched the devil gate during the Hellriders' invasion, left her post to save a child near it, and the breach that followed lost the invasion. **Zariel, still an angel, executed her herself.** The party split one each way with one abstention, then **chose the insignia** (Zariel's verdict). Afterwards Yael's ghost and Lulu carried the Sword (after Zariel fell) to the ground where she died; her blood consecrated it and **the Bleeding Citadel rose there**. Pure-of-heart doors: Zariel knows where it is and cannot enter. Yael remembers the vote at the Citadel.
+- **Scales of Mercy ruling:** the shade was **Yael**. She watched the devil gate during the Hellriders' invasion, left her post to save a child near it, and the breach that followed lost the invasion. **Zariel, still an angel, executed her herself.** The party split one each way with one abstention, then **chose the insignia** (Zariel's verdict). Afterwards Yael's ghost and Lulu carried the Sword (after Zariel fell) to the ground where she died; her blood consecrated it and **the Bleeding Citadel rose there**. Pure-of-heart sanctum doors: Zariel holds the fortress around it as her headquarters (ruling 2026-11-08) but cannot enter the sanctum. Yael remembers the vote at the Citadel.
 - **Generals' Seats:** rank ordering by sun rays (Zariel 4, Haruman 3, Olanthius 2, Yael 1).
 
 ---

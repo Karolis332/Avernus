@@ -756,6 +756,7 @@ window.SESSION = {
         { t: "h", text: "Jeremy's Message" },
         { t: "p", text: "The Lady Vengeance is hidden in the mists. The party gets a message from Jeremy: through a sending, a whispered line over the ship's speaking trumpet, or the Planar Core's own voice. Pick whatever fits how the session ended." },
         { t: "read", text: "It is Jeremy. His voice is thin and fast, and there is a lot of static under it.\n\n\"Right. Right, I need you to listen, because I will only say this once. We were fine. We were hidden, we were quiet, and then the mist went white and the wards went out for about the length of a held breath, and when it came back the deck was full of riders in white and gold and Lulu was just {@i not there.}\"\n\nA long breath.\n\n\"Nobody got hurt. They were very polite. One of them said, 'She will be safe.' I do not know what that means. I do not like it.\"" },
+        { t: "p", text: "{@b What she means} ([CAMPAIGN CANON] DM ruling 2026-11-08): the Citadel is her headquarters, and the Sword lies in a sanctum there that refuses her. She asks for the shard first because a whole Sword could redeem or destroy her, and she wants neither. Lulu knows the way back to who she was; Zariel wants her silenced or kept close." },
         { t: "note", title: "End on the Cliffhanger", text: "Lulu is gone. That is the end of the session. Do not resolve it. Let the players react." },
         { t: "more", title: "If you don't want Lulu to be taken", src: ["Homebrew"], blocks: [
           { t: "list", items: [
