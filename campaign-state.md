@@ -189,8 +189,8 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 
 ## Session Log
 
-### Session 13 — 2026-11-08 (live notes, desktop PC; finish after the session)
-**Location:** Crypt of the Hellriders → the Lady Vengeance, in the mists of Avernus
+### Session 13 — 2026-11-08 (played; results from the DM 2026-11-12)
+**Location:** Crypt of the Hellriders → the Lady Vengeance → up the Styx → the Throat → near the Wandering Emporium
 **Party level:** 14 (DM).
 **Events so far:**
 - Drenwal cast **Word of Recall** from inside the Crypt (out of Arkhan's sight; it used his only 6th-level slot). The party blinked onto the Lady Vengeance at St. Cuthbert's statue.
@@ -208,7 +208,9 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 - **Retaliation (proposal):** 3 narzugons on nightmares follow the Styx (they catch the ship at its next stop); every Styx watchtower now reports the ship; Writ of Hunt bounty across Avernus within 1–2 days (Urexiel's brokers sell positions; pressure on the Emporium); Elturel pays (one Rung or a district burns); the fortress hunts the ship once repaired. **Kreeg offered to defect** (his signature for passage). If left behind, Zariel erases him by dawn and Elturel's contract can never be unsigned. **Outcome of his offer: not yet recorded.**
 - **Ship upgrade noted:** cannons +2d10 fire from red dragon scales (DM).
 - **XP (suggested):** Flash 18,000 + Vistalancer 15,000 = 33,000, i.e. 11,000 each (DM's call).
-**Still to record:** Or'Henn's Pull and gold scales; whether the curse moved (it did not, as far as reported); the ship's hit points; Bhaal's First Gasp result; whether Zariel's riders took Lulu (option a/b/c); Veska and Ser Lucan's upgrades; souls laid to rest; Moonkite bond points.
+- **Kreeg's interception at the Throat (DM, 2026-11-12): the party fought and beat Thavius Kreeg.** He caught the ship in the gorge half a day short of the Emporium, outside Mahadi's truce. His fate is not yet recorded: dead, dropped into the barge's hold by the Escape Clause (the prepared 0-HP exit), or signed his name for his life. Loot from his cabin (Kreeg's Ledger, the High Overseer's Ring, the contract copy, 30 soul coins, the Ledger's Due itself) not yet recorded.
+- **Session ended near the Wandering Emporium** (anchored near the Mirror of Mephistar). Next: the Emporium under Mahadi's truce (shops in `campaign-emporium.js`), then the Scab (Session 14).
+**Still to record:** Or'Henn's Pull and gold scales; whether the curse moved (it did not, as far as reported); the ship's hit points; Bhaal's First Gasp result; whether Zariel's riders took Lulu (option a/b/c); whether Zariel's Lesson was played; Kreeg's fate and loot; Veska and Ser Lucan's upgrades; souls laid to rest; Moonkite bond points.
 
 
 ### Session 1 — 2026-02-15
@@ -400,4 +402,4 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 
 ---
 
-*File last updated: 2026-11-01 (Session 12 in play: Urn Hall, Yael ruling)*
+*File last updated: 2026-11-12 (Session 13 results: Flash and Vistalancer dead, Kreeg beaten at the Throat, ended near the Emporium)*
