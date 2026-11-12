@@ -29,12 +29,15 @@ def main() -> None:
         src, prompt, *opt = specs[key]  # optional third item: resolution; a restyle then skips the photoreal tail
         if key in jobs:  # never pay twice
             continue
-        small = OUT / f"edit-src-{key}.jpg"  # 5.5K sources fail as inputs: send a 4096-px copy
-        im = Image.open(OUT / src).convert("RGB")
-        im.resize((4096, round(4096 * im.height / im.width)), Image.LANCZOS).save(small, quality=93)
-        up = hf("upload", "create", str(small))
-        up_id = up["id"] if isinstance(up, dict) else up[0]["id"] if isinstance(up[0], dict) else up[0]
-        ids = hf("generate", "create", "nano_banana_2_1", "--image", up_id, "--aspect_ratio", "auto",
+        imgs = []
+        for i, one in enumerate(src if isinstance(src, list) else [src]):  # 5.5K sources fail as inputs: send a 4096-px copy
+            small = OUT / f"edit-src-{key}-{i}.jpg"
+            im = Image.open(OUT / one).convert("RGB")
+            w = min(4096, max(im.width, 2048))
+            im.resize((w, round(w * im.height / im.width)), Image.LANCZOS).save(small, quality=93)
+            up = hf("upload", "create", str(small))
+            imgs += ["--image", up["id"] if isinstance(up, dict) else up[0]["id"] if isinstance(up[0], dict) else up[0]]
+        ids = hf("generate", "create", "nano_banana_2_1", *imgs, "--aspect_ratio", "16:9" if isinstance(src, list) else "auto",
                  "--resolution", opt[0] if opt else "4k", "--prompt", prompt if opt else prompt + TAIL)
         if not (isinstance(ids, list) and len(ids) == 1):
             sys.exit(f"STOP: {key} returned {ids!r}")

@@ -6,7 +6,7 @@ profile of them", "cuz then we can animate thavius kreeg".
 
 - Everything here is from the DM unless it is marked **(guess)**. A guess is Claude's and waits for the DM.
 - Add a line the moment the DM gives a new detail. Read this file before writing any prompt.
-- Reference drawings: `dm-app/docs/style-test/higgsfield/toon-*.webp`. Prompts and job ids: same folder.
+- Reference paintings: `dm-app/docs/style-test/higgsfield/paint-*.webp` (the current look). The older `toon-*.webp` are the cel-shaded set the DM moved away from. Prompts and job ids: same folder.
 
 ## The look
 
@@ -14,7 +14,7 @@ profile of them", "cuz then we can animate thavius kreeg".
 - One combat round is six seconds of film.
 - Sound and voices: the horror of being in the Hells comes first. The first voice test had heroes shouting lines ("Fuel's dropping! Feed her, now!", "Sorry, friend.") and the DM called it "hella cringe": "less cringe voicelines more horror of the hells being there". So few words, no quips, no grins; screams, dread and the place itself carry the sound.
 - 1080p. No generic soldiers or extras.
-- Faces and finish (DM on the v2 cut and the first drawings): "the animation needs more refinement and lets move away from the AI slop faces". Each character needs a designed face of their own, drawn cleanly, and it has to hold in motion.
+- Faces and finish (DM on the v2 cut and the first drawings): "the animation needs more refinement and lets move away from the AI slop faces". Each character needs a designed face of their own, drawn cleanly, and it has to hold in motion. Offered three face styles (`face-styles.webp`), the DM picked **B, painterly**: no outlines, faces and forms built from brushed light and colour, realistic bone structure, dark and moody.
 - Stat block clips (dragon moves, the Mirror, the ship) stay photoreal and cinematic: the DM approved those.
 
 ## Heroes

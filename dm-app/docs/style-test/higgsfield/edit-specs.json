@@ -124,5 +124,101 @@
   "cine-toon-veska2.png",
   "Redraw this image as a production frame from a hand-drawn 2D animated fantasy series for adults made by a professional television animation studio. Economical, confident line work: a thick clean outer contour and very few interior lines; no cross-hatching, no drawn wrinkles or pores, no scratchy texture lines. Flat colour with exactly one hard-edged shadow tone and one highlight tone (two-tone cel shading); no gradients, no airbrushing, no soft glow on skin. The face is designed, not generic: built from simple angular planes with a clear, distinctive face shape, simple angular eyes, a nose drawn with one or two lines, a thin expressive mouth. Loose, muted painted background so the character reads clearly. Keep the same pose, costume, weapons and colours. Change her equipment and hair: Sergeant Veska has a long dark ponytail tied high and carries a long steel-tipped cavalry lance in her right hand, held ready like a spear, with the kite shield on her left arm; no sword in her hand. Her face: broad, with a strong square jaw, a short straight nose, hooded watchful eyes, a scar through her left eyebrow. Hard, unafraid expression, mouth closed. Keep the dented splint-mail cuirass and the Hellrider tabard faded to the colour of old brick.",
   "2k"
+ ],
+ "paint-drenwal": [
+  [
+   "cine-toon-drenwal-nb.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. His face is the face of the man in the style reference: a heavy square jaw, a broad nose broken once, deep-set tired eyes under a heavy brow, short black hair, a short squared black beard, a thin scar across the bridge of the nose. Keep the dark plate armour inscribed with glowing runes, the crimson cloak, the black iron shield with the horned fiend's face and the glowing golden mace.",
+  "2k"
+ ],
+ "paint-aurora": [
+  [
+   "cine-toon-aurora.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. She is an astral elf: a long narrow face with high sharp cheekbones and a pointed chin, large upward-slanted eyes of solid pale white light with no pupils, luminous lilac-blue skin, long silver-white hair, long pointed ears, an antlered silver circlet, a cloak of stars and a tall bow of white moonlight. Cold, focused expression. Behind her there is only a bare black iron deck and rail under a dark red sky: no ropes, no rigging.",
+  "2k"
+ ],
+ "paint-veska": [
+  [
+   "cine-clean-veska.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. She is Sergeant Veska: a broad, strong woman in her forties with a strong square jaw, a short straight nose, hooded watchful eyes, a scar through her left eyebrow and a long dark ponytail tied high; a dented splint-mail cuirass, a Hellrider tabard faded to the colour of old brick, a kite shield and a long steel-tipped lance.",
+  "2k"
+ ],
+ "paint-orhenn": [
+  [
+   "cine-toon-orhenn.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. He is a red dragonborn druid: a dragon's head with crimson scales, swept-back horns and haunted amber eyes, and scales turned metallic gold spreading along the left side of his jaw and neck like a stain; charred leather and ember-orange robes with a mantle of blackened bark, a staff tipped with living flame, and a small fox of living fire at his heels.",
+  "2k"
+ ],
+ "paint-lucan": [
+  [
+   "cine-toon-lucan-nb.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. He is an old knight: a gaunt, deeply weathered face with a grey beard and pale tired eyes under an open-faced steel helm; a crimson surcoat over old plate armour, golden-brass mechanical legs, a shield and a longsword.",
+  "2k"
+ ],
+ "paint-jack": [
+  [
+   "cine-toon-jack2.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. He is the ship's pilot: a lean, sun-scorched man with hollow cheeks, dark stubble and hard haunted eyes, grim, not smiling; a long brown leather coat, scarf and gloves, one hand on the great iron wheel, the other dropping a rolled scroll and a coin of black iron into a brass chute beside the wheel.",
+  "2k"
+ ],
+ "paint-jeremy": [
+  [
+   "cine-toon-jeremy2.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. He is a gnome engineer, rugged and dusty: a lined, scarred face with grey stubble and a grim tired look, brass goggles pushed up into soot-grey hair, a torn leather apron scorched black, a notebook on a chain; he stands at a brass panel of fuel gauges beside a caged sphere of blue-white energy, holding a glowing scroll.",
+  "2k"
+ ],
+ "paint-moonkite": [
+  [
+   "cine-toon-moonkite.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. It is a celestial steed the size of a small horse with the grace of a great cat: a white-silver coat, silver branching antlers, large feathered white wings and pale starlight leaking from it. Keep its design exactly.",
+  "2k"
+ ],
+ "paint-gunner": [
+  [
+   "cine-toon-gunner.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. It is a man-sized automaton of golden brass plates, gears and pistons with one round glowing blue lens for an eye, manning a huge black iron force cannon ringed with glowing blue-white crystal bands. Keep the design exactly.",
+  "2k"
+ ],
+ "paint-ship": [
+  [
+   "cine-toon-ship2.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. It is a long black iron flying galley of riveted plating with glowing gun-ports along her flank, a barbed harpoon launcher at the bow, one bare iron mast with a crow's nest, one huge force cannon on the upper deck and blue-white engine fire trailing behind the stern; she flies toward the left, bow first. Keep her design exactly.",
+  "2k"
+ ],
+ "paint-red": [
+  [
+   "cine-toon-red.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. It is a red dragon with bright scarlet scales and glowing orange cracks between them, a crown of swept-back horns and a spined crest, breathing a cone of fire over the stern of an iron warship. Keep his design exactly.",
+  "2k"
+ ],
+ "paint-blue": [
+  [
+   "cine-toon-blue.png",
+   "style-b.png"
+  ],
+  "Repaint the first image completely in the painting style of the second image, which is only a style reference: the look of a painterly animated feature film. No ink outlines anywhere. Every form is sculpted from brush-textured planes of light and colour with visible brushstrokes, with realistic bone structure and anatomy, rich moody painted lighting, deep shadows, and a dark muted palette lit by red firelight. It must look as if the same painter made both images. The mood is dark horror: the Nine Hells are a terrifying place. Keep the subject, pose, costume, weapons and composition of the first image; do not copy the man from the second image unless told to. It is a blue dragon with azure and indigo scales, horns banded with gold rings, a steel-capped horn on his snout, lightning in veins through his wings and a round hole burned through one wing, breathing a line of blue-white lightning along an iron deck. Keep his design exactly.",
+  "2k"
  ]
 }
