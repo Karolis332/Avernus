@@ -792,36 +792,6 @@ window.SESSION = {
 
   side: {
 
-    "what-arkhan-knows": {
-      title: "What Arkhan Knows",
-      blocks: [
-        { t: "p", text: "Arkhan is old, well travelled and well informed. He answers in character, always politely, and always with a price or a twist. He never lies. He does not need to." },
-        { t: "h", text: "Tiamat's blood" },
-        { t: "read", text: "\"The blood of a goddess, still alive. It remembers being part of her. Spill it on the right ground and it breaks curses that she laid. Give it to the right devil and it buys you anything he has. Drink it...\" He smiles. \"Do not drink it.\"" },
-        { t: "p", text: "{@b Price:} free. He wants them to want it more." },
-        { t: "h", text: "Zariel" },
-        { t: "read", text: "\"An angel who came down to win a war and stayed to rule the battlefield. She is a fine general and a poor queen. My queen has no love for her. If you plan to hurt Zariel, we may be friends for longer than you think.\"" },
-        { t: "p", text: "{@b Twist:} Tiamat wants Zariel gone too. Arkhan hints that, for a price, Tiamat might help against her someday." },
-        { t: "h", text: "Elturel" },
-        { t: "read", text: "\"A whole city, dragged down on chains. The chains are pulling it toward the Styx. When it touches the water, every soul in it forgets itself, and Avernus gets a city of new devils. Cities do not fall into Hell by accident, you know. Someone always signs something.\"" },
-        { t: "p", text: "{@b Twist:} he does not know whose name is on the deal, and says so. DM: use the last line only if you want to plant the contract clue." },
-        { t: "h", text: "The Sword of Zariel" },
-        { t: "read", text: "\"Her old blade. When she fell, someone who loved her carried it off the field and hid it, somewhere in this layer, I am told. Nobody has found it since. My queen would very much like to know where it went.\" His eyes drift to Lulu, and rest there a moment too long." },
-        { t: "p", text: "{@b Twist:} he does not know about Lulu's past, but he suspects there is something holy about her. Asking more makes him curious, which is dangerous." },
-        { t: "h", text: "Bel" },
-        { t: "read", text: "\"The archduke Zariel threw down. He sits in his forge and builds her war machines and hates her every hour. He is a rival of mine. Anything you take from him makes me happy.\"" },
-        { t: "p", text: "{@b Price:} a small one. Arkhan asks the party to tell Bel, when they meet him, that Arkhan sends his regards. Bel will not like it." },
-        { t: "h", text: "The Hand of Vecna" },
-        { t: "read", text: "\"I found it on a world called Exandria. A short trip, a long story. I cut off my own hand to wear it. Every day it asks me for something. Every day I say no, until I feed it. One day I will master it, and then I will open my queen's prison with it.\" He flexes the black fingers. \"Or it will master me.\"" },
-        { t: "p", text: "{@b Twist:} he says it calmly. A successful DC 16 Wisdom (Insight) check shows that he is far more afraid than he sounds." },
-        { t: "h", text: "Mephistopheles" },
-        { t: "read", text: "\"The lord of the eighth layer. He keeps a mirror on the edge of Avernus and sells answers through it. Every answer is true. Every answer is aimed. He will take your soul coins and your blood, and he will thank you.\"" },
-        { t: "h", text: "Dumal" },
-        { t: "p", text: "Only if someone mentions Drenwal's brother, or a Bhaalspawn." },
-        { t: "read", text: "\"A child of Bhaal, walking toward Mephistopheles' mirror? Yes. I heard something. The abishai talk. A son of murder went to ask the lord of the eighth for help against the people who set a demon prince on him.\" He looks at Drenwal. \"He sounded angry. Family usually is.\"" },
-        { t: "p", text: "{@b Price:} for more detail (when Dumal passed, what he carried), Arkhan wants one small service later, no questions asked. If Drenwal agrees, see {@side gargauth-trick|The Gargauth Trick}: Gargauth has opinions about debts." }
-      ]
-    },
 
     "krull-on-the-walk": {
       title: "What Krull Says on the Way",
@@ -874,28 +844,6 @@ window.SESSION = {
       ]
     },
 
-    "raise-the-dead": {
-      title: "Raise the Dead",
-      blocks: [
-        { t: "p", text: "Krull does not have {@spell raise dead} himself. He brokers Arkhan's. Arkhan can cast {@spell revivify} three times a day and {@spell raise dead} once a day. Krull names the price; Arkhan does the casting." },
-        { t: "read", text: "Krull kneels beside the body. He touches the cold forehead with one wrinkled finger and makes a small, sad noise.\n\n\"Tsk. Such a waste. Well. Arkhan can fix this, if you like. He has done it many times. It costs something, of course.\" He looks up at you with his cloudy old eyes. \"Everything here costs something.\"" },
-        { t: "h", text: "The Price" },
-        { t: "p", text: "Krull names one of these, and does not haggle much:" },
-        { t: "list", items: [
-          "{@b A favour.} One task for Arkhan later, no questions asked.",
-          "{@b A soul coin.} Handed over now. Remind the table what a soul coin is.",
-          "{@b A debt.} Information, an introduction, or standing as a future debt. Write it down in the campaign log."
-        ] },
-        { t: "h", text: "The Limits" },
-        { t: "list", items: [
-          "Only one {@spell raise dead} a day. If more than one character died, the party must choose who comes back first.",
-          "{@spell Revivify} only works within one minute of death. If the fight is still on, Arkhan only uses it on his own people.",
-          "If the characters are now Arkhan's enemies, Krull still offers, but the price is doubled, and Arkhan watches.",
-          "If the party got the body out, Drenwal's own {@spell revivify} and {@spell raise dead} work by the normal rules. Arkhan keeps whatever falls in his temple: a character left behind in the showdown can only come back through this deal."
-        ] },
-        { t: "note", title: "Why Krull Offers", text: "Decide which it is: real respect for how they fought, or because a grateful party is a useful one to have owing you. Either way, Krull stays an uncertain figure the party might deal with again." }
-      ]
-    },
 
     "soul-coin-overdrive": {
       title: "Soul Coin Overdrive",

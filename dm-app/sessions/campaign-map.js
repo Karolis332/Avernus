@@ -91,7 +91,7 @@ window.CAMPAIGN.map = {
       requires: ["The Obelisk password, for a clean audience (optional).", "A quiet approach. Arrive loud and 4 ice devils and a bone devil block the way."],
       unlocks: ["What Urexiel's vault holds: the staff, Kreeg's box, a Green Remnant.", "The copy-versus-original contract law.", "A pointer toward the Solar's Helmet.", "What {@c dumal|Dumal} asked for."],
       sessions: 1,
-      dmChoices: ["Not needed as an Intermediary: Mordenkainen already paid out.", "Dumal escaped the Demon Zapper and is coming here to petition Mephistopheles against the party. See {@side arc-dumal|Dumal's arc}."],
+      dmChoices: ["Session 14 (2026-11-12): Dumal is the Champion of the Mirror (the Slayer form, then the Ravager); Maelys the Thorn-Crowned arrives with Glasya's erinyes; Arkhan follows the party here and waits for them to tire. Run it from Session 14.", "Not needed as an Intermediary: Mordenkainen already paid out.", "Dumal escaped the Demon Zapper and is coming here to petition Mephistopheles against the party. See {@side arc-dumal|Dumal's arc}."],
       alternatives: ["Pick Dumal's timing: arriving with the party, already gone, or mid-audience.", "Mephistopheles is a third bidder for Kreeg's living hand.", "Skip it. Nothing breaks."],
       blocks: [
         { t: "h", text: "How to Run It From Here" },
@@ -404,7 +404,7 @@ window.CAMPAIGN.map = {
       requires: ["Nothing. It finds the party within a day."],
       unlocks: ["Kreeg's living hand, a key to the contract.", "Mahadi's hint that a living signer matters.", "Shattersticks, contracts, and a buyer for Red Ruth's leftovers."],
       sessions: 0.5,
-      dmChoices: ["It wanders. As of Session 13 (2026-11-08) it is anchored near the Mirror of Mephistar (DM). The party sails there up the Styx from Uldrak's Grave.", "Kreeg hides here as 'Vessper Hain'.", "Or'Henn sealed on as the Soul Capacitor's carrier. Asimov's soul is saved; the Council clock is closed.", "Mahadi loved Feonor and will want news of her."],
+      dmChoices: ["Session 14 (2026-11-12): Arkhan bought three clauses from Mahadi the day before the party arrived (the debt, the heads, the bell). The floor at level 14 (rollable stock, four dens, the information market, rumours) is in campaign-emporium-games.js.", "It wanders. As of Session 13 (2026-11-08) it is anchored near the Mirror of Mephistar (DM). The party sails there up the Styx from Uldrak's Grave.", "Kreeg hides here as 'Vessper Hain'.", "Or'Henn sealed on as the Soul Capacitor's carrier. Asimov's soul is saved; the Council clock is closed.", "Mahadi loved Feonor and will want news of her."],
       alternatives: ["Kreeg bolts if the puzzle box comes near him.", "Mephistopheles and Urexiel also bid for Kreeg."],
       blocks: [
         { t: "p", text: "{@side emporium-shops|Shops and prices}: every stall's stock, haggle DCs and the soul-coin economy." },

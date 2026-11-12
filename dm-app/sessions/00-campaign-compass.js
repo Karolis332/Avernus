@@ -23,7 +23,7 @@ window.SESSION = {
     {
       id: "where-we-are",
       title: "Where We Are",
-      when: "State after Session 12: the Crypt is done, the party is leaving it",
+      when: "State after Session 13: two dragons dead, Kreeg beaten, the Dock raided; the party is at the Wandering Emporium",
       blocks: [
         { t: "note", title: "The one-line version", text: "In book terms the party is at the {@b end of Chapter 3 and the door of Chapter 4}. They hold the Sword's missing shard and know the road (the Scab). First they have to get out of the Crypt of the Hellriders, with Arkhan and five dragons waiting at the door." },
         { t: "img", src: "art/generated/env-road-to-the-scab.webp", caption: "The road to the Scab: the next step once the siege is broken." },
@@ -37,6 +37,7 @@ window.SESSION = {
         { t: "h", text: "Where they stand" },
         { t: "list", items: [
           "{@b Session 12 is done.} They cleared the urn waves, solved the riddles and the trials, and took the loot. In the Scales of Mercy the shade was {@b Yael}, and the party chose the insignia. {@b Session 13 opens at the foot of the C1 stair,} on the way out, with Arkhan still outside. See Session 13: Out of the Crypt.",
+          "{@b Session 13 is played} (2026-11-08). Word of Recall to the ship; Flash and Vistalancer killed over the Styx and beheaded; four coins burned for speed; the Stygian Dock raided (clamps and soul intake hit, the fortress crippled); Kreeg beaten at the Throat. The session ended near the Wandering Emporium, anchored by the Mirror of Mephistar.",
           "{@b Outside the door:} {@c arkhan-the-cruel|Arkhan}, the four tower dragons ({@c skarrix|Slarkas}, {@c vhennic|Vistalancer}, {@c mirelle|Vermilius}, {@c praxamor|Flash}), {@c obatala|Obatala} and {@c krull|Krull}. Nothing evil can enter while the ward holds. The ward clock is at 0 of 6.",
           "{@b Arkhan's goal now:} kill the party, take Or'Henn hostage, and force Drenwal to call a gold dragon with {@spell planar ally}, so the curse can be moved into a dragon and Tiamat wakes. Session 12, Wings at the Door, runs it."
         ] },
@@ -51,7 +52,7 @@ window.SESSION = {
           "{@b Elturel sinking} toward the Styx. Days left: not fixed yet (see Decisions to Lock).",
           "{@b The Bleeding Citadel's window:} it shows itself every 33 days. Next window: not fixed yet.",
           "{@b Or'Henn's curse:} a clock, not a status. Every vision and every kind offer is pressure to ask a dragon for help. See {@side arc-tiamat|Arc: Or'Henn and Tiamat}.",
-          "{@b Dumal:} alive, wounded, hunting Senna. His clock is estimated at 4 of 6.",
+          "{@b Dumal:} alive, Champion of the Mirror of Mephistar, pledged to Mephistopheles for the Slayer form (Session 14). His clock is estimated at 4 of 6. {@b Maelys the Thorn-Crowned}, the third sibling, is Glasya's and comes to the Mirror with an erinyes.",
           "{@b Day count:} about Day 12 since the end of Session 5 (an estimate). See {@side world-state|The World Right Now}."
         ] },
         { t: "more", title: "Or'Henn's curse: how it works, in one place", src: ["Homebrew"], blocks: [
@@ -78,7 +79,8 @@ window.SESSION = {
         { t: "steps", items: [
           "{@b Break the siege} (Session 13, Out of the Crypt). It is a puzzle with seven ways out, not a fight to win. Each dragon now has its own way to be lured, turned or baited (see their panels).",
           "{@b Leaving the Crypt:} Bhaal's Last Gasps start for Drenwal. Zariel notices the party. By default her riders take Lulu.",
-          "{@b The Scab} (Session 14). The shard pulls toward it. It is the Blood War front: demons dig toward the Citadel, and Zariel's legion patrols outside. Inside: Trantolox's demons, the shadow demon digging out {@b Crokek'toeck} (Yeenoghu's lost beast), and the gates of the Bleeding Citadel.",
+          "{@b The Emporium and the Mirror} (Session 14). Arkhan bought three clauses from Mahadi (the debt, the heads, the bell): a puzzle before the bell. The dens and brokers. Then the Mirror of Mephistar: Dumal walks out of the glass as its Champion (the Slayer, and the Ravager), Maelys arrives with Glasya's erinyes, every devil bids for Drenwal, and the third sigil is on the table.",
+          "{@b The Scab} (Session 15). The shard pulls toward it. It is the Blood War front: demons dig toward the Citadel, and Zariel's legion patrols outside. Inside: Trantolox's demons, the shadow demon digging out {@b Crokek'toeck} (Yeenoghu's lost beast), and the gates of the Bleeding Citadel.",
           "{@b The Bleeding Citadel.} Zariel cannot enter it; she watches from her Basalt Citadel to the west and wants the shard so the Sword stays broken. The shard opens the doors. Yael's ghost gives the tour. The shard carries the party into the {@b Idyllglen} vision, then flies back onto the blade. Claiming the Sword destroys the Citadel, and Zariel knows at once: her flying fortress launches. See the side panel {@b The Sword Reforged} in Session 13.",
           "{@b Chapter 5: the finale.} Three jobs, in any order: deal with Zariel, break the chains, return Elturel. See How the Book Ends below.",
           "{@b Land the personal arcs} before or inside the finale: Drenwal's rebirth or Sigil 3, Or'Henn's curse and Tiamat, and Moonkite's lost patron for Aurora."

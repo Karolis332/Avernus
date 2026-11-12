@@ -129,7 +129,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     name: "Vistalancer",
     kind: "young-blue-dragon",
     portrait: "art/generated/vistalancer-portrait.webp",
-    role: "Tower dragon (blue), the fastest of the four",
+    role: "DEAD (Session 13, killed over the Styx by the Lady Vengeance). Tower dragon (blue), the fastest of the four",
     source: { page: "bestiary", name: "Adult Blue Dragon", src: "MM" },
     homebrew: "Built for a party of 3 (L12 then; now L14, checked 2026-11-08: still a hard-to-deadly fight each, no change) + allies + the Lady Vengeance's force cannons: book young dragon raised to adult (MM stats), Legendary Resistance 1/day, Wingover reaction added.",
     description: "Long and narrow, built like a thrown spear, and almost never on the ground. His scales run from bright azure on the back to deep indigo at the flanks, polished smooth by blown sand, with a pale belly. Lightning runs in veins through his wing membranes. Like every blue, he has a single great horn on his snout, and he is vainer about it than any of them: he has had it capped in forged steel, banded with rings and filed to a point like a knight's lance. A round hole the size of a shield is burned clean through his left wing, and he keeps that wing angled away from anyone he is talking to. Static crackles over him; the air smells of ozone, like a lightning strike, when he passes.",
@@ -266,7 +266,7 @@ Object.assign(window.CAMPAIGN.creatures, {
     name: "Flash",
     kind: "young-red-dragon",
     portrait: "art/generated/flash-portrait.webp",
-    role: "Tower dragon (red), the proudest, the hardest hitter",
+    role: "DEAD (Session 13, killed over the Styx by the Lady Vengeance). Tower dragon (red), the proudest, the hardest hitter",
     source: { page: "bestiary", name: "Adult Red Dragon", src: "MM" },
     homebrew: "Built for a party of 3 (L12 then; now L14, checked 2026-11-08: still a hard-to-deadly fight each, no change) + allies + the Lady Vengeance's force cannons. Book: a wyrmling. Here grown to an adult dragon (MM stats) for the ambush, Legendary Resistance 1/day, Wingover reaction added.",
     description: "The youngest dragon of the tower, and too big too fast. His scales are still the bright, glossy scarlet of a young red; they have not yet darkened to the deep crimson of an old one. He runs too hot for his own skin: glowing cracks run between his scales like lava under a crust, and heat shimmers off his back. He has grown into his horns before anything else: a crown of swept-back spikes, too many and too sharp, without a chip on any of them, and a spined crest down his neck that he flares at everything. He rears up on his hind legs to look bigger, and roars at things that do not need roaring at. He has no scars, not one, and the others have noticed. He smells of smoke and sulfur. Arkhan's people call him Flash. He hates it.",
@@ -531,4 +531,60 @@ Object.assign(window.CAMPAIGN.creatures, {
     ]
   }
 
+});
+
+// Arkhan's reference panels, moved here from Session 9 (2026-11-12) because his creature text links them in every session.
+Object.assign(window.CAMPAIGN.side, {
+    "what-arkhan-knows": {
+      title: "What Arkhan Knows",
+      blocks: [
+        { t: "p", text: "Arkhan is old, well travelled and well informed. He answers in character, always politely, and always with a price or a twist. He never lies. He does not need to." },
+        { t: "h", text: "Tiamat's blood" },
+        { t: "read", text: "\"The blood of a goddess, still alive. It remembers being part of her. Spill it on the right ground and it breaks curses that she laid. Give it to the right devil and it buys you anything he has. Drink it...\" He smiles. \"Do not drink it.\"" },
+        { t: "p", text: "{@b Price:} free. He wants them to want it more." },
+        { t: "h", text: "Zariel" },
+        { t: "read", text: "\"An angel who came down to win a war and stayed to rule the battlefield. She is a fine general and a poor queen. My queen has no love for her. If you plan to hurt Zariel, we may be friends for longer than you think.\"" },
+        { t: "p", text: "{@b Twist:} Tiamat wants Zariel gone too. Arkhan hints that, for a price, Tiamat might help against her someday." },
+        { t: "h", text: "Elturel" },
+        { t: "read", text: "\"A whole city, dragged down on chains. The chains are pulling it toward the Styx. When it touches the water, every soul in it forgets itself, and Avernus gets a city of new devils. Cities do not fall into Hell by accident, you know. Someone always signs something.\"" },
+        { t: "p", text: "{@b Twist:} he does not know whose name is on the deal, and says so. DM: use the last line only if you want to plant the contract clue." },
+        { t: "h", text: "The Sword of Zariel" },
+        { t: "read", text: "\"Her old blade. When she fell, someone who loved her carried it off the field and hid it, somewhere in this layer, I am told. Nobody has found it since. My queen would very much like to know where it went.\" His eyes drift to Lulu, and rest there a moment too long." },
+        { t: "p", text: "{@b Twist:} he does not know about Lulu's past, but he suspects there is something holy about her. Asking more makes him curious, which is dangerous." },
+        { t: "h", text: "Bel" },
+        { t: "read", text: "\"The archduke Zariel threw down. He sits in his forge and builds her war machines and hates her every hour. He is a rival of mine. Anything you take from him makes me happy.\"" },
+        { t: "p", text: "{@b Price:} a small one. Arkhan asks the party to tell Bel, when they meet him, that Arkhan sends his regards. Bel will not like it." },
+        { t: "h", text: "The Hand of Vecna" },
+        { t: "read", text: "\"I found it on a world called Exandria. A short trip, a long story. I cut off my own hand to wear it. Every day it asks me for something. Every day I say no, until I feed it. One day I will master it, and then I will open my queen's prison with it.\" He flexes the black fingers. \"Or it will master me.\"" },
+        { t: "p", text: "{@b Twist:} he says it calmly. A successful DC 16 Wisdom (Insight) check shows that he is far more afraid than he sounds." },
+        { t: "h", text: "Mephistopheles" },
+        { t: "read", text: "\"The lord of the eighth layer. He keeps a mirror on the edge of Avernus and sells answers through it. Every answer is true. Every answer is aimed. He will take your soul coins and your blood, and he will thank you.\"" },
+        { t: "h", text: "Dumal" },
+        { t: "p", text: "Only if someone mentions Drenwal's brother, or a Bhaalspawn." },
+        { t: "read", text: "\"A child of Bhaal, walking toward Mephistopheles' mirror? Yes. I heard something. The abishai talk. A son of murder went to ask the lord of the eighth for help against the people who set a demon prince on him.\" He looks at Drenwal. \"He sounded angry. Family usually is.\"" },
+        { t: "p", text: "{@b Price:} for more detail (when Dumal passed, what he carried), Arkhan wants one small service later, no questions asked. If Drenwal agrees, see {@side gargauth-trick|The Gargauth Trick}: Gargauth has opinions about debts." }
+      ]
+    },
+    "raise-the-dead": {
+      title: "Raise the Dead",
+      blocks: [
+        { t: "p", text: "Krull does not have {@spell raise dead} himself. He brokers Arkhan's. Arkhan can cast {@spell revivify} three times a day and {@spell raise dead} once a day. Krull names the price; Arkhan does the casting." },
+        { t: "read", text: "Krull kneels beside the body. He touches the cold forehead with one wrinkled finger and makes a small, sad noise.\n\n\"Tsk. Such a waste. Well. Arkhan can fix this, if you like. He has done it many times. It costs something, of course.\" He looks up at you with his cloudy old eyes. \"Everything here costs something.\"" },
+        { t: "h", text: "The Price" },
+        { t: "p", text: "Krull names one of these, and does not haggle much:" },
+        { t: "list", items: [
+          "{@b A favour.} One task for Arkhan later, no questions asked.",
+          "{@b A soul coin.} Handed over now. Remind the table what a soul coin is.",
+          "{@b A debt.} Information, an introduction, or standing as a future debt. Write it down in the campaign log."
+        ] },
+        { t: "h", text: "The Limits" },
+        { t: "list", items: [
+          "Only one {@spell raise dead} a day. If more than one character died, the party must choose who comes back first.",
+          "{@spell Revivify} only works within one minute of death. If the fight is still on, Arkhan only uses it on his own people.",
+          "If the characters are now Arkhan's enemies, Krull still offers, but the price is doubled, and Arkhan watches.",
+          "If the party got the body out, Drenwal's own {@spell revivify} and {@spell raise dead} work by the normal rules. Arkhan keeps whatever falls in his temple: a character left behind in the showdown can only come back through this deal."
+        ] },
+        { t: "note", title: "Why Krull Offers", text: "Decide which it is: real respect for how they fought, or because a grateful party is a useful one to have owing you. Either way, Krull stays an uncertain figure the party might deal with again." }
+      ]
+    },
 });

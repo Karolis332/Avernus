@@ -209,7 +209,7 @@ Note also: Uldrak is **cursed, not dead** — "Uldrak's Grave" is a place name. 
 - **Ship upgrade noted:** cannons +2d10 fire from red dragon scales (DM).
 - **XP (suggested):** Flash 18,000 + Vistalancer 15,000 = 33,000, i.e. 11,000 each (DM's call).
 - **Kreeg's interception at the Throat (DM, 2026-11-12): the party fought and beat Thavius Kreeg.** He caught the ship in the gorge half a day short of the Emporium, outside Mahadi's truce. His fate is not yet recorded: dead, dropped into the barge's hold by the Escape Clause (the prepared 0-HP exit), or signed his name for his life. Loot from his cabin (Kreeg's Ledger, the High Overseer's Ring, the contract copy, 30 soul coins, the Ledger's Due itself) not yet recorded.
-- **Session ended near the Wandering Emporium** (anchored near the Mirror of Mephistar). Next: the Emporium under Mahadi's truce (shops in `campaign-emporium.js`), then the Scab (Session 14).
+- **Session ended near the Wandering Emporium** (anchored near the Mirror of Mephistar). **Next: Session 14, The Emporium and the Mirror** (`dm-app/sessions/14-the-emporium-and-the-mirror.js`, prepared 2026-11-12): Arkhan's three clauses with Mahadi, the dens, the Mirror of Mephistar with Dumal as its Champion (Slayer / Ravager), Maelys the Thorn-Crowned with Glasya's erinyes, Drenwal's third sigil. The Scab is Session 15.
 **Still to record:** Or'Henn's Pull and gold scales; whether the curse moved (it did not, as far as reported); the ship's hit points; Bhaal's First Gasp result; whether Zariel's riders took Lulu (option a/b/c); whether Zariel's Lesson was played; Kreeg's fate and loot; Veska and Ser Lucan's upgrades; souls laid to rest; Moonkite bond points.
 
 

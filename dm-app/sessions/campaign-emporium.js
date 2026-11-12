@@ -22,6 +22,7 @@ Object.assign(window.CAMPAIGN.side, {
       {
         "t": "list",
         "items": [
+          "{@side emporium-floor|The Floor Tonight (Session 14): rollable stock, four dens, the information market, rumours}",
           "{@side emporium-mahadi|Infernal Rapture (Mahadi)}",
           "{@side emporium-rassh|The Firesnake Forge (Rassh)}",
           "{@side emporium-burney|Burney the Barber}",

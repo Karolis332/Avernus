@@ -1,5 +1,5 @@
 // Audit: every creature a session references must resolve to a stat block with a portrait.
-// Usage: node tests/creature-audit.js 13-out-of-the-crypt 14-the-scab
+// Usage: node tests/creature-audit.js 14-the-emporium-and-the-mirror 15-the-scab
 // Exits 1 if a referenced creature is missing; portrait gaps are reported but don't fail.
 const fs = require("fs");
 const path = require("path");
@@ -7,7 +7,7 @@ const vm = require("vm");
 
 const ROOT = path.join(__dirname, "..");
 const CAMPAIGN_FILES = ["campaign-ship", "campaign-arcs", "campaign-tower", "campaign-hellriders",
-  "campaign-world", "campaign-map", "campaign-crew", "campaign-endgame"];
+  "campaign-world", "campaign-map", "campaign-crew", "campaign-endgame", "campaign-emporium", "campaign-emporium-games"];
 
 function load(ctx, rel) {
   vm.runInContext(fs.readFileSync(path.join(ROOT, rel), "utf8"), ctx, { filename: rel });

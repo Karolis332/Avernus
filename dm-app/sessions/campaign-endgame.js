@@ -292,7 +292,7 @@
         "items": [
           "{@b The books:} no 5e stat block for Tiamat (Rise of Tiamat, Fizban's Treasury of Dragons) has a power to command dragons. Chromatic dragons see her as their creator and queen. They worship her, fear her and often serve her, but each one keeps its own mind and its own greed.",
           "{@b Why she is in Avernus:} she is imprisoned there and guards the way to Dis, against her will. The books leave the exact terms of her bargain with Asmodeus vague.",
-          "{@b Campaign ruling (Dread Majesty):} her presence forces each dragon to choose. DC 20 Wisdom save the first time it sees her. A dragon that fails kneels until she harms it, or for 1 minute. A dragon that succeeds is free, and stays free for a day. Loyal ones (Flash) kneel without a save. Bonded ones (Obatala to Krull) save with advantage."
+          "{@b Campaign ruling (Dread Majesty):} her presence forces each dragon to choose. DC 20 Wisdom save the first time it sees her. A dragon that fails kneels until she harms it, or for 1 minute. A dragon that succeeds is free, and stays free for a day. Loyal ones (Flash, dead since Session 13) would kneel without a save; of the survivors, Obatala kneels if Krull does. Bonded ones (Obatala to Krull) save with advantage."
         ]
       },
       {
@@ -633,7 +633,7 @@
             "n": 1
           }
         ],
-        "notes": "Three-sided fight. Mark Krull's side in the tracker notes (Krull, Obatala, Vistalancer, and Slarkas if he passed the Dominion save; the Lady Vengeance if she came back). Carry over current hit points from the dragon fight. Tiamat Risen wakes over five rounds: 250 HP rising by 75 a turn to 550, one head per round, AC 19 until fully born; only radiant or Gnashing Hunger drop her below 1 HP until then. Uldrak arrives at the start of round 3. XP: Tiamat Risen driven off 62,000; Arkhan killed 75,000."
+        "notes": "Three-sided fight. Mark Krull's side in the tracker notes (Krull, Obatala, and Slarkas if he passed the Dominion save; the Lady Vengeance if she came back). Carry over current hit points from the dragon fight. Tiamat Risen wakes over five rounds: 250 HP rising by 75 a turn to 550, one head per round, AC 19 until fully born; only radiant or Gnashing Hunger drop her below 1 HP until then. Uldrak arrives at the start of round 3. XP: Tiamat Risen driven off 62,000; Arkhan killed 75,000."
       },
       {
         "t": "h",
@@ -725,7 +725,7 @@
         {
           "when": "Each dragon, first sight",
           "tag": "trigger",
-          "text": "{@b DC 20 Wisdom save} ({@side tiamats-dominion|Dominion}). Flash kneels, no save. Obatala saves with advantage. Fail: kneels to Tiamat. Success: joins Krull."
+          "text": "{@b DC 20 Wisdom save} ({@side tiamats-dominion|Dominion}). Flash and Vistalancer are dead (Session 13). Obatala saves with advantage. Fail: kneels to Tiamat. Success: joins Krull."
         },
         {
           "when": "Start of her turns",

@@ -155,6 +155,7 @@ Object.assign(window.CAMPAIGN.side, {
       { t: "p", text: "{@c dumal|Dumal}, Drenwal's brother, is alive. At the Demon Zapper he slipped away through black smoke. Drenwal scried him heading for the Mirror of Mephistar, to ask Mephistopheles for help against the party that set Yeenoghu loose on him. This arc runs from Session 9 to the Siege of the Lady Vengeance, and its last echo sounds at Drenwal's rebirth." },
       { t: "h", text: "Where Dumal Is Now" },
       { t: "p", text: "He has reached the Mirror: a slab of black ice on a frozen crag at the cold edge of Avernus. Mephistopheles never comes to it himself. His cambion, Rigorath, steps out of the ice to hear each petition, then carries it back. Dumal knelt there and told his grievance. When Session 9 begins, Rigorath is carrying it down to Cania." },
+      { t: "p", text: "{@b Session 14 (2026-11-12):} he is the Champion of the Mirror now. He pledged his Bhaalspawn blood to Mephistopheles for the Slayer form, and a worse one after it (the Ravager). He sleeps in the glass until Rigorath calls him and walks out of it when the party arrives. Maelys the Thorn-Crowned, the third sibling, comes down the crag with Glasya's erinyes: each devil wants a Bhaalspawn on its list. Run it from Session 14, The Emporium and the Mirror." },
       { t: "h", text: "What Dumal Wants" },
       { t: "list", items: [
         "{@b Drenwal home.} He still does not want his brother dead. He wants him to finish the Three Sigils and stand beside him.",

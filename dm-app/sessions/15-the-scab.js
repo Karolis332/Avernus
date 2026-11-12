@@ -1,11 +1,11 @@
-// Session 14: the Scab and the gates of the Bleeding Citadel. Follows Session 13 (out of the Crypt; Lulu taken by Zariel's riders by default).
+// Session 15: the Scab and the gates of the Bleeding Citadel. Follows Session 15 (the Emporium and the Mirror). Lulu taken by Zariel's riders by default.
 // Areas S1-S14 follow the printed adventure (rooms, counts, DCs) as summarised in the Eventyr Chapter 4 cheat sheet (local library), written in our own words.
 // Campaign creatures (vrock, hezrou, narzugon) come from campaign-world.js; this file overrides only their tactics.
 // Scab creatures use the book stat blocks (MM/MTF, per the Eventyr Chapter 4 appendix). Exception: Crokek'toeck keeps stand-in numbers; the official block is behind its 5etools link.
 window.SESSION = {
-  id: "14-the-scab",
+  id: "15-the-scab",
   title: "The Scab",
-  subtitle: "Session 14 · Descent into Avernus",
+  subtitle: "Session 15 · Descent into Avernus",
   summary: "The shard leads the party down the Scab road, past the Blood War's leftovers, to a hill-sized wound in Avernus with a cathedral buried in it. The Scab is the Blood War's front: demons dig through it toward the Citadel, and Zariel's legion patrols the approaches. Inside are gnolls, demons and a caged beast that belongs to Yeenoghu. Every fight has an exit, because the party is three level-14 heroes and the day is long. Zariel watches from her Basalt Citadel, half a day's flight west; she is felt in a pool of blood and through her riders, not met. At the end the doors of the Bleeding Citadel open to the shard in Lulu's place.",
 
   party: [
@@ -27,16 +27,16 @@ window.SESSION = {
 
     // ---- campaign creatures: tactics only ----
     "vrock": Object.assign({}, window.CAMPAIGN.creatures.vrock, { tactics: [
-      "Session 14. At the statue they heal from it, so they stay inside its 30 feet and screech from there.",
+      "Session 15. At the statue they heal from it, so they stay inside its 30 feet and screech from there.",
       "Screech first on anyone who stands near the statue. Spores on whoever goes for the statue.",
       "On the road they strike a lone flyer first (Moonkite) and fly off when hurt."
     ] }),
     "hezrou": Object.assign({}, window.CAMPAIGN.creatures.hezrou, { tactics: [
-      "Session 14. In the food-fight pool they are already hurt and angry. They turn on the party only if a PC strikes one or touches the corpse.",
+      "Session 15. In the food-fight pool they are already hurt and angry. They turn on the party only if a PC strikes one or touches the corpse.",
       "On the road the hezrou holds the front while vrocks dive. When it falls the pack loses heart."
     ] }),
     "narzugon": Object.assign({}, window.CAMPAIGN.creatures.narzugon, { tactics: [
-      "Session 14. A herald, not a hunter. It is here to see whether the shard moves and to count who carries it. It reports; it does not fight unless the carrier raises a hand."
+      "Session 15. A herald, not a hunter. It is here to see whether the shard moves and to count who carries it. It reports; it does not fight unless the carrier raises a hand."
     ] }),
 
     // ---- by the book: gnolls (MM blocks; Targ Nar has the book's 100 hit points) ----
