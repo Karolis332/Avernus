@@ -33,6 +33,8 @@ The DM bought Higgsfield Plus on 2026-11-12 (1200 credits) for campaign video cl
 
 **DM's order of work (2026-11-12):** the 3-minute fight film of the Session 13 sky chase first, then all of Dumal's attacks and transformations.
 
+**Fight films (DM, 2026-11-12):** a single slow image-to-video shot was "quite bad", "very static": "resemble vox machina in the way it changes scenes and fluidly does it", with one six-second block per combat round ("so 6s a round", "thats why things need to happen in 6 seconds intervals"). What worked first try: `kling4_0 --mode reference-to-video --duration 6` (19.5 credits at 1080p), up to four `--image-references` (ship, dragons, heroes), and a prompt of the form "edited like a fast animated action series: rapid hard cuts, whip pans ... Three quick shots, two seconds each, with hard cuts between them. Shot 1: ... Shot 2: ... Shot 3: ..." naming each cast member as "the X from the second reference image". Check the first frames of each clip: one opened with a flash of the reference image (trim it). Driver `film.py` in `dm-app/docs/style-test/higgsfield/`.
+
 **Costs measured:** `kling4_0` image-to-video 5 s: 720p 11.25, 1080p 16.25. `seedance_2_5` 5 s 720p 35. `veo3_1` fast 6 s 24. Price a call for free with `generate cost`.
 
 **Prompt pattern the DM's feedback produced:** "Static shot, fixed camera, no camera movement" + the creature stays planted + one or two clear actions (inhale, then a wide spreading cone) + "Keep the gritty painterly dark fantasy illustration style of the image". The DM rejected a code-drawn clip ("stick figure") and a beam that "looks like a leash". Related: [[free-tools-only]].
