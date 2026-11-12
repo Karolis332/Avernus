@@ -365,28 +365,28 @@ Object.assign(window.CAMPAIGN.creatures, {
     traits: [
       { name: "Ice Walk", text: "Moves across ice and snow without a check; difficult terrain from ice or snow costs him no extra movement." },
       { name: "Legendary Resistance (2/Day)", text: "If Obatala fails a save, he can choose to succeed instead." },
-      { name: "Rimeground (homebrew)", art: "art/generated/obatala-rimeground.webp", text: "Where Obatala lands, the ground within 20 ft. of him freezes, then melts into deep, steaming mud at the start of his next turn. That ground is difficult terrain for the rest of the fight. He ignores it." }
+      { name: "Rimeground (homebrew)", art: "art/generated/obatala-rimeground.webp", video: "art/generated/obatala-rimeground.mp4", text: "Where Obatala lands, the ground within 20 ft. of him freezes, then melts into deep, steaming mud at the start of his next turn. That ground is difficult terrain for the rest of the fight. He ignores it." }
     ],
     actions: [
       { name: "Multiattack", text: "Can use Frightful Presence, then one bite and two claws." },
-      { name: "Bite", art: "art/generated/obatala-bite.webp", text: "Melee Weapon Attack: +13 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 9 (2d8) cold." },
-      { name: "Claw", art: "art/generated/obatala-claw.webp", text: "Melee Weapon Attack: +13 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
-      { name: "Tail", art: "art/generated/obatala-tail.webp", text: "Melee Weapon Attack: +13 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
-      { name: "Frightful Presence", art: "art/generated/obatala-frightful-presence.webp", text: "Each creature of his choice within 120 ft. aware of Obatala: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
+      { name: "Bite", art: "art/generated/obatala-bite.webp", video: "art/generated/obatala-bite.mp4", text: "Melee Weapon Attack: +13 to hit, reach 10 ft. Hit: 18 (2d10 + 7) piercing plus 9 (2d8) cold." },
+      { name: "Claw", art: "art/generated/obatala-claw.webp", video: "art/generated/obatala-claw.mp4", text: "Melee Weapon Attack: +13 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
+      { name: "Tail", art: "art/generated/obatala-tail.webp", video: "art/generated/obatala-tail.mp4", text: "Melee Weapon Attack: +13 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
+      { name: "Frightful Presence", art: "art/generated/obatala-frightful-presence.webp", video: "art/generated/obatala-frightful-presence.mp4", text: "Each creature of his choice within 120 ft. aware of Obatala: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
       { name: "Cold Breath (Recharge 5-6)", art: "art/generated/obatala-cold-breath.webp", video: "art/generated/obatala-cold-breath.mp4", text: "60-ft. cone. DC 20 Constitution save, 63 (14d8) cold, half on a success." }
     ],
     bonus: [],
     reactions: [
       { name: "Wingover (homebrew, 1/round)", text: "When a ship weapon targets Obatala, the attack has disadvantage. If the weapon forces a save instead, he takes half damage." },
-      { name: "Rider's Wing (homebrew)", art: "art/generated/obatala-riders-wing.webp", text: "When a creature he can see attacks Krull while Krull is on his back or within 10 ft. of him, Obatala swings a wing into the way. The attack targets Obatala instead." }
+      { name: "Rider's Wing (homebrew)", art: "art/generated/obatala-riders-wing.webp", video: "art/generated/obatala-riders-wing.mp4", text: "When a creature he can see attacks Krull while Krull is on his back or within 10 ft. of him, Obatala swings a wing into the way. The attack targets Obatala instead." }
     ],
     legendary: {
       count: 3,
       intro: "Obatala can take one legendary action at the end of another creature's turn. He regains spent legendary actions at the start of his turn.",
       actions: [
         { name: "Detect", cost: 1, text: "Obatala makes a Wisdom (Perception) check." },
-        { name: "Tail Attack", art: "art/generated/obatala-tail.webp", cost: 1, text: "Obatala makes one tail attack." },
-        { name: "Wing Attack", art: "art/generated/obatala-wing-attack.webp", cost: 2, text: "Each creature within 10 ft.: DC 21 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Obatala then flies up to half his speed." }
+        { name: "Tail Attack", art: "art/generated/obatala-tail.webp", video: "art/generated/obatala-tail.mp4", cost: 1, text: "Obatala makes one tail attack." },
+        { name: "Wing Attack", art: "art/generated/obatala-wing-attack.webp", video: "art/generated/obatala-wing-attack.mp4", cost: 2, text: "Each creature within 10 ft.: DC 21 Dexterity save or 14 (2d6 + 7) bludgeoning and knocked prone. Obatala then flies up to half his speed." }
       ]
     },
     tactics: [
