@@ -17,3 +17,4 @@
 - [DnD orchestration lessons](dnd_orchestration_lessons.md) — 2026-11-01: fetch before planning AND before every commit (laptop edits live), merge recipe, agents kill by PID only, headless chrome.exe fallback
 - [Free tools only](free_tools_only.md) — no paid tools; suggest free fantasy-tuned image-gen (astra, Gemini, local ComfyUI on 3070 Ti)
 - [Browser: Firefox](browser_firefox.md) — open the DM app and images in Firefox, never Edge (the Windows default)
+- [Higgsfield video](higgsfield_video.md) — paid Plus plan since 2026-11-12; Kling 4.0 image-to-video recipe, costs, never `--wait` on create

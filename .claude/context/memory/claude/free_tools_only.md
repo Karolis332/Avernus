@@ -30,4 +30,6 @@ The DM then offered to pay for Codex credits, or for Midjourney "if you can use 
 
 **Overnight run (2026-11-08, "i want all to be doen"):** 43 attack jobs (38 + 5 re-rolls). Each dragon's portrait served as `--sref`; breath and dive shots needed `--sw 40` plus an explicit "side view"/"seen from below", or they collapsed into head shots. Pipeline: `dm-app/docs/style-test/step.sh`.
 
+**Higgsfield (2026-11-12):** for video the DM chose to pay again: Higgsfield Plus (1200 credits), "we are going to higgsfield for proper video creation". Paid tools are fine when the DM picks them; still do not suggest new paid tools unprompted. Recipe and costs: [[higgsfield-video]].
+
 **How to apply:** astra first. When the plan allowance runs out, ask whether to buy Codex credits rather than falling back to weak free tools. Distinct faces and scars need a strong model (astra). Related: [[dm-app-primer-feedback]].

@@ -1,23 +1,32 @@
-# Checkpoint · C:\Users\kpaul\DnD · 2026-11-07T20:53:04.675Z · session 16eecd26 · ctx ≈ 367k
+# Checkpoint · C:\Users\kpaul\DnD · 2026-11-12T01:10:13.067Z · session 0da2ec32 · ctx ≈ 364k
 
 ## Prompts
-- lets please resume our prep time for what happens when they come out of the crypt of the hellriders, did you create visuals and images for each dragon to be uniquely personified, have unique tactics, allegiances, attacks and flavour text
-- resume and I will need to read everything before I can give any calls, which ending I prefer doesnt mind from me it matters as to what the praty chooses, but I need the scab location prepared and by the book proper. I want images of all sepparate dragons and visuals of their attacks
+- do you have the latest session notes?
+- Your claude.ai usage limit has reset. Continue the task you were working on when the limit was reached; do not repeat work that is already complete.
+- they killed the two dragons
+- they also fought and beat thavius kreeg
+- https://www.anthropic.com/claude-fable-and-mythos-5-2 lets get these
 
 ## Files touched
-C:\Users\kpaul\DnD\dm-app\sessions\campaign-tower.js
-C:\Users\kpaul\DnD\dm-app\sessions\12-the-siege-of-the-crypt.js
-C:\Users\kpaul\DnD\dm-app\sessions\index.js
-C:\Users\kpaul\AppData\Local\Temp\gen_dragon_attacks.sh
-C:\Users\kpaul\AppData\Local\Temp\scab_book.py
-C:\Users\kpaul\AppData\Local\Temp\scab_creatures.js.txt
-C:\Users\kpaul\DnD\dm-app\sessions\13-the-scab.js
-C:\Users\kpaul\DnD\dm-app\sessions\00-campaign-compass.js
+C:\Users\kpaul\DnD\dm-app\sessions\campaign-emporium-games.js
+C:\Users\kpaul\DnD\dm-app\sessions\14-the-emporium-and-the-mirror.js
+C:\Users\kpaul\AppData\Local\Temp\s14-edits.py
+C:\Users\kpaul\DnD\dm-app\tests\link-audit.js
+C:\Users\kpaul\AppData\Local\Temp\s14-edits2.py
+C:\Users\kpaul\AppData\Local\Temp\s15-crokek.py
 
 ## Agents
 
 ## Last assistant text
-Two problems. The Compass links Arkhan under the wrong id, and the art batch is failing. Checking both.
+Fable 5.2 is live on your account: a headless test call with `claude-fable-5-2` answered correctly. Mythos 5.2 is not obtainable: it goes only to organizations vetted through the Cyber or Life Sciences verification programs.
+
+## What I changed
+
+| Item | State |
+|---|---|
+| ✅ Effort level for `claude-fable-5-2` | Added to `~/.claude/settings.json`, mirroring your 5.1 entry (xhigh). |
+| ✅ Usage harness pricing | Fable 5.2 now costed at the announced rate; 5.1 keeps the old placeholder. Report runs clean. |
+| ✅ Claude Code | 2.1.322 is installed (auto-update had already fetched it). This session 
 
 ## Next
 - resume from the last prompt above; verify before claiming done
