@@ -17,7 +17,11 @@ The DM bought Higgsfield Plus on 2026-11-12 (1200 credits) for campaign video cl
 
 **Restyle a still first** when the picture is wrong: `generate create nano_banana_2_1 --image <upload_id> --aspect_ratio auto --resolution 2k --prompt "Edit this painting. Keep the same dragon, pose, composition and painterly style. Change ..."` = 2 credits, under a minute; the job id works as `--start-image` for Kling.
 
-**Art direction (DM, 2026-11-12):** Obatala is "she", she is in the Hells (Avernus backdrop, never snowfields), and "her scales are melting due to the heat" as the book describes. The DM approved the snow clip's motion ("looked fantastic") with that one caveat. Launching six clips before the DM saw the look cost 67.5 credits of drafts: show one sample of a new look before a batch.
+**Art direction (DM, 2026-11-12):** Obatala is "she", she is in the Hells (Avernus backdrop, never snowfields), "her scales are melting due to the heat", and everything should be "more grandiose, it is an ancient dragon" (full-body wide shots, tiny figures for scale). "The dragon's face needs to be the same" in every picture and "the cold breath version of the face is perfect": that face is `dm-app/docs/style-test/obatala-face-reference.webp`; pass it as the second `--image` when painting any Obatala still. Front views drift whiter and thinner, so say "broad, heavy, blunt-snouted, weathered grey-blue". The Kling-generated sounds are approved.
+
+**Batch rule:** twice a batch of six was rendering when the DM's correction arrived (135 credits of drafts, no cancel). The DM steers in real time: after any change of look, show stills or one clip and wait for a go before a batch.
+
+**Wanted next (DM):** a cast board, like a soundboard: a player-facing window on a second monitor, and a DM board of buttons with previews; one click casts the clip or still to the player window.
 
 **Costs measured:** `kling4_0` image-to-video 5 s: 720p 11.25, 1080p 16.25. `seedance_2_5` 5 s 720p 35. `veo3_1` fast 6 s 24. Price a call for free with `generate cost`.
 
