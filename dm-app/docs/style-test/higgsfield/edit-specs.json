@@ -69,5 +69,35 @@
   "cine-cannon-deck-fix.png",
   "Redraw this image as a frame from a modern 2D hand-drawn adult animated fantasy action series: clean confident ink outlines, flat cel-shaded colours with hard-edged shadow shapes, painterly matte-painted backgrounds, strong rim lighting. Not 3D, not photoreal. Keep the same great force cannon and the same view: the black iron barrel on its carriage, the rings of glowing blue-white crystal around the barrel, the lightning arcing between them, the glow at the muzzle, on the black iron deck of a flying warship under the burning red-orange sky of the Nine Hells.",
   "2k"
+ ],
+ "toon-ship2": [
+  "cine-toon-ship.png",
+  "Keep this image exactly as it is (same drawing style, same black iron flying warship seen from the same side, same glowing gun-ports, same barbed harpoon launcher at the bow, same blue-white light along the keel, same red sky), but make four changes. One: remove the statue standing on the deck near the bow; there is no statue on deck. Two: add one tall, bare black iron mast rising from the middle of the deck with a crow's nest at its top, a round iron lookout basket with a railing; no sails, no yards, no rigging. Three: mount one single huge force cannon on the upper deck in front of the mast: a massive black iron barrel ringed with glowing blue-white crystal bands on a heavy swivel carriage; it is the ship's only cannon. Four: the ship is flying forward toward the left, bow first: blue-white engine fire and a long exhaust trail stream out behind the stern on the right.",
+  "2k"
+ ],
+ "toon-moonkite": [
+  "cine-toon-orhenn.png",
+  "Keep the drawing style of this image: a 2D hand-drawn animated fantasy series, clean ink outlines, flat cel-shaded colours, painterly background. Keep the black iron deck and the red sky, but remove the dragonborn and the fire fox completely and draw a different creature in their place, full body, in three-quarter side view: Moonkite, a celestial steed the size of a small horse with the lean grace of a great cat: a sleek white-silver coat, a long elegant neck, silver branching antlers on its brow instead of a horn, large feathered white wings half spread, a long flowing silver mane and tail, calm glowing pale-blue eyes, and pale starlight leaking from it like breath on a cold morning. No rider, no saddle.",
+  "2k"
+ ],
+ "toon-veska": [
+  "cine-toon-lucan-nb.png",
+  "Keep the drawing style of this image: a 2D hand-drawn animated fantasy series, clean ink outlines, flat cel-shaded colours, painterly background. Keep the black iron deck and the red sky, but replace the old knight with a different character, full body, braced in a fighting stance: Sergeant Veska, a broad, strong woman in her forties with a blunt weathered face, a scar through one eyebrow and dark hair cropped short, no helmet, wearing a dented splint-mail cuirass under a Hellrider tabard faded to the colour of old brick, steel greaves on ordinary human legs, a kite shield on her left arm and a longsword raised in her right hand, shouting an order.",
+  "2k"
+ ],
+ "toon-jeremy": [
+  "frame-r3-core.png",
+  "Keep the drawing style of this image: a 2D hand-drawn animated fantasy series, clean ink outlines, flat cel-shaded colours, painterly background. Keep the engine room below deck and the Planar Core: a sphere of blinding blue-white energy in a round cage of black iron. Replace the man with a different character, full body: Jeremy, a gnome engineer three feet tall, with soot-grey hair, brass goggles pushed up on his forehead, a leather apron scorched black at the hem and a fat notebook hanging from his belt on a chain. He stands on a step stool at a brass panel of fuel gauges and dials beside the Core, watching the needles, and holds up a rolled spell scroll glowing with runes, ready to feed it into a slot in the Core's cage.",
+  "2k"
+ ],
+ "toon-gunner": [
+  "cine-toon-cannon.png",
+  "Keep this image exactly as it is (same drawing style, same force cannon, same deck and sky), and add its gunner: a Gondian automaton, a man-sized humanoid construct of golden brass plates, gears and pistons, with a smooth brass face and one round glowing blue lens for an eye, standing behind the cannon's breech with both hands on the aiming handles.",
+  "2k"
+ ],
+ "toon-veska2": [
+  "cine-toon-veska.png",
+  "Keep this image exactly as it is (same drawing style, same deck, same sky, same pose, same splint armour, faded brick-red Hellrider tabard, kite shield and raised longsword), but the fighter is a woman: Sergeant Veska, a broad, strong woman in her forties. Give her a clearly female face with a strong jaw, a scar through one eyebrow, and dark hair pulled back into a short tight braid; keep her fierce shouting expression and her sturdy, broad-shouldered build.",
+  "2k"
  ]
 }

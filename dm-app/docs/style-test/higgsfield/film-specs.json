@@ -181,5 +181,14 @@
   "start": "ref-toon-ship.jpg",
   "duration": 3,
   "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours, painterly backgrounds, smear frames and speed lines. Keep the drawing style of the image. A blinding line of blue-white lightning rakes the flank of the black iron flying warship: armour plates tear away and spin past the camera, fire bursts from her gun ports, and she reels and lists hard to one side, trailing black smoke and wreckage as she flies on. The camera pulls back fast and swings around her, never still. The ship has no masts and no sails. No dialogue, no voices, no text on screen."
+ },
+ "v3-engine": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-toon-jeremy.jpg",
+   "ref-toon-jack-c.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the engine room below the deck of a flying iron warship, lit by the Planar Core, a sphere of blinding blue-white energy in a round cage of black iron, beside a brass panel of fuel gauges. The gnome engineer from the first reference image (soot-grey hair, brass goggles, scorched leather apron, notebook on a chain) stands on a step stool watching the needles on the fuel gauges drop into the red, and shouts in a high, urgent voice: \"Fuel's dropping! Feed her, now!\" He snatches a glowing spell scroll and slides it into a slot in the Core's cage; the scroll burns up in a flash of runes. The camera whips to the pilot from the second reference image (lean weathered man, long brown leather coat, scarf, gloves), who holds up one coin of dull black iron and growls in a low rough voice: \"Sorry, friend.\" He flicks the black coin into the Core. The Core turns black for an instant: a pale, screaming ghostly face is torn out of the coin and dragged into the fire with a long tortured human scream as the soul is burned; then the Core erupts in blinding white light and the whole room shakes. The characters speak their lines aloud in clear English, lips moving. No captions, no subtitles, no text on screen."
  }
 }
