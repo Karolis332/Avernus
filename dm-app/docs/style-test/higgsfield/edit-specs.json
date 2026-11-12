@@ -54,5 +54,20 @@
   "cine-film-red-fix.png",
   "Redraw this image as a frame from a modern 2D hand-drawn adult animated fantasy action series: clean confident ink outlines, flat cel-shaded colours with hard-edged shadow shapes, slightly angular simplified character design, expressive faces, painterly matte-painted backgrounds, strong rim lighting. Not 3D, not photoreal. Keep the same red dragon and the same composition: bright scarlet scales with glowing orange cracks between them, a crown of swept-back horns and a spined crest, diving at the stern of an iron warship and breathing a cone of fire, under a burning red sky.",
   "2k"
+ ],
+ "toon-drenwal-nb": [
+  "cine-toon-drenwal.png",
+  "Keep this image exactly as it is: the same character, the same face, the same pose, the same armour and weapons, the same drawing style, colours and lighting. Change only the background: remove every mast, rope, rigging line, ladder and sail. Behind him there is only the burning red-orange sky with drifting embers and a low rail of black iron at the edge of a bare black iron deck.",
+  "2k"
+ ],
+ "toon-lucan-nb": [
+  "cine-toon-lucan.png",
+  "Keep this image exactly as it is: the same character, the same face, the same pose, the same armour and weapons, the same drawing style, colours and lighting. Change only the background: remove every mast, rope, rigging line, ladder and sail. Behind him there is only the burning red-orange sky with drifting embers and a low rail of black iron at the edge of a bare black iron deck.",
+  "2k"
+ ],
+ "toon-cannon": [
+  "cine-cannon-deck-fix.png",
+  "Redraw this image as a frame from a modern 2D hand-drawn adult animated fantasy action series: clean confident ink outlines, flat cel-shaded colours with hard-edged shadow shapes, painterly matte-painted backgrounds, strong rim lighting. Not 3D, not photoreal. Keep the same great force cannon and the same view: the black iron barrel on its carriage, the rings of glowing blue-white crystal around the barrel, the lightning arcing between them, the glow at the muzzle, on the black iron deck of a flying warship under the burning red-orange sky of the Nine Hells.",
+  "2k"
  ]
 }

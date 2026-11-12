@@ -99,5 +99,81 @@
   ],
   "duration": 6,
   "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the riveted black iron deck of a flying warship with no masts and no sails, racing through the burning red-orange sky of the Nine Hells above a floor of black ash clouds. The armoured cleric from the first reference image (dark plate armour inscribed with glowing runes, crimson cloak, black iron shield bearing a horned fiend's face, golden glowing mace) plants his feet on the deck, raises his shield against a crackle of lightning and thrusts out his mace: a lance of blazing golden radiant light spears across the sky and slams into the wing of the blue dragon from the third reference image, staggering him in mid-air. The camera whips along the deck to the astral elf archer from the second reference image (lilac-blue skin, flowing silver-white hair, antlered silver circlet, cloak of stars, tall bow of white moonlight): she draws the bow to her cheek and the arrow on the string ignites into a blinding white-gold radiant bolt wrapped in spiralling violet fey energy and crackling arcs of lightning; she looses. The camera flies with the arrow as it streaks across the red sky and strikes the blue dragon in the throat: a colossal explosion of radiant light and violet lightning tears his neck half through; his head lolls, the lightning in his wings dies, and he falls limp out of the sky into the ash clouds. The ship is the one from the fourth reference image. No dialogue, no voices, no captions, no text on screen."
+ },
+ "v2-r1": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-toon-ship.jpg",
+   "ref-toon-blue.jpg",
+   "ref-toon-drenwal-c.jpg",
+   "ref-toon-lucan-c.jpg",
+   "ref-toon-orhenn-c.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the riveted black iron deck of a flying warship with no masts and no sails, racing through the burning red-orange sky of the Nine Hells above a floor of black ash clouds. The camera swoops down along the hull of the black iron flying warship from the first reference image as she races through the sky at full speed, and lands on her deck. the blue dragon from the second reference image dives alongside and breathes a blinding line of lightning down the length of the deck: the armoured cleric from the third reference image (dark plate armour inscribed with glowing runes, crimson cloak, black iron shield bearing a horned fiend's face, golden glowing mace) steps into it and catches it on his shield, lightning bursting around him, and the old knight from the fourth reference image (open steel helm, grey beard, crimson surcoat, golden-brass mechanical legs, shield and longsword) braces at his shoulder, shield up, driven back a step in a shower of sparks. Behind them the red dragonborn druid from the fifth reference image (crimson scales, gold scales spreading along his jaw, ember-orange robes, mantle of blackened bark, staff tipped with living flame, a small fox of living fire at his heels) sprints across the deck and dives head first down an open hatch as the lightning scorches the plating at his heels, his fire fox leaping in after him. No dialogue, no voices, no captions, no text on screen."
+ },
+ "v2-r2": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-toon-orhenn-c.jpg",
+   "ref-toon-red.jpg",
+   "ref-toon-drenwal-c.jpg",
+   "ref-toon-lucan-c.jpg",
+   "ref-toon-blue.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the riveted black iron deck of a flying warship with no masts and no sails, racing through the burning red-orange sky of the Nine Hells above a floor of black ash clouds. Below deck, on the dark second level of the hold, the red dragonborn druid from the first reference image (crimson scales, gold scales spreading along his jaw, ember-orange robes, mantle of blackened bark, staff tipped with living flame, a small fox of living fire at his heels) lands, rolls and throws himself between crates as fire and lightning stab down through the iron gratings overhead. The camera rises through the grating onto the open deck: the red dragon from the second reference image sweeps past and bathes the deck in a roaring cone of fire; the old knight from the fourth reference image (open steel helm, grey beard, crimson surcoat, golden-brass mechanical legs, shield and longsword) crouches behind his glowing-hot shield, while the armoured cleric from the third reference image (dark plate armour inscribed with glowing runes, crimson cloak, black iron shield bearing a horned fiend's face, golden glowing mace) stands in the flames behind his shield, then swings his mace overhead and hurls a blazing bolt of golden radiant light that bursts against the red dragon's flank. The camera whips over the rail to the blue dragon from the fifth reference image, who folds his wings and drops like a thrown spear straight down into the floor of black ash clouds, which swallow him. No dialogue, no voices, no captions, no text on screen."
+ },
+ "v2-r3": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-toon-jack-c.jpg",
+   "ref-toon-ship.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the riveted black iron deck of a flying warship with no masts and no sails, racing through the burning red-orange sky of the Nine Hells above a floor of black ash clouds. Below deck at the roaring engine core, a sphere of blinding blue-white energy in a cage of black iron: the pilot from the first reference image (lean weathered man, long brown leather coat, scarf, gloves) grins, winds up and slings a fistful of glowing soul coins into it, one after another; each coin screams as it burns and the core flares white. The camera bursts out through the hull: the black iron flying warship from the second reference image erupts with blue-white fire along her keel and surges forward with a thunderclap, the sky streaking past. The camera tips over her rail and looks straight down: far below, the floor of ash clouds is churning into a vast slow spiral storm that pulses from within with blue-white lightning, brighter with every pulse, something huge moving inside it. No dialogue, no voices, no captions, no text on screen."
+ },
+ "v2-r4": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-toon-drenwal-c.jpg",
+   "ref-toon-aurora-c.jpg",
+   "ref-toon-cannon.jpg",
+   "ref-toon-red.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the riveted black iron deck of a flying warship with no masts and no sails, racing through the burning red-orange sky of the Nine Hells above a floor of black ash clouds. the armoured cleric from the first reference image (dark plate armour inscribed with glowing runes, crimson cloak, black iron shield bearing a horned fiend's face, golden glowing mace) raises his glowing mace to the sky and shouts a prayer: a rift of golden light tears open in the red clouds and a winged celestial warrior made of golden light dives out of it with a blazing sword. The camera whips along the deck past the astral elf archer from the second reference image (lilac-blue skin, flowing silver-white hair, antlered silver circlet, cloak of stars, tall bow of white moonlight), who looses arrow after arrow of white radiant light, to the great force cannon from the third reference image and its twin: their crystal rings blaze brighter and brighter, then they fire a rapid volley, bolt after bolt of blinding blue-white force, slamming back on their carriages. The camera flies with the bolts: they burst against the chest and wing of the red dragon from the fourth reference image just as the celestial's sword of light slashes across his back; he shrieks and tumbles sideways through the air, scales and embers flying. No dialogue, no voices, no captions, no text on screen."
+ },
+ "v2-r5": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-toon-red.jpg",
+   "ref-toon-lucan-c.jpg",
+   "ref-toon-drenwal-c.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the riveted black iron deck of a flying warship with no masts and no sails, racing through the burning red-orange sky of the Nine Hells above a floor of black ash clouds. At the bow of the black iron warship the huge barbed harpoon launcher fires with a crack; the camera flies with the harpoon and its heavy chain as it punches deep into the shoulder of the red dragon from the first reference image; the chain snaps taut. The dragon is dragged thrashing against the ship's rail, wings hammering, jaws snapping across the deck, the whole ship lurching. the old knight from the second reference image (open steel helm, grey beard, crimson surcoat, golden-brass mechanical legs, shield and longsword) charges across the tilting deck on his mechanical legs and swings his longsword two-handed in a great arc into the dragon's neck, scales and blood flying; beside him the armoured cleric from the third reference image (dark plate armour inscribed with glowing runes, crimson cloak, black iron shield bearing a horned fiend's face, golden glowing mace) leaps and brings his mace down on the dragon's skull in an explosion of golden radiant light. The red dragon's roar chokes off; he sags, wings folding, and hangs from the chain. No dialogue, no voices, no captions, no text on screen."
+ },
+ "v2-r6": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-toon-blue.jpg",
+   "ref-toon-lucan-c.jpg",
+   "ref-toon-aurora-c.jpg",
+   "ref-toon-drenwal-c.jpg",
+   "ref-toon-ship.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the riveted black iron deck of a flying warship with no masts and no sails, racing through the burning red-orange sky of the Nine Hells above a floor of black ash clouds. The storm in the ash clouds explodes upward: the blue dragon from the first reference image bursts out of it wreathed in lightning and rockets straight up past the hull. He twists in the air above the deck and his lightning breath blasts across it: the old knight from the second reference image (open steel helm, grey beard, crimson surcoat, golden-brass mechanical legs, shield and longsword) is hurled backward and crashes down, armour smoking; the astral elf archer from the third reference image (lilac-blue skin, flowing silver-white hair, antlered silver circlet, cloak of stars, tall bow of white moonlight), caught with her bow half drawn, is thrown off her feet, her glowing bow skittering away across the plating; the armoured cleric from the fourth reference image (dark plate armour inscribed with glowing runes, crimson cloak, black iron shield bearing a horned fiend's face, golden glowing mace) is driven to one knee behind his shield, lightning pouring around him. The camera pulls back fast and wide: the black iron flying warship from the fifth reference image reels and lists, burning, plates torn open along her flank, trailing black smoke and wreckage. No dialogue, no voices, no captions, no text on screen."
+ },
+ "v2-r7": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-toon-orhenn-c.jpg",
+   "ref-toon-lucan-c.jpg",
+   "ref-toon-aurora-c.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A 2D hand-drawn animated fantasy action series for adults: clean ink outlines, flat cel-shaded colours with hard-edged shadows, painterly backgrounds, bold glowing spell effects drawn as animated light, smear frames and speed lines on the fastest motion. Fluid, dynamic character animation in one continuous flowing take: the camera glides, whips and flies with the action and is never still. Setting: the riveted black iron deck of a flying warship with no masts and no sails, racing through the burning red-orange sky of the Nine Hells above a floor of black ash clouds. the red dragonborn druid from the first reference image (crimson scales, gold scales spreading along his jaw, ember-orange robes, mantle of blackened bark, staff tipped with living flame, a small fox of living fire at his heels) bursts up out of the deck hatch through smoke and fire, his fire fox bounding ahead of him, runs forward among the fallen and drives his flame-tipped staff down onto the burning deck. The fox leaps and bursts into a ring of green-gold healing fire that rolls outward across the whole deck, washing over the fallen; the flames of the burning ship bend away from it. The camera glides low with the ring of light: the old knight from the second reference image (open steel helm, grey beard, crimson surcoat, golden-brass mechanical legs, shield and longsword), lying fallen, closes his gauntlet on his sword and heaves himself to his feet; beside him the astral elf archer from the third reference image (lilac-blue skin, flowing silver-white hair, antlered silver circlet, cloak of stars, tall bow of white moonlight) snaps her eyes open, rolls upright and snatches up her glowing bow. No dialogue, no voices, no captions, no text on screen."
  }
 }
