@@ -636,6 +636,7 @@
         duration: "30 minutes",
         blocks: [
           { t: "read", text: "The ice begins a mile out: a frozen skin over the waste, then a crag of it rising like a wave that forgot to fall. Set into the crag, a sheet of black glass forty feet high, so cold the air over it sings one thin note without stopping. Four ice devils and a bone devil stand on the shelf below it in a line that has not moved for a very long time. In the glass, behind your own reflections, there is the shape of a man, kneeling." },
+          { t: "img", src: "art/generated/env-mirror-of-mephistar.webp", video: "art/generated/env-mirror-of-mephistar.mp4", caption: "The Mirror of Mephistar. In the glass, the kneeling shape stands up." },
           { t: "env", sight: "Glare ice, black glass, your own faces, and him.", sound: "The note. Nothing else.", feel: "Cold enough to hurt. The shard in Drenwal's pack is warm by comparison." },
           { t: "h", text: "The Shelf" },
           { t: "steps", items: [

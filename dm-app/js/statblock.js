@@ -356,8 +356,11 @@
     }
     var img = el("img", "portrait zoomable");
     img.alt = creature.name;
-    img.title = "Click to open full size";
-    img.addEventListener("click", function () { window.open(img.currentSrc || img.src, "_blank"); });
+    img.title = creature.video ? "Click to play the clip" : "Click to open full size";
+    img.addEventListener("click", function () {
+      if (creature.video) openLightbox("video", creature.video, creature.name);
+      else window.open(img.currentSrc || img.src, "_blank");
+    });
     // A string `portrait` is this individual's own art; the kind's art stays as the fallback.
     var chain = (typeof creature.portrait === "string" ? [creature.portrait] : []).concat(portraitChain(creature.kind, creature.source));
     var i = 0;

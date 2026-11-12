@@ -199,13 +199,23 @@
         var imgWrap = el("div", "block block-img");
         var figure = el("figure", "img-plate");
         var frame = el("div", "img-plate-frame");
-        var image = document.createElement("img");
-        image.className = "img-plate-art zoomable";
-        image.src = block.src;
-        image.title = "Click to open full size";
-        image.addEventListener("click", function () { window.open(image.currentSrc || image.src, "_blank"); });
-        image.alt = block.caption || "";
-        image.loading = "lazy";
+        var image = document.createElement(block.video ? "video" : "img");
+        if (block.video) {
+          // A clip: the still is the poster, the DM presses play.
+          image.className = "img-plate-art";
+          image.src = block.video;
+          image.poster = block.src || "";
+          image.controls = true;
+          image.loop = true;
+          image.preload = "none";
+        } else {
+          image.className = "img-plate-art zoomable";
+          image.src = block.src;
+          image.title = "Click to open full size";
+          image.addEventListener("click", function () { window.open(image.currentSrc || image.src, "_blank"); });
+          image.alt = block.caption || "";
+          image.loading = "lazy";
+        }
         image.onerror = function () { figure.style.display = "none"; };
         frame.appendChild(image);
         figure.appendChild(frame);
