@@ -1,7 +1,7 @@
 // Session 15: the Scab and the gates of the Bleeding Citadel. Follows Session 15 (the Emporium and the Mirror). Lulu taken by Zariel's riders by default.
 // Areas S1-S14 follow the printed adventure (rooms, counts, DCs) as summarised in the Eventyr Chapter 4 cheat sheet (local library), written in our own words.
 // Campaign creatures (vrock, hezrou, narzugon) come from campaign-world.js; this file overrides only their tactics.
-// Scab creatures use the book stat blocks (MM/MTF, per the Eventyr Chapter 4 appendix). Exception: Crokek'toeck keeps stand-in numbers; the official block is behind its 5etools link.
+// Scab creatures use the book stat blocks (MM/MTF, per the Eventyr Chapter 4 appendix). Exception: Crokek'toeck is BUFFED (CR 20, mythic: Yeenoghu's Shadow rides it at its first fall; DM 2026-11-12); the book's block is behind its 5etools link.
 window.SESSION = {
   id: "15-the-scab",
   title: "The Scab",
@@ -247,29 +247,98 @@ window.SESSION = {
       ]
     },
     "crokek-toeck": {
-      name: "Crokek'toeck, Yeenoghu's Beast", kind: "gnoll-hound", source: { page: "bestiary", name: "Crokek'toeck", src: "BGDIA" }, role: "Huge fiend. A lost pet that is also a siege engine.",
-      homebrew: "STAND-IN NUMBERS (ours, about CR 13). The book has its own stat block for Crokek'toeck: open the source link above (5etools, BGDIA) to run it by the book. Either way, by the book it leaves after three rounds to find Yeenoghu.",
-      npc: false, sizeType: "Huge fiend (demon), chaotic evil", ac: 17, acNote: "bone plates",
-      hp: 230, hpFormula: "20d12 + 100", speed: "50 ft., burrow 20 ft. (scab only)",
-      abilities: { str: 26, dex: 14, con: 21, int: 6, wis: 12, cha: 8 }, saves: "Con +10, Wis +6", skills: "Perception +6",
-      vulnerable: "", resist: "cold, fire, lightning; bludgeoning, piercing and slashing from nonmagical attacks", immune: "poison", condImmune: "poisoned, frightened", senses: "darkvision 120 ft., blindsight 60 ft., passive Perception 16", languages: "understands Abyssal",
-      cr: "13", xp: 10000, pb: 5,
+      name: "Crokek'toeck, Yeenoghu's Beast (unchained)", kind: "gnoll-hound", source: { page: "bestiary", name: "Crokek'toeck", src: "BGDIA" },
+      role: "Gargantuan fiend. Yeenoghu's lost hound, dug out of the Scab. A siege engine with a blood-memory.",
+      homebrew: "BUFFED (DM ruling 2026-11-12: 'strong as hell'). The book's beast leaves after three rounds; this one does not. CR 13 to 20, 230 to 330 HP, AC 17 to 19, Legendary Resistance, legendary and lair actions, a swallow, a tail, Scab-Quake, and a mythic second phase: the first time it drops to 0 hit points, {@c crokek-toeck-ridden|Yeenoghu's Shadow rides it}. The book's own block is behind the source link; the art is ours.",
+      npc: false, sizeType: "Gargantuan fiend (demon), chaotic evil", ac: 19, acNote: "bone plates",
+      hp: 330, hpFormula: "20d20 + 120", speed: "50 ft., burrow 40 ft. (scab and stone), climb 30 ft.",
+      abilities: { str: 28, dex: 14, con: 22, int: 6, wis: 14, cha: 12 }, saves: "Str +15, Con +12, Wis +8", skills: "Perception +8",
+      vulnerable: "", resist: "cold, fire, lightning; bludgeoning, piercing and slashing from nonmagical attacks", immune: "poison", condImmune: "charmed, exhaustion, frightened, poisoned", senses: "blindsight 60 ft., darkvision 120 ft., passive Perception 18", languages: "understands Abyssal",
+      cr: "20", xp: 25000, pb: 6,
       traits: [
-        { name: "Blood Scent", text: "It knows where every bleeding or bloodied creature within 120 feet is, and has advantage on attack rolls against creatures that are below their hit point maximum." },
-        { name: "Tunnelling", text: "When it burrows through the scab it leaves a 30-foot-wide passage behind it." }
+        { name: "Legendary Resistance (3/Day)", text: "If the beast fails a saving throw, it can choose to succeed instead." },
+        { name: "Magic Resistance", text: "The beast has advantage on saving throws against spells and other magical effects." },
+        { name: "Blood Scent", text: "It knows where every bleeding or bloodied creature within 300 feet is, through walls and scab, and has advantage on attack rolls against creatures below their hit point maximum. It prefers Bhaalspawn blood above all other: a trail of Drenwal's blood leads it anywhere." },
+        { name: "Jaws of the Hungry God", text: "The beast deals double damage to objects and structures. Its bite deals triple damage to chains, bars and gates, and it can chew through a chain Zariel forged (AC 23, 500 hit points, immune to everything but its bite) in 1d4 + 1 rounds of uninterrupted biting. This is the Jaws option for Elturel's chains." },
+        { name: "Tunnelling", text: "It burrows through scab at full speed and stone at half, and leaves a 30-foot-wide passage behind it." },
+        { name: "Hungry God's Pet (mythic)", text: "The first time the beast drops to 0 hit points, it does not die. Its master reaches into it: replace it with {@c crokek-toeck-ridden|Crokek'toeck, Ridden by the Hungry God} in the same space, with 200 fresh hit points and 2 uses of Legendary Resistance. Conditions and grapples on it end. Swallowed creatures stay swallowed." },
+        { name: "Rampage", text: "When the beast reduces a creature to 0 hit points on its turn, it can use a bonus action to move up to half its speed and make one bite attack." }
       ],
       actions: [
-        { name: "Multiattack", text: "Three attacks: one bite and two claws." },
-        { name: "Bite", art: "art/generated/crokek-toeck-bite.webp", text: "Melee Weapon Attack: +13 to hit, reach 10 ft., one target. Hit: 26 (4d8 + 8) piercing damage. A Large or smaller target is grappled (escape DC 18) and the beast can swallow-bite it as a second bite on its next turn for the same damage." },
-        { name: "Claw", art: "art/generated/crokek-toeck-claw.webp", text: "Melee Weapon Attack: +13 to hit, reach 10 ft., one target. Hit: 19 (2d10 + 8) slashing damage." },
-        { name: "Howl of the Hungry God (Recharge 5-6)", art: "art/generated/crokek-toeck-howl-of-the-hungry-god.webp", text: "Each creature within 60 feet that can hear it must succeed on a DC 17 Wisdom saving throw or be frightened until the end of its next turn. Gnolls and demons that hear it have advantage on their next attack roll." }
+        { name: "Multiattack", text: "The beast makes three attacks: one bite and two claws, or one bite, one claw and one tail." },
+        { name: "Bite", art: "art/generated/crokek-toeck-bite.webp", text: "Melee Weapon Attack: +15 to hit, reach 15 ft., one target. Hit: 31 (4d10 + 9) piercing damage. A Large or smaller target is grappled (escape DC 20) and restrained. If a grappled creature is still in its jaws at the start of the beast's next turn, the beast swallows it instead of biting: the creature is blinded and restrained, has total cover against attacks from outside, and takes 21 (6d6) acid damage at the start of each of the beast's turns. It can hold one Large or two smaller creatures. If the beast takes 50 damage or more in one turn from a creature inside it, it must succeed on a DC 20 Constitution saving throw or regurgitate everything, which lands prone within 10 feet." },
+        { name: "Claw", art: "art/generated/crokek-toeck-claw.webp", text: "Melee Weapon Attack: +15 to hit, reach 10 ft., one target. Hit: 25 (3d10 + 9) slashing damage." },
+        { name: "Tail", text: "Melee Weapon Attack: +15 to hit, reach 20 ft., one target. Hit: 22 (3d8 + 9) bludgeoning damage, and the target must succeed on a DC 20 Strength saving throw or be pushed 15 feet and knocked prone." },
+        { name: "Howl of the Hungry God (Recharge 5-6)", art: "art/generated/crokek-toeck-howl-of-the-hungry-god.webp", text: "Each creature within 90 feet that can hear it must succeed on a DC 19 Wisdom saving throw or take 27 (6d8) psychic damage and be frightened of it for 1 minute (repeat the save at the end of each turn). Gnolls and demons that hear it have advantage on their next attack roll, and the Scab's lair action 2 fires at once." }
       ],
       bonus: [], reactions: [],
+      legendary: {
+        count: 3,
+        intro: "The beast can take 3 legendary actions, one at a time, at the end of another creature's turn. It regains them at the start of its turn.",
+        actions: [
+          { name: "Claw", cost: 1, text: "The beast makes one claw attack." },
+          { name: "Burrow Lunge", cost: 1, text: "The beast burrows up to 20 feet and surfaces. Each creature within 10 feet of where it surfaces must succeed on a DC 20 Dexterity saving throw or be knocked prone." },
+          { name: "Scab-Quake", cost: 2, text: "The beast slams the crust. A 20-foot-radius point it can see within 60 feet buckles: each creature there must succeed on a DC 18 Dexterity saving throw or take 22 (4d10) bludgeoning damage and be knocked prone. The area is difficult terrain afterwards." },
+          { name: "Devour the Dead", cost: 2, text: "The beast eats a corpse within 10 feet and regains 40 hit points." }
+        ]
+      },
+      lair: { initiative: 20, text: "In the Scab the beast's prison is its lair. On initiative count 20 (losing ties), one of: (1) {@b the crust buckles}: a 60-foot line, 10 feet wide, from the beast: DC 18 Dexterity or 16 (3d10) bludgeoning and prone, and the line is a 10-foot-deep trench; (2) {@b the pack hears}: 1d4 gnolls (MM) arrive from the nearest corridor at the end of the round and attack the nearest bleeding creature; (3) {@b the walls weep}: every bloodied creature within 120 feet takes 7 (2d6) necrotic damage as its wounds reopen, no save, and Blood Scent ignores cover and walls until the next initiative count 20." },
       tactics: [
-        "It is freed with a roar, not a plan. It goes for the nearest bleeding creature, then the loudest, then whoever blocks the passage.",
-        "Three rounds, then it leaves through the scab to find Yeenoghu. It leaves sooner if it takes 100 damage, if a bleeding decoy goes the other way, or if Trantolox tries to command it.",
-        "If it leaves, it takes its tunnel with it. The party walks through the hole it made."
-      ]
+        "It is freed with a roar. Round 1: Howl, then Multiattack on the nearest bleeding creature. It swallows the smallest thing it can grab and keeps fighting with it inside.",
+        "It fights in its own passage and the prison; Burrow Lunge to get behind the line. Scab-Quake when three or more are on the same crust.",
+        "It does not leave. It follows blood, and the party is bleeding. If a bleeding decoy runs the other way it follows the decoy for a round, then comes back.",
+        "At 0 hit points: stop. Read the Shadow. Then run {@c crokek-toeck-ridden|the ridden beast}.",
+        "Trantolox cannot command it and flees toward it anyway, to stand behind it. Vatilan screams at it in Abyssal and is eaten first if he is near."
+      ],
+      description: "The wall comes down and the thing behind it stands up out of its own chains. A hound the size of a house, if a house had been skinned and left to scab over: bone plates, a jaw that hinges wrong, a tail with a spine on the end, and a smell of old blood so thick it is a taste. It knows which of you is hurt. It looks at that one."
+    },
+
+    "crokek-toeck-ridden": {
+      name: "Crokek'toeck, Ridden by the Hungry God", kind: "gnoll-hound", source: { page: "bestiary", name: "Crokek'toeck", src: "BGDIA" },
+      role: "The Shadow of Yeenoghu reaches through his pet. Not the demon lord: his attention, his flail and his hunger.",
+      homebrew: "The reappearance (DM ruling 2026-11-12). The Lady Vengeance's century ward bars the manifestation the party banished at the Last Hill; it does not bar a god reaching into his own hound. Phase 2 of the beast: 200 fresh hit points, CR 22, Yeenoghu's flail and Rampage and gnoll-spawning. The Shadow can be torn out (three ways, in the scene); then the beast is itself again at 100 hit points and leaves to find its master. If the ridden beast drops to 0 it dies for good and the Shadow is gone for a century, for real this time.",
+      npc: false, sizeType: "Gargantuan fiend (demon), chaotic evil", ac: 20, acNote: "bone plates and a shadow",
+      hp: 200, hpFormula: "the Shadow's: a fresh pool", speed: "60 ft., burrow 40 ft., climb 30 ft.",
+      abilities: { str: 30, dex: 16, con: 24, int: 10, wis: 16, cha: 20 }, saves: "Str +17, Dex +10, Con +14, Wis +10", skills: "Perception +10",
+      vulnerable: "", resist: "cold, fire, lightning; bludgeoning, piercing and slashing from nonmagical attacks", immune: "poison, psychic", condImmune: "charmed, exhaustion, frightened, paralyzed, poisoned", senses: "truesight 120 ft., passive Perception 20", languages: "Abyssal, Gnoll (the Shadow speaks; the beast does not)",
+      cr: "22", xp: 41000, pb: 7,
+      traits: [
+        { name: "Legendary Resistance (2/Day)", text: "Fresh. If the ridden beast fails a saving throw, it can choose to succeed instead." },
+        { name: "Magic Resistance", text: "It has advantage on saving throws against spells and other magical effects." },
+        { name: "The Shadow of Yeenoghu", text: "A shadow in the shape of a gnoll-headed giant sits astride the beast. It is not a creature and cannot be targeted; the flail is its. It can be {@b torn out} by any of: the Lady Vengeance's century ward within 300 feet (an action at the Core, DC 15 Arcana, Jeremy or a PC); {@spell dispel evil and good} cast on the beast (the dismissal: it saves with disadvantage, and fails automatically inside the ward's 300 feet); or 60 or more radiant damage in a single round. Torn out, this phase ends at once: the beast is itself again at 100 hit points, frightened for the first time in its life, and it tunnels away to find its master." },
+        { name: "Blood Scent", text: "As the beast, and now it hunts the Lord of Murder's child by name: the Shadow's first words are 'Bhaal's whelp.' Drenwal has disadvantage on Stealth against it anywhere in the Scab." },
+        { name: "Jaws of the Hungry God", text: "As the beast: triple bite damage to chains, bars and gates; a chain Zariel forged in 1d4 + 1 rounds." },
+        { name: "Aura of the Gnoll God", text: "Gnolls and demons within 30 feet have advantage on attack rolls and gain 10 temporary hit points at the start of their turn. Any other creature that starts its turn within 30 feet must succeed on a DC 18 Wisdom saving throw or take 10 (3d6) psychic damage." },
+        { name: "Spawn of Slaughter", text: "A humanoid or demon reduced to 0 hit points by the ridden beast's attacks rises at the start of its next turn as a gnoll (MM), hostile to everyone, Yeenoghu's gift. (A PC does not rise unless the DM wants a very bad night.)" },
+        { name: "Rampage", text: "When it reduces a creature to 0 hit points on its turn, it can use a bonus action to move up to half its speed and make one bite attack." }
+      ],
+      actions: [
+        { name: "Multiattack", text: "The ridden beast makes three attacks: one with the Flail of the Gnoll God, one bite and one claw." },
+        { name: "Flail of the Gnoll God", text: "Melee Weapon Attack: +17 to hit, reach 15 ft., one target. Hit: 17 (2d6 + 10) bludgeoning damage plus 10 (3d6) force damage, and the target must succeed on a DC 20 Wisdom saving throw or be frightened for 1 minute (repeat the save at the end of each turn). The shadow of Tlsotha, Yeenoghu's own flail." },
+        { name: "Bite", art: "art/generated/crokek-toeck-bite.webp", text: "Melee Weapon Attack: +17 to hit, reach 15 ft., one target. Hit: 32 (4d10 + 10) piercing damage, and the swallow rules of the beast's bite apply (escape DC 22)." },
+        { name: "Claw", art: "art/generated/crokek-toeck-claw.webp", text: "Melee Weapon Attack: +17 to hit, reach 10 ft., one target. Hit: 26 (3d10 + 10) slashing damage." },
+        { name: "Tail", text: "Melee Weapon Attack: +17 to hit, reach 20 ft., one target. Hit: 23 (3d8 + 10) bludgeoning damage, and the target must succeed on a DC 22 Strength saving throw or be pushed 15 feet and knocked prone." },
+        { name: "Howl of the Hungry God (Recharge 5-6)", art: "art/generated/crokek-toeck-howl-of-the-hungry-god.webp", text: "Each creature within 120 feet that can hear it must succeed on a DC 20 Wisdom saving throw or take 36 (8d8) psychic damage and be frightened of it for 1 minute (repeat the save at the end of each turn). Every gnoll in the Scab hears it." }
+      ],
+      bonus: [], reactions: [],
+      legendary: {
+        count: 3,
+        intro: "The ridden beast can take 3 legendary actions, one at a time, at the end of another creature's turn. It regains them at the start of its turn.",
+        actions: [
+          { name: "Flail", cost: 1, text: "It makes one attack with the Flail of the Gnoll God." },
+          { name: "Burrow Lunge", cost: 1, text: "It burrows up to 20 feet and surfaces. Each creature within 10 feet of where it surfaces must succeed on a DC 22 Dexterity saving throw or be knocked prone." },
+          { name: "Scab-Quake", cost: 2, text: "As the beast's: a 20-foot-radius point within 60 feet, DC 20 Dexterity or 22 (4d10) bludgeoning and prone, difficult terrain afterwards." },
+          { name: "Call the Pack", cost: 2, text: "1d4 + 1 gnolls (MM) claw their way out of the scab within 30 feet of it and act at once: a move and one attack each." }
+        ]
+      },
+      lair: { initiative: 20, text: "As the beast's lair actions, and the walls weep every round instead of as an option." },
+      tactics: [
+        "The Shadow speaks once: 'Bhaal's whelp. He said you would be here.' Then the Flail on whoever hurt the beast most.",
+        "It wants Drenwal dead and eaten: Yeenoghu and Bhaal are not friends. Everyone else is in the way. Swallow the smallest, Rampage after every kill, Call the Pack when the party spreads out.",
+        "It does not leave while the Shadow rides. Tearing the Shadow out is the party's real win: the ward, the unicorn's spell, or a radiant burst. Say the three ways aloud through Lulu, Gargauth or the shard's hum if the players have not found them.",
+        "At 0 hit points: it dies. The Shadow screams through the whole Scab, every gnoll in it drops prone, and Yeenoghu is gone from Avernus for a hundred years. For real this time."
+      ],
+      description: "The beast falls. Then it stands up wrong. Something sits on its back that was not there, a shadow the shape of a gnoll-headed giant with a flail of bone, and the shadow's eyes are the only thing in the Scab that is not red. Every gnoll within a mile starts to laugh. 'Bhaal's whelp,' says the shadow, in a voice from a mountain the party once held. 'He said you would be here.'"
     }
   },
 
@@ -328,7 +397,7 @@ window.SESSION = {
           { t: "list", items: [
             "{@b Do these:} S11 the statue, S13 the gnoll corridor and S14 the door. Those are the three real fights.",
             "{@b Skippable if time is short:} S3, S4, S5 and S9. Every room is run with the book's numbers; each of these has a stealth or talk way past it.",
-            "{@b Run, do not fight:} S10, Crokek'toeck. The win is getting past it.",
+            "{@b The big one:} S10, Crokek'toeck, buffed to CR 20 with Yeenoghu's Shadow riding it at its first fall (DM, 2026-11-12). Fight it, run from it, or tear the Shadow out: three ways in the scene.",
             "{@b Talk, not fight:} S6 and S7. They are information and a hazard.",
             "{@b Every fight has an exit.} Fleeing, a bargain, the environment, or a way to stop it with a check."
           ] }
@@ -515,18 +584,43 @@ window.SESSION = {
         { t: "p", text: "From here the scab is hard as rock. {@c vatilan|Vatilan} (a shadow demon) and seven dretches are digging toward S10. The shard shivers in the carrier's hand, so hard it nearly slips: something huge is near. If attacked, Vatilan flies to S14 to warn Trantolox, which turns the last fight into an ambush." },
         { t: "encounter", id: "s9-diggers", title: "S9 (optional): the diggers", combatants: [ { c: "vatilan", n: 1 }, { c: "dretch", n: 7 } ], notes: "Optional. The seven dretches are one group (one initiative, one collective save); Vatilan is on his own. The fight's point is stopping Vatilan before he reaches S14. To shorten: cut to four dretches. Exit: slip past while they dig (DC 15 Stealth as a group) and let Vatilan stay busy." },
 
-        { t: "h", text: "Area S10 · Crokek'toeck's Prison" },
-        { t: "read", text: "Behind a thin wall of living scab something enormous breathes, wound in chains of its own pain." },
-        { t: "p", text: "{@c crokek-toeck|Crokek'toeck} is held incapacitated and restrained here, behind a wall about 20 feet thick. If the wall is breached the beast is free, and it tunnels a 30-foot-wide passage and attacks whatever is in its path. Trantolox tries to command it and cannot. After three rounds Trantolox flees, and Crokek'toeck leaves to find Yeenoghu." },
-        { t: "encounter", id: "s10-crokek", title: "S10 (run, do not fight): the beast breaks free", combatants: [ { c: "crokek-toeck", n: 1 } ], notes: "Not a fight to win: it is a Huge fiend, roughly CR 13, built to be survived. Run it as three rounds. It leaves after round 3, or sooner if it takes 100 damage, or if a bleeding decoy goes the other way. Escape routes: down the dug passage into S11, behind the chains in S7, or up the soft upper scab where it cannot burrow as fast. If a PC is swallowed, the party has one round of its next turn to pull them free (DC 18 Athletics)." },
-        { t: "checks", items: [
-          { skill: "Nature or Arcana", dc: 15, who: "anyone", text: "It follows blood, not sight. A bleeding decoy that runs the other way buys the party the round." },
-          { skill: "Intimidation", dc: 20, who: "a bloodied PC", text: "Stare it down for one round. Only works while its master is not in earshot." },
-          { skill: "Athletics or Acrobatics", dc: 14, who: "each runner", text: "Out-run it down its own passage without being grabbed." }
+        { t: "h", text: "Area S10 · Crokek'toeck's Prison: The Beast Wakes" },
+        { t: "read", text: "Behind a thin wall of living scab something enormous breathes, wound in chains of its own pain. Three chains of scab-iron, each thicker than a man, bolted into the crust. Two of them have been gnawed to threads." },
+        { t: "p", text: "{@c crokek-toeck|Crokek'toeck} is held here, incapacitated and restrained, behind a wall about 20 feet thick (AC 15, 200 hit points, or the dretch tunnel from S9). {@b DM ruling 2026-11-12: it gets loose tonight, and it is the Scab's big fight.} Vatilan's diggers free it in 1d4 hours if nobody stops them; the party can breach the wall themselves; Trantolox tries to command it and cannot. The book's beast leaves after three rounds to find Yeenoghu. Ours does not leave, because its master finds it first." },
+        { t: "h", text: "The Fight: Two Phases" },
+        { t: "steps", items: [
+          "{@b Phase 1: the beast} (CR 20, 330 HP). It follows blood. Howl, bite, swallow, Scab-Quake, the lair. It does not run. Fight it in its own passage, where it can only come one way, or on the upper scab where it burrows at half speed.",
+          "{@b At 0 hit points: stop.} Read the description of {@c crokek-toeck-ridden|the ridden beast}. The century ward on the Lady Vengeance bars the manifestation the party banished at the Last Hill. It does not bar a god reaching into his own hound.",
+          "{@b Phase 2: the Shadow rides} (CR 22, 200 fresh HP). Yeenoghu's flail, his aura, his gnolls rising from the dead. It hunts Drenwal by name. Every gnoll in the Scab is laughing.",
+          "{@b Tear the Shadow out} (the real win, any of three): the ship's century ward within 300 feet (an action at the Core, DC 15 Arcana: the Lady Vengeance has to be at the Scab's mouth or over it); {@spell dispel evil and good} on the beast ({@c moonkite|Moonkite} has it once a day; the dismissal saves with disadvantage, and fails automatically inside the ward's reach); or 60 radiant damage in one round (Drenwal's nova, a Sun Blade, guiding bolt and a smite). Torn out: the beast is itself again at 100 HP, afraid, and it tunnels away to find its master. The Scab has a 30-foot hole in it.",
+          "{@b Or kill it.} At the ridden beast's 0 hit points it dies for good. The Shadow screams through the whole Scab, every gnoll drops prone for a round, and Yeenoghu is gone from Avernus for a hundred years, for real this time. The Jaws option dies with it."
         ] },
-        { t: "more", title: "Why it is here (and why it must leave)", src: ["Book", "Eventyr", "Homebrew"], blocks: [
-          { t: "p", text: "{@b Book:} Crokek'toeck is a creature lost by Yeenoghu, imprisoned in the Scab. Trantolox's diggers are trying to free it. {@b Eventyr:} if you foreshadowed it, freeing it is a good moment to complicate the last fight. We use it as a chase, so the party meets a monster too big to beat and learns to survive one." },
-          { t: "p", text: "{@b Why this link exists:} it sets up the Yeenoghu fight at Idyllglen, which is where the beast is going." }
+        { t: "read", text: "The beast falls. Then it stands up wrong. Something sits on its back that was not there, a shadow the shape of a gnoll-headed giant with a flail of bone, and the shadow's eyes are the only thing in the Scab that is not red. Every gnoll within a mile starts to laugh. 'Bhaal's whelp,' says the shadow, in a voice from a mountain you once held. 'He said you would be here.'" },
+        { t: "encounter", id: "s10-crokek", title: "S10, phase 1: the beast breaks free", combatants: [ { c: "crokek-toeck", n: 1 } ], notes: "Lair actions on 20. Trantolox flees toward it, not away, and stands behind it (add him from S14 if the party is here late). Vatilan is eaten first if near. If a PC is swallowed: 50 damage from inside in one turn forces a DC 20 Con save or it spits everything out; otherwise DC 20 Athletics from outside pulls them free on a bite that misses." },
+        { t: "encounter", id: "s10-crokek-ridden", title: "S10, phase 2: ridden by the Hungry God", combatants: [ { c: "crokek-toeck-ridden", n: 1 } ], notes: "Replace the beast at 0 HP; same space, 200 fresh HP, 2 Legendary Resistance. Call the Pack adds gnolls (MM, one group). Spawn of Slaughter: dead gnolls and demons stand up. Track the three ways to tear the Shadow out; when one lands, swap back to the beast at 100 HP and it leaves." },
+        { t: "h", text: "If They Run" },
+        { t: "checks", items: [
+          { skill: "Nature or Arcana", dc: 15, who: "anyone", text: "It follows blood, not sight. A bleeding decoy that runs the other way buys the party a round." },
+          { skill: "Intimidation", dc: 20, who: "a bloodied PC", text: "Stare the beast down for one round. Never the ridden beast." },
+          { skill: "Athletics or Acrobatics", dc: 16, who: "each runner", text: "Out-run it down its own passage without being grabbed. Up the soft upper scab it burrows at half speed: the only place it is slower than you." }
+        ] },
+        { t: "p", text: "Escape routes: down the dug passage into S11 (the statue heals its gnolls, not the party), behind the chains in S7, or up. A party that runs is hunted through the Scab for the rest of the session: every scene from here gets the Howl in the distance and a Scab-Quake on initiative 20 every third round until the Shadow is torn out or the party leaves the Scab." },
+        { t: "h", text: "The Jaws of the Hungry God (the finale payoff)" },
+        { t: "table", caption: "If the beast lives, it can chew Elturel's chains. Leading it there:", head: ["Method", "How", "Risk"], rows: [
+          ["{@b A trail of Bhaalspawn blood}", "Blood Scent prefers Drenwal's blood above all. He bleeds a drop every 100 feet (1 HP per 100 feet, no healing it closed on the way) and the beast follows the trail to the chains. On the Styx bank that is three miles: 150 HP of trail, or rests along the way.", "The ridden beast hunts the blood instead of following it. Only the beast itself (Shadow torn out) can be led."],
+          ["{@b The Chains of Cania}", "If the party won them at the Mirror (Session 14): three chains that hold a demon-beast. Each is AC 20, 30 HP; the beast breaks one per turn on a DC 20 Strength check. All three on it: held for 10 minutes, long enough to drag it a mile behind the Lady Vengeance.", "It tries every turn. One PC per chain holding the far end."],
+          ["{@b Its master's scent}", "The statue of Yeenoghu in S11 is carved of scab that smells of him. The head, carried on a pole ahead of the beast, leads it like a hound. The head is AC 17, 20 HP once broken off.", "Every gnoll in the Scab follows the head too."],
+          ["{@b Targ Nar's horn}", "If the party took it from the pack-lord in S13: a Fang of Yeenoghu's horn calls the beast from a mile. It comes, hungry.", "It arrives in 1d4 rounds and does not stop coming."]
+        ] },
+        { t: "p", text: "At the chains: 1d4 + 1 rounds of uninterrupted biting per chain (a chain Zariel forged: AC 23, 500 HP, immune to everything else). Zariel feels every bite. See the Compass, every way to break the chains." },
+        { t: "more", title: "Why it is here (book, Eventyr, ours)", src: ["Book", "Eventyr", "Homebrew"], blocks: [
+          { t: "p", text: "{@b Book:} Crokek'toeck is a creature lost by Yeenoghu, imprisoned in the Scab; Trantolox's diggers are trying to free it, and once free it leaves to find its master. {@b Eventyr:} freeing it is a good way to complicate the last fight. {@b Ours (DM, 2026-11-12):} it is the Scab's boss, buffed to a CR 20 mythic with Yeenoghu reaching into it at its first fall, because the party has met this god before and the century ward is the thing that makes the reappearance a puzzle instead of a rematch." }
+        ] },
+        { t: "table", caption: "XP (suggested; level 15 at 260,000)", head: ["Result", "XP"], rows: [
+          ["Phase 1 survived or driven back", "12,500 (half)"],
+          ["Phase 1 to 0 hit points", "25,000"],
+          ["Shadow torn out", "20,000"],
+          ["Ridden beast killed", "41,000"]
         ] },
 
         { t: "choices", prompt: "Level 2 is behind them.", items: [
@@ -700,8 +794,8 @@ window.SESSION = {
         { t: "p", text: "He is below 60 hit points and gone. He tells Zariel's riders where the shard is, or he sells it to Bel. He is back in Chapter 5 with a grudge." },
         { t: "h", text: "Outcome: They Made a Deal with Trantolox" },
         { t: "p", text: "He is inside the Citadel with them, or waiting at the door. He betrays them at the dais if the table likes that, or leaves if the offer was good." },
-        { t: "h", text: "Outcome: Crokek'toeck Left" },
-        { t: "p", text: "It is gone to find Yeenoghu. It will be at Idyllglen. The Scab has a 30-foot hole in it." },
+        { t: "h", text: "Outcome: Crokek'toeck" },
+        { t: "p", text: "{@b Killed as the ridden beast:} Yeenoghu is gone from Avernus for a century, for real; the Jaws option is gone with it. {@b Shadow torn out:} the beast fled to find its master; it will be at Idyllglen, and it can be called back (the horn, the statue's head, Bhaalspawn blood) for the chains. {@b Chained with Cania's chains:} the Jaws option is live: lead it to Elturel's chains in the finale. {@b Still loose in the Scab:} it hunts the party until they leave; Trantolox hides behind it. The Scab has a 30-foot hole in it either way." },
         { t: "h", text: "Outcome: Alazub Reported" },
         { t: "p", text: "Zariel knows the party wants the Sword. The meeting in Chapter 5 starts with her already knowing." },
 

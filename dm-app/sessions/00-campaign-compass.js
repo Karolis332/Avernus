@@ -238,7 +238,7 @@ window.SESSION = {
         { t: "list", items: [
           "Is {@b Lulu taken} at the end of Session 13? (Default: yes, by Zariel's riders.)",
           "{@b Planar Ally for a gold dragon}: does Arkhan's forced version work? And is Conjure Celestial the 2014 or the 2024 version?",
-          "{@b Crokek'toeck}: should he get loose in the Scab? If he does, the book's Jaws option opens for breaking the chains.",
+          "{@b Crokek'toeck}: RULED 2026-11-12. He gets loose in the Scab (Session 15), buffed to CR 20, and Yeenoghu's Shadow rides him at his first fall (the century ward bars the banished manifestation, not a god reaching into his own hound). The Jaws option opens if the party tears the Shadow out and can lead or chain the beast: Bhaalspawn blood, the Chains of Cania, the statue's head, Targ Nar's horn.",
           "{@b The day count}: confirm Day 12 and Dumal at 4 of 6."
         ] },
         { t: "h", text: "Before the finale" },
