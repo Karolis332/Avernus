@@ -13,7 +13,11 @@ The DM bought Higgsfield Plus on 2026-11-12 (1200 credits) for campaign video cl
 3. `higgsfield generate wait <id> --timeout 9m --interval 10s --quiet --json` (about 3.5 min), then curl `result_url`.
 4. Re-encode for the repo: `ffmpeg -c:v libx264 -crf 25 -preset slow -movflags +faststart -c:a aac -b:a 96k` (8.4 MB to 1.25 MB), save as `dm-app/art/generated/<id>-<move>.mp4`, add `video:` beside `art:` on the action.
 
-**Trap:** two `generate create ... --wait` calls (local file path, 1080p) were each charged 16.25 credits and returned `[]` / "request failed (no response received)" with no job in `generate list`. Cause not isolated (the working call differed in three ways: no `--wait`, an upload id, 720p). Do not use `--wait` on create.
+**Traps:** two `generate create ... --wait` calls (local file path, 1080p) were each charged 16.25 credits and printed `[]` / "request failed (no response received)", so no job id was captured. Do not use `--wait` on create. `generate list` never shows Kling jobs (only `generate get <id>` finds them), so save every id to a file at once; those two clips may exist in the web library. Plus allows 6 `kling4_0` jobs at once; a 7th create is refused (`rate_limit_reached`) and not charged. The CLI has no cancel.
+
+**Restyle a still first** when the picture is wrong: `generate create nano_banana_2_1 --image <upload_id> --aspect_ratio auto --resolution 2k --prompt "Edit this painting. Keep the same dragon, pose, composition and painterly style. Change ..."` = 2 credits, under a minute; the job id works as `--start-image` for Kling.
+
+**Art direction (DM, 2026-11-12):** Obatala is "she", she is in the Hells (Avernus backdrop, never snowfields), and "her scales are melting due to the heat" as the book describes. The DM approved the snow clip's motion ("looked fantastic") with that one caveat. Launching six clips before the DM saw the look cost 67.5 credits of drafts: show one sample of a new look before a batch.
 
 **Costs measured:** `kling4_0` image-to-video 5 s: 720p 11.25, 1080p 16.25. `seedance_2_5` 5 s 720p 35. `veo3_1` fast 6 s 24. Price a call for free with `generate cost`.
 
