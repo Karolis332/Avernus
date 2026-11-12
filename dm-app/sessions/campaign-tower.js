@@ -373,7 +373,7 @@ Object.assign(window.CAMPAIGN.creatures, {
       { name: "Claw", art: "art/generated/obatala-claw.webp", text: "Melee Weapon Attack: +13 to hit, reach 5 ft. Hit: 14 (2d6 + 7) slashing." },
       { name: "Tail", art: "art/generated/obatala-tail.webp", text: "Melee Weapon Attack: +13 to hit, reach 15 ft. Hit: 16 (2d8 + 7) bludgeoning." },
       { name: "Frightful Presence", art: "art/generated/obatala-frightful-presence.webp", text: "Each creature of his choice within 120 ft. aware of Obatala: DC 16 Wisdom save or frightened for 1 minute (repeat the save at the end of each turn; a success makes it immune for 24 hours)." },
-      { name: "Cold Breath (Recharge 5-6)", art: "art/generated/obatala-cold-breath.webp", text: "60-ft. cone. DC 20 Constitution save, 63 (14d8) cold, half on a success." }
+      { name: "Cold Breath (Recharge 5-6)", art: "art/generated/obatala-cold-breath.webp", video: "art/generated/obatala-cold-breath.mp4", text: "60-ft. cone. DC 20 Constitution save, 63 (14d8) cold, half on a success." }
     ],
     bonus: [],
     reactions: [
