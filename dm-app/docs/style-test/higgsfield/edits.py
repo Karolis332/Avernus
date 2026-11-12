@@ -26,7 +26,7 @@ def main() -> None:
     specs = json.loads((OUT / "edit-specs.json").read_text(encoding="utf-8"))
     jobs = json.loads(STATE.read_text())
     for key in sys.argv[1:] or specs:
-        src, prompt = specs[key]
+        src, prompt, *opt = specs[key]  # optional third item: resolution; a restyle then skips the photoreal tail
         if key in jobs:  # never pay twice
             continue
         small = OUT / f"edit-src-{key}.jpg"  # 5.5K sources fail as inputs: send a 4096-px copy
@@ -35,7 +35,7 @@ def main() -> None:
         up = hf("upload", "create", str(small))
         up_id = up["id"] if isinstance(up, dict) else up[0]["id"] if isinstance(up[0], dict) else up[0]
         ids = hf("generate", "create", "nano_banana_2_1", "--image", up_id, "--aspect_ratio", "auto",
-                 "--resolution", "4k", "--prompt", prompt + TAIL)
+                 "--resolution", opt[0] if opt else "4k", "--prompt", prompt if opt else prompt + TAIL)
         if not (isinstance(ids, list) and len(ids) == 1):
             sys.exit(f"STOP: {key} returned {ids!r}")
         jobs[key] = ids[0]
