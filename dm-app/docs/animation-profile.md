@@ -12,8 +12,9 @@ profile of them", "cuz then we can animate thavius kreeg".
 
 - Fight films are 2D animated, with the flow of a fast animated fantasy series for adults: fluid, the camera moves with the action, scenes change often. Photoreal read as "very static".
 - One combat round is six seconds of film.
-- Voice lines are wanted, and more of them.
+- Sound and voices: the horror of being in the Hells comes first. The first voice test had heroes shouting lines ("Fuel's dropping! Feed her, now!", "Sorry, friend.") and the DM called it "hella cringe": "less cringe voicelines more horror of the hells being there". So few words, no quips, no grins; screams, dread and the place itself carry the sound.
 - 1080p. No generic soldiers or extras.
+- Faces and finish (DM on the v2 cut and the first drawings): "the animation needs more refinement and lets move away from the AI slop faces". Each character needs a designed face of their own, drawn cleanly, and it has to hold in motion.
 - Stat block clips (dragon moves, the Mirror, the ship) stay photoreal and cinematic: the DM approved those.
 
 ## Heroes
@@ -25,13 +26,14 @@ profile of them", "cuz then we can animate thavius kreeg".
 | **Or'Henn** | Red dragonborn, wildfire druid. Under Tiamat's curse. Gold scales along the jaw **(guess, from the curse tracker)**. Wildfire spirit drawn as a fox of fire **(guess)**. | The curse stops him damaging the dragons, so he hides below deck. When he comes out he has to make a Wisdom save: show the curse working on him. *Mass cure wounds*. The breath weapon the curse gave him was a different fight, not the sky chase. |
 | **Moonkite** | Celestial the size of a small horse, grace of a great cat, silver antlers, feathered wings, pale light. | Aurora's mount. Was in the sky chase. |
 | **Ser Lucan** | Old Hellrider knight on Gondian mechanical legs of brass. | Shield and longsword. Took the breath attacks on deck. Swung at Flash after the harpoon hit. |
-| **Sgt. Veska** | Broad woman, dented splint cuirass, Hellrider tabard faded to old brick. | Was in the sky chase. |
-| **Colico Jack** | Lean, sun-scorched pilot in a long coat. | Slings soul coins into the engine for the boost. |
-| **Jeremy** | Gnome engineer, goggles, scorched leather apron, notebook on a chain. | In the engine room, watching the fuel levels and taking scrolls to feed into the engine. |
+| **Sgt. Veska** | A woman with a ponytail. Broad, dented splint cuirass, Hellrider tabard faded to old brick, scar through one eyebrow. Carries a lance. (The app's stat block says close-cropped hair and an Oath-Blade: the DM's ponytail and lance win; stat block text unchanged.) | Was in the sky chase. From her stat block: two attacks a turn, Rally the Line, Sergeant's Rebuke when someone next to her attacks an ally, heavy crossbow at range. |
+| **Colico Jack** | Lean, sun-scorched pilot in a long coat. | At the helm. Feeds the scrolls from the helm down a chute to the engine. Slings soul coins into the engine for the boost. |
+| **Jeremy** | Gnome engineer, rugged and dusty, goggles, scorched leather apron, notebook on a chain. | In the engine room, watching the fuel levels and taking scrolls to feed into the engine. |
 
 ## The Lady Vengeance
 
 - A long black iron flying galley with the harpoon at her bow. She flies bow first.
+- She is several levels large: a big ship with decks below decks. A chute runs from the helm down to the engine room.
 - **One big force cannon.** The app's stat block still says two (port and starboard): open, the DM decides whether the stat block changes.
 - A crow's nest above the ship.
 - The statue of St. Cuthbert is at the bottom of the ship, not on deck.

@@ -99,5 +99,30 @@
   "cine-toon-veska.png",
   "Keep this image exactly as it is (same drawing style, same deck, same sky, same pose, same splint armour, faded brick-red Hellrider tabard, kite shield and raised longsword), but the fighter is a woman: Sergeant Veska, a broad, strong woman in her forties. Give her a clearly female face with a strong jaw, a scar through one eyebrow, and dark hair pulled back into a short tight braid; keep her fierce shouting expression and her sturdy, broad-shouldered build.",
   "2k"
+ ],
+ "toon-jeremy2": [
+  "cine-toon-jeremy.png",
+  "Keep this image exactly as it is (same drawing style, same engine room, same caged sphere of blue-white energy, same brass gauges, same pose, apron, goggles, notebook on a chain and glowing scroll), but change the gnome himself: he is rugged and dusty, a hard old engineer, not a cheerful one. Give him a lined, weathered, scarred face with grey stubble, a grim tired expression with no smile, skin, hair and clothes caked in grey dust, ash and soot, burn marks on his forearms, and a torn, patched apron. Make the room darker and more menacing, with heavy black shadows.",
+  "2k"
+ ],
+ "toon-jack2": [
+  "cine-toon-jack.png",
+  "Keep this image exactly as it is (same drawing style, same man, same long brown leather coat, scarf and gloves, same great iron wheel, same red sky), but change two things. One: he is not smiling. His face is grim and afraid, jaw set, eyes hard and haunted. Two: beside the wheel, at his free hand, stands a brass chute: a wide brass funnel with a hinged lid, bolted to the deck and leading straight down into the ship; he is dropping a rolled scroll and one coin of dull black iron into it. Make the sky darker and more menacing.",
+  "2k"
+ ],
+ "clean-drenwal": [
+  "cine-toon-drenwal-nb.png",
+  "Redraw this image as a production frame from a hand-drawn 2D animated fantasy series for adults made by a professional television animation studio. Economical, confident line work: a thick clean outer contour and very few interior lines; no cross-hatching, no drawn wrinkles or pores, no scratchy texture lines. Flat colour with exactly one hard-edged shadow tone and one highlight tone (two-tone cel shading); no gradients, no airbrushing, no soft glow on skin. The face is designed, not generic: built from simple angular planes with a clear, distinctive face shape, simple angular eyes, a nose drawn with one or two lines, a thin expressive mouth. Loose, muted painted background so the character reads clearly. Keep the same pose, costume, weapons and colours. His face: a heavy square jaw, a broad flat nose broken once, deep-set tired eyes under a heavy brow, short black hair, a short squared black beard, a thin scar across the bridge of the nose. Grim, steady expression. Keep the dark plate armour inscribed with glowing runes, the crimson cloak, the black iron shield with the horned fiend's face and the glowing golden mace.",
+  "2k"
+ ],
+ "clean-aurora": [
+  "cine-toon-aurora.png",
+  "Redraw this image as a production frame from a hand-drawn 2D animated fantasy series for adults made by a professional television animation studio. Economical, confident line work: a thick clean outer contour and very few interior lines; no cross-hatching, no drawn wrinkles or pores, no scratchy texture lines. Flat colour with exactly one hard-edged shadow tone and one highlight tone (two-tone cel shading); no gradients, no airbrushing, no soft glow on skin. The face is designed, not generic: built from simple angular planes with a clear, distinctive face shape, simple angular eyes, a nose drawn with one or two lines, a thin expressive mouth. Loose, muted painted background so the character reads clearly. Keep the same pose, costume, weapons and colours. Her face: long and narrow with high sharp cheekbones, a pointed chin, large upward-slanted eyes that are solid pale white light with no pupils, thin dark brows, long pointed ears. Calm, cold, focused expression. Keep the pale lilac-blue skin, the long silver-white hair, the antlered silver circlet, the cloak of stars and the tall bow of white moonlight.",
+  "2k"
+ ],
+ "clean-veska": [
+  "cine-toon-veska2.png",
+  "Redraw this image as a production frame from a hand-drawn 2D animated fantasy series for adults made by a professional television animation studio. Economical, confident line work: a thick clean outer contour and very few interior lines; no cross-hatching, no drawn wrinkles or pores, no scratchy texture lines. Flat colour with exactly one hard-edged shadow tone and one highlight tone (two-tone cel shading); no gradients, no airbrushing, no soft glow on skin. The face is designed, not generic: built from simple angular planes with a clear, distinctive face shape, simple angular eyes, a nose drawn with one or two lines, a thin expressive mouth. Loose, muted painted background so the character reads clearly. Keep the same pose, costume, weapons and colours. Change her equipment and hair: Sergeant Veska has a long dark ponytail tied high and carries a long steel-tipped cavalry lance in her right hand, held ready like a spear, with the kite shield on her left arm; no sword in her hand. Her face: broad, with a strong square jaw, a short straight nose, hooded watchful eyes, a scar through her left eyebrow. Hard, unafraid expression, mouth closed. Keep the dented splint-mail cuirass and the Hellrider tabard faded to the colour of old brick.",
+  "2k"
  ]
 }
