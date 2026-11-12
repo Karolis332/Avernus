@@ -1,0 +1,92 @@
+{
+ "test-r1-refs": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-ship.jpg",
+   "view-film-blue.jpg",
+   "view-film-red-fix.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A fast, kinetic aerial battle, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. The burning red-orange sky of the Nine Hells above a floor of black ash clouds. Three quick shots, two seconds each, with hard cuts between them. Shot 1: the black iron flying warship from the first reference image races through the sky at full speed, the camera sweeping fast along her hull, as the blue dragon from the second reference image and the red dragon from the third reference image dive on her from behind with folded wings. Shot 2: on her iron deck, the blue dragon swoops alongside and breathes a blinding line of lightning that tears along the deck; an old knight in battered crimson plate armour and a full helm, with brass mechanical legs, throws up his shield and is driven back in a shower of sparks, while a hooded druid in ash-grey robes dives down an open deck hatch. Shot 3: crash zoom onto the red dragon's face as he roars and unleashes a cone of fire at the stern; the flames wash over the lens. Fast fluid motion, motion blur, flying debris and embers, shaking camera. No slow motion, no static shots."
+ },
+ "test-r1-start": {
+  "mode": "image-to-video",
+  "start": "view-film-blue.jpg",
+  "duration": 6,
+  "prompt": "A fast, kinetic battle on the deck of a flying iron warship, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. Three quick shots, two seconds each, with hard cuts between them. Shot 1: the blue dragon's lightning breath tears along the iron deck toward the lens, sparks and molten metal exploding, the handheld camera shaking, then a whip pan along the deck. Shot 2: an old knight in battered crimson plate armour and a full helm, with brass mechanical legs, throws up his shield as the lightning hits him and is driven back across the deck in a shower of sparks, while behind him a hooded druid in ash-grey robes dives down an open deck hatch. Shot 3: crash zoom past the rail onto a red dragon diving at the stern out of the burning red sky, scarlet scales with glowing cracks, as he roars and unleashes a cone of fire; the flames wash over the lens. Fast fluid motion, motion blur, flying debris and embers. No slow motion, no static shots."
+ },
+ "r2": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-hero-orhenn.jpg",
+   "view-film-red-fix.jpg",
+   "ref-hero-lucan.jpg",
+   "view-film-blue.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A fast, kinetic aerial battle, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. The burning red-orange sky of the Nine Hells above a floor of black ash clouds. Three quick shots, two seconds each, with hard cuts between them. Shot 1: below deck, on the dark second level of the hold, the hooded druid in pale robes from the first reference image throws himself flat between crates as lightning and fire burst down through the iron gratings overhead and rake the planks beside him, sparks raining. Shot 2: on the open deck above, the red dragon from the second reference image sweeps past and bathes the deck in a roaring cone of fire; the old knight from the third reference image (open helm, crimson armour, golden mechanical legs, shield and longsword) crouches behind his glowing-hot shield as the flames pour over him. Shot 3: the blue dragon from the fourth reference image, his lightning spent, folds his wings and drops like a thrown spear straight down through the floor of black ash clouds, which swallow him. Fast fluid motion, motion blur, flying debris and embers, shaking camera. No slow motion, no static shots."
+ },
+ "r3": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-hero-jack.jpg",
+   "ref-ship.jpg",
+   "ref-cannon.jpg",
+   "view-film-red-fix.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A fast, kinetic aerial battle, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. The burning red-orange sky of the Nine Hells above a floor of black ash clouds. Three quick shots, two seconds each, with hard cuts between them. Shot 1: below deck at the roaring engine core, a sphere of blinding blue-white energy in a cage of black iron, the pilot from the first reference image (lean weathered man in a long leather coat and scarf) slings a fistful of glowing soul coins into it, one after another; the core flares white and screams. Shot 2: outside, the black iron flying warship from the second reference image erupts with blue-white fire along her keel and surges forward with a thunderclap, leaving the red dragon from the fourth reference image behind for a moment. Shot 3: on her deck the great force cannon from the third reference image charges, its crystal rings blazing brighter and brighter, lightning arcing between them. Fast fluid motion, motion blur, flying debris and embers, shaking camera. No slow motion, no static shots."
+ },
+ "r4": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-ship.jpg",
+   "ref-cannon.jpg",
+   "view-film-red-fix.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A fast, kinetic aerial battle, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. The burning red-orange sky of the Nine Hells above a floor of black ash clouds. Three quick shots, two seconds each, with hard cuts between them. Shot 1: the camera plunges over the rail of the black iron flying warship from the first reference image to look straight down: far below, the floor of ash clouds is churning into a vast slow spiral storm that pulses from within with blue-white lightning, brighter with every pulse, something huge moving inside it. Shot 2: whip pan back up to the deck: the great force cannon from the second reference image and its twin fire a rapid volley, bolt after bolt of blinding blue-white force, the guns slamming back on their carriages. Shot 3: the bolts slam into the chest and wing of the red dragon from the third reference image in bursts of white light; he shrieks and tumbles sideways through the air, scales and embers flying. Fast fluid motion, motion blur, flying debris and embers, shaking camera. No slow motion, no static shots."
+ },
+ "r5": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-ship.jpg",
+   "view-film-red-fix.jpg",
+   "ref-hero-lucan.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A fast, kinetic aerial battle, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. The burning red-orange sky of the Nine Hells above a floor of black ash clouds. Three quick shots, two seconds each, with hard cuts between them. Shot 1: at the bow of the black iron flying warship from the first reference image, the huge barbed harpoon launcher fires with a crack; the harpoon streaks out trailing a heavy chain and punches deep into the shoulder of the red dragon from the second reference image; the chain snaps taut. Shot 2: the red dragon is dragged thrashing against the ship's rail, wings hammering, jaws snapping across the deck, the whole ship lurching. Shot 3: the old knight from the third reference image (open helm, crimson armour, golden mechanical legs, shield and longsword) charges across the tilting deck on his mechanical legs and swings his longsword two-handed in a great arc into the dragon's neck; sparks, scales and blood fly. Fast fluid motion, motion blur, flying debris and embers, shaking camera. No slow motion, no static shots."
+ },
+ "r6": {
+  "mode": "reference-to-video",
+  "refs": [
+   "view-film-blue.jpg",
+   "ref-hero-lucan.jpg",
+   "ref-hero-aurora.jpg",
+   "ref-ship.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A fast, kinetic aerial battle, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. The burning red-orange sky of the Nine Hells above a floor of black ash clouds. Three quick shots, two seconds each, with hard cuts between them. Shot 1: the storm in the ash clouds explodes upward as the blue dragon from the first reference image bursts out of it wreathed in lightning and rockets straight up past the hull. Shot 2: his lightning breath blasts across the deck: the old knight from the second reference image (open helm, crimson armour, golden mechanical legs, shield and longsword) is hurled backward and crashes down, armour smoking, and the elf archer from the third reference image (dark cloak, long braid, glowing silver bow) is thrown off her feet beside him, her glowing bow skittering away across the deck. Shot 3: wide shot: the black iron flying warship from the fourth reference image reels and lists, burning, plates torn open along her flank, trailing black smoke and wreckage. Fast fluid motion, motion blur, flying debris and embers, shaking camera. No slow motion, no static shots."
+ },
+ "r7": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-hero-orhenn.jpg",
+   "ref-hero-lucan.jpg",
+   "ref-hero-aurora.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A fast, kinetic aerial battle, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. The burning red-orange sky of the Nine Hells above a floor of black ash clouds. Three quick shots, two seconds each, with hard cuts between them. Shot 1: the hooded druid in pale robes from the first reference image bursts up out of the deck hatch into smoke and fire, runs forward and drives his flame-tipped staff down onto the burning deck. Shot 2: a wave of green-gold healing light bursts outward from him in a ring across the whole deck, washing over the fallen; the flames bend away from it. Shot 3: the old knight from the second reference image (open helm, crimson armour, golden mechanical legs, shield and longsword), lying fallen, closes his gauntlet on his sword and heaves himself to his feet; beside him the elf archer from the third reference image (dark cloak, long braid, glowing silver bow) snaps her eyes open, rolls upright and snatches up her glowing silver bow. Fast fluid motion, motion blur, flying debris and embers, shaking camera. No slow motion, no static shots."
+ },
+ "r8": {
+  "mode": "reference-to-video",
+  "refs": [
+   "ref-hero-aurora.jpg",
+   "view-film-blue.jpg",
+   "view-film-red-fix.jpg",
+   "ref-ship.jpg"
+  ],
+  "duration": 6,
+  "prompt": "A fast, kinetic aerial battle, photorealistic live-action dark fantasy, edited like a fast animated action series: rapid hard cuts, whip pans, the camera never still. The burning red-orange sky of the Nine Hells above a floor of black ash clouds. Three quick shots, two seconds each, with hard cuts between them. Shot 1: close on the elf archer from the first reference image (dark cloak, long braid, glowing silver bow): she draws her glowing silver bow to her cheek, an arrow of white moonlight blazing on the string, and looses, then again and again. Shot 2: the arrows punch through the throat of the blue dragon from the second reference image one after another in bursts of silver light, tearing his neck half through; his head lolls, the lightning in his wings dies, and he falls limp into the ash clouds. Shot 3: the red dragon from the third reference image, chained to the ship by a harpoon, takes a last point-blank bolt of blue-white force and goes limp, hanging dead from the chain as the black iron flying warship from the fourth reference image, battered and burning, flies on into the red sky. Fast fluid motion, motion blur, flying debris and embers, shaking camera. No slow motion, no static shots."
+ }
+}
