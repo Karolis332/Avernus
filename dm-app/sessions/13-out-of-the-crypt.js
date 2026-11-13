@@ -847,6 +847,7 @@ window.SESSION = {
       duration: "30 to 45 minutes",
       blocks: [
         { t: "read", text: "The mist tears open behind the stern. A red shape comes through it first, too fast, roaring before it is close enough to matter. Behind and above it, a blue one, silent, lightning crawling along its wings, holding its distance like a hawk that has done this before.\n\nUnder your boots the Planar Core climbs to a scream. Colico Jack leans on the helm and grins without any humour at all. \"Hold on to something.\"" },
+        { t: "img", src: "art/generated/sky-chase-film.webp", video: "art/generated/sky-chase-film.mp4", caption: "The sky chase on film, as it went at the table: eleven rounds, 65 seconds, with sound. Press play." },
         { t: "note", title: "Run It Fast", text: "Homebrew chase (proposal, written at the table 2026-11-08). The gap is counted in {@b bands}, not feet. Each round: the {@b helm rolls}, the {@b gap moves}, the {@b crew act}, then the {@b dragons act} by the gap. Three ways out: the gap reaches {@b Lost}, the dragons are {@b driven off}, or the ship is {@b caught} and it becomes a deck fight." },
         { t: "encounter", id: "sky-chase", title: "Sky Chase: Flash and Vistalancer", combatants: [
           { c: "praxamor", n: 1 }, { c: "vhennic", n: 1 }
