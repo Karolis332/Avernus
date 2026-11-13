@@ -5,7 +5,7 @@ set -euo pipefail
 cd "$(dirname "$0")"
 OUT="${1:?out file}"
 CRF="${2:-20}"
-CLIPS=(film-v5-r1.mp4 film-v5-r2.mp4 film-v5-r3.mp4 film-v4-engine.mp4 film-v5-r5.mp4 film-v5-r6.mp4
+CLIPS=(film-v5-r1-trim.mp4 film-v5-r2.mp4 film-v5-r3.mp4 film-v4-engine.mp4 film-v5-r5.mp4 film-v5-r6.mp4
        film-v5-r7.mp4 film-v5-r8-trim.mp4 film-v5-r9.mp4 film-v5-r10.mp4 film-v5-r11.mp4)
 
 inputs=()
