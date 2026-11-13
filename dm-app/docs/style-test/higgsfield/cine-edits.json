@@ -63,5 +63,12 @@
  "ink-kf-r9": "ef48c10f-76c9-4ab2-a32a-76d83ed6b930",
  "ink-kf-r11": "c361b387-a7d3-44f4-a8d2-ddc82665549d",
  "paint-jack-pirate": "0ec3db96-e576-4c1b-8586-5a3383faebfa",
- "kf-t1-veska": "3b4ff631-360e-47bc-a323-43e7da743632"
+ "kf-t1-veska": "3b4ff631-360e-47bc-a323-43e7da743632",
+ "kf-h1-drenwal-shield": "c63dc9ed-898b-4008-8b4e-1c818341826d",
+ "kf-h3-drenwal-heal": "a115dd7b-660f-43fd-8a54-ef79129e2777",
+ "kf-h7-drenwal-toll": "b9cae207-f663-4b58-ac4d-8682753a04fe",
+ "kf-h7-lucan-sword": "717e91f8-8bce-4782-9f09-8abe181d18f7",
+ "kf-h8-aurora-struck": "cbff75bf-e244-4531-b8b6-16882c377247",
+ "kf-h10-aurora-draw": "3b113e28-2985-4ab4-9e1a-19526c3d22a8",
+ "kf-h11-aurora-tool": "e65f72ea-d3de-419a-a4b1-7cc637f7b060"
 }

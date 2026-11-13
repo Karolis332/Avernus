@@ -291,5 +291,54 @@
   "refs": [],
   "duration": 3,
   "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The sergeant drives off her back foot, twists her hips and shoulders and rams the lance forward with her whole body. The point punches into the throat of the red dragon. She follows through, shoving it deeper with all her weight, her ponytail and tabard snapping forward, then wrenches her shoulders back and tears the lance free in a spray of dark blood. The dragon jerks his head back and roars, straining against the chain; scales and embers fly. Camera: tracks sideways with her lunge at shoulder height. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: a grunt of effort, steel punching through scale, the dragon roaring, the chain clanking, wind. No speech, no music, no captions."
+ },
+ "h1-drenwal-shield": {
+  "mode": "image-to-video",
+  "start": "kf-h1-drenwal-shield.jpg",
+  "refs": [],
+  "duration": 3,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The cleric plants his front foot and drops his weight behind the shield. The bolt drives him back a full step, his boots scraping across the iron. He snarls, shoves forward with his shoulder and heaves the shield up and aside, flinging the lightning off it into the sky. His cape whips behind him. Camera: slow push-in at chest height. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: a deafening crack of lightning, a long electric roar, his wordless shout of effort, boots scraping on iron, wind. No speech, no music, no captions."
+ },
+ "h3-drenwal-heal": {
+  "mode": "image-to-video",
+  "start": "kf-h3-drenwal-heal.jpg",
+  "refs": [],
+  "duration": 3,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The cleric finishes the upward swing of the mace, rising onto his toes, then drives it down with both shoulders and slams its head against the deck. A wave of golden light bursts out from the blow and rolls across the deck over the two fallen figures; the flames on them go out. His cape settles around him. Camera: low, pulling back ahead of the wave of light. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: his wordless shout, a deep warm hum that swells, one heavy boom, flames snuffed out. No speech, no music, no captions."
+ },
+ "h7-drenwal-toll": {
+  "mode": "image-to-video",
+  "start": "kf-h7-drenwal-toll.jpg",
+  "refs": [],
+  "duration": 3,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The cleric finishes the lunge and clenches his outstretched hand into a fist, wrenching it downward as if hauling on a rope. Above the dragon the black and crimson bell swings once and tolls; a shockwave of dark light crushes down on the head of the dragon. The dragon's roar chokes off and his head drops. The cleric's arm stays out, shaking. Camera: tilts up from his fist to the bell. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: one enormous deep funeral bell toll, the roar of the dragon cut off, the creak of the chain, then near silence. No speech, no music, no captions."
+ },
+ "h7-lucan-sword": {
+  "mode": "image-to-video",
+  "start": "kf-h7-lucan-sword.jpg",
+  "refs": [],
+  "duration": 3,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The old knight drives the cut down through with his whole body and the blade bites into the neck of the dragon; scales burst. He rips the sword back along the wound, steps through on his brass legs and snaps his shield up as the head of the dragon whips round at him. Camera: tracks with him at hip height. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: steel biting through scale, the hiss and clank of brass pistons, the dragon bellowing, the chain rattling. No speech, no music, no captions."
+ },
+ "h8-aurora-struck": {
+  "mode": "image-to-video",
+  "start": "kf-h8-aurora-struck.jpg",
+  "refs": [],
+  "duration": 3,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The archer is flung backward through the air, hits the iron deck on her shoulder, rolls twice and slides to a stop on her side, her cloak smoking, one arm stretched out. Her glowing bow clatters across the plates and comes to rest out of her reach. She does not get up. Camera: whips sideways with her as she flies, then holds still. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: a crack of lightning, a cry cut short, a body hitting iron, the bow skittering away, wind. No speech, no music, no captions."
+ },
+ "h10-aurora-draw": {
+  "mode": "image-to-video",
+  "start": "kf-h10-aurora-draw.jpg",
+  "refs": [],
+  "duration": 3,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The archer hauls the string the last inches to her ear, her whole back straining. She holds for one heartbeat as the arrow flares to blinding white. She looses: the string snaps forward, her bow arm kicks, her hair and cloak blow forward with the release, and the arrow leaves as a white-gold streak toward the diving dragon. Camera: slow push-in along the line of the arrow. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: the rising hum of the charged arrow, her breath held, the snap of the bowstring, a shriek of air as the arrow leaves. No speech, no music, no captions."
+ },
+ "h11-aurora-tool": {
+  "mode": "image-to-video",
+  "start": "kf-h11-aurora-tool.jpg",
+  "refs": [],
+  "duration": 4,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The glowing iron finishes flowing into a long hooked tool and cools to dull grey in her hands. She shifts her grip, sets the hook under the edge of one great red scale, braces her knee against the flank and leans her whole weight on the handle. The scale cracks, lifts and comes free into her other hand. She turns it over and looks at it. Camera: static. Slow, tired, deliberate motion at normal speed. Audio: wind over the plain, the soft ring of metal reshaping and cooling, a strained breath, one scale cracking loose. No speech, no music, no captions."
  }
 }
