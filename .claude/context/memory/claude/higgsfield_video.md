@@ -1,8 +1,11 @@
 ---
 name: higgsfield-video
-description: Higgsfield CLI recipe for campaign spell/attack video clips (Kling 4.0 image-to-video), measured costs, and the create --wait charge trap
+description: "Higgsfield CLI recipe for campaign spell/attack video clips (Kling 4.0 image-to-video), measured costs, and the create --wait charge trap"
 metadata:
+  node_type: memory
   type: reference
+  originSessionId: 0da2ec32-82ca-4301-a7e3-feccc57304d0
+  modified: 2026-11-13T08:33:48.624Z
 ---
 
 The DM bought Higgsfield Plus on 2026-11-12 (1200 credits) for campaign video clips; the tool is the official CLI `@higgsfield/cli` (`higgsfield`, `higgs`, `hf`), signed in on this PC. Never run `higgsfield auth token` (prints the token) and strip emails from `account status` output.
@@ -43,4 +46,6 @@ The DM bought Higgsfield Plus on 2026-11-12 (1200 credits) for campaign video cl
 
 **Look of the fight films, as of 2026-11-13:** the DM moved off the cel-shaded look ("AI slop faces") and picked **painterly** (style B on `face-styles.webp`): no outlines, brushed light and colour, realistic bone structure, dark horror mood. No spoken hero lines (a test was "hella cringe"): screams, dread and the place carry the sound. To restyle a reference, pass two images to `nano_banana_2_1` (the character, then a crop of the chosen style) and say the second is only a style reference; an edit with a style description alone barely changes the picture. Plus runs 8 image jobs at once. Paint a key frame per shot, get it approved, then animate with image-to-video from that frame. Six seconds holds about three beats: a fourth gets cut off.
 
-**Never treat an ambiguous message as a go for a batch (2026-11-13):** the DM wrote "show me the video" while a storyboard was waiting; I started six rounds (117 credits), then "wait" arrived with a different style (panel C, dark anime, "use this artstyle for all"). No cancel exists. Render a batch only on an explicit yes to that batch; otherwise answer that the video does not exist yet and ask. The fight film look is now style C; `video-edit` restyling costs 24 credits per 6 s, more than a fresh render.
+**Never treat an ambiguous message as a go for a batch (2026-11-13):** the DM wrote "show me the video" while a storyboard was waiting; I started six rounds (117 credits), then "wait" arrived with a different style (panel C, dark anime, "use this artstyle for all"). No cancel exists. Render a batch only on an explicit yes to that batch; otherwise answer that the video does not exist yet and ask. Style C is the DM's pick "for all"; `video-edit` restyling costs 24 credits per 6 s, more than a fresh render.
+
+**Sky chase film finished 2026-11-13 (commit `aa63b23`):** the DM chose to finish the painted (style B) film when a style C recut cost more than the balance: `dm-app/art/generated/sky-chase-film.mp4`, eleven rounds, 65 s, in the S13 scene `sky-chase`. Balance after it: 3.5 credits, so nothing renders until a top-up. Ask which look (B or C) before the next film. Two more traps seen: the background of a character reference leaks into a cut (Aurora's deck-and-volcano reference turned the ground scene into a deck scene and grew a sailing ship), so use references on plain backgrounds; `generate wait` can print "failed" while `generate get <id>` still says `in_progress`, so check `get` before treating a job as lost.
