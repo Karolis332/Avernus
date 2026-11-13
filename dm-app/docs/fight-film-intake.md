@@ -68,6 +68,22 @@ Two short answers are allowed: **"skip"** (the round folds into the next one) an
 - **Start frame per shot.** It must already show the place of the shot. References are single figures on plain backgrounds, one sentence each in the prompt.
 - **Prompt for one shot:** "[Subject] [one movement]. [Background] [its movement]. Camera: [one move]. Ends on [result]. Audio: [sounds]. No speech."
 
+## Stiff characters
+
+The DM on the painted film (2026-11-13): "the characters are looking very stiff". In the frames they stand in the pose of the key frame while effects move around them (Drenwal with the shield, Aurora with the bow).
+
+Likely causes:
+- Kling's own guide warns that an image it reads as a painting or a still is "prone to generating static videos", with the camera moving instead of the subject. Our start frames are paintings of posed heroes.
+- Three beats in one clip leave each body about two seconds, enough for a change of pose but not for a full move.
+- The cel-shaded v2 cut had no start frames (reference-to-video) and moved more freely; its faces were the problem.
+
+Cures to try, none tested yet (each test costs credits):
+1. Paint the key frame **mid-move**: off balance, weapon half-way through the swing, cloak and hair already flying. Never a hero pose.
+2. Name the body in the prompt, not the effect: "plants the back foot, twists at the hips, drives the lance forward and follows through", in simple sentences.
+3. One beat per three-second clip, so the whole clip is one move.
+4. Give the clip an end frame as well: a start and an end pose that are far apart force the body to travel.
+5. For pure action beats, use reference-to-video without a start frame and keep start frames for close-ups, where the face matters more than the motion.
+
 ## Worked example: round 7 of the sky chase
 
 - **Card.** The moment: Drenwal's *toll the dead* kills Flash **(guess, to confirm)**. Also seen: Veska's lance and Lucan's sword hit him on the chain; Moonkite rams him. The change: Flash hangs dead from the harpoon chain. The look: a black and crimson bell **(guess)**.
