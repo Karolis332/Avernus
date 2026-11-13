@@ -400,5 +400,18 @@
   ],
   "Redraw the first image completely in the art style of the second image, which is only a style reference: a dark anime illustration. Thin precise black ink lines, semi-realistic proportions, sharp narrow eyes, large hard-edged black shadow shapes, flat muted desaturated colours with a red-orange firelight rim, a little fine hatching for shading; no painterly brush texture, no soft gradients, no glossy rendering. It must look as if the same artist drew both images. Keep the subject, composition, poses, costumes and every design detail of the first image exactly; do not copy the man from the second image.",
   "2k"
+ ],
+ "paint-jack-pirate": [
+  "cine-paint-jack.png",
+  "Edit this painting. Keep the painting style, the lighting, the composition, the iron wheel, the chute and his pose exactly. Keep the same man: lean, sun-scorched, hollow cheeks, hard haunted eyes, grim, not smiling. Change him into a proper pirate captain of a hell-ship: a battered black tricorne hat over a faded red bandana, long dark hair tied back, a short rough black beard, a gold hoop in one ear, a weathered long captain's coat of dark oxblood leather with tarnished brass buttons and wide turned-back cuffs, worn open over a loose stained linen shirt, a wide red sash under a broad leather belt with a heavy brass buckle, a cutlass in a scabbard at his hip, a baldric across his chest with two old pistols, tall folded sea boots, heavy rings on his fingers. Everything is worn, scorched and salt-crusted; nothing clean or theatrical. No parrot, no eye patch, no skull and crossbones. No text.",
+  "2k"
+ ],
+ "kf-t1-veska": [
+  [
+   "cine-paint-veska.png",
+   "cine-paint-red.png"
+  ],
+  "Paint one frame from a painterly animated feature film, dark horror in the Nine Hells: no ink outlines, forms built from brush-textured planes of light and colour with visible brushstrokes, realistic anatomy, deep shadows, a dark muted palette lit by red firelight, cinematic widescreen composition. Use the characters exactly as they are designed in the reference images: the same faces, costumes, colours and shapes. Nobody smiles. No text. This is a freeze frame from the middle of a violent movement, not a pose. Side view, full body, on the tilting black iron deck of a flying warship under a burning red sky; no other people. The sergeant from the first image, a broad strong woman with a long dark ponytail tied high, a scar through her left eyebrow, a dented splint-mail cuirass and a faded brick-red tabard, is caught mid-lunge, moving from left to right: her whole weight thrown forward over a deeply bent front knee, her back leg stretched out straight behind her with the heel off the deck, hips and shoulders twisted into the thrust, both arms driving a long steel lance forward, her ponytail and tabard streaming back behind her, teeth bared, off balance and falling into the strike. The lance point is an arm's length from the throat of the red dragon from the second image, whose huge head and neck fill the right third of the frame, held against the ship's rail by a barbed iron harpoon and a taut heavy chain in his shoulder, jaws open, recoiling. Sparks and embers streak past with the motion.",
+  "2k"
  ]
 }

@@ -284,5 +284,12 @@
   ],
   "duration": 6,
   "prompt": "A painterly animated feature film, dark horror in the Nine Hells: no outlines, forms built from brush-textured painted light and colour with visible brushstrokes, realistic anatomy, deep shadows. Keep the painting style of the first frame for the whole shot. Fluid, weighty, fast motion; the camera is never still. The shot starts on the first frame: a slow, quiet shot. The battered warship sinks the last few yards and lays the dead red dragon, hanging beneath her on the harpoon chain, down on the black plain in a soft cloud of ash. Slow cut to the ground beside the carcass: the astral elf archer from the reference image, burned and tired, holds a jagged piece of scrap iron in both hands; it glows, softens and flows like wax into a long hooked scaling tool. She sets its edge under one great red scale on the flank of the dragon and levers the scale free. No speech and no dialogue from anyone. Sound: wind, the creak of chain and tired iron, embers ticking, the soft ring of metal reshaping, one scale cracking loose. No captions, no text on screen."
+ },
+ "t1-veska": {
+  "mode": "image-to-video",
+  "start": "kf-t1-veska.jpg",
+  "refs": [],
+  "duration": 3,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The sergeant drives off her back foot, twists her hips and shoulders and rams the lance forward with her whole body. The point punches into the throat of the red dragon. She follows through, shoving it deeper with all her weight, her ponytail and tabard snapping forward, then wrenches her shoulders back and tears the lance free in a spray of dark blood. The dragon jerks his head back and roars, straining against the chain; scales and embers fly. Camera: tracks sideways with her lunge at shoulder height. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: a grunt of effort, steel punching through scale, the dragon roaring, the chain clanking, wind. No speech, no music, no captions."
  }
 }
