@@ -77,7 +77,7 @@ Likely causes:
 - Three beats in one clip leave each body about two seconds, enough for a change of pose but not for a full move.
 - The cel-shaded v2 cut had no start frames (reference-to-video) and moved more freely; its faces were the problem.
 
-**First test (2026-11-13, 11.75 credits):** `style-test/higgsfield/sky-chase-test-shot-veska-lance.mp4`, Veska's lance thrust as its own three-second shot with cures 1, 2 and 3 (key frame `kf-t1-veska.webp`, spec `t1-veska`). In the frames her whole body travels: she lunges, shoves the lance in, wrenches it free, turns and recovers; face and style hold. She does hold the shove for about a second. The DM has not judged it yet. Cures 4 and 5 are untested.
+**First test (2026-11-13, 11.75 credits):** `style-test/higgsfield/sky-chase-test-shot-veska-lance.mp4`, Veska's lance thrust as its own three-second shot with cures 1, 2 and 3 (key frame `kf-t1-veska.webp`, spec `t1-veska`). In the frames her whole body travels: she lunges, shoves the lance in, wrenches it free, turns and recovers; face and style hold. She does hold the shove for about a second. The DM: "the lance thrust is better". So cures 1, 2 and 3 are the method from here on. Cures 4 and 5 are untested.
 
 Cures:
 1. Paint the key frame **mid-move**: off balance, weapon half-way through the swing, cloak and hair already flying. Never a hero pose.
