@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: reference
   originSessionId: 0da2ec32-82ca-4301-a7e3-feccc57304d0
-  modified: 2026-11-13T08:33:48.624Z
+  modified: 2026-11-13T08:49:14.632Z
 ---
 
 The DM bought Higgsfield Plus on 2026-11-12 (1200 credits) for campaign video clips; the tool is the official CLI `@higgsfield/cli` (`higgsfield`, `higgs`, `hf`), signed in on this PC. Never run `higgsfield auth token` (prints the token) and strip emails from `account status` output.
@@ -48,4 +48,8 @@ The DM bought Higgsfield Plus on 2026-11-12 (1200 credits) for campaign video cl
 
 **Never treat an ambiguous message as a go for a batch (2026-11-13):** the DM wrote "show me the video" while a storyboard was waiting; I started six rounds (117 credits), then "wait" arrived with a different style (panel C, dark anime, "use this artstyle for all"). No cancel exists. Render a batch only on an explicit yes to that batch; otherwise answer that the video does not exist yet and ask. Style C is the DM's pick "for all"; `video-edit` restyling costs 24 credits per 6 s, more than a fresh render.
 
-**Sky chase film finished 2026-11-13 (commit `aa63b23`):** the DM chose to finish the painted (style B) film when a style C recut cost more than the balance: `dm-app/art/generated/sky-chase-film.mp4`, eleven rounds, 65 s, in the S13 scene `sky-chase`. Balance after it: 3.5 credits, so nothing renders until a top-up. Ask which look (B or C) before the next film. Two more traps seen: the background of a character reference leaks into a cut (Aurora's deck-and-volcano reference turned the ground scene into a deck scene and grew a sailing ship), so use references on plain backgrounds; `generate wait` can print "failed" while `generate get <id>` still says `in_progress`, so check `get` before treating a job as lost.
+**Sky chase film finished 2026-11-13 (commit `aa63b23`):** the DM chose to finish the painted (style B) film when a style C recut cost more than the balance: `dm-app/art/generated/sky-chase-film.mp4`, eleven rounds, 65 s, in the S13 scene `sky-chase`. Balance after it: 3.5 credits, so nothing renders until a top-up. Ask which look (B or C) before the next film. Two more traps seen: the background of a character reference leaks into a cut (Aurora's deck-and-volcano reference turned the ground scene into a deck scene and grew a sailing ship), so use references on plain backgrounds; two look-alike armoured characters in one shot morph into each other (Lucan became Veska at the end of round 1; the DM hated it; cut out by hand, film recut in `8c2830d`); `generate wait` can print "failed" while `generate get <id>` still says `in_progress`, so check `get` before treating a job as lost.
+
+**Shots separately, cut by hand (DM asked 2026-11-13, "to not waste tokens"):** render each beat as its own 3 s `kling4_0` clip (the minimum; 9.75 credits at 1080p, the same 3.25 per second as a 6 s clip), trim to 1.5-2.5 s and join with ffmpeg (`join_painted.sh`). A bad beat is retaken alone for half the price and look-alike characters never share a clip. Keep one 6 s take only for a single flowing move. Third-party Kling 4.0 guides also give second ranges in the prompt ("0-2 s: one action, camera move", ranges adding up to the clip length); untested by us.
+
+**Never re-encode over a file the DM has open:** writing the recut straight onto `sky-chase-film.mp4` left it half-written for a minute and he asked why the movie was gone. Encode to a temporary name, then move it into place, and say so first.
