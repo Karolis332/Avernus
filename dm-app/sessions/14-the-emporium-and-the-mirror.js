@@ -425,6 +425,22 @@
         when: "",
         blocks: [
           { t: "p", text: "Session 13 ended near the Wandering Emporium with the party two dragons up, one amnizu down and the Stygian Dock on fire behind them. This session is three places and one night: {@b the Emporium} under Mahadi's truce (the floor, the dens, and Arkhan's deal), {@b the ice road}, and {@b the Mirror of Mephistar}, where everyone who wants a Bhaalspawn turns up at once. The Scab is {@b Session 15}." },
+          { t: "note", title: "Before play: press Record", text: "Header button {@b 🎙 Record}: start it before the recap and leave that window open. Fights run in the app's tracker are stamped by themselves. For a fight run by hand, press {@b Fight starts} and {@b New round} on the Record page. The fight films are built from this recording." },
+          { t: "h", text: "Before Play: Numbers to Set" },
+          { t: "table", caption: "Not yet recorded from Session 13. Ask the table at the recap, or take the default.", head: ["What", "Default if you do not decide", "Where it bites tonight"], rows: [
+            ["{@b Kreeg's fate}", "Alive: dropped into the barge's hold by his Escape Clause. Ask the players what they did with him.", "A living signer can unsign Elturel's contract (the Mirror's first answer). The 'Void it' counter to clause 1 needs his Ledger or a copy sworn by its signer."],
+            ["{@b Kreeg's cabin}", "Taken, if they searched the barge: Kreeg's Ledger, the High Overseer's Ring, the contract copy, 30 soul coins.", "The Ledger returns one memory a day (Ninefingers' table takes them). The coins are tonight's budget."],
+            ["{@b Lulu}", "Taken by Zariel's riders at the end of Session 12; held in the Basalt Citadel.", "Who objects to soul coins at the Mirror (Lulu or Moonkite), the hag's interest in her memories, the Mirror's answer to 'Where is Lulu?'."],
+            ["{@b Or'Henn's Pull and gold scales}", "Read them off the Curse tracker (header button 🐉 Curse). If it was never set, set it now.", "Three Pull saves tonight: Vermilius, the hag's card, Arkhan at the ward's edge (DC 10 + Pull + 2). Pull 6 or higher adds +2 to the hunt roll."],
+            ["{@b Soul coins}", "Count them aloud with the players.", "The debt (15), hours of bell (2 each), Mirror answers (5 each), the Soul Pit. The best counters cost coins the dens also want."],
+            ["{@b The ship's hit points}", "Read them off the Chase tracker (⛵ Chase). After the sky chase the DM's word was 'badly damaged'.", "Only if the bell catches her moored (clause 3) or the hunt finds her."],
+            ["{@b Zariel's fortress}", "Roll 1d4 now: the days it stays crippled.", "When it can fly it hunts the ship. That is the clock for Session 15."],
+            ["{@b The bell}", "Dawn, 10 hours after arrival.", "The time limit of the Emporium half."],
+            ["{@b Dumal's clock}", "4 of 6.", "At 6 the Ravager is available. Below it, only the Slayer, unless Drenwal draws the sigil in Maelys's blood while Dumal stands."],
+            ["{@b Drenwal's meters}", "Bhaal's Claim, Gargauth's Bargain, Watch Marks and Blood Marks as last written; the result of his Gasp save from Session 13.", "They decide Tier III (Severed Blood or Ascendant) and they move with every bid he hears."],
+            ["{@b The heads and the staff}", "Heads on the prow, unsalted. The staff's brass plate: ask Or'Henn's player.", "Heads on the prow: +2 to the hunt roll. The brass plate: +5."],
+            ["{@b Elturel's days}", "The Compass's count.", "Background pressure. Say the number once tonight."]
+          ] },
           { t: "h", text: "What Happened (read or paraphrase)" },
           { t: "read", text: "You came out of the Crypt on a Word of Recall and the Lady Vengeance ran for her life with two dragons on her tail. Then she turned. Flash, the red, is a head on your prow. Vistalancer, the blue, is the other one. You burned soul coins to outrun the news and raided the Stygian Dock on the way past, and the fortress that was refuelling there is not refuelling any more. Thavius Kreeg caught you in a gorge half a day short of here, and you beat him. Now the fog thins, and there is a city on war machines parked on the Styx bank, lanterns lit, and a hum under the market noise like a tuning fork the size of a cathedral. The Wandering Emporium. Everybody here would like to kill you, and nobody can." },
           { t: "h", text: "The Clocks" },
@@ -446,6 +462,57 @@
           { t: "h", text: "The Night's Premise" },
           { t: "p", text: "{@b Each devil wants a Bhaalspawn in their list.} The archdevils keep lists of what they own, and a child of the Lord of Murder is the line at the top none of them had filled. Now two are filled: Mephistopheles has {@c dumal|Dumal}, Glasya has {@c maelys|Maelys}. {@b Drenwal is the last empty line in Hell}, and tonight he is standing on the one sheet of ice where both lords have a clerk. {@c rigorath|Rigorath} will say it out loud: it is a pleasure, and a rarity." },
           { t: "p", text: "{@b Arkhan} plays a different game. He wants Or'Henn and the priest, in that order, and he has learned that this party wins fights it chooses. So he bought the one thing nobody can fight: a contract. The puzzle of the first half is finding its three clauses and breaking them before the bell. The second half is what he does when they have." },
+          { t: "h", text: "DM Background: Who and What Is on the Table" },
+          { t: "p", text: "Open only what you need. Each entry says what the thing is, where it comes from, why it matters tonight and how the players could know." },
+          { t: "more", title: "The Wandering Emporium, Mahadi and the truce", src: ["Book", "Homebrew"], blocks: [
+            { t: "p", text: "{@b What it is.} A market on war machines that travels Avernus. Its master, {@c mahadi|Mahadi}, is a rakshasa who answers to Asmodeus, so nobody raids it: inside the wards nobody fights. (Book, chapter 3, the Wandering Emporium.)" },
+            { t: "p", text: "{@b Ours.} The wards hum, and the air thickens round a drawn weapon. Mahadi's free hospitality is a {@b debt}, and a debt in Hell is property: it can be sold. He sold the party's to Arkhan. The shops and the dens are in {@side emporium-shops|Shops and Prices} and {@side emporium-floor|The Floor Tonight}." },
+            { t: "p", text: "{@b Why it matters.} It is the only safe long rest on the road, and the safety is the trap: nobody can stop Arkhan calling the debt in, because nobody can touch him here either." },
+            { t: "p", text: "{@b How the players know.} They were here in Session 8 as the 'Heroes of the Last Hill'. Mahadi says 'it is already covered' at the gangplank." }
+          ] },
+          { t: "more", title: "Arkhan the Cruel and what he wants", src: ["Book", "Homebrew"], blocks: [
+            { t: "p", text: "{@b What he is.} A dragonborn champion of Tiamat who grafted the Hand of Vecna onto his left arm; it is rotting him. He came to Avernus to free his queen from her prison here. (Book, chapter 3, Arkhan's Tower.) With him: {@c krull|Krull}, a tortle priest of Tiamat, and the old white dragon {@c obatala|Obatala}." },
+            { t: "p", text: "{@b Ours.} Tiamat's curse sits on Or'Henn. If Or'Henn {@b asks a dragon for help out loud}, the curse can jump into that dragon ({@scene arkhans-gambit|Arkhan's Gambit}); when that vessel dies, Tiamat is born ({@scene tiamat-reborn|Tiamat Reborn}). So Arkhan does not grab Or'Henn. He arranges moments where asking is the easy thing. Of his four tower dragons, Flash and Vistalancer are dead; {@c skarrix|Slarkas} (black) and {@c mirelle|Vermilius} (green, she) are left." },
+            { t: "p", text: "{@b Why it matters.} Every Arkhan scene tonight is a Pull save, not a fight. He keeps his oaths, so a deal with him holds. More: {@side what-arkhan-knows|What Arkhan Knows}, {@side tiamats-pull|Tiamat's Pull}, {@side arc-tiamat|Or'Henn and Tiamat}." }
+          ] },
+          { t: "more", title: "Bhaalspawn, and why devils collect them", src: ["D&D canon", "Homebrew"], blocks: [
+            { t: "p", text: "{@b What they are.} Bhaal is the Lord of Murder, one of the Dead Three whose cult the party fought in Baldur's Gate. He sired mortal children so that his power would outlive him in their blood. A Bhaalspawn carries a piece of a god of murder: it wants to kill, and its siblings are its rivals. (D&D canon, from the Baldur's Gate stories.)" },
+            { t: "p", text: "{@b Ours.} Four are alive: {@b Drenwal}, his brother {@c dumal|Dumal}, their sister {@c maelys|Maelys}, and {@b Senna}, a child of about six whom Dumal has watched for two years. DM ruling 2026-11-12: every archdevil keeps a list of what it owns, and a Bhaalspawn is the prize none of them had. Mephistopheles now has Dumal. Glasya has Maelys. Drenwal is the last one free." },
+            { t: "p", text: "{@b Why it matters.} Nobody on the ice wants Drenwal dead. They want him signed. That is why the Mirror half is an auction before it is a fight." }
+          ] },
+          { t: "more", title: "Dumal so far", src: ["Homebrew"], blocks: [
+            { t: "list", items: [
+              "Drenwal's brother; he calls him 'Den'. The Three Sigils are the rite that forged him.",
+              "The Last Hill (Session 7): the party set Yeenoghu loose on him at the Demon Zapper. Drenwal wounded him. He slipped away in black smoke, and he blames Aurora most (her Wish).",
+              "Session 9: Drenwal drew the second sigil, the Binding, in the blood taken that day.",
+              "Since then: he reached the Mirror of Mephistar, knelt, and pledged his Bhaalspawn blood to Mephistopheles for a shape, the Slayer, and a worse one after it. Bhaal's voice had gone cold on him. He went to a devil because he was afraid.",
+              "What he wants: Drenwal home, the family whole (Senna included), the party punished. He will never strike Drenwal down.",
+              "Full arc: {@side arc-dumal|Drenwal and Dumal}. His forms tonight: {@side dumals-three-forms|Dumal's Three Forms}."
+            ] }
+          ] },
+          { t: "more", title: "The Slayer and the Ravager", src: ["D&D canon", "Homebrew"], blocks: [
+            { t: "p", text: "{@b What they are.} The Slayer is the shape of Bhaal's own avatar. A Bhaalspawn who lets the blood rule can wear it for a short time, and loses a little of himself each time. The Ravager is the greater shape, the god's own killing form. (D&D canon: Baldur's Gate II and Throne of Bhaal.)" },
+            { t: "p", text: "{@b Ours.} Dumal could not reach the shape alone, so he bought it: Mephistopheles holds the forms as a pledge and lets them out through the Mirror. The Slayer lasts ten rounds, knows every creature's hit points, will not kill Drenwal, and Drenwal's blows burn it. The Ravager wakes only if Dumal's clock is full, or if Drenwal draws the third sigil in Maelys's blood while Dumal stands. Glasya promised Maelys the same shape for a brother's head." },
+            { t: "p", text: "{@b How the players know.} The checks in {@scene each-devil-wants-a-bhaalspawn|the auction}; Dumal showing his claw; the larva in Z'neth's pens ('the Slayer, and the worse one after')." }
+          ] },
+          { t: "more", title: "Mephistopheles and Glasya", src: ["D&D canon", "Eventyr", "Homebrew"], blocks: [
+            { t: "p", text: "{@b Mephistopheles} rules Cania, the frozen eighth layer of Hell. He is the master of hellfire and the patient rival of every other lord. He never fights Zariel openly; he collects levers against her. {@c rigorath|Rigorath}, his cambion clerk, speaks for him at the Mirror. (D&D canon. Rigorath is the intermediary from Eventyr's chapter 3a.)" },
+            { t: "p", text: "{@b Glasya} rules Malbolge, the sixth layer. She is Asmodeus's daughter and Hell's lord of loopholes: her contracts are legal and never fair. Her herald tonight is an {@c erinyes-of-glasya|erinyes} carrying a contract with Drenwal's name on it and a blank. (D&D canon. The contract is ours.)" },
+            { t: "p", text: "{@b Why it matters.} Neither lord is here. Each has a clerk and a champion on the ice, and each wants the other's champion dead by a Bhaalspawn's hand. Their people do not fight each other unprovoked: the party chooses its enemies." }
+          ] },
+          { t: "more", title: "The Mirror of Mephistar", src: ["Book", "Eventyr", "Homebrew"], blocks: [
+            { t: "p", text: "{@b What it is.} A sheet of black ice that Mephistopheles set on Avernus to watch Zariel's layer. Ice devils guard it. (Book, chapter 3, Mirror of Mephistar.) Eventyr's chapter 3a, A Cold Day in Hell, adds the intermediary who steps out of the ice and makes it a place to bargain. The three ice maps come from that chapter." },
+            { t: "p", text: "{@b Ours.} It sells true answers aimed at Zariel for Blood Pay or five soul coins ({@side mirror-answers|What the Mirror Knows}). Dumal sleeps in it as its Champion. Breaking it (AC 20, 100 hit points) ends the audience for good and breaks his Pledge." },
+            { t: "p", text: "{@b How the players know.} Drenwal scried Dumal heading here after the Demon Zapper. Rigorath states the price himself." }
+          ] },
+          { t: "more", title: "The Three Sigils and the rebirth", src: ["Homebrew"], blocks: [
+            { t: "p", text: "Two rival cures for Drenwal's blood. {@b The Three Sigils} are the cult's road to master it: the Leash (done: Aurora's Kept Watch), the Binding (done: Session 9, in Dumal's blood) and Mastery (a Bhaalspawn dies by his hand). {@b The rebirth} is the other road: Drenwal dies and is reborn in another god's eyes, and the cycle breaks instead of completing. Torm offered it on the ship in Session 8. Mephistopheles offers the same thing tonight, in his own glass." },
+            { t: "p", text: "{@b The catch tonight.} Mastery wants the {@i last} Bhaalspawn dead, and Senna lives, so a sigil drawn tonight holds but is not whole. Rules: {@side sigil-of-mastery|The Sigil of Mastery}. The moment: {@scene the-third-sigil|The Third Sigil}." }
+          ] },
+          { t: "more", title: "The Shield of the Hidden Lord, the Writ and the riders", src: ["Book", "D&D canon", "Homebrew"], blocks: [
+            { t: "p", text: "{@b The Shield.} A pit fiend, Gargauth, is imprisoned in Drenwal's shield and talks in his head. He wants out, and he lies. (Book: the Shield of the Hidden Lord.) Ours: the Gargauth's Bargain meter. Tonight he bids too: 'a rite that needs no kin's blood'. It is a lie. The rite needs Senna's." },
+            { t: "p", text: "{@b The riders.} {@c narzugon|Narzugons} are Hell's knights: paladins who sold their oaths and now ride nightmares for the archdukes. (D&D canon.) Ours: after the raid on the Stygian Dock, Zariel posted a Writ of Hunt (100 soul coins the ship, 20 a head, 50 the druid alive) and three riders followed the Styx here. Their pennant is the Hellriders' sun with the sword torn out. They cannot act inside the wards, and they say so." }
+          ] },
           { t: "h", text: "Running Order" },
           { t: "steps", items: [
             "{@scene two-heads-on-the-prow|Arrival}: Mahadi's welcome, the riders at the jetty, the first clue.",
@@ -477,6 +544,11 @@
           { t: "h", text: "Mahadi's Welcome" },
           { t: "p", text: "{@c mahadi|Mahadi} offers the party the sanctuary of a safe long rest under the truce and refuses payment for it. 'It is already covered.' That is {@b the first clue}: {@b Insight DC 14} says he is hiding who covered it, and {@b Insight DC 18} that he is pleased about it in a way that is not about money. He will not say more at the gangplank. He will say it over supper: 'A gentleman has an interest in your debt.'" },
           { t: "p", text: "The {@b hospitality debt} is the book's engine (Mahadi's panel): the party owes him from Session 8, and every free thing tonight adds to it. The debt is now Arkhan's. See {@scene the-deal-arkhan-made|The Deal Arkhan Made}." },
+          { t: "checks", items: [
+            { skill: "Arcana", dc: 13, who: "anyone", text: "The hum is a ward. Violence inside it is not forbidden, it is impossible to finish: the air thickens round a drawn weapon. It belongs to the caravan, not to Mahadi's goodwill, and it stops when the stalls fold." },
+            { skill: "History or Religion", dc: 15, who: "anyone", text: "In Hell a debt is property. Whoever holds it can sell it, and the buyer can call it. 'Already covered' means somebody bought theirs." },
+            { skill: "Insight", dc: 13, who: "Drenwal, Veska or Lucan", text: "The rider's salute was correct. Narzugons were paladins once, and this one knows a Hellrider's salute. Whether he learned it or lived it, he will not say." }
+          ] },
           { t: "h", text: "The Riders" },
           { t: "p", text: "Three {@c narzugon|narzugons} with Zariel's Writ of Hunt. They do not act inside the wards and say so if asked: 'When the bell rings, Hellrider.' The Writ is posted on the gate: {@b 100 soul coins for the ship, 20 a head, 50 for the druid alive.} Bounty hunters on the floor read it too." },
           { t: "h", text: "The Heads" },
@@ -545,6 +617,11 @@
             ["{@b 1. The Debt}", "Mahadi assigned the party's hospitality debt (Session 8, plus anything free tonight) to Arkhan. The holder of a hospitality debt may call it once, in the host's hearing, for 'a small service'.", "Arkhan's service: {@b 'The druid walks with me to the edge of the wards, alone, and listens to my queen's offer.'} Under the truce nobody can stop it. At the edge the truce is a line on the ground; Tiamat's offer is made in person (Pull save, DC 10 + Pull + 2). He does not grab Or'Henn. He wants him to ask."],
             ["{@b 2. The Heads}", "Right of first refusal on any dragon part sold, lodged or valued on the Emporium's floor, at double the best bid.", "The heads cannot be sold here without going to Arkhan. Anything lodged with Mahadi 'for safekeeping' is on the floor. Burney's salting is a service, not a sale: safe. Z'neth buying the rings: a sale."],
             ["{@b 3. The Bell}", "Tiamat's champion has formally summoned the Emporium to the Monument to Tiamat for a fair. Mahadi accepted. The caravan packs at the hour set: {@b dawn}.", "When the bell rings the wards fold with the stalls. Everything outside the ship is in the open, under three dragons and three riders. The ship moored at the jetty is a target the moment the hum stops."]
+          ] },
+          { t: "checks", items: [
+            { skill: "Religion or History", dc: 14, who: "Drenwal, Veska or Lucan", text: "The law of hospitality binds the host as hard as the guest. A hospitality debt is paid by hospitality, and a host who breaks faith first voids it. (Opens the Discharge and Void counters.)" },
+            { skill: "Investigation", dc: 15, who: "anyone who has seen or heard a clause", text: "The heads clause says 'sold, lodged or valued'. Blood and scales are not 'parts' in its wording, and a service (Burney's salt) is not a sale. Mahadi wrote it narrow on purpose." },
+            { skill: "Insight", dc: 16, who: "anyone talking to Mahadi", text: "He wants the party to find the clauses. A solved contract is three more sales for him." }
           ] },
           { t: "h", text: "Finding Out" },
           { t: "table", caption: "Six clues (two to know there is a deal, four to know all three clauses)", head: ["#", "Where", "Check", "What it gives"], rows: [
@@ -618,6 +695,7 @@
             ["{@b Walk}, the ship hidden on the Styx", "8 hours across glare ice", "Vermilius on the road (Honeyed Voice, a Pull save), then the shelf. The ship is safe. The party arrives tired: one long rest short of the fight. Arkhan likes this."],
             ["{@b Skip the Mirror}", "Straight to the Scab road, Session 15", "Dumal's clock keeps ticking (+1 at the end of the session). The siege comes to the ship, wherever it is, with the Ravager available. Maelys follows the party; Glasya's bid comes on the road."]
           ] },
+          { t: "map", id: "frozen-river-15x30", title: "The ice road, if they walk (Vermilius in the fog)", note: "Stand-in. The party walks the wide frozen channel on the right, between 20-foot ice walls. Vermilius is a voice on the narrow ledge on the left, never closer than 60 feet. The +10 ft. and +5 ft. blocks are cover if anyone answers her with a spell." },
           { t: "p", text: "{@b If the party leaves before the bell,} the riders follow the Styx and are half a day behind at the Mirror; Arkhan follows carefully, out of sight, as he has all night. {@b If they leave at the bell,} run the gangplank: narzugons at the plank, Slarkas over the deck, the ship's cannons, and Overdrive if they have a coin left. Obatala lands on the jetty only if Or'Henn is on it." },
           { t: "choices", prompt: "Next", items: [
             { label: "The Mirror", goto: "the-glass-that-sings" },
@@ -638,12 +716,18 @@
           { t: "read", text: "The ice begins a mile out: a frozen skin over the waste, then a crag of it rising like a wave that forgot to fall. Set into the crag, a sheet of black glass forty feet high, so cold the air over it sings one thin note without stopping. Four ice devils and a bone devil stand on the shelf below it in a line that has not moved for a very long time. In the glass, behind your own reflections, there is the shape of a man, kneeling." },
           { t: "img", src: "art/generated/env-mirror-of-mephistar.webp", video: "art/generated/env-mirror-of-mephistar.mp4", caption: "The Mirror of Mephistar. In the glass, the kneeling shape stands up." },
           { t: "env", sight: "Glare ice, black glass, your own faces, and him.", sound: "The note. Nothing else.", feel: "Cold enough to hurt. The shard in Drenwal's pack is warm by comparison." },
+          { t: "map", id: "ice-dome-50x50", title: "The Mirror's shelf", note: "Stand-in. The map has no printed codes, so use these. M1: the Mirror, at the cross in the middle. M2: the raised centre, 10 ft. up, with steps on its west and south sides: the escort's line stands here. M3: the shelf round it (5 ft. up at the rim). M4: the four ruined ice huts: full cover. M5: the pools of melt: difficult terrain. M6: past the rim, the glowing ring: the 60-foot drop. A flying ship lands on the south rim of M3." },
           { t: "h", text: "The Shelf" },
           { t: "steps", items: [
             "{@b The approach} is sheer glare-ice: {@b DC 15 Acrobatics} to cross without falling prone and sliding 15 feet toward the drop. A flying ship lands on the shelf's edge; the escort watches it do so.",
             "{@b Quiet} and the escort ({@c ice-devil-agent|four ice devils} and a {@c bone-devil-lieutenant|bone devil}) only watch. {@b Loud} (a drawn weapon, a hostile spell, a demand) and they close ranks between the party and the glass. This is a gate, not an ambush (book).",
             "{@b Call,} and {@c rigorath|Rigorath} steps out of the glass. He states the price: {@b Blood Pay} (one level of exhaustion, or a permanent -1 to one ability score) or {@b five soul coins} per answer. Coins scream.",
             "{@b Lulu,} if she is aboard, objects to every coin. If she is not, Moonkite does: he feels the souls go."
+          ] },
+          { t: "checks", items: [
+            { skill: "Religion", dc: 13, who: "anyone", text: "Mephistopheles, lord of the frozen eighth layer. He does no rival a favour, and no stranger one for free. Whatever the glass tells them, it is because he wants it used." },
+            { skill: "Arcana", dc: 15, who: "anyone", text: "The glass is a scrying surface that looks one way: at Avernus. The note it sings is the strain of holding that gaze. Thunder and radiance are what such ice cannot bear." },
+            { skill: "Perception", dc: 14, who: "anyone", text: "The escort's line (M2) has a gap one man wide, straight in front of the kneeling shape. They are not guarding the glass from the party. They are an honour guard for him." }
           ] },
           { t: "h", text: "The Answers" },
           { t: "p", text: "Every answer is {@b true}, and every answer is {@b aimed at Zariel}: Mephistopheles wants her weakened, humiliated or gone, and sells the party whatever gets them there. {@b Insight DC 16} shows the aim. The full list is in {@side mirror-answers|What the Mirror Knows}. Let the players ask; the table answers." },
@@ -672,6 +756,12 @@
             "{@b What he wants.} Drenwal home. 'Kill the elf with me, Den. Draw your third seal in her blood. Then there are two of us, we are both Cania's, and nobody in Hell can touch us.' He does not yet know Maelys is here. Bhaal-Sight tells him a moment later.",
             "{@b What he knows.} Senna's address. Mephistopheles' terms word for word. That Arkhan is overhead ('the dragon-man wants your druid; I want you; we are not competing').",
             "{@b What he will not do.} Strike Drenwal down. Ever. Everyone else is negotiable."
+          ] },
+          { t: "checks", items: [
+            { skill: "Religion", dc: 15, who: "anyone; Drenwal has advantage (it is his blood)", text: "The Slayer: the shape of Bhaal's avatar, worn by a child of his who lets the blood rule. It cannot be held long, and the wearer comes back smaller each time. What it fears is its own sibling: the blood knows the blood." },
+            { skill: "Religion", dc: 18, who: "Drenwal or Veska", text: "There is a worse shape, the Ravager, the god's own killing form. A pledge is not enough for it. It needs Bhaal's attention, and a kinslaying in front of a living Bhaalspawn would get it." },
+            { skill: "Insight", dc: 14, who: "anyone, on Dumal", text: "He means every word. He is not afraid of the party, the devils or the cold. He is afraid of what Drenwal will say." },
+            { skill: "Arcana or History", dc: 16, who: "anyone, on the erinyes's scroll (once she lands)", text: "Glasya is Asmodeus's daughter. A contract with her passes upward: a night a year to her is a night a year to the throne of Hell." }
           ] },
           { t: "h", text: "Maelys Arrives" },
           { t: "read", text: "Something comes down the crag that does not slip. An elf in a crown of thorns, red to the rim of her eyes, two short blades already wet. Behind her a woman in black plate with a crow's wings lands like a verdict and opens a scroll case. The elf looks at Dumal, then at Drenwal, then at the blades in her hands, and whispers so that everyone hears: 'Two of you. Good. I only brought two blades.'" },
@@ -751,10 +841,17 @@
           ] },
           { t: "h", text: "The Ice" },
           { t: "list", items: [
-            "Glare ice: a creature that Dashes or is shoved must succeed on {@b DC 15 Acrobatics} or fall prone and slide 10 feet in the direction it was moving. Obatala's Rimeground makes the whole shelf count.",
-            "{@b The Mirror:} AC 20, 100 hit points, immune to cold, poison and psychic damage, resistant to everything but radiant and thunder. Breaking it ends Mephistopheles' audience (no more answers, ever), turns the escort hostile, ends Dumal's Champion healing and {@b his Pledge}: he can die, and so can the Ravager without the Mirror taking him. Rigorath steps back through it before it shatters, and remembers.",
-            "{@b The drop:} the shelf ends in a 60-foot fall onto ice (6d6). Slaughter Leap and Wing of Frost push toward it on purpose."
+            "Glare ice (all of M3): a creature that Dashes or is shoved must succeed on {@b DC 15 Acrobatics} or fall prone and slide 10 feet in the direction it was moving. Obatala's Rimeground makes the whole shelf count.",
+            "{@b The Mirror} (M1): AC 20, 100 hit points, immune to cold, poison and psychic damage, resistant to everything but radiant and thunder. Breaking it ends Mephistopheles' audience (no more answers, ever), turns the escort hostile, ends Dumal's Champion healing and {@b his Pledge}: he can die, and so can the Ravager without the Mirror taking him. Rigorath steps back through it before it shatters, and remembers.",
+            "{@b The drop} (M6): the shelf ends in a 60-foot fall onto ice (6d6). Slaughter Leap and Wing of Frost push toward it on purpose."
           ] },
+          { t: "checks", items: [
+            { skill: "Perception", dc: 12, who: "anyone", text: "Where the shelf ends (M6), and that Dumal keeps the glass at his back and the party between himself and the rim: he means to push toward the drop." },
+            { skill: "Medicine or Insight", dc: 14, who: "anyone who has hurt Dumal", text: "His wounds close while the glass sings behind him (10 a turn near it). On a turn when a radiant blow lands, they do not." },
+            { skill: "Arcana", dc: 16, who: "anyone", text: "Break the glass and three things end at once: the answers, the Champion's healing, and the Pledge that will not let him die." }
+          ] },
+          { t: "map", id: "ice-dome-50x50", title: "The shelf (encounters A, B and C)", note: "Codes as in the Mirror scene. Dumal walks out at M1. The escort holds the two flights of steps of M2. Maelys comes down on the north rim of M3; the erinyes stays in the air. The party starts on the south of M3 with the ship behind it." },
+          { t: "map", id: "snowy-avernus-30x30", title: "Off the shelf (encounter D, Arkhan's moment)", note: "Stand-in for the open ice between the shelf and the ship. Arkhan and Krull land in the middle. Krull's blade barrier runs from the 20-foot hole to the lava pit (5d10 fire) and cuts the way back. Obatala lands by the icy water. Slarkas stays in the air." },
           { t: "h", text: "Encounters" },
           { t: "encounter", id: "dumal-champion", title: "A. Dumal, Champion of the Mirror (three forms)", combatants: [
             { c: "dumal", n: 1 }, { c: "maelys", n: 1 }, { c: "erinyes-of-glasya", n: 1 }

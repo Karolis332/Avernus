@@ -36,6 +36,8 @@
 ---
 
 ## Active Session Prep
+**Next: Session 14, The Emporium and the Mirror (2026-11-16)** — `dm-app/sessions/14-the-emporium-and-the-mirror.js`. Open the Adventure Primer first: *Before Play: Numbers to Set* lists what Session 13 left unrecorded (Kreeg's fate and cabin, Lulu, Or'Henn's Pull and scales, soul coins, the ship's hit points, the fortress, the bell, Dumal's clock, Drenwal's meters, the heads and the brass plate, Elturel's days), each with the default the primer assumes. *DM Background* (collapsed, with source tags) explains every power on the table. Maps: Frozen River (ice road), Ice Dome (the Mirror's shelf, codes M1 to M6), Snowy Avernus (Arkhan's moment). Record the table with the header button 🎙 Record.
+
 **Built 2026-11-01 (DM app `dm-app/`):**
 - **Session 12 "The Siege of the Crypt"** — `dm-app/sessions/12-the-siege-of-the-crypt.js`. The siege is a puzzle with ways out, not a fight to win (ways A–F plus X, the Tiamat trap). Side "Talking to Arkhan".
 - **Session 13 "The Scab"** — `dm-app/sessions/13-the-scab.js`, with side `the-sword-reforged`.
