@@ -56,6 +56,18 @@
 
     function persist() { saveJSON(encKey(sessionId, block.id), state); }
 
+    // Fight log: every start, turn and hit point change with the clock time (js/fightlog.js), for sorting a recording by round.
+    function logEvent(type, data) {
+      var FL = window.DMFightLog;
+      if (!FL) return;
+      var ev = FL.event(type, Object.assign({ sid: sessionId, eid: block.id, round: state.round }, data || {}), Date.now());
+      saveJSON(FL.KEY, FL.append(loadJSON(FL.KEY, []), ev));
+    }
+    function logTurn() {
+      var cur = state.rows[state.idx];
+      logEvent("turn", { who: cur ? cur.name : "" });
+    }
+
     var partyStore = loadJSON(partyKey(sessionId), {});
     function savePartyField(pid, field, value) {
       partyStore[pid] = partyStore[pid] || {};
@@ -207,6 +219,8 @@
           .map(function (w) { return w._row; });
         state = { phase: "fight", rows: clusterGroups(rows), idx: 0, round: 1, groupInit: groupInit, groupSaves: {} };
         persist();
+        logEvent("fight-start", { title: block.title || "Encounter", order: state.rows.map(function (r) { return r.name; }) });
+        logTurn();
         renderRoot();
       });
     }
@@ -266,6 +280,7 @@
       var resetBtn = el("button", "tracker-btn-sm", "Reset fight");
       resetBtn.addEventListener("click", function () {
         if (confirm("Reset this fight? This clears initiative, HP and conditions.")) {
+          logEvent("fight-end");
           state = { phase: "setup", rows: [], idx: 0, round: 1 };
           persist();
           renderRoot();
@@ -383,7 +398,9 @@
       root.appendChild(table);
 
       function setHp(row, delta) {
+        var before = row.hp;
         row.hp = Math.max(0, Math.min(row.maxHp || row.hp + delta, row.hp + delta));
+        if (row.hp !== before) logEvent("hp", { who: row.name, change: row.hp - before, hp: row.hp });
       }
       function applyHp(row, delta) {
         setHp(row, delta);
@@ -527,6 +544,7 @@
       state.round = r.round;
       state.rows = r.order;
       persist();
+      logTurn();
       renderFight();
     }
     function doPrev() {
@@ -537,6 +555,7 @@
       state.idx = r.idx;
       state.round = r.round;
       persist();
+      logTurn();
       renderFight();
     }
 
