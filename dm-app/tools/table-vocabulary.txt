@@ -1,0 +1,54 @@
+# Names and terms the table says, one per line, for transcribe_session.py.
+# The speech model reads only the END of this list (about 800 characters), so the campaign's own
+# names go last and common D&D words go first. Add a name when the transcript keeps getting it wrong.
+initiative
+saving throw
+advantage
+disadvantage
+hit points
+bonus action
+concentration
+critical hit
+healing word
+toll the dead
+guiding bolt
+eldritch smite
+misty step
+mass cure wounds
+word of recall
+divine intervention
+soul coin
+Hellrider
+Bhaalspawn
+Avernus
+Elturel
+Styx
+Wandering Emporium
+Mirror of Mephistar
+Lady Vengeance
+Zariel
+Tiamat
+Bhaal
+Mephistopheles
+Glasya
+Gargauth
+Thavius Kreeg
+Mahadi
+Rigorath
+Arkhan
+Krull
+Obatala
+Slarkas
+Vermilius
+Dumal
+Maelys
+Senna
+Lulu
+Jeremy
+Colico Jack
+Ser Lucan
+Veska
+Moonkite
+Or'Henn
+Aurora
+Drenwal
