@@ -65,3 +65,9 @@ dm-app/media/sfx/
 dm-app/library/
 dm-app/maps/
 __pycache__/
+
+# Full-quality copies of every generated video (about 1 GB): local only
+/video-generations/
+
+# Session audio and transcripts: private, never in this public repo
+/recordings/

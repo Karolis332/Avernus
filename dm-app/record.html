@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Session Recorder</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/book.css">
+<style>
+  /* Session recorder: one microphone records the room; the sound is saved every five seconds.
+     Logic in js/record.js; the tracker's fight log comes from js/fightlog.js. */
+  body.record-page { display: block; overflow: auto; height: auto; }
+  #wrap { max-width: 900px; margin: 0 auto; padding: 12px 16px 60px; }
+  h1 { font-family: Cinzel, serif; margin: 4px 0 2px; }
+  .sub { opacity: .75; margin: 0 0 10px; }
+  .card { border: 1px solid var(--red, #8b1a1a); border-radius: 6px; padding: 10px 14px; background: rgba(0,0,0,.03); margin: 12px 0; }
+  .card h2 { font-family: Cinzel, serif; font-size: 1.05em; margin: 2px 0 8px; }
+  .btn { font-family: Cinzel, serif; border: 1px solid var(--red, #8b1a1a); background: transparent; color: inherit; padding: 8px 14px; border-radius: 4px; cursor: pointer; }
+  .btn.big { font-size: 1.15em; padding: 12px 22px; }
+  .btn.go { background: var(--red, #8b1a1a); color: #fff; }
+  .btn.small { padding: 2px 8px; font-size: .85em; margin-left: 6px; }
+  .btn:disabled { opacity: .4; cursor: default; }
+  .row { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin: 8px 0; }
+  .status { font-family: Cinzel, serif; font-size: 1.25em; margin: 10px 0; }
+  .status.bad { color: #b71c1c; }
+  body.recording .status { color: #b71c1c; }
+  .level { height: 14px; background: #8883; border-radius: 7px; overflow: hidden; flex: 1; min-width: 180px; }
+  .level > div { height: 100%; width: 0; background: #2e7d32; transition: width .08s linear; }
+  select, input[type=text] { font: inherit; padding: 5px 8px; }
+  input[type=text] { flex: 1; min-width: 180px; }
+  ul { margin: 6px 0; padding-left: 18px; }
+  #rec-marks li { font-family: ui-monospace, Consolas, monospace; font-size: .9em; list-style: none; margin-left: -18px; }
+  #rec-saved li { margin: 8px 0; }
+  .hint { opacity: .8; font-size: .92em; }
+</style>
+</head>
+<body class="record-page">
+<div id="wrap">
+  <h1>Session Recorder</h1>
+  <p class="sub">Records the table from one microphone. The sound is saved every five seconds, so a closed tab loses almost nothing.</p>
+
+  <div class="card">
+    <div class="row">
+      <label for="rec-mic">Microphone</label>
+      <select id="rec-mic"><option value="">Default microphone</option></select>
+      <button class="btn" id="rec-check">Check microphone</button>
+    </div>
+    <div class="row"><span>Level</span><div class="level"><div id="rec-level"></div></div></div>
+    <p class="hint">Talk from where the players sit: the bar should move clearly for every seat.</p>
+    <div class="row">
+      <button class="btn big go" id="rec-start">Start recording</button>
+      <button class="btn big" id="rec-stop" disabled>Stop</button>
+    </div>
+    <div class="status" id="rec-status">Starting…</div>
+    <p class="hint" id="rec-awake" hidden>This browser cannot keep the screen awake: make sure the laptop does not go to sleep.</p>
+  </div>
+
+  <div class="card">
+    <h2>Fights not run in the tracker</h2>
+    <p class="hint">Fights run in the app's tracker are stamped by themselves. For the others, press these as the fight goes.</p>
+    <div class="row">
+      <button class="btn" id="rec-fight" disabled>Fight starts</button>
+      <button class="btn" id="rec-round" disabled>New round</button>
+      <button class="btn" id="rec-fight-end" disabled>Fight ends</button>
+    </div>
+    <div class="row">
+      <input type="text" id="rec-note" placeholder="A note for this moment (optional)">
+      <button class="btn" id="rec-mark" disabled>Mark</button>
+    </div>
+    <ul id="rec-marks"></ul>
+  </div>
+
+  <div class="card">
+    <h2>Saved in this browser</h2>
+    <p class="hint" id="rec-saved-none">Nothing saved yet.</p>
+    <ul id="rec-saved"></ul>
+    <p class="hint">After the session: download both files of each recording and move them to the big PC (folder <code>DnD\recordings</code>). They are never uploaded anywhere.</p>
+  </div>
+
+  <div class="card">
+    <h2>Before you start</h2>
+    <ul>
+      <li>Put the microphone in the middle of the table, not next to the laptop fan.</li>
+      <li>Keep the laptop plugged in and do not close the lid.</li>
+      <li>Leave this window open. You can work in the other app windows as usual.</li>
+      <li>Tell the players they are being recorded.</li>
+    </ul>
+  </div>
+</div>
+<script src="js/fightlog.js"></script>
+<script src="js/record.js"></script>
+</body>
+</html>

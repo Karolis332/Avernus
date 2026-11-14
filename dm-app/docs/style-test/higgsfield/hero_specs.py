@@ -26,6 +26,25 @@ STILLS = {
         "that leaves a trail of golden light, his shield arm flung wide, his mouth open in a shout, his red cape swirling around him with the turn. "
         "Where the arc of light passes, a wave of warm golden radiance is starting to burst outward across the deck toward two fallen armoured figures who lie burning "
         "in the foreground, seen from behind as dark shapes. Embers swirl.", "2k"],
+    # Second try at round 3 (DM: "make his healing word look good, now the left one looks like he kills them"): a spoken word and soft light, no weapon.
+    "kf-h3b-drenwal-word": [["cine-paint-drenwal.png", "cine-paint-veska.png"],
+        PAINT + "A moment of mercy in the middle of the fight; a freeze frame from the middle of a movement, not a pose. " + DECK + "Low camera near the deck. "
+        "In the foreground the sergeant from the second image, a broad strong woman with a long dark ponytail and a scar through her left eyebrow, lies on her side on the iron plates "
+        "facing the camera, her eyes closed, her face slack, burns and soot on her cheek and arm, her dented cuirass smoking, small flames dying on her brick-red tabard, "
+        "her lance lying by her open hand. Behind her, the armoured cleric from the first image is dropping onto one knee beside her, his black fiend-faced shield lowered at his side, "
+        "his mace hanging from his belt, his empty right hand reaching out open over her, his head bowed toward her, his mouth open speaking a single word. "
+        "A soft ribbon of pale white-gold light, like warm breath on a cold morning and full of slow drifting motes, flows from his lips and his open palm down toward her "
+        "and is just beginning to settle on her shoulder and face; where it touches her, the burns are already fading. The light is gentle and calm, nothing like fire: "
+        "it is the only cool, clean light in the red scene. No other people.", "2k"],
+    # Third try (DM: "healing word should be like stand! and a brigt yellow light cures wounds"): a shouted command, bright yellow light, she gets up.
+    "kf-h3c-drenwal-stand": [["cine-paint-drenwal.png", "cine-paint-veska.png"],
+        PAINT + "This is a freeze frame from the middle of a movement, not a pose. " + DECK + "Side view, both figures full body; no other people. "
+        "On the left the sergeant from the second image, a broad strong woman with a long dark ponytail and a scar through her left eyebrow, is down on the iron plates "
+        "on one knee and one hand, badly burned, her head hanging, soot and raw burns on her face and arm, her dented cuirass smoking, small flames on her brick-red tabard, "
+        "her lance lying under her other hand. On the right the armoured cleric from the first image strides toward her, caught mid-step, his black fiend-faced shield "
+        "on his left arm at his side, his mace hanging from his belt, his right arm thrust out straight at her with the palm open and the fingers spread, his chin up, "
+        "his mouth wide open shouting one word of command. From his open palm a bright, clean yellow light, the colour of the noon sun, is bursting out and beginning to pour over her; "
+        "where it touches her shoulder the burns are already closing. The yellow light is brilliant and pure, not fire: no flames in it and no orange.", "2k"],
     "kf-h7-drenwal-toll": [["cine-paint-drenwal.png", "cine-paint-red.png"],
         PAINT + MOVE + DECK + "Low side view, full body. The armoured cleric from the first image is caught in the middle of a lunging step as he casts a death spell: "
         "his front foot stamping down, his body thrown forward, his right arm whipping out straight with the fingers splayed and the hand empty, his black fiend-faced shield "
@@ -75,6 +94,19 @@ SHOTS = {
         "The cleric finishes the upward swing of the mace, rising onto his toes, then drives it down with both shoulders and slams its head against the deck. "
         "A wave of golden light bursts out from the blow and rolls across the deck over the two fallen figures; the flames on them go out. His cape settles around him.",
         "low, pulling back ahead of the wave of light", "his wordless shout, a deep warm hum that swells, one heavy boom, flames snuffed out"),
+    "h3b-drenwal-word": shot("kf-h3b-drenwal-word.jpg",
+        "The cleric settles onto his knee and speaks one quiet word. The soft white-gold light flows from his lips and his open hand and washes gently over the sergeant "
+        "like warm breath; the flames on her tabard go out, the burns on her cheek and arm fade to clean skin, the smoke thins. "
+        "She drags in a sharp breath, her eyes open, her hand closes around her lance and she pushes herself up onto one elbow. He lowers his hand.",
+        "slow push-in toward her face", "a single low hummed note, a soft warm chime, small flames hissing out, her sharp breath in, the fight muffled and far away",
+        tail=" Gentle, calm motion at normal speed, no slow motion. Audio: {audio}. No speech, no music, no captions."),
+    "h3c-drenwal-stand": shot("kf-h3c-drenwal-stand.jpg",
+        "The cleric plants his feet and shouts one word of command in a deep, hard voice: \"Stand!\" The bright yellow light floods from his open hand over the sergeant "
+        "and wraps her whole body; the flames on her tabard vanish and the burns on her face and arm close and fade to clean skin. Her head snaps up, her eyes open, "
+        "she grips her lance, drives its butt against the deck and surges to her feet, standing tall with her shoulders squared as the last yellow light fades off her armour.",
+        "slow push-in, rising with her as she stands",
+        "the single shouted word \"Stand!\", a bright rising chime like a struck bell, flames snuffed out, her sharp breath in, armour clattering as she rises", duration=4,
+        tail=" Fast, weighty, full-body motion at normal speed, no slow motion. Audio: {audio}. No other speech, no music, no captions."),
     "h7-drenwal-toll": shot("kf-h7-drenwal-toll.jpg",
         "The cleric finishes the lunge and clenches his outstretched hand into a fist, wrenching it downward as if hauling on a rope. "
         "Above the dragon the black and crimson bell swings once and tolls; a shockwave of dark light crushes down on the head of the dragon. "

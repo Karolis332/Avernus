@@ -340,5 +340,19 @@
   "refs": [],
   "duration": 4,
   "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The glowing iron finishes flowing into a long hooked tool and cools to dull grey in her hands. She shifts her grip, sets the hook under the edge of one great red scale, braces her knee against the flank and leans her whole weight on the handle. The scale cracks, lifts and comes free into her other hand. She turns it over and looks at it. Camera: static. Slow, tired, deliberate motion at normal speed. Audio: wind over the plain, the soft ring of metal reshaping and cooling, a strained breath, one scale cracking loose. No speech, no music, no captions."
+ },
+ "h3b-drenwal-word": {
+  "mode": "image-to-video",
+  "start": "kf-h3b-drenwal-word.jpg",
+  "refs": [],
+  "duration": 3,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The cleric settles onto his knee and speaks one quiet word. The soft white-gold light flows from his lips and his open hand and washes gently over the sergeant like warm breath; the flames on her tabard go out, the burns on her cheek and arm fade to clean skin, the smoke thins. She drags in a sharp breath, her eyes open, her hand closes around her lance and she pushes herself up onto one elbow. He lowers his hand. Camera: slow push-in toward her face. Gentle, calm motion at normal speed, no slow motion. Audio: a single low hummed note, a soft warm chime, small flames hissing out, her sharp breath in, the fight muffled and far away. No speech, no music, no captions."
+ },
+ "h3c-drenwal-stand": {
+  "mode": "image-to-video",
+  "start": "kf-h3c-drenwal-stand.jpg",
+  "refs": [],
+  "duration": 4,
+  "prompt": "A painterly animated feature film, dark horror. Keep the painting style of the first frame. One continuous shot, no cuts. The cleric plants his feet and shouts one word of command in a deep, hard voice: \"Stand!\" The bright yellow light floods from his open hand over the sergeant and wraps her whole body; the flames on her tabard vanish and the burns on her face and arm close and fade to clean skin. Her head snaps up, her eyes open, she grips her lance, drives its butt against the deck and surges to her feet, standing tall with her shoulders squared as the last yellow light fades off her armour. Camera: slow push-in, rising with her as she stands. Fast, weighty, full-body motion at normal speed, no slow motion. Audio: the single shouted word \"Stand!\", a bright rising chime like a struck bell, flames snuffed out, her sharp breath in, armour clattering as she rises. No other speech, no music, no captions."
  }
 }
