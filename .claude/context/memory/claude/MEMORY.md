@@ -20,3 +20,5 @@
 - [Higgsfield video](higgsfield_video.md) — paid Plus plan since 2026-11-12; Kling 4.0 image-to-video recipe, costs, never `--wait` on create
 - [Low CPU when gaming](low_cpu_when_gaming.md) — DM in a game: cpu-cap 25, no encodes, no autoplay pages, no new windows
 - [Animation profile](animation_profile.md) — read and update dm-app/docs/animation-profile.md before any animated clip; the DM's small details matter
+- [Session recordings are private](session_recordings_private.md) — never commit or quote table talk; fight facts only; ask before a GPU transcription run
+- [No code in heredocs](no_code_in_heredocs.md) — write scripts with the Write tool; a heredoc with JS/Python text misfires in this Git Bash tool
