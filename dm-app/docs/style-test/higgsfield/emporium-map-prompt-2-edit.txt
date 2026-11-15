@@ -1,0 +1,9 @@
+Edit this top-down battle map. Keep the whole picture exactly as it is: the same layout, the same objects in the same places, the same painterly style, the same strict view from directly above. Change only these three things:
+
+1. The ship at the bottom right. Replace the wooden sailing ship with a long black iron flying galley seen from directly above: a riveted black iron hull and iron deck, no sails, no rigging, no ropes, no cloth. A large harpoon launcher at her bow. One big cannon on the deck amidships. A single short iron mast with a small round crow's nest. Two severed dragon heads are mounted on her prow, one red and one blue. She stays moored in the same place, the same size, pointing the same way.
+
+2. The second tent from the left in the top row is red. Make it dark purple with gold tassels, the same as the other three tents.
+
+3. The black strip along the bottom edge is a river. Paint it as wide black water with faint grey ripples and a little mist, running the full width of the bottom edge, with the jetty reaching into it.
+
+No text, no letters, no numbers, no people, no creatures, no border.

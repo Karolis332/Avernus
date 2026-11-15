@@ -571,6 +571,7 @@
         duration: "60 to 90 minutes",
         blocks: [
           { t: "p", text: "The hub. Everything the players can buy, roll for, lose or learn tonight is in {@side emporium-floor|The Floor Tonight}. This scene is how to run it." },
+          { t: "note", title: "For a long shopping night: the 🏪 Emporium page", text: "The header button {@b 🏪 Emporium} opens the market in its own window: a top-down map with 14 spots, and for every stall its full stock on named shelves (36 to 50 priced items a stall, about 300 in all), tonight's rack, services, favours, what the keeper buys, and tonight's hooks. Every row has a soul coin price and a gold price: gold goes at the floor's rate of 200 gp to the coin (Burney takes it at par for cures), and the few rows marked 'soul coins only' are premium or soul-goods. Type the coins or the gold a player has and it lists everything they can afford; {@b Buy} puts a purchase in a ledger in either currency with the haggle result, and the ledger copies out as text for the notes." },
           { t: "h", text: "The Shops" },
           { t: "list", items: [
             "{@side emporium-stock-today|Today's shelf}: roll a d8 per stall the party visits, a d20 once for a rare find, and the d6 price swing on every purchase. Prices are the Session 8 list plus 25% for magic items (level 14).",

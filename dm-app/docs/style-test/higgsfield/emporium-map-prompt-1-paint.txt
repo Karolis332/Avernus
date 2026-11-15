@@ -1,0 +1,15 @@
+Repaint this schematic plan as a richly detailed hand-painted fantasy tabletop battle map, seen from directly above: a strict orthographic top-down view, no perspective, no horizon, no sky. Keep the layout exactly: every object stays in the same position and at the same size as in the plan. Square image.
+
+What each shape is:
+- The ground is the scorched red-brown ash and cracked dust of a hellish wasteland. The pale ring is a worn track of packed earth trodden by a crowd, with a short road running down from it to the gate.
+- In the centre, the red octagon is a great pavilion of crimson silk with gold trim and a gold finial, seen from above.
+- The brown wheeled shapes around the ring are armoured infernal war machines, spiked iron wagons that have unfolded into market stalls with awnings, crates, barrels and hanging lanterns, each seen from above. The lower left one is a smithy with an open forge glowing orange with coals. The left one has a red and white striped barber's awning and a copper basin. The lower right one is an armoured bank carriage with an iron cage full of treasure behind it. The right one is an alchemist's wagon of glass vats glowing green and violet. The upper left one has two fenced wet pens beside it (the green rectangles) holding pale grubs.
+- The four purple hexagons along the top are dark purple gambling tents with gold tassels.
+- At the bottom centre, two war machines parked nose to nose make a gate, and below them a plank jetty on chains runs down into a wide black river along the bottom edge. A long red-hulled airship with a deck and a cannon is moored on the river to the right of the jetty.
+- The dashed red oval around the whole market is a magical ward: paint it as a thin line of faintly glowing red runes on the ground.
+- At the right edge there is a patch of pale blue ice with a frozen road leaving the market, and beside it an iron bell hanging on a tall post.
+- The small gold dots are strings of lanterns around the ring.
+
+Warm lantern light inside the ward, darkness and red haze outside it. Painterly dark fantasy illustration, high detail, the look of a professional top-down battle map.
+
+Remove every word and letter: no text, no labels, no numbers, no compass, no grid, no border, no frame. No people and no creatures.

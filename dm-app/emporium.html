@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>The Wandering Emporium: Market</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/style.css">
+<link rel="stylesheet" href="css/book.css">
+<style>
+  /* The Emporium market page (DM only): a top-down map, a pane per stall, a finder, a till and a ledger.
+     Logic in js/emporium.js; stock, favours and buy rates in sessions/campaign-emporium-market.js
+     and campaign-emporium-goods.js (the second half of the stock). */
+  body.emporium-page { display: block; overflow: auto; height: auto; }
+  #wrap { max-width: 1500px; margin: 0 auto; padding: 8px 16px 60px; }
+  h1 { margin: 2px 0 0; font-size: 1.5em; }
+  .sub { opacity: .75; margin: 0 0 8px; font-size: .9em; }
+  #top { display: flex; gap: 16px; align-items: end; flex-wrap: wrap; margin-bottom: 8px; }
+  #top .grow { flex: 1; min-width: 240px; }
+  label.field { display: flex; flex-direction: column; font-family: Cinzel, serif; font-size: .78em; color: var(--red); gap: 2px; }
+  input, select { font: inherit; padding: 5px 8px; border: 1px solid var(--ink); border-radius: 4px; background: #fffdf5; color: var(--ink); }
+  label.field input, label.field select { font-family: "Libre Baskerville", Georgia, serif; font-size: 1.2em; }
+  input[type=number] { width: 6.5em; }
+  #query { width: 16em; }
+
+  #main { display: grid; grid-template-columns: minmax(360px, 44%) 1fr; gap: 16px; align-items: start; }
+  #bottom { display: grid; grid-template-columns: 1fr 1fr; gap: 16px; align-items: start; margin-top: 16px; }
+  @media (max-width: 1000px) { #main, #bottom { grid-template-columns: 1fr; } }
+
+  /* the map */
+  #map-col { position: sticky; top: 8px; }
+  #map { position: relative; aspect-ratio: 1 / 1; width: min(100%, calc(100vh - 215px)); min-width: 340px; margin: 0 auto; border: 2px solid var(--red); border-radius: 6px; overflow: hidden; background: #d9c69a; }
+  #plan, #map-art { position: absolute; inset: 0; width: 100%; height: 100%; }
+  #map-art { display: none; object-fit: cover; }
+  #map.painted #map-art { display: block; }
+  #map.painted #plan { display: none; }
+  #pins { position: absolute; inset: 0; }
+  .pin { position: absolute; transform: translate(-50%, -50%); display: flex; flex-direction: column; align-items: center; gap: 1px; padding: 0; border: 0; background: none; cursor: pointer; font: inherit; color: var(--ink); }
+  .pin-n { width: 1.9em; height: 1.9em; line-height: 1.9em; border-radius: 50%; text-align: center; font-family: Cinzel, serif; font-weight: 700; font-size: .95em; color: #fff; background: var(--red); border: 2px solid #f6e9c6; box-shadow: 0 1px 4px rgba(0,0,0,.55); }
+  .pin.den .pin-n { background: #3d2a55; }
+  .pin.place .pin-n { background: #4d4a3e; }
+  .pin-label { font-family: Cinzel, serif; font-size: .68em; font-weight: 700; padding: 0 5px; border-radius: 3px; background: rgba(246,233,198,.88); white-space: nowrap; }
+  .pin:hover .pin-n, .pin:focus-visible .pin-n { transform: scale(1.15); }
+  .pin.on .pin-n { outline: 3px solid #e0a82e; outline-offset: 1px; transform: scale(1.2); }
+  .pin.on .pin-label { background: #e0a82e; }
+  .legend { display: flex; gap: 14px; font-size: .8em; margin: 6px 2px 0; flex-wrap: wrap; }
+  .legend i { display: inline-block; width: .9em; height: .9em; border-radius: 50%; margin-right: 4px; vertical-align: -1px; }
+
+  /* the pane */
+  #pane { border: 1px solid var(--red); border-radius: 6px; padding: 10px 14px 14px; background: #f8f1e0; min-height: 420px; max-height: calc(100vh - 215px); overflow: auto; }
+  #pane .tabs { position: sticky; top: -10px; z-index: 2; background: #f8f1e0; padding-top: 8px; }
+  @media (max-width: 1000px) { #pane { max-height: none; } #map-col { position: static; } }
+  .pane-head h2 { margin: 0 0 4px; font-size: 1.25em; }
+  .meta { margin: 0 0 6px; display: flex; gap: 6px; flex-wrap: wrap; }
+  .chip { font-size: .78em; border: 1px solid var(--red); border-radius: 10px; padding: 0 8px; background: #fffdf5; }
+  .look { font-style: italic; margin: 0 0 8px; line-height: 1.45; }
+  .tabs { display: flex; gap: 4px; flex-wrap: wrap; border-bottom: 2px solid var(--red); margin: 8px 0 10px; }
+  .tabs button { font-family: Cinzel, serif; font-size: .82em; border: 1px solid var(--red); border-bottom: 0; border-radius: 5px 5px 0 0; padding: 5px 10px; background: transparent; color: var(--ink); cursor: pointer; }
+  .tabs button.on { background: var(--red); color: #fff; }
+  .hint { opacity: .85; font-size: .88em; margin: 0 0 8px; line-height: 1.45; }
+  table.mk { width: 100%; border-collapse: collapse; font-size: .88em; line-height: 1.4; }
+  table.mk th { text-align: left; font-family: Cinzel, serif; font-size: .85em; background: var(--red); color: #fff; padding: 4px 6px; }
+  table.mk td { border-bottom: 1px solid rgba(43,29,14,.25); padding: 5px 6px; vertical-align: top; }
+  table.mk td.item { font-weight: bold; width: 24%; min-width: 10em; }
+  table.mk td.sc { white-space: nowrap; font-weight: bold; width: 1%; }
+  table.mk td.rar { white-space: nowrap; font-size: .9em; width: 1%; }
+  table.mk td.act { width: 1%; }
+  table.mk td.sc .qty { white-space: normal; min-width: 7em; }
+  table.mk tr.dear { opacity: .38; }
+  table.mk tr.shelf td { font-family: Cinzel, serif; font-weight: 700; font-size: .86em; color: var(--red); background: rgba(88,24,13,.1); border-bottom: 1px solid var(--red); padding: 9px 6px 3px; }
+  .qty.gp { opacity: .95; white-space: nowrap; }
+  .qty { display: block; font-weight: normal; font-size: .85em; opacity: .75; }
+  .r-uncommon { color: #1b6b2b; } .r-rare { color: #1c4f96; } .r-very-rare { color: #6a2a94; } .r-legendary { color: #b3560b; font-weight: bold; }
+  ul.tonight { margin: 0; padding-left: 18px; } ul.tonight li { margin: 6px 0; line-height: 1.5; }
+  #pane .book { font-size: .92em; }
+
+  /* finder, till, ledger */
+  .card { border: 1px solid var(--red); border-radius: 6px; padding: 10px 14px; background: rgba(255,253,245,.55); }
+  .card h2 { font-size: 1.05em; margin: 0 0 6px; }
+  .btn { font-family: Cinzel, serif; border: 1px solid var(--red); background: transparent; color: inherit; padding: 6px 12px; border-radius: 4px; cursor: pointer; }
+  .btn.go { background: var(--red); color: #fff; }
+  .btn.small { padding: 1px 8px; font-size: .82em; }
+  .btn:disabled { opacity: .4; cursor: default; }
+  button.link { border: 0; background: none; padding: 0; font: inherit; color: var(--red); text-decoration: underline dotted; cursor: pointer; }
+  .row { display: flex; gap: 10px; align-items: end; flex-wrap: wrap; margin: 6px 0; }
+  #finder-list, #ledger-list { list-style: none; margin: 6px 0 0; padding: 0; font-size: .88em; }
+  #finder-list { max-height: 330px; overflow: auto; }
+  #finder-list li, #ledger-list li { padding: 3px 0; border-bottom: 1px dotted rgba(43,29,14,.3); }
+  #finder-list .qty { display: inline; margin-left: 6px; }
+  /* the buying bar stays at the bottom of the window, so a purchase never needs a scroll */
+  #till { position: sticky; bottom: 0; z-index: 5; margin-top: 12px; display: flex; gap: 12px; align-items: end; flex-wrap: wrap; padding: 8px 14px; border: 2px solid var(--red); border-bottom: 0; border-radius: 6px 6px 0 0; background: #f3e7c8; box-shadow: 0 -3px 10px rgba(0,0,0,.28); }
+  #buy-what { flex: 1 1 280px; min-width: 0; }
+  #buy-item { font-weight: bold; }
+  #buy-band { font-size: .85em; min-height: 1.2em; }
+  .total { font-family: Cinzel, serif; font-weight: 700; margin: 0; flex: 0 1 auto; align-self: center; }
+  .total.over { color: #b71c1c; }
+  #till-msg { font-size: .85em; min-height: 1.2em; opacity: .85; }
+</style>
+</head>
+<body class="emporium-page">
+<div id="wrap">
+  <div id="top">
+    <div class="grow">
+      <h1>The Wandering Emporium</h1>
+      <p class="sub">DM page. Click a number on the map. New stock, favours and buy rates are homebrew for Session 14; services, racks and games are the app's own panels. Every price is in soul coins and in gold.</p>
+    </div>
+    <label class="field">Coins to spend (SC)<input type="number" id="coins" min="0" step="0.5" placeholder="e.g. 12"></label>
+    <label class="field">Gold to spend (gp)<input type="number" id="gold" min="0" step="50" placeholder="e.g. 3000"></label>
+    <label class="field">Search everything<input type="search" id="query" placeholder="arrow, cold, Moonkite, diamond..."></label>
+  </div>
+
+  <div id="main">
+    <div id="map-col">
+      <div id="map">
+        <svg id="plan" viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" aria-label="Top-down plan of the Wandering Emporium">
+          <defs>
+            <radialGradient id="g-ground" cx="50%" cy="48%" r="62%">
+              <stop offset="0" stop-color="#e9d9ae"/><stop offset=".7" stop-color="#d3bb88"/><stop offset="1" stop-color="#a98d5c"/>
+            </radialGradient>
+            <linearGradient id="g-styx" x1="0" y1="0" x2="0" y2="1">
+              <stop offset="0" stop-color="#3a3f52"/><stop offset="1" stop-color="#14161f"/>
+            </linearGradient>
+            <g id="wm"><rect x="-6.5" y="-3.6" width="13" height="7.2" rx="1.4" fill="#6b4a34" stroke="#2b1d0e" stroke-width=".45"/><rect x="-4.6" y="-2.2" width="9.2" height="4.4" rx=".8" fill="#8a6344" stroke="#2b1d0e" stroke-width=".25"/><circle cx="-4.4" cy="-3.9" r="1" fill="#2b1d0e"/><circle cx="4.4" cy="-3.9" r="1" fill="#2b1d0e"/><circle cx="-4.4" cy="3.9" r="1" fill="#2b1d0e"/><circle cx="4.4" cy="3.9" r="1" fill="#2b1d0e"/></g>
+            <g id="tent"><polygon points="0,-4.6 4,-2.3 4,2.3 0,4.6 -4,2.3 -4,-2.3" fill="#4a3566" stroke="#1d1429" stroke-width=".45"/><circle r="1" fill="#1d1429"/></g>
+          </defs>
+          <rect width="100" height="100" fill="url(#g-ground)"/>
+          <!-- the ice to the east, the road to the Mirror -->
+          <path d="M100,52 C92,58 90,66 100,80 Z" fill="#dfe9ee" opacity=".8"/>
+          <path d="M88,74 C93,72 96,71 100,69" fill="none" stroke="#f4f8fa" stroke-width="2.2" stroke-linecap="round"/>
+          <path d="M88,74 C93,72 96,71 100,69" fill="none" stroke="#7d93a0" stroke-width=".35" stroke-dasharray="1.2 1"/>
+          <text x="99" y="59" font-size="2.1" text-anchor="end" font-style="italic" fill="#45555e">ice road</text>
+          <text x="99" y="61.6" font-size="2.1" text-anchor="end" font-style="italic" fill="#45555e">to the Mirror</text>
+          <!-- the Styx and the jetty -->
+          <path d="M0,93 C12,91.2 24,94.4 38,92.6 C52,90.8 66,94.2 80,92.4 C90,91.2 96,92.6 100,92 L100,100 L0,100 Z" fill="url(#g-styx)"/>
+          <text x="8" y="98" font-size="2.6" font-style="italic" fill="#aab3cc" letter-spacing=".5">The Styx</text>
+          <rect x="47.6" y="83" width="4.8" height="13.5" fill="#3b2a1c" stroke="#1b120a" stroke-width=".3"/>
+          <path d="M47.6,85.5 h4.8 M47.6,88 h4.8 M47.6,90.5 h4.8 M47.6,93 h4.8" stroke="#1b120a" stroke-width=".25"/>
+          <path d="M54,97.4 C60,94.4 72,94.2 79,96.2 C72,98.9 60,99.1 54,97.4 Z" fill="#7a2a1a" stroke="#1b120a" stroke-width=".4"/>
+          <circle cx="78.1" cy="96.2" r=".7" fill="#e9d9ae"/><circle cx="76.5" cy="96.1" r=".7" fill="#e9d9ae"/>
+          <text x="80.4" y="97.1" font-size="1.9" font-style="italic" fill="#dfe4f2">the Lady Vengeance</text>
+          <!-- the ward's edge -->
+          <ellipse cx="50" cy="50" rx="46.5" ry="44.5" fill="none" stroke="#58180D" stroke-width=".5" stroke-dasharray="1.6 1.4" opacity=".8"/>
+          <text x="9" y="14" font-size="2.1" font-style="italic" fill="#58180D" transform="rotate(-38 9 14)">the ward's edge</text>
+          <!-- the beaten ring and the road from the gate -->
+          <ellipse cx="50" cy="46" rx="27" ry="23" fill="none" stroke="#b79d6b" stroke-width="5" opacity=".75"/>
+          <path d="M50,83 L50,60" stroke="#b79d6b" stroke-width="4" opacity=".75"/>
+          <!-- Infernal Rapture: the pavilion -->
+          <polygon points="50,39.5 57.4,42.6 60.5,50 57.4,57.4 50,60.5 42.6,57.4 39.5,50 42.6,42.6" fill="#8b1f14" stroke="#2b1d0e" stroke-width=".6"/>
+          <polygon points="50,43 55,45 57,50 55,55 50,57 45,55 43,50 45,45" fill="#b3372a" stroke="#58180D" stroke-width=".3"/>
+          <circle cx="50" cy="50" r="1.6" fill="#e0a82e"/>
+          <!-- the ring of unfolded war machines -->
+          <use href="#wm" transform="translate(22 64) rotate(-28)"/>
+          <use href="#wm" transform="translate(14 44) rotate(-80)"/>
+          <use href="#wm" transform="translate(79 66) rotate(28)"/>
+          <use href="#wm" transform="translate(87 45) rotate(80)"/>
+          <use href="#wm" transform="translate(20 26) rotate(40)"/>
+          <path d="M24.5,19.5 h9 v5 h-9 Z M26,27.5 h8 v4.6 h-8 Z" fill="#9aa27c" stroke="#2b1d0e" stroke-width=".3" opacity=".9"/>
+          <use href="#wm" transform="translate(44.6 76) scale(.8)"/>
+          <use href="#wm" transform="translate(55.4 76) scale(.8)"/>
+          <!-- the dens in the back row -->
+          <use href="#tent" transform="translate(37 15)"/>
+          <use href="#tent" transform="translate(52 11)"/>
+          <use href="#tent" transform="translate(67 15)"/>
+          <use href="#tent" transform="translate(82 25)"/>
+          <!-- the informant's shadow, the bell -->
+          <ellipse cx="33" cy="81" rx="3.4" ry="2" fill="#2b1d0e" opacity=".45"/>
+          <path d="M88,74 v-5.5" stroke="#2b1d0e" stroke-width=".5"/><path d="M86.4,69.6 q1.6,-3 3.2,0 Z" fill="#3b3b3b" stroke="#111" stroke-width=".3"/>
+          <!-- lantern strings -->
+          <g fill="#e0a82e" opacity=".9"><circle cx="30" cy="38" r=".5"/><circle cx="34" cy="31" r=".5"/><circle cx="41" cy="26.5" r=".5"/><circle cx="50" cy="24.6" r=".5"/><circle cx="59" cy="26.5" r=".5"/><circle cx="66" cy="31" r=".5"/><circle cx="70" cy="38" r=".5"/><circle cx="72" cy="47" r=".5"/><circle cx="69" cy="56" r=".5"/><circle cx="62" cy="63" r=".5"/><circle cx="38" cy="63" r=".5"/><circle cx="31" cy="56" r=".5"/><circle cx="28" cy="47" r=".5"/></g>
+          <!-- north -->
+          <g transform="translate(93 9)" fill="#2b1d0e"><path d="M0,-4 L1.4,2 L0,1 L-1.4,2 Z"/><text y="5.6" font-size="2.4" text-anchor="middle" font-family="Cinzel, serif">N</text></g>
+        </svg>
+        <img id="map-art" alt="">
+        <div id="pins"></div>
+      </div>
+      <div class="legend">
+        <span><i style="background:#58180D"></i>stall</span>
+        <span><i style="background:#3d2a55"></i>den</span>
+        <span><i style="background:#4d4a3e"></i>place</span>
+        <span>Dashed line: the ward's edge. Greyed rows cost more than the coins and the gold typed above.</span>
+      </div>
+    </div>
+    <div id="pane"></div>
+  </div>
+
+  <div id="till">
+    <div id="buy-what"><div id="buy-item">Press Buy on any row.</div><div id="buy-band"></div></div>
+    <label class="field">Buyer<select id="who"></select></label>
+    <label class="field">Haggle roll total<input type="number" id="buy-roll" min="1" placeholder="none"></label>
+    <label class="field">Pay in<select id="buy-cur"><option value="sc">Soul coins</option><option value="gp">Gold</option></select></label>
+    <label class="field"><span>Price paid (<span id="buy-unit">SC</span>)</span><input type="number" id="buy-price" min="0" step="0.01"></label>
+    <button class="btn go" id="buy-add" type="button" disabled>Add to ledger</button>
+    <div class="total" id="ledger-total"></div>
+  </div>
+
+  <div id="bottom">
+    <div class="card">
+      <h2 id="finder-title">Type coins, gold or a word</h2>
+      <p class="hint">Everything with a price on the whole market: the stock and the old service menus. It lists what the coins typed above can buy, or the gold. Dearest first. Click the stall name to go there, or Buy to put it in the bar (services too).</p>
+      <ul id="finder-list"></ul>
+    </div>
+    <div class="card">
+      <h2>The ledger</h2>
+      <p class="hint">Every purchase added with the bar above. Saved in this browser; copy it into the notes at the end of the night.</p>
+      <ul id="ledger-list"></ul>
+      <div class="row">
+        <label class="field">The party's purse (SC)<input type="number" id="purse" min="0" step="1" placeholder="set at the recap"></label>
+        <label class="field">The party's gold (gp)<input type="number" id="purse-gp" min="0" step="50" placeholder="set at the recap"></label>
+        <button class="btn" id="ledger-copy" type="button">Copy as text</button>
+        <button class="btn" id="ledger-clear" type="button">Clear</button>
+      </div>
+      <div id="till-msg"></div>
+    </div>
+  </div>
+</div>
+
+<script>window.LIBRARY = window.LIBRARY || { maps: [], docs: [] }; window.MEDIA = window.MEDIA || {};</script>
+<script src="js/core.js"></script>
+<script src="js/render.js"></script>
+<script src="sessions/campaign-emporium.js"></script>
+<script src="sessions/campaign-emporium-games.js"></script>
+<script src="sessions/campaign-emporium-market.js"></script>
+<script src="sessions/campaign-emporium-goods.js"></script>
+<script src="js/emporium.js"></script>
+</body>
+</html>
