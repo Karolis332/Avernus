@@ -1,15 +1,15 @@
 ---
 name: no-code-in-heredocs
-description: "On this PC's Git Bash tool, never pass JS or long Python through a heredoc; write a script file with the Write tool and run it"
+description: "DnD repo: empty files named 0, 40, 0)) appear after edits or commands containing '>' (the cmd /c hooks); delete them before every commit. Write scripts with the Write tool, not heredocs"
 metadata:
   node_type: memory
   type: feedback
   originSessionId: 0da2ec32-82ca-4301-a7e3-feccc57304d0
-  modified: 2026-11-14T23:25:47.774Z
+  modified: 2026-11-15T09:45:57.449Z
 ---
 
-Do not send source code through a Bash heredoc (`python - <<'EOF' ...`) on this machine when the text holds triple quotes, `>` comparisons or JavaScript. Write the script to the scratch folder (`C:\Users\kpaul\DnD\.playwright-mcp\`) with the Write tool and run the file.
+In `C:\Users\kpaul\DnD`, empty files with names like `0`, `40`, `30`, `0))`, `0})`, `null.,` appear in the current folder (repo root, `dm-app/`, `dm-app/sessions/`) after an Edit, Write or Bash call whose text holds a `>` comparison. Before every commit: `git status --short`, check each stray is 0 bytes, delete it.
 
-**Why:** it failed twice on 2026-11-14/15 ("unexpected EOF while looking for matching quote"), and part of the text was still run by the shell: a line with `rows.length > 0` created an empty file `dm-app/0` in the repo. My reading: the tool wraps the command, so the heredoc quoting is not safe.
+**Why:** found 2026-11-15. The project hooks in `.claude/settings.json` are `cmd /c node %CLAUDE_PROJECT_DIR%/.claude/helpers/hook-handler.cjs <event>`. Under Git Bash `/c` is rewritten to a path, so cmd starts interactive and runs the hook's stdin JSON as commands: `> 0` becomes a redirect that creates (or empties) a file named after the next word. My earlier reading, that heredocs caused it, was wrong; heredocs with code only failed for quoting reasons. The fix is `cmd //c` or calling `node` directly; it is the DM's config, so I reported it (Session Log 2026-11-15) and did not change it. If the hooks are fixed, drop this memory.
 
-**How to apply:** any multi-line edit or generator script. One-line `python -c "..."` and `node -e '...'` without nested quotes are fine. If a stray empty file named like a number shows up in `git status`, this is where it came from: delete it.
+**How to apply:** keep writing multi-line scripts to `C:\Users\kpaul\DnD\.playwright-mcp\` with the Write tool and running the file (heredocs with nested quotes still fail). Never name a real file like a bare number in this repo while the hooks are unfixed: a `> N` in any tool input would empty it. Related: [[dnd-orchestration-lessons]].
