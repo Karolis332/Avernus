@@ -13,66 +13,66 @@
 
   var PLAYERS = {
     title: "The Wandering Emporium",
-    music: "", // the market's own theme, played on the map
+    music: "https://open.spotify.com/track/6qUrPXf13ZJRWjDHC8GUBr", // the market's own theme, played on the map: Streets and Faces (Baldur's Gate 3: Streets and Taverns)
     spots: {
       jetty: {
-        theme: { accent: "#9cc3dd", fx: "mist" }, music: "",
+        theme: { accent: "#9cc3dd", fx: "mist" }, music: "https://open.spotify.com/track/4H1FlITv3PMErUOyQYgUDK", // Down by the River (Baldur's Gate 3)
         blurb: "The Lady Vengeance is moored at the end of the planks. Work bought at the Forge is done here, at her berth. Three riders wait where the planks meet the ice."
       },
       gate: {
-        theme: { accent: "#d8b06a", fx: "ash" }, music: "",
+        theme: { accent: "#d8b06a", fx: "ash" }, music: "https://open.spotify.com/track/2J3IrhJGv2SiFUhigQI3JN", // Welcome to Fort Joy (Divinity: Original Sin 2)
         blurb: "The Writ of Hunt, nailed up for everyone to read: 100 soul coins for the ship, 20 a head, 50 for the druid alive."
       },
       rapture: {
-        keeper: "Mahadi, the host", theme: { accent: "#f0c14a", fx: "motes" }, music: "",
+        keeper: "Mahadi, the host", theme: { accent: "#f0c14a", fx: "motes" }, music: "https://open.spotify.com/track/0P8B5mQYaf7cMzFPHtWR6q", // Red Prince Theme (Divinity: Original Sin 2)
         greet: "Friends! Dragon-killers! Sit, eat, be easy. Tonight nothing is too good for you, and everything has its price."
       },
       forge: {
-        theme: { accent: "#ff9a4d", fx: "embers" }, music: "",
+        theme: { accent: "#ff9a4d", fx: "embers" }, music: "https://open.spotify.com/track/0TsQvGGDO4qzdnf82HuGI1", // Sixteen Strikes (Baldur's Gate 3)
         greet: "Dragon-killers. Say what you want. The metal is listening."
       },
       barber: {
-        theme: { accent: "#e8a57c", fx: "steam" }, music: "",
+        theme: { accent: "#e8a57c", fx: "steam" }, music: "https://open.spotify.com/track/4I79eE5kmvsl8vUuEPAiDI", // Amber Ale (Divinity: Original Sin 2)
         greet: "Sit down, love. You look like you have had a week of it."
       },
       bank: {
-        theme: { accent: "#e6d38a", fx: "motes" }, music: "",
+        theme: { accent: "#e6d38a", fx: "motes" }, music: "https://open.spotify.com/track/11lCN6s42ihQKxJNjB6ia7", // Mead, Gold and Blood - Ifan's Theme (Divinity: Original Sin 2)
         greet: "Everything in the cage belonged to someone who was certain they could pay. How may I help?"
       },
       ichor: {
-        theme: { accent: "#9be36a", fx: "bubbles" }, music: "",
+        theme: { accent: "#9be36a", fx: "bubbles" }, music: "https://open.spotify.com/track/2XtqmFq459drrNssf9BuME", // The Colors of Underdark (Baldur's Gate 3)
         greet: "A taste? Go on. Most of it is perfectly safe, and the rest is very interesting."
       },
       larva: {
-        theme: { accent: "#b9c77a", fx: "mist" }, music: "",
+        theme: { accent: "#b9c77a", fx: "mist" }, music: "https://open.spotify.com/track/4PEh8obDtNZVJC9VpwtuG8", // Shadows, Curse and Death (Baldur's Gate 3)
         greet: "Graded stock, fair weight, no refunds. Keep your fingers outside the rails."
       },
       informant: {
-        theme: { accent: "#aab4cc", fx: "smoke" }, music: "",
+        theme: { accent: "#aab4cc", fx: "smoke" }, music: "https://open.spotify.com/track/1VbGGqps3QzMqpLBqaZYh4", // Quirky Bones - Murky Version (Divinity: Original Sin 2)
         greet: "You are the ones with the heads. I have your page already. Buy something else."
       },
       "soul-pit": {
-        theme: { accent: "#d77bd9", fx: "smoke" }, music: "",
+        theme: { accent: "#d77bd9", fx: "smoke" }, music: "https://open.spotify.com/track/5SThqBFjkajbeZ496viOKq", // Bard Dance (Baldur's Gate 3: Streets and Taverns)
         greet: "Place your bets! The house loves a winner, and it loves a loser more.",
         blurb: "Dice on felt, played for soul coins, with a crowd three deep."
       },
       "devils-teeth": {
-        theme: { accent: "#e2725b", fx: "embers" }, music: "",
+        theme: { accent: "#e2725b", fx: "embers" }, music: "https://open.spotify.com/track/4nkkpWp0uJpvQXmlokSXcJ", // Cunning Cruel Crits (Baldur's Gate 3)
         greet: "Two dice. One barrel. Ante up, or keep your teeth.",
         blurb: "Two dice on a barrel, rung by rung. The low rungs play for gold. The high rungs play for teeth."
       },
       ninefingers: {
-        keeper: "Sister Ninefingers", theme: { accent: "#b79cf0", fx: "motes" }, music: "",
+        keeper: "Sister Ninefingers", theme: { accent: "#b79cf0", fx: "motes" }, music: "https://open.spotify.com/track/5a2dn7PboRpZE6HAfWsJfd", // Harpy Song (Baldur's Gate 3)
         greet: "Sit, dearie. I have dealt you in already.",
         blurb: "Cards with faces on them. She does not take coin: the stake is a memory."
       },
       hourglass: {
-        theme: { accent: "#cfc4a3", fx: "ash" }, music: "",
+        theme: { accent: "#cfc4a3", fx: "ash" }, music: "https://open.spotify.com/track/0PgXxOJyPnTvcUaZjtcfUg", // A Tear in the Veil (Divinity: Original Sin 2)
         greet: "Everyone has time to spend. Shall we see how much of yours?",
         blurb: "A bookmaker who takes his bets in years of your life."
       },
       bell: {
-        theme: { accent: "#cfe6f2", fx: "snow" }, music: "",
+        theme: { accent: "#cfe6f2", fx: "snow" }, music: "https://open.spotify.com/track/3KBQN4dBHxyLEdCNCfSKMV", // Raphael's Final Act (Baldur's Gate 3)
         blurb: "When the bell rings the caravan packs, and the wards fold with the stalls."
       }
     },
