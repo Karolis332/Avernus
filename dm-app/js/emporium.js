@@ -318,7 +318,7 @@
       if (tab === "buys") return pairsTab(["What the party sells", "The keeper pays", "Note"], s.buys, "what", "pays", "note");
       if (tab === "play") return blocksTab(playBlocks(panel), true);
       if (tab === "talk") return window.DMEmporiumTalk.talkTab(s, cast, drawPane);
-      if (tab === "games") return window.DMEmporiumTalk.gamesTab(s);
+      if (tab === "games") return window.DMEmporiumTalk.gamesTab(s, cast);
       var ul = el("ul", "tonight");
       s.tonight.forEach(function (line) { var li = el("li"); li.appendChild(inline(line)); ul.appendChild(li); });
       return ul;

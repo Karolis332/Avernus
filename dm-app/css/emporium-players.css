@@ -221,4 +221,70 @@ button.pv-card:hover .pv-thumb i { transform: scale(1.18); }
 #pv .pv-riddle .pv-secret-card h2 { color: #fbe9c8; text-shadow: 0 0 1.2vw rgba(224, 160, 70, .7); }
 @keyframes pv-secret-rise { from { opacity: 0; transform: translateY(3vh) scale(.96); filter: blur(.4vw); } to { opacity: 1; transform: none; filter: none; } }
 
+/* ---- the game boards (js/emporium-boards.js): the live board left, how it plays right ---- */
+.pv-board { position: absolute; inset: 0; z-index: 40; display: grid; place-items: center; background: radial-gradient(ellipse at center, rgba(40, 22, 10, .55), rgba(6, 3, 2, .92) 72%); animation: pv-in .6s ease-out; }
+.pb-frame { width: 86vw; max-height: 92vh; padding: 3vh 2.4vw; border: .16vw solid var(--accent); border-radius: .8vw; background: linear-gradient(160deg, rgba(30, 18, 10, .96), rgba(12, 7, 4, .97)); box-shadow: 0 0 5vw color-mix(in srgb, var(--accent) 35%, transparent); overflow: hidden; }
+#pv .pb-frame > h2 { font-size: 2.6em; text-align: center; margin-bottom: 2vh; text-shadow: 0 0 1.2vw color-mix(in srgb, var(--accent) 60%, transparent); }
+.pb-body { display: grid; grid-template-columns: 1fr 24vw; gap: 2.4vw; align-items: start; }
+.pb-card { padding: 1.6vh 1.2vw; border-left: .2em solid var(--accent); background: rgba(0, 0, 0, .3); border-radius: .4vw; font-size: .95em; }
+.pb-card ul { margin: .6em 0; padding-left: 1.1em; }
+.pb-card li { margin: 0 0 .5em; }
+.pb-money { margin: .4em 0 0; font-family: Cinzel, serif; color: #f6e9c6; }
+.pb-banner { margin: 2vh 0 0; text-align: center; font-family: Cinzel, serif; font-size: 2.4em; font-weight: 700; color: #ffd76a; text-shadow: 0 0 1.5vw rgba(255, 200, 80, .8); animation: pv-secret-rise .9s cubic-bezier(.2, .8, .2, 1); }
+.pb-banner.lost { color: #e86a5a; text-shadow: 0 0 1.5vw rgba(220, 60, 40, .7); }
+.pb-total { margin: 1.4vh 0 0; text-align: center; font-family: Cinzel, serif; font-size: 1.6em; }
+.pb-event { margin: 1vh 0 0; text-align: center; font-style: italic; font-size: 1.3em; color: #f3ecdc; animation: pv-in .5s ease-out; }
+/* the Ladder */
+.pb-fighter { margin: 0 0 1.4vh; text-align: center; font-family: Cinzel, serif; font-size: 1.6em; color: #f6e9c6; }
+.pb-rungs { display: flex; flex-direction: column; gap: 1.2vh; }
+.pb-rung { position: relative; display: grid; grid-template-columns: 7em 1fr auto; gap: 1em; align-items: center; padding: 1.4vh 1.2vw; border: 1px solid rgba(255, 244, 214, .25); border-radius: .5vw; background: rgba(0, 0, 0, .35); opacity: .7; transition: all .5s ease; }
+.pb-rung b { font-family: Cinzel, serif; color: var(--accent); }
+.pb-foe { font-size: 1.3em; font-family: Cinzel, serif; }
+.pb-prize { font-size: .9em; opacity: .85; text-align: right; }
+.pb-rung.now { opacity: 1; border-color: var(--accent); box-shadow: 0 0 2vw color-mix(in srgb, var(--accent) 45%, transparent); animation: pv-pulse 2.2s ease-in-out infinite; }
+.pb-rung.won { opacity: 1; border-color: #ffd76a; background: rgba(80, 60, 10, .45); }
+.pb-rung.lost { opacity: .9; border-color: #e86a5a; background: rgba(80, 20, 10, .45); }
+.pb-mark { position: absolute; right: -.6em; top: 50%; transform: translateY(-50%); font-style: normal; font-size: 2.2em; color: #ffd76a; }
+.pb-rung.lost .pb-mark { color: #e86a5a; }
+/* the Derby */
+.pb-track { display: flex; flex-direction: column; gap: 1.2vh; padding: 1vh 0; background: linear-gradient(90deg, transparent 93%, rgba(255, 255, 255, .55) 93%, rgba(255, 255, 255, .55) 94%, transparent 94%); }
+.pb-lane { position: relative; height: 9vh; border-radius: .5vw; background: repeating-linear-gradient(90deg, rgba(90, 60, 30, .55) 0 2.9%, rgba(70, 46, 22, .55) 2.9% 5.8%); border: 1px solid rgba(255, 244, 214, .2); }
+.pb-lane.out { opacity: .35; filter: grayscale(1); }
+.pb-lane.win { border-color: #ffd76a; box-shadow: 0 0 2vw rgba(255, 200, 80, .6); }
+.pb-lane-name { position: absolute; left: .8em; top: .3em; font-family: Cinzel, serif; font-size: .9em; color: #f6e9c6; z-index: 1; }
+.pb-lemure { position: absolute; bottom: .4vh; width: 5vh; height: 5vh; line-height: 5vh; text-align: center; font-size: 5vh; color: #e8a0a0; text-shadow: 0 0 .8vw rgba(200, 80, 80, .8); transition: left 1.6s cubic-bezier(.3, .1, .2, 1); animation: pb-wobble .5s ease-in-out infinite alternate; }
+.pb-lemure.asleep { font-size: 3.4vh; animation: none; }
+.pb-move { position: absolute; right: .8em; top: .3em; font-family: Cinzel, serif; color: #ffd76a; }
+.pb-round { margin: 1vh 0 0; text-align: center; font-family: Cinzel, serif; font-size: 1.5em; }
+@keyframes pb-wobble { from { transform: translateY(0) scaleX(1); } to { transform: translateY(-.6vh) scaleX(.9); } }
+/* Imp Skulls */
+.pb-skulls { display: flex; flex-wrap: wrap; gap: 1vw; justify-content: center; min-height: 12vh; }
+.pb-skull { width: 9vh; height: 9vh; line-height: 9vh; text-align: center; border-radius: 1.2vh; font-family: Cinzel, serif; font-size: 4.5vh; font-weight: 700; color: #2b1d0e; background: #f6e9c6; box-shadow: 0 .4vh 1vh rgba(0, 0, 0, .6); animation: pb-roll .5s ease-out; }
+.pb-skull.bit { color: #fff; background: #a11a12; box-shadow: 0 0 2vw rgba(220, 40, 30, .9); }
+.pb-house { margin: 1.4vh 0 0; text-align: center; font-family: Cinzel, serif; font-size: 1.4em; color: #e8b0a0; }
+@keyframes pb-roll { from { transform: rotate(-200deg) scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }
+/* the Toast */
+.pb-cups { display: flex; gap: 1.2vw; justify-content: center; }
+.pb-cup { flex: 1; display: flex; flex-direction: column; align-items: center; gap: .6vh; padding: 1.4vh .6vw; border-radius: .5vw; border: 1px solid rgba(255, 244, 214, .2); background: rgba(0, 0, 0, .35); opacity: .45; text-align: center; font-size: .95em; transition: all .5s ease; }
+.pb-cup.poured { opacity: 1; }
+.pb-cup.now { border-color: var(--accent); box-shadow: 0 0 2vw color-mix(in srgb, var(--accent) 50%, transparent); }
+.pb-cup-glass { font-size: 3em; }
+.pb-drinkers { display: flex; gap: 1.4vw; justify-content: center; margin-top: 3vh; }
+.pb-drinker { padding: .5em 1.2em; border-radius: 2em; font-family: Cinzel, serif; font-size: 1.3em; border: 1px solid var(--accent); background: rgba(0, 0, 0, .4); color: #f6e9c6; }
+.pb-drinker.out { opacity: .4; text-decoration: line-through; border-color: #e86a5a; }
+/* Hold the Iron */
+.pb-count { margin: 0; text-align: center; font-family: Cinzel, serif; font-size: 9em; line-height: 1; color: #ffb060; text-shadow: 0 0 3vw rgba(255, 120, 40, .9); animation: pv-flicker 2.5s ease-in-out infinite; }
+.pb-rewards { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1vw; margin-top: 3vh; }
+.pb-reward { padding: 1.2vh .8vw; border-radius: .5vw; border: 1px solid rgba(255, 244, 214, .2); background: rgba(0, 0, 0, .35); opacity: .5; text-align: center; font-size: .9em; }
+.pb-reward b { display: block; font-family: Cinzel, serif; color: var(--accent); }
+.pb-reward.got { opacity: 1; border-color: #ffb060; box-shadow: 0 0 1.6vw rgba(255, 140, 50, .5); }
+/* the Taster's Flight */
+.pb-vials { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.4vw; }
+.pb-vial { display: flex; flex-direction: column; align-items: center; gap: .5vh; padding: 2vh 1vw; border-radius: .6vw; border: 1px solid rgba(255, 244, 214, .2); background: rgba(0, 0, 0, .4); text-align: center; }
+.pb-vial b { font-family: Cinzel, serif; color: #f6e9c6; }
+.pb-vial-glass { font-size: 3.4em; filter: drop-shadow(0 0 1vw color-mix(in srgb, var(--accent) 80%, transparent)); }
+.pb-vial.open { border-color: var(--accent); animation: pv-secret-rise .8s ease-out; }
+/* a card-only game (Liar's Coin): the rules take the whole frame */
+.pb-kind-card .pb-body { grid-template-columns: 1fr; font-size: 1.3em; }
+
 @media (prefers-reduced-motion: reduce) { #pv *, #pv *::before, #pv *::after { animation: none !important; transition: none !important; } }

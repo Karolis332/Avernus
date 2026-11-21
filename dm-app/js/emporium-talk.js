@@ -110,11 +110,12 @@
     while ((m = re.exec(text))) if (ids.indexOf(m[1]) === -1) ids.push(m[1]);
     return ids;
   }
-  function gamesTab(spot) {
-    var wrap = el("div", "book"), cs = (window.CAMPAIGN || {}).creatures || {};
+  function gamesTab(spot, cast) {
+    var wrap = el("div", "book"), cs = (window.CAMPAIGN || {}).creatures || {}, B = window.DMEmporiumBoards;
     gamesOf(spot.id).forEach(function (id) {
       var panel = side()[id];
       wrap.appendChild(el("h3", "", panel.title));
+      if (B && cast) B.panels(id).forEach(function (b) { wrap.appendChild(B.controls(b, cast)); });
       panel.blocks.forEach(function (b) { wrap.appendChild(block(b)); });
       var ids = creatureIds(panel.blocks).filter(function (c) { return cs[c]; });
       if (!ids.length || !window.DMStatblock) return;

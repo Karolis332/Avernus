@@ -318,7 +318,8 @@
     var keep = stage.querySelector(".pv-cards"), scroll = keep ? keep.scrollTop : 0;
     var keepRules = stage.querySelector(".pv-pop-rules"), rulesScroll = keepRules ? keepRules.scrollTop : 0;
     stage.replaceChildren.apply(stage, (scr.haul ? [drawHaul()] : s ? [drawShop(s, scr.bare), scr.item ? drawPopup(s, scr.item) : null] : [drawMap()])
-      .concat([scr.riddle && !scr.haul ? drawRiddle(scr.riddle) : null, scr.secret ? drawSecret(scr.secret) : null]).filter(Boolean));
+      .concat([scr.board && !scr.haul && window.DMEmporiumBoards ? window.DMEmporiumBoards.draw(scr.board) : null,
+        scr.riddle && !scr.haul ? drawRiddle(scr.riddle) : null, scr.secret ? drawSecret(scr.secret) : null]).filter(Boolean));
     var cards = stage.querySelector(".pv-cards"), rulesBox = stage.querySelector(".pv-pop-rules");
     if (cards) cards.scrollTop = scroll;
     if (rulesBox) rulesBox.scrollTop = rulesScroll;
@@ -372,6 +373,8 @@
     if (held) view.shelf = held.g; // the shelf behind the item the DM is holding up
     if (scr.secret && scr.secret !== view.secret) secretSound();
     else if (scr.riddle && scr.riddle !== view.riddle) riddleSound();
+    else if (scr.board && scr.board !== view.board) riddleSound();
+    view.board = scr.board;
     view.secret = scr.secret;
     view.riddle = scr.riddle;
     render();
@@ -381,7 +384,7 @@
     document.title = P.title;
     root.hidden = false;
     root.className = "muted";
-    Cast.save(K.screen, Object.assign(Cast.screen(), { item: null, haul: false, secret: null, riddle: null })); // nothing held up from last time
+    Cast.save(K.screen, Object.assign(Cast.screen(), { item: null, haul: false, secret: null, riddle: null, board: null })); // nothing held up from last time
     add(root, add(el("div", "pv-scene"), Object.assign(el("div"), { id: "pv-crop" }), Object.assign(document.createElement("img"), { id: "pv-art", alt: "" })),
       Object.assign(el("div"), { id: "pv-glow" }), Object.assign(el("div"), { id: "pv-fx" }), Object.assign(el("div"), { id: "pv-stage" }),
       Object.assign(el("div"), { id: "pv-hud" }), Object.assign(el("div"), { id: "pv-toast" }),
@@ -394,6 +397,7 @@
       var scr = Cast.screen();
       if (scr.secret) show({ secret: null });
       else if (scr.riddle) show({ riddle: null });
+      else if (scr.board) show({ board: null });
       else if (scr.haul) show({ haul: false });
       else if (scr.item) show({ item: null });
       else if (scr.spot) { show({ spot: null }); Cast.play(P, null); }
@@ -404,6 +408,7 @@
       else if (e.key === K.identified) onIdentified();
       else if (e.key === K.screen) onScreen();
       else if (e.key === K.secrets) render();
+      else if (e.key === K.boards) { render(); coinSound(); }
       else if (e.key === K.state) drawHud();
     });
     render();

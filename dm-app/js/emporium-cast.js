@@ -18,7 +18,8 @@
     identified: "dmapp:emporium:identified", // keys of mysterious rows the DM has named on the monitor
     cast: "dmapp:emporium:cast",         // { follow, music, links }: the DM's switches and his own Spotify links
     playing: "dmapp:emporium:playing",   // the link opened last, so two windows do not restart one track
-    secrets: "dmapp:emporium:secrets"    // "spot|secret id" of every secret the party has uncovered tonight
+    secrets: "dmapp:emporium:secrets",   // "spot|secret id" of every secret the party has uncovered tonight
+    boards: "dmapp:emporium:boards"      // { board id: state } of the game boards (js/emporium-boards.js)
   };
   var FX = ["embers", "bubbles", "steam", "mist", "smoke", "motes", "ash", "snow"];
   var MARKET = "_market"; // the links entry for the market's own theme, played on the map
@@ -145,7 +146,8 @@
   function castState() { return Object.assign({ follow: true, music: true, links: {} }, load(KEYS.cast, {})); }
   // bare: the shop's goods panel is folded away on the monitor, so the painting shows whole
   // secret: "spot|id" of the secret card the monitor is holding up, or null; riddle: "spot|index" of a riddle on it
-  var CLEAR = { item: null, haul: false, bare: false, secret: null, riddle: null };
+  // board: id of the game board the monitor shows (sessions/campaign-emporium-boards.js), or null
+  var CLEAR = { item: null, haul: false, bare: false, secret: null, riddle: null, board: null };
   function screen() { return Object.assign({ spot: null }, CLEAR, load(KEYS.screen, {})); }
 
   // ---- music: a location click starts its playlist in the Spotify app, quietly ----
@@ -264,6 +266,7 @@
       // A new night: nothing earned on the last one stays (the ledger is cleared by the page that owns it).
       newNight: function () {
         [KEYS.revealed, KEYS.identified, KEYS.secrets].forEach(function (k) { tell(save(k, [])); });
+        save(KEYS.boards, {});
         save(KEYS.playing, null);
         show(Object.assign({ spot: null }, CLEAR));
       },
@@ -290,6 +293,9 @@
       // A riddle asked: the monitor shows the keeper's words until it is answered or taken down.
       riddle: function (spotId, i, on) { show({ riddle: on ? spotId + "|" + i : null }); },
       riddleShown: function (spotId, i) { return screen().riddle === spotId + "|" + i; },
+      // A game on: its board takes the monitor until taken down.
+      board: function (id, on) { show({ board: on ? id : null, item: null, riddle: null }); },
+      boardShown: function (id) { return screen().board === id; },
       // Paid for: a sealed letter opens, and the monitor shows what is written in it.
       bought: function (spotId, name) {
         var v = ((players.mystery || {})[spotId] || {})[Core.stripTags(name)], k = key(spotId, name), list = load(KEYS.identified, []);
