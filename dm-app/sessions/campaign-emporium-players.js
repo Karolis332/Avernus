@@ -4,7 +4,8 @@
 // DM's note gives something away.
 //   spots[id]  keeper: the name the players read (default: the market's own) · greet: the keeper's first line ·
 //              blurb: the public line of a den or a place · theme: accent colour + the kind of drifting particles ·
-//              music: a Spotify link (track, album or playlist); the DM can paste his own on the DM page.
+//              music: a Spotify link (track, album or playlist); the DM can paste his own on the DM page. The 15
+//              "Emporium · …" playlists are private, in the DM's own Spotify (built 2026-11-21, picked by title, not by ear).
 //   hide[id]   rows not shown until the DM reveals them (favour-only rows are hidden without being listed).
 //   say[id]    row name -> the players' line. A row not listed shows its own note with the tags stripped.
 // tests/emporium-players.test.js: every name here is a real row, and every note with DM wording is covered.
@@ -13,89 +14,69 @@
 
   var PLAYERS = {
     title: "The Wandering Emporium",
-    music: "https://open.spotify.com/track/6qUrPXf13ZJRWjDHC8GUBr", // the market's own theme, played on the map: Streets and Faces (Baldur's Gate 3: Streets and Taverns)
+    music: "https://open.spotify.com/playlist/3gAHnpENZmGqWkAMGGNOpV", // "Emporium · The Market": Darkest Dungeon, Diablo II, Diablo IV, Penny Dreadful, Witcher 3: Hearts of Stone, Blasphemous, Darkest Dungeon II
     spots: {
       jetty: {
-        theme: { accent: "#9cc3dd", fx: "mist" }, music: "https://open.spotify.com/track/4H1FlITv3PMErUOyQYgUDK", // Down by the River (Baldur's Gate 3)
+        theme: { accent: "#9cc3dd", fx: "mist" }, music: "https://open.spotify.com/playlist/5iO7UZknHdisygmkzq1f3m", // "Emporium · The Jetty": Hades, Hellblade, Diablo IV, Dark Souls III, Hollow Knight, Baldur's Gate 3
         blurb: "The Lady Vengeance is moored at the end of the planks. Work bought at the Forge is done here, at her berth. Three riders wait where the planks meet the ice."
       },
       gate: {
-        theme: { accent: "#d8b06a", fx: "ash" }, music: "https://open.spotify.com/track/2J3IrhJGv2SiFUhigQI3JN", // Welcome to Fort Joy (Divinity: Original Sin 2)
+        theme: { accent: "#d8b06a", fx: "ash" }, music: "https://open.spotify.com/playlist/3gF0mumJBld5ytv15pc5gT", // "Emporium · The Gate": Bloodborne, Diablo IV, Witcher 3: Hearts of Stone, Darkest Dungeon, Diablo II, Penny Dreadful, Baldur's Gate 3
         blurb: "The Writ of Hunt, nailed up for everyone to read: 100 soul coins for the ship, 20 a head, 50 for the druid alive."
       },
       rapture: {
         keeper: "Mahadi, the host", theme: { accent: "#f0c14a", fx: "motes", side: "left" }, // he stands right of centre: the goods go left
-        music: "https://open.spotify.com/track/0P8B5mQYaf7cMzFPHtWR6q", // Red Prince Theme (Divinity: Original Sin 2)
+        music: "https://open.spotify.com/playlist/2pwG313EcGJvQ1PTcM2NE3", // "Emporium · The Rapture": Witcher 3: Hearts of Stone, Crimson Peak, Penny Dreadful, Bloodborne, Darkest Dungeon, Baldur's Gate 3
         greet: "Friends! Dragon-killers! Sit, eat, be easy. Tonight nothing is too good for you, and everything has its price."
       },
       forge: {
-        theme: { accent: "#ff9a4d", fx: "embers" }, music: "https://open.spotify.com/track/0TsQvGGDO4qzdnf82HuGI1", // Sixteen Strikes (Baldur's Gate 3)
+        theme: { accent: "#ff9a4d", fx: "embers" }, music: "https://open.spotify.com/playlist/4yu10uTVFKIdMmcYfxjCID", // "Emporium · The Forge": Hellblade, Diablo IV, Hades, Dark Souls III, Baldur's Gate 3
         greet: "Dragon-killers. Say what you want. The metal is listening."
       },
       barber: {
-        theme: { accent: "#e8a57c", fx: "steam" }, music: "https://open.spotify.com/track/4I79eE5kmvsl8vUuEPAiDI", // Amber Ale (Divinity: Original Sin 2)
+        theme: { accent: "#e8a57c", fx: "steam" }, music: "https://open.spotify.com/playlist/0KtKO4YXUEpxRlnQ9ZLjRc", // "Emporium · The Barber": Crimson Peak, Penny Dreadful, Inscryption, Bloodborne, Baldur's Gate 3
         greet: "Sit down, love. You look like you have had a week of it."
       },
       bank: {
-        theme: { accent: "#e6d38a", fx: "motes" }, music: "https://open.spotify.com/track/11lCN6s42ihQKxJNjB6ia7", // Mead, Gold and Blood - Ifan's Theme (Divinity: Original Sin 2)
+        theme: { accent: "#e6d38a", fx: "motes" }, music: "https://open.spotify.com/playlist/2CJHFu4aKlgwlGatKnr2dx", // "Emporium · The Bank": Witcher 3: Hearts of Stone, Crimson Peak, Darkest Dungeon, Inscryption, Diablo II
         greet: "Everything in the cage belonged to someone who was certain they could pay. How may I help?"
       },
       ichor: {
-        theme: { accent: "#9be36a", fx: "bubbles" }, music: "https://open.spotify.com/track/2XtqmFq459drrNssf9BuME", // The Colors of Underdark (Baldur's Gate 3)
+        theme: { accent: "#9be36a", fx: "bubbles" }, music: "https://open.spotify.com/playlist/3leRoWHgGHK87sEAT3kugC", // "Emporium · The Ichor Stall": Bloodborne, Hollow Knight, Inscryption, Darkest Dungeon, Penny Dreadful, Darkest Dungeon II, Baldur's Gate 3
         greet: "A taste? Go on. Most of it is perfectly safe, and the rest is very interesting."
       },
       larva: {
-        theme: { accent: "#b9c77a", fx: "mist" }, music: "https://open.spotify.com/track/4PEh8obDtNZVJC9VpwtuG8", // Shadows, Curse and Death (Baldur's Gate 3)
+        theme: { accent: "#b9c77a", fx: "mist" }, music: "https://open.spotify.com/playlist/4N51ca5nhbIxA5BZq4nAmk", // "Emporium · The Larva Farm": Hades, Hellblade, Diablo IV, Baldur's Gate 3
         greet: "Graded stock, fair weight, no refunds. Keep your fingers outside the rails."
       },
       informant: {
-        theme: { accent: "#aab4cc", fx: "smoke" }, music: "https://open.spotify.com/track/1VbGGqps3QzMqpLBqaZYh4", // Quirky Bones - Murky Version (Divinity: Original Sin 2)
+        theme: { accent: "#aab4cc", fx: "smoke" }, music: "https://open.spotify.com/playlist/4PNwQFX0EYiErT5PGDTz1H", // "Emporium · The Informant": Crimson Peak, Penny Dreadful, Inscryption, Hollow Knight, Darkest Dungeon II
         greet: "You are the ones with the heads. I have your page already. Buy something else."
       },
       "soul-pit": {
-        theme: { accent: "#d77bd9", fx: "smoke" }, music: "https://open.spotify.com/track/5SThqBFjkajbeZ496viOKq", // Bard Dance (Baldur's Gate 3: Streets and Taverns)
+        theme: { accent: "#d77bd9", fx: "smoke" }, music: "https://open.spotify.com/playlist/3H8gBw3qFWlkJkx0tHwmPA", // "Emporium · The Soul Pit": Darkest Dungeon II, Blasphemous, Hades, Darkest Dungeon, Baldur's Gate 3
         greet: "Place your bets! The house loves a winner, and it loves a loser more.",
         blurb: "Dice on felt, played for soul coins, with a crowd three deep."
       },
       "devils-teeth": {
-        theme: { accent: "#e2725b", fx: "embers" }, music: "https://open.spotify.com/track/4nkkpWp0uJpvQXmlokSXcJ", // Cunning Cruel Crits (Baldur's Gate 3)
+        theme: { accent: "#e2725b", fx: "embers" }, music: "https://open.spotify.com/playlist/6gMUsGijieeR8Hi9ZJ9gbk", // "Emporium · The Devil's Teeth": Inscryption, Darkest Dungeon II, Blasphemous, Hades, Bloodborne, Baldur's Gate 3
         greet: "Two dice. One barrel. Ante up, or keep your teeth.",
         blurb: "Two dice on a barrel, rung by rung. The low rungs play for gold. The high rungs play for teeth."
       },
       ninefingers: {
-        keeper: "Sister Ninefingers", theme: { accent: "#b79cf0", fx: "motes" }, music: "https://open.spotify.com/track/5a2dn7PboRpZE6HAfWsJfd", // Harpy Song (Baldur's Gate 3)
+        keeper: "Sister Ninefingers", theme: { accent: "#b79cf0", fx: "motes" }, music: "https://open.spotify.com/playlist/1ZbwzFeabOCM4m3RXnqT0I", // "Emporium · Ninefingers' Table": Inscryption, Bloodborne, Crimson Peak, Hollow Knight, Baldur's Gate 3, Dark Souls III
         greet: "Sit, dearie. I have dealt you in already.",
         blurb: "Cards with faces on them. She does not take coin: the stake is a memory."
       },
       hourglass: {
-        theme: { accent: "#cfc4a3", fx: "ash" }, music: "https://open.spotify.com/track/0PgXxOJyPnTvcUaZjtcfUg", // A Tear in the Veil (Divinity: Original Sin 2)
+        theme: { accent: "#cfc4a3", fx: "ash" }, music: "https://open.spotify.com/playlist/3Fjf9wxXsj11wtkQuWu1Fv", // "Emporium · The Hourglass": Penny Dreadful, Darkest Dungeon II, Hollow Knight, Dark Souls III, Hellblade, Baldur's Gate 3, Hades
         greet: "Everyone has time to spend. Shall we see how much of yours?",
         blurb: "A bookmaker who takes his bets in years of your life."
       },
       bell: {
-        theme: { accent: "#cfe6f2", fx: "snow" }, music: "https://open.spotify.com/track/3KBQN4dBHxyLEdCNCfSKMV", // Raphael's Final Act (Baldur's Gate 3)
+        theme: { accent: "#cfe6f2", fx: "snow" }, music: "https://open.spotify.com/playlist/7FGD6LnI27YauI3vBMzllO", // "Emporium · The Bell": Dark Souls III, Bloodborne, Darkest Dungeon, Baldur's Gate 3
         blurb: "When the bell rings the caravan packs, and the wards fold with the stalls."
       }
-    },
-
-    // Suggested tracks per place (Borislav Slavov), for the DM to build a playlist from: [title, Spotify track id].
-    // Ids were read from Spotify's own album pages by exact title; picked by title, not by ear.
-    tracks: {
-      "market": [["Streets and Faces", "6qUrPXf13ZJRWjDHC8GUBr"], ["Bard Dance", "5SThqBFjkajbeZ496viOKq"], ["Ale of Balduran", "3bR9lqBpz0S21rvM24R9nH"], ["I Want to Live - City Version", "5DvSPMt6ItPaRYrbDiCfa5"], ["Weeping Dawn - City Version", "1EwV10T6BI0TbkNNkUCnZO"], ["Last Light - Tavern Version", "49zpQRcsFFSVhZMAtvxwaB"], ["Driftwood", "10J6kToxnB7CCHaZy2hUlH"], ["Amber Ale", "4I79eE5kmvsl8vUuEPAiDI"]],
-      "jetty": [["Down by the River", "4H1FlITv3PMErUOyQYgUDK"], ["The Queen's High Seas - Beast's Theme", "0XmMow52cQMMgvwCJl66Jv"], ["The Queen's High Seas - Tavern Version", "74UkHtiZUfsz2F4PriPoq4"], ["Main Theme, Pt. 1", "7h76oHuys1Kh9P15EDEtQ2"], ["Reaper's Coast", "4HOezHihIlCw6dbyKzlVFw"], ["Rivellon", "2Ggw6Fz6Uc9SQHWx1aNcwz"], ["Your Tale Awaits You Down the Road", "0j39oKej1YqLnvbbwX7wyP"]],
-      "gate": [["Welcome to Fort Joy", "2J3IrhJGv2SiFUhigQI3JN"], ["The Cult of the Absolute", "3LJZL1VQDnov8oG7EWIvci"], ["A Threat from Nether Years", "0aYbWstvduqCnAC1yZ0R4S"], ["Mysterious Trails", "2cKsy1Hj7y2U2fN0hsPk2X"], ["Twisted Force", "14VlKKJMcMHfTc8MdLQuZ8"], ["Symphony of the Void", "6R2XELBRCWt9Or4fhh6koW"]],
-      "rapture": [["Red Prince Theme", "0P8B5mQYaf7cMzFPHtWR6q"], ["Dancing with the Source", "1nbDLGg0d4wZCICBuPv0yC"], ["Dancing with the Source - Oud Version", "7hfxgE9QUOrsQn5CJyZGfh"], ["Path of the Godwoken - Oud Version", "3U1rmjTTJAXTi1tpRxUC6j"], ["Dancing with the Source - Tambura Version", "2rXsTWtE1jKG0YL2Ihy4tu"], ["Wash My Dreams Away", "0ocLCJBGWejo03GDLa5jPT"], ["Raphael's Final Act", "3KBQN4dBHxyLEdCNCfSKMV"]],
-      "forge": [["Sixteen Strikes", "0TsQvGGDO4qzdnf82HuGI1"], ["Nine Blades", "5o8MYMv2u3SjbH5pfa6ZRx"], ["Forging the Fate", "0HbsyR2NIi0gAvQLBkZRYq"], ["Old Time Battles, Pt. 1", "15nEdGMv4FycmhCTwKQXJy"], ["Lead Your Fights", "21b0hZPbxJpiKdKCKV0yjh"], ["Mead, Gold and Blood - Ifan's Theme", "11lCN6s42ihQKxJNjB6ia7"], ["The Battle for Divinity", "2TBRVGwmayiNWtZeVxBGD9"]],
-      "barber": [["Amber Ale", "4I79eE5kmvsl8vUuEPAiDI"], ["Last Light - Tavern Version", "49zpQRcsFFSVhZMAtvxwaB"], ["Rivellon - Light Version", "4PHXA1rSWH2eM9HulCL5Kr"], ["Endless Spring", "58YkuyzA8jIzWUDfSOmi7Y"], ["A Part of Their Story", "6aSEsoEkoKKwdzywSwSyTJ"], ["Power of Innocence 2017 - Orchestra Version", "1ij9PJUriVLadK8E500yfk"], ["Last Shelter", "5PDbPW74EyDDZuOIBCx858"], ["Quest for a Cure", "28M7IXuJ1Y6ResKKWIOcpN"]],
-      "bank": [["Mead, Gold and Blood - Ifan's Theme", "11lCN6s42ihQKxJNjB6ia7"], ["Sins and Gods - Revelation", "5kcvSMP2InRF4eZQIaMwLZ"], ["Reflections from the Past", "4axplIj4dxBBM0cH3foHNc"], ["A Single Drop of Magic", "1ql2rGmS3HFiS1CIgJaVOD"], ["Who Are You", "0xKMPC2v7aCDZs0PBlIUSe"], ["Sebille's Theme", "2x56Pc2pEXeoC9DE3fgev4"]],
-      "ichor": [["The Colors of Underdark", "2XtqmFq459drrNssf9BuME"], ["A Single Drop of Magic", "1ql2rGmS3HFiS1CIgJaVOD"], ["Crazy Troubled Senses", "4firrJLHNjdZsEcqUMDySq"], ["Dream Walk - Instrumental Version", "1F0w3LvvUK0ltYjGyKShWV"], ["Quirky Bones", "63zcg71PNna984eU8Ihguy"], ["Fane's Theme", "4J3BNBTolywwhjDf17ApKG"]],
-      "larva": [["Shadows, Curse and Death", "4PEh8obDtNZVJC9VpwtuG8"], ["Embrace of the Deathfog", "1IBSnfX2z7UVhrTtVDK3pU"], ["Divine's Lament", "3mbtS5EQUolq8UDI1dQZiM"], ["Weeping Dawn", "6wRanpF1xuCCsyCIiLd8jH"], ["Surgery of a Hope", "53dt3DGL1bN9thWeHLa6Ss"], ["Last Light", "2q6qX08PGZHRHyJwcWjTHb"]],
-      "informant": [["Quirky Bones - Murky Version", "1VbGGqps3QzMqpLBqaZYh4"], ["Mysterious Trails", "2cKsy1Hj7y2U2fN0hsPk2X"], ["Who Are You", "0xKMPC2v7aCDZs0PBlIUSe"], ["Fane's Theme", "4J3BNBTolywwhjDf17ApKG"], ["Reflections from the Past", "4axplIj4dxBBM0cH3foHNc"], ["Mind Flayer Theme", "7fzJa1R8LTXpti0mO1lWOW"]],
-      "soul-pit": [["Bard Dance", "5SThqBFjkajbeZ496viOKq"], ["Ale of Balduran", "3bR9lqBpz0S21rvM24R9nH"], ["The Queen's High Seas - Tavern Version", "74UkHtiZUfsz2F4PriPoq4"], ["Old Time Battles - Bard Version", "4ufxBMgGcxpGGoiUF81SrT"], ["Amber Ale", "4I79eE5kmvsl8vUuEPAiDI"], ["Mead, Gold and Blood - Ifan's Theme", "11lCN6s42ihQKxJNjB6ia7"]],
-      "devils-teeth": [["Cunning Cruel Crits", "4nkkpWp0uJpvQXmlokSXcJ"], ["Twisted Force", "14VlKKJMcMHfTc8MdLQuZ8"], ["The Odds Are Cast Anew", "2KI4y4PO2AKw3T5tFahiBH"], ["Old Time Battles, Pt. 2", "5XpGqzZ0Iw4zXbFAub8Ye8"], ["Lead Your Fights", "21b0hZPbxJpiKdKCKV0yjh"], ["Nine Blades", "5o8MYMv2u3SjbH5pfa6ZRx"]],
-      "ninefingers": [["Harpy Song", "5a2dn7PboRpZE6HAfWsJfd"], ["Sing for Me (Lohne's Theme) - Bobby's Version", "61ngAmYOmuHKiDF8Oz8tUF"], ["Sing for Me - Lohse Version", "5lGEnZ2Fi53GrCCig7JnPH"], ["Wash My Dreams Away", "0ocLCJBGWejo03GDLa5jPT"], ["Reflections from the Past", "4axplIj4dxBBM0cH3foHNc"], ["Nightsong", "0Us9iU55GkpmKXP21BkQyf"], ["Wash My Pain Away", "3lRLdQyvXpE0cFhihkeB8i"]],
-      "hourglass": [["A Tear in the Veil", "0PgXxOJyPnTvcUaZjtcfUg"], ["Divine's Lament - Bonus Song", "04EgYGPeDzjEUtGVTbQEn1"], ["The Grand Design (Requiem)", "6bdzMwXPwyz4nlAI0evkGf"], ["Symphony of the Void", "6R2XELBRCWt9Or4fhh6koW"], ["Sins and Gods - Choir Version", "0asXkraWzjNnRKloDydxWR"], ["Embrace of the Deathfog", "1IBSnfX2z7UVhrTtVDK3pU"]],
-      "bell": [["Raphael's Final Act", "3KBQN4dBHxyLEdCNCfSKMV"], ["The Legacy of Bhaal", "68pYaLF2NxDJTltTP3QZTP"], ["Elder Brain", "5D1tZVEhS54xQsBxHgEmtO"], ["A Threat from Nether Years", "0aYbWstvduqCnAC1yZ0R4S"], ["The Battle for Divinity", "2TBRVGwmayiNWtZeVxBGD9"], ["Gather Your Allies!", "1SCZhTOsqGp6lHS54jJOdt"], ["The Power - Orchestral Version", "4PK8w6i17WXWz8pS7CabBQ"]]
     },
 
     // Mysterious rows (Claude's picks, 2026-11-21: keep, cut or add): the monitor shows the picture darkened, this name
