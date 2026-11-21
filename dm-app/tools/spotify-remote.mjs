@@ -115,7 +115,7 @@ async function play(target) {
 }
 
 function serve() {
-  let pending = null; // { verifier, state } of the login in progress
+  const pending = new Map(); // state -> verifier of the logins in progress: an older Spotify tab still works
   const reply = (res, code, body, type = "application/json") => {
     res.writeHead(code, { "Content-Type": type + "; charset=utf-8", "Access-Control-Allow-Origin": "*", "Cache-Control": "no-store" });
     res.end(type === "application/json" ? JSON.stringify(body) : body);
@@ -156,17 +156,20 @@ function serve() {
         return res.end();
       }
       if (url.pathname === "/login") {
-        pending = { verifier: randomBytes(48).toString("base64url"), state: randomBytes(16).toString("hex") };
-        res.writeHead(302, { Location: authorizeUrl(clientId(), pending.verifier, pending.state) });
+        const verifier = randomBytes(48).toString("base64url"), state = randomBytes(16).toString("hex");
+        pending.set(state, verifier);
+        if (pending.size > 8) pending.delete(pending.keys().next().value);
+        res.writeHead(302, { Location: authorizeUrl(clientId(), verifier, state) });
         return res.end();
       }
       if (url.pathname === "/callback") {
-        if (!pending || url.searchParams.get("state") !== pending.state) return reply(res, 400, page("This login is out of date: open /login again."), "text/html");
-        if (url.searchParams.get("error")) return reply(res, 400, page("Spotify said: " + url.searchParams.get("error")), "text/html");
+        const verifier = pending.get(url.searchParams.get("state"));
+        if (!verifier) return reply(res, 400, page("This login is out of date: <a style='color:#f0b45a' href='/login'>try again</a>."), "text/html");
+        pending.delete(url.searchParams.get("state"));
+        if (url.searchParams.get("error")) return reply(res, 400, page("Spotify said: " + url.searchParams.get("error").replace(/[<>&]/g, "")), "text/html");
         saveToken(await tokenCall({ grant_type: "authorization_code", code: url.searchParams.get("code"), redirect_uri: REDIRECT,
-          client_id: clientId(), code_verifier: pending.verifier }));
-        pending = null;
-        return reply(res, 200, page("Spotify is connected. Close this tab: the DM app's places now change the music quietly."), "text/html");
+          client_id: clientId(), code_verifier: verifier }));
+        return reply(res, 200, page("Spotify is connected. Close this tab and reload the Emporium page: the places now change the music quietly."), "text/html");
       }
       if (url.pathname === "/status") {
         const t = loadToken();

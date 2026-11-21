@@ -39,6 +39,7 @@ The Client ID and the login stay in `~/.spotify-dm/` on that computer, never in 
 | Earns a secret about Avernus | **Show** under the secret: a "Secret uncovered" card comes up on the monitor. **Put away** when read. Only the hint shows; the truth stays folded on your side. |
 | Wants to see an item | They click its card on the monitor, or you press **Buy** on its row: it comes up large with its art and rules. |
 | Buys | **Buy** on the row, set the buyer, the haggle roll and coins or gold, then **Add to ledger**: SOLD stamp, coin sound, the purse counts down. |
+| Wants to sell something | **Selling: what the floor pays** at the bottom of your page. Empty, it lists everything the stalls buy. Type a word to see who wants it; pick an item from the suggestions (or set a rarity) for the bank's, Burney's and Rassh's standing offers in SC and gp. A haggle roll total moves the offers. Add the coins to the purse yourself. |
 | Hits a mysterious item | **Identify** names it on the monitor; **Veil again** hides the name. |
 | Buys an Informant letter | It opens on the monitor by itself. **Open the seal** opens one without a sale. |
 | Wants the whole painting | **Fold / unfold the shelves**. |
@@ -60,6 +61,7 @@ The Client ID and the login stay in `~/.spotify-dm/` on that computer, never in 
 | "Spotify did not answer" | Open Spotify, play any song once, click the place again. |
 | "Spotify 403 … Premium" | The music needs Spotify Premium on the account that agreed. |
 | A link instead of "Quiet music is on" | Click it: the login ran out or this computer is new. |
+| "This login is out of date" after Agree | Press its **try again** link (the helper was restarted between the two steps). |
 | The monitor does not follow | Open the player screen with the **📺** button on your page, not by typing the address; no private windows. |
 | Old look, missing tabs or buttons | **Ctrl+F5** in both windows. |
 | No sound on the monitor | Click once inside the player screen. |
@@ -74,4 +76,5 @@ The Client ID and the login stay in `~/.spotify-dm/` on that computer, never in 
 | Stalls, stock, prices | `dm-app/sessions/campaign-emporium-market.js`, `-goods.js` |
 | What the monitor shows (themes, lines, hidden rows, playlists) | `dm-app/sessions/campaign-emporium-players.js` |
 | Talk: keepers, riddles, secrets | `dm-app/sessions/campaign-emporium-talk.js` |
+| Sell guide (what the floor pays) | `dm-app/js/emporium-sell.js`; the stalls' own buy rates are `buys` in `-market.js` / `-goods.js` |
 | Mini-games and the Ladder | `dm-app/sessions/campaign-emporium-minigames.js`, `-gauntlets.js` |
