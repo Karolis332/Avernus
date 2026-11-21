@@ -25,6 +25,11 @@ OPEN = ("A wide painterly dark fantasy illustration, the establishing picture of
 # The goods list is drawn over the right side of the picture, so the subject sits left of centre.
 FRAME = (" Composition: the subject fills the left and the centre of the frame. The right third of the frame is darker and "
          "quieter, in shadow, with nothing important in it.")
+# The Rapture's goods list sits on the left of the monitor (theme side "left"), so its host stands on the right.
+FRAMES = {"rapture": (" Composition: the host stands right of centre, large in the frame. The left third of the frame "
+                      "is darker and quieter, in shadow, with nothing important in it.")}
+# A keeper with official art is painted from it. The official file stays local (gitignored); only the new painting is kept.
+REFS = {"rapture": HERE.parents[2] / "art" / "official" / "mahadi-true-form.webp"}
 BACKDROP = " Far behind, strings of warm market lanterns and a hazy dark red sky."
 INDOORS = {"soul-pit", "devils-teeth", "ninefingers"}  # inside a tent or a booth: no sky behind
 LOOK = (" Gritty painterly brushwork with no outlines, realistic proportions, rich detail, deep shadows, a dark and uneasy "
@@ -62,10 +67,14 @@ SCENES = {
     ),
     "rapture": (
         "Infernal Rapture: the entrance of a pavilion of deep red silk four storeys high, with gold ribs and gold tassels, "
-        "glowing from within like a paper lantern. In front of the open entrance, large in the frame on the left, stands "
-        "the host: a tall, broad-shouldered, elegant man in a long coat of red and gold silk with a high collar and many "
-        "rings, bowing slightly in welcome with his hands folded in front of him, a warm smile half lit by the lanterns and "
-        "half in shadow. Behind him the entrance is drawn open on a hall of low tables set with silver and crystal, "
+        "glowing from within like a paper lantern. In front of the open entrance, large in the frame, stands the host in "
+        "his true form, a rakshasa, exactly the figure in the reference image: the head of a great white tiger with black "
+        "stripes, pale blue eyes, long white whiskers and a thick ruff of white fur, on a tall, broad-shouldered man's "
+        "body; furred hands with long dark claws and gold rings; a pale grey-blue mantle draped over one shoulder and "
+        "wrapped round his chest, over robes of deep violet banded with gold, and a wide brown sash at the waist. He bows "
+        "slightly in welcome, one clawed hand held open toward the viewer, a pleased smile that shows his fangs, half lit "
+        "by the lanterns and half in shadow. A new pose and a new place, the same face, fur and clothes as the reference; "
+        "take nothing else from the reference image. Behind him the entrance is drawn open on a hall of low tables set with silver and crystal, "
         "steaming dishes, hanging brass lamps and heaped cushions; a stair curls up to a high table. Golden motes of light "
         "hang in the warm air and steam rises through the floor from the baths below."
     ),
@@ -155,12 +164,21 @@ def hf(*args: str) -> object:
 
 
 def prompt(key: str) -> str:
-    return OPEN + SCENES[key] + FRAME + ("" if key in INDOORS else BACKDROP) + LOOK + RULES
+    return OPEN + SCENES[key] + FRAMES.get(key, FRAME) + ("" if key in INDOORS else BACKDROP) + LOOK + RULES
+
+
+def reference(key: str) -> list:
+    """The --image flag for a spot painted from official art (as PNG, in the gitignored sources folder), or nothing."""
+    if key not in REFS:
+        return []
+    png = SOURCES / f"ref-{key}.png"
+    Image.open(REFS[key]).convert("RGB").save(png)
+    return ["--image", str(png)]
 
 
 def paint(key: str, jobs: dict) -> dict:
     ids = hf("generate", "create", "nano_banana_2_1", "--aspect_ratio", "16:9", "--resolution", "2k",
-             "--prompt", prompt(key))
+             *reference(key), "--prompt", prompt(key))
     if not (isinstance(ids, list) and len(ids) == 1):
         sys.exit(f"STOP: {key} returned {ids!r}")
     jobs = {**jobs, key: ids[0]}

@@ -1,6 +1,5 @@
 {
  "forge": "0d4d9dd1-1fd3-4621-bd56-329031cd8175",
- "rapture": "e18f0a49-2122-465b-a782-bb34df142c2e",
  "barber": "fd611505-110b-46f8-888d-a3c7b58e6a53",
  "bank": "9efa33fb-561e-44a9-ae27-3764df717427",
  "ichor": "99e91f76-1d21-4032-8aaa-c59f09430f6f",
@@ -12,5 +11,6 @@
  "devils-teeth": "fef1e704-0a63-418d-a058-962886b72fce",
  "ninefingers": "f6f76773-1a31-4977-800a-5e5feddec0a1",
  "hourglass": "b9774c68-92e1-4127-ae41-fc64564af026",
- "bell": "3e8d5f59-3529-49cd-90fd-835c08d7cece"
+ "bell": "3e8d5f59-3529-49cd-90fd-835c08d7cece",
+ "rapture": "972fdb30-5c1d-4361-83d1-6db01780e940"
 }
