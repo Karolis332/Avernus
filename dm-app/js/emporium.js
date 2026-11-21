@@ -245,7 +245,8 @@
       tr.appendChild(price);
       var note = td(it.note), Cast = window.DMEmporiumCast, k = Cast.key(s.id, it.name);
       var full = Cast.fullText(window.EMPORIUM_ITEM_TEXT, k), veil = Cast.mysteryOf(s, it, window.EMPORIUM_PLAYERS);
-      if (veil) note.appendChild(el("span", "qty hidden-row id", "The players see '" + veil.name + "': " + veil.text));
+      if (veil && veil.sealed) note.appendChild(el("span", "qty hidden-row id", "Sealed on the monitor: '" + veil.text + "' It opens when you add it to the ledger, and shows: " + ((window.EMPORIUM_PLAYERS.say[s.id] || {})[Core.stripTags(it.name)] || "")));
+      else if (veil) note.appendChild(el("span", "qty hidden-row id", "The players see '" + veil.name + "': " + veil.text));
       if (full) {
         var det = el("details", "full");
         det.appendChild(el("summary", "", "Full rules text"));
@@ -435,6 +436,7 @@
       var entry = Object.assign({ who: $("who").value, item: pick.name, spot: pick.spot, spotName: pick.spotName, how: how }, inGp ? { gp: price } : { sc: price });
       ledger = ledgerAdd(ledger, entry, Date.now());
       save(LEDGER_KEY, ledger);
+      cast.bought(pick.spot, pick.name);
       pick = null;
       drawTill();
     });

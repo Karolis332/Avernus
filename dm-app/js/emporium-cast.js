@@ -63,7 +63,9 @@
       if (hidden && shown.indexOf(k) === -1) return null;
       var priced = it.sc > 0, veil = mysteryOf(spot, it, players), mystery = !!veil && named.indexOf(k) === -1;
       return {
-        key: k, name: mystery ? veil.name : name, g: it.g || "", rarity: mystery ? "unidentified" : it.rarity || "",
+        // A sealed letter keeps its own name (the question) and hides only its contents (the answer).
+        key: k, name: mystery ? veil.name || name : name, g: it.g || "", sealed: !!veil && !!veil.sealed,
+        rarity: mystery ? (veil.sealed ? "sealed" : "unidentified") : it.rarity || "",
         sc: priced ? it.sc : null, gp: priced && !it.scOnly ? emp().goldPrice(it, spot) : null, extra: it.extra || "",
         qty: it.qty || "", left: onHand(it, sold[k]), bought: sold[k] || 0, revealed: hidden, mystery: mystery,
         identified: !!veil && !mystery, text: mystery ? veil.text : say[name] || Core.stripTags(it.note || "")
@@ -222,6 +224,11 @@
     return {
       // The DM chose a spot: the monitor goes there and its music starts, unless he is looking privately.
       spot: function (id) { if (castState().follow) { show({ spot: id, item: null, haul: false, bare: false }); play(players, id); } },
+      // Paid for: a sealed letter opens, and the monitor shows what is written in it.
+      bought: function (spotId, name) {
+        var v = ((players.mystery || {})[spotId] || {})[Core.stripTags(name)], k = key(spotId, name), list = load(KEYS.identified, []);
+        if (v && v.sealed && list.indexOf(k) === -1) tell(save(KEYS.identified, list.concat([k])));
+      },
       // The DM pressed Buy: the monitor holds that item up. null puts it down.
       item: function (spotId, name) {
         if (!castState().follow) return;
@@ -231,16 +238,19 @@
       rowControls: function (spot, it, redraw) {
         var k = key(spot.id, it.name), veil = mysteryOf(spot, it, players), out = [];
         function toggle(store, label, onText, offText, onBtn, offBtn) {
-          var list = load(store, []), on = list.indexOf(k) !== -1;
+          var on = load(store, []).indexOf(k) !== -1;
           var wrap = el("span", "qty hidden-row " + label, on ? onText : offText);
           wrap.appendChild(button(on ? onBtn : offBtn, "btn small", function () {
-            tell(save(store, on ? list.filter(function (x) { return x !== k; }) : list.concat([k])));
+            // read again: a purchase may have opened a letter since this row was drawn
+            var now = load(store, []).filter(function (x) { return x !== k; });
+            tell(save(store, on ? now : now.concat([k])));
             redraw();
           }));
           return wrap;
         }
         if (isHidden(spot, it, players)) out.push(toggle(KEYS.revealed, "rv", "revealed on the monitor ", "hidden from the players ", "Hide again", "Reveal"));
-        if (veil) out.push(toggle(KEYS.identified, "id", "named on the monitor ", "on the monitor as '" + veil.name + "' ", "Veil again", "Identify"));
+        if (veil && veil.sealed) out.push(toggle(KEYS.identified, "id", "open on the monitor ", "sealed on the monitor ", "Seal again", "Open the seal"));
+        else if (veil) out.push(toggle(KEYS.identified, "id", "named on the monitor ", "on the monitor as '" + veil.name + "' ", "Veil again", "Identify"));
         if (!out.length) return null;
         var box = el("span", "row-controls");
         out.forEach(function (n) { box.appendChild(n); });

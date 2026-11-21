@@ -21,7 +21,10 @@
     "13": "art/generated/emporium-items-13.webp",
     "14": "art/generated/emporium-items-14.webp",
     "15": "art/generated/emporium-items-15.webp",
-    "16": "art/generated/emporium-items-16.webp"
+    "16": "art/generated/emporium-items-16.webp",
+    "17": "art/generated/emporium-items-17.webp",
+    "18": "art/generated/emporium-items-18.webp",
+    "19": "art/generated/emporium-items-19.webp"
    },
    "at": {
     "forge|Arrow of dragon slaying": [
@@ -1111,6 +1114,186 @@
     "larva|Rope of entanglement": [
      16,
      15
+    ],
+    "larva|Horn of blasting": [
+     17,
+     0
+    ],
+    "larva|Mace of terror": [
+     17,
+     1
+    ],
+    "larva|Sword of wounding": [
+     17,
+     2
+    ],
+    "informant|Where the dragons wait for the bell": [
+     17,
+     3
+    ],
+    "informant|What the dragonborn bought from the host": [
+     17,
+     4
+    ],
+    "informant|The elf with the thorns": [
+     17,
+     5
+    ],
+    "informant|Who kneels before the Mirror": [
+     17,
+     6
+    ],
+    "informant|What the host really is": [
+     17,
+     7
+    ],
+    "informant|The Mirror's escort, and the rule of the glass": [
+     17,
+     8
+    ],
+    "informant|Chart of the Styx, the Dock to the Scab's mouth": [
+     17,
+     9
+    ],
+    "informant|Strip map of the ice road": [
+     17,
+     10
+    ],
+    "informant|Sightings of the green dragon, three nights": [
+     17,
+     11
+    ],
+    "informant|The Writ of Hunt, a clean copy": [
+     17,
+     12
+    ],
+    "informant|Everyone who read the Writ tonight": [
+     17,
+     13
+    ],
+    "informant|Three bounty hunters, a page each": [
+     17,
+     14
+    ],
+    "informant|The mortal name of the rider who saluted": [
+     17,
+     15
+    ],
+    "informant|Hellrider muster roll of the last charge, annotated": [
+     18,
+     0
+    ],
+    "informant|Forged papers for the ship": [
+     18,
+     1
+    ],
+    "informant|Blank contract forms, sealed": [
+     18,
+     2
+    ],
+    "informant|The Emporium's next three stops": [
+     18,
+     3
+    ],
+    "informant|Floor plan of Infernal Rapture": [
+     18,
+     4
+    ],
+    "informant|The party's own page": [
+     18,
+     5
+    ],
+    "informant|Almanac of the Bleeding Citadel": [
+     18,
+     6
+    ],
+    "informant|Kreeg's creditors": [
+     18,
+     7
+    ],
+    "informant|Sketch of the Basalt Citadel's outer wall": [
+     18,
+     8
+    ],
+    "informant|Fuel ledger of the flying fortress, a clerk's copy": [
+     18,
+     9
+    ],
+    "informant|Where the black dragon sleeps by day": [
+     18,
+     10
+    ],
+    "informant|What Krull sold on this floor": [
+     18,
+     11
+    ],
+    "informant|Half of Gristle's true name": [
+     18,
+     12
+    ],
+    "informant|Register of Elturians sold on this floor": [
+     18,
+     13
+    ],
+    "informant|Sketch of the Mirror's shelf": [
+     18,
+     14
+    ],
+    "informant|Chart of the upper air": [
+     18,
+     15
+    ],
+    "informant|The riders' written orders, a copy": [
+     19,
+     0
+    ],
+    "informant|Lantern codes of Zariel's fleet": [
+     19,
+     1
+    ],
+    "informant|Toll receipts for the Styx chains": [
+     19,
+     2
+    ],
+    "informant|A hunter's plate of an old white dragon": [
+     19,
+     3
+    ],
+    "informant|What Arkhan paid for on this floor": [
+     19,
+     4
+    ],
+    "informant|The bids on the heads, so far": [
+     19,
+     5
+    ],
+    "informant|Writing case with a forger's kit": [
+     19,
+     6
+    ],
+    "informant|A legion pay-book, blank": [
+     19,
+     7
+    ],
+    "informant|Translation while you wait": [
+     19,
+     8
+    ],
+    "informant|The floor's price sheet": [
+     19,
+     9
+    ],
+    "informant|The keepers, a page each": [
+     19,
+     10
+    ],
+    "informant|Whose souls are in your coins": [
+     19,
+     11
+    ],
+    "informant|Mahadi's guest book, the last tenday": [
+     19,
+     12
     ]
    }
   };

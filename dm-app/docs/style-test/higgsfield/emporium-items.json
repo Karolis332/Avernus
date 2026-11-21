@@ -355,5 +355,65 @@
    "larva|Grave-whistle",
    "larva|Rope of entanglement"
   ]
+ },
+ "17": {
+  "job": "2afe5044-acb0-4fc3-bd14-e0c3997ed9d2",
+  "keys": [
+   "larva|Horn of blasting",
+   "larva|Mace of terror",
+   "larva|Sword of wounding",
+   "informant|Where the dragons wait for the bell",
+   "informant|What the dragonborn bought from the host",
+   "informant|The elf with the thorns",
+   "informant|Who kneels before the Mirror",
+   "informant|What the host really is",
+   "informant|The Mirror's escort, and the rule of the glass",
+   "informant|Chart of the Styx, the Dock to the Scab's mouth",
+   "informant|Strip map of the ice road",
+   "informant|Sightings of the green dragon, three nights",
+   "informant|The Writ of Hunt, a clean copy",
+   "informant|Everyone who read the Writ tonight",
+   "informant|Three bounty hunters, a page each",
+   "informant|The mortal name of the rider who saluted"
+  ]
+ },
+ "18": {
+  "job": "d42a31b4-f373-485f-9d58-62735415d21c",
+  "keys": [
+   "informant|Hellrider muster roll of the last charge, annotated",
+   "informant|Forged papers for the ship",
+   "informant|Blank contract forms, sealed",
+   "informant|The Emporium's next three stops",
+   "informant|Floor plan of Infernal Rapture",
+   "informant|The party's own page",
+   "informant|Almanac of the Bleeding Citadel",
+   "informant|Kreeg's creditors",
+   "informant|Sketch of the Basalt Citadel's outer wall",
+   "informant|Fuel ledger of the flying fortress, a clerk's copy",
+   "informant|Where the black dragon sleeps by day",
+   "informant|What Krull sold on this floor",
+   "informant|Half of Gristle's true name",
+   "informant|Register of Elturians sold on this floor",
+   "informant|Sketch of the Mirror's shelf",
+   "informant|Chart of the upper air"
+  ]
+ },
+ "19": {
+  "job": "15f54872-a760-400a-bf67-eed7d95ad3d8",
+  "keys": [
+   "informant|The riders' written orders, a copy",
+   "informant|Lantern codes of Zariel's fleet",
+   "informant|Toll receipts for the Styx chains",
+   "informant|A hunter's plate of an old white dragon",
+   "informant|What Arkhan paid for on this floor",
+   "informant|The bids on the heads, so far",
+   "informant|Writing case with a forger's kit",
+   "informant|A legion pay-book, blank",
+   "informant|Translation while you wait",
+   "informant|The floor's price sheet",
+   "informant|The keepers, a page each",
+   "informant|Whose souls are in your coins",
+   "informant|Mahadi's guest book, the last tenday"
+  ]
  }
 }

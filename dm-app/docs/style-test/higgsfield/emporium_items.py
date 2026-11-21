@@ -26,7 +26,7 @@ SOURCES = APP.parent / ".playwright-mcp" / "hf"
 ART = APP / "art" / "generated"
 MAP = APP / "sessions" / "campaign-emporium-item-art.js"
 SIDE = 4  # tiles per row and per column
-HOLD = ("informant|",)  # stock being rewritten: planned only with --all, so no sheet is painted for rows that change
+HOLD: tuple = ()  # row-key prefixes of stock being rewritten: planned only with --all, so no sheet is painted for rows that change
 RESOLUTION = "4k"
 STORED = 3072  # width of the stored sheet in pixels
 ROWS_JS = ("var p=require('path'),a=process.argv[1];var C=require(p.join(a,'js','core.js')),"

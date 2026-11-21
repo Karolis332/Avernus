@@ -146,7 +146,8 @@
 
   // ---- an item's picture: one tile of a painted sheet, or a sigil until its sheet is painted ----
   function tile(g, cls) {
-    var t = el("span", cls + (g.mystery ? " veiled" : "")), sp = Cast.sprite(ART, g.key);
+    var hide = g.mystery && !g.sealed; // a sealed letter shows its wax; only an unknown item is darkened
+    var t = el("span", cls + (hide ? " veiled" : "")), sp = Cast.sprite(ART, g.key);
     if (sp) {
       var i = el("i");
       i.style.backgroundImage = "url('" + sp.src + "')";
@@ -157,7 +158,7 @@
       t.classList.add("blank");
       t.appendChild(el("i", "sigil", "◆"));
     }
-    if (g.mystery) t.appendChild(el("b", "q", "?"));
+    if (hide) t.appendChild(el("b", "q", "?"));
     return t;
   }
 
@@ -181,7 +182,7 @@
   function rarityClass(g) { return " pv-r-" + g.rarity.replace(" ", "-"); }
   function card(g) {
     var c = button("pv-card", function () { openSound(); show({ item: g.key }); });
-    c.className += rarityClass(g) + (g.left === 0 ? " sold" : "") + (view.fresh.indexOf(g.key) !== -1 ? " fresh" : "") + (g.mystery ? " mystery" : "");
+    c.className += rarityClass(g) + (g.left === 0 ? " sold" : "") + (view.fresh.indexOf(g.key) !== -1 ? " fresh" : "") + (g.mystery ? " mystery" : "") + (g.sealed ? " letter" : "");
     var meta = [g.rarity, onHand(g)].filter(Boolean).join("  ·  ");
     add(c, tile(g, "pv-thumb"), el("span", "pv-name", g.name), priceOf(g), el("span", "pv-meta", meta), el("span", "pv-text", g.text));
     if (g.left === 0) c.appendChild(el("span", "pv-stamp", "Sold"));
@@ -224,7 +225,7 @@
   // ---- the pop-up: one item, its picture and everything known about it ----
   function rules(g) {
     var box = el("div", "pv-pop-rules"), full = g.mystery ? null : Cast.fullText(TEXTS, g.key);
-    if (g.mystery) return add(box, el("p", "pv-pop-unknown", "What it does is not known. Ask the keeper, or cast identify on it."));
+    if (g.mystery) return add(box, el("p", "pv-pop-unknown", g.sealed ? "Sealed. He opens it when it is paid for, not before." : "What it does is not known. Ask the keeper, or cast identify on it."));
     if (!full) return null;
     Cast.rulesNodes(full, TEXTS.credit).forEach(function (n) { box.appendChild(n); });
     return box;
@@ -238,7 +239,7 @@
     var pop = el("div", "pv-pop" + rarityClass(g) + (g.mystery ? " mystery" : "") + (view.unveiled === g.key ? " unveil" : ""));
     var art = add(el("div", "pv-pop-art"), el("span", "pv-rays"), tile(g, "pv-pop-tile"));
     var body = el("div", "pv-pop-body");
-    var type = g.mystery ? "Unidentified" : full ? full.type : [g.rarity, g.g].filter(Boolean).join("  ·  ");
+    var type = g.mystery ? (g.sealed ? "Sealed letter" : "Unidentified") : full ? full.type : [g.rarity, g.g].filter(Boolean).join("  ·  ");
     add(body, el("span", "pv-shelf-name", [g.g, s.name.split(":")[0]].filter(Boolean).join("  ·  ")),
       el("h2", "pv-pop-name", g.name), el("span", "pv-pop-type", type),
       add(el("div", "pv-pop-buy"), priceOf(g), el("span", "pv-meta", onHand(g))),
@@ -313,7 +314,8 @@
     var veiled = next.length < view.identified.length;
     view.identified = next;
     added.forEach(function (k) {
-      toast("Identified: " + k.split("|")[1]);
+      var part = k.split("|"), v = ((P.mystery || {})[part[0]] || {})[part[1]] || {};
+      toast((v.sealed ? "Opened: " : "Identified: ") + part[1]);
       view.unveiled = k;
       setTimeout(function () { if (view.unveiled === k) { view.unveiled = null; render(); } }, REVEAL_MS);
     });

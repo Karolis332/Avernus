@@ -94,6 +94,21 @@ function names(id) { return (spot(id).stock || []).map(function (it) { return Co
   assert.ok(flask.revealed && flask.mystery, "a hidden row can be revealed and still be a mystery");
 })();
 
+// sealed letters (the informant): the question shows, the answer only once it is opened
+(function () {
+  var k = "informant|The elf with the thorns", pick = function (list) { return list.filter(function (g) { return g.key === k; })[0]; };
+  var shut = pick(C.publicGoods(spot("informant"), P, [], [], []));
+  assert.ok(shut.mystery && shut.sealed, "a letter starts sealed");
+  assert.strictEqual(shut.name, "The elf with the thorns", "the question is the card's name");
+  assert.strictEqual(shut.rarity, "sealed");
+  assert.ok(!/Maelys/.test(shut.text), "the answer stays inside");
+  var open = pick(C.publicGoods(spot("informant"), P, [], [], [k]));
+  assert.ok(!open.mystery && open.sealed && /Maelys/.test(open.text), "opened, it shows what is written");
+  assert.strictEqual(open.rarity, "uncommon");
+  var reveal = C.publicGoods(spot("informant"), P, [], [], []).map(function (g) { return g.name; });
+  assert.ok(reveal.indexOf("What the host really is") === -1, "a reveal the DM keeps stays off the monitor");
+})();
+
 // sprite: one tile of a 4 x 4 sheet as CSS background values
 (function () {
   var art = { side: 4, sheets: { "2": "art/generated/emporium-items-02.webp" }, at: { "forge|x": [2, 5], "forge|y": [7, 0] } };
@@ -193,9 +208,11 @@ var NEVER_ON_SCREEN = /\b(Insight|Perception|Investigation) DC\b|\bclause \d|\bc
   Object.keys(P.mystery).forEach(function (id) {
     Object.keys(P.mystery[id]).forEach(function (n) {
       var v = P.mystery[id][n];
-      assert.ok(v.name && v.text, id + " | " + n + ": a veil needs a name and a line");
-      assert.ok(v.name.toLowerCase().indexOf(n.toLowerCase().split(/[,(]/)[0].trim()) === -1, id + " | " + n + ": the veil names the item");
-      assert.ok(!NEVER_ON_SCREEN.test(v.name + " " + v.text), id + " | " + n + ": DM wording in a veil");
+      assert.ok((v.name || v.sealed) && v.text, id + " | " + n + ": a veil needs a name and a line");
+      // a sealed letter shows its question (the row's own name); only its answer is hidden, and it must have one
+      if (v.sealed) assert.ok(((P.say[id] || {})[n] || "").length > 20, id + " | " + n + ": a sealed letter needs an answer in say");
+      else assert.ok(v.name.toLowerCase().indexOf(n.toLowerCase().split(/[,(]/)[0].trim()) === -1, id + " | " + n + ": the veil names the item");
+      assert.ok(!NEVER_ON_SCREEN.test((v.name || "") + " " + v.text), id + " | " + n + ": DM wording in a veil");
     });
   });
 

@@ -128,7 +128,7 @@ html.players #wrap { display: none; }
 .pv-card { --rar: #b8ad96; position: relative; min-width: 0; display: grid; grid-template-columns: 4.4em 1fr auto; column-gap: .7em; row-gap: .1em; align-content: start; text-align: left; padding: .45em .6em .5em .45em; border: 1px solid rgba(255, 244, 214, .12); border-left: .28em solid var(--rar); border-radius: .35em; background: rgba(255, 244, 214, .055); transition: transform .18s ease, background .18s ease, box-shadow .18s ease; }
 button.pv-card:hover, button.pv-card:focus-visible { background: rgba(255, 244, 214, .13); border-color: var(--rar); transform: translateY(-.15em); box-shadow: 0 .5em 1.4em rgba(0, 0, 0, .55), 0 0 1em color-mix(in srgb, var(--rar) 35%, transparent); }
 button.pv-card:hover .pv-thumb i { transform: scale(1.18); }
-.pv-r-common { --rar: #e9dfc7; } .pv-r-uncommon { --rar: #6fd08c; } .pv-r-rare { --rar: #6fa8ff; } .pv-r-very-rare { --rar: #c58cff; } .pv-r-legendary { --rar: #ffb14a; } .pv-r-unidentified { --rar: #9a8fb8; }
+.pv-r-common { --rar: #e9dfc7; } .pv-r-uncommon { --rar: #6fd08c; } .pv-r-rare { --rar: #6fa8ff; } .pv-r-very-rare { --rar: #c58cff; } .pv-r-legendary { --rar: #ffb14a; } .pv-r-unidentified { --rar: #9a8fb8; } .pv-r-sealed { --rar: #b9a06a; }
 .pv-thumb { grid-row: 1 / span 4; position: relative; align-self: start; width: 4.4em; height: 4.4em; overflow: hidden; border-radius: .3em; background: #1b120d; box-shadow: inset 0 0 0 1px color-mix(in srgb, var(--rar) 45%, transparent); }
 .pv-thumb i, .pv-pop-tile i { position: absolute; inset: -6%; background-repeat: no-repeat; transition: transform .3s ease, filter .6s ease; }
 .pv-thumb .sigil, .pv-pop-tile .sigil { inset: 0; display: grid; place-items: center; font-style: normal; color: var(--rar); opacity: .55; font-size: 1.6em; }
@@ -144,6 +144,7 @@ button.pv-card:hover .pv-thumb i { transform: scale(1.18); }
 .pv-card.mystery .pv-name { font-style: italic; color: #d9ccff; }
 .pv-card.sold { opacity: .5; }
 .pv-card.sold .pv-name { text-decoration: line-through; }
+.pv-card.sold.letter { opacity: 1; } .pv-card.sold.letter .pv-name { text-decoration: none; } /* a bought letter is read, not gone */
 .pv-stamp { position: absolute; right: .6em; top: .35em; transform: rotate(-9deg); padding: .05em .6em; border: .16em solid #ef6257; border-radius: .25em; color: #ef6257; font-family: Cinzel, serif; font-weight: 700; letter-spacing: .14em; text-transform: uppercase; background: rgba(12, 8, 6, .75); }
 .pv-card.fresh { box-shadow: 0 0 1.4vw color-mix(in srgb, var(--accent) 80%, transparent); animation: pv-fresh 1.8s ease-in-out infinite; }
 @keyframes pv-fresh { 50% { box-shadow: 0 0 .4vw color-mix(in srgb, var(--accent) 50%, transparent); } }

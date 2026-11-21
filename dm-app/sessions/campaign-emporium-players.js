@@ -127,13 +127,44 @@
         "Iron bands of Bilarro": { name: "A rusty iron ball", text: "Bands of old iron, locked into each other. It rattles. Z'neth tosses it from hand to hand and grins." },
         "Horn of Valhalla, silver": { name: "A silver war horn", text: "Dented, polished, very old. Z'neth says the ones who answer it are grateful." },
         "Rope of entanglement": { name: "A coil of black rope that will not lie still", text: "It moves when nobody is looking at it." }
+      },
+      // The informant's answers are sealed letters: the question is the card, the answer (in `say`) opens when it is paid for.
+      informant: {
+        "Where the dragons wait for the bell": { sealed: true, text: "Where the hunters sit tonight, all four of them, and what they are waiting for." },
+        "What the dragonborn bought from the host": { sealed: true, text: "Three lines, copied over a clerk's shoulder. He says it is the most expensive thing he has ever read." },
+        "The elf with the thorns": { sealed: true, text: "Her name, her master, and who she came here asking for." },
+        "Who kneels before the Mirror": { sealed: true, text: "A name, and a promise made to it. He writes this one facing away from the north." },
+        "What the host really is": { sealed: true, text: "One line. He folds it twice and will not hand it over under the lanterns." },
+        "The Mirror's escort, and the rule of the glass": { sealed: true, text: "The guard on the ice: how many, what makes them move, and the one rule they keep." },
+        "Sightings of the green dragon, three nights": { sealed: true, text: "Where on the road it was heard, and what it sounds like before you see it." },
+        "The Writ of Hunt, a clean copy": { sealed: true, text: "With the bounty clerk's seal. He says the small print is worth reading." },
+        "Everyone who read the Writ tonight": { sealed: true, text: "Who they are, and which stall each one is standing at now." },
+        "Three bounty hunters, a page each": { sealed: true, text: "What each one owes, drinks and fears." },
+        "The mortal name of the rider who saluted": { sealed: true, text: "The name he had as a paladin." },
+        "Hellrider muster roll of the last charge, annotated": { sealed: true, text: "Who fell, who turned, and who rides now." },
+        "The Emporium's next three stops": { sealed: true, text: "Where the caravan goes when it packs, and when." },
+        "The party's own page": { sealed: true, text: "What Hell knows about you tonight." },
+        "Almanac of the Bleeding Citadel": { sealed: true, text: "The night it next shows." },
+        "Kreeg's creditors": { sealed: true, text: "Who wants him alive, and what each would pay." },
+        "Fuel ledger of the flying fortress, a clerk's copy": { sealed: true, text: "The day it can fly again." },
+        "Where the black dragon sleeps by day": { sealed: true, text: "The roost, and which sky to avoid." },
+        "What Krull sold on this floor": { sealed: true, text: "Three sales, and one thing lost at a table." },
+        "Half of Gristle's true name": { sealed: true, text: "Half a name, in Infernal, from someone who should not have known it." },
+        "Register of Elturians sold on this floor": { sealed: true, text: "Names, dates, buyers." },
+        "The riders' written orders, a copy": { sealed: true, text: "What the three at the jetty may do, and what they may not." },
+        "A hunter's plate of an old white dragon": { sealed: true, text: "Her breath and her fear, measured by someone who lived. There is a note in the margin." },
+        "What Arkhan paid for on this floor": { sealed: true, text: "Three receipts." },
+        "The bids on the heads, so far": { sealed: true, text: "Who has offered what for the two dragon heads." },
+        "Whose souls are in your coins": { sealed: true, text: "He holds the purse for a minute and writes: names, trades, how each was taken." },
+        "Mahadi's guest book, the last tenday": { sealed: true, text: "Who dined at the high table, drawn, not named." }
       }
     },
 
     hide: {
       rapture: ["An hour before the bell", "The party's own hospitality debt, bought back"],
       larva: ["A kobold from Arkhan's train"],
-      informant: ["What Krull sold on this floor", "What Arkhan paid for on this floor"]
+      // puzzle answers and the night's reveals: shown only when the party asks the right question
+      informant: ["What Krull sold on this floor", "What Arkhan paid for on this floor", "What the dragonborn bought from the host", "Who kneels before the Mirror", "What the host really is"]
     },
 
     say: {
@@ -234,38 +265,45 @@
         "A kobold from Arkhan's train": "Killed for laughing at the wrong moment. It knows how its old master camps.",
         "The soul the cleric knows": "Kept apart in the back pen. It is not for coin at any price."
       },
-      // The informant sells answers: a card names the paper, never what is written on it.
+      // The informant: for a sealed letter (see `mystery`) this is what is written inside, shown once it is paid for.
+      // Where a line says 'at the bottom', the DM reads the name or the number out (a choice he has not made yet).
       informant: {
-        "Sightings of the green dragon, three nights": "Where on the road it was heard, and what it sounds like before you see it.",
-        "The Writ of Hunt, a clean copy": "With the bounty clerk's seal. He says the small print is worth reading.",
-        "Everyone who read the Writ tonight": "Who they are, and which stall each one is standing at now.",
-        "Three bounty hunters, a page each": "What each one owes, drinks and fears.",
-        "The mortal name of the rider who saluted": "The name he had as a paladin.",
-        "Hellrider muster roll of the last charge, annotated": "Who fell, who turned, and who rides now.",
+        "Where the dragons wait for the bell": "In the clouds above the Styx: Tiamat's champion, the white with her rider, and the black. The green holds the ice road to the Mirror. All four are waiting for the bell.",
+        "What the dragonborn bought from the host": "Copied over a clerk's shoulder, word for word. One: the debt of hospitality owed by the party of the Last Hill, assigned to the buyer. Two: first refusal on every dragon part sold, lodged or valued on this floor, at double the best bid. Three: the house answers a summons to the Monument to Tiamat, and packs at dawn. When the bell rings, the wards fold with the stalls.",
+        "The elf with the thorns": "Maelys, called the Thorn-Crowned. Bhaal's blood, under contract to Glasya. She came in two nights ago with an erinyes and asked after 'the brothers'. She has not gambled, drunk or slept since.",
+        "Who kneels before the Mirror": "Dumal. Alive, kneeling at the glass, sworn to Cania: 'The Champion sleeps in the glass.' Near the Mirror his wounds close by themselves, unless holy light has burned them. When his first shape falls he was promised a second, and something worse after that.",
+        "What the host really is": "Not a man. A rakshasa, sworn under Asmodeus's seal. He keeps every contract he signs, to the letter, and nobody talks him out of one. Most magic slides off him like rain. Only a magic point, driven by a good hand, cuts him deep.",
+        "The Mirror's escort, and the rule of the glass": "Four ice devils and a bone devil on the glare-ice shelf. Come quietly and they only watch. Draw a weapon, cast at them or make a demand, and they close ranks between you and the glass. Their master's rule, written at the bottom: no blood before the Mirror unless it is Bhaal's.",
+        "Sightings of the green dragon, three nights": "Three nights on the ice road, each marked where the voice was heard. It speaks before it is seen: sweet, reasonable, in a voice you trust. Forewarned, you hear it for what it is the first time it speaks to you (advantage on that save).",
+        "The Writ of Hunt, a clean copy": "The small print, under the bounty clerk's seal: the druid pays fifty only if he is taken alive, and the hundred for the ship is paid for the hull, not for the crew aboard.",
+        "Everyone who read the Writ tonight": "A warlord's captain, standing at the bank. Two cambions, at the Rapture's bar. Nobody else read it twice.",
+        "Three bounty hunters, a page each": "The captain owes the bank more than this bounty would pay him. The two cambions drink at the Rapture on credit. None of the three will act inside the wards: they wait for the bell like everyone else.",
+        "The mortal name of the rider who saluted": "His name as a paladin of Elturel, before the last charge, in a clerk's careful hand at the bottom. Nobody has said it to him in a hundred years.",
+        "Hellrider muster roll of the last charge, annotated": "Who fell, who turned, and who rides as a narzugon now. All three riders at the jetty are on it, each with the rank they held and the day they turned.",
         "Forged papers for the ship": "The Lady Vengeance under another name and another port. No use against anyone who has seen her fly.",
-        "The Emporium's next three stops": "Where the caravan goes when it packs.",
+        "The Emporium's next three stops": "First line: 'The Monument, at dawn, by summons.' The other two are crossed out and written again, more than once.",
         "Floor plan of Infernal Rapture": "The strongroom, the back stair and the counter. Sold with the advice not to.",
-        "The party's own page": "What Hell knows about you tonight.",
-        "Almanac of the Bleeding Citadel": "The night it next shows.",
-        "Kreeg's creditors": "Who wants him alive, and what each would pay.",
+        "The party's own page": "Your names, your faces, your ship, what you killed and what you carry. Some of it is right. All of it has been sold at least once tonight.",
+        "Almanac of the Bleeding Citadel": "It shows itself every thirty-three days. The next night is circled at the bottom. In the margin: the Scab opens the same night.",
+        "Kreeg's creditors": "Who holds Thavius Kreeg's notes, the bank first among them, and what each would pay to have him back alive. Whoever holds Kreeg holds something they all want.",
         "Sketch of the Basalt Citadel's outer wall": "A deserter's hand: the wall, one postern, the mooring mast of the flying fortress.",
-        "Fuel ledger of the flying fortress, a clerk's copy": "The day it can fly again.",
-        "Where the black dragon sleeps by day": "The roost, and which sky to avoid.",
-        "Half of Gristle's true name": "Said aloud at the Devil's Teeth, it is worth one hand. He does not recommend saying it twice.",
-        "Register of Elturians sold on this floor": "Names, dates, buyers.",
+        "Fuel ledger of the flying fortress, a clerk's copy": "Crippled in the raid on the Dock and towed to the Basalt Citadel. At the bottom, the clerk's count: the days until it flies again.",
+        "Where the black dragon sleeps by day": "Where the black one roosts by day, and the sky it watches from there. Keep out of that sky and you are harder to find tomorrow.",
+        "Half of Gristle's true name": "Half a true name, in Infernal. Said aloud at the Devil's Teeth, the house folds one hand. Say it twice and Gristle remembers your face.",
+        "Register of Elturians sold on this floor": "Names, dates, buyers. Most are in the larva pens. Four work in the Rapture's kitchen tonight, and do not know their city still stands.",
         "Sketch of the Mirror's shelf": "The Mirror, the ground around it, and where its guards stand.",
         "Chart of the upper air": "Where the fog tops out and where the ash winds run. Above the fog a ship is seen for ten miles. Inside it she is hidden and half blind.",
-        "The riders' written orders, a copy": "What the three at the jetty may do, and what they may not.",
+        "The riders' written orders, a copy": "They may not cross the ward. They take the druid alive. And the Writ names a ship 'at her moorings': a ship under way is not theirs to stop.",
         "Lantern codes of Zariel's fleet": "This tenday's signals. Once, a ship can answer a patrol's challenge as one of their own.",
-        "A hunter's plate of an old white dragon": "How far the breath reaches, how often it comes back, how far the fear carries. There is a note in the margin.",
-        "The bids on the heads, so far": "Who has offered what for the two dragon heads.",
+        "A hunter's plate of an old white dragon": "Her breath, how far it reaches and how soon it comes back; her fear, and how far it carries: measured by someone who lived. In the margin, in another hand: 'In this heat the belly scales run.'",
+        "The bids on the heads, so far": "Mahadi's clerk, 25 a head. A collector in Dis, 20, by letter. A warlord's captain, 18. At the bottom, in another hand: 'Reserved. Double the best.'",
         "Translation while you wait": "He reads Infernal blueprints, contracts and letters into Common, correctly. The Forge's blueprints then cost no extra days.",
         "The floor's price sheet": "What each keeper paid for what is on the shelf tonight. Advantage on one haggle at each stall.",
         "The keepers, a page each": "What moves each keeper off the list price. Seven pages, sold singly.",
-        "Whose souls are in your coins": "He holds the purse for a minute and writes: names, trades, how each was taken.",
-        "Mahadi's guest book, the last tenday": "Who dined at the high table, drawn, not named.",
-        "What Krull sold on this floor": "Three sales, and one thing lost at a table.",
-        "What Arkhan paid for on this floor": "Three receipts."
+        "Whose souls are in your coins": "Names, trades, and how each was taken, a line for every coin. Three of them were Elturians. Their names are at the bottom.",
+        "Mahadi's guest book, the last tenday": "Drawn, not named: a dragonborn in black plate who smelled of old meat, twice; an erinyes of Malbolge. One page has been cut out. He is afraid of whoever was on it.",
+        "What Krull sold on this floor": "Three sales and a loss: Vistalancer's year to the Timekeeper, a sack of shed white scales to the Forge, and a gold scale lost at the Devil's Teeth. The white's rider bought nothing for himself.",
+        "What Arkhan paid for on this floor": "Three receipts: death-days bought at the Hourglass, a chair at the high table, and one notary's fee at the bank. Somebody signed a contract on this floor, and signed first."
       }
     }
   };
