@@ -1,7 +1,8 @@
 // The Wandering Emporium market page (emporium.html): a top-down map with a pane per stall, a finder
 // ("what can N soul coins or N gold buy?"), a haggle helper and a purchase ledger in both currencies.
 // Data: sessions/campaign-emporium-market.js and campaign-emporium-goods.js (stock, favours, buys)
-// + the existing Emporium panels.
+// + the existing Emporium panels. The players' monitor (emporium.html?view=players) is js/emporium-players.js;
+// what this page tells it goes through js/emporium-cast.js (cast, below).
 (function () {
   "use strict";
   var inNode = typeof module !== "undefined" && module.exports;
@@ -185,6 +186,12 @@
     var pick = null; // the row being bought: { name, sc, gp, scOnly, spot, spotName, dc }
 
     function set(change) { state = Object.assign({}, state, change); save(STATE_KEY, state); }
+    // The monitor: it goes where this page goes, and a click on it brings this page along.
+    var cast = window.DMEmporiumCast.dmInit({
+      players: window.EMPORIUM_PLAYERS,
+      message: function (text) { $("till-msg").textContent = text; },
+      onSpot: function (id) { if (id !== state.spot) { set({ spot: id, tab: tabsOf(spotById(id))[0][0] }); pick = null; draw(); } }
+    });
     function spotById(id) { return M.spots.filter(function (s) { return s.id === id; })[0] || M.spots[0]; }
     function coins() { return Number(state.coins) > 0 ? Number(state.coins) : 0; }
     function gold() { return Number(state.gold) > 0 ? Number(state.gold) : 0; }
@@ -197,7 +204,7 @@
     function drawPins() {
       var painted = $("map").classList.contains("painted");
       $("pins").replaceChildren.apply($("pins"), M.spots.map(function (s) {
-        var b = button("", "pin " + s.kind + (s.id === state.spot ? " on" : ""), function () { set({ spot: s.id, tab: tabsOf(s)[0][0] }); pick = null; draw(); });
+        var b = button("", "pin " + s.kind + (s.id === state.spot ? " on" : ""), function () { set({ spot: s.id, tab: tabsOf(s)[0][0] }); pick = null; cast.spot(s.id); draw(); });
         b.style.left = (painted && s.px != null ? s.px : s.x) + "%";
         b.style.top = (painted && s.py != null ? s.py : s.y) + "%";
         b.title = s.name;
@@ -228,6 +235,8 @@
       var name = el("td", "item");
       name.appendChild(inline(it.name));
       if (it.qty) name.appendChild(el("span", "qty", /crown jewel/.test(it.qty) ? "★ the stall's crown jewel" : (/^\d/.test(it.qty) ? "On hand: " : "") + it.qty));
+      var hiddenRow = cast.rowControls(s, it, drawPane); // kept off the monitor until revealed
+      if (hiddenRow) name.appendChild(hiddenRow);
       tr.appendChild(name);
       tr.appendChild(el("td", "rar r-" + it.rarity.replace(" ", "-"), it.rarity));
       var price = el("td", "sc", it.sc > 0 ? it.sc + " SC" : "favour only");
@@ -310,6 +319,7 @@
       var look = el("p", "look");
       look.appendChild(inline(s.look));
       head.appendChild(look);
+      head.appendChild(cast.musicField(s));
       var bar = el("div", "tabs");
       tabs.forEach(function (t) {
         bar.appendChild(button(t[1] + (t[0] === "stock" || t[0] === "favours" || t[0] === "buys" ? " (" + t[2] + ")" : ""), t[0] === tab ? "on" : "", function () { set({ tab: t[0] }); drawPane(); }));
@@ -332,7 +342,7 @@
         var li = el("li");
         li.appendChild(el("b", "", x.sc + " SC"));
         li.appendChild(document.createTextNode((x.gp ? " or " + x.gp + " gp" : ", coins only") + "  ·  " + x.name + "  "));
-        li.appendChild(button(x.spotName, "link", function () { set({ spot: x.spot, tab: x.kind === "stock" ? "stock" : "services" }); draw(); }));
+        li.appendChild(button(x.spotName, "link", function () { set({ spot: x.spot, tab: x.kind === "stock" ? "stock" : "services" }); cast.spot(x.spot); draw(); }));
         if (x.kind === "service") li.appendChild(el("span", "qty", "service"));
         li.appendChild(document.createTextNode("  "));
         li.appendChild(button("Buy", "btn small", function () {
@@ -354,6 +364,7 @@
     function choose(item, s) {
       pick = Object.assign({}, item, { spot: s.id, spotName: s.name, dc: s.haggle || 0, cur: item.scOnly ? "sc" : state.cur });
       $("buy-roll").value = "";
+      cast.item(s.id, item.name); // the monitor holds it up
       fillPrice();
       drawTill();
       $("buy-roll").focus();
@@ -363,6 +374,7 @@
       $("buy-unit").textContent = cur() === "gp" ? "gp" : "SC";
       $("buy-item").textContent = pick ? pick.name + " · list " + pick.sc + " SC" + (pick.scOnly ? ", soul coins only" : " or " + pick.gp + " gp") + " · " + pick.spotName + (pick.dc ? " · Haggle DC " + pick.dc : "") : "Press Buy on any row.";
       $("buy-add").disabled = !pick;
+      $("buy-clear").hidden = !pick;
       if (!pick) { $("buy-roll").value = ""; $("buy-price").value = ""; }
       var roll = Number($("buy-roll").value);
       $("buy-band").textContent = (pick && pick.scOnly && cur() === "gp" ? "The floor takes soul coins only for this one (the bank changes gold at " + GOLD_RATE + " gp a coin). Your call. " : "") +
@@ -414,6 +426,7 @@
       pick = null;
       drawTill();
     });
+    $("buy-clear").addEventListener("click", function () { pick = null; cast.item(null, null); drawTill(); });
     $("ledger-copy").addEventListener("click", function () {
       var text = ledgerText(ledger, state.purse, state.purseGp);
       var done = function () { $("till-msg").textContent = "Copied. Paste it into campaign-state.md or the chat."; };
@@ -439,5 +452,5 @@
     draw();
   }
 
-  if (document.getElementById("pins")) start();
+  if (document.getElementById("pins") && !/[?&]view=players\b/.test(location.search)) start();
 })();

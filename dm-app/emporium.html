@@ -8,6 +8,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@600;700&family=Libre+Baskerville:ital@0;1&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="css/style.css">
 <link rel="stylesheet" href="css/book.css">
+<link rel="stylesheet" href="css/emporium-players.css">
+<!-- ?view=players is the monitor the players watch: the DM page is never drawn in that window -->
+<script>if (/[?&]view=players\b/.test(location.search)) document.documentElement.classList.add("players");</script>
 <style>
   /* The Emporium market page (DM only): a top-down map, a pane per stall, a finder, a till and a ledger.
      Logic in js/emporium.js; stock, favours and buy rates in sessions/campaign-emporium-market.js
@@ -96,6 +99,16 @@
   .total { font-family: Cinzel, serif; font-weight: 700; margin: 0; flex: 0 1 auto; align-self: center; }
   .total.over { color: #b71c1c; }
   #till-msg { font-size: .85em; min-height: 1.2em; opacity: .85; }
+
+  /* the controls for the players' monitor (js/emporium-cast.js) */
+  #cast-bar { display: flex; gap: 12px; align-items: center; flex-wrap: wrap; margin: 0 0 10px; padding: 6px 12px; border: 1px dashed var(--red); border-radius: 6px; background: rgba(255,253,245,.5); font-size: .88em; }
+  label.tick { display: inline-flex; align-items: center; gap: 4px; cursor: pointer; white-space: nowrap; }
+  .music { display: flex; gap: 6px; align-items: center; flex: 1 1 320px; min-width: 0; }
+  .music input { flex: 1; min-width: 8em; font-size: .9em; padding: 3px 6px; }
+  .music-label { font-family: Cinzel, serif; font-size: .85em; color: var(--red); white-space: nowrap; }
+  .music-note { font-size: .85em; opacity: .8; white-space: nowrap; }
+  .pane-head .music { margin: 0 0 6px; font-size: .88em; }
+  .qty.hidden-row { color: #8a4b00; opacity: 1; font-style: italic; }
 </style>
 </head>
 <body class="emporium-page">
@@ -109,6 +122,7 @@
     <label class="field">Gold to spend (gp)<input type="number" id="gold" min="0" step="50" placeholder="e.g. 3000"></label>
     <label class="field">Search everything<input type="search" id="query" placeholder="arrow, cold, Moonkite, diamond..."></label>
   </div>
+  <div id="cast-bar"></div>
 
   <div id="main">
     <div id="map-col">
@@ -185,7 +199,7 @@
   </div>
 
   <div id="till">
-    <div id="buy-what"><div id="buy-item">Press Buy on any row.</div><div id="buy-band"></div></div>
+    <div id="buy-what"><div><span id="buy-item">Press Buy on any row.</span> <button class="btn small" id="buy-clear" type="button" title="Put the item down: it leaves the monitor too" hidden>×</button></div><div id="buy-band"></div></div>
     <label class="field">Buyer<select id="who"></select></label>
     <label class="field">Haggle roll total<input type="number" id="buy-roll" min="1" placeholder="none"></label>
     <label class="field">Pay in<select id="buy-cur"><option value="sc">Soul coins</option><option value="gp">Gold</option></select></label>
@@ -215,6 +229,8 @@
   </div>
 </div>
 
+<div id="pv" hidden></div>
+
 <script>window.LIBRARY = window.LIBRARY || { maps: [], docs: [] }; window.MEDIA = window.MEDIA || {};</script>
 <script src="js/core.js"></script>
 <script src="js/render.js"></script>
@@ -222,6 +238,9 @@
 <script src="sessions/campaign-emporium-games.js"></script>
 <script src="sessions/campaign-emporium-market.js"></script>
 <script src="sessions/campaign-emporium-goods.js"></script>
+<script src="sessions/campaign-emporium-players.js"></script>
+<script src="js/emporium-cast.js"></script>
 <script src="js/emporium.js"></script>
+<script src="js/emporium-players.js"></script>
 </body>
 </html>
