@@ -38,7 +38,7 @@
     return s ? s.title : id;
   }
 
-  function riddleBox(spot, t, r, cast, redraw) {
+  function riddleBox(spot, t, r, i, cast, redraw) {
     var box = el("div", "talk-box");
     box.appendChild(el("h4", "", r.title));
     box.appendChild(block({ t: "read", text: r.ask }));
@@ -46,7 +46,9 @@
     if (r.hints && r.hints.length) box.appendChild(para("hint", "{@b Hints, in order:} " + r.hints.join("  ·  ")));
     if (r.win) box.appendChild(para("", "{@b Won:} " + r.win));
     if (r.lose) box.appendChild(para("", "{@b Missed:} " + r.lose));
-    var act = el("p", "talk-act");
+    var act = el("p", "talk-act"), shown = cast.riddleShown(spot.id, i);
+    act.appendChild(button(shown ? "Take the riddle down" : "Show riddle on the monitor", "btn small",
+      function () { cast.riddle(spot.id, i, !shown); redraw(); }));
     if (r.reveal) {
       var on = cast.isRevealed(spot.id, r.reveal);
       act.appendChild(button(on ? "On the monitor: " + r.reveal + "  ·  hide it again" : "Won: reveal " + r.reveal + " on the monitor",
@@ -92,7 +94,7 @@
     }
     if ((t.riddles || []).length) {
       wrap.appendChild(el("h3", "", "Riddles and openers"));
-      t.riddles.forEach(function (r) { wrap.appendChild(riddleBox(spot, t, r, cast, redraw)); });
+      t.riddles.forEach(function (r, i) { wrap.appendChild(riddleBox(spot, t, r, i, cast, redraw)); });
     }
     if ((t.secrets || []).length) {
       wrap.appendChild(el("h3", "", "Secrets about Avernus"));

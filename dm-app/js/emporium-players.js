@@ -16,7 +16,7 @@
   // What this window remembers between drawings. The screen itself ({ spot, item, haul, bare }) lives in localStorage.
   var view = {
     shelf: "", sceneOf: undefined, ledger: Cast.load(K.ledger, []), revealed: Cast.load(K.revealed, []),
-    identified: Cast.load(K.identified, []), fresh: [], stamp: null, unveiled: null, secret: null
+    identified: Cast.load(K.identified, []), fresh: [], stamp: null, unveiled: null, secret: null, riddle: null
   };
 
   function spotById(id) { return M.spots.filter(function (s) { return s.id === id; })[0] || null; }
@@ -97,6 +97,15 @@
       p.style.setProperty("--delay", (-Math.random() * 23).toFixed(1) + "s");
       return p;
     }));
+  }
+  // Each shelf looks at another part of the painting: [x %, y %, zoom]. The zoom is anchored near the goods panel's
+  // edge (56 %), so what stands left of it (Burney, the banker) moves away from the panel, never under it.
+  // ponytail: the same five aims for every shop; per-shop aims (on a keeper, a cage, a rack) when the DM wants them.
+  var AIMS = [[50, 50, 1], [56, 30, 1.15], [56, 70, 1.13], [56, 48, 1.22], [48, 38, 1.12]];
+  function aim(i, flip) {
+    var a = i ? AIMS[1 + (i - 1) % (AIMS.length - 1)] : AIMS[0], scene = root.querySelector(".pv-scene");
+    scene.style.transformOrigin = (flip ? 100 - a[0] : a[0]) + "% " + a[1] + "%";
+    scene.style.transform = "scale(" + a[2] + ")";
   }
   function painted() { return !root.classList.contains("nomap"); }
   function pinX(s) { return painted() && s.px != null ? s.px : s.x; }
@@ -284,17 +293,32 @@
   }
   function secretSound() { chime([147, 220, 294, 440], 0.22, "sine"); }
 
+  // ---- a riddle the keeper asks: the words only, as a card; a click or the answer takes it down ----
+  function drawRiddle(k) {
+    var part = String(k || "").split("|"), s = spotById(part[0]), t = (window.EMPORIUM_TALK || { spots: {} }).spots[part[0]];
+    var r = t && (t.riddles || [])[+part[1]];
+    if (!s || !r) return null;
+    var card = el("section", "pv-secret pv-riddle");
+    card.addEventListener("click", function () { show({ riddle: null }); });
+    return add(card, add(el("div", "pv-secret-card"), el("p", "pv-secret-kicker", "A riddle  ·  " + (s.short || s.name)),
+      el("h2", "", r.title), el("p", "pv-secret-text", "“" + Cast.spoken(r.ask) + "”")));
+  }
+  function riddleSound() { chime([196, 247, 196, 330], 0.2, "triangle"); }
+
   function render() {
     var scr = Cast.screen(), s = spotById(scr.spot);
     root.dataset.mode = scr.haul ? "haul" : s ? "shop" : "map";
     root.dataset.bare = scr.bare && s && !scr.haul ? "1" : "";
     drawScene(scr.haul ? null : s);
+    var shelf = s && !scr.haul && !scr.bare && s.kind === "stall" && view.shelf
+      ? E.shelvesOf(goods(s)).map(function (sh) { return sh.g; }).indexOf(view.shelf) + 1 : 0;
+    aim(shelf, !!(s && look(s).theme && look(s).theme.side === "left"));
     drawHud();
     var stage = document.getElementById("pv-stage");
     var keep = stage.querySelector(".pv-cards"), scroll = keep ? keep.scrollTop : 0;
     var keepRules = stage.querySelector(".pv-pop-rules"), rulesScroll = keepRules ? keepRules.scrollTop : 0;
     stage.replaceChildren.apply(stage, (scr.haul ? [drawHaul()] : s ? [drawShop(s, scr.bare), scr.item ? drawPopup(s, scr.item) : null] : [drawMap()])
-      .concat([scr.secret ? drawSecret(scr.secret) : null]).filter(Boolean));
+      .concat([scr.riddle && !scr.haul ? drawRiddle(scr.riddle) : null, scr.secret ? drawSecret(scr.secret) : null]).filter(Boolean));
     var cards = stage.querySelector(".pv-cards"), rulesBox = stage.querySelector(".pv-pop-rules");
     if (cards) cards.scrollTop = scroll;
     if (rulesBox) rulesBox.scrollTop = rulesScroll;
@@ -347,7 +371,9 @@
     var held = s && scr.item ? goods(s).filter(function (g) { return g.key === scr.item; })[0] : null;
     if (held) view.shelf = held.g; // the shelf behind the item the DM is holding up
     if (scr.secret && scr.secret !== view.secret) secretSound();
+    else if (scr.riddle && scr.riddle !== view.riddle) riddleSound();
     view.secret = scr.secret;
+    view.riddle = scr.riddle;
     render();
   }
 
@@ -355,7 +381,7 @@
     document.title = P.title;
     root.hidden = false;
     root.className = "muted";
-    Cast.save(K.screen, Object.assign(Cast.screen(), { item: null, haul: false, secret: null })); // nothing held up from last time
+    Cast.save(K.screen, Object.assign(Cast.screen(), { item: null, haul: false, secret: null, riddle: null })); // nothing held up from last time
     add(root, add(el("div", "pv-scene"), Object.assign(el("div"), { id: "pv-crop" }), Object.assign(document.createElement("img"), { id: "pv-art", alt: "" })),
       Object.assign(el("div"), { id: "pv-glow" }), Object.assign(el("div"), { id: "pv-fx" }), Object.assign(el("div"), { id: "pv-stage" }),
       Object.assign(el("div"), { id: "pv-hud" }), Object.assign(el("div"), { id: "pv-toast" }),
@@ -367,6 +393,7 @@
       if (e.key !== "Escape") return;
       var scr = Cast.screen();
       if (scr.secret) show({ secret: null });
+      else if (scr.riddle) show({ riddle: null });
       else if (scr.haul) show({ haul: false });
       else if (scr.item) show({ item: null });
       else if (scr.spot) { show({ spot: null }); Cast.play(P, null); }

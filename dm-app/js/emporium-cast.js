@@ -122,11 +122,16 @@
       /^spotify:(track|album|playlist|artist|episode|show):([A-Za-z0-9]{22})$/.exec(s);
     return m ? "spotify:" + m[1] + ":" + m[2] : null;
   }
+  // What the keeper says, out of a riddle's "She hums, then asks: '...'": the monitor shows the words, not the staging.
+  function spoken(ask) {
+    var s = String(ask || ""), i = s.indexOf(": '");
+    return (i === -1 ? s : s.slice(i + 2)).trim().replace(/^'|'$/g, "");
+  }
 
   var Cast = {
     KEYS: KEYS, FX: FX, key: key, stockCount: stockCount, soldCounts: soldCounts, onHand: onHand, isHidden: isHidden,
     mysteryOf: mysteryOf, publicGoods: publicGoods, sprite: sprite, fullText: fullText, purse: purse, haul: haul, paid: paid,
-    newEntries: newEntries, spotifyUri: spotifyUri
+    newEntries: newEntries, spotifyUri: spotifyUri, spoken: spoken
   };
   if (inNode) { module.exports = Cast; return; }
 
@@ -139,13 +144,17 @@
   }
   function castState() { return Object.assign({ follow: true, music: true, links: {} }, load(KEYS.cast, {})); }
   // bare: the shop's goods panel is folded away on the monitor, so the painting shows whole
-  // secret: "spot|id" of the secret card the monitor is holding up, or null
-  function screen() { return Object.assign({ spot: null, item: null, haul: false, bare: false, secret: null }, load(KEYS.screen, {})); }
+  // secret: "spot|id" of the secret card the monitor is holding up, or null; riddle: "spot|index" of a riddle on it
+  var CLEAR = { item: null, haul: false, bare: false, secret: null, riddle: null };
+  function screen() { return Object.assign({ spot: null }, CLEAR, load(KEYS.screen, {})); }
 
   // ---- music: a location click starts its playlist in the Spotify app, quietly ----
   // Through the helper tools/spotify-remote.mjs (the Web API): opening a spotify: link instead brought the Spotify
   // window up every time and only showed a playlist without playing it (the DM, 2026-11-21).
   var REMOTE = "http://127.0.0.1:8888";
+  // the guide, rendered by GitHub (a .md opened from disk does not render in Firefox)
+  var HOW_TO = "https://github.com/Karolis332/Avernus/blob/main/dm-app/docs/emporium-night.md";
+  var HELPER_OFF ="♪ Music helper off: close this page and double-click dm-app/start-emporium.cmd";
   var musicNote = function () {}; // the DM page shows what the helper says; the monitor shows nothing
   function linkFor(players, spotId) {
     var own = castState().links[spotId || MARKET];
@@ -163,7 +172,7 @@
     }, function () {
       save(KEYS.playing, null);
       if (force) window.location.href = uri; // the ▶ button with the helper off: the old way, the Spotify window comes up
-      musicNote("♪ The music helper is off. Start it: node dm-app/tools/spotify-remote.mjs");
+      musicNote(HELPER_OFF);
     });
     return true;
   }
@@ -213,26 +222,33 @@
       return wrap;
     }
 
+    function howTo() {
+      var a = el("a", "", "How to run the night");
+      a.href = HOW_TO;
+      a.target = "_blank";
+      return a;
+    }
     var status = el("span", "music-note");
     musicNote = function (text) { status.textContent = text; };
     fetch(REMOTE + "/status").then(function (r) { return r.json(); }).then(function (res) {
-      if (res.connected) return musicNote("♪ Quiet music is on.");
-      var a = el("a", "", "Connect Spotify");
+      if (res.setup && res.connected) return musicNote("♪ Quiet music is on.");
+      var a = el("a", "", res.setup ? "Connect Spotify" : "Set up the music (once on this computer)");
       a.href = res.login;
       a.target = "_blank";
-      status.replaceChildren("♪ The helper runs but is not logged in: ", a);
-    }, function () { musicNote("♪ Music helper off: run node dm-app/tools/spotify-remote.mjs"); });
+      status.replaceChildren("♪ ", a);
+    }, function () { musicNote(HELPER_OFF); });
 
     var bar = document.getElementById("cast-bar");
     bar.replaceChildren(
       button("📺 Player screen", "btn go", function () { window.open("emporium.html?view=players", "dm-emporium-players"); }),
       tick("Monitor follows my clicks", "follow"),
-      button("Map on monitor", "btn", function () { show({ spot: null, item: null, haul: false, secret: null }); play(players, null); }),
+      button("Map on monitor", "btn", function () { show(Object.assign({ spot: null }, CLEAR)); play(players, null); }),
       button("Fold / unfold the shelves", "btn", function () { show({ bare: !screen().bare }); }),
       button("Show the haul", "btn", function () { show({ item: null, haul: true }); }),
       tick("Music changes with the place", "music"),
       musicField(null, "Market theme"),
-      status
+      status,
+      howTo()
     );
     save(KEYS.playing, null); // a new night: the first click plays, whatever played last time
 
@@ -245,10 +261,17 @@
 
     function has(store, k) { return load(store, []).indexOf(k) !== -1; }
     return {
+      // A new night: nothing earned on the last one stays (the ledger is cleared by the page that owns it).
+      newNight: function () {
+        [KEYS.revealed, KEYS.identified, KEYS.secrets].forEach(function (k) { tell(save(k, [])); });
+        save(KEYS.playing, null);
+        show(Object.assign({ spot: null }, CLEAR));
+      },
       // A riddle won: a hidden row appears on the monitor (or goes again). Returns whether it is now shown.
       reveal: function (spotId, name) {
         var k = key(spotId, name), on = !has(KEYS.revealed, k), rest = load(KEYS.revealed, []).filter(function (x) { return x !== k; });
         tell(save(KEYS.revealed, on ? rest.concat([k]) : rest));
+        if (on && screen().riddle) show({ riddle: null }); // answered: the riddle goes down so the shelf's glow shows
         return on;
       },
       isRevealed: function (spotId, name) { return has(KEYS.revealed, key(spotId, name)); },
@@ -256,14 +279,17 @@
       secret: function (spotId, id, on) {
         var k = spotId + "|" + id;
         if (on && !has(KEYS.secrets, k)) tell(save(KEYS.secrets, load(KEYS.secrets, []).concat([k])));
-        show({ secret: on ? k : null });
+        show(on ? { secret: k, riddle: null } : { secret: null });
       },
       secretState: function (spotId, id) {
         var k = spotId + "|" + id;
         return { shown: screen().secret === k, uncovered: has(KEYS.secrets, k) };
       },
       // The DM chose a spot: the monitor goes there and its music starts, unless he is looking privately.
-      spot: function (id) { if (castState().follow) { show({ spot: id, item: null, haul: false, bare: false, secret: null }); play(players, id); } },
+      spot: function (id) { if (castState().follow) { show(Object.assign({ spot: id }, CLEAR)); play(players, id); } },
+      // A riddle asked: the monitor shows the keeper's words until it is answered or taken down.
+      riddle: function (spotId, i, on) { show({ riddle: on ? spotId + "|" + i : null }); },
+      riddleShown: function (spotId, i) { return screen().riddle === spotId + "|" + i; },
       // Paid for: a sealed letter opens, and the monitor shows what is written in it.
       bought: function (spotId, name) {
         var v = ((players.mystery || {})[spotId] || {})[Core.stripTags(name)], k = key(spotId, name), list = load(KEYS.identified, []);

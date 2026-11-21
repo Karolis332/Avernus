@@ -20,6 +20,8 @@ var spots = {};
 M.spots.forEach(function (s) { spots[s.id] = s; });
 
 assert.ok(T.guide.length >= 5, "the authenticity guide is there");
+assert.strictEqual(C.spoken("She hums, then asks: 'What am I?'"), "What am I?");
+assert.strictEqual(C.spoken("'One for one. I'll owe you.'"), "One for one. I'll owe you.", "a quote from the start, an apostrophe inside");
 Object.keys(T.spots).forEach(function (id) {
   var s = spots[id], t = T.spots[id];
   assert.ok(s, id + ": not a spot on the map");
@@ -36,6 +38,9 @@ Object.keys(T.spots).forEach(function (id) {
 
   (t.riddles || []).forEach(function (r) {
     ["title", "ask", "answer", "win"].forEach(function (f) { assert.ok(r[f], id + " | " + r.title + ": needs " + f); });
+    var words = C.spoken(r.ask); // what the monitor shows when the DM presses Show riddle
+    assert.ok(words.length > 15 && !/^'|'$/.test(words), id + " | " + r.title + ": the keeper's words did not come out of the ask");
+    assert.ok(!NEVER_ON_SCREEN.test(r.title + " " + words), id + " | " + r.title + ": DM wording would reach the monitor");
     if (r.secret) assert.ok(ids.indexOf(r.secret) !== -1, id + " | " + r.title + ": pays a secret that does not exist");
     if (r.reveal) {
       var row = (s.stock || []).filter(function (it) { return Core.stripTags(it.name) === r.reveal; })[0];

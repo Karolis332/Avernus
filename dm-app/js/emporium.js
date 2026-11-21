@@ -452,9 +452,11 @@
       else window.prompt("Copy the ledger:", text);
     });
     $("ledger-clear").addEventListener("click", function () {
-      if (!ledger.length || !window.confirm("Clear the whole ledger? Copy it first if the session is not written down.")) return;
+      if (!window.confirm("Start a new night? This clears the ledger, the items revealed, the letters opened and the secrets uncovered. Copy the ledger first if the session is not written down.")) return;
       ledger = [];
       save(LEDGER_KEY, ledger);
+      cast.newNight();
+      draw();
       drawTill();
     });
     // Links to stat blocks and side panels belong to the main app: here they must not jump the page to the top.

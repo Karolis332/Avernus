@@ -1,10 +1,11 @@
 // The DM app's quiet music: a click on a place starts its playlist in the Spotify app through the Web API, so the
-// Spotify window never pops up. Run before the session:  node dm-app/tools/spotify-remote.mjs
-// First run on a machine: open http://127.0.0.1:8888/login once and press Agree (needs Spotify Premium).
-// Reads only the app's Client ID from ~/.spotify-dm/credentials.json ({"clientId": "..."}); the login is PKCE, so no
-// secret is needed. The login token stays in ~/.spotify-dm/remote-token.json, never in the repo.
+// Spotify window never pops up. Started by dm-app/start-emporium.cmd (or: node dm-app/tools/spotify-remote.mjs).
+// First run on a machine: open http://127.0.0.1:8888/ : it asks for the Spotify app's Client ID once (saved in
+// ~/.spotify-dm/credentials.json as {"clientId": "..."}), then Connect Spotify, Agree (needs Spotify Premium).
+// The login is PKCE, so no client secret is needed. The token stays in ~/.spotify-dm/remote-token.json, never in the repo.
 // ponytail: anything on this machine can ask it to change the music (no key); it only ever plays a checked Spotify URI.
 import { createServer } from "node:http";
+import { spawn } from "node:child_process";
 import { createHash, randomBytes } from "node:crypto";
 import { readFileSync, writeFileSync, mkdirSync } from "node:fs";
 import { homedir } from "node:os";
@@ -40,14 +41,21 @@ export function playBody(target, random = Math.random) {
   if (target.kind === "playlist") body.offset = { position: Math.floor(random() * MIN_TRACKS) };
   return body;
 }
+export function validClientId(id) { return /^[0-9a-f]{32}$/i.test(String(id || "").trim()); }
+// The credentials file with the Client ID set; anything else in it (the Spotify MCP's own keys) is kept.
+export function withClientId(text, id) {
+  let old = {};
+  try { old = JSON.parse(text) || {}; } catch (e) { /* no file yet, or not JSON: start clean */ }
+  return JSON.stringify(Object.assign({}, old, { clientId: String(id).trim() }), null, 2);
+}
 
 // ---- the server ----
+const CREDENTIALS = join(DIR, "credentials.json");
+function readCredentials() { try { return readFileSync(CREDENTIALS, "utf8"); } catch (e) { return ""; } }
+function hasClientId() { try { return validClientId(JSON.parse(readCredentials()).clientId); } catch (e) { return false; } }
 function clientId() {
-  try {
-    const id = String(JSON.parse(readFileSync(join(DIR, "credentials.json"), "utf8")).clientId || "").trim();
-    if (/^[0-9a-f]{32}$/i.test(id)) return id;
-  } catch (e) { /* reported below */ }
-  throw new Error(`put the Spotify app's Client ID in ${join(DIR, "credentials.json")} as {"clientId": "..."}`);
+  if (hasClientId()) return JSON.parse(readCredentials()).clientId.trim();
+  throw new Error(`no Spotify Client ID on this computer yet: open http://127.0.0.1:${PORT}/ and paste it`);
 }
 function loadToken() { try { return JSON.parse(readFileSync(TOKEN_FILE, "utf8")); } catch (e) { return null; } }
 function saveToken(t, old) {
@@ -81,9 +89,26 @@ async function api(method, path, body) {
   }
   return text ? JSON.parse(text) : null;
 }
+// Spotify closed: start it (its window comes up this once) and wait up to ten seconds for it to log in.
+function openSpotify() {
+  const [cmd, args] = process.platform === "win32" ? ["cmd.exe", ["/c", "start", "", "spotify:"]]
+    : process.platform === "darwin" ? ["open", ["-a", "Spotify"]] : ["spotify", []];
+  spawn(cmd, args, { detached: true, stdio: "ignore", windowsHide: true }).on("error", () => {}).unref();
+}
+async function findDevice() {
+  const look = async () => pickDevice((await api("GET", "/me/player/devices")).devices);
+  let device = await look();
+  if (device) return device;
+  openSpotify();
+  for (let i = 0; i < 10 && !device; i++) {
+    await new Promise((r) => setTimeout(r, 1000));
+    device = await look();
+  }
+  return device;
+}
 async function play(target) {
-  const device = pickDevice((await api("GET", "/me/player/devices")).devices);
-  if (!device) throw new Error("no Spotify app found: open Spotify on this computer and play anything once");
+  const device = await findDevice();
+  if (!device) throw new Error("Spotify did not answer: open it, play anything once, then click the place again");
   const q = "?device_id=" + encodeURIComponent(device.id);
   await api("PUT", "/me/player/play" + q, playBody(target));
   if (target.kind !== "track") await api("PUT", "/me/player/shuffle" + q + "&state=true");
@@ -97,9 +122,39 @@ function serve() {
   };
   const page = (text) => `<!doctype html><meta charset="utf-8"><title>DM music</title><body style="font:18px sans-serif;padding:3em;background:#1b1512;color:#eadfc8">${text}</body>`;
 
+  const home = () => {
+    const t = loadToken();
+    if (!hasClientId()) return page(`<h2>DM music: first time on this computer</h2>
+<p>Paste the Client ID of the DM's Spotify app (developer.spotify.com, Dashboard, the app, Settings). It stays on this computer.</p>
+<form method="post" action="/setup"><input name="clientId" size="36" autofocus style="font:inherit;padding:.3em">
+<button style="font:inherit;padding:.3em 1em">Save</button></form>`);
+    if (!(t && t.refresh)) return page(`<h2>DM music: one step left</h2><p><a style="color:#f0b45a" href="/login">Connect Spotify</a>, then press Agree.</p>`);
+    return page(`<h2>DM music is ready</h2><p>Leave the helper's window open. A click on a place in the Emporium starts its playlist in Spotify.</p>`);
+  };
+  const readBody = (req) => new Promise((ok, fail) => {
+    let body = "";
+    req.on("data", (c) => { body += c; if (body.length > 2000) { fail(new Error("too long")); req.destroy(); } });
+    req.on("end", () => ok(body));
+  });
+
   createServer(async (req, res) => {
     const url = new URL(req.url, `http://127.0.0.1:${PORT}`);
     try {
+      if (url.pathname === "/") return reply(res, 200, home(), "text/html");
+      if (url.pathname === "/setup" && req.method === "POST") {
+        // first run only: a page elsewhere must not swap the ID of a machine that is set up
+        if (hasClientId()) return reply(res, 409, page("This computer already has a Client ID. <a href='/'>Back</a>"), "text/html");
+        const id = new URLSearchParams(await readBody(req)).get("clientId");
+        if (!validClientId(id)) return reply(res, 400, page("That is not a Client ID: 32 letters and digits. <a href='/'>Try again</a>"), "text/html");
+        mkdirSync(DIR, { recursive: true });
+        writeFileSync(CREDENTIALS, withClientId(readCredentials(), id), { mode: 0o600 });
+        res.writeHead(302, { Location: "/login" });
+        return res.end();
+      }
+      if (url.pathname === "/login" && !hasClientId()) {
+        res.writeHead(302, { Location: "/" });
+        return res.end();
+      }
       if (url.pathname === "/login") {
         pending = { verifier: randomBytes(48).toString("base64url"), state: randomBytes(16).toString("hex") };
         res.writeHead(302, { Location: authorizeUrl(clientId(), pending.verifier, pending.state) });
@@ -115,7 +170,7 @@ function serve() {
       }
       if (url.pathname === "/status") {
         const t = loadToken();
-        return reply(res, 200, { ok: true, connected: !!(t && t.refresh), login: `http://127.0.0.1:${PORT}/login` });
+        return reply(res, 200, { ok: true, setup: hasClientId(), connected: !!(t && t.refresh), login: `http://127.0.0.1:${PORT}/` });
       }
       if (url.pathname === "/play") {
         const target = checkUri(url.searchParams.get("uri"));
@@ -133,11 +188,9 @@ function serve() {
     process.exit(1);
   }).listen(PORT, "127.0.0.1", () => {
     const t = loadToken();
-    console.log(`DM music helper on http://127.0.0.1:${PORT}. ` + (t && t.refresh ? "Logged in. Leave this window open." : `First time: open http://127.0.0.1:${PORT}/login and press Agree.`));
+    console.log(`DM music helper on http://127.0.0.1:${PORT}. ` + (hasClientId() && t && t.refresh
+      ? "Logged in. Leave this window open." : `First time on this computer: open http://127.0.0.1:${PORT}/`));
   });
 }
 
-if (import.meta.url === pathToFileURL(process.argv[1] || "").href) {
-  try { clientId(); } catch (e) { console.error("spotify-remote: " + e.message); process.exit(1); }
-  serve();
-}
+if (import.meta.url === pathToFileURL(process.argv[1] || "").href) serve();

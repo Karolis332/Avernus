@@ -1,6 +1,6 @@
 // node dm-app/tests/spotify-remote.test.mjs: the music helper's pure parts.
 import assert from "node:assert";
-import { checkUri, challenge, authorizeUrl, pickDevice, playBody } from "../tools/spotify-remote.mjs";
+import { checkUri, challenge, authorizeUrl, pickDevice, playBody, validClientId, withClientId } from "../tools/spotify-remote.mjs";
 
 // only real Spotify URIs are ever played
 assert.deepStrictEqual(checkUri("spotify:playlist:3gAHnpENZmGqWkAMGGNOpV"), { kind: "playlist", uri: "spotify:playlist:3gAHnpENZmGqWkAMGGNOpV" });
@@ -28,5 +28,14 @@ assert.strictEqual(pickDevice([]), null);
 assert.deepStrictEqual(playBody({ kind: "playlist", uri: "p" }, () => 0.99), { context_uri: "p", offset: { position: 6 } });
 assert.deepStrictEqual(playBody({ kind: "album", uri: "a" }), { context_uri: "a" });
 assert.deepStrictEqual(playBody({ kind: "track", uri: "t" }), { uris: ["t"] });
+
+// first run on a new computer: only a real Client ID is saved, and the file's other keys stay
+const ID = "0123456789abcdef0123456789ABCDEF";
+assert.ok(validClientId(" " + ID + " "));
+assert.ok(!validClientId("0123"), "too short");
+assert.ok(!validClientId("<script>0123456789abcdef01234567"), "not hex");
+assert.deepStrictEqual(JSON.parse(withClientId('{"clientSecret":"x"}', ID)), { clientSecret: "x", clientId: ID });
+assert.deepStrictEqual(JSON.parse(withClientId("", ID)), { clientId: ID }, "no file yet");
+assert.deepStrictEqual(JSON.parse(withClientId("not json", ID)), { clientId: ID });
 
 console.log("spotify-remote: all tests passed");
