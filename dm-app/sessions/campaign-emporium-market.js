@@ -8,7 +8,7 @@
 // Price scale (1 SC is about 100 gp): common up to 1 SC, uncommon 2 to 7, rare 8 to 16, very rare
 // 25 to 40, legendary never for coin. Rows with c: true are used up (potions, scrolls, ammunition)
 // and are priced below the scale. g is the shelf a row stands on. tests/emporium.test.js checks all of it.
-// Gold: the floor's own rule is 200 gp to the soul coin (goldPrice in js/emporium.js works it out).
+// Gold: the floor's own rule is 350 gp to the soul coin (DM ruling 2026-11-21) (goldPrice in js/emporium.js works it out).
 // scOnly: true = soul coins or a bargain only (premium rows and soul-goods, panel emporium-shops).
 // A stall can set gold: { used: N } for what is used up there. More shelves: campaign-emporium-goods.js.
 (function () {
@@ -121,7 +121,8 @@
           { g: "Armour and shields", name: "{@item Sentinel shield|DMG}", rarity: "uncommon", sc: 4, note: "Advantage on initiative and on Perception. For whoever stands watch when the bell rings." },
           { g: "Armour and shields", name: "Adamantine full plate", rarity: "uncommon", sc: 7, note: "AC 18. Any critical hit against the wearer becomes a normal hit. For Veska or Lucan. (Tonight's rack may have the chain shirt for 3.)" },
           { g: "Armour and shields", name: "Armour of cold resistance, breastplate", rarity: "rare", sc: 10, note: "Resistance to cold: Obatala's breath, the ice devils at the Mirror, the road. Attunement. He made three and sold two this week, both to riders." },
-          { g: "Armour and shields", name: "{@item White dragon scale mail|DMG}", rarity: "very rare", sc: 28, qty: "the crown jewel", scOnly: true, note: "AC 14 + Dex (max 2) + 1, resistance to cold, advantage on saves against dragon breath and Frightful Presence. Once a day it points at the nearest white dragon within 30 miles: that is Obatala. Cut from scales she shed in the heat. {@b Catch:} she knows her own scales and goes for the wearer first." },
+          { g: "Armour and shields", name: "Dragon-Scale Warplate, cut from your own kills", rarity: "rare", sc: 6, extra: "+ 1 batch of scales", qty: "1 red, 1 blue", note: "Rassh cuts it the same night from scales the party took off Flash (red: resistance to fire) or Vistalancer (blue: resistance to lightning). AC 18, Str 15, and advantage on saves against a dragon's Frightful Presence. Attunement. About 6 hours at the anvil for each suit: count them against the bell. 'Bring me the scale. I'll bring out the dragon.'" },
+          { g: "Behind the anvil", name: "{@item White dragon scale mail|DMG}", rarity: "very rare", sc: null, favourOnly: true, qty: "1", note: "AC 14 + Dex (max 2) + 1, resistance to cold, advantage on saves against dragon breath and Frightful Presence. Once a day it points at the nearest white dragon within 30 miles: that is Obatala. Cut from scales she shed in the heat. {@b Not for coin} (DM, 2026-11-21: too strong and too convenient to sit on a shelf): it costs the deal in Favours. {@b Catch:} she knows her own scales and goes for the wearer first." },
           { g: "For the Lady Vengeance", name: "Infernal metal, an ingot", rarity: "mundane", sc: 2, qty: "6", note: "One ingot is 5 pieces of infernal metal for Jeremy (my reading of the rack's '2 SC each': change it if an ingot is worth more or less)." },
           { g: "For the Lady Vengeance", name: "Infernal cannon barrel", rarity: "mundane", sc: 6, qty: "1", note: "The rare part for Blast Shells (Armament II, 12 metal, 3 days). Off one of Zariel's patrol machines; her mark is still on it." },
           { g: "For the Lady Vengeance", name: "A set of adamantine bars", rarity: "mundane", sc: 14, qty: "1", note: "The rare part for the Adamantine Keel (Hull III, 18 metal, 10 days). The Rust Queen sold them under protest. Cheaper than Bel's price, and no forge-mark." },
@@ -141,7 +142,8 @@
           { ask: "Fire the scale-lined breech where the floor can watch: off the jetty, outside the wards.", gives: "The breech for nothing but the scales. {@b Catch:} cannons fired in the last day put +2 on the hunt roll." },
           { ask: "An hour with Jeremy's notebook for the fire snakes. He wants the Gondian vanes.", gives: "Any tier II blueprint free. {@b Catch:} what Rassh learns, Bel buys. After tonight Bel knows how fast the ship is." },
           { ask: "Tell him, at the anvil, exactly how the Dock's chain was cut and what cut it.", gives: "A third off the ship's repair bill: every third 50 hit points is free, and he starts at once." },
-          { ask: "A bottle of blood from each dead dragon, given not sold, for the quench. And Veska swears at his anvil to kill a third.", gives: "The dragonlance. Two bottles are 12 to 16 SC she will not get from Elliach. The oath is real: Rassh will ask about it." }
+          { ask: "A bottle of blood from each dead dragon, given not sold, for the quench. And Veska swears at his anvil to kill a third.", gives: "The dragonlance. Two bottles are 12 to 16 SC she will not get from Elliach. The oath is real: Rassh will ask about it." },
+          { ask: "For the white scale mail. He takes no coin for a living dragon's scales: 'She is not dead. What she shed is still hers.' The wearer swears at the anvil to bring him a scale cut from Obatala herself, and to wear the suit against her until then.", gives: "The white dragon scale mail. {@b Catch:} while the oath is open the suit's sense runs both ways: she feels where her scales are (+2 on the hunt roll while it is worn), and she goes for the wearer first. (My proposal for the deal the DM asked for on 2026-11-21: change it freely.)" }
         ],
         buys: [
           { what: "Dragon scales, red or blue", pays: "3 SC a batch", note: "Not 'parts' under clause 2. He cuts Dragon-Scale Warplate from them the same night (6 SC plus the scales)." },
@@ -198,7 +200,7 @@
           { ask: "A kindness on this floor that costs the giver and earns nothing, done when they think nobody is looking.", gives: "The platinum scarf, pressed into a hand without a word. The DM decides when it has been earned. Do not announce the test." }
         ],
         buys: [
-          { what: "Gold", pays: "At par, 100 gp to the soul coin, for tonics, cures and anything done in the chair", note: "Every other stall charges double in gold, and so does she for charms and lasting ink. The gp figures printed on her old menu are the floor's rate: halve them. She counts it twice, smiling. (Insight DC 18: she likes gold a great deal for a barber.)" },
+          { what: "Gold", pays: "At par, 100 gp to the soul coin, for tonics, cures and anything done in the chair", note: "Every other stall charges 350 gp to the coin, and so does she for charms and lasting ink. The gp figures printed on her old menu are the floor's rate: this page already counts her chair work at par. She counts it twice, smiling. (Insight DC 18: she likes gold a great deal for a barber.)" },
           { what: "Potions and healing supplies the party does not need", pays: "Full list price, in coin or in trade", note: "The only keeper who pays list." },
           { what: "Dragon blood, scales, anything of the heads", pays: "Nothing. She goes quiet.", note: "Insight DC 16: it is grief, not disgust. She still salts the heads if asked: 1 SC each, a service, safe under clause 2." },
           { what: "News from above: Elturel, Baldur's Gate, the road", pays: "A shave and a rumour from the table of twelve, a true one", note: "She tells the party which three are false if they have been kind." }
@@ -250,7 +252,7 @@
           { ask: "Kreeg's Ledger, signed over. Or the High Overseer's Ring and one hero's notarised year of service.", gives: "The iron flask. The Ledger is also Lulu's memories and the proof against clause 1: this is the hard one." }
         ],
         buys: [
-          { what: "Gold into soul coins", pays: "1 SC per 200 gp", note: "The floor's standard poor rate, and the way to pay for a row marked 'soul coins only'. The drawer holds about 60 coins tonight (my number: it caps how much gold can become coins). Burney takes gold at par, for cures only." },
+          { what: "Gold into soul coins", pays: "1 SC per 350 gp", note: "The floor's standard poor rate, and the way to pay for a row marked 'soul coins only'. The drawer holds about 60 coins tonight (my number: it caps how much gold can become coins). Burney takes gold at par, for cures only." },
           { what: "Magic items the party does not want", pays: "40% of list in coin, or 60% as credit in the cage", note: "Credit only spends here. The item goes in the cage with the seller's name on the tag." },
           { what: "Gems, and the sapphire rings off Vistalancer's horn", pays: "Face value for loose gems; 3 SC a ring", note: "The rings are part of the head. Selling them, or even having them appraised here, is clause 2. " + CLAUSE2 },
           { what: "The High Overseer's Ring, if the party holds it", pays: "12 SC, at once, no haggling", note: "The banker wants it badly enough to be polite. Insight DC 15: it is worth more to someone in Elturel." },

@@ -1,3 +1,16 @@
 {
- "forge": "0d4d9dd1-1fd3-4621-bd56-329031cd8175"
+ "forge": "0d4d9dd1-1fd3-4621-bd56-329031cd8175",
+ "rapture": "e18f0a49-2122-465b-a782-bb34df142c2e",
+ "barber": "fd611505-110b-46f8-888d-a3c7b58e6a53",
+ "bank": "9efa33fb-561e-44a9-ae27-3764df717427",
+ "ichor": "99e91f76-1d21-4032-8aaa-c59f09430f6f",
+ "larva": "d68a9c8e-f5bb-4cd0-ab91-92258fb990e5",
+ "informant": "2139382a-8fef-4cd2-9b0a-bb4b3291d124",
+ "jetty": "db961325-d0de-4992-becd-1d133f0b2d0f",
+ "gate": "29b1bcfa-8603-4da8-833a-dd50b92a3708",
+ "soul-pit": "967eb12f-09ef-449a-ae26-ca349bb14814",
+ "devils-teeth": "fef1e704-0a63-418d-a058-962886b72fce",
+ "ninefingers": "f6f76773-1a31-4977-800a-5e5feddec0a1",
+ "hourglass": "b9774c68-92e1-4127-ae41-fc64564af026",
+ "bell": "3e8d5f59-3529-49cd-90fd-835c08d7cece"
 }

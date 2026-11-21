@@ -3,7 +3,7 @@
 python emporium_shops.py forge [more ids]   paints the ids that have no job yet (2 credits each), then fetches them
 python emporium_shops.py                    fetches whatever is already painted; pays for nothing
 State: emporium-shops.json {id: job id}. To repaint a spot, delete its line there first.
-Output: dm-app/art/generated/emporium-<id>.webp (1920 wide); the 2k source stays in .playwright-mcp/hf/ (gitignored).
+Output: dm-app/art/generated/emporium-(id).webp (2560 wide); the 2k source stays in .playwright-mcp/hf/ (gitignored).
 """
 import json
 import subprocess
@@ -18,6 +18,7 @@ HERE = Path(__file__).parent
 STATE = HERE / "emporium-shops.json"
 SOURCES = HERE.parents[3] / ".playwright-mcp" / "hf"
 ART = HERE.parents[2] / "art" / "generated"
+WIDTH = 2560  # wider than the monitor, so the picture can drift and move in on a part of the stall without going soft
 
 OPEN = ("A wide painterly dark fantasy illustration, the establishing picture of one stall in a travelling night market "
         "in Avernus, the first layer of the Nine Hells, seen at eye level from where a customer stands. ")
@@ -60,12 +61,13 @@ SCENES = {
         "drifts down."
     ),
     "rapture": (
-        "Infernal Rapture: a pavilion of deep red silk four storeys high, with gold ribs and gold tassels, glowing from "
-        "within like a paper lantern. Its tall entrance is drawn open on a hall of low tables set with silver and crystal, "
-        "steaming dishes, hanging brass lamps and heaped cushions; a stair curls up to a high table. In the entrance stands "
-        "the host, a tall, elegant man in a long coat of red and gold silk, bowing slightly in welcome with his hands "
-        "folded in front of him, his face half in shadow. Golden motes of light hang in the warm air and steam rises "
-        "through the floor from the baths below."
+        "Infernal Rapture: the entrance of a pavilion of deep red silk four storeys high, with gold ribs and gold tassels, "
+        "glowing from within like a paper lantern. In front of the open entrance, large in the frame on the left, stands "
+        "the host: a tall, broad-shouldered, elegant man in a long coat of red and gold silk with a high collar and many "
+        "rings, bowing slightly in welcome with his hands folded in front of him, a warm smile half lit by the lanterns and "
+        "half in shadow. Behind him the entrance is drawn open on a hall of low tables set with silver and crystal, "
+        "steaming dishes, hanging brass lamps and heaped cushions; a stair curls up to a high table. Golden motes of light "
+        "hang in the warm air and steam rises through the floor from the baths below."
     ),
     "barber": (
         "The barber's stall: a small stall under a red and white striped awning, with one old leather barber's chair, a "
@@ -176,7 +178,7 @@ def fetch(key: str, job: str) -> None:
             return
         urllib.request.urlretrieve(d["result_url"], src)
     im = Image.open(src).convert("RGB")
-    im.resize((1920, round(1920 * im.height / im.width)), Image.LANCZOS).save(ART / f"emporium-{key}.webp", quality=84)
+    im.resize((WIDTH, round(WIDTH * im.height / im.width)), Image.LANCZOS).save(ART / f"emporium-{key}.webp", quality=84)
     print(key, im.size, "->", ART / f"emporium-{key}.webp", flush=True)
 
 

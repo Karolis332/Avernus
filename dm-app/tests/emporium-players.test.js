@@ -57,9 +57,10 @@ function names(id) { return (spot(id).stock || []).map(function (it) { return Co
   assert.strictEqual(byName["Arrow of dragon slaying"].text, P.say.forge["Arrow of dragon slaying"], "the players' line replaces the note");
   assert.strictEqual(byName["Arrows, +1"].text, "For the Moonbow, or for the crew's bows when a dragon dives.", "a row with no line shows its note");
   assert.strictEqual(byName["Arrow of dragon slaying"].sc, 4);
-  assert.strictEqual(byName["Arrow of dragon slaying"].gp, 800);
+  assert.strictEqual(byName["Arrow of dragon slaying"].gp, 1400); // 350 gp to the soul coin
   assert.strictEqual(byName["Arrow of dragon slaying"].left, 3);
-  assert.strictEqual(byName["White dragon scale mail"].gp, null, "soul coins only");
+  assert.ok(!byName["White dragon scale mail"], "the white mail costs a deal now: hidden until the DM reveals it");
+  assert.strictEqual(byName["Dragon-Scale Warplate, cut from your own kills"].sc, 6, "the suit cut from the party's own scales is on the open shelf");
   assert.strictEqual(byName["Bracers of archery"].left, 1);
   assert.strictEqual(byName["Arrows or bolts, a case of 100"].left, null);
 

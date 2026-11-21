@@ -94,7 +94,7 @@ Object.assign(window.CAMPAIGN.side, {
         "t": "list",
         "items": [
           "This is a {@i deliberate} scaling choice so a soul-coin-capable, level-11 party faces {@b meaningful} costs — a soul coin should feel like real money, because it {@i is} a real soul (see the moral cost below).",
-          "{@b Gold surcharge:} paying in gp costs {@b ~2× the SC-equivalent} (i.e. gold trades at roughly {@b half value} — call it {@b ~200 gp per 1 SC}), and comes with attitude. Some things (premium services, all soul-goods, Mahadi's best information, war-machine fuel) are {@b SC-or-bargain only} and {@i cannot be bought with gold at any rate.} Those rows are marked {@b SC/bargain only} in the tables.",
+          "{@b Gold surcharge:} paying in gp costs {@b 3.5× the SC-equivalent}: {@b 350 gp per 1 SC} (DM ruling 2026-11-21; it was ~200), and comes with attitude. Some things (premium services, all soul-goods, Mahadi's best information, war-machine fuel) are {@b SC-or-bargain only} and {@i cannot be bought with gold at any rate.} Those rows are marked {@b SC/bargain only} in the tables.",
           "{@b Rounding for play:} when a table lists both, the gp figure already bakes in the surcharge. Use SC when the party pays in coin; use the gp figure when they insist on gold."
         ]
       },
@@ -315,19 +315,19 @@ Object.assign(window.CAMPAIGN.side, {
           ],
           [
             "Full extraordinary meal (per guest)",
-            "0.1 SC / 20 gp",
+            "0.1 SC / 35 gp",
             "20",
             "Restorative, sublime. A safe, luxurious meal in Hell is itself a rarity."
           ],
           [
             "Rare infernal vintage (bottle)",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "20",
             "Cardamom-and-sulfur; loosens tongues (advantage on the {@i next} social check made drunk on it — and impaired)."
           ],
           [
             "Private feast for the whole party",
-            "1 SC / 200 gp",
+            "1 SC / 350 gp",
             "20",
             "Includes the sanctuary of a {@b safe long rest} under truce. Debt-flavored if \"gifted.\""
           ]
@@ -348,19 +348,19 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "The bath & soak",
-            "0.2 SC / 40 gp",
+            "0.2 SC / 70 gp",
             "20",
             "Removes 1 level of exhaustion; the safe rest that comes with it."
           ],
           [
             "Full pampering (the \"Red Ruth treatment\")",
-            "1 SC / 200 gp",
+            "1 SC / 350 gp",
             "20",
             "(homebrew tie) The service Ruth traded secrets for. Ends one non-magical malady; a day's genuine ease."
           ],
           [
             "Sanctuary long rest (per party, under truce)",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "20",
             "Guaranteed uninterrupted rest — no random encounter, no ambush. Priceless in Avernus; debt-flavored if free."
           ]
@@ -394,7 +394,7 @@ Object.assign(window.CAMPAIGN.side, {
           [
             "{@b Uncommon}",
             "A warlord's disposition; where a named person was last seen; a bounty's terrain",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "20",
             "Or a small favor."
           ],
@@ -442,7 +442,7 @@ Object.assign(window.CAMPAIGN.side, {
           [
             "Uncommon magic item / consumable (party's pick, DM-approved)",
             "1–3 days",
-            "5 SC / 1,000 gp",
+            "5 SC / 1,750 gp",
             "20",
             "Or a favor. He knows a devil who knows a devil."
           ],
@@ -556,25 +556,25 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b The Backwards Feast} (signature seven-course tasting, per guest)",
-            "0.4 SC / 80 gp",
+            "0.4 SC / 140 gp",
             "20",
             "Each course served in reverse order of a mortal life. Restorative as a full meal {@i and} grants advantage on the party's next single Insight or Persuasion check while the memory lasts (until next long rest). Debt-flavored if \"gifted.\""
           ],
           [
             "{@b \"Cardamom & Sulfur\"} (Mahadi's signature cocktail)",
-            "0.15 SC / 30 gp",
+            "0.15 SC / 53 gp",
             "20",
             "Loosens the drinker's tongue {@i and} everyone at the table — advantage on one social check; the drinker is impaired (disadvantage on Wis saves) for the hour."
           ],
           [
             "{@b The Rakshasa's Repose} (deluxe spa package)",
-            "1.5 SC / 300 gp",
+            "1.5 SC / 525 gp",
             "22",
             "Bath, oils, grooming, a private soak {@i and} a sanctuary long rest: removes 1 exhaustion, ends one non-magical malady, and the rest cannot be interrupted. SC-preferred."
           ],
           [
             "{@b A table held} (standing reservation / safe seat, per visit)",
-            "0.25 SC / 50 gp",
+            "0.25 SC / 88 gp",
             "20",
             "A guaranteed place at his floor kept for you next stop — and word that you are {@i expected}, which discourages a rival from moving on you first."
           ],
@@ -655,19 +655,19 @@ Object.assign(window.CAMPAIGN.side, {
           ],
           [
             "Ammunition (arrows/bolts, ×20)",
-            "0.05 SC / 10 gp",
+            "0.05 SC / 18 gp",
             "14",
             "Bundle discounts easy."
           ],
           [
             "Silvered weapon",
-            "+0.5 SC / +100 gp over base",
+            "+0.5 SC / +175 gp over base",
             "14",
             "Useful against the Emporium's less-friendly clientele elsewhere."
           ],
           [
             "{@b +1 weapon or armor} (limited stock)",
-            "8 SC / 1,600 gp",
+            "8 SC / 2,800 gp",
             "16",
             "One or two on hand; more via Mahadi's procurement ({@side emporium-mahadi|§7.1})."
           ],
@@ -679,7 +679,7 @@ Object.assign(window.CAMPAIGN.side, {
           ],
           [
             "{@b Firesnake fang dagger} (+1) (homebrew)",
-            "6 SC / 1,200 gp",
+            "6 SC / 2,100 gp",
             "15",
             "+1 dagger; on a hit, {@b 1/day} the blade \"spits\" for +2d6 fire (no save). Living-metal quirk: warm to the touch."
           ]
@@ -700,19 +700,19 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "Repair a damaged weapon/armor piece",
-            "0.2 SC / 40 gp",
+            "0.2 SC / 70 gp",
             "14",
             "Same visit. Often thrown in free on a good haggle."
           ],
           [
             "Restore a badly degraded item (rust, corrosion)",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "14",
             "Undoes Rust Queen / acid damage and the like."
           ],
           [
             "Reforge a broken magic item (structure only)",
-            "2 SC / 400 gp",
+            "2 SC / 700 gp",
             "16",
             "Restores the {@i body}; won't restore lost enchantment."
           ]
@@ -737,7 +737,7 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "War-machine field repair (per 50 HP restored)",
-            "1 SC / 200 gp",
+            "1 SC / 350 gp",
             "15",
             "Patches, welds, replaced runners."
           ],
@@ -749,7 +749,7 @@ Object.assign(window.CAMPAIGN.side, {
           ],
           [
             "Full mechanical tune / systems check",
-            "2 SC / 400 gp",
+            "2 SC / 700 gp",
             "15",
             "Advantage on the machine's next control checks (DM's call)."
           ]
@@ -849,31 +849,31 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b Adamantine plating service} (reinforce a suit of armor)",
-            "3 SC / 600 gp",
+            "3 SC / 1,050 gp",
             "16",
             "Any critical hit against the wearer becomes a normal hit. Salamander-welded seams; won't crack."
           ],
           [
             "{@b Firesnake-venom bolts / arrows} (×20)",
-            "0.4 SC / 80 gp",
+            "0.4 SC / 140 gp",
             "15",
             "On a hit, target takes +1d6 fire and is {@i marked} — the next attack against it before end of your next turn has advantage."
           ],
           [
             "{@b Ashfang throwing knives} (set of 6, returning heat)",
-            "1 SC / 200 gp",
+            "1 SC / 350 gp",
             "15",
             "+1 thrown daggers; on a hit deal +1d4 fire; a bonus action recalls a thrown blade to hand (it's warm, and it wants to come home)."
           ],
           [
             "{@b Heat-treat a weapon} (temporary flame edge)",
-            "0.2 SC / 40 gp",
+            "0.2 SC / 70 gp",
             "14",
             "For 24 hours the weapon deals +1d4 fire. Cheap, popular before a fight; the honest man's Hellfire brand."
           ],
           [
             "{@b Salvage & reforge} (turn a broken magic weapon's steel into a new mundane masterwork)",
-            "1.5 SC / 300 gp",
+            "1.5 SC / 525 gp",
             "16",
             "Won't recover the lost enchantment (see reforge, above) — but you keep the {@i good steel} as a fine +0 blade instead of scrap."
           ]
@@ -915,13 +915,13 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b Shatterstick} (single-use)",
-            "0.5 SC / 100 gp each",
+            "0.5 SC / 175 gp each",
             "15",
             "Throw ≤ 60 ft as an action. {@b 5d6 thunder}, 10-ft radius, {@b DC 15 Dex} save for half. Also cracks stone/doors/war-machine plating. Needed for Shummrath's Pit downstream."
           ],
           [
             "Shattersticks, bundle of 3",
-            "1.2 SC / 240 gp",
+            "1.2 SC / 420 gp",
             "15",
             "Bulk rate; easy thrown-in extra on a good haggle."
           ]
@@ -968,13 +968,13 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "Shave, cut, and a hot towel",
-            "0.05 SC / 10 gp",
+            "0.05 SC / 18 gp",
             "12",
             "Removes the road; a small morale lift. Often free for the polite."
           ],
           [
             "Full grooming & fitting (look the part)",
-            "0.2 SC / 40 gp",
+            "0.2 SC / 70 gp",
             "12",
             "Advantage on the next Charisma check that hinges on {@i presentation} (an audience, a parley)."
           ]
@@ -995,13 +995,13 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "Restore appearance (erase scars, aging, war-damage)",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "12",
             "Cosmetic magic; genuine, permanent, kind."
           ],
           [
             "{@b Alter appearance} (a new face, lasting)",
-            "2 SC / 400 gp",
+            "2 SC / 700 gp",
             "14",
             "Non-illusory change; you {@i look} like someone else. Lasts until she or another such art reverts it. Great for going unrecognized in Hell."
           ],
@@ -1034,21 +1034,21 @@ Object.assign(window.CAMPAIGN.side, {
           [
             "A soothing tonic",
             "Heals {@b 2d4+2} (as a Potion of Healing)",
-            "0.25 SC / 50 gp",
+            "0.25 SC / 88 gp",
             "12",
             "\"For the road, dear.\""
           ],
           [
             "Restorative treatment",
             "As {@i lesser restoration} (ends one disease/condition)",
-            "0.75 SC / 150 gp",
+            "0.75 SC / 263 gp",
             "13",
             "Quiet, no questions."
           ],
           [
             "Mending the deep hurt",
             "As {@i greater restoration} (removes a curse/level of exhaustion/reduction)",
-            "2 SC / 400 gp",
+            "2 SC / 700 gp",
             "15",
             "She'll do this for a good soul at cost — or free, if the story earns it."
           ],
@@ -1118,31 +1118,31 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b The full sit-down} (shave, cut, hot towel, and a listening ear)",
-            "0.1 SC / 20 gp",
+            "0.1 SC / 35 gp",
             "12",
             "Removes the road {@i and} a point of stress — the party's next long rest also ends one level of exhaustion (her chair does half the work of a rest). Often free for the kind."
           ],
           [
             "{@b \"Someone respectable\"} (disguise package: a Baldur's Gate merchant, a devil's clerk, a nobody)",
-            "1 SC / 200 gp",
+            "1 SC / 350 gp",
             "13",
             "A styled, lasting appearance change built to pass in a {@i specific} setting — advantage on Deception to pose as that role until reverted."
           ],
           [
             "{@b A quiet cure} (remove a specific curse she can reach)",
-            "1.5 SC / 300 gp",
+            "1.5 SC / 525 gp",
             "14",
             "As {@i remove curse.} Done gently, no questions, no ledger. Free for a good soul the story has earned."
           ],
           [
             "{@b Waking-ease draught} (calm the frightened)",
-            "0.15 SC / 30 gp",
+            "0.15 SC / 53 gp",
             "12",
             "Ends the {@i frightened} condition and grants advantage on the next save against fear. She keeps a shelf of it for the mortals who wander in shaking."
           ],
           [
             "{@b Match a lost face} (restore someone to how they looked before Hell changed them)",
-            "0.75 SC / 150 gp",
+            "0.75 SC / 263 gp",
             "13",
             "Cosmetic and kind — undo mutation-scarring, ichor-warping, a Fugue-faded face. She does this one nearly at cost; it {@i matters} to her."
           ]
@@ -1262,7 +1262,7 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "Exchange gp → SC",
-            "~200 gp per 1 SC (the surcharge; poor rate)",
+            "350 gp per 1 SC (the surcharge; poor rate)",
             "18",
             "He barely wants gold either."
           ],
@@ -1274,7 +1274,7 @@ Object.assign(window.CAMPAIGN.side, {
           ],
           [
             "Appraise a soul-good / magic item",
-            "0.1 SC / 20 gp per item",
+            "0.1 SC / 35 gp per item",
             "16",
             "Honest to the copper — and he {@i remembers} what you showed him."
           ],
@@ -1314,7 +1314,7 @@ Object.assign(window.CAMPAIGN.side, {
           ],
           [
             "{@b Certify / attest a document} (a writ, a letter, a claim)",
-            "0.25 SC / 50 gp",
+            "0.25 SC / 88 gp",
             "E.g. attesting Or'Henn's writ of reclamation (Bounty V payoff) once obtained."
           ],
           [
@@ -1393,19 +1393,19 @@ Object.assign(window.CAMPAIGN.side, {
           ],
           [
             "{@b Escrow a bargain} (hold a favor/item in trust until a condition is met)",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "16",
             "Neutral third-party hold for a deal between the party and another patron. He is scrupulously honest — and {@i remembers} both sides."
           ],
           [
             "{@b Notarize a will / claim of ownership}",
-            "0.25 SC / 50 gp",
+            "0.25 SC / 88 gp",
             "16",
             "Makes a claim to property (a ship, a trophy, a title) infernally enforceable. Useful for the Lady Vengeance's paperwork."
           ],
           [
             "{@b Certify a death} (attest a named soul is truly gone / truly bound)",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "17",
             "A binding legal fact — e.g. certifying Red Ruth's death for a buyer who won't take the party's word. Word of what you certify travels."
           ],
@@ -1474,19 +1474,19 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b Raw ichor vial} (unrefined)",
-            "1 SC / 200 gp",
+            "1 SC / 350 gp",
             "13",
             "Drink it and {@b roll on the Mutation/Boon table.} A gamble, every time."
           ],
           [
             "{@b Sampler vial} (half-dose, weaker)",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "13",
             "Roll with {@b disadvantage} on the boon side / advantage on the mutation side — cheaper, worse odds."
           ],
           [
             "{@b Refined ichor} (one {@i known} effect)",
-            "3 SC / 600 gp",
+            "3 SC / 1,050 gp",
             "15",
             "Elliach has \"stabilized\" a specific benefit — pick from boons #1–4 below, no mutation risk. {@b SC-preferred.}"
           ],
@@ -1629,31 +1629,31 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b \"Bloodwrath\" strain} (refined, aggression)",
-            "3 SC / 600 gp",
+            "3 SC / 1,050 gp",
             "15",
             "Stabilized boon #6 (Demon-thews): advantage on Strength checks/saves for 1 hour, no mutation risk. Elliach's bestseller for front-liners."
           ],
           [
             "{@b \"Ironhide\" strain} (refined, defense)",
-            "3 SC / 600 gp",
+            "3 SC / 1,050 gp",
             "15",
             "Stabilized boon #7 (Carapace): +2 AC for 1 hour. Popular before a known fight."
           ],
           [
             "{@b \"Second Skin\" strain} (refined, recovery)",
-            "3.5 SC / 700 gp",
+            "3.5 SC / 1,225 gp",
             "15",
             "Stabilized boon #8 (Regenerative): 2d6 HP now + 5/turn for 1 minute. Slightly pricier — he can barely keep it stable."
           ],
           [
             "{@b Antitoxin of the flesh} (mutation-reverser, single dose)",
-            "1 SC / 200 gp",
+            "1 SC / 350 gp",
             "14",
             "Ends one {@i non-permanent} ichor mutation immediately (results 2–4). Won't touch a permanent Warp (result 1). Sold, of course, right next to the raw vials."
           ],
           [
             "{@b A guided tasting} (Elliach supervises a raw dose)",
-            "0.25 SC / 50 gp on top of the vial",
+            "0.25 SC / 88 gp on top of the vial",
             "13",
             "He watches, takes notes, and can end the effect early with his antitoxin if a {@i bad} mutation lands — a safety net for the price of being studied."
           ]
@@ -1716,13 +1716,13 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b Buy a larva} (common damned soul-form)",
-            "0.5 SC / 100 gp each",
+            "0.5 SC / 175 gp each",
             "15",
             "The raw material of Hell. What a party {@i does} with one is its own moral question. {@b SC-preferred.}"
           ],
           [
             "Buy larvae by the crate (×10)",
-            "4 SC / 800 gp",
+            "4 SC / 1,400 gp",
             "15",
             "Bulk. He'd rather move volume."
           ],
@@ -1755,7 +1755,7 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b Appraise soul-goods} (soul-stock, a coin, a heartstone)",
-            "0.1 SC / 20 gp per item, or free on a haggle",
+            "0.1 SC / 35 gp per item, or free on a haggle",
             "15",
             "Honest weight; then he makes an offer."
           ],
@@ -1830,25 +1830,25 @@ Object.assign(window.CAMPAIGN.side, {
         "rows": [
           [
             "{@b Graded larva — \"Common\"} (standard damned soul-form)",
-            "0.5 SC / 100 gp",
+            "0.5 SC / 175 gp",
             "15",
             "(Baseline; see main table.) He grades all stock; this is the floor grade."
           ],
           [
             "{@b Graded larva — \"Vigorous\"} (a strong-willed soul, resists shaping)",
-            "1 SC / 200 gp",
+            "1 SC / 350 gp",
             "16",
             "Worth more to a shaper or a diviner; harder to control. He notes which are which."
           ],
           [
             "{@b Larva husbandry} (hold/feed a soul-form in his pens, per week)",
-            "0.1 SC / 20 gp",
+            "0.1 SC / 35 gp",
             "15",
             "Board a larva you're not ready to use. He'll keep it \"healthy,\" such as that word means here."
           ],
           [
             "{@b A grade & provenance report} (what a soul-form {@i was} in life)",
-            "0.25 SC / 50 gp",
+            "0.25 SC / 88 gp",
             "16",
             "He can read a larva's residue for name, station, manner of death — useful intel dressed as appraisal. Word of what you ask travels."
           ],

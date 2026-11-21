@@ -31,10 +31,10 @@
   }
   function priceAfter(sc, factor) { return Math.round(sc * factor * 100) / 100; }
 
-  // Gold. The floor's own rule (panel emporium-shops): gold trades at half value, 200 gp to the soul coin.
+  // Gold. The floor's own rule (panel emporium-shops): 350 gp to the soul coin (DM ruling 2026-11-21; it was 200).
   // A stall can take gold on its own terms for what is used up there (spot.gold.used: Burney, at par),
   // and a row can carry its own gp price. Rows marked scOnly still get a figure: the DM may overrule.
-  var GOLD_RATE = 200;
+  var GOLD_RATE = 350;
   function goldPrice(item, spot) {
     if (item.gp > 0) return item.gp;
     if (!(item.sc > 0)) return null;

@@ -37,14 +37,14 @@ var SIDE = ctx.window.CAMPAIGN.side;
   assert.strictEqual(E.priceAfter(0.25, 0.7), 0.18);
 })();
 
-// gold: the floor's own rule (panel emporium-shops), 200 gp to the soul coin; a stall or a row can say otherwise
+// gold: the floor's own rule (panel emporium-shops), 350 gp to the soul coin; a stall or a row can say otherwise
 (function () {
-  assert.strictEqual(E.goldPrice({ sc: 0.5, rarity: "common" }, {}), 100);
-  assert.strictEqual(E.goldPrice({ sc: 0.3, rarity: "mundane" }, {}), 60);
-  assert.strictEqual(E.goldPrice({ sc: 4, rarity: "uncommon" }, {}), 800);
-  assert.strictEqual(E.goldPrice({ sc: 28, rarity: "very rare" }, {}), 5600);
+  assert.strictEqual(E.goldPrice({ sc: 0.5, rarity: "common" }, {}), 175);
+  assert.strictEqual(E.goldPrice({ sc: 0.3, rarity: "mundane" }, {}), 105);
+  assert.strictEqual(E.goldPrice({ sc: 4, rarity: "uncommon" }, {}), 1400);
+  assert.strictEqual(E.goldPrice({ sc: 28, rarity: "very rare" }, {}), 9800);
   assert.strictEqual(E.goldPrice({ sc: 0.75, rarity: "uncommon", c: true }, { gold: { used: 100 } }), 75, "Burney takes gold at par for what is used up");
-  assert.strictEqual(E.goldPrice({ sc: 4, rarity: "uncommon" }, { gold: { used: 100 } }), 800, "and at the floor's rate for what is kept");
+  assert.strictEqual(E.goldPrice({ sc: 4, rarity: "uncommon" }, { gold: { used: 100 } }), 1400, "and at the floor's rate for what is kept");
   assert.strictEqual(E.goldPrice({ sc: 2, rarity: "rare", gp: 30 }, {}), 30, "a price written on the row wins");
   assert.strictEqual(E.goldPrice({ sc: null, rarity: "legendary" }, {}), null);
   assert.strictEqual(E.parseGp("0.2 SC / 40 gp"), 40);
@@ -152,10 +152,12 @@ var SIDE = ctx.window.CAMPAIGN.side;
       assert.ok(it.name && it.note && it.note.length > 10, at + "name and note");
       assert.ok(typeof it.g === "string" && it.g.length > 2, at + "the shelf (group) it stands on");
       assert.ok(RARITY.indexOf(it.rarity) !== -1, at + "rarity " + it.rarity);
-      if (it.rarity === "legendary") assert.ok(it.sc === null && it.favourOnly, at + "legendary is never for coin");
+      if (it.rarity === "legendary") assert.ok(it.favourOnly, at + "legendary is never for coin");
+      if (it.favourOnly) assert.ok(it.sc === null, at + "a row that costs a deal has no coin price");
       else assert.ok(typeof it.sc === "number" && it.sc > 0, at + "price");
       var band = BAND[it.rarity];
-      if (band && !it.c) assert.ok(it.sc >= band[0] && it.sc <= band[1], at + it.rarity + " at " + it.sc + " SC is outside " + band.join(" to "));
+      // exempt: what is used up, what costs a deal, and labour on materials the buyer brings (extra)
+      if (band && !it.c && !it.favourOnly && !it.extra) assert.ok(it.sc >= band[0] && it.sc <= band[1], at + it.rarity + " at " + it.sc + " SC is outside " + band.join(" to "));
     });
     if (s.kind !== "stall") return;
     assert.ok(s.keeper && typeof s.haggle === "number" && s.panel, where + "keeper, haggle DC and panel");

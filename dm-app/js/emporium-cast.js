@@ -127,12 +127,10 @@
     var uri = spotifyUri(linkFor(players, spotId));
     if (!uri || (!force && (!castState().music || load(KEYS.playing, null) === uri))) return false;
     save(KEYS.playing, uri);
-    // A hidden frame: if no Spotify app answers the link, the frame fails and the page stays.
-    var frame = document.getElementById("spotify-frame") || document.createElement("iframe");
-    frame.id = "spotify-frame";
-    frame.hidden = true;
-    if (!frame.parentNode) document.body.appendChild(frame);
-    frame.src = uri;
+    // The page itself goes to the link: the browser hands it to the Spotify app and the page stays where it is.
+    // Not a hidden frame: Firefox lets a frame open an app link only once every ten seconds, so a second
+    // place clicked soon after the first kept the first one's music (seen at the table test, 2026-11-21).
+    window.location.href = uri;
     return true;
   }
 
