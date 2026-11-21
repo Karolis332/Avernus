@@ -5,7 +5,7 @@ metadata:
   node_type: memory
   type: user
   originSessionId: 9cf8b5a1-56b6-4ae4-9868-4943c3ae0ac5
-  modified: 2026-11-21T12:01:09.017Z
+  modified: 2026-11-21T12:20:56.223Z
 ---
 
 Karolis plays music at the table from Spotify (desktop app on the laptop) and said on 2026-11-21 that he has "a lot of amazing tracks on spotify specifically from borislav slavov" (Baldur's Gate 3, Divinity: Original Sin 2). He asked for a link per location that changes the song on a click. He wants sessions to "feel memorable": music, pictures and motion per place are welcome, not extras.
@@ -16,5 +16,6 @@ Karolis plays music at the table from Spotify (desktop app on the laptop) and sa
 - Claude cannot hear the tracks: say that the picks are by title and reputation, and leave the choice to him.
 - Not known as of 2026-11-21 (my open question, not his statement): whether the desktop app starts a track by itself when a `spotify:` link opens, or only shows it.
 - Later on 2026-11-21 he wanted the music darker ("hellish tunes", "not only borislav slavov", the picks were "a bit too cheerful") and playlists made in his own Spotify, and he picked the MCP server `imprvhub/mcp-claude-spotify`. Set up on this PC: clone `C:\Users\kpaul\tools\mcp-claude-spotify` (compiled with `npx tsc`, installed with `--ignore-scripts`; code checked: talks only to Spotify and 127.0.0.1), launcher `C:\Users\kpaul\tools\spotify-mcp-launch.mjs` (reads `~/.spotify-dm/credentials.json` `{clientId, clientSecret}`, so they never pass through chat: the chat log is public), registered `claude mcp add spotify --scope user`. Login token: `~/.spotify-mcp/tokens.json` after the `auth-spotify` tool. Redirect URI in his Spotify app: `http://127.0.0.1:8888/callback`. The laptop has none of this.
+- Built 2026-11-21: 15 private playlists "Emporium · <place>" in his Spotify; their links are the `music` fields. Scripts (local, gitignored) in `.playwright-mcp/`: `sp_tracks.py` (album embed pages → title, id, seconds), `sp_picks.json` (place → `ALBUM|exact title`), `sp_build.mjs check|build`, `sp_swap.mjs`, `spotify_call.mjs batch`. Lessons: `get-user-playlists` shows "Tracks: 0" for new playlists although they are full (read with `get-playlist-tracks`); film and trailer cues run under a minute, so check durations and drop anything under ~1:05; the dark picks came from Darkest Dungeon, Bloodborne, Dark Souls III, Hades, Inscryption, Blasphemous, Hearts of Stone, Diablo, Hellblade, Penny Dreadful, Crimson Peak, Hollow Knight.
 
 Related: [[dnd-campaign]], [[free-tools-only]]
