@@ -21,4 +21,5 @@
 - [Low CPU when gaming](low_cpu_when_gaming.md) — DM in a game: cpu-cap 25, no encodes, no autoplay pages, no new windows
 - [Animation profile](animation_profile.md) — read and update dm-app/docs/animation-profile.md before any animated clip; the DM's small details matter
 - [Session recordings are private](session_recordings_private.md) — never commit or quote table talk; fight facts only; ask before a GPU transcription run
+- [Spotify scene music](spotify_scene_music.md) — DM plays Borislav Slavov from Spotify; a link per place; read track ids from Spotify's embed pages, never from memory
 - [Stray empty files / no heredocs](no_code_in_heredocs.md) — the repo's `cmd /c` hooks create empty files named 0, 40, 0)) from any `>` in a tool call: delete before each commit; write scripts with the Write tool

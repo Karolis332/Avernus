@@ -1,9 +1,9 @@
 # Portable agent context
 
-Synced: 2026-11-15T09:46:39.829Z
+Synced: 2026-11-21T01:17:49.263Z
 From: QuLeR
 Sources found: ~/.claude, ~/.claude-alt, checkpoint
-File count: 27
+File count: 28
 
 Restore on another machine:
 
