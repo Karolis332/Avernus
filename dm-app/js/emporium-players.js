@@ -1,23 +1,28 @@
 // The players' monitor: emporium.html?view=players. The painted map; a click opens the shop's picture with the
-// goods anyone can see. It follows the DM page and is followed by it (js/emporium-cast.js): the DM's Buy holds an
-// item up, his Add to ledger stamps it SOLD and counts the purse down. Nothing here reads a DM note:
-// every card comes from Cast.publicGoods and sessions/campaign-emporium-players.js.
+// goods anyone can see. It follows the DM page and is followed by it (js/emporium-cast.js): the DM's Buy or Show
+// holds an item up, his Add to ledger stamps it SOLD and counts the purse down, his Identify lifts a veil.
+// Nothing here reads a DM note: every card comes from Cast.publicGoods and sessions/campaign-emporium-players.js,
+// the pictures from campaign-emporium-item-art.js, the rules text from campaign-emporium-item-text.js (SRD 5.1).
 (function () {
   "use strict";
   if (!/[?&]view=players\b/.test(location.search)) return;
   var Cast = window.DMEmporiumCast, E = window.DMEmporium, el = window.DMRender.el, K = Cast.KEYS;
   var M = window.EMPORIUM_MARKET, P = window.EMPORIUM_PLAYERS;
+  var ART = window.EMPORIUM_ITEM_ART || null, TEXTS = window.EMPORIUM_ITEM_TEXT || null;
   var root = document.getElementById("pv");
-  var MAP_ACCENT = "#e0a82e", PARTICLES = 26, STAMP_MS = 2800, TOAST_MS = 5200;
+  var MAP_ACCENT = "#e0a82e", PARTICLES = 26, STAMP_MS = 2800, TOAST_MS = 5200, REVEAL_MS = 1800;
   var KIND = { stall: "Stall", den: "Gambling den", place: "" };
 
-  // What this window remembers between drawings. The screen itself ({ spot, item, haul }) lives in localStorage.
-  var view = { shelf: "", sceneOf: undefined, ledger: Cast.load(K.ledger, []), revealed: Cast.load(K.revealed, []), fresh: [], stamp: null };
+  // What this window remembers between drawings. The screen itself ({ spot, item, haul, bare }) lives in localStorage.
+  var view = {
+    shelf: "", sceneOf: undefined, ledger: Cast.load(K.ledger, []), revealed: Cast.load(K.revealed, []),
+    identified: Cast.load(K.identified, []), fresh: [], stamp: null, unveiled: null
+  };
 
   function spotById(id) { return M.spots.filter(function (s) { return s.id === id; })[0] || null; }
   function look(s) { return P.spots[s.id] || { theme: { accent: MAP_ACCENT, fx: "motes" } }; }
-  function button(cls, onClick) {
-    var b = el("button", cls);
+  function button(cls, onClick, text) {
+    var b = el("button", cls, text);
     b.type = "button";
     b.addEventListener("click", onClick);
     return b;
@@ -30,7 +35,7 @@
     if (!Cast.save(K.screen, Object.assign(Cast.screen(), change, { at: Date.now() }))) toast("This browser cannot save: the two screens will not follow each other.");
     render();
   }
-  function goods(s) { return Cast.publicGoods(s, P, view.revealed, view.ledger); }
+  function goods(s) { return Cast.publicGoods(s, P, view.revealed, view.ledger, view.identified); }
 
   // ---- sound: made here, no files. A browser plays nothing until the window has been clicked once. ----
   var audio = null;
@@ -38,11 +43,11 @@
     if (audio) return;
     try { audio = new (window.AudioContext || window.webkitAudioContext)(); root.classList.remove("muted"); } catch (e) { audio = null; }
   }
-  function chime(notes, gap) {
+  function chime(notes, gap, wave) {
     if (!audio) return;
     notes.forEach(function (hz, i) {
       var osc = audio.createOscillator(), gain = audio.createGain(), t = audio.currentTime + i * gap;
-      osc.type = "triangle";
+      osc.type = wave || "triangle";
       osc.frequency.value = hz;
       gain.gain.setValueAtTime(0.0001, t);
       gain.gain.exponentialRampToValueAtTime(0.22, t + 0.012);
@@ -55,6 +60,8 @@
   }
   function coinSound() { chime([1568, 2093, 2637], 0.07); }
   function revealSound() { chime([523, 659, 784, 1047], 0.13); }
+  function openSound() { chime([392, 587], 0.06, "sine"); }
+  function veilSound() { chime([196, 233, 277, 330, 415], 0.11, "sine"); }
 
   function toast(text) {
     var t = el("div", "pv-toast-line", text);
@@ -112,7 +119,7 @@
   }
 
   // ---- the map ----
-  function goTo(id) { view.shelf = ""; show({ spot: id, item: null, haul: false }); Cast.play(P, id); }
+  function goTo(id) { view.shelf = ""; show({ spot: id, item: null, haul: false, bare: false }); Cast.play(P, id); }
   function drawMap() {
     var map = el("div", "pv-map"), img = document.createElement("img"), pins = el("div", "pv-pins");
     img.alt = "";
@@ -137,6 +144,23 @@
     return add(el("section", "pv-mapview"), map, side);
   }
 
+  // ---- an item's picture: one tile of a painted sheet, or a sigil until its sheet is painted ----
+  function tile(g, cls) {
+    var t = el("span", cls + (g.mystery ? " veiled" : "")), sp = Cast.sprite(ART, g.key);
+    if (sp) {
+      var i = el("i");
+      i.style.backgroundImage = "url('" + sp.src + "')";
+      i.style.backgroundSize = sp.size;
+      i.style.backgroundPosition = sp.pos;
+      t.appendChild(i);
+    } else {
+      t.classList.add("blank");
+      t.appendChild(el("i", "sigil", "◆"));
+    }
+    if (g.mystery) t.appendChild(el("b", "q", "?"));
+    return t;
+  }
+
   // ---- a shop ----
   function priceOf(g) {
     var p = el("span", "pv-price");
@@ -154,13 +178,13 @@
     if (/^(the last|up to) \d+/.test(g.qty)) return g.qty.replace(/\d+/, String(g.left));
     return g.qty;
   }
-  function card(g, big) {
-    var c = big ? el("div", "pv-card big") : button("pv-card", function () { show({ item: g.key }); });
-    c.className += " pv-r-" + g.rarity.replace(" ", "-") + (g.left === 0 ? " sold" : "") + (view.fresh.indexOf(g.key) !== -1 ? " fresh" : "");
+  function rarityClass(g) { return " pv-r-" + g.rarity.replace(" ", "-"); }
+  function card(g) {
+    var c = button("pv-card", function () { openSound(); show({ item: g.key }); });
+    c.className += rarityClass(g) + (g.left === 0 ? " sold" : "") + (view.fresh.indexOf(g.key) !== -1 ? " fresh" : "") + (g.mystery ? " mystery" : "");
     var meta = [g.rarity, onHand(g)].filter(Boolean).join("  ·  ");
-    add(c, big ? el("span", "pv-shelf-name", g.g) : null, el("span", "pv-name", g.name), priceOf(g), el("span", "pv-meta", meta), el("span", "pv-text", g.text));
-    var stamped = big && view.stamp && view.stamp.key === g.key;
-    if (g.left === 0 || stamped) c.appendChild(el("span", "pv-stamp" + (stamped ? " hit" : ""), stamped ? "Sold to " + view.stamp.who : "Sold"));
+    add(c, tile(g, "pv-thumb"), el("span", "pv-name", g.name), priceOf(g), el("span", "pv-meta", meta), el("span", "pv-text", g.text));
+    if (g.left === 0) c.appendChild(el("span", "pv-stamp", "Sold"));
     return c;
   }
   function drawGoods(s) {
@@ -172,13 +196,14 @@
       add(b, document.createTextNode(sh.g || "Everything"), el("small", "", String(sh.rows.length)));
       tabs.appendChild(b);
     });
+    tabs.appendChild(button("pv-fold", function () { show({ bare: true }); }, "Fold the shelves ⟩"));
     (view.shelf ? shelves.filter(function (sh) { return sh.g === view.shelf; }) : shelves).forEach(function (sh) {
       if (!view.shelf) cards.appendChild(el("h3", "pv-shelf-head", sh.g));
-      sh.rows.forEach(function (g) { cards.appendChild(card(g, false)); });
+      sh.rows.forEach(function (g) { cards.appendChild(card(g)); });
     });
     return add(el("div", "pv-goods"), tabs, cards);
   }
-  function drawShop(s) {
+  function drawShop(s, bare) {
     var p = look(s), stall = s.kind === "stall";
     var back = button("pv-back", function () { show({ spot: null, item: null, haul: false }); Cast.play(P, null); });
     var mini = el("span", "pv-mini"), dot = el("i");
@@ -191,14 +216,37 @@
       p.keeper || s.keeper ? el("p", "pv-keeper", p.keeper || s.keeper) : null,
       p.greet ? el("p", "pv-greet", "“" + p.greet + "”") : null,
       el("p", "pv-look", s.look), p.blurb ? el("p", "pv-blurb", p.blurb) : null);
-    return add(el("section", "pv-shopview" + (stall ? "" : " no-goods")), add(el("div", "pv-left"), back, caption), stall ? drawGoods(s) : null);
+    var cls = "pv-shopview" + (stall ? "" : " no-goods") + (p.theme && p.theme.side === "left" ? " flip" : "");
+    var unfold = stall && bare ? button("pv-unfold", function () { show({ bare: false }); }, "⟨ The shelves") : null;
+    return add(el("section", cls), add(el("div", "pv-left"), back, caption), stall ? drawGoods(s) : null, unfold);
   }
-  function drawSpotlight(s, itemKey) {
+
+  // ---- the pop-up: one item, its picture and everything known about it ----
+  function rules(g) {
+    var box = el("div", "pv-pop-rules"), full = g.mystery ? null : Cast.fullText(TEXTS, g.key);
+    if (g.mystery) return add(box, el("p", "pv-pop-unknown", "What it does is not known. Ask the keeper, or cast identify on it."));
+    if (!full) return null;
+    Cast.rulesNodes(full, TEXTS.credit).forEach(function (n) { box.appendChild(n); });
+    return box;
+  }
+  function drawPopup(s, itemKey) {
     var g = goods(s).filter(function (x) { return x.key === itemKey; })[0];
     if (!g) return null; // a service, or a row the players may not see: nothing to hold up
+    var full = g.mystery ? null : Cast.fullText(TEXTS, g.key);
     var veil = el("div", "pv-spot");
-    veil.addEventListener("click", function () { show({ item: null }); });
-    return add(veil, card(g, true));
+    veil.addEventListener("click", function (e) { if (e.target === veil) show({ item: null }); });
+    var pop = el("div", "pv-pop" + rarityClass(g) + (g.mystery ? " mystery" : "") + (view.unveiled === g.key ? " unveil" : ""));
+    var art = add(el("div", "pv-pop-art"), el("span", "pv-rays"), tile(g, "pv-pop-tile"));
+    var body = el("div", "pv-pop-body");
+    var type = g.mystery ? "Unidentified" : full ? full.type : [g.rarity, g.g].filter(Boolean).join("  ·  ");
+    add(body, el("span", "pv-shelf-name", [g.g, s.name.split(":")[0]].filter(Boolean).join("  ·  ")),
+      el("h2", "pv-pop-name", g.name), el("span", "pv-pop-type", type),
+      add(el("div", "pv-pop-buy"), priceOf(g), el("span", "pv-meta", onHand(g))),
+      el("p", "pv-pop-line", g.text), rules(g));
+    var stamped = view.stamp && view.stamp.key === g.key;
+    if (g.left === 0 || stamped) body.appendChild(el("span", "pv-stamp" + (stamped ? " hit" : ""), stamped ? "Sold to " + view.stamp.who : "Sold"));
+    add(pop, button("pv-pop-x", function () { show({ item: null }); }, "✕"), art, body);
+    return add(veil, pop);
   }
 
   // ---- the haul: what everyone bought ----
@@ -220,13 +268,16 @@
   function render() {
     var scr = Cast.screen(), s = spotById(scr.spot);
     root.dataset.mode = scr.haul ? "haul" : s ? "shop" : "map";
+    root.dataset.bare = scr.bare && s && !scr.haul ? "1" : "";
     drawScene(scr.haul ? null : s);
     drawHud();
     var stage = document.getElementById("pv-stage");
     var keep = stage.querySelector(".pv-cards"), scroll = keep ? keep.scrollTop : 0;
-    stage.replaceChildren.apply(stage, scr.haul ? [drawHaul()] : s ? [drawShop(s), scr.item ? drawSpotlight(s, scr.item) : null].filter(Boolean) : [drawMap()]);
-    var cards = stage.querySelector(".pv-cards");
+    var keepRules = stage.querySelector(".pv-pop-rules"), rulesScroll = keepRules ? keepRules.scrollTop : 0;
+    stage.replaceChildren.apply(stage, scr.haul ? [drawHaul()] : s ? [drawShop(s, scr.bare), scr.item ? drawPopup(s, scr.item) : null].filter(Boolean) : [drawMap()]);
+    var cards = stage.querySelector(".pv-cards"), rulesBox = stage.querySelector(".pv-pop-rules");
     if (cards) cards.scrollTop = scroll;
+    if (rulesBox) rulesBox.scrollTop = rulesScroll;
   }
 
   // ---- the other window changed something ----
@@ -248,8 +299,26 @@
     var added = next.filter(function (k) { return view.revealed.indexOf(k) === -1; });
     view.fresh = view.fresh.filter(function (k) { return next.indexOf(k) !== -1; }).concat(added);
     view.revealed = next;
-    added.forEach(function (k) { toast("New on the shelf: " + k.split("|")[1]); });
+    added.forEach(function (k) {
+      var s = spotById(k.split("|")[0]), g = s ? goods(s).filter(function (x) { return x.key === k; })[0] : null;
+      toast("New on the shelf: " + (g ? g.name : k.split("|")[1]));
+    });
     if (added.length) revealSound();
+    render();
+  }
+  // The DM named a mysterious item: its true name comes out, and the pop-up shows it with a flash if it is open.
+  function onIdentified() {
+    var next = Cast.load(K.identified, []);
+    var added = next.filter(function (k) { return view.identified.indexOf(k) === -1; });
+    var veiled = next.length < view.identified.length;
+    view.identified = next;
+    added.forEach(function (k) {
+      toast("Identified: " + k.split("|")[1]);
+      view.unveiled = k;
+      setTimeout(function () { if (view.unveiled === k) { view.unveiled = null; render(); } }, REVEAL_MS);
+    });
+    if (added.length) revealSound();
+    else if (veiled) veilSound();
     render();
   }
   function onScreen() {
@@ -281,6 +350,7 @@
     window.addEventListener("storage", function (e) {
       if (e.key === K.ledger) onLedger();
       else if (e.key === K.revealed) onRevealed();
+      else if (e.key === K.identified) onIdentified();
       else if (e.key === K.screen) onScreen();
       else if (e.key === K.state) drawHud();
     });

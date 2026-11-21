@@ -77,6 +77,43 @@ function names(id) { return (spot(id).stock || []).map(function (it) { return Co
   assert.deepStrictEqual(C.publicGoods(spot("jetty"), P, [], []), []);
 })();
 
+// mysterious rows: veiled on the monitor (no true name, no rarity, no description) until identified
+(function () {
+  var forge = spot("forge");
+  var veiled = C.publicGoods(forge, P, [], [], []).filter(function (g) { return g.key === "forge|Sun blade"; })[0];
+  assert.ok(veiled.mystery, "the sun blade starts veiled");
+  assert.strictEqual(veiled.name, P.mystery.forge["Sun blade"].name);
+  assert.strictEqual(veiled.rarity, "unidentified");
+  assert.strictEqual(veiled.text, P.mystery.forge["Sun blade"].text);
+  assert.strictEqual(veiled.sc, 14, "the price still shows");
+  var named = C.publicGoods(forge, P, [], [], ["forge|Sun blade"]).filter(function (g) { return g.key === "forge|Sun blade"; })[0];
+  assert.ok(!named.mystery && named.identified);
+  assert.strictEqual(named.name, "Sun blade");
+  assert.strictEqual(named.rarity, "rare");
+  var flask = C.publicGoods(spot("bank"), P, ["bank|Iron flask, occupied"], [], []).filter(function (g) { return g.key === "bank|Iron flask, occupied"; })[0];
+  assert.ok(flask.revealed && flask.mystery, "a hidden row can be revealed and still be a mystery");
+})();
+
+// sprite: one tile of a 4 x 4 sheet as CSS background values
+(function () {
+  var art = { side: 4, sheets: { "2": "art/generated/emporium-items-02.webp" }, at: { "forge|x": [2, 5], "forge|y": [7, 0] } };
+  assert.deepStrictEqual(C.sprite(art, "forge|x"), { src: "art/generated/emporium-items-02.webp", size: "400% 400%", pos: "33.3333% 33.3333%" });
+  assert.strictEqual(C.sprite(art, "forge|y"), null, "a sheet that is not painted");
+  assert.strictEqual(C.sprite(art, "forge|z"), null);
+  assert.strictEqual(C.sprite(null, "forge|x"), null);
+  assert.strictEqual(C.sprite(art, "forge|x").src, "art/generated/emporium-items-02.webp");
+  assert.strictEqual(C.sprite({ side: 4, sheets: { "0": "s" }, at: { k: [0, 15] } }, "k").pos, "100% 100%", "the last tile");
+})();
+
+// fullText: the SRD rules of a row, or nothing for a row that keeps its own line
+(function () {
+  var T = require("../sessions/campaign-emporium-item-text.js");
+  assert.ok(/Wondrous item/.test(C.fullText(T, "rapture|Bag of holding").type));
+  assert.ok(/Spell scroll: Revivify/.test(C.fullText(T, "rapture|Scroll of revivify").type), "a scroll carries its spell");
+  assert.strictEqual(C.fullText(T, "forge|Arrows, +1"), null);
+  assert.strictEqual(C.fullText(null, "rapture|Bag of holding"), null);
+})();
+
 // purse: what is left when a purse was set at the recap, what was spent when it was not
 (function () {
   var ledger = [{ who: "Aurora", item: "x", spot: "forge", sc: 4 }, { who: "Drenwal", item: "y", spot: "bank", gp: 600 }];
@@ -134,7 +171,7 @@ var NEVER_ON_SCREEN = /\b(Insight|Perception|Investigation) DC\b|\bclause \d|\bc
     assert.ok(C.FX.indexOf(p.theme.fx) !== -1, s.id + ": theme.fx " + p.theme.fx);
     if (s.keeper) assert.ok(p.greet, s.id + ": a keeper needs a greeting");
     if (s.kind !== "stall") assert.ok(p.blurb, s.id + ": a den or a place needs its public line");
-    if (p.music) assert.ok(C.spotifyUri(p.music), s.id + ": music is not a Spotify link");
+    assert.ok(C.spotifyUri(p.music || ""), s.id + ": no music, or not a Spotify link");
     [p.greet, p.blurb, p.keeper, s.look].forEach(function (t) {
       assert.ok(!NEVER_ON_SCREEN.test(t || ""), s.id + ": DM wording on the monitor: " + t);
     });
@@ -142,16 +179,39 @@ var NEVER_ON_SCREEN = /\b(Insight|Perception|Investigation) DC\b|\bclause \d|\bc
   Object.keys(P.spots).forEach(function (id) { assert.ok(spot(id), "players file names an unknown spot: " + id); });
   if (P.music) assert.ok(C.spotifyUri(P.music), "the market's music is not a Spotify link");
 
-  // every name in hide and say is a real row of that stall
-  ["hide", "say"].forEach(function (part) {
+  // every name in hide, say and mystery is a real row of that stall
+  ["hide", "say", "mystery"].forEach(function (part) {
     Object.keys(P[part]).forEach(function (id) {
       assert.ok(spot(id), part + ": unknown spot " + id);
       var real = names(id);
-      (part === "hide" ? P.hide[id] : Object.keys(P.say[id])).forEach(function (n) {
+      (part === "hide" ? P.hide[id] : Object.keys(P[part][id])).forEach(function (n) {
         assert.ok(real.indexOf(n) !== -1, part + "." + id + ": no such row: " + n);
       });
     });
   });
+  // a veil never gives the item away, and carries no DM wording
+  Object.keys(P.mystery).forEach(function (id) {
+    Object.keys(P.mystery[id]).forEach(function (n) {
+      var v = P.mystery[id][n];
+      assert.ok(v.name && v.text, id + " | " + n + ": a veil needs a name and a line");
+      assert.ok(v.name.toLowerCase().indexOf(n.toLowerCase().split(/[,(]/)[0].trim()) === -1, id + " | " + n + ": the veil names the item");
+      assert.ok(!NEVER_ON_SCREEN.test(v.name + " " + v.text), id + " | " + n + ": DM wording in a veil");
+    });
+  });
+
+  // the pictures and the rules text point at real rows, and every sheet named is on disk
+  var fs = require("fs"), path = require("path");
+  var ART = require("../sessions/campaign-emporium-item-art.js"), T = require("../sessions/campaign-emporium-item-text.js");
+  var allKeys = [];
+  M.spots.forEach(function (s) { (s.stock || []).forEach(function (it) { allKeys.push(C.key(s.id, it.name)); }); });
+  Object.keys(ART.at).forEach(function (k) { assert.ok(allKeys.indexOf(k) !== -1, "item art for a row that is gone: " + k); });
+  Object.keys(ART.sheets).forEach(function (n) { assert.ok(fs.existsSync(path.join(__dirname, "..", ART.sheets[n])), "missing sheet " + ART.sheets[n]); });
+  Object.keys(T.rows).forEach(function (k) {
+    assert.ok(allKeys.indexOf(k) !== -1, "rules text for a row that is gone: " + k);
+    var e = T.entries[T.rows[k]];
+    assert.ok(e && e.type && e.text.length, "rules text entry missing or empty: " + k);
+  });
+  assert.ok(/CC BY 4\.0/.test(T.credit), "the SRD text carries its licence credit");
 
   // a note with DM wording is never shown as it is: the row has a players' line or is hidden
   var shown = 0;

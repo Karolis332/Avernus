@@ -243,8 +243,20 @@
       if (it.sc > 0) price.appendChild(el("span", "qty gp", it.scOnly ? "soul coins only" : "or " + gp + " gp"));
       if (it.extra) price.appendChild(el("span", "qty", it.extra));
       tr.appendChild(price);
-      tr.appendChild(td(it.note));
+      var note = td(it.note), Cast = window.DMEmporiumCast, k = Cast.key(s.id, it.name);
+      var full = Cast.fullText(window.EMPORIUM_ITEM_TEXT, k), veil = Cast.mysteryOf(s, it, window.EMPORIUM_PLAYERS);
+      if (veil) note.appendChild(el("span", "qty hidden-row id", "The players see '" + veil.name + "': " + veil.text));
+      if (full) {
+        var det = el("details", "full");
+        det.appendChild(el("summary", "", "Full rules text"));
+        det.appendChild(el("p", "full-type", full.type));
+        Cast.rulesNodes(full, window.EMPORIUM_ITEM_TEXT.credit).forEach(function (n) { det.appendChild(n); });
+        note.appendChild(det);
+      }
+      tr.appendChild(note);
       var act = el("td", "act");
+      // Show: the monitor holds it up with its picture and full text, and nothing is being bought
+      act.appendChild(button("Show", "btn small", function () { cast.item(s.id, Core.stripTags(it.name)); }));
       if (it.sc > 0) act.appendChild(button("Buy", "btn small", function () { choose({ name: Core.stripTags(it.name), sc: it.sc, gp: gp, scOnly: !!it.scOnly }, s); }));
       tr.appendChild(act);
       return tr;

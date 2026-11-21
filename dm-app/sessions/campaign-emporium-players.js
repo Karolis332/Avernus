@@ -24,7 +24,8 @@
         blurb: "The Writ of Hunt, nailed up for everyone to read: 100 soul coins for the ship, 20 a head, 50 for the druid alive."
       },
       rapture: {
-        keeper: "Mahadi, the host", theme: { accent: "#f0c14a", fx: "motes" }, music: "https://open.spotify.com/track/0P8B5mQYaf7cMzFPHtWR6q", // Red Prince Theme (Divinity: Original Sin 2)
+        keeper: "Mahadi, the host", theme: { accent: "#f0c14a", fx: "motes", side: "left" }, // he stands right of centre: the goods go left
+        music: "https://open.spotify.com/track/0P8B5mQYaf7cMzFPHtWR6q", // Red Prince Theme (Divinity: Original Sin 2)
         greet: "Friends! Dragon-killers! Sit, eat, be easy. Tonight nothing is too good for you, and everything has its price."
       },
       forge: {
@@ -77,6 +78,58 @@
       }
     },
 
+    // Suggested tracks per place (Borislav Slavov), for the DM to build a playlist from: [title, Spotify track id].
+    // Ids were read from Spotify's own album pages by exact title; picked by title, not by ear.
+    tracks: {
+      "market": [["Streets and Faces", "6qUrPXf13ZJRWjDHC8GUBr"], ["Bard Dance", "5SThqBFjkajbeZ496viOKq"], ["Ale of Balduran", "3bR9lqBpz0S21rvM24R9nH"], ["I Want to Live - City Version", "5DvSPMt6ItPaRYrbDiCfa5"], ["Weeping Dawn - City Version", "1EwV10T6BI0TbkNNkUCnZO"], ["Last Light - Tavern Version", "49zpQRcsFFSVhZMAtvxwaB"], ["Driftwood", "10J6kToxnB7CCHaZy2hUlH"], ["Amber Ale", "4I79eE5kmvsl8vUuEPAiDI"]],
+      "jetty": [["Down by the River", "4H1FlITv3PMErUOyQYgUDK"], ["The Queen's High Seas - Beast's Theme", "0XmMow52cQMMgvwCJl66Jv"], ["The Queen's High Seas - Tavern Version", "74UkHtiZUfsz2F4PriPoq4"], ["Main Theme, Pt. 1", "7h76oHuys1Kh9P15EDEtQ2"], ["Reaper's Coast", "4HOezHihIlCw6dbyKzlVFw"], ["Rivellon", "2Ggw6Fz6Uc9SQHWx1aNcwz"], ["Your Tale Awaits You Down the Road", "0j39oKej1YqLnvbbwX7wyP"]],
+      "gate": [["Welcome to Fort Joy", "2J3IrhJGv2SiFUhigQI3JN"], ["The Cult of the Absolute", "3LJZL1VQDnov8oG7EWIvci"], ["A Threat from Nether Years", "0aYbWstvduqCnAC1yZ0R4S"], ["Mysterious Trails", "2cKsy1Hj7y2U2fN0hsPk2X"], ["Twisted Force", "14VlKKJMcMHfTc8MdLQuZ8"], ["Symphony of the Void", "6R2XELBRCWt9Or4fhh6koW"]],
+      "rapture": [["Red Prince Theme", "0P8B5mQYaf7cMzFPHtWR6q"], ["Dancing with the Source", "1nbDLGg0d4wZCICBuPv0yC"], ["Dancing with the Source - Oud Version", "7hfxgE9QUOrsQn5CJyZGfh"], ["Path of the Godwoken - Oud Version", "3U1rmjTTJAXTi1tpRxUC6j"], ["Dancing with the Source - Tambura Version", "2rXsTWtE1jKG0YL2Ihy4tu"], ["Wash My Dreams Away", "0ocLCJBGWejo03GDLa5jPT"], ["Raphael's Final Act", "3KBQN4dBHxyLEdCNCfSKMV"]],
+      "forge": [["Sixteen Strikes", "0TsQvGGDO4qzdnf82HuGI1"], ["Nine Blades", "5o8MYMv2u3SjbH5pfa6ZRx"], ["Forging the Fate", "0HbsyR2NIi0gAvQLBkZRYq"], ["Old Time Battles, Pt. 1", "15nEdGMv4FycmhCTwKQXJy"], ["Lead Your Fights", "21b0hZPbxJpiKdKCKV0yjh"], ["Mead, Gold and Blood - Ifan's Theme", "11lCN6s42ihQKxJNjB6ia7"], ["The Battle for Divinity", "2TBRVGwmayiNWtZeVxBGD9"]],
+      "barber": [["Amber Ale", "4I79eE5kmvsl8vUuEPAiDI"], ["Last Light - Tavern Version", "49zpQRcsFFSVhZMAtvxwaB"], ["Rivellon - Light Version", "4PHXA1rSWH2eM9HulCL5Kr"], ["Endless Spring", "58YkuyzA8jIzWUDfSOmi7Y"], ["A Part of Their Story", "6aSEsoEkoKKwdzywSwSyTJ"], ["Power of Innocence 2017 - Orchestra Version", "1ij9PJUriVLadK8E500yfk"], ["Last Shelter", "5PDbPW74EyDDZuOIBCx858"], ["Quest for a Cure", "28M7IXuJ1Y6ResKKWIOcpN"]],
+      "bank": [["Mead, Gold and Blood - Ifan's Theme", "11lCN6s42ihQKxJNjB6ia7"], ["Sins and Gods - Revelation", "5kcvSMP2InRF4eZQIaMwLZ"], ["Reflections from the Past", "4axplIj4dxBBM0cH3foHNc"], ["A Single Drop of Magic", "1ql2rGmS3HFiS1CIgJaVOD"], ["Who Are You", "0xKMPC2v7aCDZs0PBlIUSe"], ["Sebille's Theme", "2x56Pc2pEXeoC9DE3fgev4"]],
+      "ichor": [["The Colors of Underdark", "2XtqmFq459drrNssf9BuME"], ["A Single Drop of Magic", "1ql2rGmS3HFiS1CIgJaVOD"], ["Crazy Troubled Senses", "4firrJLHNjdZsEcqUMDySq"], ["Dream Walk - Instrumental Version", "1F0w3LvvUK0ltYjGyKShWV"], ["Quirky Bones", "63zcg71PNna984eU8Ihguy"], ["Fane's Theme", "4J3BNBTolywwhjDf17ApKG"]],
+      "larva": [["Shadows, Curse and Death", "4PEh8obDtNZVJC9VpwtuG8"], ["Embrace of the Deathfog", "1IBSnfX2z7UVhrTtVDK3pU"], ["Divine's Lament", "3mbtS5EQUolq8UDI1dQZiM"], ["Weeping Dawn", "6wRanpF1xuCCsyCIiLd8jH"], ["Surgery of a Hope", "53dt3DGL1bN9thWeHLa6Ss"], ["Last Light", "2q6qX08PGZHRHyJwcWjTHb"]],
+      "informant": [["Quirky Bones - Murky Version", "1VbGGqps3QzMqpLBqaZYh4"], ["Mysterious Trails", "2cKsy1Hj7y2U2fN0hsPk2X"], ["Who Are You", "0xKMPC2v7aCDZs0PBlIUSe"], ["Fane's Theme", "4J3BNBTolywwhjDf17ApKG"], ["Reflections from the Past", "4axplIj4dxBBM0cH3foHNc"], ["Mind Flayer Theme", "7fzJa1R8LTXpti0mO1lWOW"]],
+      "soul-pit": [["Bard Dance", "5SThqBFjkajbeZ496viOKq"], ["Ale of Balduran", "3bR9lqBpz0S21rvM24R9nH"], ["The Queen's High Seas - Tavern Version", "74UkHtiZUfsz2F4PriPoq4"], ["Old Time Battles - Bard Version", "4ufxBMgGcxpGGoiUF81SrT"], ["Amber Ale", "4I79eE5kmvsl8vUuEPAiDI"], ["Mead, Gold and Blood - Ifan's Theme", "11lCN6s42ihQKxJNjB6ia7"]],
+      "devils-teeth": [["Cunning Cruel Crits", "4nkkpWp0uJpvQXmlokSXcJ"], ["Twisted Force", "14VlKKJMcMHfTc8MdLQuZ8"], ["The Odds Are Cast Anew", "2KI4y4PO2AKw3T5tFahiBH"], ["Old Time Battles, Pt. 2", "5XpGqzZ0Iw4zXbFAub8Ye8"], ["Lead Your Fights", "21b0hZPbxJpiKdKCKV0yjh"], ["Nine Blades", "5o8MYMv2u3SjbH5pfa6ZRx"]],
+      "ninefingers": [["Harpy Song", "5a2dn7PboRpZE6HAfWsJfd"], ["Sing for Me (Lohne's Theme) - Bobby's Version", "61ngAmYOmuHKiDF8Oz8tUF"], ["Sing for Me - Lohse Version", "5lGEnZ2Fi53GrCCig7JnPH"], ["Wash My Dreams Away", "0ocLCJBGWejo03GDLa5jPT"], ["Reflections from the Past", "4axplIj4dxBBM0cH3foHNc"], ["Nightsong", "0Us9iU55GkpmKXP21BkQyf"], ["Wash My Pain Away", "3lRLdQyvXpE0cFhihkeB8i"]],
+      "hourglass": [["A Tear in the Veil", "0PgXxOJyPnTvcUaZjtcfUg"], ["Divine's Lament - Bonus Song", "04EgYGPeDzjEUtGVTbQEn1"], ["The Grand Design (Requiem)", "6bdzMwXPwyz4nlAI0evkGf"], ["Symphony of the Void", "6R2XELBRCWt9Or4fhh6koW"], ["Sins and Gods - Choir Version", "0asXkraWzjNnRKloDydxWR"], ["Embrace of the Deathfog", "1IBSnfX2z7UVhrTtVDK3pU"]],
+      "bell": [["Raphael's Final Act", "3KBQN4dBHxyLEdCNCfSKMV"], ["The Legacy of Bhaal", "68pYaLF2NxDJTltTP3QZTP"], ["Elder Brain", "5D1tZVEhS54xQsBxHgEmtO"], ["A Threat from Nether Years", "0aYbWstvduqCnAC1yZ0R4S"], ["The Battle for Divinity", "2TBRVGwmayiNWtZeVxBGD9"], ["Gather Your Allies!", "1SCZhTOsqGp6lHS54jJOdt"], ["The Power - Orchestral Version", "4PK8w6i17WXWz8pS7CabBQ"]]
+    },
+
+    // Mysterious rows (Claude's picks, 2026-11-21: keep, cut or add): the monitor shows the picture darkened, this name
+    // and this line, the price, and no rarity and no rules, until the DM presses Identify on his page.
+    mystery: {
+      forge: {
+        "Sun blade": { name: "A gold hilt with no blade", text: "Warm in the hand, and too light. Pawned twice on this floor, and it came back twice. Rassh will not say what it does until it is paid for." },
+        "Javelin of lightning": { name: "A javelin that smells of a storm", text: "The head crackles when nobody is touching it. Blue dragon work, he says, and he will not say whose." }
+      },
+      rapture: {
+        "Instant fortress (Daern's)": { name: "A small grey cube, far too heavy", text: "Dark metal the size of a die, with a tiny door cut into one face. Mahadi calls it a house-warming present." },
+        "Portable hole": { name: "A folded black cloth", text: "Fine black silk, folded to a handkerchief. Unfolded on the table, nobody can see where it ends." },
+        "Feather token: anchor": { name: "A silver feather that weighs like lead", text: "Quaal's work, Mahadi says, and nothing more." }
+      },
+      barber: {
+        "Luckstone": { name: "A river pebble with a hole in it", text: "Grey and smooth, on a cord. Burney says it has kept three customers alive and one of them rich." },
+        "Moon sickle, +2": { name: "A herb-cutter's silver sickle", text: "She cuts her herbs with it. She will not say where a barber got one, and the blade is never dull." }
+      },
+      bank: {
+        "Iron flask, occupied": { name: "A sealed flask, warm to the touch", text: "Top shelf, no tag. Something inside it shifts when nobody is holding it. It is not empty." },
+        "Gem of seeing": { name: "A clear gem with an eye in it", text: "Tagged 'a seer, foreclosed'. Something inside the stone looks back." },
+        "Elemental gem, red corundum": { name: "A red stone, warm to the touch", text: "Something inside it flickers. Fhet'Ahla advises against breaking it indoors." },
+        "Figurine of wondrous power, bronze griffon": { name: "A bronze griffon, pocket-sized", text: "Heavy, its beak open as if to scream. Tag: a Hellrider scout." }
+      },
+      ichor: {
+        "Potion of longevity": { name: "An amber bottle with things floating in it", text: "A scorpion's tail, a snake's fang and a dead spider. Elliach calls it the most valuable thing on the cart, and the most dangerous." }
+      },
+      larva: {
+        "Iron bands of Bilarro": { name: "A rusty iron ball", text: "Bands of old iron, locked into each other. It rattles. Z'neth tosses it from hand to hand and grins." },
+        "Horn of Valhalla, silver": { name: "A silver war horn", text: "Dented, polished, very old. Z'neth says the ones who answer it are grateful." },
+        "Rope of entanglement": { name: "A coil of black rope that will not lie still", text: "It moves when nobody is looking at it." }
+      }
+    },
+
     hide: {
       rapture: ["An hour before the bell", "The party's own hospitality debt, bought back"],
       larva: ["A kobold from Arkhan's train"],
@@ -121,7 +174,7 @@
       forge: {
         "Arrow of dragon slaying": "A dragon hit makes a DC 17 Constitution save, taking 6d10 extra piercing or half. The heads are cut from dragon scale.",
         "Hellfire arrows": "+2d6 fire that ignores resistance, not immunity. A humanoid killed by one wakes in the Styx as a lemure. Rassh says so before he takes the coin.",
-        "Moonkite's barding, sun-steel": "AC 18 for a celestial mount, no loss of speed, flying or running. It glows.",
+        "Moonkite's barding, sun-steel": "AC 18 for a celestial mount, and no loss of speed in the air: a domed shell for Moonkite's body and a guard for each of its six wings. It glows.",
         "Sentinel shield": "Advantage on initiative and on Perception. For whoever stands watch.",
         "Adamantine full plate": "AC 18. Any critical hit against the wearer becomes a normal hit. For Veska or Lucan.",
         "Armour of cold resistance, breastplate": "Resistance to cold: a white dragon's breath, the ice road. Attunement. He made three and sold two this week, both to riders.",

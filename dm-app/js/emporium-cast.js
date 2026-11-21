@@ -15,6 +15,7 @@
     ledger: "dmapp:emporium:ledger",     // the DM page's purchases
     state: "dmapp:emporium:state",       // the DM page's own state; the purses are read from it
     revealed: "dmapp:emporium:revealed", // keys of hidden rows the party has earned
+    identified: "dmapp:emporium:identified", // keys of mysterious rows the DM has named on the monitor
     cast: "dmapp:emporium:cast",         // { follow, music, links }: the DM's switches and his own Spotify links
     playing: "dmapp:emporium:playing"    // the link opened last, so two windows do not restart one track
   };
@@ -50,19 +51,37 @@
   function isHidden(spot, it, players) {
     return !!it.favourOnly || ((players.hide || {})[spot.id] || []).indexOf(Core.stripTags(it.name)) !== -1;
   }
-  // The cards of one stall for the monitor: no hidden rows unless revealed, the players' line instead of the DM's note.
-  function publicGoods(spot, players, revealed, ledger) {
+  // A row the monitor shows under a veil until the DM names it: { name, text } from the players' file, or null.
+  function mysteryOf(spot, it, players) { return ((players.mystery || {})[spot.id] || {})[Core.stripTags(it.name)] || null; }
+  // The cards of one stall for the monitor: no hidden rows unless revealed, the players' line instead of the DM's note,
+  // and a mysterious row under its veil (no true name, no rarity, no description) until it is identified.
+  function publicGoods(spot, players, revealed, ledger, identified) {
     var say = (players.say || {})[spot.id] || {}, shown = Array.isArray(revealed) ? revealed : [], sold = soldCounts(ledger);
+    var named = Array.isArray(identified) ? identified : [];
     return (spot.stock || []).map(function (it) {
       var name = Core.stripTags(it.name), k = key(spot.id, it.name), hidden = isHidden(spot, it, players);
       if (hidden && shown.indexOf(k) === -1) return null;
-      var priced = it.sc > 0;
+      var priced = it.sc > 0, veil = mysteryOf(spot, it, players), mystery = !!veil && named.indexOf(k) === -1;
       return {
-        key: k, name: name, g: it.g || "", rarity: it.rarity || "", sc: priced ? it.sc : null,
-        gp: priced && !it.scOnly ? emp().goldPrice(it, spot) : null, extra: it.extra || "", qty: it.qty || "",
-        left: onHand(it, sold[k]), bought: sold[k] || 0, revealed: hidden, text: say[name] || Core.stripTags(it.note || "")
+        key: k, name: mystery ? veil.name : name, g: it.g || "", rarity: mystery ? "unidentified" : it.rarity || "",
+        sc: priced ? it.sc : null, gp: priced && !it.scOnly ? emp().goldPrice(it, spot) : null, extra: it.extra || "",
+        qty: it.qty || "", left: onHand(it, sold[k]), bought: sold[k] || 0, revealed: hidden, mystery: mystery,
+        identified: !!veil && !mystery, text: mystery ? veil.text : say[name] || Core.stripTags(it.note || "")
       };
     }).filter(Boolean);
+  }
+  // Where a row's picture sits: one tile of a sheet of side x side, as CSS background values. null: not painted yet.
+  function sprite(art, k) {
+    var at = art && art.at && art.at[k], side = (art && art.side) || 4;
+    var src = at && art.sheets && art.sheets[String(at[0])];
+    if (!src) return null;
+    var step = 100 / (side - 1), col = at[1] % side, row = Math.floor(at[1] / side);
+    return { src: src, size: side * 100 + "% " + side * 100 + "%", pos: +(col * step).toFixed(4) + "% " + +(row * step).toFixed(4) + "%" };
+  }
+  // The full rules text of a row ({ type, text: [paragraph or { table }] }), or null for a row with only its own line.
+  function fullText(texts, k) {
+    var id = texts && texts.rows && texts.rows[k];
+    return id && texts.entries[id] ? texts.entries[id] : null;
   }
   // What is left of a purse set at the recap; what was spent when none was set.
   function purse(state, ledger) {
@@ -103,7 +122,8 @@
 
   var Cast = {
     KEYS: KEYS, FX: FX, key: key, stockCount: stockCount, soldCounts: soldCounts, onHand: onHand, isHidden: isHidden,
-    publicGoods: publicGoods, purse: purse, haul: haul, paid: paid, newEntries: newEntries, spotifyUri: spotifyUri
+    mysteryOf: mysteryOf, publicGoods: publicGoods, sprite: sprite, fullText: fullText, purse: purse, haul: haul, paid: paid,
+    newEntries: newEntries, spotifyUri: spotifyUri
   };
   if (inNode) { module.exports = Cast; return; }
 
@@ -115,7 +135,8 @@
     try { localStorage.setItem(k, JSON.stringify(value)); return true; } catch (e) { return false; }
   }
   function castState() { return Object.assign({ follow: true, music: true, links: {} }, load(KEYS.cast, {})); }
-  function screen() { return Object.assign({ spot: null, item: null, haul: false }, load(KEYS.screen, {})); }
+  // bare: the shop's goods panel is folded away on the monitor, so the painting shows whole
+  function screen() { return Object.assign({ spot: null, item: null, haul: false, bare: false }, load(KEYS.screen, {})); }
 
   // ---- music: a location click opens its Spotify link in the desktop app ----
   function linkFor(players, spotId) {
@@ -184,6 +205,7 @@
       button("📺 Player screen", "btn go", function () { window.open("emporium.html?view=players", "dm-emporium-players"); }),
       tick("Monitor follows my clicks", "follow"),
       button("Map on monitor", "btn", function () { show({ spot: null, item: null, haul: false }); play(players, null); }),
+      button("Fold / unfold the shelves", "btn", function () { show({ bare: !screen().bare }); }),
       button("Show the haul", "btn", function () { show({ item: null, haul: true }); }),
       tick("Music changes with the place", "music"),
       musicField(null, "Market theme")
@@ -199,27 +221,60 @@
 
     return {
       // The DM chose a spot: the monitor goes there and its music starts, unless he is looking privately.
-      spot: function (id) { if (castState().follow) { show({ spot: id, item: null, haul: false }); play(players, id); } },
+      spot: function (id) { if (castState().follow) { show({ spot: id, item: null, haul: false, bare: false }); play(players, id); } },
       // The DM pressed Buy: the monitor holds that item up. null puts it down.
       item: function (spotId, name) {
         if (!castState().follow) return;
         show(name ? { spot: spotId, item: key(spotId, name), haul: false } : { item: null });
       },
-      // A hidden row gets a badge and a switch; any other row gets nothing.
+      // A hidden row gets a Reveal switch, a mysterious one an Identify switch; any other row gets nothing.
       rowControls: function (spot, it, redraw) {
-        if (!isHidden(spot, it, players)) return null;
-        var k = key(spot.id, it.name), shown = load(KEYS.revealed, []), on = shown.indexOf(k) !== -1;
-        var wrap = el("span", "qty hidden-row", on ? "revealed on the monitor " : "hidden from the players ");
-        wrap.appendChild(button(on ? "Hide again" : "Reveal", "btn small", function () {
-          tell(save(KEYS.revealed, on ? shown.filter(function (x) { return x !== k; }) : shown.concat([k])));
-          redraw();
-        }));
-        return wrap;
+        var k = key(spot.id, it.name), veil = mysteryOf(spot, it, players), out = [];
+        function toggle(store, label, onText, offText, onBtn, offBtn) {
+          var list = load(store, []), on = list.indexOf(k) !== -1;
+          var wrap = el("span", "qty hidden-row " + label, on ? onText : offText);
+          wrap.appendChild(button(on ? onBtn : offBtn, "btn small", function () {
+            tell(save(store, on ? list.filter(function (x) { return x !== k; }) : list.concat([k])));
+            redraw();
+          }));
+          return wrap;
+        }
+        if (isHidden(spot, it, players)) out.push(toggle(KEYS.revealed, "rv", "revealed on the monitor ", "hidden from the players ", "Hide again", "Reveal"));
+        if (veil) out.push(toggle(KEYS.identified, "id", "named on the monitor ", "on the monitor as '" + veil.name + "' ", "Veil again", "Identify"));
+        if (!out.length) return null;
+        var box = el("span", "row-controls");
+        out.forEach(function (n) { box.appendChild(n); });
+        return box;
       },
       musicField: function (spot) { return musicField(spot.id, "Music here"); }
     };
   }
 
+  // The full rules text as nodes, for the monitor's pop-up and the DM page alike. The text is our own generated
+  // file (tools/build_item_text.py); it is escaped before the two markers it uses, **bold** and _italic_, become tags.
+  function rulesNodes(entry, credit) {
+    var el = window.DMRender.el;
+    function rich(text) {
+      var p = el("p");
+      p.innerHTML = String(text).replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;")
+        .replace(/\*\*_?(.+?)_?\*\*/g, "<b>$1</b>").replace(/(^|[\s(])_(.+?)_(?=[\s.,;:)]|$)/g, "$1<i>$2</i>");
+      return p;
+    }
+    function table(rows) {
+      var t = el("table", "pv-rules-table");
+      rows.forEach(function (r, i) {
+        var tr = el("tr");
+        r.forEach(function (c) { tr.appendChild(el(i ? "td" : "th", "", c.replace(/\*\*|_/g, ""))); });
+        t.appendChild(tr);
+      });
+      return t;
+    }
+    var out = entry.text.map(function (para) { return typeof para === "string" ? rich(para) : table(para.table); });
+    if (credit) out.push(el("p", "pv-credit credit", credit));
+    return out;
+  }
+
+  Cast.rulesNodes = rulesNodes;
   Cast.load = load;
   Cast.save = save;
   Cast.screen = screen;

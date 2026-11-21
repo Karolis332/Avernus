@@ -78,7 +78,7 @@
         { name: "{@item Glamoured studded leather|DMG}", rarity: "rare", sc: 9, note: "+1, and a bonus action makes it look like any clothes or armour: court silks at the high table, a rider's black on the jetty. For Aurora." }
       ]),
       shelf("For Moonkite and the Hellriders", [
-        { name: "{@item Horseshoes of speed|DMG}", rarity: "rare", sc: 9, note: "+30 ft. to a mount's walking speed, nothing for its wings. Fitted to Moonkite in an hour. It does not like the forge, and Rassh does not like being looked at that way." }
+        { name: "{@item Horseshoes of speed|DMG}", rarity: "rare", sc: 9, note: "+30 ft. to a mount's walking speed, nothing for its wings. Fitted to a horse or a nightmare in an hour. No use to Moonkite, who has wings and no hooves; Rassh offers them anyway, and Moonkite does not like being looked at that way." }
       ])
     ),
 
