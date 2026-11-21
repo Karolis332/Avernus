@@ -305,6 +305,14 @@
   }
   function riddleSound() { chime([196, 247, 196, 330], 0.2, "triangle"); }
 
+  // a game board (js/emporium-boards.js); it fades in once, not again on every roll
+  function drawBoard(id) {
+    var b = id && window.DMEmporiumBoards ? window.DMEmporiumBoards.draw(id) : null;
+    if (b && view.boardDrawn === id) b.classList.add("steady");
+    view.boardDrawn = id;
+    return b;
+  }
+
   function render() {
     var scr = Cast.screen(), s = spotById(scr.spot);
     root.dataset.mode = scr.haul ? "haul" : s ? "shop" : "map";
@@ -318,7 +326,7 @@
     var keep = stage.querySelector(".pv-cards"), scroll = keep ? keep.scrollTop : 0;
     var keepRules = stage.querySelector(".pv-pop-rules"), rulesScroll = keepRules ? keepRules.scrollTop : 0;
     stage.replaceChildren.apply(stage, (scr.haul ? [drawHaul()] : s ? [drawShop(s, scr.bare), scr.item ? drawPopup(s, scr.item) : null] : [drawMap()])
-      .concat([scr.board && !scr.haul && window.DMEmporiumBoards ? window.DMEmporiumBoards.draw(scr.board) : null,
+      .concat([drawBoard(scr.board && !scr.haul ? scr.board : null),
         scr.riddle && !scr.haul ? drawRiddle(scr.riddle) : null, scr.secret ? drawSecret(scr.secret) : null]).filter(Boolean));
     var cards = stage.querySelector(".pv-cards"), rulesBox = stage.querySelector(".pv-pop-rules");
     if (cards) cards.scrollTop = scroll;

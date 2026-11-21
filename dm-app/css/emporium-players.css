@@ -222,7 +222,8 @@ button.pv-card:hover .pv-thumb i { transform: scale(1.18); }
 @keyframes pv-secret-rise { from { opacity: 0; transform: translateY(3vh) scale(.96); filter: blur(.4vw); } to { opacity: 1; transform: none; filter: none; } }
 
 /* ---- the game boards (js/emporium-boards.js): the live board left, how it plays right ---- */
-.pv-board { position: absolute; inset: 0; z-index: 40; display: grid; place-items: center; background: radial-gradient(ellipse at center, rgba(40, 22, 10, .55), rgba(6, 3, 2, .92) 72%); animation: pv-in .6s ease-out; }
+.pv-board { position: absolute; inset: 0; z-index: 40; display: grid; place-items: center; background: radial-gradient(ellipse at center, rgba(30, 16, 8, .8), rgba(6, 3, 2, .95) 72%); animation: pv-in .6s ease-out; }
+.pv-board.steady { animation: none; }
 .pb-frame { width: 86vw; max-height: 92vh; padding: 3vh 2.4vw; border: .16vw solid var(--accent); border-radius: .8vw; background: linear-gradient(160deg, rgba(30, 18, 10, .96), rgba(12, 7, 4, .97)); box-shadow: 0 0 5vw color-mix(in srgb, var(--accent) 35%, transparent); overflow: hidden; }
 #pv .pb-frame > h2 { font-size: 2.6em; text-align: center; margin-bottom: 2vh; text-shadow: 0 0 1.2vw color-mix(in srgb, var(--accent) 60%, transparent); }
 .pb-body { display: grid; grid-template-columns: 1fr 24vw; gap: 2.4vw; align-items: start; }
@@ -252,14 +253,16 @@ button.pv-card:hover .pv-thumb i { transform: scale(1.18); }
 .pb-lane.out { opacity: .35; filter: grayscale(1); }
 .pb-lane.win { border-color: #ffd76a; box-shadow: 0 0 2vw rgba(255, 200, 80, .6); }
 .pb-lane-name { position: absolute; left: .8em; top: .3em; font-family: Cinzel, serif; font-size: .9em; color: #f6e9c6; z-index: 1; }
-.pb-lemure { position: absolute; bottom: .4vh; width: 5vh; height: 5vh; line-height: 5vh; text-align: center; font-size: 5vh; color: #e8a0a0; text-shadow: 0 0 .8vw rgba(200, 80, 80, .8); transition: left 1.6s cubic-bezier(.3, .1, .2, 1); animation: pb-wobble .5s ease-in-out infinite alternate; }
-.pb-lemure.asleep { font-size: 3.4vh; animation: none; }
-.pb-move { position: absolute; right: .8em; top: .3em; font-family: Cinzel, serif; color: #ffd76a; }
+/* a lemure: a melting pink blob with two dark eyes */
+.pb-lemure { position: absolute; bottom: .6vh; width: 6.4vh; height: 5.2vh; border-radius: 50% 50% 38% 38% / 62% 62% 38% 38%; background: radial-gradient(circle at 34% 40%, #2a0a0a 0 7%, transparent 8%), radial-gradient(circle at 64% 40%, #2a0a0a 0 7%, transparent 8%), radial-gradient(ellipse at 45% 30%, #f4b8b0, #b4504a 60%, #6a1e1a); box-shadow: 0 .6vh 1vh rgba(0, 0, 0, .6), 0 0 1vw rgba(220, 90, 80, .45); text-align: center; line-height: 5.2vh; font-size: 2.6vh; transition: left 1.6s cubic-bezier(.3, .1, .2, 1); animation: pb-wobble .5s ease-in-out infinite alternate; }
+.pb-lemure.asleep { animation: none; filter: saturate(.4) brightness(.8); }
+.pb-move { position: absolute; right: 9%; top: .3em; font-family: Cinzel, serif; color: #ffd76a; }
 .pb-round { margin: 1vh 0 0; text-align: center; font-family: Cinzel, serif; font-size: 1.5em; }
 @keyframes pb-wobble { from { transform: translateY(0) scaleX(1); } to { transform: translateY(-.6vh) scaleX(.9); } }
 /* Imp Skulls */
 .pb-skulls { display: flex; flex-wrap: wrap; gap: 1vw; justify-content: center; min-height: 12vh; }
-.pb-skull { width: 9vh; height: 9vh; line-height: 9vh; text-align: center; border-radius: 1.2vh; font-family: Cinzel, serif; font-size: 4.5vh; font-weight: 700; color: #2b1d0e; background: #f6e9c6; box-shadow: 0 .4vh 1vh rgba(0, 0, 0, .6); animation: pb-roll .5s ease-out; }
+.pb-skull { width: 9vh; height: 9vh; line-height: 9vh; text-align: center; border-radius: 1.2vh; font-family: Cinzel, serif; font-size: 4.5vh; font-weight: 700; color: #2b1d0e; background: #f6e9c6; box-shadow: 0 .4vh 1vh rgba(0, 0, 0, .6); }
+.pb-skull:last-child { animation: pb-roll .5s ease-out; }
 .pb-skull.bit { color: #fff; background: #a11a12; box-shadow: 0 0 2vw rgba(220, 40, 30, .9); }
 .pb-house { margin: 1.4vh 0 0; text-align: center; font-family: Cinzel, serif; font-size: 1.4em; color: #e8b0a0; }
 @keyframes pb-roll { from { transform: rotate(-200deg) scale(.4); opacity: 0; } to { transform: none; opacity: 1; } }

@@ -146,9 +146,10 @@
     var def = DATA.boards[id], box = el("div", "board-ctl");
     function go(a) { setState(id, act(def, stateOf(id), a)); if (!cast.boardShown(id)) cast.board(id, true); draw(); }
     function draw() {
-      var s = stateOf(id), shown = cast.boardShown(id), row = el("p", "talk-act");
+      var s = stateOf(id), row = el("p", "talk-act");
       box.replaceChildren(el("h4", "", "On the monitor: " + def.title + (def.fighter ? " (" + s.fighter + ")" : "")));
-      add(row, btn(shown ? "Take the board down" : "Show the board", "btn small" + (shown ? "" : " go"), function () { cast.board(id, !shown); draw(); }),
+      add(row, btn("Show the board", "btn small go", function () { cast.board(id, true); }),
+        btn("Take it down", "btn small", function () { if (cast.boardShown(id)) cast.board(id, false); }),
         btn("Reset", "btn small", function () { go({ type: "reset" }); }));
       box.appendChild(row);
       var k = el("p", "talk-act"), say = el("p", "hint");
@@ -208,7 +209,7 @@
   function raceBoard(id, def, s) {
     var from = lastPos[id] || s.pos, track = el("div", "pb-track");
     def.runners.forEach(function (r, i) {
-      var lane = el("div", "pb-lane" + (s.out[i] ? " out" : "") + (s.winner === i ? " win" : "")), blob = el("span", "pb-lemure" + (s.asleep[i] ? " asleep" : ""), s.asleep[i] ? "💤" : "●");
+      var lane = el("div", "pb-lane" + (s.out[i] ? " out" : "") + (s.winner === i ? " win" : "")), blob = el("span", "pb-lemure" + (s.asleep[i] ? " asleep" : ""), s.asleep[i] ? "💤" : "");
       var pct = function (p) { return Math.min(100, p / def.length * 100) * 0.88 + "%"; };
       blob.style.left = pct(from[i]);
       requestAnimationFrame(function () { requestAnimationFrame(function () { blob.style.left = pct(s.pos[i]); }); });
@@ -225,7 +226,7 @@
     var total = sum(s.pile);
     return add(el("div", "pb-pot"), add.apply(null, [el("div", "pb-skulls")].concat(s.pile.map(function (n) { return el("span", "pb-skull" + (n === 1 ? " bit" : ""), String(n)); }))),
       el("p", "pb-total", s.bust ? "The imp bites!" : "Pile: " + total + (total >= def.target ? "  ·  a full skull" : "")),
-      s.house.length ? add(el("p", "pb-house"), document.createTextNode("Velluc: " + s.house.join(" + ") + " = " + sum(s.house))) : null,
+      s.house.length ? add(el("p", "pb-house"), document.createTextNode("Velluc: " + s.house.join(" + ") + (s.house[s.house.length - 1] === 1 ? "  ·  the imp bites Velluc!" : " = " + sum(s.house)))) : null,
       s.result ? el("p", "pb-banner" + (s.result === "win" ? "" : " lost"), s.result === "win" ? (total >= def.target ? "Full skull: paid twice!" : "The house pays!") : "The house wins") : null);
   }
   function toastBoard(def, s) {
