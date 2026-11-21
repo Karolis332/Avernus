@@ -23,11 +23,14 @@ OPEN = ("A wide painterly dark fantasy illustration, the establishing picture of
         "in Avernus, the first layer of the Nine Hells, seen at eye level from where a customer stands. ")
 # The goods list is drawn over the right side of the picture, so the subject sits left of centre.
 FRAME = (" Composition: the subject fills the left and the centre of the frame. The right third of the frame is darker and "
-         "quieter, in shadow, with nothing important in it. Far behind, strings of warm market lanterns and a hazy dark red sky.")
+         "quieter, in shadow, with nothing important in it.")
+BACKDROP = " Far behind, strings of warm market lanterns and a hazy dark red sky."
+INDOORS = {"soul-pit", "devils-teeth", "ninefingers"}  # inside a tent or a booth: no sky behind
 LOOK = (" Gritty painterly brushwork with no outlines, realistic proportions, rich detail, deep shadows, a dark and uneasy "
         "mood, the look of a professional concept painting.")
+# The Forge sample was painted with "No humans and no other customers." in place of the last sentence.
 RULES = (" No text, no letters, no numbers, no writing on any sign, no border, no frame, no user interface. "
-         "No humans and no other customers.")
+         "Only the figures described are in the picture, and nobody else.")
 
 SCENES = {
     "forge": (
@@ -40,6 +43,105 @@ SCENES = {
         "spear heads, sheaves of arrows, shields and pieces of plate armour hang on the opened hull plates; a quenching "
         "trough steams; chains and hooks hang overhead. Fierce orange forge light, sparks and embers in the air."
     ),
+    "jetty": (
+        "The jetty: a pier of black planks hung on heavy chains over the black water of the river Styx, a lantern on every "
+        "post, seen from the market end looking down its length. Moored at the far end is a long black iron flying galley, "
+        "several decks tall, with a great harpoon launcher at her bow and a crow's nest above her; the severed heads of two "
+        "dragons are lashed to her prow, one red and one blue. On the left, where the planks meet a shelf of grey ice, "
+        "three riders in black plate armour sit motionless on black horses whose manes and hooves are fire, watching the "
+        "ship. Cold mist drifts over the water; the lanterns make pools of warm light on the wet planks."
+    ),
+    "gate": (
+        "The gate of the market: two huge spiked iron war machines, armoured infernal wagons, parked nose to nose so that "
+        "their rams form an arch over the way in. A large sheet of parchment is nailed to the hull of the left one with an "
+        "iron spike: a wanted notice, its writing only illegible scratches, its red wax seal still wet and dripping. On the "
+        "roofs of the war machines stand two small horned devils with brass speaking trumpets, calling out. Through the "
+        "arch, a ring of lantern light and a great red silk pavilion in the distance. Torches burn on iron poles; grey ash "
+        "drifts down."
+    ),
+    "rapture": (
+        "Infernal Rapture: a pavilion of deep red silk four storeys high, with gold ribs and gold tassels, glowing from "
+        "within like a paper lantern. Its tall entrance is drawn open on a hall of low tables set with silver and crystal, "
+        "steaming dishes, hanging brass lamps and heaped cushions; a stair curls up to a high table. In the entrance stands "
+        "the host, a tall, elegant man in a long coat of red and gold silk, bowing slightly in welcome with his hands "
+        "folded in front of him, his face half in shadow. Golden motes of light hang in the warm air and steam rises "
+        "through the floor from the baths below."
+    ),
+    "barber": (
+        "The barber's stall: a small stall under a red and white striped awning, with one old leather barber's chair, a "
+        "shelf of bottles, tonics, combs, razors and jars of ink, a cracked mirror, and a big copper basin of clean hot "
+        "water steaming on an iron stand. The barber is a sturdy, cheerful, middle-aged woman with her sleeves rolled up "
+        "and a clean apron, stropping a razor, seen from the side as she turns toward the empty chair. Warm lamp light the "
+        "colour of honey and curling white steam: the one friendly, homely corner of a hellish market."
+    ),
+    "bank": (
+        "The bank: a heavy armoured iron carriage on great wheels with a counter cut into its side, a brass grille and a "
+        "set of brass scales on the counter. Behind the counter, filling the carriage from floor to roof, is an iron cage "
+        "crammed with pawned treasures: rings on hooks, cloaks, wands, swords, a harp, holy symbols and small chests, each "
+        "with a blank paper tag on a string. The banker sits behind the grille: a squat, heavy devil with a large bald "
+        "head, a wide mouth with small tusks and small leathery wings folded behind a high-collared banker's coat, writing "
+        "in a ledger with a quill, eyes lowered. Cold candle light glints on gold; coins stand in neat towers."
+    ),
+    "ichor": (
+        "The alchemist's wagon: a wagon built of glass and brass, crowded with vats, coiled tubes, retorts and shelves of "
+        "jars and bottles that glow from inside in acid green, violet and sickly yellow, bubbling. A thin, cheerful man in "
+        "a stained leather apron and round spectacles leans over the counter, seen in profile, holding out a long tasting "
+        "spoon that drips glowing liquid; two fingers of that hand are a different colour from the rest. Coloured vapour "
+        "and rising bubbles in the air, glints on the glass, puddles of glowing spill on the ground."
+    ),
+    "larva": (
+        "The larva farm: a row of low, wet wooden pens under a sagging tarpaulin, slick with slime, and in the pens dozens "
+        "of pale, fat, maggot-like larvae as long as a forearm, heaped and squirming in the shadow, a few with the faint "
+        "suggestion of a sad human face. A hobgoblin warlord walks the rails, seen from the side: tall and broad, with dark "
+        "orange skin, in a general's long coat with tarnished braid over armour, a grading stick in his hand. Behind the "
+        "pens stands a patched war tent with a torn banner over its door, and crates of weapons and armour. Sickly "
+        "yellow-green lantern light, drifting mist, a damp, cold gloom."
+    ),
+    "informant": (
+        "The informant: no stall at all, only a narrow black gap between two parked iron war machines. Folded into that "
+        "dark sits a bone devil: a very tall, gaunt, skeletal devil with dry skin stretched over its bones, a skull-like "
+        "head, thin folded wings and a long scorpion tail curled round its feet. It holds a satchel stuffed with papers "
+        "and scrolls on its knees and a quill pen in its long fingers, and it looks straight at the viewer with two small "
+        "points of pale light for eyes. One guttering lantern on the ground, loose blank sheets of paper on the frozen "
+        "dirt, smoke drifting through the gap."
+    ),
+    "soul-pit": (
+        "A gambling den inside a big, dark purple tent: a sunken ring of wooden benches steps down to a round table covered "
+        "in green felt, lit from above by a ring of hanging lanterns. On the felt lie two bone dice and a heap of thick "
+        "black coins that glow faintly from within. The dealer stands at the table: a handsome cambion with small curved "
+        "horns, red-brown skin and folded bat wings, in a gambler's waistcoat, one open hand over the dice, smiling. Round "
+        "the ring a crowd three deep of devils is only dark silhouettes with raised fists against the lantern smoke. "
+        "Violet haze."
+    ),
+    "devils-teeth": (
+        "A dice den under a dark tent: an upended iron-bound barrel serves as the table, with two large dice of yellowed "
+        "bone on its lid and a tall glass jar full of teeth and fangs beside them. Behind the barrel squats a barbed devil: "
+        "a lean, man-sized devil covered from head to tail in sharp barbs and spines, with glowing eyes and long clawed "
+        "fingers, holding out an open palm for the next stake. Behind him a few hyena-headed gnolls and small winged imps "
+        "are dim silhouettes. Red ember light, sparks and smoke."
+    ),
+    "ninefingers": (
+        "A fortune-teller's booth hung with heavy, dark violet curtains, lit by a single tall candle whose flame stands "
+        "perfectly still. Behind a small round table sits a night hag: a gaunt old woman with dark blue-violet skin, small "
+        "horns, long white hair and ragged black robes, her face mostly hidden in the shadow of her hood, her long-nailed "
+        "hands laying out a fan of old playing cards face up on the cloth; the cards are painted with small portraits of "
+        "faces. A bulging leather sack as big as a child sits on the floor by her chair, tied with cord. Dust motes in the "
+        "candle light and deep darkness between the curtains."
+    ),
+    "hourglass": (
+        "The bookmaker's stand: an hourglass taller than a man, its glass bulbs full of fine black sand falling in a thin "
+        "stream, held in a stand made of long pale bones. Beside it, at a high clerk's desk, stands a bone devil in a neat "
+        "dark clerk's coat: a tall, gaunt, skeletal devil with dry skin over bone, a skull-like head with a hooked smile, "
+        "folded wings and a scorpion tail, an open ledger in front of it and a pen in its hand. Ash falls slowly through "
+        "the lamp light like sand; a single lamp, long shadows, a cold stillness."
+    ),
+    "bell": (
+        "The edge of the market: the last iron war machine at the rim of the camp, with a tall iron mast rising from its "
+        "roof and a great black iron bell hanging from the mast. Below it a faintly glowing red line runs across the "
+        "ground. On the near side of the line, warm lantern light and trampled dirt. On the far side, a road of pale ice "
+        "runs away into thick grey fog and falling snow. Nobody is there. Snowflakes drift across the line and melt in the "
+        "warm light. A cold, waiting silence."
+    ),
 }
 
 
@@ -50,9 +152,13 @@ def hf(*args: str) -> object:
     return json.loads(r.stdout)
 
 
+def prompt(key: str) -> str:
+    return OPEN + SCENES[key] + FRAME + ("" if key in INDOORS else BACKDROP) + LOOK + RULES
+
+
 def paint(key: str, jobs: dict) -> dict:
     ids = hf("generate", "create", "nano_banana_2_1", "--aspect_ratio", "16:9", "--resolution", "2k",
-             "--prompt", OPEN + SCENES[key] + FRAME + LOOK + RULES)
+             "--prompt", prompt(key))
     if not (isinstance(ids, list) and len(ids) == 1):
         sys.exit(f"STOP: {key} returned {ids!r}")
     jobs = {**jobs, key: ids[0]}
