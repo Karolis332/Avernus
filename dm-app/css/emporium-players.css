@@ -201,5 +201,17 @@ button.pv-card:hover .pv-thumb i { transform: scale(1.18); }
 .pv-haul-col li b { white-space: nowrap; color: #ffd76a; }
 .pv-haul-sum, .pv-haul-total { font-family: Cinzel, serif; font-weight: 700; margin: 0; color: var(--accent); }
 .pv-haul-total { font-size: 1.4em; }
+.pv-haul-secrets { max-width: 60em; text-align: center; }
+.pv-haul-secrets ul { list-style: none; margin: .5em 0 0; padding: 0; }
+.pv-haul-secrets li { padding: .2em 0; }
+.pv-haul-secrets li b { color: #d9c8ff; font-family: Cinzel, serif; }
+
+/* A secret the party earned: a sealed card over whatever is on screen, until the DM puts it away. */
+.pv-secret { position: absolute; inset: 0; z-index: 50; display: grid; place-items: center; background: radial-gradient(ellipse at center, rgba(40, 20, 60, .55), rgba(4, 2, 8, .9) 70%); animation: pv-in .8s ease-out; cursor: pointer; }
+.pv-secret-card { max-width: 46vw; padding: 4vh 3.4vw; border: .14vw solid #b9a0ff; border-radius: .8vw; background: linear-gradient(160deg, rgba(34, 22, 46, .96), rgba(14, 9, 20, .97)); box-shadow: 0 0 5vw rgba(150, 110, 255, .45), inset 0 0 3vw rgba(150, 110, 255, .15); text-align: center; animation: pv-secret-rise 1.1s cubic-bezier(.2, .8, .2, 1); }
+.pv-secret-kicker { margin: 0 0 1.2vh; font-family: Cinzel, serif; font-size: .95em; letter-spacing: .25em; text-transform: uppercase; color: #b9a0ff; }
+#pv .pv-secret-card h2 { color: #efe6ff; font-size: 2.3em; margin-bottom: 2vh; text-shadow: 0 0 1.2vw rgba(185, 160, 255, .7); }
+.pv-secret-text { margin: 0; font-size: 1.45em; line-height: 1.55; font-style: italic; color: #f3ecdc; }
+@keyframes pv-secret-rise { from { opacity: 0; transform: translateY(3vh) scale(.96); filter: blur(.4vw); } to { opacity: 1; transform: none; filter: none; } }
 
 @media (prefers-reduced-motion: reduce) { #pv *, #pv *::before, #pv *::after { animation: none !important; transition: none !important; } }

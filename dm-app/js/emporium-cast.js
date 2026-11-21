@@ -17,7 +17,8 @@
     revealed: "dmapp:emporium:revealed", // keys of hidden rows the party has earned
     identified: "dmapp:emporium:identified", // keys of mysterious rows the DM has named on the monitor
     cast: "dmapp:emporium:cast",         // { follow, music, links }: the DM's switches and his own Spotify links
-    playing: "dmapp:emporium:playing"    // the link opened last, so two windows do not restart one track
+    playing: "dmapp:emporium:playing",   // the link opened last, so two windows do not restart one track
+    secrets: "dmapp:emporium:secrets"    // "spot|secret id" of every secret the party has uncovered tonight
   };
   var FX = ["embers", "bubbles", "steam", "mist", "smoke", "motes", "ash", "snow"];
   var MARKET = "_market"; // the links entry for the market's own theme, played on the map
@@ -138,9 +139,14 @@
   }
   function castState() { return Object.assign({ follow: true, music: true, links: {} }, load(KEYS.cast, {})); }
   // bare: the shop's goods panel is folded away on the monitor, so the painting shows whole
-  function screen() { return Object.assign({ spot: null, item: null, haul: false, bare: false }, load(KEYS.screen, {})); }
+  // secret: "spot|id" of the secret card the monitor is holding up, or null
+  function screen() { return Object.assign({ spot: null, item: null, haul: false, bare: false, secret: null }, load(KEYS.screen, {})); }
 
-  // ---- music: a location click opens its Spotify link in the desktop app ----
+  // ---- music: a location click starts its playlist in the Spotify app, quietly ----
+  // Through the helper tools/spotify-remote.mjs (the Web API): opening a spotify: link instead brought the Spotify
+  // window up every time and only showed a playlist without playing it (the DM, 2026-11-21).
+  var REMOTE = "http://127.0.0.1:8888";
+  var musicNote = function () {}; // the DM page shows what the helper says; the monitor shows nothing
   function linkFor(players, spotId) {
     var own = castState().links[spotId || MARKET];
     return own !== undefined ? own : (spotId ? (players.spots[spotId] || {}).music : players.music) || "";
@@ -150,10 +156,15 @@
     var uri = spotifyUri(linkFor(players, spotId));
     if (!uri || (!force && (!castState().music || load(KEYS.playing, null) === uri))) return false;
     save(KEYS.playing, uri);
-    // The page itself goes to the link: the browser hands it to the Spotify app and the page stays where it is.
-    // Not a hidden frame: Firefox lets a frame open an app link only once every ten seconds, so a second
-    // place clicked soon after the first kept the first one's music (seen at the table test, 2026-11-21).
-    window.location.href = uri;
+    fetch(REMOTE + "/play?uri=" + encodeURIComponent(uri)).then(function (r) { return r.json(); }).then(function (res) {
+      if (res.ok) return musicNote("♪ Playing in Spotify.");
+      save(KEYS.playing, null);
+      musicNote("♪ " + res.error);
+    }, function () {
+      save(KEYS.playing, null);
+      if (force) window.location.href = uri; // the ▶ button with the helper off: the old way, the Spotify window comes up
+      musicNote("♪ The music helper is off. Start it: node dm-app/tools/spotify-remote.mjs");
+    });
     return true;
   }
 
@@ -202,15 +213,26 @@
       return wrap;
     }
 
+    var status = el("span", "music-note");
+    musicNote = function (text) { status.textContent = text; };
+    fetch(REMOTE + "/status").then(function (r) { return r.json(); }).then(function (res) {
+      if (res.connected) return musicNote("♪ Quiet music is on.");
+      var a = el("a", "", "Connect Spotify");
+      a.href = res.login;
+      a.target = "_blank";
+      status.replaceChildren("♪ The helper runs but is not logged in: ", a);
+    }, function () { musicNote("♪ Music helper off: run node dm-app/tools/spotify-remote.mjs"); });
+
     var bar = document.getElementById("cast-bar");
     bar.replaceChildren(
       button("📺 Player screen", "btn go", function () { window.open("emporium.html?view=players", "dm-emporium-players"); }),
       tick("Monitor follows my clicks", "follow"),
-      button("Map on monitor", "btn", function () { show({ spot: null, item: null, haul: false }); play(players, null); }),
+      button("Map on monitor", "btn", function () { show({ spot: null, item: null, haul: false, secret: null }); play(players, null); }),
       button("Fold / unfold the shelves", "btn", function () { show({ bare: !screen().bare }); }),
       button("Show the haul", "btn", function () { show({ item: null, haul: true }); }),
       tick("Music changes with the place", "music"),
-      musicField(null, "Market theme")
+      musicField(null, "Market theme"),
+      status
     );
     save(KEYS.playing, null); // a new night: the first click plays, whatever played last time
 
@@ -221,9 +243,27 @@
       if (s.spot) opts.onSpot(s.spot);
     });
 
+    function has(store, k) { return load(store, []).indexOf(k) !== -1; }
     return {
+      // A riddle won: a hidden row appears on the monitor (or goes again). Returns whether it is now shown.
+      reveal: function (spotId, name) {
+        var k = key(spotId, name), on = !has(KEYS.revealed, k), rest = load(KEYS.revealed, []).filter(function (x) { return x !== k; });
+        tell(save(KEYS.revealed, on ? rest.concat([k]) : rest));
+        return on;
+      },
+      isRevealed: function (spotId, name) { return has(KEYS.revealed, key(spotId, name)); },
+      // A secret earned: the monitor shows its card (on) or puts it away; once shown it stays on the night's list.
+      secret: function (spotId, id, on) {
+        var k = spotId + "|" + id;
+        if (on && !has(KEYS.secrets, k)) tell(save(KEYS.secrets, load(KEYS.secrets, []).concat([k])));
+        show({ secret: on ? k : null });
+      },
+      secretState: function (spotId, id) {
+        var k = spotId + "|" + id;
+        return { shown: screen().secret === k, uncovered: has(KEYS.secrets, k) };
+      },
       // The DM chose a spot: the monitor goes there and its music starts, unless he is looking privately.
-      spot: function (id) { if (castState().follow) { show({ spot: id, item: null, haul: false, bare: false }); play(players, id); } },
+      spot: function (id) { if (castState().follow) { show({ spot: id, item: null, haul: false, bare: false, secret: null }); play(players, id); } },
       // Paid for: a sealed letter opens, and the monitor shows what is written in it.
       bought: function (spotId, name) {
         var v = ((players.mystery || {})[spotId] || {})[Core.stripTags(name)], k = key(spotId, name), list = load(KEYS.identified, []);

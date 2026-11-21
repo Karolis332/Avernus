@@ -119,6 +119,19 @@
   details.full table { border-collapse: collapse; margin: 2px 0 6px; }
   details.full td, details.full th { padding: 1px 8px 1px 0; border-bottom: 1px solid rgba(0, 0, 0, .12); text-align: left; }
   details.full .credit { font-size: .8em; opacity: .6; }
+  /* the Talk and Games tabs (js/emporium-talk.js) */
+  .talk h3, #pane .book > h3 { font-family: Cinzel, serif; color: var(--red); margin: 16px 0 6px; }
+  .talk table.mk th { width: 9em; text-align: left; vertical-align: top; font-family: Cinzel, serif; font-size: .85em; }
+  .talk table.talk-lines td { font-style: italic; }
+  .talk-box { border: 1px solid rgba(122, 30, 20, .35); border-left: 4px solid var(--red); border-radius: 6px; padding: 8px 12px; margin: 0 0 12px; background: rgba(255, 250, 238, .55); }
+  .talk-box.secret { border-left-color: #5b3f9e; }
+  .talk-box.secret.uncovered { background: rgba(232, 224, 250, .5); }
+  .talk-box h4 { font-family: Cinzel, serif; margin: 0 0 6px; }
+  .talk-box h4 .chip { margin-left: 8px; font-size: .75em; }
+  .talk-box p { margin: 4px 0; }
+  .talk-act { display: flex; gap: 10px; align-items: center; flex-wrap: wrap; margin-top: 8px !important; }
+  details.talk-sb { margin: 4px 0; }
+  details.talk-sb > summary { font-size: 1em; }
 </style>
 </head>
 <body class="emporium-page">
@@ -244,6 +257,8 @@
 <script>window.LIBRARY = window.LIBRARY || { maps: [], docs: [] }; window.MEDIA = window.MEDIA || {};</script>
 <script src="js/core.js"></script>
 <script src="js/render.js"></script>
+<script src="js/statblock.js"></script>
+<script src="sessions/campaign-world.js"></script>
 <script src="sessions/campaign-emporium.js"></script>
 <script src="sessions/campaign-emporium-games.js"></script>
 <script src="sessions/campaign-emporium-market.js"></script>
@@ -251,7 +266,11 @@
 <script src="sessions/campaign-emporium-players.js"></script>
 <script src="sessions/campaign-emporium-item-art.js"></script>
 <script src="sessions/campaign-emporium-item-text.js"></script>
+<script src="sessions/campaign-emporium-minigames.js"></script>
+<script src="sessions/campaign-emporium-gauntlets.js"></script>
+<script src="sessions/campaign-emporium-talk.js"></script>
 <script src="js/emporium-cast.js"></script>
+<script src="js/emporium-talk.js"></script>
 <script src="js/emporium.js"></script>
 <script src="js/emporium-players.js"></script>
 </body>

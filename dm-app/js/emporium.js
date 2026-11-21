@@ -223,7 +223,9 @@
         ["favours", "Favours", (s.favours || []).length],
         ["buys", "Buys", (s.buys || []).length],
         ["tonight", "Tonight", (s.tonight || []).length],
-        ["play", "Play", panel && playBlocks(panel).length ? 1 : 0]
+        ["play", "Play", panel && playBlocks(panel).length ? 1 : 0],
+        ["talk", "Talk", window.DMEmporiumTalk.talkOf(s.id) ? 1 : 0],
+        ["games", s.id === "devils-teeth" ? "The Ladder" : "Games", window.DMEmporiumTalk.gamesOf(s.id).length]
       ].filter(function (t) { return t[2] > 0; });
     }
     function isPlay(b) { return b.t === "more" && /^(Playing|Bargaining)/.test(b.title || ""); }
@@ -315,6 +317,8 @@
       if (tab === "favours") return pairsTab(["What the keeper asks", "What it buys"], s.favours, "ask", "gives");
       if (tab === "buys") return pairsTab(["What the party sells", "The keeper pays", "Note"], s.buys, "what", "pays", "note");
       if (tab === "play") return blocksTab(playBlocks(panel), true);
+      if (tab === "talk") return window.DMEmporiumTalk.talkTab(s, cast, drawPane);
+      if (tab === "games") return window.DMEmporiumTalk.gamesTab(s);
       var ul = el("ul", "tonight");
       s.tonight.forEach(function (line) { var li = el("li"); li.appendChild(inline(line)); ul.appendChild(li); });
       return ul;

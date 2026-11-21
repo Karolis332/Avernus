@@ -16,7 +16,7 @@
   // What this window remembers between drawings. The screen itself ({ spot, item, haul, bare }) lives in localStorage.
   var view = {
     shelf: "", sceneOf: undefined, ledger: Cast.load(K.ledger, []), revealed: Cast.load(K.revealed, []),
-    identified: Cast.load(K.identified, []), fresh: [], stamp: null, unveiled: null
+    identified: Cast.load(K.identified, []), fresh: [], stamp: null, unveiled: null, secret: null
   };
 
   function spotById(id) { return M.spots.filter(function (s) { return s.id === id; })[0] || null; }
@@ -260,11 +260,29 @@
       var sum = [b.sc ? b.sc + " SC" : "", b.gp ? b.gp.toLocaleString("en-US") + " gp" : ""].filter(Boolean).join("  ·  ");
       cols.appendChild(add(col, el("h2", "", b.who), ul, el("p", "pv-haul-sum", sum)));
     });
-    var t = E.ledgerTotals(view.ledger);
+    var t = E.ledgerTotals(view.ledger), found = Cast.load(K.secrets, []).map(secretOf).filter(Boolean);
+    var known = found.length ? add(el("div", "pv-haul-secrets"), el("h2", "", "Secrets uncovered"),
+      add.apply(null, [el("ul")].concat(found.map(function (x) { return add(el("li"), el("b", "", x.secret.title), el("span", "", "  ·  " + x.place)); })))) : null;
     return add(wrap, el("h1", "", "The night's haul"),
       buyers.length ? cols : el("p", "pv-sub", "Nothing bought yet."),
-      el("p", "pv-haul-total", "Spent on the floor: " + t.total + " SC" + (t.gold ? " and " + t.gold.toLocaleString("en-US") + " gp" : "")));
+      el("p", "pv-haul-total", "Spent on the floor: " + t.total + " SC" + (t.gold ? " and " + t.gold.toLocaleString("en-US") + " gp" : "")), known);
   }
+
+  // ---- a secret the party earned: the DM shows its line as a card over whatever is on screen ----
+  function secretOf(k) {
+    var part = String(k || "").split("|"), s = spotById(part[0]), t = (window.EMPORIUM_TALK || { spots: {} }).spots[part[0]];
+    var secret = t && (t.secrets || []).filter(function (x) { return x.id === part[1]; })[0];
+    return s && secret ? { secret: secret, place: s.short || s.name } : null;
+  }
+  function drawSecret(k) {
+    var x = secretOf(k);
+    if (!x) return null;
+    var card = el("section", "pv-secret");
+    card.addEventListener("click", function () { show({ secret: null }); });
+    return add(card, add(el("div", "pv-secret-card"), el("p", "pv-secret-kicker", "Secret uncovered  ·  " + x.place),
+      el("h2", "", x.secret.title), el("p", "pv-secret-text", x.secret.say)));
+  }
+  function secretSound() { chime([147, 220, 294, 440], 0.22, "sine"); }
 
   function render() {
     var scr = Cast.screen(), s = spotById(scr.spot);
@@ -275,7 +293,8 @@
     var stage = document.getElementById("pv-stage");
     var keep = stage.querySelector(".pv-cards"), scroll = keep ? keep.scrollTop : 0;
     var keepRules = stage.querySelector(".pv-pop-rules"), rulesScroll = keepRules ? keepRules.scrollTop : 0;
-    stage.replaceChildren.apply(stage, scr.haul ? [drawHaul()] : s ? [drawShop(s, scr.bare), scr.item ? drawPopup(s, scr.item) : null].filter(Boolean) : [drawMap()]);
+    stage.replaceChildren.apply(stage, (scr.haul ? [drawHaul()] : s ? [drawShop(s, scr.bare), scr.item ? drawPopup(s, scr.item) : null] : [drawMap()])
+      .concat([scr.secret ? drawSecret(scr.secret) : null]).filter(Boolean));
     var cards = stage.querySelector(".pv-cards"), rulesBox = stage.querySelector(".pv-pop-rules");
     if (cards) cards.scrollTop = scroll;
     if (rulesBox) rulesBox.scrollTop = rulesScroll;
@@ -327,6 +346,8 @@
     var scr = Cast.screen(), s = spotById(scr.spot);
     var held = s && scr.item ? goods(s).filter(function (g) { return g.key === scr.item; })[0] : null;
     if (held) view.shelf = held.g; // the shelf behind the item the DM is holding up
+    if (scr.secret && scr.secret !== view.secret) secretSound();
+    view.secret = scr.secret;
     render();
   }
 
@@ -334,7 +355,7 @@
     document.title = P.title;
     root.hidden = false;
     root.className = "muted";
-    Cast.save(K.screen, Object.assign(Cast.screen(), { item: null, haul: false })); // nothing held up from last time
+    Cast.save(K.screen, Object.assign(Cast.screen(), { item: null, haul: false, secret: null })); // nothing held up from last time
     add(root, add(el("div", "pv-scene"), Object.assign(el("div"), { id: "pv-crop" }), Object.assign(document.createElement("img"), { id: "pv-art", alt: "" })),
       Object.assign(el("div"), { id: "pv-glow" }), Object.assign(el("div"), { id: "pv-fx" }), Object.assign(el("div"), { id: "pv-stage" }),
       Object.assign(el("div"), { id: "pv-hud" }), Object.assign(el("div"), { id: "pv-toast" }),
@@ -345,7 +366,8 @@
     window.addEventListener("keydown", function (e) {
       if (e.key !== "Escape") return;
       var scr = Cast.screen();
-      if (scr.haul) show({ haul: false });
+      if (scr.secret) show({ secret: null });
+      else if (scr.haul) show({ haul: false });
       else if (scr.item) show({ item: null });
       else if (scr.spot) { show({ spot: null }); Cast.play(P, null); }
     });
@@ -354,6 +376,7 @@
       else if (e.key === K.revealed) onRevealed();
       else if (e.key === K.identified) onIdentified();
       else if (e.key === K.screen) onScreen();
+      else if (e.key === K.secrets) render();
       else if (e.key === K.state) drawHud();
     });
     render();
