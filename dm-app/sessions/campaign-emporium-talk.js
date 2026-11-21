@@ -194,6 +194,13 @@
         senses: "Wet canvas and brine, the soft sound of larvae moving, and a murmur like a far-off crowd, which is the larvae talking.",
         wants: "To sell out before the bell and never be recognised. His war-band was broken; he would rather sell souls than be one.",
         tell: "When his pride is touched he straightens his coat.",
+        // DM ruling 2026-11-21: a freed larva counts for the Grace Lantern and the Choir Core, and freeing one costs something
+        box: { title: "What to do with a larva (DM ruling)", rows: [
+          ["Free it", "Each larva needs one of: {@spell dispel evil and good} or {@spell remove curse} cast on it; Lulu or the Moonkite, an hour each; or Jeremy at the Choir Core, an hour plus a spell scroll or 50 gp of reagents used up."],
+          ["What a freed one counts for", "One Grace for the Grace Lantern, and one of the ten souls the Choir Core needs. The Elturian pen (twelve) covers the Core with two to spare, if they can pay to free all twelve."],
+          ["Ask it", "A larva remembers its life in pieces: a name, a street, how it died. Freed, it remembers whole and can answer one question about its life (Claude's addition: keep or cut)."],
+          ["Leave it a larva", "It stays stock: Z'neth buys back at 0.3 SC a head (0.4 haggled). It does not count for the Lantern or the Core until freed."]
+        ] },
         phrases: [
           ["Greeting", "Graded stock, fair weight, no refunds. Keep your fingers outside the rails."],
           ["Selling", "That one was a magistrate. Very docile. Good for a Choir Core."],

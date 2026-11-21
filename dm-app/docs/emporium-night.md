@@ -43,8 +43,9 @@ The Client ID and the login stay in `~/.spotify-dm/` on that computer, never in 
 | Hits a mysterious item | **Identify** names it on the monitor; **Veil again** hides the name. |
 | Buys an Informant letter | It opens on the monitor by itself. **Open the seal** opens one without a sale. |
 | Wants the whole painting | **Fold / unfold the shelves**. |
-| Plays a game | **Games** tab (Soul Pit, the Rapture, the Forge, the Ichor): rules, rolls, payouts. |
-| Fights at the Devil's Teeth | **The Ladder** tab: one-on-one bouts, nobody dies, a ladder for each character. Each opponent's stat block opens in place. |
+| Plays a game | **Games** tab (Soul Pit, the Rapture, the Forge, the Ichor): rules, rolls, payouts, and a gold box per game. **Show the board** puts it on the monitor (how it plays, the buy-in, what it pays, and the live board); press the box's buttons as the dice land. The Derby's lemures and Velluc's house roll are rolled by the screen; the players roll everything else. **Take it down** (or Escape on the monitor) when done, **Reset** for a new game. |
+| Fights at the Devil's Teeth | **The Ladder** tab: one-on-one bouts, nobody dies, a ladder for each character, each with its gold box: type who fights, then **Won the bout** / **Lost the bout** lights the rungs on the monitor. Each opponent's stat block opens in place. |
+| Buys or frees a larva | **Talk** tab at the Larva Farm: "What to do with a larva" (what freeing costs, what a freed one counts for). |
 | Leaves for the map | **Map on monitor**. |
 | Ends the night | **Show the haul**: what everyone bought and the secrets they uncovered. |
 
@@ -78,3 +79,4 @@ The Client ID and the login stay in `~/.spotify-dm/` on that computer, never in 
 | Talk: keepers, riddles, secrets | `dm-app/sessions/campaign-emporium-talk.js` |
 | Sell guide (what the floor pays) | `dm-app/js/emporium-sell.js`; the stalls' own buy rates are `buys` in `-market.js` / `-goods.js` |
 | Mini-games and the Ladder | `dm-app/sessions/campaign-emporium-minigames.js`, `-gauntlets.js` |
+| Game boards on the monitor | `dm-app/sessions/campaign-emporium-boards.js` (what players see), `dm-app/js/emporium-boards.js` (the rules the screen runs) |

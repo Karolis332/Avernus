@@ -88,6 +88,10 @@
     wrap.appendChild(el("h3", "", "How to play them"));
     wrap.appendChild(rowsTable("talk-how", [["Voice", t.voice], ["Look", t.look], ["Senses", t.senses], ["Wants tonight", t.wants], ["Tell", t.tell]]
       .filter(function (r) { return r[1]; })));
+    if (t.box) {
+      wrap.appendChild(el("h3", "", t.box.title));
+      wrap.appendChild(rowsTable("talk-how", t.box.rows));
+    }
     if ((t.phrases || []).length) {
       wrap.appendChild(el("h3", "", "Say it in their voice"));
       wrap.appendChild(rowsTable("talk-lines", t.phrases.map(function (x) { return [x[0], "“" + x[1] + "”"]; })));
